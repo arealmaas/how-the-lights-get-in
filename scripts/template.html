@@ -178,9 +178,16 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%;font-size:12
 .sheet-body .when{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink);margin:0 0 12px;font-variant-numeric:tabular-nums}
 .sheet-body .when span{color:var(--ink-2);font-weight:500;font-family:var(--sans)}
 .people{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
-.person{border:1px solid var(--line-strong);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:500;background:var(--surface-2)}
+.person{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-strong);border-radius:999px;padding:3px 11px 3px 3px;font-size:13px;font-weight:500;background:var(--surface-2);text-align:left}
 .person.link:hover{border-color:var(--ink);background:var(--surface)}
 .person small{color:var(--ink-3);font-weight:500}
+/* photos: thumbnails made from the festival site's images (© IAI and photographers) */
+.avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none;background:var(--surface-3)}
+.avatar.ini{display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-style:normal;color:var(--ink-2);letter-spacing:.02em}
+.hero{display:block;width:100%;aspect-ratio:16/9;max-height:220px;object-fit:cover;border-radius:10px;margin:0 0 14px;background:var(--surface-2)}
+.profile{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 18px;align-items:start;margin:0 0 10px}
+.profile .portrait{width:104px;height:130px;object-fit:cover;border-radius:10px;background:var(--surface-2);margin-top:4px}
+.profile .tagline{font-family:var(--display);font-size:16px;font-weight:600;color:var(--ink-2);margin:0}
 .desc{max-width:62ch;font-size:15px;line-height:1.55}
 .desc p{margin:0 0 12px}
 .desc .src{font-size:12.5px;color:var(--ink-3);font-style:italic}
@@ -193,7 +200,6 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%;font-size:12
 .actions .note{flex-basis:100%;font-size:12px;color:var(--ink-3);margin:2px 0 0}
 .bio{max-width:62ch;font-size:15px;line-height:1.55}
 .bio p{margin:0 0 12px}
-.bio .tagline{font-family:var(--display);font-size:16px;font-weight:600;color:var(--ink-2);margin:-2px 0 12px}
 .applist{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .applist button{width:100%;text-align:left;border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--surface);display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline}
 .applist button:hover{border-color:var(--line-strong)}
@@ -369,7 +375,7 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 <div class="nownext" id="nownext" hidden></div>
 <main id="main"></main>
 <footer>
-  <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions and speaker biographies are © the IAI, reproduced from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
+  <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions, speaker biographies and photographs are © the IAI and the respective photographers, reproduced at reduced size from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
   <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser; “Copy link to my picks” carries picks and verdicts to another device or a friend, “Export notes” writes everything to a Markdown file, and “Export picks to calendar” adds them all to your calendar at once.</div>
   <div class="noprint">Debate briefings are unofficial notes written with Claude (AI) from the programme text and the speakers’ published work — inferred, hedged, and not the speakers’ or the festival’s words; corrections welcome on GitHub. Music, comedy and film links were looked up by hand; where none was found the planner offers a search instead.</div>
   <div class="noprint offline-note">Once loaded, the planner works offline — add it to your home screen for the weekend. Add <code>?now=2026-09-19T14:00</code> to the address to preview festival-day mode.</div>
@@ -679,6 +685,12 @@ function closeSheet(){
 const paras = s => (s || '').split(/\n{2,}|\n/).filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('');
 const ytId = url => { const m = String(url).match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/)([\w-]{6,})/); return m ? m[1] : null; };
 const ext = (href, label) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`;
+const initials = n => { const w = String(n).split(/\s+/).filter(Boolean); return (w.length ? w[0][0] + (w.length > 1 ? w[w.length - 1][0] : '') : '?').toUpperCase().replace(/[^\p{L}\p{N}]/gu, ''); };
+const PHOTOS = DATA.photos || null;   // artifact copy: path -> data: URI; on the site the relative paths are used as they are
+const photoSrc = p => p ? ((PHOTOS && PHOTOS[p]) || p) : null;
+const avatar = (photo, name) => photo ? `<img class="avatar" src="${esc(photoSrc(photo))}" alt="" loading="lazy" decoding="async">` : `<i class="avatar ini" aria-hidden="true">${esc(initials(name))}</i>`;
+const hero = photo => photo ? `<img class="hero" src="${esc(photoSrc(photo))}" alt="" decoding="async">` : '';
+const portrait = photo => photo ? `<img class="portrait" src="${esc(photoSrc(photo))}" alt="" decoding="async">` : '';
 
 function mediaBlock(e){
   const isPerf = PERFORMANCE.has(e.type), isFilm = e.type === 'DokBox';
@@ -729,9 +741,9 @@ function showEvent(no, push = true){
   const people = e.people.map(pe => {
     const s = pe.slug ? spkBySlug.get(pe.slug) : spkByName.get(pe.name.toLowerCase());
     const has = s && s.bio;
-    return `<button type="button" class="person${has ? ' link' : ''}" ${has ? `data-speaker="${esc(s.slug || s.name)}"` : 'disabled'}>${esc(pe.name)}${pe.role === 'host' ? ' <small>host</small>' : ''}</button>`;
+    return `<button type="button" class="person${has ? ' link' : ''}" ${has ? `data-speaker="${esc(s.slug || s.name)}"` : 'disabled'}>${avatar(s && s.photo, pe.name)}<span>${esc(pe.name)}${pe.role === 'host' ? ' <small>host</small>' : ''}</span></button>`;
   });
-  const acts = (e.actSlugs || []).map(s => actBySlug.get(s)).filter(a => a && a.bio).map(a => `<button type="button" class="person link" data-act="${esc(a.slug)}">${esc(a.name)} <small>${a.kind}</small></button>`);
+  const acts = (e.actSlugs || []).map(s => actBySlug.get(s)).filter(a => a && a.bio).map(a => `<button type="button" class="person link" data-act="${esc(a.slug)}">${avatar(a.photo, a.name)}<span>${esc(a.name)} <small>${a.kind}</small></span></button>`);
   const links = [e.url ? ext(e.url, 'Event page') : '', ...e.links.filter(l => /menu/i.test(l.text)).map(l => ext(l.href, 'Menu (PDF)'))].filter(Boolean);
   const icsBtn = IN_ARTIFACT
     ? `<a class="btn" href="${esc(PUBLIC_URL + '#event=' + e.eventNo)}" target="_blank" rel="noopener">Add to calendar (.ics) ↗</a>`
@@ -761,6 +773,7 @@ function showEvent(no, push = true){
       <p class="src">Saved in this browser only. “Export notes” in the header writes picks, notes and verdicts to a Markdown file.</p>`;
   openSheet(`
     <div class="g-${GROUP[e.type]}">
+      ${hero(e.photo)}
       <div class="kicker"><span class="type">${esc(e.type)}</span><span>Event #${e.eventNo}</span></div>
       <h2 id="sheet-title">${esc(e.title)}</h2>
       <p class="when">${DAYS[e.date]} ${e.time} <span>· ${esc(e.venue)}</span></p>
@@ -775,9 +788,13 @@ function showSpeaker(key, push = true){
   const s = spkBySlug.get(key) || spkByName.get(key.toLowerCase()); if (!s) return;
   if (push) sheetStack.push({kind:'speaker', key});
   openSheet(`
-    <div class="kicker"><span>Speaker</span></div>
-    <h2 id="sheet-title">${esc(s.name)}</h2>
-    <div class="bio">${s.tagline ? `<p class="tagline">${esc(s.tagline)}</p>` : ''}${paras(s.bio)}</div>
+    <div class="profile">
+      <div><div class="kicker"><span>Speaker</span></div>
+      <h2 id="sheet-title">${esc(s.name)}</h2>
+      ${s.tagline ? `<p class="tagline">${esc(s.tagline)}</p>` : ''}</div>
+      ${portrait(s.photo)}
+    </div>
+    <div class="bio">${paras(s.bio)}</div>
     ${extrasBlock(s)}
     <h3 class="sub">Appears in</h3>${appearsList([...s.speaks, ...s.hosts])}`);
 }
@@ -791,8 +808,11 @@ function showAct(key, push = true){
   const a = actBySlug.get(key); if (!a) return;
   if (push) sheetStack.push({kind:'act', key});
   openSheet(`
-    <div class="kicker"><span>${esc(a.kind)}</span></div>
-    <h2 id="sheet-title">${esc(a.name)}</h2>
+    <div class="profile">
+      <div><div class="kicker"><span>${esc(a.kind)}</span></div>
+      <h2 id="sheet-title">${esc(a.name)}</h2></div>
+      ${portrait(a.photo)}
+    </div>
     <div class="bio">${paras(a.bio)}</div>
     <dl class="meta"><dt>Profile</dt><dd>${ext(a.profileUrl, 'howthelightgetsin.org')}</dd></dl>
     ${a.events.length ? `<h3 class="sub">Performing</h3>${appearsList(a.events)}` : ''}`);

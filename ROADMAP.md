@@ -17,6 +17,10 @@ Ideas for the planner, to be done one at a time. Everything here works on a stat
 - ✅ **Reading list generator.** From your picks: up to two books per speaker plus each briefing's "read or watch first"; copy as text or export as Markdown.
 - ✅ **Speaker stats.** Most-booked speakers, busiest start times, events by venue and type, topics, who appears together — the *Stats* button in the header.
 
+## Batch 3 (done 6 September 2026)
+
+- ✅ **Photos.** Portraits from the festival site on every speaker and act sheet, avatars in the event's speaker list, the programme image at the top of each event sheet (act photos for music and comedy). 240 WebP thumbnails under `img/`, precached for offline use, embedded as data URIs in the artifact copy. `scripts/fetch-images.js` + `scripts/unpack-images.py` refresh them.
+
 ## Skipped (decided 6 September 2026)
 
 Free-slot finder, weather and travel notes, bingo, "surprise me", share card — not needed.
