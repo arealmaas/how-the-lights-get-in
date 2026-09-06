@@ -1,0 +1,403 @@
+{
+  "95": {
+    "kind": "talk",
+    "question": "Is modernity a Western invention the rest of the world is catching up with — or does China have its own thousand-year tradition of thinking about knowledge, power and the good society?",
+    "why": "Wang Hui is the intellectual most associated with China's 'New Left' and with the critique of the idea that history ends in Western liberalism. His claim that China's modernity is its own — not borrowed — is at once a scholarly thesis and a political one.",
+    "case": [
+      "Chinese thought from the Song dynasty onward developed its own concepts of statecraft, knowledge and the public that do not map onto Western categories of 'tradition' and 'modernity'.",
+      "The 'catching up' story is Eurocentric history: it treats one path as the path.",
+      "China's twentieth-century revolutions were modern in their own terms — mass politics, equality, national unity — not imitations.",
+      "Understanding this matters now: a West that thinks China must converge will keep being surprised."
+    ],
+    "objections": [
+      "The New Left's defence of China's 'own path' has been used to justify the Party's rejection of liberal reform; critics ask where the space for dissent is in the theory.",
+      "Modernity's key institutions — the nation state, industrial capitalism, science — did in fact spread from Europe; distinctiveness is not independence.",
+      "Wang's history is selective, as all intellectual histories are; the Confucian tradition also has liberal readings.",
+      "The talk may leave the audience with a thesis about history and no way to test it."
+    ],
+    "speakers": [
+      {"name": "Wang Hui", "stance": "Tsinghua intellectual historian; China's New Order, The End of the Revolution, China from Empire to Nation-State. Expect a dense argument from the history of ideas. He also debates democracy (1:15pm) and progress (5:30pm)."}
+    ],
+    "questions": [
+      "What in China's own tradition constrains power — and does the current state honour it?",
+      "If modernity is plural, is liberal democracy one modernity among others, or a mistake?",
+      "What would count as evidence that China had 'borrowed' rather than developed its modernity?"
+    ],
+    "reading": [
+      {"title": "China from Empire to Nation-State", "by": "Wang Hui (2014)", "note": "The introduction to his four-volume history, in English."},
+      {"title": "The End of History and the Last Man", "by": "Francis Fukuyama (1992)", "note": "The thesis Wang has spent a career opposing."}
+    ],
+    "terms": [
+      {"term": "New Left (China)", "def": "Intellectuals critical of market reform's inequalities and of Western liberalism, associated with Wang Hui since the 1990s."},
+      {"term": "Multiple modernities", "def": "The view that modernisation has taken different institutional and cultural forms rather than one Western path."}
+    ]
+  },
+  "96": {
+    "kind": "talk",
+    "question": "Will the next revolution in physics come from rethinking the foundations — a hologram on the night sky, a mirror universe — rather than adding complexity?",
+    "why": "General relativity and quantum mechanics have coexisted uneasily for a century. Pasterski and Turok each propose a foundational rethink: she describes four-dimensional physics as a hologram on the celestial sphere; he replaces the Big Bang singularity with a mirror between two universes. Two of the boldest current ideas, side by side.",
+    "case": [
+      "Pasterski: celestial holography encodes scattering in our universe as a two-dimensional theory on the sky, offering a route to quantum gravity for realistic (flat) spacetime rather than the idealised anti-de Sitter case.",
+      "Turok: a CPT-symmetric universe — our universe and a mirror twin running backwards in time from the Big Bang — explains dark matter (right-handed neutrinos) and the matter–antimatter asymmetry without inflation.",
+      "Both reject the 'add a field, add a dimension' habit of recent decades in favour of symmetry and simplicity.",
+      "Both make claims that could be tested: Turok's predictions for neutrino masses, Pasterski's structural constraints on scattering."
+    ],
+    "objections": [
+      "Celestial holography is a research programme, not yet a theory; critics note it has not produced a new prediction about the world.",
+      "Turok's mirror universe is elegant but young; the mainstream still regards inflation as better supported by the CMB.",
+      "'Radical rethinking' is what every generation of theorists says; the test is decades of data.",
+      "Two speakers, one hour, no host: expect two mini-lectures rather than an exchange."
+    ],
+    "speakers": [
+      {"name": "Sabrina Pasterski", "stance": "Perimeter Institute theoretical physicist, leader of the celestial holography programme, widely billed as 'the next Einstein'. Expect precision and ambition; she gives her own talk at 3pm on automating theory with AI."},
+      {"name": "Neil Turok", "stance": "Higgs Chair at Edinburgh; The Universe Within; the mirror-universe model with Latham Boyle. Expect a lucid case against inflation and for simplicity. His solo talk is at 3:30pm."}
+    ],
+    "questions": [
+      "What observation, feasible in the next decade, would confirm or kill your idea?",
+      "Do your two proposals conflict, or could both be true?",
+      "What did the last century of 'adding complexity' get right?"
+    ],
+    "reading": [
+      {"title": "The Universe Within", "by": "Neil Turok (2012)", "note": "His Massey Lectures — the sensibility behind the mirror universe."},
+      {"title": "'Celestial Holography' (review article)", "by": "Pasterski, Pate and Raclariu (arXiv, 2021)", "note": "Technical, but the introduction is readable."}
+    ],
+    "terms": [
+      {"term": "Holographic principle", "def": "The idea that a region's physics can be described by a theory on its boundary; celestial holography applies it to the sky at infinity."},
+      {"term": "CPT symmetry", "def": "The combined symmetry of charge, parity and time reversal that any relativistic quantum theory must respect — the basis of Turok's mirror universe."}
+    ]
+  },
+  "98": {
+    "kind": "talk",
+    "question": "Can economics ever be a mathematical science like physics — or is economic life irreducibly human, made of language, ethics and persuasion?",
+    "why": "McCloskey spent a career inside mainstream economics before turning on its pretensions to physics-like precision. This two-part course traces how the discipline came to model itself on mechanics and argues that markets run on talk — 'sweet talk' — as much as on prices.",
+    "case": [
+      "Part 1: economics adopted physics envy in the nineteenth and twentieth centuries — equilibrium, optimisation, statistical significance — and gained rigour at the cost of realism.",
+      "A quarter of economic activity is persuasion: managers, lawyers, salespeople, teachers talk people into things; the models leave it out.",
+      "Part 2: the Great Enrichment came from ideas and rhetoric — the dignity of the bourgeois — not from capital accumulation, which is what the equations count.",
+      "An economics that took ethics and language seriously would predict less and explain more."
+    ],
+    "objections": [
+      "Formal models have real successes — auctions, matching markets, monetary policy; 'humanities economics' offers no substitute for them.",
+      "McCloskey's ideas-first history of growth is contested by economic historians who point to coal, colonies and capital.",
+      "Rhetoric-centred economics can slide into stories chosen for their charm; that is the vice she diagnoses in her opponents.",
+      "Her liberalism (Cato Institute) shapes which human factors she counts — persuasion, not power."
+    ],
+    "speakers": [
+      {"name": "Deirdre McCloskey", "stance": "Economist and historian; The Bourgeois Virtues, Bourgeois Dignity, Bourgeois Equality, Why Liberalism Works; Isaiah Berlin Chair at Cato. Expect wit, erudition and a liberal's confidence. She debates progress at 5:30pm."}
+    ],
+    "questions": [
+      "Which mainstream model would you keep, and why does it survive your critique?",
+      "If rhetoric drove the Great Enrichment, why did it happen in Britain and Holland first?",
+      "How would a humanities economics have handled the 2008 crisis differently?"
+    ],
+    "reading": [
+      {"title": "The Rhetoric of Economics", "by": "Deirdre McCloskey (1985)", "note": "Where the critique began."},
+      {"title": "Bourgeois Equality", "by": "Deirdre McCloskey (2016)", "note": "The ideas-first account of modern growth."}
+    ],
+    "terms": [
+      {"term": "Physics envy", "def": "The aspiration of social sciences to the mathematical form and predictive power of physics."},
+      {"term": "Great Enrichment", "def": "McCloskey's term for the thirtyfold rise in living standards since 1800."}
+    ]
+  },
+  "100": {
+    "kind": "talk",
+    "question": "Every complex civilisation before ours has collapsed — is ours next, and what does honest preparation look like?",
+    "why": "Wilson's argument is not that collapse is coming next year but that refusing to consider it is itself the danger. Drawing on 200 conversations with philosophers, game theorists and spiritual leaders, she offers a framework for living well inside systemic breakdown.",
+    "case": [
+      "The historical record — Rome, the Maya, the Bronze Age — shows complex societies fail from converging stresses, and ours faces climate, debt, and institutional decay at once.",
+      "Denial is the dominant response and the worst one; clarity about risk is the precondition for purpose.",
+      "Collapse is a process, not an event; the question is how to act with integrity through it, not how to escape.",
+      "Meaning under breakdown comes from community, honesty and reduced dependence — a minimalist ethic with old roots."
+    ],
+    "objections": [
+      "Collapse literature has a poor forecasting record; past civilisations' failures were regional, and ours is the first with global science.",
+      "'Every civilisation collapsed' is a survivorship framing — most also transformed, merged or slowly changed.",
+      "Framing the future as breakdown can be its own form of denial: of agency, of the boring work of adaptation.",
+      "The self-help register ('clarity, purpose') sits uneasily with the scale of the claim."
+    ],
+    "speakers": [
+      {"name": "Sarah Wilson", "stance": "Author and 'social philosopher' (This One Wild and Precious Life; First, We Make the Beast Beautiful), host of the Wild podcast. Expect an accessible synthesis of collapse scholarship with a personal ethic. She also appears at 10:30am on fame."}
+    ],
+    "questions": [
+      "What is the single indicator you'd watch to tell 'decline' from 'collapse'?",
+      "Which past civilisation did collapse well, and what did its people do right?",
+      "What should someone in this tent do differently on Monday?"
+    ],
+    "reading": [
+      {"title": "The Collapse of Complex Societies", "by": "Joseph Tainter (1988)", "note": "The scholarly foundation of the collapse argument — complexity's diminishing returns."},
+      {"title": "This One Wild and Precious Life", "by": "Sarah Wilson (2020)", "note": "Her framework for living with the crises."}
+    ],
+    "terms": [
+      {"term": "Polycrisis", "def": "Multiple systemic crises interacting so that the whole is worse than the sum — the current term of art."},
+      {"term": "Collapse (Tainter)", "def": "A rapid, significant loss of an established level of sociopolitical complexity."}
+    ]
+  },
+  "109": {
+    "kind": "talk",
+    "question": "How does power work when AI can set the agenda and shape what people want — and is Lukes's three-dimensional theory still enough?",
+    "why": "Power: A Radical View (1974) distinguished visible conflict, agenda control, and the shaping of desires. AI systems now do the third at scale, without a human intending it. Lukes revisits his theory with philosopher Audrey Borowski for the new edition.",
+    "case": [
+      "The third dimension — securing compliance by shaping beliefs and wants — was always the most important and the least visible; recommender systems industrialise it.",
+      "AI power is exercised without an agent: nobody decides what you want, yet your wants are shaped — a challenge to the theory's focus on human intention.",
+      "Agenda-setting (the second dimension) is now automated: what appears in feeds and search decides what gets discussed.",
+      "The remedy is the same as ever — making the invisible visible — but the tools have to be new."
+    ],
+    "objections": [
+      "Persuasion, advertising and propaganda have shaped wants for a century; AI changes scale, not kind.",
+      "A theory in which power operates without anyone exercising it risks becoming unfalsifiable — everything is 'power'.",
+      "People push back: algorithmic influence is measurable and smaller than the panic suggests.",
+      "Lukes's framework was built for politics and workplaces; whether it fits machine learning is exactly what needs argument."
+    ],
+    "speakers": [
+      {"name": "Steven Lukes", "stance": "Political and social theorist (NYU); Power: A Radical View, now in a new edition. Expect conceptual precision and reluctance to overclaim."},
+      {"name": "Audrey Borowski", "stance": "Cambridge philosopher and historian of Leibniz and computation (Leibniz in His World). Expect the long view on machines that reason and the humans who defer to them. She also debates AI hype on Saturday."}
+    ],
+    "questions": [
+      "Who holds power when a recommender system shapes an election — the company, the engineer, the model, no one?",
+      "What would count as evidence that AI has changed what people want, rather than only what they see?",
+      "Does your theory need a fourth dimension, or a different first one?"
+    ],
+    "reading": [
+      {"title": "Power: A Radical View", "by": "Steven Lukes (1974; new edition)", "note": "Short and foundational."},
+      {"title": "The Age of Surveillance Capitalism", "by": "Shoshana Zuboff (2019)", "note": "The case that behaviour-shaping is the business model."}
+    ],
+    "terms": [
+      {"term": "Three dimensions of power", "def": "Lukes: winning visible conflicts; keeping issues off the agenda; shaping what people believe and want."},
+      {"term": "Recommender system", "def": "Software that ranks content for each user — the third dimension of power, automated."}
+    ]
+  },
+  "115": {
+    "kind": "talk",
+    "question": "Is the serious novel in terminal decline — and if readers disappear, do we lose the capacity for depth of thought with them?",
+    "why": "Fewer than half of American adults read a book a year; the difficult novel has been pushed to the margins by media that never asks anyone to sit with difficulty. Self, whose novels demand exactly that, calls it a civilisational crisis; Kavenna asks whether anything can be done.",
+    "case": [
+      "The novel trained a form of attention — solitary, sustained, ambiguous — that nothing else does; losing the readers loses the faculty.",
+      "Digital media's 'synthetic fluff' is not competition but replacement: same hours, opposite effect on the mind.",
+      "The market has followed: publishers reward the personal, the short and the algorithm-friendly.",
+      "This is not nostalgia: societies without deep readers make worse decisions and shallower art."
+    ],
+    "objections": [
+      "The serious novel was always a minority pursuit; the mass readership of the past was for melodrama and romance.",
+      "Reading has moved, not died — long-form audio, fan fiction, serialised online writing are huge and not all fluff.",
+      "'Depth of thought' is not the novel's monopoly; philosophy, film and argument train it too.",
+      "Novelists announcing the death of the novel is a genre with a long history and no fatalities."
+    ],
+    "speakers": [
+      {"name": "Will Self", "stance": "Novelist (Umbrella, Shark, Phone; Elaine) and essayist; has argued since 2014 that the literary novel is dying. Expect erudition, pessimism and pleasure in both."},
+      {"name": "Joanna Kavenna", "stance": "Novelist and essayist (Zed, A Field Guide to Reality). Expect the questioner's role, with her own scepticism about tech."}
+    ],
+    "questions": [
+      "What is the last novel that a large public argued about — and what replaced that argument?",
+      "If the novel dies, what inherits its work?",
+      "Is your pessimism about readers or about writers?"
+    ],
+    "reading": [
+      {"title": "'The novel is dead (this time it's for real)'", "by": "Will Self, The Guardian (2014)", "note": "The essay this talk descends from."},
+      {"title": "Zed", "by": "Joanna Kavenna (2019)", "note": "A novel about the algorithms doing the replacing."}
+    ],
+    "terms": [
+      {"term": "Deep reading", "def": "Sustained, reflective reading that builds inference and empathy — Maryanne Wolf's term."},
+      {"term": "Literary novel", "def": "Fiction valued for form and difficulty rather than genre pleasures — the thing said to be dying."}
+    ]
+  },
+  "116": {
+    "kind": "talk",
+    "question": "Can theoretical physics be automated — and what is celestial holography, the programme Pasterski is trying to automate?",
+    "why": "The 'next Einstein' is not working alone: she is building AI and robotic tools to do parts of theoretical physics. The talk is two things at once — an introduction to celestial holography and a report from the frontier of machine-assisted theory.",
+    "case": [
+      "Celestial holography reformulates scattering in flat spacetime as a two-dimensional conformal theory on the celestial sphere; symmetries do the heavy lifting.",
+      "Much of theoretical work — checking identities, exploring parameter spaces, proposing conjectures — is mechanisable; AI can search where humans cannot.",
+      "Automation changes what a theorist is: a designer of questions and constraints rather than a calculator.",
+      "The stakes: quantum gravity in our actual universe, not a toy one."
+    ],
+    "objections": [
+      "AI systems have so far produced no new physical theory; they optimise within frameworks humans built.",
+      "Celestial holography's payoff is still conjectural; automation of a programme is not evidence for it.",
+      "The 'next Einstein' billing is a media label; Einstein's advances were conceptual, which is what automation is worst at.",
+      "Robotics in theoretical physics may be a metaphor; ask what the robot actually does."
+    ],
+    "speakers": [
+      {"name": "Sabrina Pasterski", "stance": "Perimeter Institute physicist leading the celestial holography programme; MIT and Harvard trained; has spoken about using AI in theory. Expect a technical talk made accessible, and confidence about automation. She also appears at 12:30 with Turok and in Saturday's AI debate."}
+    ],
+    "questions": [
+      "What is the first result you'd credit to the automated system rather than a human?",
+      "Which part of theory-building do you think can never be automated?",
+      "What would celestial holography predict that could be observed?"
+    ],
+    "reading": [
+      {"title": "'Celestial Holography' (review article)", "by": "Pasterski, Pate and Raclariu (arXiv, 2021)", "note": "The programme in the authors' words."},
+      {"title": "The Road to Reality", "by": "Roger Penrose (2004)", "note": "The mathematical background, if you want it, from the man debating inflation at 10:30."}
+    ],
+    "terms": [
+      {"term": "Celestial sphere", "def": "The two-dimensional sky at infinity on which celestial holography encodes four-dimensional scattering."},
+      {"term": "Asymptotic symmetries", "def": "Symmetries of spacetime at large distances (BMS symmetries) that structure the holographic dictionary."}
+    ]
+  },
+  "121": {
+    "kind": "talk",
+    "question": "What if the Big Bang is not a beginning but a mirror — with a twin universe running backwards in time on the other side?",
+    "why": "Turok and Boyle's CPT-symmetric universe proposes that the Big Bang is a moment of reflection, not a singularity: a universe of antimatter runs backwards in time on the other side. One idea, they claim, explains dark matter, the matter–antimatter asymmetry, and does away with inflation.",
+    "case": [
+      "The laws of physics are CPT-symmetric; a universe that respects that symmetry through the Big Bang is the simplest cosmology consistent with them.",
+      "Dark matter falls out as a right-handed neutrino with a predicted mass — a testable claim.",
+      "Why matter exists at all: the asymmetry is shared with the mirror universe, so the total is balanced.",
+      "No inflaton, no multiverse, no fine-tuned initial state — the problems inflation was invented to solve dissolve."
+    ],
+    "objections": [
+      "The model is new and has a small research community; inflation has forty years of development and fits the CMB well.",
+      "'Running backwards in time' is a symmetry statement, not a second universe anyone can visit; critics ask what is physically claimed.",
+      "The neutrino-mass prediction could fail, and the model's fate depends on it.",
+      "Elegance is not evidence — the point Hossenfelder makes about all of theoretical physics."
+    ],
+    "speakers": [
+      {"name": "Neil Turok", "stance": "Higgs Chair of Theoretical Physics, Edinburgh; former director of the Perimeter Institute; The Universe Within. Expect the full case against inflation and for simplicity, delivered with unusual clarity. He debates Penrose on inflation at 10:30 and joins Pasterski at 12:30."}
+    ],
+    "questions": [
+      "What is the neutrino mass your model predicts, and when will experiment tell us?",
+      "In what sense does the mirror universe exist — could anything from it affect us?",
+      "If Penrose and you both reject inflation, where do you disagree?"
+    ],
+    "reading": [
+      {"title": "'CPT-Symmetric Universe'", "by": "Latham Boyle, Kieran Finn and Neil Turok, Physical Review Letters (2018)", "note": "The paper; the abstract is readable."},
+      {"title": "Cycles of Time", "by": "Roger Penrose (2010)", "note": "The other anti-inflation cosmology on the bill."}
+    ],
+    "terms": [
+      {"term": "Singularity", "def": "A point of infinite density where general relativity breaks down — what the mirror universe replaces."},
+      {"term": "Right-handed neutrino", "def": "A hypothetical heavy neutrino partner; in Turok's model, the dark matter."}
+    ]
+  },
+  "124": {
+    "kind": "talk",
+    "question": "Is the need to matter — the source of art, ambition and violence alike — a biological drive we must learn to satisfy without turning on each other?",
+    "why": "Goldstein has argued for decades that 'mattering' is the hidden variable in human life: why people make art no one sees and why they kill to be noticed. In conversation with David Edmonds, she connects the philosophy of meaning to the politics of resentment.",
+    "case": [
+      "The need to matter is not vanity but a condition of agency: to act is to assume one's acts count.",
+      "Cultures supply 'mattering maps' — routes to significance through achievement, belonging, virtue; when the maps fail, people take violent shortcuts.",
+      "Philosophy's old question 'what is a meaningful life?' is the practical question 'how do I matter, and to whom?'",
+      "The task is to widen the routes — recognition, work, community — rather than to shame the need."
+    ],
+    "objections": [
+      "'Mattering' may relabel status-seeking; evolutionary psychology already explains it, less flatteringly.",
+      "Some ethical traditions (Stoic, Buddhist) counsel releasing the need to matter, not feeding it.",
+      "The link from thwarted significance to violence is plausible but selective; most people who don't matter don't kill.",
+      "The concept is broad enough to explain everything — a warning sign."
+    ],
+    "speakers": [
+      {"name": "Rebecca Goldstein", "stance": "Philosopher and novelist (Plato at the Googleplex; The Mattering Instinct is her long-running theme), MacArthur Fellow. Expect the argument made through stories and Spinoza. She also debates the self in literature on Saturday."},
+      {"name": "David Edmonds", "stance": "Interviews. Philosopher and broadcaster (Wittgenstein's Poker; Parfit)."}
+    ],
+    "questions": [
+      "How do you tell a healthy need to matter from a dangerous one — before the violence?",
+      "What does a society do for people whose mattering map has failed?",
+      "Is the philosopher's need to matter different in kind from anyone else's?"
+    ],
+    "reading": [
+      {"title": "Plato at the Googleplex", "by": "Rebecca Goldstein (2014)", "note": "Where 'mattering' gets its fullest treatment."},
+      {"title": "Parfit: A Philosopher and His Mission to Save Morality", "by": "David Edmonds (2023)", "note": "The interviewer's own book on a man consumed by mattering to the future."}
+    ],
+    "terms": [
+      {"term": "Mattering", "def": "Goldstein's term for the drive to be significant — to have one's existence and actions count."},
+      {"term": "Mattering map", "def": "A culture's shared sense of what makes a life significant, and who gets to be."}
+    ]
+  },
+  "125": {
+    "kind": "talk",
+    "question": "'Study hard, master your field, build expertise' — is that advice now dangerously out of date, and what should education be for in a world of intelligent machines?",
+    "why": "Susskind argues we are preparing children for a world that no longer exists: expertise that machines will reproduce, careers that will not last. His vision rebuilds education from scratch for humans who share the world with AI.",
+    "case": [
+      "The traditional route — deep expertise in one field — is precisely what AI automates first; the machines are best at what the graduate is trained to do.",
+      "Education should aim at what remains: judgement, adaptation, the ability to work with machines and to ask what is worth doing.",
+      "Career as a ladder is over; education for a portfolio of roles across a long life is the replacement.",
+      "This is an opportunity: a curriculum built around meaning and purpose, not credentials."
+    ],
+    "objections": [
+      "Predictions of the end of expertise have been wrong repeatedly; AI still needs experts to check it.",
+      "'Judgement and adaptability' are taught by mastering something first; you cannot skip to wisdom.",
+      "Education reforms are slow and political; 'rebuilt from scratch' is a phrase, not a plan.",
+      "The Gove position (Saturday) — knowledge first — is the direct opposite, and has more evidence on attainment."
+    ],
+    "speakers": [
+      {"name": "Daniel Susskind", "stance": "Oxford economist (A World Without Work; Growth: A Reckoning; The Future of the Professions with Richard Susskind). Expect a clear, forward-looking argument. He also debates the educated elite on Saturday."}
+    ],
+    "questions": [
+      "What should a fourteen-year-old be doing on Monday that they are not doing now?",
+      "Which existing skill will hold its value longest, and why?",
+      "If expertise is automated, who checks the machine?"
+    ],
+    "reading": [
+      {"title": "A World Without Work", "by": "Daniel Susskind (2020)", "note": "The automation argument."},
+      {"title": "The Future of the Professions", "by": "Richard and Daniel Susskind (2015)", "note": "Why expert work is the first to change."}
+    ],
+    "terms": [
+      {"term": "Task-based automation", "def": "AI replacing tasks within jobs rather than whole occupations — the mechanism Susskind analyses."},
+      {"term": "Credentialism", "def": "Using qualifications as proxies for ability — the thing a rebuilt education would drop."}
+    ]
+  },
+  "128": {
+    "kind": "talk",
+    "question": "Are nations finished as the focus of power — and if American hegemony, Western debt and tech firms have shattered the system, what replaces it?",
+    "why": "Dasgupta's After Nations argues that the nation-state system that seemed eternal is breaking under forces it cannot contain: capital that moves faster than states, tech firms acting as geopolitical actors, and the return of Chinese power. He looks back to the fall of empires for what comes next.",
+    "case": [
+      "The nation state is a recent form (two centuries) that was universalised after 1945 and is now failing at its core jobs: controlling money, information and violence.",
+      "Western debt and American decline remove the guarantor of the system; nothing replaces it.",
+      "Tech firms and platforms are political actors — they run infrastructure, communications and now warfare — without being nations.",
+      "History's precedents — the end of empires — show transitions are long, violent and produce forms nobody predicted."
+    ],
+    "objections": [
+      "Nations are also resurgent: borders, tariffs, nationalism and war show the state's monopoly on force is alive.",
+      "'After nations' has been announced by globalisers for thirty years; the state kept coming back.",
+      "The alternative is left vague; a 'new conception of power' is a promissory note.",
+      "Novelists writing political theory can mistake narrative force for argument."
+    ],
+    "speakers": [
+      {"name": "Rana Dasgupta", "stance": "Novelist and essayist (Solo; Capital: The Eruption of Delhi; After Nations). Expect a sweeping, literary argument from history. He also joins the climate 'doom loop' conversation at 5:30pm."}
+    ],
+    "questions": [
+      "Name the power that has replaced the state in one specific domain — and who holds it accountable?",
+      "Are borders and tariffs the death rattle of nations or their revival?",
+      "What did the end of the Roman or Ottoman order look like to someone living through it?"
+    ],
+    "reading": [
+      {"title": "After Nations", "by": "Rana Dasgupta", "note": "The book the talk is drawn from."},
+      {"title": "The Nation-State and Violence", "by": "Anthony Giddens (1985)", "note": "The classic account of what the nation state is and does."}
+    ],
+    "terms": [
+      {"term": "Hegemony", "def": "The leadership of one power that makes an international order work — the American role since 1945."},
+      {"term": "Westphalian system", "def": "The order of sovereign territorial states conventionally dated from 1648."}
+    ]
+  },
+  "135": {
+    "kind": "talk",
+    "question": "Can democracies break the climate doom loop — where disasters fuel the discontent that empowers the politicians who slow the response?",
+    "why": "The expectation was that floods and fires would force action. Instead they feed anger, anger feeds populists, populists slow the transition, and the disasters worsen. A live recording of the Overshoot podcast with Laybourn as host and Dasgupta as guest.",
+    "case": [
+      "Climate impacts are political before they are physical: they raise prices, displace people and erode trust, which anti-climate movements harvest.",
+      "The transition itself creates losers who vote; ignoring that is how the loop tightens.",
+      "Breaking the loop means building resilience and fairness into the transition — protection for the exposed, not just targets.",
+      "Dasgupta's frame: this is happening as the nation-state order itself weakens, so the actors who could respond are losing capacity."
+    ],
+    "objections": [
+      "The loop is asserted from a few cases; elsewhere disasters have strengthened climate politics (Australia after the fires, in part).",
+      "Populist backlash is driven by energy prices and immigration more than by climate disasters as such.",
+      "'Resilience and fairness' is what every party says; the difficulty is paying for it.",
+      "A podcast recording rewards conversation over confrontation; look for the moment of disagreement."
+    ],
+    "speakers": [
+      {"name": "Rana Dasgupta", "stance": "Novelist and essayist; After Nations. Expect the long historical view of political breakdown."},
+      {"name": "Laurie Laybourn", "stance": "Hosts. Researcher on climate 'derailment risk' (the doom-loop thesis is his), co-author of Planet on Fire, host of the Overshoot podcast. Expect the systems framing and the policy questions."}
+    ],
+    "questions": [
+      "Where has the loop been broken, even briefly — and what did it take?",
+      "Should climate policy be designed for the voters it will anger?",
+      "If nation states are weakening, who runs the transition?"
+    ],
+    "reading": [
+      {"title": "'1.5°C – dead or alive? The risks to transformational change from reaching and breaching the Paris Agreement goal'", "by": "Laybourn, Throp and Sherman, IPPR (2023)", "note": "The derailment-risk argument in its original form."},
+      {"title": "Planet on Fire", "by": "Mathew Lawrence and Laurie Laybourn (2021)", "note": "The political-economy programme behind the podcast."}
+    ],
+    "terms": [
+      {"term": "Doom loop", "def": "A self-reinforcing cycle in which the effects of a crisis undermine the capacity to respond to it."},
+      {"term": "Derailment risk", "def": "Laybourn's term for the danger that climate impacts derail the politics of the transition."}
+    ]
+  }
+}

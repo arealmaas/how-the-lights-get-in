@@ -1,0 +1,1262 @@
+{
+ "_meta": {
+  "note": "Wikipedia articles were resolved through the Wikipedia API on 6 September 2026 and checked against the festival bios (namesakes excluded). Books are a selection of the speakers' published work; years are omitted where unsure. IAI TV links open the festival organiser's own video archive search."
+ },
+ "speakers": {
+  "david-aaronovitch": {
+   "wikipedia": "https://en.wikipedia.org/wiki/David_Aaronovitch",
+   "iaiTv": "https://iai.tv/search-results?query=David%20Aaronovitch",
+   "books": [
+    {
+     "title": "Voodoo Histories",
+     "year": 2009
+    },
+    {
+     "title": "Party Animals",
+     "year": 2016
+    }
+   ]
+  },
+  "tariq-ali": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Tariq_Ali",
+   "iaiTv": "https://iai.tv/search-results?query=Tariq%20Ali",
+   "books": [
+    {
+     "title": "Street Fighting Years",
+     "year": 1987
+    },
+    {
+     "title": "The Extreme Centre",
+     "year": 2015
+    },
+    {
+     "title": "Winston Churchill: His Times, His Crimes",
+     "year": 2022
+    }
+   ]
+  },
+  "matilda-atkins": {
+   "iaiTv": "https://iai.tv/search-results?query=Matilda%20Atkins",
+   "books": []
+  },
+  "babette-babich": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Babette_Babich",
+   "iaiTv": "https://iai.tv/search-results?query=Babette%20Babich",
+   "books": [
+    {
+     "title": "The Hallelujah Effect",
+     "year": 2013
+    },
+    {
+     "title": "Nietzsche's Philosophy of Science",
+     "year": 1994
+    }
+   ]
+  },
+  "maria-balaska": {
+   "iaiTv": "https://iai.tv/search-results?query=Maria%20Balaska",
+   "books": [
+    {
+     "title": "Wittgenstein and Lacan at the Limit",
+     "year": 2019
+    }
+   ]
+  },
+  "philip-ball": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Philip_Ball",
+   "iaiTv": "https://iai.tv/search-results?query=Philip%20Ball",
+   "books": [
+    {
+     "title": "Beyond Weird",
+     "year": 2018
+    },
+    {
+     "title": "How Life Works",
+     "year": 2023
+    },
+    {
+     "title": "Critical Mass",
+     "year": 2004
+    }
+   ]
+  },
+  "shahidha-bari": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Shahidha_Bari",
+   "iaiTv": "https://iai.tv/search-results?query=Shahidha%20Bari",
+   "books": [
+    {
+     "title": "Dressed: The Secret Life of Clothes",
+     "year": 2019
+    }
+   ]
+  },
+  "torsten-bell": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Torsten_Bell",
+   "iaiTv": "https://iai.tv/search-results?query=Torsten%20Bell",
+   "books": [
+    {
+     "title": "Great Britain? How We Get Our Future Back",
+     "year": 2024
+    }
+   ]
+  },
+  "john-bolton": {
+   "wikipedia": "https://en.wikipedia.org/wiki/John_Bolton",
+   "iaiTv": "https://iai.tv/search-results?query=John%20Bolton",
+   "books": [
+    {
+     "title": "The Room Where It Happened",
+     "year": 2020
+    }
+   ]
+  },
+  "audrey-borowski": {
+   "iaiTv": "https://iai.tv/search-results?query=Audrey%20Borowski",
+   "books": [
+    {
+     "title": "Leibniz in His World: The Making of a Savant",
+     "year": 2024
+    }
+   ]
+  },
+  "yaron-brook": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Yaron_Brook",
+   "iaiTv": "https://iai.tv/search-results?query=Yaron%20Brook",
+   "books": [
+    {
+     "title": "Free Market Revolution (with Don Watkins)",
+     "year": 2012
+    },
+    {
+     "title": "Equal Is Unfair (with Don Watkins)",
+     "year": 2016
+    }
+   ]
+  },
+  "adrienne-buller": {
+   "iaiTv": "https://iai.tv/search-results?query=Adrienne%20Buller",
+   "books": [
+    {
+     "title": "The Value of a Whale",
+     "year": 2022
+    },
+    {
+     "title": "Owning the Future (with Mathew Lawrence)",
+     "year": 2022
+    }
+   ]
+  },
+  "edward-bullmore": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Ed_Bullmore",
+   "iaiTv": "https://iai.tv/search-results?query=Edward%20Bullmore",
+   "books": [
+    {
+     "title": "The Inflamed Mind",
+     "year": 2018
+    }
+   ]
+  },
+  "steven-campbell-harris": {
+   "iaiTv": "https://iai.tv/search-results?query=Steven%20Campbell-Harris",
+   "books": []
+  },
+  "silkie-carlo": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Silkie_Carlo",
+   "iaiTv": "https://iai.tv/search-results?query=Silkie%20Carlo",
+   "books": []
+  },
+  "robin-clyfan": {
+   "iaiTv": "https://iai.tv/search-results?query=Robin%20Clyfan",
+   "books": []
+  },
+  "miriam-cohen": {
+   "iaiTv": "https://iai.tv/search-results?query=Miriam%20Cohen",
+   "books": []
+  },
+  "phil-collins": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Philip_Collins_%28journalist%29",
+   "iaiTv": "https://iai.tv/search-results?query=Phil%20Collins",
+   "books": []
+  },
+  "laila-cunningham": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Laila_Cunningham",
+   "iaiTv": "https://iai.tv/search-results?query=Laila%20Cunningham",
+   "books": []
+  },
+  "tommy-curry": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Tommy_J._Curry",
+   "iaiTv": "https://iai.tv/search-results?query=Tommy%20Curry",
+   "books": []
+  },
+  "rana-dasgupta": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Rana_Dasgupta",
+   "iaiTv": "https://iai.tv/search-results?query=Rana%20Dasgupta",
+   "books": [
+    {
+     "title": "After Nations",
+     "year": null
+    },
+    {
+     "title": "Capital: The Eruption of Delhi",
+     "year": 2014
+    },
+    {
+     "title": "Solo",
+     "year": 2009
+    }
+   ]
+  },
+  "thangam-debbonaire": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Thangam_Debbonaire",
+   "iaiTv": "https://iai.tv/search-results?query=Thangam%20Debbonaire",
+   "books": []
+  },
+  "zoe-drewitt": {
+   "iaiTv": "https://iai.tv/search-results?query=Zoe%20Drewitt",
+   "books": []
+  },
+  "divya-dwivedi": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Divya_Dwivedi",
+   "iaiTv": "https://iai.tv/search-results?query=Divya%20Dwivedi",
+   "books": [
+    {
+     "title": "Gandhi and Philosophy (with Shaj Mohan)",
+     "year": 2019
+    },
+    {
+     "title": "Indian Philosophy, Indian Revolution (with Shaj Mohan)",
+     "year": 2024
+    }
+   ]
+  },
+  "david-edmonds": {
+   "wikipedia": "https://en.wikipedia.org/wiki/David_Edmonds_%28philosopher%29",
+   "iaiTv": "https://iai.tv/search-results?query=David%20Edmonds",
+   "books": [
+    {
+     "title": "Wittgenstein's Poker (with John Eidinow)",
+     "year": 2001
+    },
+    {
+     "title": "The Murder of Professor Schlick",
+     "year": 2020
+    },
+    {
+     "title": "Parfit: A Philosopher and His Mission to Save Morality",
+     "year": 2023
+    }
+   ]
+  },
+  "bjorn-ekeberg": {
+   "iaiTv": "https://iai.tv/search-results?query=Bj%C3%B8rn%20Ekeberg",
+   "books": [
+    {
+     "title": "Metaphysical Experiments: Physics and the Invention of the Universe",
+     "year": 2019
+    }
+   ]
+  },
+  "norman-finkelstein": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Norman_Finkelstein",
+   "iaiTv": "https://iai.tv/search-results?query=Norman%20Finkelstein",
+   "books": [
+    {
+     "title": "The Holocaust Industry",
+     "year": 2000
+    },
+    {
+     "title": "Gaza: An Inquest into Its Martyrdom",
+     "year": 2018
+    },
+    {
+     "title": "Gaza's Gravediggers",
+     "year": null
+    }
+   ]
+  },
+  "adam-frank": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Adam_Frank",
+   "iaiTv": "https://iai.tv/search-results?query=Adam%20Frank",
+   "books": [
+    {
+     "title": "Light of the Stars",
+     "year": 2018
+    },
+    {
+     "title": "The Little Book of Aliens",
+     "year": 2023
+    },
+    {
+     "title": "The Blind Spot (with Marcelo Gleiser and Evan Thompson)",
+     "year": 2024
+    }
+   ]
+  },
+  "ivette-fuentes": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Ivette_Fuentes",
+   "iaiTv": "https://iai.tv/search-results?query=Ivette%20Fuentes",
+   "books": []
+  },
+  "steve-fuller": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Steve_Fuller_%28sociologist%29",
+   "iaiTv": "https://iai.tv/search-results?query=Steve%20Fuller",
+   "books": [
+    {
+     "title": "Post-Truth: Knowledge as a Power Game",
+     "year": 2018
+    },
+    {
+     "title": "Humanity 2.0",
+     "year": 2011
+    }
+   ]
+  },
+  "frank-furedi": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Frank_Furedi",
+   "iaiTv": "https://iai.tv/search-results?query=Frank%20Furedi",
+   "books": [
+    {
+     "title": "Culture of Fear",
+     "year": 1997
+    },
+    {
+     "title": "How Fear Works",
+     "year": 2018
+    },
+    {
+     "title": "Why Borders Matter",
+     "year": 2020
+    },
+    {
+     "title": "100 Years of Identity Crisis",
+     "year": 2021
+    },
+    {
+     "title": "The War Against the Past",
+     "year": 2024
+    }
+   ]
+  },
+  "rebecca-goldstein": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Rebecca_Goldstein",
+   "iaiTv": "https://iai.tv/search-results?query=Rebecca%20Goldstein",
+   "books": [
+    {
+     "title": "Plato at the Googleplex",
+     "year": 2014
+    },
+    {
+     "title": "Betraying Spinoza",
+     "year": 2006
+    },
+    {
+     "title": "36 Arguments for the Existence of God",
+     "year": 2010
+    },
+    {
+     "title": "The Mind-Body Problem",
+     "year": 1983
+    }
+   ]
+  },
+  "emma-gordon": {
+   "iaiTv": "https://iai.tv/search-results?query=Emma%20Gordon",
+   "books": []
+  },
+  "michael-gove": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Michael_Gove",
+   "iaiTv": "https://iai.tv/search-results?query=Michael%20Gove",
+   "books": [
+    {
+     "title": "Celsius 7/7",
+     "year": 2006
+    }
+   ]
+  },
+  "john-gray": {
+   "wikipedia": "https://en.wikipedia.org/wiki/John_Gray_%28philosopher%29",
+   "iaiTv": "https://iai.tv/search-results?query=John%20Gray",
+   "books": [
+    {
+     "title": "Straw Dogs",
+     "year": 2002
+    },
+    {
+     "title": "The Immortalization Commission",
+     "year": 2011
+    },
+    {
+     "title": "Feline Philosophy",
+     "year": 2020
+    },
+    {
+     "title": "The New Leviathans",
+     "year": 2023
+    }
+   ]
+  },
+  "aubrey-de-grey": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Aubrey_de_Grey",
+   "iaiTv": "https://iai.tv/search-results?query=Aubrey%20de%20Grey",
+   "books": [
+    {
+     "title": "Ending Aging (with Michael Rae)",
+     "year": 2007
+    }
+   ]
+  },
+  "jo-haire": {
+   "iaiTv": "https://iai.tv/search-results?query=Jo%20Haire",
+   "books": []
+  },
+  "sally-haslanger": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Sally_Haslanger",
+   "iaiTv": "https://iai.tv/search-results?query=Sally%20Haslanger",
+   "books": [
+    {
+     "title": "Resisting Reality",
+     "year": 2012
+    }
+   ]
+  },
+  "roger-hearing": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Roger_Hearing",
+   "iaiTv": "https://iai.tv/search-results?query=Roger%20Hearing",
+   "books": []
+  },
+  "thomas-hertog": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Thomas_Hertog",
+   "iaiTv": "https://iai.tv/search-results?query=Thomas%20Hertog",
+   "books": [
+    {
+     "title": "On the Origin of Time",
+     "year": 2023
+    }
+   ]
+  },
+  "isabel-hilton": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Isabel_Hilton",
+   "iaiTv": "https://iai.tv/search-results?query=Isabel%20Hilton",
+   "books": [
+    {
+     "title": "The Search for the Panchen Lama",
+     "year": 1999
+    }
+   ]
+  },
+  "sabine-hossenfelder-2": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Sabine_Hossenfelder",
+   "iaiTv": "https://iai.tv/search-results?query=Sabine%20Hossenfelder",
+   "books": [
+    {
+     "title": "Lost in Math",
+     "year": 2018
+    },
+    {
+     "title": "Existential Physics",
+     "year": 2022
+    }
+   ]
+  },
+  "wang-hui": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Wang_Hui_%28intellectual%29",
+   "iaiTv": "https://iai.tv/search-results?query=Wang%20Hui",
+   "books": [
+    {
+     "title": "China's New Order",
+     "year": 2003
+    },
+    {
+     "title": "The End of the Revolution",
+     "year": 2009
+    },
+    {
+     "title": "China from Empire to Nation-State",
+     "year": 2014
+    }
+   ]
+  },
+  "jeremy-hunt": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Jeremy_Hunt",
+   "iaiTv": "https://iai.tv/search-results?query=Jeremy%20Hunt",
+   "books": [
+    {
+     "title": "Can We Be Rich Again?",
+     "year": null
+    },
+    {
+     "title": "Can We Be Great Again?",
+     "year": 2025
+    },
+    {
+     "title": "Zero: Eliminating Unnecessary Deaths in a Post-Pandemic NHS",
+     "year": 2022
+    }
+   ]
+  },
+  "bryan-johnson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Bryan_Johnson",
+   "iaiTv": "https://iai.tv/search-results?query=Bryan%20Johnson",
+   "books": [
+    {
+     "title": "Don't Die",
+     "year": 2023
+    }
+   ]
+  },
+  "joanna-kavenna": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Joanna_Kavenna",
+   "iaiTv": "https://iai.tv/search-results?query=Joanna%20Kavenna",
+   "books": [
+    {
+     "title": "Zed",
+     "year": 2019
+    },
+    {
+     "title": "A Field Guide to Reality",
+     "year": 2016
+    },
+    {
+     "title": "The Ice Museum",
+     "year": 2005
+    }
+   ]
+  },
+  "steve-keen": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Steve_Keen",
+   "iaiTv": "https://iai.tv/search-results?query=Steve%20Keen",
+   "books": [
+    {
+     "title": "Debunking Economics",
+     "year": 2011
+    },
+    {
+     "title": "The New Economics: A Manifesto",
+     "year": 2021
+    }
+   ]
+  },
+  "jemima-kelly": {
+   "iaiTv": "https://iai.tv/search-results?query=Jemima%20Kelly",
+   "books": []
+  },
+  "laura-kennedy": {
+   "iaiTv": "https://iai.tv/search-results?query=Laura%20Kennedy",
+   "books": [
+    {
+     "title": "Some of Our Parts",
+     "year": 2024
+    }
+   ]
+  },
+  "farha-khalidi": {
+   "iaiTv": "https://iai.tv/search-results?query=Farha%20Khalidi",
+   "books": []
+  },
+  "alexandra-konoplyanik": {
+   "iaiTv": "https://iai.tv/search-results?query=Alexandra%20Konoplyanik",
+   "books": []
+  },
+  "kwasi-kwarteng": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Kwasi_Kwarteng",
+   "iaiTv": "https://iai.tv/search-results?query=Kwasi%20Kwarteng",
+   "books": [
+    {
+     "title": "Ghosts of Empire",
+     "year": 2011
+    },
+    {
+     "title": "War and Gold",
+     "year": 2014
+    },
+    {
+     "title": "Thatcher's Trial",
+     "year": 2015
+    }
+   ]
+  },
+  "hilary-lawson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Hilary_Lawson",
+   "iaiTv": "https://iai.tv/search-results?query=Hilary%20Lawson",
+   "books": [
+    {
+     "title": "Closure: A Story of Everything",
+     "year": 2001
+    },
+    {
+     "title": "Reflexivity: The Post-Modern Predicament",
+     "year": 1985
+    }
+   ]
+  },
+  "laurie-laybourn": {
+   "iaiTv": "https://iai.tv/search-results?query=Laurie%20Laybourn",
+   "books": [
+    {
+     "title": "Planet on Fire (with Mathew Lawrence)",
+     "year": 2021
+    }
+   ]
+  },
+  "catherine-liu": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Catherine_Liu",
+   "iaiTv": "https://iai.tv/search-results?query=Catherine%20Liu",
+   "books": [
+    {
+     "title": "Traumatized",
+     "year": null
+    },
+    {
+     "title": "Virtue Hoarders: The Case Against the Professional Managerial Class",
+     "year": 2021
+    },
+    {
+     "title": "American Idyll",
+     "year": 2011
+    }
+   ]
+  },
+  "patricia-lockwood": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Patricia_Lockwood",
+   "iaiTv": "https://iai.tv/search-results?query=Patricia%20Lockwood",
+   "books": [
+    {
+     "title": "Priestdaddy",
+     "year": 2017
+    },
+    {
+     "title": "No One Is Talking About This",
+     "year": 2021
+    },
+    {
+     "title": "Will There Ever Be Another You",
+     "year": 2025
+    }
+   ]
+  },
+  "steven-lukes": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Steven_Lukes",
+   "iaiTv": "https://iai.tv/search-results?query=Steven%20Lukes",
+   "books": [
+    {
+     "title": "Power: A Radical View",
+     "year": 1974
+    }
+   ]
+  },
+  "kishore-mahbubani": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Kishore_Mahbubani",
+   "iaiTv": "https://iai.tv/search-results?query=Kishore%20Mahbubani",
+   "books": [
+    {
+     "title": "Has China Won?",
+     "year": 2020
+    },
+    {
+     "title": "The Asian 21st Century",
+     "year": 2022
+    },
+    {
+     "title": "Living the Asian Century",
+     "year": 2024
+    }
+   ]
+  },
+  "sebastian-mallaby": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Sebastian_Mallaby",
+   "iaiTv": "https://iai.tv/search-results?query=Sebastian%20Mallaby",
+   "books": [
+    {
+     "title": "The Power Law",
+     "year": 2022
+    },
+    {
+     "title": "More Money Than God",
+     "year": 2010
+    },
+    {
+     "title": "The Man Who Knew: The Life and Times of Alan Greenspan",
+     "year": 2016
+    }
+   ]
+  },
+  "mariana-mazzucato": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Mariana_Mazzucato",
+   "iaiTv": "https://iai.tv/search-results?query=Mariana%20Mazzucato",
+   "books": [
+    {
+     "title": "The Entrepreneurial State",
+     "year": 2013
+    },
+    {
+     "title": "The Value of Everything",
+     "year": 2018
+    },
+    {
+     "title": "Mission Economy",
+     "year": 2021
+    },
+    {
+     "title": "The Big Con (with Rosie Collington)",
+     "year": 2023
+    },
+    {
+     "title": "The Common Good Economy",
+     "year": null
+    }
+   ]
+  },
+  "deirdre-mccloskey": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Deirdre_McCloskey",
+   "iaiTv": "https://iai.tv/search-results?query=Deirdre%20McCloskey",
+   "books": [
+    {
+     "title": "The Bourgeois Virtues",
+     "year": 2006
+    },
+    {
+     "title": "Bourgeois Dignity",
+     "year": 2010
+    },
+    {
+     "title": "Bourgeois Equality",
+     "year": 2016
+    },
+    {
+     "title": "Why Liberalism Works",
+     "year": 2019
+    }
+   ]
+  },
+  "alister-mcgrath": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Alister_McGrath",
+   "iaiTv": "https://iai.tv/search-results?query=Alister%20McGrath",
+   "books": [
+    {
+     "title": "The Dawkins Delusion? (with Joanna Collicutt McGrath)",
+     "year": 2007
+    },
+    {
+     "title": "C. S. Lewis: A Life",
+     "year": 2013
+    }
+   ]
+  },
+  "rachel-millward": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Rachel_Millward",
+   "iaiTv": "https://iai.tv/search-results?query=Rachel%20Millward",
+   "books": []
+  },
+  "joanna-moncrieff": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Joanna_Moncrieff",
+   "iaiTv": "https://iai.tv/search-results?query=Joanna%20Moncrieff",
+   "books": [
+    {
+     "title": "The Myth of the Chemical Cure",
+     "year": 2008
+    },
+    {
+     "title": "Chemically Imbalanced",
+     "year": 2025
+    }
+   ]
+  },
+  "priya-natarajan": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Priyamvada_Natarajan",
+   "iaiTv": "https://iai.tv/search-results?query=Priya%20Natarajan",
+   "books": [
+    {
+     "title": "Mapping the Heavens",
+     "year": 2016
+    }
+   ]
+  },
+  "dasha-nekrasova": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Dasha_Nekrasova",
+   "iaiTv": "https://iai.tv/search-results?query=Dasha%20Nekrasova",
+   "books": []
+  },
+  "sabrina-pasterski": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Sabrina_Pasterski",
+   "iaiTv": "https://iai.tv/search-results?query=Sabrina%20Pasterski",
+   "books": []
+  },
+  "janos-pasztor": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Janos_Pasztor_%28diplomat%29",
+   "iaiTv": "https://iai.tv/search-results?query=Janos%20Pasztor",
+   "books": []
+  },
+  "laurie-penny": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Laurie_Penny",
+   "iaiTv": "https://iai.tv/search-results?query=Laurie%20Penny",
+   "books": [
+    {
+     "title": "Unspeakable Things",
+     "year": 2014
+    },
+    {
+     "title": "Bitch Doctrine",
+     "year": 2017
+    },
+    {
+     "title": "Sexual Revolution",
+     "year": 2022
+    }
+   ]
+  },
+  "roger-penrose": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Roger_Penrose",
+   "iaiTv": "https://iai.tv/search-results?query=Roger%20Penrose",
+   "books": [
+    {
+     "title": "The Emperor's New Mind",
+     "year": 1989
+    },
+    {
+     "title": "The Road to Reality",
+     "year": 2004
+    },
+    {
+     "title": "Cycles of Time",
+     "year": 2010
+    },
+    {
+     "title": "Fashion, Faith, and Fantasy in the New Physics of the Universe",
+     "year": 2016
+    }
+   ]
+  },
+  "agnieszka-piotrowska": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Agnieszka_Piotrowska",
+   "iaiTv": "https://iai.tv/search-results?query=Agnieszka%20Piotrowska",
+   "books": [
+    {
+     "title": "Psychoanalysis and Ethics in Documentary Film",
+     "year": 2014
+    },
+    {
+     "title": "The Nasty Woman and the Neo Femme Fatale in Contemporary Cinema",
+     "year": 2019
+    }
+   ]
+  },
+  "john-prideaux": {
+   "iaiTv": "https://iai.tv/search-results?query=John%20Prideaux",
+   "books": []
+  },
+  "malcolm-rifkind": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Malcolm_Rifkind",
+   "iaiTv": "https://iai.tv/search-results?query=Malcolm%20Rifkind",
+   "books": [
+    {
+     "title": "Power and Pragmatism",
+     "year": 2016
+    }
+   ]
+  },
+  "sebastian-roedl": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Sebastian_R%C3%B6dl",
+   "iaiTv": "https://iai.tv/search-results?query=Sebastian%20R%C3%B6dl",
+   "books": [
+    {
+     "title": "Self-Consciousness",
+     "year": 2007
+    },
+    {
+     "title": "Self-Consciousness and Objectivity",
+     "year": 2018
+    }
+   ]
+  },
+  "tony-d-sampson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Tony_D._Sampson",
+   "iaiTv": "https://iai.tv/search-results?query=Tony%20D.%20Sampson",
+   "books": [
+    {
+     "title": "Virality: Contagion Theory in the Age of Networks",
+     "year": 2012
+    },
+    {
+     "title": "The Assemblage Brain",
+     "year": 2017
+    },
+    {
+     "title": "A Sleepwalker's Guide to Social Media",
+     "year": 2020
+    }
+   ]
+  },
+  "danielle-sands": {
+   "iaiTv": "https://iai.tv/search-results?query=Danielle%20Sands",
+   "books": [
+    {
+     "title": "Animal Writing: Storytelling, Selfhood and the Limits of Empathy",
+     "year": 2019
+    }
+   ]
+  },
+  "will-self": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Will_Self",
+   "iaiTv": "https://iai.tv/search-results?query=Will%20Self",
+   "books": [
+    {
+     "title": "Great Apes",
+     "year": 1997
+    },
+    {
+     "title": "Umbrella",
+     "year": 2012
+    },
+    {
+     "title": "Will",
+     "year": 2019
+    },
+    {
+     "title": "Elaine",
+     "year": 2024
+    }
+   ]
+  },
+  "jay-shapiro": {
+   "iaiTv": "https://iai.tv/search-results?query=Jay%20Shapiro",
+   "books": []
+  },
+  "mary-ann-sieghart": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Mary_Ann_Sieghart",
+   "iaiTv": "https://iai.tv/search-results?query=Mary%20Ann%20Sieghart",
+   "books": [
+    {
+     "title": "The Authority Gap",
+     "year": 2021
+    }
+   ]
+  },
+  "barry-c-smith": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Barry_C._Smith",
+   "iaiTv": "https://iai.tv/search-results?query=Barry%20C%20Smith",
+   "books": [
+    {
+     "title": "Questions of Taste: The Philosophy of Wine (ed.)",
+     "year": 2007
+    }
+   ]
+  },
+  "mark-solms": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Mark_Solms",
+   "iaiTv": "https://iai.tv/search-results?query=Mark%20Solms",
+   "books": [
+    {
+     "title": "The Hidden Spring",
+     "year": 2021
+    },
+    {
+     "title": "The Brain and the Inner World (with Oliver Turnbull)",
+     "year": 2002
+    }
+   ]
+  },
+  "david-spiegelhalter": {
+   "wikipedia": "https://en.wikipedia.org/wiki/David_Spiegelhalter",
+   "iaiTv": "https://iai.tv/search-results?query=David%20Spiegelhalter",
+   "books": [
+    {
+     "title": "The Art of Statistics",
+     "year": 2019
+    },
+    {
+     "title": "The Art of Uncertainty",
+     "year": 2024
+    },
+    {
+     "title": "The Norm Chronicles (with Michael Blastland)",
+     "year": 2013
+    }
+   ]
+  },
+  "jordan-stephens": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Jordan_Stephens",
+   "iaiTv": "https://iai.tv/search-results?query=Jordan%20Stephens",
+   "books": [
+    {
+     "title": "Avoidance, Drugs, Heartbreak and Dogs",
+     "year": 2024
+    }
+   ]
+  },
+  "galen-strawson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Galen_Strawson",
+   "iaiTv": "https://iai.tv/search-results?query=Galen%20Strawson",
+   "books": [
+    {
+     "title": "Selves",
+     "year": 2009
+    },
+    {
+     "title": "Things That Bother Me",
+     "year": 2018
+    },
+    {
+     "title": "Freedom and Belief",
+     "year": 1986
+    }
+   ]
+  },
+  "nicola-sturgeon": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Nicola_Sturgeon",
+   "iaiTv": "https://iai.tv/search-results?query=Nicola%20Sturgeon",
+   "books": [
+    {
+     "title": "Frankly",
+     "year": 2025
+    }
+   ]
+  },
+  "daniel-susskind": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Daniel_Susskind",
+   "iaiTv": "https://iai.tv/search-results?query=Daniel%20Susskind",
+   "books": [
+    {
+     "title": "A World Without Work",
+     "year": 2020
+    },
+    {
+     "title": "Growth: A Reckoning",
+     "year": 2024
+    },
+    {
+     "title": "The Future of the Professions (with Richard Susskind)",
+     "year": 2015
+    }
+   ]
+  },
+  "jack-symes": {
+   "iaiTv": "https://iai.tv/search-results?query=Jack%20Symes",
+   "books": [
+    {
+     "title": "Philosophers on Consciousness (ed.)",
+     "year": 2022
+    }
+   ]
+  },
+  "guene-taylor": {
+   "iaiTv": "https://iai.tv/search-results?query=G%C3%BCne%C5%9F%20Taylor",
+   "books": []
+  },
+  "gillian-tett": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Gillian_Tett",
+   "iaiTv": "https://iai.tv/search-results?query=Gillian%20Tett",
+   "books": [
+    {
+     "title": "Fool's Gold",
+     "year": 2009
+    },
+    {
+     "title": "The Silo Effect",
+     "year": 2015
+    },
+    {
+     "title": "Anthro-Vision",
+     "year": 2021
+    }
+   ]
+  },
+  "louis-theroux": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Louis_Theroux",
+   "iaiTv": "https://iai.tv/search-results?query=Louis%20Theroux",
+   "books": [
+    {
+     "title": "Gotta Get Theroux This",
+     "year": 2019
+    },
+    {
+     "title": "The Call of the Weird",
+     "year": 2005
+    }
+   ]
+  },
+  "jonny-thomson": {
+   "iaiTv": "https://iai.tv/search-results?query=Jonny%20Thomson",
+   "books": [
+    {
+     "title": "Mini Philosophy",
+     "year": 2021
+    },
+    {
+     "title": "Mini Big Ideas",
+     "year": 2023
+    }
+   ]
+  },
+  "victoria-trumbull": {
+   "iaiTv": "https://iai.tv/search-results?query=Victoria%20Trumbull",
+   "books": [
+    {
+     "title": "On the Memory of the Soul",
+     "year": null
+    }
+   ]
+  },
+  "neil-turok": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Neil_Turok",
+   "iaiTv": "https://iai.tv/search-results?query=Neil%20Turok",
+   "books": [
+    {
+     "title": "The Universe Within",
+     "year": 2012
+    },
+    {
+     "title": "Endless Universe (with Paul Steinhardt)",
+     "year": 2007
+    }
+   ]
+  },
+  "antony-valentini": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Antony_Valentini",
+   "iaiTv": "https://iai.tv/search-results?query=Antony%20Valentini",
+   "books": []
+  },
+  "leo-varadkar": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Leo_Varadkar",
+   "iaiTv": "https://iai.tv/search-results?query=Leo%20Varadkar",
+   "books": [
+    {
+     "title": "Speaking My Mind",
+     "year": 2025
+    }
+   ]
+  },
+  "melvin-vopson": {
+   "iaiTv": "https://iai.tv/search-results?query=Melvin%20Vopson",
+   "books": [
+    {
+     "title": "Reality Reloaded",
+     "year": 2023
+    }
+   ]
+  },
+  "jimmy-wales": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Jimmy_Wales",
+   "iaiTv": "https://iai.tv/search-results?query=Jimmy%20Wales",
+   "books": [
+    {
+     "title": "The Seven Rules of Trust",
+     "year": 2025
+    }
+   ]
+  },
+  "andy-west": {
+   "iaiTv": "https://iai.tv/search-results?query=Andy%20West",
+   "books": [
+    {
+     "title": "The Life Inside",
+     "year": 2022
+    }
+   ]
+  },
+  "daniel-whiteson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Daniel_Whiteson",
+   "iaiTv": "https://iai.tv/search-results?query=Daniel%20Whiteson",
+   "books": [
+    {
+     "title": "Do Aliens Speak Physics? (with Andy Warner)",
+     "year": null
+    },
+    {
+     "title": "We Have No Idea (with Jorge Cham)",
+     "year": 2017
+    },
+    {
+     "title": "Frequently Asked Questions About the Universe (with Jorge Cham)",
+     "year": 2021
+    }
+   ]
+  },
+  "heather-widdows": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Heather_Widdows",
+   "iaiTv": "https://iai.tv/search-results?query=Heather%20Widdows",
+   "books": [
+    {
+     "title": "Perfect Me",
+     "year": 2018
+    }
+   ]
+  },
+  "emily-wilson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Emily_Wilson_%28classicist%29",
+   "iaiTv": "https://iai.tv/search-results?query=Emily%20Wilson",
+   "books": [
+    {
+     "title": "The Odyssey (translation)",
+     "year": 2017
+    },
+    {
+     "title": "The Iliad (translation)",
+     "year": 2023
+    }
+   ]
+  },
+  "sarah-wilson": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Sarah_Wilson_%28journalist%29",
+   "iaiTv": "https://iai.tv/search-results?query=Sarah%20Wilson",
+   "books": [
+    {
+     "title": "First, We Make the Beast Beautiful",
+     "year": 2017
+    },
+    {
+     "title": "This One Wild and Precious Life",
+     "year": 2020
+    },
+    {
+     "title": "I Quit Sugar",
+     "year": 2012
+    }
+   ]
+  },
+  "martin-wolf": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Martin_Wolf",
+   "iaiTv": "https://iai.tv/search-results?query=Martin%20Wolf",
+   "books": [
+    {
+     "title": "The Crisis of Democratic Capitalism",
+     "year": 2023
+    },
+    {
+     "title": "The Shifts and the Shocks",
+     "year": 2014
+    },
+    {
+     "title": "Why Globalization Works",
+     "year": 2004
+    }
+   ]
+  },
+  "michael-wooldridge": {
+   "wikipedia": "https://en.wikipedia.org/wiki/Michael_Wooldridge_%28computer_scientist%29",
+   "iaiTv": "https://iai.tv/search-results?query=Michael%20Wooldridge",
+   "books": [
+    {
+     "title": "The Road to Conscious Machines",
+     "year": 2020
+    },
+    {
+     "title": "An Introduction to MultiAgent Systems",
+     "year": 2002
+    }
+   ]
+  },
+  "peter-worley": {
+   "iaiTv": "https://iai.tv/search-results?query=Peter%20Worley",
+   "books": [
+    {
+     "title": "The If Machine",
+     "year": 2011
+    },
+    {
+     "title": "40 Lessons to Get Children Thinking",
+     "year": 2015
+    }
+   ]
+  }
+ }
+}

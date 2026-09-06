@@ -1,0 +1,435 @@
+{
+  "44": {
+    "kind": "talk",
+    "question": "Has the West lost its way — and what would it have to change to avoid becoming a museum and a self-absorbed superpower?",
+    "why": "Mahbubani has spent two decades telling Western audiences that Asia's rise is not a problem to be managed but a fact to be adapted to. This talk names five fallacies — the habits of thought that two centuries of dominance bred — and what replacing them would take.",
+    "case": [
+      "The West mistook a 200-year anomaly of dominance for the natural order; the rest of the world was 'asleep' and has woken.",
+      "Its custodians — politicians, pundits, priests — kept preaching universal values while abandoning the pragmatism that built their success.",
+      "Fallacies include: that democracy exports, that the US can contain China, that Europe can stay relevant without strategy, that the rules-based order was ever neutral.",
+      "The fixes are humility, engagement with Asia on its own terms, and domestic renewal before foreign adventure."
+    ],
+    "objections": [
+      "Mahbubani's account of China is consistently charitable; critics note it rarely mentions Xinjiang, Hong Kong or the Party's own fallacies.",
+      "Asia's rise is real but not uniform — Japan's stagnation, China's demography and debt, India's inequality complicate the story.",
+      "'The West' is not one actor; much of the diagnosis applies to Washington and not to Seoul, Warsaw or Helsinki.",
+      "Prophecies of Western decline have a century-long record of being early."
+    ],
+    "speakers": [
+      {"name": "Kishore Mahbubani", "stance": "Former Singaporean ambassador to the UN and president of the Security Council; Has China Won?, The Asian 21st Century, Living the Asian Century. Expect a polished diplomat's provocation. He debates superpowers at 5:30pm in the International tent."}
+    ],
+    "questions": [
+      "Name a fallacy of China's custodians to match your five for the West.",
+      "Which Western country has adapted best to the Asian century, and what did it do?",
+      "Is the rules-based order worth saving, or only worth replacing?"
+    ],
+    "reading": [
+      {"title": "Has China Won?", "by": "Kishore Mahbubani (2020)", "note": "The argument at length."},
+      {"title": "The Return of Great Power Rivalry", "by": "Matthew Kroenig (2020)", "note": "The strongest case that democracies win these contests — the counter-view."}
+    ],
+    "terms": [
+      {"term": "Rules-based international order", "def": "The post-1945 system of institutions and norms, defended by the West and described by critics as Western rules."},
+      {"term": "Asian century", "def": "The expectation that economic and political weight shifts decisively to Asia in the twenty-first century."}
+    ]
+  },
+  "47": {
+    "kind": "talk",
+    "question": "Pain now or pain later — which trade-offs are worth making for growth, and who decides?",
+    "why": "Two people who made these calls inside the Treasury and the pensions system disagree across the aisle: cut or invest, spend or save. It is a debate in all but billing, and the rare kind where both sides have signed the cheques.",
+    "case": [
+      "Hunt: fiscal credibility first — markets punish loose plans, and stability is the precondition for investment; growth comes from the supply side, tax on investment and planning.",
+      "Bell: under-investment is the British disease — public and private capital spending has lagged for decades, and austerity made it worse; borrow to invest and reform the state.",
+      "Both: pensions, housing and the tax base are where the real trade-offs live, and politics avoids them.",
+      "The honest position on either side names a loser."
+    ],
+    "objections": [
+      "Hunt's stability case has to answer for the years of stagnation on his own watch; Bell's investment case for the interest bill on the borrowing.",
+      "'Invest' is doing a lot of work — investment in what, chosen by whom, with what record of delivery?",
+      "Neither side's framework has produced growth since 2008; maybe the trade-off is misframed.",
+      "Both are professional politicians now; the candour may be rationed."
+    ],
+    "speakers": [
+      {"name": "Jeremy Hunt", "stance": "Conservative former Chancellor; the fiscal-credibility, supply-side case. See also his 12pm talk on optimism."},
+      {"name": "Torsten Bell", "stance": "Labour MP and Pensions Minister; formerly chief executive of the Resolution Foundation and author of Great Britain? Expect data-heavy argument for investment and for fixing living standards at the bottom."}
+    ],
+    "questions": [
+      "Name a cut you would make and a tax you would raise. No abstractions.",
+      "What is the evidence that the investment you propose would pay back — and on what timescale?",
+      "Which trade-off did you get wrong in office?"
+    ],
+    "reading": [
+      {"title": "Great Britain? How We Get Our Future Back", "by": "Torsten Bell (2024)", "note": "Bell's diagnosis from the Resolution Foundation years."},
+      {"title": "Can We Be Great Again?", "by": "Jeremy Hunt (2025)", "note": "Hunt's post-Treasury view."}
+    ],
+    "terms": [
+      {"term": "Fiscal rules", "def": "Self-imposed limits on borrowing and debt that constrain what a Chancellor can do."},
+      {"term": "Living standards", "def": "Real disposable income after housing — Bell's preferred measure of whether policy works."}
+    ]
+  },
+  "53": {
+    "kind": "talk",
+    "question": "Did Gandhi's philosophy of non-violence uphold the caste system rather than challenge it?",
+    "why": "Gandhi is the West's model of moral politics. Dwivedi, working from a tradition of Indian dissent that runs through Ambedkar, argues his thought was an 'anti-politics' that preserved a hierarchy condemning millions to servitude. It is a demolition of an icon by someone who has read him closely.",
+    "case": [
+      "Gandhi defended varnashrama — the caste order — as a natural division of labour, and opposed Ambedkar's demand for separate electorates for Dalits (the 1932 fast).",
+      "His non-violence was directed at the British state, not at the violence of caste; 'Harijan' uplift left the structure intact.",
+      "The Western myth of Gandhi is convenient: a saint of peace that lets the caste question disappear from the story of Indian freedom.",
+      "Ambedkar's alternative — annihilation of caste, constitutional rights — is the real philosophy of Indian liberation."
+    ],
+    "objections": [
+      "Gandhi's views on caste changed over decades; late Gandhi attacked untouchability and, arguably, caste itself.",
+      "Non-violence as a strategy mobilised millions across caste lines; judging it by its silences ignores what it did.",
+      "Ambedkar and Gandhi were rivals, but reducing Gandhi to a caste apologist is also a myth, from the other side.",
+      "The critique of the 'Western myth' can flatten how Gandhi is contested within India today, including by the Hindu right."
+    ],
+    "speakers": [
+      {"name": "Divya Dwivedi", "stance": "Philosopher at IIT Delhi; Gandhi and Philosophy and Indian Philosophy, Indian Revolution (with Shaj Mohan). Expect a fierce, theoretically dense reading. She debates philosophical systems at 7pm and freedom on Sunday morning."}
+    ],
+    "questions": [
+      "What did Gandhi say about caste in his last years — and does it change the verdict?",
+      "If non-violence was anti-politics, what was Ambedkar's politics, and did it succeed?",
+      "How is Gandhi used by the Indian right today, and does your critique help or hurt them?"
+    ],
+    "reading": [
+      {"title": "Annihilation of Caste", "by": "B. R. Ambedkar (1936)", "note": "The undelivered speech that is the foundation of the critique — with Gandhi's reply and Ambedkar's rejoinder."},
+      {"title": "Gandhi and Philosophy: On Theological Anti-Politics", "by": "Shaj Mohan and Divya Dwivedi (2019)", "note": "The book behind the talk."}
+    ],
+    "terms": [
+      {"term": "Varnashrama dharma", "def": "The Hindu ordering of society into hereditary occupational groups that Gandhi long defended as natural."},
+      {"term": "Poona Pact (1932)", "def": "The agreement extracted by Gandhi's fast that replaced separate Dalit electorates with reserved seats — the hinge of the Gandhi–Ambedkar rivalry."}
+    ]
+  },
+  "54": {
+    "kind": "talk",
+    "question": "Did the UN, the courts and the human rights bodies fail Gaza — and if so, what were they for?",
+    "why": "Finkelstein, son of Holocaust survivors and the most contested scholar of Israel–Palestine, argues the institutions built to prevent atrocity did not. Roger Hearing, a BBC journalist, holds him to the arguments his work has provoked. Expect the most charged room of the weekend.",
+    "case": [
+      "International law was clear — on proportionality, on collective punishment, on the ICJ's provisional measures — and was not enforced.",
+      "The institutions failed not from ignorance but from the vetoes and dependencies built into them; 'failure' was structural.",
+      "The human rights bodies documented and then were ignored; documentation without enforcement is theatre.",
+      "The lesson is either to rebuild enforcement or to stop pretending the system protects anyone."
+    ],
+    "objections": [
+      "Finkelstein's critics argue his framing of the conflict omits Hamas's own violations and the hostages; an account of institutional failure has to cover both sides' crimes.",
+      "Institutions 'fail' whenever great powers disagree — that is a description of the UN since 1945, not a special case.",
+      "The ICJ and ICC did act (provisional measures, arrest warrants); the failure was of states, not courts.",
+      "The rhetorical intensity of Finkelstein's work has cost him academic standing; listeners should separate the claims from the tone."
+    ],
+    "speakers": [
+      {"name": "Norman Finkelstein", "stance": "Political scientist; The Holocaust Industry, Gaza: An Inquest into Its Martyrdom, Gaza's Gravediggers. Expect forensic use of the record, moral absolutism about law, and no softening. He also debates morality at noon."},
+      {"name": "Roger Hearing", "stance": "Interviews. Former BBC World Service journalist; expect challenge on the counter-arguments."}
+    ],
+    "questions": [
+      "Which institution did what it was built to do in Gaza, if any?",
+      "What enforcement mechanism would you design that great powers could not veto?",
+      "How should the same standards apply to Hamas, and where does your account of institutional failure address that?"
+    ],
+    "reading": [
+      {"title": "Gaza: An Inquest into Its Martyrdom", "by": "Norman Finkelstein (2018)", "note": "His documentary method applied to earlier Gaza wars."},
+      {"title": "ICJ, South Africa v. Israel — Order of 26 January 2024", "by": "International Court of Justice", "note": "The provisional measures at the centre of the institutional argument; read the order itself."}
+    ],
+    "terms": [
+      {"term": "Provisional measures", "def": "Interim orders by the ICJ while a case is pending — binding, but with no enforcement beyond the Security Council."},
+      {"term": "Proportionality", "def": "In the law of war, the rule that expected civilian harm must not be excessive relative to the concrete military advantage."}
+    ]
+  },
+  "57": {
+    "kind": "talk",
+    "question": "Is punishment a moral necessity — or does the urge to punish have darker roots that prisons only feed?",
+    "why": "West teaches philosophy in prisons and grew up in a family in and out of them. His question is not whether crime should have consequences but what we are doing when we want someone to suffer — and whether the wanting says more about us than about them.",
+    "case": [
+      "The satisfaction of seeing someone punished is a feeling, and feelings have histories: envy, fear, the need to feel clean by contrast.",
+      "Prisons rarely rehabilitate; they reliably degrade — so the urge is not being served by its stated justification.",
+      "People who have done terrible things are, in the classroom, recognisably people; the philosophical discussion changes both parties.",
+      "Asking 'am I as good as I think?' is the beginning of a less punitive society."
+    ],
+    "objections": [
+      "Retribution is not sadism: giving wrongdoers what they deserve is a moral idea with a long pedigree (Kant thought it obligatory).",
+      "Victims exist; a philosophy of punishment that centres the punisher's psychology can forget them.",
+      "Deterrence and incapacitation are justifications that survive even if the urge is ugly.",
+      "Prison-philosophy classes are moving but small; the policy question is about the other 80,000."
+    ],
+    "speakers": [
+      {"name": "Andy West", "stance": "Philosopher and prison educator, author of The Life Inside (2022), the memoir that inspired the BBC drama Waiting for the Out. Expect stories from the classroom and a case built on them."}
+    ],
+    "questions": [
+      "What should happen to someone who has killed, on your view — concretely, on the day after the verdict?",
+      "Is there a form of punishment you would defend, and what makes it different?",
+      "What did a prisoner teach you that changed the argument?"
+    ],
+    "reading": [
+      {"title": "The Life Inside", "by": "Andy West (2022)", "note": "The book; philosophy, prison and family in one."},
+      {"title": "Discipline and Punish", "by": "Michel Foucault (1975)", "note": "The classic on what punishment does besides punishing."}
+    ],
+    "terms": [
+      {"term": "Retributivism", "def": "Punishment is justified because it is deserved, independent of consequences."},
+      {"term": "Rehabilitation", "def": "Punishment justified by its power to change the offender — the aim prisons claim and mostly miss."}
+    ]
+  },
+  "60": {
+    "kind": "talk",
+    "question": "Is economics a science — or a discipline whose models of self-correcting equilibrium missed 2008 and will miss the next crash?",
+    "why": "Keen predicted the 2008 crisis from private-debt dynamics that mainstream models ignore by construction. His claim is not that economists got a forecast wrong but that the discipline's foundations — equilibrium, rational agents, money as a veil — are false, and a new crash is built in.",
+    "case": [
+      "Neoclassical models treat money and banks as neutral; in reality banks create money when they lend, and private debt drives booms and busts.",
+      "Economies are non-equilibrium systems: instability is endemic (Minsky), not an external shock to a stable machine.",
+      "The 2008 crash was foreseeable from debt-to-GDP dynamics; those who saw it were outside the mainstream.",
+      "The discipline defends its core by assumption, which is why it cannot learn."
+    ],
+    "objections": [
+      "Mainstream macro has changed since 2008 — financial frictions, heterogeneous agents — more than Keen's critique allows.",
+      "Predicting crises from debt levels also produces false alarms; critics ask when Keen's 'next crash' has ever been dated.",
+      "'Not a science' proves too much: no social science predicts like physics, and economics still explains much.",
+      "Heterodox schools disagree with each other as much as with the mainstream; 'the emperor has no clothes' is not a tailor."
+    ],
+    "speakers": [
+      {"name": "Steve Keen", "stance": "Post-Keynesian economist; Debunking Economics, The New Economics: A Manifesto; builder of the Minsky modelling software. Expect combative, model-driven argument. He debates free trade at 10:30am."}
+    ],
+    "questions": [
+      "What is the private-debt threshold at which you'd expect the next crisis, and where is the UK now?",
+      "Which mainstream economist has taken your critique seriously, and what changed?",
+      "If economics isn't a science, what should a Chancellor read instead?"
+    ],
+    "reading": [
+      {"title": "Debunking Economics", "by": "Steve Keen (2011 ed.)", "note": "The critique in full."},
+      {"title": "Stabilizing an Unstable Economy", "by": "Hyman Minsky (1986)", "note": "The instability thesis Keen builds on."}
+    ],
+    "terms": [
+      {"term": "Endogenous money", "def": "Banks create deposits when they lend; money is not a fixed stock allocated by savers."},
+      {"term": "Minsky moment", "def": "The point in a credit boom when debt can no longer be serviced and asset prices collapse."}
+    ]
+  },
+  "64": {
+    "kind": "talk",
+    "question": "Did Heidegger find in poetry a truth philosophy cannot reach — and what could Anglophone poets teach that Hölderlin and Rilke could not?",
+    "why": "Late Heidegger turned from philosophy to poetry as the site where being 'speaks'. Babich, a Nietzsche scholar and continental philosopher, takes the turn seriously and then pushes past it: what would it mean to think, and live, poetically now — with poets Heidegger never read?",
+    "case": [
+      "For Heidegger, calculative thinking cannot grasp what poetic 'saying' can; Hölderlin and Rilke are not decoration but method.",
+      "Language is not a tool we use but the house we live in; poetry keeps that house open.",
+      "Anglophone poets — think of Dickinson, Hopkins, or Eliot — offer resources Heidegger's German canon lacked, including irony and doubt.",
+      "Thinking poetically is a way of living, not a style: attention, patience, letting things be."
+    ],
+    "objections": [
+      "Heidegger's turn to poetry coincided with his Nazism and his silence about it; critics ask whether 'poetic thinking' was a retreat from responsibility.",
+      "Analytic philosophers reply that the claim 'poetry reaches truth philosophy cannot' needs an argument, not a mood.",
+      "Choosing which poets 'say being' is selection dressed as revelation.",
+      "Rilke and Hölderlin are hard even in German; an hour in a tent may give the flavour, not the thought."
+    ],
+    "speakers": [
+      {"name": "Babette Babich", "stance": "Fordham philosopher, Nietzsche scholar (The Hallelujah Effect; Nietzsche's Philosophy of Science). Expect an erudite, digressive, quotable hour; she is sceptical of analytic philosophy's blind spots. She also debates beauty on Sunday."}
+    ],
+    "questions": [
+      "Which Anglophone poet would you set beside Hölderlin, and what does the poem know?",
+      "Does poetic thinking have anything to say to a physicist, or is it a different activity?",
+      "How should Heidegger's politics bear on his philosophy of poetry?"
+    ],
+    "reading": [
+      {"title": "'…Poetically Man Dwells…'", "by": "Martin Heidegger (1951), in Poetry, Language, Thought", "note": "The lecture on Hölderlin — twenty pages."},
+      {"title": "Duino Elegies", "by": "Rainer Maria Rilke (1923)", "note": "Read the first elegy in any translation before the talk."}
+    ],
+    "terms": [
+      {"term": "Dwelling (Wohnen)", "def": "Heidegger's term for inhabiting the world attentively — what poetry, he claims, makes possible."},
+      {"term": "Calculative vs meditative thinking", "def": "Heidegger's distinction between problem-solving reason and the thinking that lets things show themselves."}
+    ]
+  },
+  "70": {
+    "kind": "talk",
+    "question": "Have Western states expanded far beyond their proper bounds — and what would rolling them back look like?",
+    "why": "From low-emission zones to policing to housing policy, Cunningham argues the state encroaches on freedom in the name of safety and sustainability. It is the libertarian case from inside a party that also wants a tougher state on borders and crime; the tension is part of the interest.",
+    "case": [
+      "The modern state regulates where you drive, what you build, how you heat your home and what you may say; each rule is defensible and the sum is suffocating.",
+      "Safety and sustainability are used as trump cards that end debate; liberty needs a place at the table.",
+      "Local examples — ULEZ, planning, council enforcement — show how the reach grows without anyone voting for the whole.",
+      "Rolling back means sunset clauses, fewer agencies, and a burden of proof on the state."
+    ],
+    "objections": [
+      "Reform UK's programme includes more police, more prisons and tighter borders — a bigger state, not a smaller one; which is it?",
+      "Clean-air zones and planning rules exist because of harms to others; liberty for the driver is cost for the asthmatic child.",
+      "'The state is too big' rarely names the pensions and NHS that are most of it.",
+      "A former prosecutor arguing against the state's reach will be asked which prosecutions she regrets."
+    ],
+    "speakers": [
+      {"name": "Laila Cunningham", "stance": "Westminster City Councillor, former Crown Prosecution Service lawyer, Reform UK's 2028 London mayoral candidate. Expect a campaigning, example-driven case against state overreach. She also debates cultural Christianity at 1:30pm."}
+    ],
+    "questions": [
+      "Name three state functions you would abolish, and who would bear the cost.",
+      "Is a bigger police force compatible with a smaller state?",
+      "Which freedom has London lost in the last decade that its residents actually miss?"
+    ],
+    "reading": [
+      {"title": "'Two Concepts of Liberty'", "by": "Isaiah Berlin (1958)", "note": "Negative liberty — freedom from interference — is the concept in play."},
+      {"title": "The Road to Serfdom", "by": "F. A. Hayek (1944)", "note": "The classic warning about the state's growth, cited by every side."}
+    ],
+    "terms": [
+      {"term": "ULEZ", "def": "London's Ultra Low Emission Zone — a daily charge on more polluting vehicles, the symbol of 'safety and sustainability' overreach for its opponents."},
+      {"term": "Negative liberty", "def": "Freedom as the absence of interference — the kind this talk defends."}
+    ]
+  },
+  "82": {
+    "kind": "talk",
+    "question": "Did the left stop fighting exploitation and start competing over wounds — and is trauma culture capitalism's secret weapon?",
+    "why": "Liu attacks her own side: the professional left's obsession with trauma, she argues, replaced class politics with a hierarchy of suffering that paralyses action and suits capital perfectly. From the origins of PTSD to Oprah, it's a genealogy of how wounds became credentials.",
+    "case": [
+      "Trauma migrated from a clinical category for war and abuse to a universal idiom of identity; everyone has a wound and the wound confers authority.",
+      "Accommodating suffering became the left's programme, displacing the harder work of challenging power and building solidarity.",
+      "The professional-managerial class benefits: trauma expertise is a career, and it moralises class privilege as sensitivity.",
+      "Capitalism is untouched by any of it — which is why it funds the conferences."
+    ],
+    "objections": [
+      "Trauma is real and its recognition was hard-won; mocking 'wound culture' can license the dismissal of actual victims.",
+      "Class politics did not vanish because of therapy; it lost because unions were broken and industries moved.",
+      "Liu's PMC critique can slide into a contempt for the educated that the right happily borrows.",
+      "The left she describes is mostly American and academic; the British trade-union left may not recognise itself."
+    ],
+    "speakers": [
+      {"name": "Catherine Liu", "stance": "UC Irvine cultural theorist; Virtue Hoarders and Traumatized. Expect a Marxist critique of progressive culture delivered with relish. She also debates the manosphere (1:15pm) and institutions (4pm)."}
+    ],
+    "questions": [
+      "What is the line between recognising trauma and weaponising it — who is on the right side of it?",
+      "If class politics is the answer, what does it say to people whose wounds are not economic?",
+      "Which institution of the left would you defund first?"
+    ],
+    "reading": [
+      {"title": "Virtue Hoarders", "by": "Catherine Liu (2021)", "note": "The PMC critique the talk extends."},
+      {"title": "The Empire of Trauma", "by": "Didier Fassin and Richard Rechtman (2009)", "note": "The scholarly history of how trauma became a moral category."}
+    ],
+    "terms": [
+      {"term": "Professional-managerial class (PMC)", "def": "Educated professionals — the Ehrenreichs' 1977 term — whom Liu accuses of moralising their own status."},
+      {"term": "Trauma culture", "def": "The treatment of psychological wounds as the primary source of identity and moral authority."}
+    ]
+  },
+  "83": {
+    "kind": "talk",
+    "question": "Is physics a universal language any intelligent species would discover — or a description shaped by the particular minds that made it?",
+    "why": "'Mathematics is the language of the universe' is a cliché with a history. Whiteson's two-part course asks whether alien minds with different senses, bodies and histories would arrive at our physics — and what it means for the claim that physics describes reality rather than us.",
+    "case": [
+      "Part 1: the idea that physics is universal was built by Galileo, Newton and Einstein; each step made choices (what counts as fundamental, what as noise) that another species might not.",
+      "Our physics is organised around what humans can perceive and build: distances, forces, particles; a species living in a fluid or at another scale might carve nature differently.",
+      "Part 2: if the carving is contingent, the 'unreasonable effectiveness' of maths is partly a selection effect — we keep the maths that works for us.",
+      "Yet some structure must be shared, or communication would be impossible; the question is how much."
+    ],
+    "objections": [
+      "Convergence arguments: any species that builds rockets has to get the same equations right; the universe checks the answers.",
+      "'Shaped by our minds' can collapse into relativism about physics, which no working physicist believes.",
+      "Speculation about alien physics is unfalsifiable by design; it may illuminate philosophy of science more than physics.",
+      "The course is built on a popular book; expect breadth over rigour."
+    ],
+    "speakers": [
+      {"name": "Daniel Whiteson", "stance": "UC Irvine particle physicist; co-author of Do Aliens Speak Physics? Expect an accessible, cartoon-assisted two-part course, honest about what is speculation. He appears three more times over the weekend."}
+    ],
+    "questions": [
+      "What is one part of physics you are confident an alien species would share, and one you are not?",
+      "Does the contingency of our concepts make physics less true, or only less final?",
+      "If an alien handed us their physics, how would we know it was correct?"
+    ],
+    "reading": [
+      {"title": "Do Aliens Speak Physics?", "by": "Daniel Whiteson and Andy Warner", "note": "The book behind the course."},
+      {"title": "'The Unreasonable Effectiveness of Mathematics in the Natural Sciences'", "by": "Eugene Wigner (1960)", "note": "The essay every discussion of this starts from."}
+    ],
+    "terms": [
+      {"term": "Universality (of physics)", "def": "The claim that the laws we find would be found by any sufficiently capable observer."},
+      {"term": "Carving nature at the joints", "def": "Plato's image for concepts that match real structure — the question is whether ours do."}
+    ]
+  },
+  "86": {
+    "kind": "talk",
+    "question": "If we are always performing a self — on stage, on the feed — is there a true self underneath?",
+    "why": "Stephens found fame at nineteen with Rizzle Kicks and has written about the cost of performing himself. Wilson has done the same from the other side of the wellness industry. The question they raise is now everyone's: the curated profile has made us all minor celebrities of our own lives.",
+    "case": [
+      "Fame is the extreme case of a universal condition: a public self that others own, and a private self that has to be defended or disappears.",
+      "The performance is not fake — it is a real part of you — but treating it as the whole leads to the crash both speakers describe.",
+      "Social media hands everyone the machinery of fame without the money or the team; the pathologies scale.",
+      "There may be no fixed true self, only the practice of honesty about the roles — which is different from having none."
+    ],
+    "objections": [
+      "Goffman showed in 1956 that all social life is performance; nothing about fame or feeds changes the philosophy.",
+      "Celebrities' accounts of the cost of fame are also performances, and lucrative ones.",
+      "The 'true self' is a Romantic idea; Buddhist and Humean views say the search is the problem.",
+      "The talk's two speakers agree with each other; the objections will have to come from the floor."
+    ],
+    "speakers": [
+      {"name": "Jordan Stephens", "stance": "Musician (Rizzle Kicks), author of Avoidance, Drugs, Heartbreak and Dogs, mental-health advocate. Expect candour about fame, masculinity and performance."},
+      {"name": "Sarah Wilson", "stance": "Author (First, We Make the Beast Beautiful; This One Wild and Precious Life), former magazine editor and I Quit Sugar founder turned critic of wellness. Expect the social-philosophy frame."}
+    ],
+    "questions": [
+      "What was the moment you noticed the performed self had replaced the other one?",
+      "Is a teenager with 2,000 followers famous in the sense that matters?",
+      "If there is no true self, what are you being honest about?"
+    ],
+    "reading": [
+      {"title": "The Presentation of Self in Everyday Life", "by": "Erving Goffman (1956)", "note": "Life as performance, before the internet."},
+      {"title": "Avoidance, Drugs, Heartbreak and Dogs", "by": "Jordan Stephens (2024)", "note": "Stephens's memoir."}
+    ],
+    "terms": [
+      {"term": "Front stage / back stage", "def": "Goffman's distinction between the performed public self and the region where the performance is prepared."},
+      {"term": "Parasocial", "def": "A one-sided relationship with a public figure — the audience's side of fame."}
+    ]
+  },
+  "87": {
+    "kind": "talk",
+    "question": "Can economics be rebuilt around the common good — where how we achieve goals matters as much as what they are?",
+    "why": "Mazzucato made her name arguing the state is an entrepreneur, not a fixer of market failures. This talk goes further: an economy organised around collective goals, participation and reciprocity, with the process itself as part of the value. It is the intellectual programme behind 'mission economics'.",
+    "case": [
+      "Value is created collectively — public research, infrastructure, education — and captured privately; the common good reverses the accounting.",
+      "Markets are outcomes of rules, not natural facts; shaping them towards shared goals (climate, health) is legitimate and effective.",
+      "How matters: goals reached by participation and reciprocity are more durable than goals imposed.",
+      "The evidence is in the mission-oriented programmes — from the moon landing to vaccine development — that public purpose can direct innovation."
+    ],
+    "objections": [
+      "'Common good' has no agreed content; who defines it, and what happens to those who disagree?",
+      "Mission-oriented policy has expensive failures (Concorde, industrial champions) that the success stories omit.",
+      "The state that Mazzucato trusts to set missions is the same one that struggles to build a railway.",
+      "Private investment follows returns; a common-good economy has to explain where the capital comes from."
+    ],
+    "speakers": [
+      {"name": "Mariana Mazzucato", "stance": "UCL economist; The Entrepreneurial State, Mission Economy, The Big Con, The Common Good Economy. Advises the G20, WHO and UN. Expect a confident, policy-ready case with international examples. She debates inheritance at 2:30pm."}
+    ],
+    "questions": [
+      "Give an example of a mission that failed and what you learned from it.",
+      "Who decides the common good in a country split 50/50 on what it is?",
+      "What is the role of profit in your economy — tolerated, harnessed, or replaced?"
+    ],
+    "reading": [
+      {"title": "Mission Economy", "by": "Mariana Mazzucato (2021)", "note": "The programme in full."},
+      {"title": "The Big Con", "by": "Mariana Mazzucato and Rosie Collington (2023)", "note": "Her attack on the consultancy industry — the 'how' argument in practice."}
+    ],
+    "terms": [
+      {"term": "Mission-oriented innovation", "def": "Directing public and private investment at defined societal goals rather than fixing market failures case by case."},
+      {"term": "Public value", "def": "Value created collectively by public institutions — which Mazzucato argues economics systematically undercounts."}
+    ]
+  },
+  "90": {
+    "kind": "talk",
+    "question": "Can Wikipedia's bet — that people given trust and good faith will collectively pursue truth — survive misinformation and AI?",
+    "why": "Wales built the largest encyclopaedia on a philosophy: neutrality, verifiability, and faith in strangers. Twenty-five years on, AI systems trained on Wikipedia produce confident falsehoods with no way to check them, and the site's model is under strain. Interviewed by Laura Kennedy.",
+    "case": [
+      "Wikipedia works because of process, not authority: every claim needs a source, every edit can be reverted, and disputes are argued in the open.",
+      "Trust in strangers, bounded by rules, produced something no institution could; that is a finding about people, not just about software.",
+      "AI models that summarise without sources reverse the model: fluent, unverifiable, and often wrong.",
+      "The future of truth depends on institutions that show their working — and on people willing to do unpaid work for it."
+    ],
+    "objections": [
+      "Wikipedia's neutrality is a policy enforced by a small, unrepresentative editor base; its blind spots (gender, the Global South) are documented.",
+      "The site's 'consensus' can be captured on contested topics; edit wars are power struggles, not truth-seeking.",
+      "AI companies took the corpus for free and now threaten the traffic that recruits editors — a problem Wales's philosophy did not anticipate.",
+      "Wales's faith in 'good faith' has a libertarian tilt that critics say underrates coordinated manipulation."
+    ],
+    "speakers": [
+      {"name": "Jimmy Wales", "stance": "Co-founder of Wikipedia; The Seven Rules of Trust (2025). Expect optimism about people and worry about AI, and a defence of verifiability as the foundation of knowledge. He debates perspectivism at 4pm."},
+      {"name": "Laura Kennedy", "stance": "Interviews. Philosopher and writer (Some of Our Parts)."}
+    ],
+    "questions": [
+      "What is the most important thing Wikipedia got wrong, and how was it fixed?",
+      "Should AI companies pay for the corpus they trained on — and would that save the editor base?",
+      "Is 'neutral point of view' a truth or a treaty?"
+    ],
+    "reading": [
+      {"title": "The Seven Rules of Trust", "by": "Jimmy Wales (2025)", "note": "His own account of what made Wikipedia work."},
+      {"title": "'Neutral point of view' (policy page)", "by": "Wikipedia", "note": "Read the policy the whole project rests on — it is shorter than you think."}
+    ],
+    "terms": [
+      {"term": "Verifiability", "def": "Wikipedia's rule that claims must be attributable to reliable published sources — 'verifiability, not truth'."},
+      {"term": "Neutral point of view", "def": "Representing significant views fairly and without editorial bias — the founding policy."}
+    ]
+  }
+}

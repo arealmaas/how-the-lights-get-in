@@ -191,7 +191,7 @@ MANIFEST = {
 }
 
 
-def page_payload(data, briefings, media):
+def page_payload(data, briefings, media, extra):
     ev = [{k: e[k] for k in ('id', 'eventNo', 'title', 'type', 'venue', 'date', 'time', 'speakers', 'hosts', 'people', 'topics',
                              'description', 'descriptionSource', 'links', 'ticketing', 'fastPassPrice', 'prices', 'actSlugs', 'url')} for e in data['events']]
     sp = [{k: s[k] for k in ('name', 'slug', 'tagline', 'bio', 'profileUrl', 'speaks', 'hosts')} for s in data['speakers']]
@@ -200,7 +200,8 @@ def page_payload(data, briefings, media):
     brief = {k: v for k, v in briefings.items() if not k.startswith('_')}
     payload = {'meta': meta, 'events': ev, 'speakers': sp, 'acts': ac,
                'briefings': brief, 'briefingNote': briefings.get('_meta', {}).get('note', ''),
-               'media': {'acts': media.get('acts', {}), 'films': media.get('films', {})}, 'playlist': media.get('_meta', {}).get('playlist')}
+               'media': {'acts': media.get('acts', {}), 'films': media.get('films', {})}, 'playlist': media.get('_meta', {}).get('playlist'),
+               'speakersExtra': extra.get('speakers', {})}
     return json.dumps(payload, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
 
 
@@ -208,12 +209,13 @@ def main():
     extract = json.load(open(ROOT / 'data' / 'extract.json', encoding='utf-8'))
     briefings = json.load(open(ROOT / 'data' / 'briefings.json', encoding='utf-8')) if (ROOT / 'data' / 'briefings.json').exists() else {}
     media = json.load(open(ROOT / 'data' / 'media.json', encoding='utf-8')) if (ROOT / 'data' / 'media.json').exists() else {}
+    extra = json.load(open(ROOT / 'data' / 'speakers-extra.json', encoding='utf-8')) if (ROOT / 'data' / 'speakers-extra.json').exists() else {}
     data = build(extract)
     (ROOT / 'programme.json').write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
 
     template = (ROOT / 'scripts' / 'template.html').read_text(encoding='utf-8')
     counts = Counter(e['date'] for e in data['events'])
-    html = template.replace('/*__DATA__*/', page_payload(data, briefings, media))
+    html = template.replace('/*__DATA__*/', page_payload(data, briefings, media, extra))
     html = html.replace('__EXTRACTED__', datetime.fromisoformat(data['meta']['extractedAt'].replace('Z', '+00:00')).strftime('%-d %B %Y'))
     html = html.replace('__COUNT_SAT__', str(counts.get('2026-09-19', 0))).replace('__COUNT_SUN__', str(counts.get('2026-09-20', 0)))
     html = html.replace('__TOTAL__', str(len(data['events']))).replace('__SPEAKERS__', str(len(data['speakers']))).replace('__ACTS__', str(len(data['acts'])))

@@ -1,0 +1,437 @@
+{
+  "3": {
+    "kind": "talk",
+    "question": "Can science explain consciousness while treating it as a by-product of matter — or must it start from experience instead?",
+    "why": "The 'hard problem' has resisted thirty years of neuroscience. Frank's move is not to add data but to change the starting point: experience is where every measurement begins, so a science that treats it as an afterthought explains everything except the thing doing the explaining.",
+    "case": [
+      "Every scientific observation is made from within lived experience; abstracting it away and then calling it an 'emergent side effect' forgets where the abstractions came from — the 'blind spot' argument.",
+      "Physicalist accounts predict correlations between brain states and reports, but nothing in them says why any of it is accompanied by experience.",
+      "A science that includes the perspective of the observer is not anti-science; it is what quantum measurement and relativity already forced physics to confront.",
+      "Progress requires new frameworks — from panpsychism to enactivism — rather than more of the same equations."
+    ],
+    "objections": [
+      "'Science has a blind spot' is easier to state than to fix: no rival framework has produced a testable prediction about consciousness.",
+      "Neuroscience's progress on attention, anaesthesia and disorders of consciousness suggests the standard approach is working, slowly.",
+      "Putting experience 'at the centre' risks idealism by another name; critics ask what, concretely, changes in a lab.",
+      "The hard problem may be a conceptual confusion rather than a scientific gap (Dennett's line)."
+    ],
+    "speakers": [
+      {"name": "Adam Frank", "stance": "Astrophysicist and co-author of The Blind Spot (2024, with Marcelo Gleiser and Evan Thompson), which argues science has mistaken its abstractions for reality. Expect a passionate but empirically minded case; he is not a mystic and will not deny the successes of physics."}
+    ],
+    "questions": [
+      "What experiment or observation would look different if consciousness were fundamental rather than emergent?",
+      "Is the blind spot a problem for science, or only for a philosophy of science that forgot about observers?",
+      "Where does this leave neuroscience's practical successes — anaesthesia, coma diagnosis, brain–computer interfaces?"
+    ],
+    "reading": [
+      {"title": "The Blind Spot", "by": "Adam Frank, Marcelo Gleiser and Evan Thompson (2024)", "note": "The book behind the talk."},
+      {"title": "'Facing Up to the Problem of Consciousness'", "by": "David Chalmers (1995)", "note": "Where the hard problem got its name — a short paper."}
+    ],
+    "terms": [
+      {"term": "Hard problem", "def": "Why physical processing is accompanied by subjective experience at all, as opposed to which processes correlate with which experiences."},
+      {"term": "Emergence", "def": "The claim that consciousness arises from suitably complex non-conscious matter — the view Frank and Strawson (3pm, Ring) both reject, from different directions."}
+    ]
+  },
+  "4": {
+    "kind": "talk",
+    "question": "Is populism a threat to democracy or one of its most authentic expressions?",
+    "why": "'Populist' has become the word elites use for votes they dislike. Furedi's two-part course reverses the frame: the anti-populist narrative is the thing to explain, and the demand for solidarity, cultural security and a hearing is democratic, not pathological.",
+    "case": [
+      "Part 1: the suspicion of 'the people' runs from Plato through the nineteenth-century fear of the crowd to today's technocracy; anti-populism has a longer history than populism.",
+      "Part 2: populism is best understood as a disposition — a claim to be heard, to belong, to have one's way of life respected — rather than an ideology or a programme.",
+      "Dismissing populism as ignorance or manipulation guarantees more of it; engagement means taking its philosophical claims seriously.",
+      "Democracy without the demos — rule by experts, courts and international bodies — is what produced the backlash."
+    ],
+    "objections": [
+      "Populism's defining move is to declare part of the people 'the real people'; that is majoritarian, not democratic, and minorities pay.",
+      "Populist governments in power (Hungary, Venezuela, Turkey) have weakened courts, press and elections — the disposition has a record.",
+      "The 'cultural security' demand often reduces to hostility to migrants; Furedi's sympathetic reading can launder that.",
+      "Furedi directs a Brussels think tank funded by the Hungarian state; critics will ask whether the analysis is independent of the case."
+    ],
+    "speakers": [
+      {"name": "Frank Furedi", "stance": "Sociologist, author of Populism and the European Culture Wars and director of MCC Brussels. Expect a sympathetic, historically framed defence of populism as democratic disposition, delivered as a two-part course with a break between."}
+    ],
+    "questions": [
+      "What distinguishes a populist from a democrat, on your definition — is there anything left?",
+      "When populists win and govern, how should we judge them — by disposition or by what they do to institutions?",
+      "Is the anti-populist narrative wrong about the facts, or only about the tone?"
+    ],
+    "reading": [
+      {"title": "Populism and the European Culture Wars", "by": "Frank Furedi (2017)", "note": "His earlier statement of the argument, written around the Hungarian case."},
+      {"title": "What Is Populism?", "by": "Jan-Werner Müller (2016)", "note": "The best-known opposing view: populism as anti-pluralist by definition."}
+    ],
+    "terms": [
+      {"term": "Anti-populism", "def": "Furedi's term for the elite narrative that treats popular movements as irrational, manipulated or dangerous."},
+      {"term": "Demos", "def": "'The people' as a political actor — the thing populists claim to speak for and technocrats prefer to manage."}
+    ]
+  },
+  "5": {
+    "kind": "talk",
+    "question": "Should we let researchers link the records we generate at the doctor, the school and the benefits office — for a healthier, fairer society?",
+    "why": "Britain sits on decades of administrative data collected to run services and never joined up. Linking it reveals patterns in health and inequality invisible to surveys; it also builds a picture of every citizen. Gordon runs the £168m programme that does the linking.",
+    "case": [
+      "Linked de-identified data answers questions surveys cannot: which children fall out of education, how debt and health interact, whether policies work for whom.",
+      "The data already exists; the only question is whether it is used for public good or left in silos.",
+      "Strict governance — accredited researchers, secure environments, no re-identification — makes the risk manageable and the benefit large.",
+      "Countries with linked registers (the Nordics) run better evaluations and better services."
+    ],
+    "objections": [
+      "De-identified data can be re-identified; 'trusted research environments' are trusted until the first breach.",
+      "The same infrastructure that helps researchers helps a future government profile citizens; governance is a policy, not a guarantee.",
+      "Consent is absent: nobody agreed that their GP record would be linked to their child's school file.",
+      "Findings about 'patterns of inequality' can be used to target the poor for scrutiny as easily as for help."
+    ],
+    "speakers": [
+      {"name": "Emma Gordon", "stance": "Director of Administrative Data Research UK, the ESRC-funded programme that links government data for research. Expect a practical case for data use with governance built in, and an invitation to argue about the trade-offs. The session is in partnership with ADR UK."}
+    ],
+    "questions": [
+      "What is one finding from linked data that changed a policy?",
+      "Who can say no — can a citizen opt their records out of research, and should they be able to?",
+      "What stops the next government from using this infrastructure for enforcement rather than research?"
+    ],
+    "reading": [
+      {"title": "ADR UK — what we do", "by": "adruk.org", "note": "The programme's own explanation of linkage and safeguards."},
+      {"title": "The Age of Surveillance Capitalism", "by": "Shoshana Zuboff (2019)", "note": "The corporate version of the same question — useful contrast."}
+    ],
+    "terms": [
+      {"term": "Administrative data", "def": "Records generated by running public services — tax, health, education, benefits — as opposed to data collected for research."},
+      {"term": "Trusted research environment", "def": "A secure setting where accredited researchers analyse de-identified data without being able to download it."}
+    ]
+  },
+  "8": {
+    "kind": "talk",
+    "question": "Why has nobody found the self — and is it because the self is not the kind of thing that could be found?",
+    "why": "Neuroscientists look for the self in the brain, mystics in stillness, philosophers in memory or narrative. Rödl's idealist answer is that the self is not in the world at all: it is the condition of there being a world for anyone. That is either a deep truth or a way of putting the question beyond reach.",
+    "case": [
+      "Every act of knowing presupposes a knower who is not one of the things known; looking for the self among objects is a category mistake.",
+      "Self-consciousness is not a special inner perception but the form of all thought — to think is to think that one thinks.",
+      "This explains why the self resists neuroscience without denying neuroscience anything: brains are objects, and the self is not.",
+      "Kant and Hegel had this right; the empiricist search for the self as an item was the wrong turn."
+    ],
+    "objections": [
+      "If the self is not in the world, what changes when a stroke destroys a personality? Idealism owes an account of damage.",
+      "'Condition of possibility' arguments can prove anything is unfindable; the move needs a limit.",
+      "Buddhist and Humean traditions conclude from the same failure to find the self that there is no self — a simpler answer.",
+      "The talk's opponents (Strawson, 3pm) hold that selves are real, physical and plural; Rödl's self is one and formal — the disagreement is about what 'self' means."
+    ],
+    "speakers": [
+      {"name": "Sebastian Rödl", "stance": "Leipzig philosopher in the Kantian–Hegelian tradition (Self-Consciousness; Self-Consciousness and Objectivity), defending an absolute idealism. Expect a dense, rigorous argument delivered without concession to the audience's materialism. He also debates the return of grand systems at 7pm in the Arena."}
+    ],
+    "questions": [
+      "If the self isn't an object, is there one self or one per person — and how would we tell?",
+      "What does your account say about a patient with dementia who no longer recognises herself?",
+      "Is there anything a neuroscientist could show you that would change your view?"
+    ],
+    "reading": [
+      {"title": "Self-Consciousness and Objectivity", "by": "Sebastian Rödl (2018)", "note": "Short, difficult, and exactly this argument."},
+      {"title": "Tractatus 5.6–5.641", "by": "Ludwig Wittgenstein (1921)", "note": "'The subject does not belong to the world' in one page."}
+    ],
+    "terms": [
+      {"term": "Transcendental", "def": "In Kant's sense: concerning the conditions that make experience possible, rather than any object of experience."},
+      {"term": "Absolute idealism", "def": "The view, descending from Hegel, that thought and reality share one form — Rödl's position."}
+    ]
+  },
+  "9": {
+    "kind": "talk",
+    "question": "What ideas actually drove Michael Gove — and does a career of reforming institutions from within add up to a philosophy?",
+    "why": "Gove reformed schools, backed Brexit, ran five departments and now edits The Spectator. Interviewed by Mary Ann Sieghart, he is asked for the ideas behind the career: a rare chance to hear a politician defend a worldview rather than a policy.",
+    "case": [
+      "Institutions decay unless challenged from inside; loyalty to a purpose can require disloyalty to a status quo.",
+      "Knowledge matters: a curriculum of facts and canon is the route to equality, because the well-off get it anyway.",
+      "Sovereignty and self-government are goods in themselves, not accounting questions — the Brexit case at its most philosophical.",
+      "Conservatism is reform, not preservation: Burke read through Blair."
+    ],
+    "objections": [
+      "The reforms had costs — teacher morale, the exam treadmill, Brexit's economic drag — that a philosophy of 'creative disruption' does not answer.",
+      "The status quo Gove challenged was often one he had helped build; 'reform from within' can also describe restlessness.",
+      "Critics see less a philosophy than a series of positions held with fluency; ask what he changed his mind about.",
+      "An interview format is generous; the audience Q&A is where the argument happens."
+    ],
+    "speakers": [
+      {"name": "Michael Gove", "stance": "Former Education Secretary, Justice Secretary and Levelling Up Secretary; leading Brexit campaigner; editor of The Spectator. Expect fluency, quotation and a defence of knowledge, institutions and national self-government. He also appears in the Educated Elite (2:30pm) and Nation State vs Big Tech (4pm) debates."},
+      {"name": "Mary Ann Sieghart", "stance": "Interviews. Journalist, broadcaster and author of The Authority Gap."}
+    ],
+    "questions": [
+      "Which of your reforms would you now undo, and what did you learn from it?",
+      "Is there a principle you hold that has cost you politically? What was it?",
+      "You championed knowledge in schools — what should a fifteen-year-old know that AI cannot tell them?"
+    ],
+    "reading": [
+      {"title": "Celsius 7/7", "by": "Michael Gove (2006)", "note": "His one book — on Islamism and the West; dated but revealing of the mind."},
+      {"title": "The Authority Gap", "by": "Mary Ann Sieghart (2021)", "note": "The interviewer's own argument about who gets taken seriously."}
+    ],
+    "terms": [
+      {"term": "Knowledge-rich curriculum", "def": "Schooling built on a defined body of content — the Hirsch-influenced reform Gove drove."},
+      {"term": "Creative destruction", "def": "Schumpeter's phrase for renewal through disruption, often applied to Gove's approach to institutions."}
+    ]
+  },
+  "14": {
+    "kind": "talk",
+    "question": "Is Britain's doom loop of debt, low growth and stagnant wages a fact — or a failure of nerve?",
+    "why": "Fifteen years of flat productivity have made pessimism the default. Hunt, who ran the Treasury through the post-Truss stabilisation, argues the strengths are underrated and a growth breakthrough is closer than it looks. It's the optimistic case made by the man who had to write the cheques.",
+    "case": [
+      "Britain's strengths — universities, life sciences, finance, creative industries, the English language, the rule of law — are consistently discounted in the national conversation.",
+      "Stagnation is a policy outcome, not a destiny: planning, tax on investment and energy costs are fixable choices.",
+      "Countries have broken out of doom loops before; the psychology of decline becomes self-fulfilling if unchallenged.",
+      "Optimism is a strategy: investors and talent go where confidence is."
+    ],
+    "objections": [
+      "Hunt was in the Cabinet for most of the stagnation; the fixes he lists were available then.",
+      "The fundamentals — an ageing population, low investment, Brexit frictions — are not cured by confidence.",
+      "Every Chancellor promises a growth breakthrough; the forecasts are revised down every year.",
+      "'We can be rich again' assumes we agree who 'we' is; the gains of the last boom were unevenly shared."
+    ],
+    "speakers": [
+      {"name": "Jeremy Hunt", "stance": "Former Chancellor of the Exchequer, Foreign Secretary and Health Secretary; author of Can We Be Great Again? (2025) and the book the festival bills as Can We Be Rich Again? Expect an insider's optimistic case with specific policy proposals; he debates trade at 10:30 and growth trade-offs with Torsten Bell at 5pm."}
+    ],
+    "questions": [
+      "Name the single policy that would add most to growth — and why didn't your government do it?",
+      "Which country broke out of a doom loop, and what did it cost them?",
+      "Is optimism an analysis or a mood?"
+    ],
+    "reading": [
+      {"title": "Can We Be Great Again?", "by": "Jeremy Hunt (2025)", "note": "His post-office book on Britain's place in the world."},
+      {"title": "Great Britain? How We Get Our Future Back", "by": "Torsten Bell (2024)", "note": "The Labour-side diagnosis — Bell is his 5pm opponent."}
+    ],
+    "terms": [
+      {"term": "Doom loop", "def": "A self-reinforcing cycle — here, low growth raising debt, raising taxes, lowering growth."},
+      {"term": "Productivity", "def": "Output per hour worked — flat in Britain since 2008, the root of the stagnant-wages story."}
+    ]
+  },
+  "15": {
+    "kind": "talk",
+    "question": "What happens to economies when a few firms race to build machines that outthink us — an explosion of growth, a collapse of jobs, or both?",
+    "why": "Trillions are being invested on the assumption that AI transforms productivity. Mallaby has been inside DeepMind for his biography of Demis Hassabis; Wolf has watched every 'new economy' promise for forty years. Between them: what is actually changing, and how fast.",
+
+    "case": [
+      "The frontier labs are not hype merchants: the science is real and the capabilities are compounding — Mallaby's inside view.",
+      "Wolf's line: whatever the technology does, it is moving faster than institutions, tax systems and labour markets can adapt, and that gap is the danger.",
+      "Growth could jump, but the gains accrue to capital and to a handful of firms unless policy intervenes.",
+      "Previous general-purpose technologies took decades to show up in productivity statistics; expect a lag and then a shock."
+    ],
+    "objections": [
+      "Productivity growth has not yet appeared in the data; the AI economy is so far an investment boom, not an output boom.",
+      "Mass job loss has been predicted for every automation wave; the historical result was churn, not unemployment.",
+      "The 'superintelligence' framing imports science fiction into economics; the realistic question is about narrow gains in specific sectors.",
+      "Concentration is a policy choice — antitrust and open models change the distribution."
+    ],
+    "speakers": [
+      {"name": "Martin Wolf", "stance": "FT chief economics commentator; The Crisis of Democratic Capitalism. Expect the systemic worry: technology outrunning governance, inequality, and the political consequences."},
+      {"name": "Sebastian Mallaby", "stance": "Author of The Power Law and a forthcoming biography of Demis Hassabis, with inside access to DeepMind. Expect reportage on what the labs believe and a cautiously bullish read of capability."}
+    ],
+    "questions": [
+      "What is the first economic indicator in which you'd expect AI to show up — and has it?",
+      "If growth jumps and employment falls, what mechanism shares the gains?",
+      "What do the people building it believe about superintelligence that they do not say in public?"
+    ],
+    "reading": [
+      {"title": "The Power Law", "by": "Sebastian Mallaby (2022)", "note": "How venture capital made the firms now racing."},
+      {"title": "The Crisis of Democratic Capitalism", "by": "Martin Wolf (2023)", "note": "Wolf's diagnosis of the political economy AI lands in."}
+    ],
+    "terms": [
+      {"term": "General-purpose technology", "def": "A technology (steam, electricity, computing) that reshapes the whole economy over decades."},
+      {"term": "Solow paradox", "def": "'You can see the computer age everywhere but in the productivity statistics' — the lag between technology and measured growth."}
+    ]
+  },
+  "17": {
+    "kind": "talk",
+    "question": "How did mental distress become a disease to be medicated — and what would an honest framework look like instead?",
+    "why": "Moncrieff led the 2022 review that found no consistent evidence for the serotonin theory of depression. This two-part course traces how we got from demons to diagnoses to mass prescription, then asks what to do when the chemical story fails.",
+    "case": [
+      "Part 1: models of distress have always reflected their era — supernatural, moral, then medical; the brain-disease model is one more, not the final truth.",
+      "The chemical-imbalance story was never established, yet it justified a prescribing culture that reaches one in six adults.",
+      "Antidepressants alter mental states like any psychoactive drug; calling that 'treating an illness' is a theory, not an observation.",
+      "Part 2: an honest framework would treat distress as meaningful and situational, with drugs as one option used with informed consent about what they do."
+    ],
+    "objections": [
+      "Rejecting the serotonin story does not show the drugs fail; the trials show benefit for many patients regardless of mechanism.",
+      "Depression has biological correlates — inflammation, sleep, genetics — that a purely social account underplays (Bullmore's line, in the 7pm debate).",
+      "Withdrawal and overprescription are real problems, but the alternative of under-treatment has a body count.",
+      "Patients often experience the medical model as relief from blame; 'meaningful distress' can sound like 'your fault'."
+    ],
+    "speakers": [
+      {"name": "Joanna Moncrieff", "stance": "Professor of critical and social psychiatry at UCL; The Myth of the Chemical Cure and Chemically Imbalanced (2025). Expect the strongest available case against the biomedical model, from a practising psychiatrist. She debates the mental-health industry at 7pm."}
+    ],
+    "questions": [
+      "What would count as evidence that a particular case of depression is a brain disease?",
+      "For a patient who says the drugs saved her life, what is your account of what happened?",
+      "If prescribing fell by half tomorrow, what would you predict — and what would you want in its place?"
+    ],
+    "reading": [
+      {"title": "Chemically Imbalanced", "by": "Joanna Moncrieff (2025)", "note": "The serotonin story and its unmaking, told by the author of the review."},
+      {"title": "The Inflamed Mind", "by": "Edward Bullmore (2018)", "note": "The biological counter-case."}
+    ],
+    "terms": [
+      {"term": "Drug-centred model", "def": "Moncrieff's alternative: psychiatric drugs produce altered states that may or may not help, rather than correcting a disease."},
+      {"term": "Umbrella review", "def": "A systematic review of systematic reviews — the form of the 2022 serotonin paper."}
+    ]
+  },
+  "19": {
+    "kind": "talk",
+    "question": "Can neuroscience test Freud and Descartes — or is the mind beyond what brains can tell us?",
+    "why": "Neuroscience is accused of explaining everything except the mind. Solms and Bullmore argue the opposite: the brain can adjudicate philosophical and psychological claims — that feelings are primary, that mind and body interact through inflammation, that Descartes was wrong in an interesting way.",
+    "case": [
+      "Solms: consciousness is fundamentally feeling, generated in the brainstem, not cognition in the cortex — a claim with clinical evidence (children born without a cortex still show emotion).",
+      "Freud's drives map onto affective neuroscience better than his critics allow; psychoanalysis can be corrected by the brain rather than dismissed.",
+      "Bullmore: depression and inflammation are linked; the body–mind boundary Descartes drew is porous in measurable ways.",
+      "The hard problem is not a reason to give up on neuroscience but a constraint on what a good theory must explain."
+    ],
+    "objections": [
+      "Correlating feelings with brainstem activity does not explain why there is feeling — the explanatory gap remains.",
+      "Rehabilitating Freud through neuroscience risks confirming vague theories with precise-sounding data.",
+      "The inflammation–depression link is real but modest; anti-inflammatories are not antidepressants.",
+      "Both speakers assume the mind is what brains do; Rödl (11am) and Strawson (3pm) start elsewhere."
+    ],
+    "speakers": [
+      {"name": "Mark Solms", "stance": "Neuroscientist and psychoanalyst (The Hidden Spring), founder of neuropsychoanalysis; argues feeling is the foundation of consciousness. Expect Freud defended with brain data."},
+      {"name": "Edward Bullmore", "stance": "Cambridge neuropsychiatrist (The Inflamed Mind), on immune–brain links in depression. Expect the body brought back into the mind."}
+    ],
+    "questions": [
+      "What observation would falsify the claim that consciousness is generated in the brainstem?",
+      "Which of Freud's ideas has neuroscience refuted outright?",
+      "If depression is inflammatory, why do anti-inflammatories not cure it?"
+    ],
+    "reading": [
+      {"title": "The Hidden Spring", "by": "Mark Solms (2021)", "note": "Feeling as the source of consciousness."},
+      {"title": "The Inflamed Mind", "by": "Edward Bullmore (2018)", "note": "Immunity and depression."}
+    ],
+    "terms": [
+      {"term": "Neuropsychoanalysis", "def": "Solms's field: testing psychoanalytic ideas against neuroscience."},
+      {"term": "Affect", "def": "Feeling states — pleasure, fear, seeking — which Solms places at the root of consciousness."}
+    ]
+  },
+  "27": {
+    "kind": "talk",
+    "question": "What are the biggest unsolved questions in physics — and are we getting closer, or discovering that some are unanswerable?",
+    "why": "A century ago physics delivered relativity and quantum mechanics in twenty years; since then the questions have piled up — dark matter, dark energy, quantum gravity, time's arrow — with few answers. Whiteson, who works at the LHC, gives an honest inventory.",
+    "case": [
+      "The unknowns are not fringe: 95% of the universe's contents are unidentified, and our two best theories contradict each other.",
+      "Experiments are getting harder and dearer; the next answers may need decades or new kinds of instrument.",
+      "Some questions ('why these laws?') may be unanswerable by design — a limit of explanation, not of effort.",
+      "Admitting ignorance is the honest, and more interesting, way to do public science."
+    ],
+    "objections": [
+      "Every generation thought the remaining problems intractable; the LHC's Higgs and LIGO's gravitational waves were 'impossible' once.",
+      "'Unanswerable by design' can become an excuse for untestable theorising (the critics of string theory would say it already has).",
+      "The inventory framing can flatten the difference between open problems and pseudo-problems.",
+      "Popular physics thrives on mystery; a working physicist's day is mostly incremental measurement."
+    ],
+    "speakers": [
+      {"name": "Daniel Whiteson", "stance": "UC Irvine particle physicist at the LHC, co-author of We Have No Idea and Do Aliens Speak Physics? Expect candour, humour and cartoons. He also debates evolving laws (4pm) and the reality algorithm (Sunday noon) and teaches an Academy course on Sunday morning."}
+    ],
+    "questions": [
+      "Which unsolved question do you think will be solved in your lifetime, and which never?",
+      "What is the best current candidate for dark matter, and what would rule it out?",
+      "Is the arrow of time a problem in physics or in our description of it?"
+    ],
+    "reading": [
+      {"title": "We Have No Idea", "by": "Jorge Cham and Daniel Whiteson (2017)", "note": "The inventory in comic form."},
+      {"title": "Lost in Math", "by": "Sabine Hossenfelder (2018)", "note": "Why some of the questions may be the field's own fault."}
+    ],
+    "terms": [
+      {"term": "Dark matter / dark energy", "def": "Unidentified matter inferred from gravity (about 27%) and the unknown driver of accelerating expansion (about 68%)."},
+      {"term": "Quantum gravity", "def": "The missing theory uniting general relativity with quantum mechanics."}
+    ]
+  },
+  "34": {
+    "kind": "talk",
+    "question": "If consciousness cannot emerge from wholly non-conscious matter, must matter have been conscious all along?",
+    "why": "Strawson's argument revived panpsychism in analytic philosophy: take physicalism seriously, refuse the fantasy that experience 'emerges' from nothing experiential, and you are left with experience as a basic feature of the physical. It is the most common-sense radical view on offer.",
+    "case": [
+      "Experience is the one thing we know exists with certainty; any theory that denies it (illusionism) is the least plausible claim ever made.",
+      "'Emergence' works for liquidity from molecules because the properties are of the same kind; experiential from wholly non-experiential is a brute miracle.",
+      "So if physicalism is true, the physical must already include experiential properties — panpsychism follows from materialism, not against it.",
+      "The view is compatible with everything physics says; physics describes structure and dynamics, not intrinsic nature."
+    ],
+    "objections": [
+      "The combination problem: how do micro-experiences add up to a unified mind? No one has an answer.",
+      "Calling electrons 'experiential' explains nothing testable; it relabels the mystery.",
+      "'Emergence is a miracle' is an intuition; many philosophers find strong emergence coherent.",
+      "The argument assumes physics leaves out intrinsic nature; structuralists deny there is anything left out."
+    ],
+    "speakers": [
+      {"name": "Galen Strawson", "stance": "Philosopher (Selves; Things That Bother Me) whose 2006 paper 'Realistic Monism' restarted the panpsychism debate. Expect plain speech, impatience with denial of consciousness, and a claim that his view is the sober one. He debates the self at 2:30pm on Sunday."}
+    ],
+    "questions": [
+      "How do the experiences of my particles become my experience — is there any progress on the combination problem?",
+      "Is a rock conscious? If not, what is the principled line?",
+      "What would a panpsychist neuroscience do differently?"
+    ],
+    "reading": [
+      {"title": "'Realistic Monism: Why Physicalism Entails Panpsychism'", "by": "Galen Strawson (2006)", "note": "The paper, in the Journal of Consciousness Studies — the argument in full."},
+      {"title": "Galileo's Error", "by": "Philip Goff (2019)", "note": "The accessible book-length case, by an ally quoted in the billing."}
+    ],
+    "terms": [
+      {"term": "Panpsychism", "def": "Consciousness, in some basic form, is a fundamental and ubiquitous feature of the physical world."},
+      {"term": "Combination problem", "def": "How small experiences could compose a single large one — the standard objection."}
+    ]
+  },
+  "35": {
+    "kind": "talk",
+    "question": "How are gender and race built by practices and power rather than nature — and, if they are built, how are they taken apart?",
+    "why": "Haslanger's Resisting Reality made social construction respectable in analytic philosophy by insisting constructed things are real. This two-part course lays out the machinery: categories, practices, institutions — and then the harder question of agency and change.",
+    "case": [
+      "Part 1: gender and race are positions in social structures — defined by how one is treated, what resources one gets — not biological kinds; that is why they are real and why they can be changed.",
+      "Structures work through practices we reproduce unreflectively; making the mechanism visible is the first political act.",
+      "Ideology is not just false belief but the frameworks that make some options unthinkable.",
+      "Part 2: agency is collective; structures are dismantled by changing practices and institutions together, not by individual enlightenment."
+    ],
+    "objections": [
+      "Defining gender by subordination makes an egalitarian future 'post-gender' by definition — many feminists reject that.",
+      "Biology does not vanish: sex differences and heritable traits constrain what social construction can explain.",
+      "'Making mechanisms visible' has been the academic left's programme for forty years; critics (Liu, Sunday) argue it produced professional-class capture rather than change.",
+      "The structural account can dissolve responsibility: if practices reproduce themselves, who is to blame?"
+    ],
+    "speakers": [
+      {"name": "Sally Haslanger", "stance": "MIT philosopher, Resisting Reality (2012); the leading analytic theorist of social structure. Expect rigour, worked examples and a materialist rather than identity-focused feminism. She debates democracy (Sunday 1:15pm) and reality (Sunday 4pm)."}
+    ],
+    "questions": [
+      "If gender is a position of subordination, is a world without subordination a world without women?",
+      "Which practice, changed tomorrow, would do most to change the structure?",
+      "How does your account handle the biological sex differences that survive every society?"
+    ],
+    "reading": [
+      {"title": "Resisting Reality", "by": "Sally Haslanger (2012)", "note": "The collected papers; 'Gender and Race: (What) Are They?' is the core."},
+      {"title": "The Second Sex", "by": "Simone de Beauvoir (1949)", "note": "'One is not born, but rather becomes, a woman' — the ancestor."}
+    ],
+    "terms": [
+      {"term": "Social construction", "def": "A category that exists because of social practices — and, on Haslanger's view, is no less real for it."},
+      {"term": "Ideology (Haslanger)", "def": "The cultural techne — concepts, scripts, defaults — that organises practices and makes alternatives invisible."}
+    ]
+  },
+  "43": {
+    "kind": "talk",
+    "question": "As materialism loses its grip, is the soul a viable answer to the self and consciousness — or a return to old mistakes?",
+    "why": "For a century the brain was assumed to hold the key to the self. That assumption is wobbling — panpsychism, idealism and post-analytic philosophy all reject it. Trumbull brings the soul back as a serious concept; Lawson argues the answer lies elsewhere; Balaska works the edges of experience.",
+    "case": [
+      "Trumbull: the concept of the soul — a self that is not reducible to brain states — does explanatory work that materialism cannot, and has a richer philosophical history than its critics remember.",
+      "Lawson: materialism and 'the soul' share a mistake — both treat the self as a thing to be located; the self is a way of closing the world.",
+      "Balaska: the limits of experience (Wittgenstein, Lacan) show why every location of the self, material or spiritual, fails.",
+      "All three agree the materialist consensus was a consensus, not a proof."
+    ],
+    "objections": [
+      "'Soul' carries theological freight; if it means only 'irreducible self', why revive the word?",
+      "Materialism's difficulties with consciousness do not license any alternative — the burden shifts to the soul theorist to explain interaction with the body.",
+      "The 'materialism is losing its grip' claim is philosophically fashionable and scientifically unrepresentative.",
+      "Three positions, one hour: expect a survey rather than a resolution."
+    ],
+    "speakers": [
+      {"name": "Victoria Trumbull", "stance": "Philosopher, author of On the Memory of the Soul, billed as challenging the materialist consensus. Expect the case that the soul is a viable philosophical concept."},
+      {"name": "Hilary Lawson", "stance": "Post-postmodern philosopher (Closure); rejects both materialism and the soul as ways of locating the self. Expect the 'closure' framework."},
+      {"name": "Maria Balaska", "stance": "Philosopher (Wittgenstein and Lacan at the Limit) working on the edges of experience. Expect the limits-of-language angle."}
+    ],
+    "questions": [
+      "What does 'soul' explain that 'irreducible subject' does not?",
+      "If the self is neither in the brain nor a soul, what is a person that dies?",
+      "Is the decline of materialism a finding or a mood among philosophers?"
+    ],
+    "reading": [
+      {"title": "Closure: A Story of Everything", "by": "Hilary Lawson (2001)", "note": "Lawson's framework."},
+      {"title": "Wittgenstein and Lacan at the Limit", "by": "Maria Balaska (2019)", "note": "Balaska on meaning and the limits of experience."}
+    ],
+    "terms": [
+      {"term": "Materialism / physicalism", "def": "Everything, including mind, is ultimately physical."},
+      {"term": "Post-analytic", "def": "Philosophy after the linguistic turn that abandons the idea that language mirrors reality — Lawson's self-description."}
+    ]
+  }
+}

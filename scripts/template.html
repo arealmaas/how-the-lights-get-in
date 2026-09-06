@@ -255,6 +255,8 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .tile .warn{float:right;color:var(--debates);font-size:12px;margin-left:4px}
 .clashnote{font-size:13.5px;background:color-mix(in oklab,var(--debates) 10%,var(--surface));border:1px solid color-mix(in oklab,var(--debates) 40%,var(--surface));border-radius:6px;padding:8px 10px;margin:0 0 12px}
 .clashnote button{font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.softnote{font-size:13px;color:var(--ink-2);margin:0 0 12px}
+.softnote button{text-decoration:underline;text-underline-offset:2px}
 .chip .warn{color:var(--debates);font-weight:600}
 .chip[aria-pressed="true"] .warn{color:inherit}
 
@@ -279,6 +281,45 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .brief .rd span{color:var(--ink-2)}
 .brief .note{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:10px;margin-top:14px}
 
+/* ---------- notes & verdicts ---------- */
+.notes{width:100%;min-height:96px;border:1px solid var(--line-strong);border-radius:6px;padding:8px 10px;font:inherit;font-size:14px;background:var(--surface);color:var(--ink);resize:vertical;line-height:1.45}
+.notes:focus{outline:2px solid var(--focus);outline-offset:1px}
+.verdict{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.verdict .lab{flex-basis:100%;font-size:12px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.verdict button{border:1px solid var(--line-strong);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500;background:var(--surface)}
+.verdict button[aria-pressed="true"]{background:var(--pick);border-color:var(--pick);color:var(--pick-ink)}
+.badge.note{background:color-mix(in oklab,var(--pick) 22%,var(--surface));color:var(--pick-ink)}
+:root[data-theme="dark"] .badge.note,:root:not([data-theme="light"]) .badge.note{color:var(--ink)}
+.brand .tools{display:flex;gap:6px;margin-left:auto}
+.brand .tools .btn{font-size:12px;padding:4px 9px}
+
+/* ---------- stats ---------- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:0 0 6px}
+.tile-s{border:1px solid var(--line);border-radius:6px;padding:10px 12px;background:var(--surface-2)}
+.tile-s b{display:block;font-family:var(--display);font-size:24px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile-s span{font-size:12px;color:var(--ink-2)}
+.bars{display:grid;gap:5px;margin:0 0 4px}
+.bar{display:grid;grid-template-columns:minmax(120px,42%) 1fr auto;gap:10px;align-items:center;font-size:13.5px}
+.bar.link{cursor:pointer;text-align:left}
+.bar.link:hover .bar-l{text-decoration:underline}
+.bar-l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-t{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden}
+.bar-t i{display:block;height:100%;background:var(--ink);border-radius:4px}
+.bar-v{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);font-size:12.5px;min-width:2ch;text-align:right}
+.pairs{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:13.5px}
+.pairs li span{color:var(--ink-3)}
+
+/* ---------- reading list ---------- */
+.rl{display:grid;gap:12px}
+.rl-ev{border-top:1px solid var(--line);padding-top:10px}
+.rl-ev .t{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rl-ev h4{font-family:var(--display);font-size:15px;font-weight:600;margin:2px 0 6px}
+.rl ul{margin:0;padding-left:18px;font-size:14px}
+.rl li{margin:0 0 3px}
+.rl li span{color:var(--ink-2)}
+.books{margin:6px 0 0;padding-left:18px;font-size:14px}
+.books li span{color:var(--ink-3)}
+
 /* ---------- media ---------- */
 .media{display:grid;gap:10px}
 .media-name{font-family:var(--display);font-weight:600;font-size:15px}
@@ -297,6 +338,7 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
       <h1>HowTheLightGetsIn <span>London 2026</span></h1>
       <div class="where">Kenwood House, Hampstead Heath · Sat 19 – Sun 20 September</div>
       <div class="unofficial">Unofficial fan-made planner · not affiliated with HowTheLightGetsIn or the IAI · <a href="#about">about &amp; disclaimer</a></div>
+      <div class="tools"><button type="button" class="btn" data-reading>Reading list</button><button type="button" class="btn" data-stats>Stats</button></div>
     </div>
     <div class="row">
       <div class="seg days" role="group" aria-label="Day">
@@ -318,6 +360,7 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
       <div class="status" id="status"></div>
       <button type="button" class="linkbtn" data-share>Copy link to my picks</button>
       <button type="button" class="linkbtn" data-export-picks>Export picks to calendar (.ics)</button>
+      <button type="button" class="linkbtn" data-export-notes hidden>Export notes (.md)</button>
     </div>
   </div>
 </header>
@@ -327,7 +370,7 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 <main id="main"></main>
 <footer>
   <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions and speaker biographies are © the IAI, reproduced from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
-  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks are saved in this browser; use “Copy link to my picks” to move them to another device or share them, and “Export picks to calendar” to add them all to your calendar at once.</div>
+  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser; “Copy link to my picks” carries picks and verdicts to another device or a friend, “Export notes” writes everything to a Markdown file, and “Export picks to calendar” adds them all to your calendar at once.</div>
   <div class="noprint">Debate briefings are unofficial notes written with Claude (AI) from the programme text and the speakers’ published work — inferred, hedged, and not the speakers’ or the festival’s words; corrections welcome on GitHub. Music, comedy and film links were looked up by hand; where none was found the planner offers a search instead.</div>
   <div class="noprint offline-note">Once loaded, the planner works offline — add it to your home screen for the weekend. Add <code>?now=2026-09-19T14:00</code> to the address to preview festival-day mode.</div>
   <div class="noprint">Source code and data: <a href="https://github.com/arealmaas/how-the-lights-get-in" target="_blank" rel="noopener">github.com/arealmaas/how-the-lights-get-in</a></div>
@@ -359,9 +402,10 @@ const VENUES = ['Arena','International','Ring','Hat','Academy','Stage','Cinema',
 const PERFORMANCE = new Set(['Music','Music & Acoustic','Comedy','Cabaret']);
 const TOPICS = [...new Set(EVENTS.flatMap(e => e.topics))].sort();
 const DAYS = {'2026-09-19':'Saturday','2026-09-20':'Sunday'};
-const DURATION = {'IAI Academy':120, 'Long Table Banquet':120};   // minutes; everything else 60 — the site publishes start times only
+const DURATION = {};   // minutes by type; everything is assumed to last 60 — the site publishes start times only
 const LONDON_OFFSET_MIN = 60;                                      // BST (UTC+1) on 19–20 September 2026
-const LS_STATE = 'htlgi-l26-state', LS_PICKS = 'htlgi-l26-picks';
+const LS_STATE = 'htlgi-l26-state', LS_PICKS = 'htlgi-l26-picks', LS_NOTES = 'htlgi-l26-notes', LS_VERDICTS = 'htlgi-l26-verdicts';
+const EXTRA = (DATA.speakersExtra || {});
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
@@ -373,6 +417,9 @@ const dur = e => DURATION[e.type] || 60;
 const state = Object.assign({day:'2026-09-19', view:'list', groups:[], venue:'', topic:'', picksOnly:false}, load(LS_STATE, {}));
 if (!DAYS[state.day]) state.day = '2026-09-19';
 let picks = new Set((load(LS_PICKS, []) || []).filter(n => byNo.has(n)));
+let notes = load(LS_NOTES, {}) || {};
+let verdicts = load(LS_VERDICTS, {}) || {};
+const hasNote = no => !!(notes[no] && notes[no].trim()) || !!verdicts[no];
 let q = '';
 let sheetStack = [];
 let clashes = new Map();
@@ -429,17 +476,27 @@ function matches(e){
 const hasFilters = () => state.groups.length || state.venue || state.topic || state.picksOnly || q;
 
 // ---------- clashes ----------
-function overlaps(a, b){
-  if (a.date !== b.date) return false;
+// Overlap between two picks, in minutes (0 = none). A hard clash is a start within 15 minutes of another pick;
+// a smaller overlap (the festival staggers :00 and :30 starts) is shown as a quiet note, not a warning.
+function overlapMin(a, b){
+  if (a.date !== b.date) return 0;
   const as = minutes(a.time), ae = as + dur(a), bs = minutes(b.time), be = bs + dur(b);
-  return as < be && bs < ae;
+  return Math.max(0, Math.min(ae, be) - Math.max(as, bs));
 }
+const HARD = 45;   // overlap of 45+ minutes of a 60-minute session = starts within 15 minutes
+let overlapsSoft = new Map();
 function computeClashes(){
-  clashes = new Map();
+  clashes = new Map(); overlapsSoft = new Map();
   const picked = EVENTS.filter(e => picks.has(e.eventNo));
-  for (const a of picked) for (const b of picked) if (a !== b && overlaps(a, b)) { if (!clashes.has(a.eventNo)) clashes.set(a.eventNo, []); clashes.get(a.eventNo).push(b.eventNo); }
+  for (const a of picked) for (const b of picked) {
+    if (a === b) continue;
+    const o = overlapMin(a, b); if (!o) continue;
+    const m = o >= HARD ? clashes : overlapsSoft;
+    if (!m.has(a.eventNo)) m.set(a.eventNo, []);
+    m.get(a.eventNo).push({no: b.eventNo, min: o});
+  }
 }
-const clashBadge = e => clashes.has(e.eventNo) ? `<span class="badge clash">⚠ Clashes with ${esc(clashes.get(e.eventNo).map(n => byNo.get(n).title).join(', '))}</span>` : '';
+const clashBadge = e => clashes.has(e.eventNo) ? `<span class="badge clash">⚠ Clashes with ${esc(clashes.get(e.eventNo).map(x => byNo.get(x.no).title).join(', '))}</span>` : '';
 
 // ---------- calendar export ----------
 function addMinutes(time, mins){ const t = minutes(time) + mins; return `${String(Math.floor(t / 60) % 24).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`; }
@@ -525,6 +582,7 @@ function renderStatus(){
   const v = document.getElementById('venue'); v.value = state.venue; v.classList.toggle('active', !!state.venue);
   const t = document.getElementById('topic'); t.value = state.topic; t.classList.toggle('active', !!state.topic);
   document.querySelector('[data-export-picks]').hidden = picks.size === 0;
+  document.querySelector('[data-export-notes]').hidden = !Object.keys(notes).some(k => notes[k] && notes[k].trim()) && !Object.keys(verdicts).length;
 }
 
 // ---------- now & next ----------
@@ -570,7 +628,7 @@ function renderList(list){
         <div class="ev-head"><span class="ev-type">${esc(e.type)}</span><span class="ev-venue">${esc(e.venue)}</span>${BRIEFINGS[e.eventNo] ? '<span class="brief-badge">Briefing</span>' : ''}<button type="button" class="pick" data-pick="${e.eventNo}" aria-pressed="${p}" aria-label="${p ? 'Remove from' : 'Add to'} my picks">${p ? '★' : '☆'}</button></div>
         <h3 class="ev-title">${esc(e.title)}</h3>
         ${(e.speakers.length || e.hosts.length) ? `<p class="ev-who">${whoLine(e)}</p>` : ''}
-        <div class="ev-foot">${ticketBadge(e)}${clashBadge(e)}<span class="tags">${e.topics.map(esc).join(' · ')}</span></div>
+        <div class="ev-foot">${ticketBadge(e)}${hasNote(e.eventNo) ? '<span class="badge note">✎ notes</span>' : ''}${clashBadge(e)}<span class="tags">${e.topics.map(esc).join(' · ')}</span></div>
       </article>`;
     }
     h += '</div></section>';
@@ -616,6 +674,7 @@ function openSheet(html){
 function closeSheet(){
   sheetStack = [];
   document.getElementById('sheet').hidden = true; document.getElementById('scrim').hidden = true;
+  if (notesDirty) { notesDirty = false; render(); }
 }
 const paras = s => (s || '').split(/\n{2,}|\n/).filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('');
 const ytId = url => { const m = String(url).match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/)([\w-]{6,})/); return m ? m[1] : null; };
@@ -644,6 +703,7 @@ function mediaBlock(e){
 }
 
 function briefingBlock(b){
+  if (!b.sides) return talkBriefingBlock(b);
   const sides = b.sides.map(s => `<div class="side"><h4>${esc(s.label)}</h4><ul class="for">${s.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul><p class="lab">Usual objections</p><ul class="against">${s.objections.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('');
   const spk = b.speakers.map(s => `<dt>${esc(s.name)}</dt><dd>${esc(s.stance)}</dd>`).join('');
   const qs = b.questions.map(x => `<li>${esc(x)}</li>`).join('');
@@ -676,7 +736,9 @@ function showEvent(no, push = true){
   const icsBtn = IN_ARTIFACT
     ? `<a class="btn" href="${esc(PUBLIC_URL + '#event=' + e.eventNo)}" target="_blank" rel="noopener">Add to calendar (.ics) ↗</a>`
     : `<button type="button" class="btn" data-ics="${e.eventNo}">Add to calendar (.ics)</button>`;
-  const clash = clashes.has(no) ? `<div class="clashnote">⚠ Overlaps with your pick${clashes.get(no).length > 1 ? 's' : ''}: ${clashes.get(no).map(n => { const o = byNo.get(n); return `<button type="button" data-no="${n}">${esc(o.title)}</button> (${o.time}, ${esc(o.venue)})`; }).join(', ')}. Start times only — ${dur(e)}-minute sessions assumed.</div>` : '';
+  const ref = x => { const o = byNo.get(x.no); return `<button type="button" data-no="${x.no}">${esc(o.title)}</button> (${o.time}, ${esc(o.venue)})`; };
+  const clash = (clashes.has(no) ? `<div class="clashnote">⚠ Clashes with your pick${clashes.get(no).length > 1 ? 's' : ''}: ${clashes.get(no).map(ref).join(', ')}.</div>` : '')
+    + (overlapsSoft.has(no) ? `<p class="softnote">Overlaps by ${overlapsSoft.get(no).map(x => `${x.min} min with ${ref(x)}`).join(', ')} — sessions assumed to last an hour.</p>` : '');
   const b = BRIEFINGS[no];
   const overview = `
       ${(people.length || acts.length) ? `<div class="people">${people.join('')}${acts.join('')}</div>` : ''}
@@ -691,8 +753,12 @@ function showEvent(no, push = true){
         <button type="button" class="btn${p ? ' pickbtn' : ''}" data-pick="${e.eventNo}" aria-pressed="${p}">${p ? '★ In my picks' : '☆ Add to my picks'}</button>
         ${icsBtn}
         <a class="btn" href="${esc(gcalLink(e))}" target="_blank" rel="noopener">Google Calendar ↗</a>
-        <p class="note">Calendar entries include the talk summary, venue, speakers and ticket notes. End time is an estimate (${dur(e)} min).</p>
-      </div>`;
+        <p class="note">Calendar entries include the talk summary, venue, speakers and ticket notes. Sessions are assumed to last an hour — the festival publishes start times only.</p>
+      </div>
+      <h3 class="sub">My notes</h3>
+      ${e.type === 'Debates' ? verdictBlock(e) : ''}
+      <textarea class="notes" data-note="${e.eventNo}" placeholder="Thoughts, quotes, questions to ask…" rows="4">${esc(notes[e.eventNo] || '')}</textarea>
+      <p class="src">Saved in this browser only. “Export notes” in the header writes picks, notes and verdicts to a Markdown file.</p>`;
   openSheet(`
     <div class="g-${GROUP[e.type]}">
       <div class="kicker"><span class="type">${esc(e.type)}</span><span>Event #${e.eventNo}</span></div>
@@ -712,8 +778,14 @@ function showSpeaker(key, push = true){
     <div class="kicker"><span>Speaker</span></div>
     <h2 id="sheet-title">${esc(s.name)}</h2>
     <div class="bio">${s.tagline ? `<p class="tagline">${esc(s.tagline)}</p>` : ''}${paras(s.bio)}</div>
-    ${s.profileUrl ? `<dl class="meta"><dt>Profile</dt><dd>${ext(s.profileUrl, 'howthelightgetsin.org')}</dd></dl>` : ''}
+    ${extrasBlock(s)}
     <h3 class="sub">Appears in</h3>${appearsList([...s.speaks, ...s.hosts])}`);
+}
+function extrasBlock(s){
+  const x = (s.slug && EXTRA[s.slug]) || {};
+  const links = [s.profileUrl ? ext(s.profileUrl, 'Festival profile') : '', x.wikipedia ? ext(x.wikipedia, 'Wikipedia') : '', x.iaiTv ? ext(x.iaiTv, 'Past talks on IAI TV') : ''].filter(Boolean);
+  const books = (x.books || []).map(b => `<li>${esc(b.title)}${b.year ? ` <span>(${b.year})</span>` : ''}</li>`).join('');
+  return `<dl class="meta">${links.length ? `<dt>Elsewhere</dt><dd>${links.join(' · ')}</dd>` : ''}${books ? `<dt>Books</dt><dd><ul class="books">${books}</ul></dd>` : ''}</dl>`;
 }
 function showAct(key, push = true){
   const a = actBySlug.get(key); if (!a) return;
@@ -729,7 +801,7 @@ function goBack(){
   sheetStack.pop();
   const top = sheetStack[sheetStack.length - 1];
   if (!top) return closeSheet();
-  if (top.kind === 'event') showEvent(top.no, false); else if (top.kind === 'speaker') showSpeaker(top.key, false); else showAct(top.key, false);
+  if (top.kind === 'event') showEvent(top.no, false); else if (top.kind === 'speaker') showSpeaker(top.key, false); else if (top.kind === 'reading') showReadingList(false); else if (top.kind === 'stats') showStats(false); else showAct(top.key, false);
 }
 
 // ---------- picks ----------
@@ -740,7 +812,7 @@ function togglePick(no){
   const top = sheetStack[sheetStack.length - 1];
   if (top && top.kind === 'event' && top.no === no) showEvent(no, false);
 }
-const picksLink = () => location.origin + location.pathname + '#picks=' + [...picks].sort((a, b) => a - b).join(',');
+const picksLink = () => { const v = Object.entries(verdicts).map(([no, who]) => `${no}:${encodeURIComponent(who)}`).join(';'); return location.origin + location.pathname + '#picks=' + [...picks].sort((a, b) => a - b).join(',') + (v ? '&verdicts=' + v : ''); };
 function showBanner(html){ const b = document.getElementById('banner'); b.innerHTML = `<div class="banner-inner">${html}</div>`; b.hidden = false; b.scrollIntoView({block:'nearest'}); }
 function hideBanner(){ document.getElementById('banner').hidden = true; }
 function checkHash(){
@@ -750,14 +822,140 @@ function checkHash(){
   if (!m) return;
   const incoming = m[1].split(',').map(Number).filter(n => byNo.has(n));
   const fresh = incoming.filter(n => !picks.has(n));
-  if (!incoming.length) return;
-  if (!fresh.length) { history.replaceState(null, '', location.pathname + location.search); return; }
-  showBanner(`<span>This link carries <b>${incoming.length} picks</b> (${fresh.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to my picks</button><button type="button" class="btn" data-dismiss>Not now</button>`);
-  document.getElementById('banner').dataset.incoming = fresh.join(',');
+  const vm = location.hash.match(/verdicts=([^&]+)/);
+  const inV = vm ? Object.fromEntries(vm[1].split(';').map(x => x.split(':')).filter(([no]) => byNo.has(+no)).map(([no, who]) => [+no, decodeURIComponent(who || '')])) : {};
+  const freshV = Object.keys(inV).filter(no => verdicts[no] !== inV[no]);
+  if (!incoming.length && !freshV.length) return;
+  if (!fresh.length && !freshV.length) { history.replaceState(null, '', location.pathname + location.search); return; }
+  showBanner(`<span>This link carries <b>${incoming.length} picks</b>${Object.keys(inV).length ? ` and <b>${Object.keys(inV).length} verdicts</b>` : ''} (${fresh.length + freshV.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to mine</button><button type="button" class="btn" data-dismiss>Not now</button>`);
+  const b = document.getElementById('banner'); b.dataset.incoming = fresh.join(','); b.dataset.incomingVerdicts = JSON.stringify(Object.fromEntries(freshV.map(no => [no, inV[no]])));
 }
 function sharePicks(){
   if (!picks.size) { showBanner('<span>No picks yet — tap ☆ on an event to add it.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
   showBanner(`<span><b>${picks.size} picks</b> in this link — open it on another device or send it to a friend.</span><input id="picklink" readonly value="${esc(picksLink())}"><button type="button" class="btn primary" data-copy>Copy</button><button type="button" class="btn" data-dismiss>Close</button>`);
+}
+
+// ---------- verdicts, notes export ----------
+function verdictBlock(e){
+  const v = verdicts[e.eventNo];
+  const opts = [...e.speakers, 'Draw'];
+  return `<div class="verdict"><span class="lab">Who won?</span>${opts.map(o => `<button type="button" data-verdict="${e.eventNo}" data-who="${esc(o)}" aria-pressed="${v === o}">${esc(o)}</button>`).join('')}</div>`;
+}
+let notesDirty = false, noteTimer = null;
+function setNote(no, text){
+  if (text.trim()) notes[no] = text; else delete notes[no];
+  save(LS_NOTES, notes); notesDirty = true;
+}
+function notesMarkdown(){
+  const involved = EVENTS.filter(e => picks.has(e.eventNo) || hasNote(e.eventNo));
+  const lines = ['# HowTheLightGetsIn London 2026 — my picks and notes', '', `Exported ${new Date().toISOString().slice(0, 16).replace('T', ' ')} from the unofficial planner (${PUBLIC_URL}).`, ''];
+  for (const date of Object.keys(DAYS)) {
+    const evs = involved.filter(e => e.date === date);
+    if (!evs.length) continue;
+    lines.push(`## ${DAYS[date]} ${date}`, '');
+    for (const e of evs) {
+      lines.push(`### ${e.time} · ${e.title}${picks.has(e.eventNo) ? ' ★' : ''}`);
+      lines.push(`${e.type} · ${e.venue}${whoPlain(e) ? ' · ' + whoPlain(e) : ''}`);
+      if (verdicts[e.eventNo]) lines.push(`Verdict: **${verdicts[e.eventNo]}**`);
+      if (notes[e.eventNo] && notes[e.eventNo].trim()) lines.push('', notes[e.eventNo].trim());
+      lines.push('');
+    }
+  }
+  return lines.join('\n');
+}
+function exportNotes(){
+  if (IN_ARTIFACT) { showBanner(`<span>Files can’t be downloaded from this preview. Open the public site to export your notes.</span><a class="btn primary" href="${esc(PUBLIC_URL)}" target="_blank" rel="noopener">Open public site ↗</a><button type="button" class="btn" data-dismiss>Close</button>`); return; }
+  download('htlgi-london-2026-notes.md', notesMarkdown(), 'text/markdown;charset=utf-8');
+}
+
+// ---------- talk briefing ----------
+function talkBriefingBlock(b){
+  const li = arr => (arr || []).map(x => `<li>${esc(x)}</li>`).join('');
+  const spk = b.speakers.map(s => `<dt>${esc(s.name)}</dt><dd>${esc(s.stance)}</dd>`).join('');
+  const rd = (b.reading || []).map(r => `<li class="rd"><b>${esc(r.title)}</b> — <span>${esc(r.by)}</span>${r.note ? `<br><span>${esc(r.note)}</span>` : ''}</li>`).join('');
+  const terms = (b.terms || []).map(t => `<dt>${esc(t.term)}</dt><dd>${esc(t.def)}</dd>`).join('');
+  return `<div class="brief">
+    <p class="bq">${esc(b.question)}</p>
+    <p>${esc(b.why)}</p>
+    <div class="side"><h4>The argument</h4><ul class="for">${li(b.case)}</ul><p class="lab">Strongest objections</p><ul class="against">${li(b.objections)}</ul></div>
+    <h3 class="sub">Where the speaker${b.speakers.length > 1 ? 's come' : ' comes'} from</h3><dl>${spk}</dl>
+    <h3 class="sub">Questions worth asking</h3><ol>${li(b.questions)}</ol>
+    <h3 class="sub">Read or watch first</h3><ul>${rd}</ul>
+    ${terms ? `<h3 class="sub">Terms</h3><dl>${terms}</dl>` : ''}
+    <p class="note">${esc(BRIEF_NOTE)}</p>
+  </div>`;
+}
+
+// ---------- reading list ----------
+function readingList(){
+  const evs = EVENTS.filter(e => picks.has(e.eventNo));
+  const items = [];
+  const seenBooks = new Set();
+  for (const e of evs) {
+    const bks = [], reads = [];
+    for (const pe of e.people) {
+      const x = pe.slug && EXTRA[pe.slug]; if (!x || !x.books) continue;
+      for (const b of x.books.slice(0, 2)) { const key = pe.name + '|' + b.title; if (seenBooks.has(key)) continue; seenBooks.add(key); bks.push({who: pe.name, title: b.title, year: b.year}); }
+    }
+    const br = BRIEFINGS[e.eventNo];
+    if (br && br.reading) for (const r of br.reading) reads.push(r);
+    items.push({e, bks, reads});
+  }
+  return items;
+}
+function readingMarkdown(items){
+  const lines = ['# Reading list — HowTheLightGetsIn London 2026', '', 'From your picks in the unofficial planner. Speakers’ books first, then the briefing’s suggestions.', ''];
+  for (const {e, bks, reads} of items) {
+    lines.push(`## ${DAYS[e.date].slice(0, 3)} ${e.time} · ${e.title}`);
+    bks.forEach(b => lines.push(`- ${b.who}: *${b.title}*${b.year ? ` (${b.year})` : ''}`));
+    reads.forEach(r => lines.push(`- ${r.title} — ${r.by}${r.note ? `. ${r.note}` : ''}`));
+    if (!bks.length && !reads.length) lines.push('- (nothing on file for this event)');
+    lines.push('');
+  }
+  return lines.join('\n');
+}
+function showReadingList(push = true){
+  if (push) sheetStack.push({kind: 'reading'});
+  const items = readingList();
+  const body = !items.length ? '<p class="src">No picks yet — star some events and the reading list builds itself from the speakers’ books and each briefing’s suggestions.</p>'
+    : `<div class="rl">${items.map(({e, bks, reads}) => `<div class="rl-ev"><div class="t">${DAYS[e.date].slice(0, 3)} ${e.time} · ${esc(e.venue)}</div><h4><button type="button" data-no="${e.eventNo}">${esc(e.title)}</button></h4>
+        ${(bks.length || reads.length) ? `<ul>${bks.map(b => `<li>${esc(b.who)}: <b>${esc(b.title)}</b>${b.year ? ` <span>(${b.year})</span>` : ''}</li>`).join('')}${reads.map(r => `<li><b>${esc(r.title)}</b> — <span>${esc(r.by)}</span>${r.note ? `<br><span>${esc(r.note)}</span>` : ''}</li>`).join('')}</ul>` : '<p class="src">Nothing on file for this event.</p>'}</div>`).join('')}</div>`;
+  const total = items.reduce((n, x) => n + x.bks.length + x.reads.length, 0);
+  openSheet(`<div class="kicker"><span>Reading list</span><span>${items.length} picks · ${total} items</span></div>
+    <h2 id="sheet-title">Read before you go</h2>
+    <p class="src">Built from your picks: up to two books per speaker, plus each briefing’s “read or watch first”.</p>
+    ${items.length ? `<div class="actions">${IN_ARTIFACT ? '' : `<button type="button" class="btn" data-export-reading>Export (.md)</button>`}<button type="button" class="btn" data-copy-reading>Copy as text</button></div>` : ''}
+    ${body}`);
+}
+
+// ---------- stats ----------
+function barList(rows, opts = {}){
+  const max = Math.max(...rows.map(r => r.n), 1);
+  return `<div class="bars">${rows.map(r => `<${r.no || r.slug ? 'button type="button"' : 'div'} class="bar${r.no || r.slug ? ' link' : ''}"${r.slug ? ` data-speaker="${esc(r.slug)}"` : ''}${r.no ? ` data-no="${r.no}"` : ''}><span class="bar-l">${esc(r.label)}</span><span class="bar-t"><i style="width:${Math.round(r.n / max * 100)}%"></i></span><span class="bar-v">${r.n}</span></${r.no || r.slug ? 'button' : 'div'}>`).join('')}</div>`;
+}
+function showStats(push = true){
+  if (push) sheetStack.push({kind: 'stats'});
+  const count = (arr, key) => { const m = new Map(); for (const x of arr) { const k = key(x); if (k == null) continue; m.set(k, (m.get(k) || 0) + 1); } return [...m].sort((a, b) => b[1] - a[1]); };
+  const people = SPEAKERS.map(s => ({label: s.name, n: s.speaks.length + s.hosts.length, slug: s.slug || s.name})).sort((a, b) => b.n - a.n).slice(0, 12);
+  const slots = count(EVENTS, e => `${DAYS[e.date].slice(0, 3)} ${e.time}`).slice(0, 8).map(([k, n]) => ({label: k, n}));
+  const venues = count(EVENTS, e => e.venue).map(([k, n]) => ({label: k, n}));
+  const types = count(EVENTS, e => e.type).map(([k, n]) => ({label: k, n}));
+  const topics = count(EVENTS.flatMap(e => e.topics), t => t).map(([k, n]) => ({label: k, n}));
+  const pairs = new Map();
+  for (const e of EVENTS) { const ppl = [...e.speakers, ...e.hosts]; for (let i = 0; i < ppl.length; i++) for (let j = i + 1; j < ppl.length; j++) { const k = [ppl[i], ppl[j]].sort().join(' & '); pairs.set(k, (pairs.get(k) || 0) + 1); } }
+  const together = [...pairs].filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]).slice(0, 12);
+  const mine = EVENTS.filter(e => picks.has(e.eventNo));
+  const mineTypes = count(mine, e => e.type).map(([k, n]) => `${k} ${n}`).join(' · ');
+  openSheet(`<div class="kicker"><span>Stats</span></div>
+    <h2 id="sheet-title">The festival in numbers</h2>
+    <div class="tiles"><div class="tile-s"><b>${EVENTS.length}</b><span>events</span></div><div class="tile-s"><b>${SPEAKERS.length}</b><span>speakers &amp; hosts</span></div><div class="tile-s"><b>${venues.length}</b><span>venues</span></div><div class="tile-s"><b>${ACTS.length}</b><span>music &amp; comedy acts</span></div></div>
+    ${mine.length ? `<p class="src">Your picks: ${mine.length} events, ${mine.filter(e => e.date === '2026-09-19').length} on Saturday and ${mine.filter(e => e.date === '2026-09-20').length} on Sunday — ${esc(mineTypes)}.</p>` : ''}
+    <h3 class="sub">Most booked</h3>${barList(people)}
+    <h3 class="sub">Busiest start times</h3>${barList(slots)}
+    <h3 class="sub">Events by venue</h3>${barList(venues)}
+    <h3 class="sub">Events by type</h3>${barList(types)}
+    <h3 class="sub">Topics (events carry several)</h3>${barList(topics)}
+    <h3 class="sub">Who appears together</h3>${together.length ? `<ul class="pairs">${together.map(([k, n]) => `<li>${esc(k)} <span>· ${n} events</span></li>`).join('')}</ul>` : '<p class="src">No pair shares more than one event.</p>'}`);
 }
 
 // ---------- events ----------
@@ -774,6 +972,12 @@ document.addEventListener('click', ev => {
   if (d.pick) { ev.stopPropagation(); togglePick(+d.pick); return; }
   if (d.ics) { downloadEvent(byNo.get(+d.ics)); return; }
   if ('exportPicks' in d) { downloadPicks(); return; }
+  if ('exportNotes' in d) { exportNotes(); return; }
+  if ('exportReading' in d) { download('htlgi-london-2026-reading-list.md', readingMarkdown(readingList()), 'text/markdown;charset=utf-8'); return; }
+  if ('copyReading' in d) { try { navigator.clipboard.writeText(readingMarkdown(readingList())).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
+  if ('reading' in d) { showReadingList(); return; }
+  if ('stats' in d) { showStats(); return; }
+  if (d.verdict) { const no = +d.verdict; verdicts[no] = verdicts[no] === d.who ? undefined : d.who; if (!verdicts[no]) delete verdicts[no]; save(LS_VERDICTS, verdicts); notesDirty = true; t.parentElement.querySelectorAll('[data-verdict]').forEach(b => b.setAttribute('aria-pressed', b.dataset.who === verdicts[no])); return; }
   if (d.tab) { t.closest('.sheet-body').querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === d.tab)); t.closest('.sheet-body').querySelectorAll('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== d.tab; }); document.getElementById('sheet-body').scrollTop = 0; return; }
   if (d.yt) { const box = t.closest('.media-item').querySelector('.embed'); box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(d.yt)}?autoplay=1&rel=0" title="YouTube video" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`; box.hidden = false; t.hidden = true; return; }
   if (d.speaker) { showSpeaker(d.speaker); return; }
@@ -782,12 +986,17 @@ document.addEventListener('click', ev => {
   if (t.id === 'close') { closeSheet(); return; }
   if (t.id === 'back') { goBack(); return; }
   if (t.id === 'clearq') { q = ''; document.getElementById('q').value = ''; t.hidden = true; render(); return; }
-  if ('import' in d) { const inc = (document.getElementById('banner').dataset.incoming || '').split(',').map(Number).filter(Boolean); inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]); history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return; }
+  if ('import' in d) { const b = document.getElementById('banner'); const inc = (b.dataset.incoming || '').split(',').map(Number).filter(Boolean); inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]); try { Object.assign(verdicts, JSON.parse(b.dataset.incomingVerdicts || '{}')); save(LS_VERDICTS, verdicts); } catch (e) {} history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return; }
   if ('dismiss' in d) { if (/picks=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
   if ('share' in d) { sharePicks(); return; }
   if ('copy' in d) { const inp = document.getElementById('picklink'); inp.select(); try { navigator.clipboard.writeText(inp.value).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
 });
 document.getElementById('scrim').addEventListener('click', closeSheet);
+document.addEventListener('input', ev => {
+  if (!ev.target.matches('textarea[data-note]')) return;
+  const no = +ev.target.dataset.note, text = ev.target.value;
+  clearTimeout(noteTimer); noteTimer = setTimeout(() => setNote(no, text), 250);
+});
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Escape' && !document.getElementById('sheet').hidden) { closeSheet(); return; }
   if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('article.ev')) { ev.preventDefault(); showEvent(+ev.target.dataset.no); }
