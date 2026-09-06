@@ -1,0 +1,430 @@
+{
+  "59": {
+    "question": "Has 'mental health' become an industry that medicalises ordinary distress — or is this the first era with real treatment for real suffering?",
+    "why": "Antidepressant prescribing and therapy spending keep rising while measured rates of depression and anxiety don't fall — the 'treatment-prevalence paradox'. Whether that means the treatments don't work, the wrong people get them, or distress is being manufactured decides how billions are spent.",
+    "sides": [
+      {
+        "label": "We have medicalised life: distress is a response to circumstances, not a disease, and the industry profits from calling it one",
+        "points": [
+          "The serotonin story behind antidepressants has collapsed (the 2022 umbrella review); the drugs' effects are small and hard to separate from placebo and withdrawal.",
+          "Diagnoses have expanded to cover grief, shyness and adolescence; one in three women prescribed antidepressants is a cultural fact, not an epidemic of brain disease.",
+          "Treatment has risen for decades without prevalence falling — the paradox the billing cites — which is what you'd expect if the model is wrong."
+        ],
+        "objections": [
+          "The paradox has other explanations: more people recognising distress, treatment reaching the wrong people, or social conditions worsening faster than treatment helps.",
+          "'Natural response to life' is cold comfort to someone who cannot get out of bed; critics rarely say what they'd offer instead.",
+          "Disputing the serotonin story does not show the drugs don't work; the trials show modest benefit, and modest benefit across millions is large."
+        ]
+      },
+      {
+        "label": "Mental illness is real, treatable, and under-treated; scepticism costs lives",
+        "points": [
+          "Depression has biology — inflammation, sleep, genetics — and biological treatments help, as do therapies with strong evidence bases.",
+          "The alternative to treatment historically was not resilience but silence, shame and suicide.",
+          "Rising diagnosis reflects falling stigma; that people seek help is a success, not a scandal."
+        ],
+        "objections": [
+          "If treatment works and reaches more people every year, why does the population not get better?",
+          "A vocabulary in which every difficulty is a 'condition' can teach helplessness — the argument that awareness campaigns raise reported symptoms.",
+          "Biology of distress is not the same as disease: stress also inflames; grief also changes the brain."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Joanna Moncrieff", "stance": "Psychiatrist and critic of the biomedical model (The Myth of the Chemical Cure), lead author of the 2022 review finding no consistent link between serotonin and depression. Expect the strongest case that antidepressants are over-sold and distress is not a brain disease."},
+      {"name": "Edward Bullmore", "stance": "Cambridge neuropsychiatrist and author of The Inflamed Mind, linking depression to inflammation. Likely to defend biological psychiatry while agreeing the old chemical-imbalance story was too simple."},
+      {"name": "Mark Solms", "stance": "Neuroscientist and psychoanalyst (The Hidden Spring) who argues feelings are the foundation of consciousness. Expect a middle path: distress has biology, but it is meaningful and about something."},
+      {"name": "Sarah Wilson", "stance": "Author of the anxiety memoir First, We Make the Beast Beautiful, sceptical of the wellness industry while speaking from experience. Likely to challenge both the treatment machine and easy dismissals of suffering."},
+      {"name": "Jonny Thomson", "stance": "Hosts. Philosophy writer (Mini Philosophy)."}
+    ],
+    "questions": [
+      "If antidepressant effects are small and hard to separate from placebo, why do so many patients report they helped?",
+      "What is the line between distress that should be treated and distress that should be lived through — and who draws it?",
+      "If treatment rates doubled again, what would you predict happens to prevalence?"
+    ],
+    "reading": [
+      {"title": "'The serotonin theory of depression: a systematic umbrella review'", "by": "Moncrieff et al., Molecular Psychiatry (2022)", "note": "The paper that reset the argument; read the responses too."},
+      {"title": "The Inflamed Mind", "by": "Edward Bullmore (2018)", "note": "The biological case, newer than serotonin."},
+      {"title": "The Hidden Spring", "by": "Mark Solms (2021)", "note": "Solms's theory of feeling and consciousness."}
+    ],
+    "terms": [
+      {"term": "Treatment-prevalence paradox", "def": "The observation that rising treatment rates have not reduced the population prevalence of depression and anxiety."},
+      {"term": "Medicalisation", "def": "Redefining ordinary experiences as medical conditions requiring treatment."},
+      {"term": "Chemical-imbalance theory", "def": "The claim that depression is caused by low serotonin — widely publicised, now widely disowned."}
+    ]
+  },
+  "67": {
+    "question": "Does desire need prohibition — and did sexual liberation, by removing the limits, remove the thrill?",
+    "why": "Openness has never been greater and sex has never been rarer: a third fewer adults having weekly sex than in 1990, a quarter of young adults having none. Bataille and Lacan predicted this. The question is whether limits are the engine of desire or a romance of repression.",
+    "sides": [
+      {
+        "label": "Prohibition is the engine: eroticism needs transgression, desire needs lack, and total permission is deflating",
+        "points": [
+          "Bataille: the erotic is the violation of a taboo; remove the taboo and you remove the charge.",
+          "Lacan: desire is structured by what is missing; abundance and instant availability starve it.",
+          "The data fit: the most liberated generation is the least sexually active, and pornographic abundance coincides with reported anhedonia."
+        ],
+        "objections": [
+          "Correlation with phones, precarity, later partnering and loneliness explains the decline without invoking metaphysics of taboo.",
+          "'Reinstate limits' has no mechanism that isn't coercive; you cannot legislate mystery.",
+          "Repression's golden age had plenty of sex — and rape, shame and unwanted pregnancy. The nostalgia is selective."
+        ]
+      },
+      {
+        "label": "Liberation was right; what's missing is intimacy, time and conditions, not taboo",
+        "points": [
+          "Liberation freed women, gay people and the unmarried from real harm; that gain is not up for renegotiation.",
+          "Desire flourishes with safety, consent and communication; the recent decline tracks economic and social stress, not permissiveness.",
+          "Mystery and limits can be chosen inside freedom — boundaries between two people, not imposed on a society."
+        ],
+        "objections": [
+          "'Chosen limits' concedes the point: desire needs limits; the argument is only about who sets them.",
+          "Consent culture, however necessary, can turn seduction into a negotiation — a change in kind, not just in safety.",
+          "If liberation worked, the numbers should be rising, not falling."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Dasha Nekrasova", "stance": "Actor (Succession) and co-host of the Red Scare podcast, known for contrarian, post-liberal takes on sex and culture. Likely to argue that liberation flattened desire and that limits and mystery matter."},
+      {"name": "Farha Khalidi", "stance": "Feminist commentator with a large TikTok following. Likely to defend liberation, consent and openness and to resist any return to prohibition."},
+      {"name": "Agnieszka Piotrowska", "stance": "Filmmaker and psychoanalytic theorist (director of Married to the Eiffel Tower; author on psychoanalysis and the ethics of encounter). Expect the Lacanian account of desire and lack, argued from film and clinical theory."},
+      {"name": "Güneş Taylor", "stance": "Hosts. Geneticist and science communicator."}
+    ],
+    "questions": [
+      "What is a limit on desire that isn't a limit on someone's freedom?",
+      "If liberation is to blame, why is the decline sharpest among people who grew up after it was complete?",
+      "Is porn abundance a prohibition problem or a supply problem?"
+    ],
+    "reading": [
+      {"title": "Eroticism", "by": "Georges Bataille (1957)", "note": "Taboo and transgression — the thesis in the billing."},
+      {"title": "'Why Are Young People Having So Little Sex?'", "by": "Kate Julian, The Atlantic (2018)", "note": "The reported piece behind the 'sex recession' numbers."},
+      {"title": "Sexual Revolution", "by": "Laurie Penny (2022)", "note": "A feminist defence of liberation — Penny speaks in Sunday's Grown Up debate."}
+    ],
+    "terms": [
+      {"term": "Transgression", "def": "Bataille's idea that crossing a prohibition, not abolishing it, is what produces erotic intensity."},
+      {"term": "Lack (manque)", "def": "In Lacan, desire is structured by an absence that can never be filled; satisfaction dissolves it."},
+      {"term": "Sex recession", "def": "The measured decline in sexual frequency in rich countries since the 1990s, sharpest among the young."}
+    ]
+  },
+  "84": {
+    "question": "Should cosmology abandon cosmic inflation — the theory that saved the Big Bang — as an untestable fix?",
+    "why": "Inflation explains the smoothness and flatness of the universe but no one knows what drove it or stopped it, and it predicts almost anything in some version. Penrose says it has been falsified; its defenders say nothing else fits the data. A Nobel laureate is about to say so in a tent.",
+    "sides": [
+      {
+        "label": "Keep inflation: it predicted the CMB fluctuations we see, and no rival matches the data",
+        "points": [
+          "Inflation predicted a nearly scale-invariant spectrum of primordial fluctuations before Planck measured it; that is a genuine successful prediction.",
+          "It solves the horizon and flatness problems in one stroke; alternatives solve them one at a time with extra assumptions.",
+          "Not knowing the inflaton is like not knowing the Higgs in 1980 — a gap, not a refutation."
+        ],
+        "objections": [
+          "Eternal inflation produces a multiverse in which anything happens somewhere, draining the theory of predictions.",
+          "The theory's parameters are adjusted to the data it is credited with predicting.",
+          "Penrose's point: inflation needs an even more special initial state than the problem it was meant to fix."
+        ]
+      },
+      {
+        "label": "Drop it: inflation is speculation that has become dogma, and there are simpler alternatives",
+        "points": [
+          "Penrose's conformal cyclic cosmology and Turok's mirror universe explain the same observations without an unknown field and an unexplained end.",
+          "The most-cited evidence for inflation — B-mode polarisation — has repeatedly failed to appear.",
+          "A theory that can be adjusted to fit any outcome is not doing the work of a scientific theory."
+        ],
+        "objections": [
+          "The alternatives are younger, less developed and make their own untested assumptions (a conformal bounce, a CPT-symmetric universe).",
+          "'Adjustable' describes most successful theories at their frontier; inflation's simplest versions have been ruled out, which is falsifiability working.",
+          "Penrose's 'Hawking points' in the CMB are not accepted by most of the field."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Roger Penrose", "stance": "Nobel laureate; has argued inflation is 'falsified' and proposes conformal cyclic cosmology, in which our Big Bang follows a previous aeon. Joins from Oxford. Expect no concession to inflation at all."},
+      {"name": "Neil Turok", "stance": "Co-developer of cyclic and ekpyrotic models with Paul Steinhardt and, with Latham Boyle, of a 'mirror universe' that is CPT-symmetric through the Big Bang. Expect the case that inflation is unnecessary and that simpler cosmologies exist."},
+      {"name": "Priya Natarajan", "stance": "Yale astrophysicist (Mapping the Heavens) who works on black holes and dark matter observations. Likely to defend inflation as the framework best supported by data while staying open to alternatives."},
+      {"name": "Hilary Lawson", "stance": "Hosts."}
+    ],
+    "questions": [
+      "What single observation, if made, would make you abandon your cosmology?",
+      "Is a multiverse a prediction of inflation or a reason to distrust it?",
+      "If inflation is falsified, why do most cosmologists still use it — sociology, or evidence you're discounting?"
+    ],
+    "reading": [
+      {"title": "Cycles of Time", "by": "Roger Penrose (2010)", "note": "Conformal cyclic cosmology explained by its author."},
+      {"title": "'Pop Goes the Universe'", "by": "Ijjas, Steinhardt and Loeb, Scientific American (2017)", "note": "The critics' broadside against inflation — and the 33-signatory reply defending it."},
+      {"title": "Mapping the Heavens", "by": "Priya Natarajan (2016)", "note": "How cosmological ideas won acceptance — the history behind tonight's fight."}
+    ],
+    "terms": [
+      {"term": "Cosmic inflation", "def": "A burst of exponential expansion in the first fraction of a second, proposed by Guth and others in 1980–82."},
+      {"term": "Horizon problem", "def": "Why regions of the universe that could never have exchanged signals have the same temperature."},
+      {"term": "Conformal cyclic cosmology", "def": "Penrose's proposal that the universe passes through endless aeons, each ending in a state that looks like the next Big Bang."}
+    ]
+  },
+  "85": {
+    "question": "Is freedom humanity's greatest political ideal — or an empty word that every tyrant has claimed?",
+    "why": "Xi, Trump, Kim and Putin all speak of freedom; the Terror, the gulag and fascism were all justified in its name. Either the word is worthless, or the abuses are what happens when a real ideal is counterfeited. The answer shapes whether 'freedom' should be a goal or a warning sign.",
+    "sides": [
+      {
+        "label": "Freedom is the essential tool against tyranny; its abuse proves its value, not its emptiness",
+        "points": [
+          "Counterfeits presuppose the genuine article: tyrants claim freedom because people want it.",
+          "Concrete freedoms — speech, association, exit, property — are measurable and correlate with everything from longevity to innovation.",
+          "Every alternative goal (equality, security, virtue) has been used to justify worse, and needs freedom to be contested."
+        ],
+        "objections": [
+          "'Freedom' has no content until you say freedom from what, for whom — and those answers are where politics actually happens.",
+          "Formal freedom for the powerless is the freedom to sleep under bridges; without material conditions it is a word.",
+          "Prioritising freedom as an end has excused neglect of the interventions that actually improve lives."
+        ]
+      },
+      {
+        "label": "Freedom is a dangerous abstraction; focus on tangible goods and on who holds power",
+        "points": [
+          "The record of revolutions in freedom's name — 1793, 1917, 1922 Rome — is a record of terror.",
+          "The word has served to mask domination: freedom for slaveholders, freedom for capital, freedom for one caste.",
+          "Health, housing, safety and dignity are things you can measure and deliver; freedom is a story told afterwards."
+        ],
+        "objections": [
+          "Delivering 'tangible goods' without freedom is the programme of every paternalist regime; ask who decides what is tangible.",
+          "The critique of freedom is made freely, in a society that protects the critic — a performative contradiction.",
+          "Revolutions failed when they abandoned freedom for the leader's version of the good, which is the pro-freedom argument."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Tommy Curry", "stance": "Critical race theorist; has argued that Western liberty was defined against and through the unfreedom of Black people. Expect the case that freedom-talk has masked racial domination."},
+      {"name": "Yaron Brook", "stance": "Chairman of the Ayn Rand Institute and Objectivist; individual liberty and laissez-faire capitalism as the highest political values. Expect an uncompromising defence of freedom as the end of politics."},
+      {"name": "Divya Dwivedi", "stance": "Indian philosopher and critic of caste (Indian Philosophy, Indian Revolution). Likely to examine how freedom is invoked within an order of caste and nation, and what liberation would actually require."},
+      {"name": "Mary Ann Sieghart", "stance": "Hosts. Journalist and author."}
+    ],
+    "questions": [
+      "Give a definition of freedom that Putin and Xi could not sign. Now, could a Western government sign it?",
+      "If freedom is an empty word, what is the non-empty word you would fight for instead?",
+      "Is freedom something a state grants, protects, or gets out of the way of?"
+    ],
+    "reading": [
+      {"title": "'Two Concepts of Liberty'", "by": "Isaiah Berlin (1958)", "note": "Negative versus positive liberty — the distinction the whole debate turns on."},
+      {"title": "Capitalism: The Unknown Ideal", "by": "Ayn Rand (1966)", "note": "The tradition Brook speaks for."},
+      {"title": "The Man-Not", "by": "Tommy Curry (2017)", "note": "Curry's account of race and the theory of the free subject."}
+    ],
+    "terms": [
+      {"term": "Negative liberty", "def": "Freedom from interference — nobody stops you."},
+      {"term": "Positive liberty", "def": "Freedom to act — having the means, capacity and self-mastery to do so; Berlin warned it can justify coercion 'for your own good'."},
+      {"term": "Capabilities approach", "def": "Sen and Nussbaum's reframing: measure freedom by what people are actually able to do and be."}
+    ]
+  },
+  "93": {
+    "question": "Is information the fundamental stuff of the universe — or a human way of describing it that we've mistaken for the thing itself?",
+    "why": "'It from bit' has moved from Wheeler's slogan to a working orthodoxy: black-hole information, holography, quantum information. But nobody agrees what information is without someone to be informed. The debate asks whether physics has found its foundation or confused the map with the territory.",
+    "sides": [
+      {
+        "label": "Information is physical and fundamental: the universe is made of it, or is a computation",
+        "points": [
+          "Black-hole thermodynamics and holography express physics in bits; information conservation is now a law physicists defend.",
+          "Landauer showed erasing a bit costs energy: information has physical consequences, so it is physical.",
+          "Quantum information theory reconstructs quantum mechanics from informational axioms — the theory is about information."
+        ],
+        "objections": [
+          "Information for whom? Shannon information is a measure of correlation; it needs a describer and a code, which is not fundamental.",
+          "'The universe is a computer' says nothing unless you can say what would count as not being one.",
+          "Physical consequences of information processing show that computers are physical, not that physics is information."
+        ]
+      },
+      {
+        "label": "Information is how we make sense of the world — a human construct, not the world's substance",
+        "points": [
+          "A description of reality cannot be reality; reifying the map is the oldest mistake in metaphysics.",
+          "Information presupposes distinction, observation and meaning — features of minds, not of electrons.",
+          "The 'blind spot' argument: physics abstracts from experience and then forgets the abstraction was made by experiencers."
+        ],
+        "objections": [
+          "The same argument would make energy, fields and spacetime 'human constructs'; it proves too much.",
+          "Quantum information has experimental content — teleportation, cryptography, error correction — which a mere construct wouldn't.",
+          "Denying that information is real leaves the black-hole paradox unstated."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Ivette Fuentes", "stance": "Experimental quantum physicist in relativistic quantum information. Likely to treat information as a precise physical resource with measurable consequences, while wary of grand metaphysics."},
+      {"name": "Melvin Vopson", "stance": "Physicist who has proposed a mass–energy–information equivalence, called information 'the fifth state of matter', and argued the universe may be a simulation. Expect the most literal 'reality is information' case."},
+      {"name": "Daniel Whiteson", "stance": "CERN experimentalist and sceptical populariser (We Have No Idea). Likely to ask what any of this predicts and to resist unfalsifiable framings."},
+      {"name": "Adam Frank", "stance": "Co-author of The Blind Spot, which argues science has mistaken its abstractions for reality and forgotten lived experience. Expect the case that information is a human construct built from observation."},
+      {"name": "Bjorn Ekeberg", "stance": "Hosts. Philosopher of science."}
+    ],
+    "questions": [
+      "What is one bit of information in a universe with no observers?",
+      "If the universe is a computation, what is it computing, and on what?",
+      "Does 'information is physical' mean anything more than 'computers obey physics'?"
+    ],
+    "reading": [
+      {"title": "The Blind Spot", "by": "Adam Frank, Marcelo Gleiser and Evan Thompson (2024)", "note": "Frank's side, at length."},
+      {"title": "'Information, physics, quantum: the search for links'", "by": "John Wheeler (1989)", "note": "Where 'it from bit' comes from."},
+      {"title": "Decoding Reality", "by": "Vlatko Vedral (2010)", "note": "The accessible case that the universe is quantum information."}
+    ],
+    "terms": [
+      {"term": "It from bit", "def": "Wheeler's proposal that every physical thing derives from yes/no answers to questions — information as the foundation."},
+      {"term": "Landauer's principle", "def": "Erasing one bit of information dissipates a minimum amount of heat — the link between information and thermodynamics."},
+      {"term": "Holographic principle", "def": "The idea that all the information in a region can be described on its boundary, as with black-hole entropy."}
+    ]
+  },
+  "94": {
+    "question": "Does a meaningful life require commitment — or is 'growing up' an outdated script that keeping your options open has rightly replaced?",
+    "why": "Job tenures of a year, falling marriage, a fifth of adults abandoning long-term goals. One side sees liberation from a stale script; the other sees a culture that cannot commit and pays in loneliness and burnout. It is a debate about whether freedom is choosing or having chosen.",
+    "sides": [
+      {
+        "label": "Adulthood is commitment: the endless deferral of real choices is self-deception with a mental-health bill",
+        "points": [
+          "Kant and Sartre agree from opposite ends: to be free is to bind yourself; refusing to choose is a choice made badly.",
+          "Marriage, vocation and belief are how people accumulate a life; optionality accumulates nothing.",
+          "The loneliness and burnout data track the decline of commitment, not the persistence of it."
+        ],
+        "objections": [
+          "The markers of adulthood were withdrawn, not refused: housing, secure work and affordable childcare vanished first.",
+          "Traditional commitment fell hardest on women; its decline is the success of liberation, not a crisis.",
+          "Commitment to a bad job or marriage is not maturity; leaving is."
+        ]
+      },
+      {
+        "label": "'Growing up' is an ideology; staying open is a rational response to a world that no longer rewards commitment",
+        "points": [
+          "Institutions stopped committing first — to workers, tenants, citizens — and people adapted.",
+          "Serial careers and chosen families are new forms of commitment, not the absence of it.",
+          "The nostalgic script produced the mid-life crisis and the unhappy marriage; abandoning it is progress."
+        ],
+        "objections": [
+          "Precarity explains job-hopping; it does not explain the abandonment of goals or the flight from belief.",
+          "'New forms of commitment' that dissolve at the first cost are not commitments.",
+          "A generation that keeps every option open is easy to exploit — by employers and platforms alike."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Frank Furedi", "stance": "Sociologist who has written on infantilisation, the culture of fear and the retreat from adulthood (Why Borders Matter; 100 Years of Identity Crisis). Expect the case that a culture unable to commit is in a crisis of meaning."},
+      {"name": "Laurie Penny", "stance": "Journalist and author (Bitch Doctrine; Sexual Revolution). Likely to argue that refusing the old script of adulthood is a rational and often feminist response to precarity and bad institutions."},
+      {"name": "Jemima Kelly", "stance": "FT columnist known for scepticism about crypto and tech hype. Likely to bring a sceptical, moderate line — pro-commitment without nostalgia."},
+      {"name": "Jonny Thomson", "stance": "Hosts. Philosophy writer."}
+    ],
+    "questions": [
+      "What is one thing you've committed to that you could not undo — and would you recommend it?",
+      "If institutions stopped committing to people, is the answer for people to commit less, or to rebuild institutions?",
+      "Is there a version of adulthood that isn't marriage, mortgage and a pension?"
+    ],
+    "reading": [
+      {"title": "Dedicated: The Case for Commitment in an Age of Infinite Browsing", "by": "Pete Davis (2021)", "note": "The popular argument for the commitment side."},
+      {"title": "Why Borders Matter", "by": "Frank Furedi (2020)", "note": "Furedi on limits and adulthood."},
+      {"title": "Bitch Doctrine", "by": "Laurie Penny (2017)", "note": "Penny's essays on gender, work and refusal."}
+    ],
+    "terms": [
+      {"term": "Optionality", "def": "Keeping choices open as a value in itself — praised in finance, criticised here as a way of never choosing."},
+      {"term": "Bad faith", "def": "Sartre's term for denying your own freedom by pretending you had no choice — or, here, by never making one."},
+      {"term": "Emerging adulthood", "def": "Psychologist Jeffrey Arnett's term for the extended 18–29 period before traditional adult roles."}
+    ]
+  },
+  "103": {
+    "question": "Is the manosphere's claim — feminism was zero-sum, women won, men lost — beyond the pale, or does it name something real that its critics refuse to see?",
+    "why": "A third of Gen Z men now say wives should obey husbands; boys are falling behind in school and out of work; a generation is being shaped by online figures who say feminism is a power grab. Dismissing them has not worked. The question is what a serious answer looks like.",
+    "sides": [
+      {
+        "label": "The manosphere is a dangerous ideology with a simple, false story — it should be answered and buried",
+        "points": [
+          "Equality is not zero-sum: the studies in the billing find gender equality raises wellbeing for men and women, and sexism lowers productivity and lifespan for both.",
+          "The manosphere's programme — obedience, dominance, contempt — is a recruitment pipeline for misogyny, not a men's movement.",
+          "Even where men lose relative advantage, losing an unfair advantage is justice, not a grievance."
+        ],
+        "objections": [
+          "Boys' educational decline, male suicide and the collapse of working-class male employment are real; 'answer and bury' has meant ignoring them.",
+          "Telling young men their grievance is illegitimate is how the manosphere recruits.",
+          "'Losing an unfair advantage' is easy to say for those who never had the working-class version of it."
+        ]
+      },
+      {
+        "label": "The manosphere misreads feminism but responds to real losses that feminism and the professional left have ignored",
+        "points": [
+          "Class, not gender, explains most of who lost: deindustrialisation hit men without degrees hardest, and identity politics offered them nothing.",
+          "Black men in particular have been theorised out of vulnerability — the argument that some feminist theory erased male victims.",
+          "Young men need models of masculinity, and the only people offering them are grifters — because the mainstream refused."
+        ],
+        "objections": [
+          "Acknowledging male problems does not vindicate the manosphere's solution, which is to reverse women's gains.",
+          "The 'class not gender' move can be a way of never addressing sexism at all.",
+          "Feminism did offer men something — freedom from the provider script — which the manosphere rejects."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Tommy Curry", "stance": "Author of The Man-Not, which argues Black men have been rendered invisible as victims of racial patriarchy and that some feminist theory participates in that. Expect the case that the manosphere distorts a real problem."},
+      {"name": "Farha Khalidi", "stance": "Feminist commentator on TikTok. Likely to argue the manosphere is a misogynist pipeline and that gender equality has not gone too far."},
+      {"name": "Jordan Stephens", "stance": "Musician and writer on masculinity and vulnerability. Likely to speak to why young men are drawn in and to offer an alternative account of being a man."},
+      {"name": "Catherine Liu", "stance": "Author of Virtue Hoarders: The Case Against the Professional Managerial Class, a Marxist critic of identity-focused progressivism. Expect the argument that class has been erased from the conversation and that professional-class feminism served itself."},
+      {"name": "Laura Kennedy", "stance": "Hosts. Philosopher and journalist."}
+    ],
+    "questions": [
+      "Name a male disadvantage you think is real. What should be done about it that isn't at women's expense?",
+      "If the manosphere is a grift, what is the honest version of what it sells?",
+      "Has any gender-equality measure gone too far? Which, and how would you know?"
+    ],
+    "reading": [
+      {"title": "Of Boys and Men", "by": "Richard Reeves (2022)", "note": "The data on boys falling behind, from a writer who is not a manosphere sympathiser."},
+      {"title": "The Man-Not", "by": "Tommy Curry (2017)", "note": "Curry's argument in full."},
+      {"title": "Virtue Hoarders", "by": "Catherine Liu (2021)", "note": "Liu's class critique of progressive politics."}
+    ],
+    "terms": [
+      {"term": "Manosphere", "def": "Online communities — pickup artists, MGTOW, 'red pill' influencers — organised around the claim that men are disadvantaged by feminism."},
+      {"term": "Zero-sum", "def": "A situation where one side's gain is exactly the other's loss — the manosphere's model of gender."},
+      {"term": "Professional-managerial class", "def": "Liu's target: educated professionals whose progressivism, she argues, protects their own status."}
+    ]
+  },
+  "104": {
+    "question": "Is democracy a moral good in itself — or a flawed procedure we've turned into a creed?",
+    "why": "Everyone from Beijing to Pyongyang claims to be democratic, majorities have elected monsters, and technical questions are not settled by vote. Yet the alternatives on offer — rule by the wise, the rich, or the party — have their own record. The debate asks what democracy is for.",
+    "sides": [
+      {
+        "label": "Democracy is an essential moral good: the only system that treats people as equals and lets them remove their rulers",
+        "points": [
+          "Its core moral claim is not that majorities are right but that no one has the standing to rule others without their consent.",
+          "The peaceful removal of governments is unique to democracy; every other system changes rulers by death or force.",
+          "Democracies fail less catastrophically — no famine in a functioning democracy, as Sen showed."
+        ],
+        "objections": [
+          "Majorities have voted for tyranny (1933) and minorities have been oppressed by procedure; the moral good needs limits that democracy cannot supply from within.",
+          "Voters are rationally ignorant; a system that rewards demagogues is not respecting people, it is exploiting them.",
+          "'Consent' via a vote every five years for one of two parties is a thin basis for legitimacy."
+        ]
+      },
+      {
+        "label": "Democracy is one procedure among others, valuable only when it delivers; treating it as sacred is naive",
+        "points": [
+          "Plato's objection stands: ruling is a skill, and we don't crowd-source surgery.",
+          "Rights, not votes, protect people; a constitutional order that limits majorities matters more than the ballot.",
+          "Governments judged by outcomes — poverty reduction, stability — include non-democracies that outperform democracies."
+        ],
+        "objections": [
+          "Who selects the experts, and who removes them when they fail? Every answer is either democracy or force.",
+          "Outcome-based legitimacy is what every authoritarian claims until the outcomes turn bad and no one can say so.",
+          "'Rights without democracy' has never lasted; rights are secured by the people who can vote out those who violate them."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Yaron Brook", "stance": "Objectivist; argues that individual rights come first and that unlimited majority rule is a threat to them. Expect the case that constitutional limits, not democracy, are the moral good."},
+      {"name": "David Aaronovitch", "stance": "Liberal journalist and former communist, defender of democratic institutions against populism. Expect a full-throated defence of democracy as a moral good."},
+      {"name": "Sally Haslanger", "stance": "MIT philosopher of social structure and feminist theory. Likely to argue that formal democracy without structural justice is hollow, and to push for deeper, more egalitarian democracy rather than less."},
+      {"name": "Wang Hui", "stance": "Tsinghua intellectual historian (China's New Order; The End of the Revolution), critic of Western liberal democracy's depoliticisation and of the 'end of history'. Expect a defence of alternative conceptions of popular rule."},
+      {"name": "Isabel Hilton", "stance": "Hosts. Journalist and China specialist."}
+    ],
+    "questions": [
+      "If democracy's value is its outcomes, what outcome would make you accept an unelected government?",
+      "What is the mechanism by which a wise elite is removed when it stops being wise?",
+      "Is a country with elections but no free press democratic? Is one with a free press but no elections?"
+    ],
+    "reading": [
+      {"title": "Against Democracy", "by": "Jason Brennan (2016)", "note": "The strongest modern statement of the epistocratic case."},
+      {"title": "Democracy for Realists", "by": "Achen and Bartels (2016)", "note": "What voters actually do, and why the 'folk theory' fails — useful to both sides."},
+      {"title": "China's New Order", "by": "Wang Hui (2003)", "note": "Wang's critique of the neoliberal consensus from inside China."}
+    ],
+    "terms": [
+      {"term": "Epistocracy", "def": "Rule by the knowledgeable — Plato's philosopher-kings, Brennan's weighted voting."},
+      {"term": "Liberal democracy", "def": "Majority rule constrained by rights, courts and a free press — the combination the debate keeps pulling apart."},
+      {"term": "Sen's famine thesis", "def": "Amartya Sen's finding that no substantial famine has occurred in a functioning democracy with a free press."}
+    ]
+  }
+}

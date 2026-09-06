@@ -1,0 +1,373 @@
+{
+  "106": {
+    "question": "Is the return of beauty — classical facades, symmetrical faces, elegant theories — a recovery of something real, or a flight from reality into a filtered ideal?",
+    "why": "After a century of art that prized the difficult, beauty is mandated by governments and enforced by algorithms; 90% of young women edit their faces before posting. In physics, elegance is accused of stalling progress. The debate asks whether beauty is in the world or imposed on it.",
+    "sides": [
+      {
+        "label": "Beauty is real, rooted in nature, and its return is cultural sanity after a century of ugliness on principle",
+        "points": [
+          "Symmetry, proportion and harmony recur across cultures and in nature; preferences for them are not arbitrary.",
+          "The modernist war on the pretty produced buildings people hate and art they ignore; beauty is how the public reclaims culture.",
+          "Beauty and truth were long allies — Keats, Dirac, the golden ratio — and elegance has guided real discoveries."
+        ],
+        "objections": [
+          "Whose beauty? The classical canon is one tradition's taste made law; symmetry-obsessed faces are one algorithm's.",
+          "Elegance has led physics astray for forty years — supersymmetry, string theory — the argument of Lost in Math.",
+          "The 'return to beauty' in architecture is often nostalgia enforced by decree, not craft."
+        ]
+      },
+      {
+        "label": "The new beauty is an avoidance of the real: filtered, ordered, and unable to face flaws",
+        "points": [
+          "When 90% of young women alter their faces online, the ideal is not beauty but its counterfeit, and actual faces become defects.",
+          "Difficult art was difficult for a reason: the twentieth century had things to show that prettiness couldn't.",
+          "An aesthetic that must filter out every complication is one that cannot see the world as it is."
+        ],
+        "objections": [
+          "Rejecting beauty because it can be faked is like rejecting truth because people lie.",
+          "The 'flaws' argument romanticises ugliness as authenticity — its own aesthetic ideology.",
+          "Ordinary people never signed up for the war on beauty; the elite did, and calls the result honesty."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Heather Widdows", "stance": "Philosopher of beauty (Perfect Me) who argues beauty has become an ethical ideal that we feel obliged to meet. Expect a critique of beauty culture's demands rather than of beauty itself."},
+      {"name": "Dasha Nekrasova", "stance": "Actor and Red Scare co-host who has defended beauty, prettiness and taste against what she sees as a culture of ugliness. Likely to argue for beauty's return, with contrarian relish."},
+      {"name": "Babette Babich", "stance": "Nietzsche scholar and continental philosopher (The Hallelujah Effect). Expect the argument that beauty is bound to tragedy and nature, with suspicion of the digital filter."},
+      {"name": "Jay Shapiro", "stance": "Hosts."}
+    ],
+    "questions": [
+      "Is a filtered face beautiful? If not, what is it?",
+      "Name an ugly thing that is true, and a beautiful thing that is false. Which matters more?",
+      "Should governments mandate beautiful buildings? Who decides what counts?"
+    ],
+    "reading": [
+      {"title": "Perfect Me", "by": "Heather Widdows (2018)", "note": "Widdows on beauty as an ethical ideal."},
+      {"title": "Lost in Math", "by": "Sabine Hossenfelder (2018)", "note": "The case that beauty has misled physics — Hossenfelder speaks Saturday in the quantum debate."},
+      {"title": "The Birth of Tragedy", "by": "Friedrich Nietzsche (1872)", "note": "Apollo and Dionysus — Babich's frame."}
+    ],
+    "terms": [
+      {"term": "Aesthetic ideal", "def": "A standard of appearance one feels obliged to pursue — Widdows's claim about modern beauty."},
+      {"term": "Naturalness", "def": "In physics, the expectation that theories should not require fine-tuned numbers — an elegance criterion now under attack."},
+      {"term": "Kitsch", "def": "Art that offers easy beauty and easy emotion — the modernist term of abuse for what may now be returning."}
+    ]
+  },
+  "111": {
+    "question": "Can the self be known like any other object — or is it the one thing that can never appear in its own field of view?",
+    "why": "Self-help, therapy and neuroscience all promise to reveal your inner self; Schopenhauer and Wittgenstein said the knower cannot be among the known. The stakes are whether science can be complete and whether the modern project of 'knowing yourself' makes sense.",
+    "sides": [
+      {
+        "label": "The self can be dragged into the light: it is a natural phenomenon, studied like any other",
+        "points": [
+          "Neuroscience already predicts choices before we report them, maps personality, and alters the self with drugs and stimulation.",
+          "The 'eye that cannot see itself' is a metaphor; mirrors exist, and so does introspection checked against behaviour.",
+          "Mysterian talk about the self mostly protects a soul by another name."
+        ],
+        "objections": [
+          "Every measurement of the self is made by a self that is not measured in the act — the regress is structural, not a matter of better instruments.",
+          "Third-person data on brains do not tell you what it is like to be the person; the explanatory gap remains.",
+          "A self that changes when studied is not an object in the ordinary sense."
+        ]
+      },
+      {
+        "label": "The self is the limit of the world, not a thing in it; it cannot be known and science is therefore incomplete",
+        "points": [
+          "Wittgenstein: the subject does not belong to the world; it is a limit of the world — as the eye is not in the visual field.",
+          "Ancient Indian thought and Schopenhauer converge: the knower is presupposed by all knowing and can never be its object.",
+          "This is not mysticism but logic: any complete description leaves out the describer."
+        ],
+        "objections": [
+          "'Cannot be known' slides between 'cannot be an object of perception' and 'cannot be understood' — the second doesn't follow.",
+          "If the self is not in the world, what is neuroscience finding when it changes it?",
+          "The argument makes every science of anything incomplete, since all are done by subjects — a trivial result dressed as a profound one."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Galen Strawson", "stance": "Philosopher (Selves) who argues selves are real but short-lived subjects of experience, that consciousness is a physical fact, and that not everyone lives a 'narrative' life. Expect a realist about the self who denies it is a mystery — and a panpsychist."},
+      {"name": "Hilary Lawson", "stance": "His theory of closure treats the self as a way of holding the world rather than an object within it. Likely to argue the self is not a thing to be found."},
+      {"name": "Victoria Trumbull", "stance": "Philosopher billed as challenging the materialist consensus. Likely to argue that the self, or consciousness, is fundamental rather than derivative — the idealist line."},
+      {"name": "Jack Symes", "stance": "Hosts. Presenter of The Panpsycast."}
+    ],
+    "questions": [
+      "When a brain scan predicts your choice before you know it, what has been known — you, or a mechanism you happen to be riding?",
+      "If the self is the limit of the world, is there one self or one per person?",
+      "Does 'know yourself' mean anything on your view — and is it good advice?"
+    ],
+    "reading": [
+      {"title": "Selves: An Essay in Revisionary Metaphysics", "by": "Galen Strawson (2009)", "note": "Strawson's full theory; his short essay 'Against Narrativity' is the quick way in."},
+      {"title": "Tractatus Logico-Philosophicus, 5.6–5.641", "by": "Ludwig Wittgenstein (1921)", "note": "'The subject does not belong to the world' — a page long."},
+      {"title": "The World as Will and Representation, Book II", "by": "Arthur Schopenhauer (1818)", "note": "The knower that is known by none."}
+    ],
+    "terms": [
+      {"term": "Introspection", "def": "Observing one's own mental states — unreliable by experiment, indispensable by practice."},
+      {"term": "Explanatory gap", "def": "Levine's term for why physical accounts of the brain seem to leave out what experience is like."},
+      {"term": "Panpsychism", "def": "The view that consciousness is a fundamental feature of matter — Strawson's position."}
+    ]
+  },
+  "112": {
+    "question": "Is the real divide generational — boomers versus the young — or between those who will inherit and those who won't?",
+    "why": "Millennials at 35 hold a third less wealth than boomers did, while $84 trillion is about to pass down unevenly. Fixing 'the generations' and fixing inheritance point to different policies: wealth and inheritance taxes, or planning reform and housing supply.",
+    "sides": [
+      {
+        "label": "Tax inheritance and wealth: the coming transfer will entrench a new aristocracy unless it's shared",
+        "points": [
+          "The lottery of birth is about to decide life chances more than work or talent; that is the opposite of a meritocracy.",
+          "Inheritance tax is one of the least distorting taxes and the most avoided; closing the loopholes funds the young directly.",
+          "Housing wealth is unearned windfall from planning restrictions and low rates — a pure case for taxation."
+        ],
+        "objections": [
+          "Inheritance taxes are politically radioactive, raise little, and hit the modestly propertied while the rich plan around them.",
+          "Families are not the state's enemy; passing on a home is how most people express care across generations.",
+          "Taxing the transfer does nothing about the cause — house prices — and may just make the young poorer as well."
+        ]
+      },
+      {
+        "label": "Fix supply and growth: build homes, free planning, and the generational gap closes on its own",
+        "points": [
+          "The gap is a housing gap; where supply is allowed (Tokyo, Austin) prices are flat and the young are fine.",
+          "Growth lifts wages faster than any redistribution; stagnation is what made inheritance matter.",
+          "Redistribution through the tax system is what boomers already control; the young need assets, not transfers."
+        ],
+        "objections": [
+          "Planning reform takes decades and existing owners vote; meanwhile the transfer happens.",
+          "Supply alone doesn't touch the concentration of wealth at the top, which is where the $84 trillion mostly sits.",
+          "'Growth' has been the promise for fifteen years of flat productivity; it is not a plan."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Rachel Millward", "stance": "Deputy Leader of the Green Party. Expect the case for wealth and inheritance taxes and for treating housing as a right rather than an asset."},
+      {"name": "Kwasi Kwarteng", "stance": "Former Conservative Chancellor, low-tax and pro-growth. Likely to argue against inheritance-tax rises and for planning liberalisation and growth as the fix."},
+      {"name": "Mariana Mazzucato", "stance": "Economist (The Entrepreneurial State; Mission Economy; The Common Good Economy) who argues value is created collectively and captured privately. Expect the case that inherited wealth is unearned and that the state must shape markets to share it."},
+      {"name": "Philip Collins", "stance": "Hosts."}
+    ],
+    "questions": [
+      "What inheritance-tax rate would you set, and at what threshold? Why that number?",
+      "If you abolished planning restrictions tomorrow, when does the first young person notice?",
+      "Is the problem that boomers got lucky, or that the luck can be passed on?"
+    ],
+    "reading": [
+      {"title": "Capital in the Twenty-First Century", "by": "Thomas Piketty (2013)", "note": "The argument that inherited wealth is returning to nineteenth-century dominance."},
+      {"title": "The Common Good Economy", "by": "Mariana Mazzucato (2026)", "note": "Her latest — she gives a talk on it on Sunday afternoon."},
+      {"title": "'The Housing Theory of Everything'", "by": "Bowman, Myers and Southwood (2021)", "note": "The supply-side case that housing explains most of the rest."}
+    ],
+    "terms": [
+      {"term": "Wealth transfer", "def": "The passing of assets between generations — estimated at $84 trillion in the US by 2045, mostly from boomers."},
+      {"term": "Inheritance tax", "def": "A tax on estates or gifts at death; 40% above £325,000 in the UK, with wide exemptions."},
+      {"term": "Planning / zoning", "def": "Rules on what can be built where — blamed by supply-siders for high house prices."}
+    ]
+  },
+  "122": {
+    "question": "Do institutions inevitably end up serving themselves — or is the cynicism about them a travesty of what people can do together?",
+    "why": "Pournelle's Iron Law says organisations are captured by those who serve the organisation; Foucault says even doctors and teachers are vehicles of power. Harvard has more administrators than undergraduates. Whether to reform, defund or defend institutions depends on which story is true.",
+    "sides": [
+      {
+        "label": "The Iron Law holds: institutions drift to self-preservation, and scepticism should be equal-opportunity",
+        "points": [
+          "Administrative bloat is universal — universities, hospitals, charities — and it grows in proportion to funding, not need.",
+          "Professions define the problems they are paid to solve; the mental-health and safety industries expand their own remit.",
+          "Foucault's point is not that people are wicked but that institutions produce the knowledge that justifies them."
+        ],
+        "objections": [
+          "The Iron Law explains everything and predicts nothing; it cannot say which institutions will decay or when.",
+          "Institutions also cured smallpox, ran the NHS through a pandemic and educated the cynics who attack them.",
+          "Equal scepticism of a food bank and a hedge fund is not rigour; it is a refusal to judge."
+        ]
+      },
+      {
+        "label": "Institutions are how selfless vision becomes durable; the cynicism is corrosive and self-fulfilling",
+        "points": [
+          "Every good that outlasts a person — hospitals, universities, courts — is an institution; the alternative is charisma and decay.",
+          "Most people inside institutions are trying to do the job; capture is a failure mode, not a law.",
+          "Cynicism about institutions is now a political programme that leaves the powerful unconstrained."
+        ],
+        "objections": [
+          "'Most people are trying' is compatible with the system defeating them — which is the Iron Law's claim.",
+          "Defending institutions in general is how failing ones survive.",
+          "The people who most praise institutions are usually the ones the institutions employ."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Frank Furedi", "stance": "Sociologist critical of therapeutic, managerial and risk-averse institutions. Expect the case that institutions have lost their sense of mission to self-protection."},
+      {"name": "Thangam Debbonaire", "stance": "Labour peer and former MP, with a career in public and charitable bodies. Likely to defend public institutions and the people in them while accepting reform."},
+      {"name": "Catherine Liu", "stance": "Author of Virtue Hoarders; argues that the professional-managerial class has captured institutions and uses moral language to protect its status. Expect a critique from the left that overlaps uncomfortably with Furedi's."},
+      {"name": "Roger Hearing", "stance": "Hosts."}
+    ],
+    "questions": [
+      "Name an institution that has resisted the Iron Law. What did it do differently?",
+      "If administrators outnumber students, what were they hired to do — and who decided?",
+      "Is your scepticism of institutions itself institutionalised — a think tank, a party, a university post?"
+    ],
+    "reading": [
+      {"title": "Discipline and Punish", "by": "Michel Foucault (1975)", "note": "Institutions as producers of knowledge and power."},
+      {"title": "Virtue Hoarders", "by": "Catherine Liu (2021)", "note": "Liu on the professional class and its institutions."},
+      {"title": "Bullshit Jobs", "by": "David Graeber (2018)", "note": "Why organisations grow work that no one needs — the anthropological version of the Iron Law."}
+    ],
+    "terms": [
+      {"term": "Iron Law of Bureaucracy", "def": "Jerry Pournelle's rule that in any organisation those devoted to the organisation itself will come to control it."},
+      {"term": "Institutional capture", "def": "When an organisation serves the interests of those inside it, or those it regulates, over its stated purpose."},
+      {"term": "Biopower", "def": "Foucault's term for power exercised through managing life and health — medicine, welfare, statistics."}
+    ]
+  },
+  "123": {
+    "question": "Do we share one reality seen from different perspectives — or live in different realities, so that 'my truth' is all there is?",
+    "why": "'Lived experience' is now an authority; so are unchallengeable political facts. Kuhn showed paradigms change the facts, and one culture's terrorist is another's freedom fighter. Whether a shared reality survives decides whether argument, science and Wikipedia can still work.",
+    "sides": [
+      {
+        "label": "There is one reality; perspectives are partial views of it, and some are better than others",
+        "points": [
+          "Disagreement presupposes a shared subject matter; without it there is nothing to disagree about.",
+          "Science converges: different paradigms, instruments and cultures agree about the boiling point of water and the age of the universe.",
+          "Wikipedia works — a neutral point of view built by millions who disagree about everything — which is evidence that shared facts are achievable."
+        ],
+        "objections": [
+          "Convergence in physics does not carry over to the social world, where the 'facts' include people's self-descriptions.",
+          "'Better perspectives' are judged from a perspective; the umpire is always a player.",
+          "Neutral point of view is a policy, not a discovery, and edit wars show how hard-won and fragile it is."
+        ]
+      },
+      {
+        "label": "We inhabit different realities: frameworks fix the facts, and 'the view from nowhere' is a fiction",
+        "points": [
+          "Kuhn: after a paradigm shift, scientists work in a different world; the data themselves change.",
+          "Social categories — race, gender, money — are made by us and real because we make them; different societies have different ones.",
+          "The demand for a single reality has historically meant one group's reality enforced on others."
+        ],
+        "objections": [
+          "If realities are plural, the claim that they are plural is true in only one of them.",
+          "Constructed categories are still real and can be got wrong — which is a realist point (Haslanger's own).",
+          "'Different realities' is how conspiracy theorists describe their situation; the view has consequences."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Steve Fuller", "stance": "Sociologist of science (Post-Truth: Knowledge as a Power Game) who treats post-truth as a struggle over who gets to define reality rather than a fall from grace. Expect the most provocative defence of perspectivalism."},
+      {"name": "Jimmy Wales", "stance": "Founder of Wikipedia, built on verifiability and neutral point of view. Expect a practical defence of shared facts and of the institutions that maintain them."},
+      {"name": "Sally Haslanger", "stance": "MIT philosopher (Resisting Reality) who combines social construction with realism: categories like race are constructed and real. Likely to reject both naive objectivism and 'anything goes'."},
+      {"name": "Philip Collins", "stance": "Hosts."}
+    ],
+    "questions": [
+      "Is 'one person's terrorist is another's freedom fighter' a fact about reality or about the words?",
+      "What does Wikipedia do when two communities' 'lived experience' contradict each other?",
+      "If paradigms change the facts, was the Earth flat before Eratosthenes?"
+    ],
+    "reading": [
+      {"title": "The Structure of Scientific Revolutions", "by": "Thomas Kuhn (1962)", "note": "Paradigms and the claim that scientists 'work in a different world' — chapter 10."},
+      {"title": "Resisting Reality", "by": "Sally Haslanger (2012)", "note": "Constructed but real: Haslanger's position."},
+      {"title": "Post-Truth: Knowledge as a Power Game", "by": "Steve Fuller (2018)", "note": "Fuller's case that post-truth is nothing new."}
+    ],
+    "terms": [
+      {"term": "Perspectivism", "def": "Nietzsche's view that all knowledge is from some perspective — there is no view from nowhere."},
+      {"term": "Paradigm", "def": "Kuhn's term for the shared framework that defines what counts as a problem, a method and a fact in a science."},
+      {"term": "Social construction", "def": "Categories that exist because of human practices — and, on Haslanger's view, are no less real for it."}
+    ]
+  },
+  "133": {
+    "question": "Does history have a moral direction — is being 'on the right side of history' a real place — or is progress a myth we tell to justify ourselves?",
+    "why": "Hegel and Hollywood agree the good wins in the end; the twentieth century produced its counter-examples in industrial quantities. If history has no direction, 'progress' loses its authority — and so does the reassurance that our own values will be vindicated.",
+    "sides": [
+      {
+        "label": "Progress is real: the Great Enrichment, the end of slavery, the fall in violence — history has trended toward the good",
+        "points": [
+          "Since 1800 real income has risen thirtyfold and child mortality fallen by 95%; that is not a story but a measurement.",
+          "Moral circles have widened — slavery, women's rights, the treatment of children — in a broadly consistent direction.",
+          "Denying progress requires ignoring that the denier lives longer, freer and better than any ancestor."
+        ],
+        "objections": [
+          "Material progress is not moral direction: the century of penicillin was also the century of the camps.",
+          "'Widening circles' is measured from where we now stand, which is exactly the circularity the critics allege.",
+          "Trends are not destinies: every previous belle époque thought it was the end of history."
+        ]
+      },
+      {
+        "label": "History has no direction; the idea is a secular providence that excuses the present and its crimes",
+        "points": [
+          "Marxist and liberal teleologies both licensed atrocity as the price of the future.",
+          "Progress narratives are written by winners; the defeated do not appear on 'the right side of history'.",
+          "Without direction, responsibility returns to us: nothing will be vindicated by time, so we must decide now."
+        ],
+        "objections": [
+          "Denying direction cuts both ways: it undermines critique too, since 'this is worse than before' needs a measure.",
+          "The record of teleologies is bad, but the record of anti-progress politics — reaction, nihilism — is not better.",
+          "You can affirm progress as achievement without claiming it is guaranteed; that is what the pro side actually says."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Deirdre McCloskey", "stance": "Economic historian of the 'Great Enrichment' (the Bourgeois Era trilogy) who argues that liberal ideas produced unprecedented progress. Expect the fullest case that progress is real and liberal."},
+      {"name": "Wang Hui", "stance": "Chinese intellectual historian critical of the 'end of history' and of Western teleology, while attentive to China's revolutionary legacy. Likely to reject the Hollywood version while resisting nihilism."},
+      {"name": "Tariq Ali", "stance": "Marxist writer and activist (Street Fighting Years; The Extreme Centre). Expect the argument that progress is won through struggle, not delivered by history, and that liberal triumphalism has decayed."},
+      {"name": "Jack Symes", "stance": "Hosts."}
+    ],
+    "questions": [
+      "Name a moral advance of the last century that you'd bet will still count as one in two hundred years.",
+      "If history has no direction, what makes the abolition of slavery better than its introduction — apart from your preference?",
+      "Is 'the right side of history' a claim about the future or a threat about the present?"
+    ],
+    "reading": [
+      {"title": "Bourgeois Equality", "by": "Deirdre McCloskey (2016)", "note": "The Great Enrichment and its causes — McCloskey's case."},
+      {"title": "Straw Dogs", "by": "John Gray (2002)", "note": "The sharpest modern attack on the idea of progress; Gray speaks Saturday on immortality."},
+      {"title": "Reason in History", "by": "G. W. F. Hegel (lectures, 1830)", "note": "Where the direction of history comes from."}
+    ],
+    "terms": [
+      {"term": "Teleology", "def": "Explanation by purpose or end — history as going somewhere."},
+      {"term": "Great Enrichment", "def": "McCloskey's term for the thirtyfold rise in living standards since 1800."},
+      {"term": "End of history", "def": "Fukuyama's 1989 claim that liberal democracy was the final form of government — widely mocked, still argued about."}
+    ]
+  },
+  "134": {
+    "question": "Have we built a culture of fear that stops us living — or are today's anxieties a rational response to real, novel dangers?",
+    "why": "By every measure humanity has never been safer, yet most people believe crime is rising and peril is unprecedented. Whether hyper-vigilance is a bug or a feature decides how we regulate, parent, and report the news.",
+    "sides": [
+      {
+        "label": "Safety culture has become a culture of fear: precaution paralyses, and risk is part of a life worth living",
+        "points": [
+          "The data are clear: violence, disease and accidents have collapsed while perceived danger has risen — fear is decoupled from risk.",
+          "Precautionary institutions grow by finding threats; every agency's budget is a reason to be afraid.",
+          "Children raised to avoid all risk arrive at adulthood unable to bear any; the anxiety epidemic is partly a safety epidemic."
+        ],
+        "objections": [
+          "We are safer because of the vigilance being mocked; the seatbelt argument cuts against those who never wore one.",
+          "Some risks are genuinely new and fat-tailed — pandemics, climate, AI — and the past's safety says nothing about them.",
+          "'Cultivate a desire for risk' is advice for the comfortable; the poor already live with more risk than they want."
+        ]
+      },
+      {
+        "label": "The saved lives speak for themselves: risk management works, and today's fears track real uncertainty",
+        "points": [
+          "Child mortality from one in three to one in twenty is not an accident; it is what tracking threats produces.",
+          "Modern risks are systemic and probabilistic; the intuition that 'it's never happened' is exactly wrong for tail risks.",
+          "The task is risk literacy — calibrating fear to evidence — not abolishing precaution."
+        ],
+        "objections": [
+          "Calibration is what a culture of fear cannot do: the same institutions that saved lives now warn about everything, so nothing is heard.",
+          "'Fat tails' can justify any restriction; the argument has no stopping point.",
+          "Gallup's crime finding shows fear isn't tracking evidence at all — it tracks media."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Frank Furedi", "stance": "Author of Culture of Fear (1997) and How Fear Works — the thesis of this debate is largely his. Expect the argument that fear has become a cultural script that infantilises."},
+      {"name": "Rachel Millward", "stance": "Green Party Deputy Leader. Likely to argue that some fears — climate above all — are rational and that precaution is not paralysis."},
+      {"name": "David Spiegelhalter", "stance": "Statistician (The Norm Chronicles; The Art of Uncertainty) who has spent a career calibrating public understanding of risk. Expect data on how much safer we are, and a plea for numeracy over panic — without dismissing genuine uncertainty."},
+      {"name": "Jay Shapiro", "stance": "Hosts."}
+    ],
+    "questions": [
+      "What is a risk you think the public underrates, and one it overrates? What would change their minds?",
+      "If precaution saved the lives in your statistics, which precaution would you now remove?",
+      "Is climate anxiety rational fear or a culture-of-fear symptom — and how would you tell?"
+    ],
+    "reading": [
+      {"title": "How Fear Works", "by": "Frank Furedi (2018)", "note": "The updated thesis."},
+      {"title": "The Art of Uncertainty", "by": "David Spiegelhalter (2024)", "note": "How to think about risk, chance and ignorance — his own guide."},
+      {"title": "Risk Society", "by": "Ulrich Beck (1986)", "note": "The sociological argument that modern risks are manufactured and global."}
+    ],
+    "terms": [
+      {"term": "Precautionary principle", "def": "Act to prevent harm even without full scientific certainty — praised as prudence, attacked as paralysis."},
+      {"term": "Micromort", "def": "A one-in-a-million chance of death — Spiegelhalter's favourite unit for comparing risks."},
+      {"term": "Availability heuristic", "def": "Judging how common something is by how easily examples come to mind — why vivid dangers feel frequent."}
+    ]
+  }
+}

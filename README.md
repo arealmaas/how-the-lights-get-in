@@ -14,7 +14,10 @@ This is an **unofficial, fan-made** planner. It is not affiliated with, endorsed
 - Filters by day, strand (debates, talks, music & comedy, cinema, Inner Circle, children's), venue and topic, plus free-text search across titles, speakers and descriptions.
 - **Picks**: star events; the list is stored in the browser and can be shared or moved to another device with *Copy link to my picks* (`#picks=…`). A link with `#event=<number>` opens one event directly.
 - **Calendar export**: each event has *Add to calendar (.ics)* and a *Google Calendar* link; *Export picks to calendar* produces one `.ics` with all picked events. Entries carry the talk summary, venue (with the Kenwood House address), speakers and hosts, ticketing notes, topics, the official event page and a 15-minute reminder. Times are exported in UTC with `Europe/London` as the calendar time zone, so they show correctly wherever you are.
-- On the festival days a **Now** button jumps to what's next.
+- **Debate briefings**: every debate has a *Briefing* tab — the question, each side's strongest arguments and the usual objections to them, where each speaker is likely to stand (inferred from their published work, hedged), three questions worth asking, and what to read first. Unofficial notes written with Claude; corrections welcome.
+- **Listen & watch**: Spotify, a YouTube video (embedded on click), Bandcamp and other pages for each music and comedy act, trailers for the DokBox films, and the festival's official playlist.
+- **Now & next** on the festival days: what's on and what starts in the next 45 minutes in each tent, a countdown to your next pick, and **clash warnings** when picks overlap (same 60-minute assumption as the calendar export; 120 for IAI Academy and banquets). Add `?now=2026-09-19T14:00` to the address to preview it.
+- **Works offline** once loaded: a service worker caches the page and fonts, and the web-app manifest lets you add it to your home screen.
 
 Everything is one static `index.html` with the data embedded — no build step at runtime, nothing tracked, no cookies.
 
@@ -22,6 +25,8 @@ Everything is one static `index.html` with the data embedded — no build step a
 
 - `programme.json` — the normalised dataset (events, speakers, acts, meta). `events[]` has `eventNo`, `title`, `type`, `venue`, `date`, `time` (24h, London), `speakers`, `hosts`, `topics`, `description`, `ticketing` (`fast_pass` | `included` | `separate_ticket` | `sold_out`), prices and the official `url`.
 - `data/extract.json` — the raw extraction the build starts from.
+- `data/briefings.json` — the debate briefings (merged from `data/briefings/*.json`).
+- `data/media.json` — Spotify / YouTube / Bandcamp links for acts, trailers and pages for films, and the official playlist.
 
 ## Refreshing the programme
 
@@ -29,7 +34,7 @@ The festival's programme page lazy-loads 40 events at a time from `FullEventList
 
 1. Open https://howthelightgetsin.org/festivals/london/programme.
 2. Open the developer console and paste the contents of `scripts/extract-in-browser.js`. After ~30 seconds it downloads `extract.json` (135 events, ~100 speaker profiles and the music/comedy acts as of September 2026).
-3. Save it as `data/extract.json`, then run `python3 scripts/build.py` (Python 3.9+, no dependencies). This rewrites `programme.json` and `index.html`.
+3. Save it as `data/extract.json`, then run `python3 scripts/build.py` (Python 3.9+, no dependencies). This rewrites `programme.json`, `index.html`, `sw.js` (with a new cache version) and `manifest.webmanifest`. Briefings and media links are keyed by event number and act slug, so they survive a refresh unless the festival renumbers events.
 4. Commit and push — GitHub Pages serves `index.html` from the `main` branch.
 
 `scripts/build.py` does the normalisation: parses "A, B, C. D hosts" speaker strings (including initials), converts times, links people to their profile pages, attaches artist bios to music and comedy slots that have no programme text, and injects the data into `scripts/template.html`.

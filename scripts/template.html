@@ -11,6 +11,11 @@
 <meta property="og:description" content="Every HowTheLightGetsIn London 2026 event with descriptions, speaker bios, a venue grid, picks and calendar export. Not affiliated with the festival.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎪%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="HTLGI 2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -224,6 +229,65 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
   .ev{break-inside:avoid;border-color:#bbb}
   main{padding-bottom:0}
 }
+
+/* ---------- now & next ---------- */
+.nownext{max-width:1180px;margin:10px auto 0;padding:0 16px}
+.nn{background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;padding:10px 12px;display:grid;gap:8px}
+.nn-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.nn-head b{font-family:var(--display);font-size:15px}
+.nn-time{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.nn-pick{font-size:14px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;background:var(--pick-bg);border:1px solid var(--pick);border-radius:6px;padding:6px 10px}
+.nn-pick button{font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.nn-pick .cd{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--pick-ink);font-weight:600;margin-left:auto}
+.nn-row{display:grid;grid-template-columns:86px 1fr;gap:6px 10px;align-items:start}
+.nn-label{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-3);padding-top:6px}
+.nn-chips{display:flex;gap:6px;flex-wrap:wrap}
+.nn-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-left:3px solid var(--c);border-radius:4px;padding:4px 8px;font-size:12.5px;background:var(--surface);text-align:left;max-width:100%}
+.nn-chip b{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums}
+.nn-chip span{color:var(--ink-2)}
+.nn-chip .st{color:var(--pick)}
+.nn-chip:hover{border-color:var(--line-strong)}
+.nn-empty{font-size:13px;color:var(--ink-3);padding-top:5px}
+@media (max-width:600px){ .nownext{padding:0 12px} .nn-row{grid-template-columns:1fr} .nn-label{padding-top:0} }
+
+/* ---------- clashes ---------- */
+.badge.clash{background:color-mix(in oklab,var(--debates) 14%,var(--surface));color:var(--debates);white-space:normal;flex-basis:100%}
+.tile .warn{float:right;color:var(--debates);font-size:12px;margin-left:4px}
+.clashnote{font-size:13.5px;background:color-mix(in oklab,var(--debates) 10%,var(--surface));border:1px solid color-mix(in oklab,var(--debates) 40%,var(--surface));border-radius:6px;padding:8px 10px;margin:0 0 12px}
+.clashnote button{font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.chip .warn{color:var(--debates);font-weight:600}
+.chip[aria-pressed="true"] .warn{color:inherit}
+
+/* ---------- briefing ---------- */
+.brief-badge{font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;color:var(--ink-3);border:1px solid var(--line);border-radius:3px;padding:1px 5px}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin:4px 0 14px}
+.tabs button{padding:8px 12px;font-weight:600;font-size:13.5px;color:var(--ink-3);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.brief{max-width:64ch;font-size:14.5px;line-height:1.55}
+.brief .bq{font-family:var(--display);font-size:18px;font-weight:600;line-height:1.25;margin:0 0 10px;text-wrap:balance}
+.brief p{margin:0 0 10px}
+.brief .side{border:1px solid var(--line);border-radius:6px;padding:10px 12px;margin:0 0 10px;background:var(--surface-2)}
+.brief .side h4{font-family:var(--display);font-size:15px;font-weight:600;margin:0 0 6px;line-height:1.25}
+.brief ul,.brief ol{margin:0 0 6px;padding-left:20px}
+.brief li{margin:0 0 4px}
+.brief .lab{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-3);margin:8px 0 4px}
+.brief ul.against li::marker{color:var(--debates)}
+.brief dl{margin:0;display:grid;gap:8px}
+.brief dt{font-weight:600}
+.brief dd{margin:0;color:var(--ink-2)}
+.brief .rd b{font-weight:600}
+.brief .rd span{color:var(--ink-2)}
+.brief .note{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:10px;margin-top:14px}
+
+/* ---------- media ---------- */
+.media{display:grid;gap:10px}
+.media-name{font-family:var(--display);font-weight:600;font-size:15px}
+.media-links{font-size:13px;color:var(--ink-2);margin:6px 0 0}
+.media-links a{color:var(--talks);text-decoration:none}
+.media-links a:hover{text-decoration:underline}
+.embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden;margin-top:8px}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.offline-note{font-size:12px;color:var(--ink-3)}
 </style>
 </head>
 <body>
@@ -259,10 +323,13 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 </header>
 
 <div class="banner" id="banner" hidden></div>
+<div class="nownext" id="nownext" hidden></div>
 <main id="main"></main>
 <footer>
   <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions and speaker biographies are © the IAI, reproduced from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
   <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks are saved in this browser; use “Copy link to my picks” to move them to another device or share them, and “Export picks to calendar” to add them all to your calendar at once.</div>
+  <div class="noprint">Debate briefings are unofficial notes written with Claude (AI) from the programme text and the speakers’ published work — inferred, hedged, and not the speakers’ or the festival’s words; corrections welcome on GitHub. Music, comedy and film links were looked up by hand; where none was found the planner offers a search instead.</div>
+  <div class="noprint offline-note">Once loaded, the planner works offline — add it to your home screen for the weekend. Add <code>?now=2026-09-19T14:00</code> to the address to preview festival-day mode.</div>
   <div class="noprint">Source code and data: <a href="https://github.com/arealmaas/how-the-lights-get-in" target="_blank" rel="noopener">github.com/arealmaas/how-the-lights-get-in</a></div>
 </footer>
 
@@ -278,8 +345,10 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 'use strict';
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const EVENTS = DATA.events, SPEAKERS = DATA.speakers, ACTS = DATA.acts;
+const BRIEFINGS = DATA.briefings || {}, BRIEF_NOTE = DATA.briefingNote || '';
+const MEDIA = DATA.media || {acts: {}, films: {}}, PLAYLIST = DATA.playlist || null;
 const PUBLIC_URL = 'https://arealmaas.github.io/how-the-lights-get-in/';
-const IN_ARTIFACT = !!(window.claude && typeof window.claude.use === 'function');   // claude.ai artifact viewer: no .ics downloads there
+const IN_ARTIFACT = !!(window.claude && typeof window.claude.use === 'function');   // claude.ai artifact viewer: no downloads, no service worker, no iframes
 const byNo = new Map(EVENTS.map(e => [e.eventNo, e]));
 const spkBySlug = new Map(SPEAKERS.filter(s => s.slug).map(s => [s.slug, s]));
 const spkByName = new Map(SPEAKERS.map(s => [s.name.toLowerCase(), s]));
@@ -287,6 +356,7 @@ const actBySlug = new Map(ACTS.map(a => [a.slug, a]));
 const GROUP = {'Debates':'debates','Talks':'talks','IAI Academy':'talks','Inner Circle':'inner','Long Table Banquet':'inner','DokBox':'cinema',"Children's Programme":'kids','Music':'music','Music & Acoustic':'music','Comedy':'music','Cabaret':'music'};
 const GROUPS = [['debates','Debates'],['talks','Talks & Academy'],['music','Music & Comedy'],['cinema','Cinema'],['inner','Inner Circle & Banquets'],['kids',"Children's"]];
 const VENUES = ['Arena','International','Ring','Hat','Academy','Stage','Cinema','Inner Circle Tent',"Children's Tent",'Waterfront'];
+const PERFORMANCE = new Set(['Music','Music & Acoustic','Comedy','Cabaret']);
 const TOPICS = [...new Set(EVENTS.flatMap(e => e.topics))].sort();
 const DAYS = {'2026-09-19':'Saturday','2026-09-20':'Sunday'};
 const DURATION = {'IAI Academy':120, 'Long Table Banquet':120};   // minutes; everything else 60 — the site publishes start times only
@@ -296,23 +366,30 @@ const LS_STATE = 'htlgi-l26-state', LS_PICKS = 'htlgi-l26-picks';
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const slug = s => s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+const minutes = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const dur = e => DURATION[e.type] || 60;
 
 const state = Object.assign({day:'2026-09-19', view:'list', groups:[], venue:'', topic:'', picksOnly:false}, load(LS_STATE, {}));
 if (!DAYS[state.day]) state.day = '2026-09-19';
 let picks = new Set((load(LS_PICKS, []) || []).filter(n => byNo.has(n)));
 let q = '';
 let sheetStack = [];
+let clashes = new Map();
 
-// ---------- helpers ----------
+// ---------- time ----------
 function londonNow(){
   const parts = new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/London', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false}).formatToParts(new Date());
   const g = t => parts.find(p => p.type === t).value;
-  return {date: `${g('year')}-${g('month')}-${g('day')}`, time: `${g('hour') === '24' ? '00' : g('hour')}:${g('minute')}`};
+  return {date: `${g('year')}-${g('month')}-${g('day')}`, time: `${g('hour') === '24' ? '00' : g('hour')}:${g('minute')}`, simulated: false};
 }
-const NOW = londonNow();
+const SIM = (() => { const v = new URLSearchParams(location.search).get('now'); return v && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(v) ? {date: v.slice(0, 10), time: v.slice(11, 16), simulated: true} : null; })();
+const currentNow = () => SIM || londonNow();
+const NOW = currentNow();
 const isFestivalDay = !!DAYS[NOW.date];
 const cleanDesc = s => (s || '').replace(/\s*Click here to view the [^.]*menu\.?/g, '').trim();
 
+// ---------- labels ----------
 function ticketBadge(e){
   if (e.ticketing === 'sold_out') return '<span class="badge sold">Sold out</span>';
   if (e.ticketing === 'separate_ticket') {
@@ -336,9 +413,7 @@ function whoLine(e){
   const ho = e.hosts.length ? `<span class="host">${sp ? ' · ' : ''}hosted by ${e.hosts.map(esc).join(' & ')}</span>` : '';
   return sp + ho;
 }
-function whoPlain(e){
-  return [e.speakers.join(', '), e.hosts.length ? 'hosted by ' + e.hosts.join(' & ') : ''].filter(Boolean).join(' · ');
-}
+const whoPlain = e => [e.speakers.join(', '), e.hosts.length ? 'hosted by ' + e.hosts.join(' & ') : ''].filter(Boolean).join(' · ');
 function matches(e){
   if (e.date !== state.day) return false;
   if (state.groups.length && !state.groups.includes(GROUP[e.type])) return false;
@@ -353,27 +428,42 @@ function matches(e){
 }
 const hasFilters = () => state.groups.length || state.venue || state.topic || state.picksOnly || q;
 
+// ---------- clashes ----------
+function overlaps(a, b){
+  if (a.date !== b.date) return false;
+  const as = minutes(a.time), ae = as + dur(a), bs = minutes(b.time), be = bs + dur(b);
+  return as < be && bs < ae;
+}
+function computeClashes(){
+  clashes = new Map();
+  const picked = EVENTS.filter(e => picks.has(e.eventNo));
+  for (const a of picked) for (const b of picked) if (a !== b && overlaps(a, b)) { if (!clashes.has(a.eventNo)) clashes.set(a.eventNo, []); clashes.get(a.eventNo).push(b.eventNo); }
+}
+const clashBadge = e => clashes.has(e.eventNo) ? `<span class="badge clash">⚠ Clashes with ${esc(clashes.get(e.eventNo).map(n => byNo.get(n).title).join(', '))}</span>` : '';
+
 // ---------- calendar export ----------
-function addMinutes(time, mins){ const [h, m] = time.split(':').map(Number); const t = h * 60 + m + mins; return `${String(Math.floor(t / 60) % 24).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`; }
-function utcStamp(date, time){                       // London wall-clock -> UTC basic format
+function addMinutes(time, mins){ const t = minutes(time) + mins; return `${String(Math.floor(t / 60) % 24).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`; }
+function utcStamp(date, time){
   const [y, mo, d] = date.split('-').map(Number); const [h, mi] = time.split(':').map(Number);
   return new Date(Date.UTC(y, mo - 1, d, h, mi) - LONDON_OFFSET_MIN * 60000).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
 }
-function eventTimes(e){ const dur = DURATION[e.type] || 60; return {start: utcStamp(e.date, e.time), end: utcStamp(e.date, addMinutes(e.time, dur)), dur}; }
+function eventTimes(e){ return {start: utcStamp(e.date, e.time), end: utcStamp(e.date, addMinutes(e.time, dur(e))), dur: dur(e)}; }
 function calDescription(e){
-  const {dur} = eventTimes(e);
   const lines = [`${e.type} · ${e.venue} · ${DAYS[e.date]} ${e.time} (London time)`];
   if (whoPlain(e)) lines.push(whoPlain(e));
   lines.push('');
   if (cleanDesc(e.description)) lines.push(cleanDesc(e.description), '');
+  const b = BRIEFINGS[e.eventNo];
+  if (b) lines.push(`Briefing: ${b.question}`, '');
   lines.push(`Tickets: ${ticketLine(e)}`, `Topics: ${e.topics.join(', ')}`);
   if (e.url) lines.push(`Event page: ${e.url}`);
-  lines.push('', `End time is an estimate (${dur} min) — the festival publishes start times only. From an unofficial planner, not affiliated with HowTheLightGetsIn.`);
+  lines.push(`Planner: ${PUBLIC_URL}#event=${e.eventNo}`);
+  lines.push('', `End time is an estimate (${dur(e)} min) — the festival publishes start times only. From an unofficial planner, not affiliated with HowTheLightGetsIn.`);
   return lines.join('\n');
 }
 const calLocation = e => `${e.venue}, HowTheLightGetsIn London, Kenwood House, Hampstead Lane, London NW3 7JR`;
 const icsText = s => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
-function fold(line){                                  // RFC 5545: max 75 octets per line; continuation lines start with a space
+function fold(line){
   const enc = new TextEncoder(); let out = '', cur = '', limit = 75;
   for (const ch of line) {
     if (enc.encode(cur + ch).length > limit) { out += cur + '\r\n '; cur = ch; limit = 74; }
@@ -400,7 +490,6 @@ function gcalLink(e){
   const p = new URLSearchParams({action:'TEMPLATE', text:e.title, dates:`${start}/${end}`, details:calDescription(e).slice(0, 1800), location:calLocation(e), ctz:'Europe/London'});
   return 'https://calendar.google.com/calendar/render?' + p.toString();
 }
-const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 function download(filename, text, mime){
   const blob = new Blob([text], {type: mime});
   const url = URL.createObjectURL(blob);
@@ -408,7 +497,7 @@ function download(filename, text, mime){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
-function downloadEvent(e){ download(`htlgi-${e.date.slice(5)}-${slug(e.title)}.ics`, icsFile([e], 'HTLGI London 2026'), 'text/calendar;charset=utf-8'); }
+const downloadEvent = e => download(`htlgi-${e.date.slice(5)}-${slug(e.title)}.ics`, icsFile([e], 'HTLGI London 2026'), 'text/calendar;charset=utf-8');
 function downloadPicks(){
   const evs = EVENTS.filter(e => picks.has(e.eventNo));
   if (!evs.length) { showBanner('<span>No picks yet — tap ☆ on an event to add it, then export them all at once.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
@@ -419,7 +508,9 @@ function downloadPicks(){
 // ---------- toolbar ----------
 function renderChips(){
   const c = document.getElementById('chips');
-  let h = `<button type="button" class="chip pickchip" data-picks aria-pressed="${state.picksOnly}">★ My picks <span>(${[...picks].filter(n => byNo.get(n).date === state.day).length})</span></button>`;
+  const dayPicks = [...picks].filter(n => byNo.get(n).date === state.day);
+  const dayClash = dayPicks.filter(n => clashes.has(n)).length;
+  let h = `<button type="button" class="chip pickchip" data-picks aria-pressed="${state.picksOnly}">★ My picks <span>(${dayPicks.length})</span>${dayClash ? `<span class="warn">⚠ ${dayClash} clash</span>` : ''}</button>`;
   for (const [key, label] of GROUPS) h += `<button type="button" class="chip g-${key}" data-group="${key}" aria-pressed="${state.groups.includes(key)}"><i></i>${label}</button>`;
   if (isFestivalDay) h += `<button type="button" class="chip now" data-now>Now</button>`;
   c.innerHTML = h;
@@ -436,6 +527,34 @@ function renderStatus(){
   document.querySelector('[data-export-picks]').hidden = picks.size === 0;
 }
 
+// ---------- now & next ----------
+function renderNowNext(){
+  const el = document.getElementById('nownext');
+  const now = currentNow();
+  if (!DAYS[now.date]) { el.hidden = true; return; }
+  const nowMin = minutes(now.time);
+  const todays = EVENTS.filter(e => e.date === now.date);
+  const on = todays.filter(e => { const s = minutes(e.time); return s <= nowMin && nowMin < s + dur(e); });
+  const soon = todays.filter(e => { const s = minutes(e.time); return s > nowMin && s <= nowMin + 45; });
+  const nextPick = todays.filter(e => picks.has(e.eventNo) && minutes(e.time) + 5 >= nowMin).sort((a, b) => a.time.localeCompare(b.time))[0];
+  const chip = e => `<button type="button" class="nn-chip g-${GROUP[e.type]}" data-no="${e.eventNo}"><b>${e.time}</b><span>${esc(e.venue)}</span>${esc(e.title)}${picks.has(e.eventNo) ? '<span class="st">★</span>' : ''}</button>`;
+  let pick = '';
+  if (nextPick) {
+    const diff = minutes(nextPick.time) - nowMin;
+    const cd = diff > 0 ? `in ${diff} min` : diff === 0 ? 'starting now' : `started ${-diff} min ago`;
+    pick = `<div class="nn-pick">★ Your next pick: <button type="button" data-no="${nextPick.eventNo}">${esc(nextPick.title)}</button><span>· ${esc(nextPick.venue)} · ${nextPick.time}</span><span class="cd">${cd}</span></div>`;
+  } else if (todays.some(e => picks.has(e.eventNo))) {
+    pick = '<div class="nn-empty">No more picks today — see what\'s on below.</div>';
+  }
+  el.innerHTML = `<div class="nn">
+    <div class="nn-head"><b>Now &amp; next</b><span class="nn-time">${DAYS[now.date]} ${now.time}${now.simulated ? ' · preview' : ''}</span></div>
+    ${pick}
+    <div class="nn-row"><span class="nn-label">On now</span><div class="nn-chips">${on.length ? on.map(chip).join('') : '<span class="nn-empty">Nothing running right now.</span>'}</div></div>
+    <div class="nn-row"><span class="nn-label">Next 45 min</span><div class="nn-chips">${soon.length ? soon.map(chip).join('') : '<span class="nn-empty">Nothing starting in the next 45 minutes.</span>'}</div></div>
+  </div>`;
+  el.hidden = false;
+}
+
 // ---------- list ----------
 function renderList(list){
   if (!list.length) return `<div class="empty"><b>Nothing matches</b>Try another day, clear a filter, or search for a speaker.</div>`;
@@ -448,10 +567,10 @@ function renderList(list){
     for (const e of evs) {
       const p = picks.has(e.eventNo);
       h += `<article class="ev g-${GROUP[e.type]}${p ? ' picked' : ''}" data-no="${e.eventNo}" tabindex="0" role="button" aria-label="${esc(e.title)}">
-        <div class="ev-head"><span class="ev-type">${esc(e.type)}</span><span class="ev-venue">${esc(e.venue)}</span><button type="button" class="pick" data-pick="${e.eventNo}" aria-pressed="${p}" aria-label="${p ? 'Remove from' : 'Add to'} my picks">${p ? '★' : '☆'}</button></div>
+        <div class="ev-head"><span class="ev-type">${esc(e.type)}</span><span class="ev-venue">${esc(e.venue)}</span>${BRIEFINGS[e.eventNo] ? '<span class="brief-badge">Briefing</span>' : ''}<button type="button" class="pick" data-pick="${e.eventNo}" aria-pressed="${p}" aria-label="${p ? 'Remove from' : 'Add to'} my picks">${p ? '★' : '☆'}</button></div>
         <h3 class="ev-title">${esc(e.title)}</h3>
         ${(e.speakers.length || e.hosts.length) ? `<p class="ev-who">${whoLine(e)}</p>` : ''}
-        <div class="ev-foot">${ticketBadge(e)}<span class="tags">${e.topics.map(esc).join(' · ')}</span></div>
+        <div class="ev-foot">${ticketBadge(e)}${clashBadge(e)}<span class="tags">${e.topics.map(esc).join(' · ')}</span></div>
       </article>`;
     }
     h += '</div></section>';
@@ -470,7 +589,7 @@ function renderGrid(list){
     h += `<tr><td class="t${past ? ' past' : ''}">${t}</td>`;
     for (const v of venues) {
       const evs = list.filter(e => e.time === t && e.venue === v);
-      h += '<td class="c">' + evs.map(e => `<button type="button" class="tile g-${GROUP[e.type]}${picks.has(e.eventNo) ? ' picked' : ''}" data-no="${e.eventNo}">${picks.has(e.eventNo) ? '<span class="star">★</span>' : ''}<b>${esc(e.title)}</b>${(e.speakers.length || e.hosts.length) ? `<span>${esc([...e.speakers, ...e.hosts.map(x => x + ' (host)')].join(', '))}</span>` : ''}</button>`).join('') + '</td>';
+      h += '<td class="c">' + evs.map(e => `<button type="button" class="tile g-${GROUP[e.type]}${picks.has(e.eventNo) ? ' picked' : ''}" data-no="${e.eventNo}">${clashes.has(e.eventNo) ? '<span class="warn" title="Clashes with another pick">⚠</span>' : ''}${picks.has(e.eventNo) ? '<span class="star">★</span>' : ''}<b>${esc(e.title)}</b>${(e.speakers.length || e.hosts.length) ? `<span>${esc([...e.speakers, ...e.hosts.map(x => x + ' (host)')].join(', '))}</span>` : ''}</button>`).join('') + '</td>';
     }
     h += '</tr>';
   }
@@ -479,7 +598,8 @@ function renderGrid(list){
 }
 
 function render(){
-  renderChips(); renderStatus();
+  computeClashes();
+  renderChips(); renderStatus(); renderNowNext();
   const list = EVENTS.filter(matches);
   document.getElementById('main').innerHTML = state.view === 'grid' ? renderGrid(list) : renderList(list);
   save(LS_STATE, state);
@@ -497,29 +617,71 @@ function closeSheet(){
   sheetStack = [];
   document.getElementById('sheet').hidden = true; document.getElementById('scrim').hidden = true;
 }
+const paras = s => (s || '').split(/\n{2,}|\n/).filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('');
+const ytId = url => { const m = String(url).match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/)([\w-]{6,})/); return m ? m[1] : null; };
+const ext = (href, label) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`;
+
+function mediaBlock(e){
+  const isPerf = PERFORMANCE.has(e.type), isFilm = e.type === 'DokBox';
+  if (!isPerf && !isFilm) return '';
+  const entries = isFilm ? [[e.title, MEDIA.films[e.title], e.title]] : ((e.actSlugs && e.actSlugs.length) ? e.actSlugs : [slug(e.title)]).map(s => [s, MEDIA.acts[s], (actBySlug.get(s) || {}).name || e.title]);
+  let h = `<h3 class="sub">${isFilm ? 'Watch' : 'Listen & watch'}</h3><div class="media">`;
+  for (const [key, m, name] of entries) {
+    const btns = [];
+    if (m && m.spotify) btns.push(`<a class="btn" href="${esc(m.spotify)}" target="_blank" rel="noopener">Spotify ↗</a>`);
+    if (m && m.youtube) {
+      const id = ytId(m.youtube), label = m.youtubeLabel || 'Watch on YouTube';
+      btns.push(IN_ARTIFACT || !id ? `<a class="btn" href="${esc(m.youtube)}" target="_blank" rel="noopener">▶ ${esc(label)} ↗</a>` : `<button type="button" class="btn" data-yt="${esc(id)}" data-key="${esc(key)}">▶ ${esc(label)}</button>`);
+    }
+    if (m && m.trailer) btns.push(`<a class="btn" href="${esc(m.trailer)}" target="_blank" rel="noopener">Trailer ↗</a>`);
+    if (isPerf && !(m && m.spotify)) btns.push(`<a class="btn" href="https://open.spotify.com/search/${encodeURIComponent(name)}" target="_blank" rel="noopener">Search Spotify ↗</a>`);
+    if (!(m && (m.youtube || m.trailer))) btns.push(`<a class="btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(name + (isFilm ? ' trailer' : ' live'))}" target="_blank" rel="noopener">Search YouTube ↗</a>`);
+    const links = ((m && m.links) || []).map(l => ext(l.url, l.label)).join(' · ');
+    h += `<div class="media-item">${entries.length > 1 ? `<div class="media-name">${esc(name)}</div>` : ''}${m && m.year ? `<p class="src">${esc(String(m.year))}</p>` : ''}<div class="actions">${btns.join('')}</div>${m && m.note ? `<p class="src">${esc(m.note)}</p>` : ''}${links ? `<p class="media-links">${links}</p>` : ''}<div class="embed" data-embed="${esc(key)}" hidden></div></div>`;
+  }
+  if (isPerf && PLAYLIST) h += `<p class="media-links">${ext(PLAYLIST.url, PLAYLIST.label)}</p>`;
+  return h + '</div>';
+}
+
+function briefingBlock(b){
+  const sides = b.sides.map(s => `<div class="side"><h4>${esc(s.label)}</h4><ul class="for">${s.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul><p class="lab">Usual objections</p><ul class="against">${s.objections.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('');
+  const spk = b.speakers.map(s => `<dt>${esc(s.name)}</dt><dd>${esc(s.stance)}</dd>`).join('');
+  const qs = b.questions.map(x => `<li>${esc(x)}</li>`).join('');
+  const rd = b.reading.map(r => `<li class="rd"><b>${esc(r.title)}</b> — <span>${esc(r.by)}</span>${r.note ? `<br><span>${esc(r.note)}</span>` : ''}</li>`).join('');
+  const terms = (b.terms || []).map(t => `<dt>${esc(t.term)}</dt><dd>${esc(t.def)}</dd>`).join('');
+  return `<div class="brief">
+    <p class="bq">${esc(b.question)}</p>
+    <p>${esc(b.why)}</p>
+    <h3 class="sub">The sides</h3>${sides}
+    <h3 class="sub">Where the speakers are likely to stand</h3><dl>${spk}</dl>
+    <h3 class="sub">Questions worth asking</h3><ol>${qs}</ol>
+    <h3 class="sub">Read or watch first</h3><ul>${rd}</ul>
+    ${terms ? `<h3 class="sub">Terms</h3><dl>${terms}</dl>` : ''}
+    <p class="note">${esc(BRIEF_NOTE)}</p>
+  </div>`;
+}
+
 function showEvent(no, push = true){
   const e = byNo.get(no); if (!e) return;
   if (push) sheetStack.push({kind:'event', no});
   const p = picks.has(no);
-  const paras = cleanDesc(e.description) ? cleanDesc(e.description).split(/\n{2,}|\n/).filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('') : '<p class="src">No description published for this slot.</p>';
+  const desc = cleanDesc(e.description) ? paras(cleanDesc(e.description)) : '<p class="src">No description published for this slot.</p>';
   const people = e.people.map(pe => {
     const s = pe.slug ? spkBySlug.get(pe.slug) : spkByName.get(pe.name.toLowerCase());
     const has = s && s.bio;
     return `<button type="button" class="person${has ? ' link' : ''}" ${has ? `data-speaker="${esc(s.slug || s.name)}"` : 'disabled'}>${esc(pe.name)}${pe.role === 'host' ? ' <small>host</small>' : ''}</button>`;
   });
-  const acts = (e.actSlugs || []).map(slug => actBySlug.get(slug)).filter(a => a && a.bio).map(a => `<button type="button" class="person link" data-act="${esc(a.slug)}">${esc(a.name)} <small>${a.kind}</small></button>`);
-  const links = [e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">Event page ↗</a>` : '', ...e.links.filter(l => /menu/i.test(l.text)).map(l => `<a href="${esc(l.href)}" target="_blank" rel="noopener">Menu (PDF) ↗</a>`)].filter(Boolean);
-  const {dur} = eventTimes(e);
+  const acts = (e.actSlugs || []).map(s => actBySlug.get(s)).filter(a => a && a.bio).map(a => `<button type="button" class="person link" data-act="${esc(a.slug)}">${esc(a.name)} <small>${a.kind}</small></button>`);
+  const links = [e.url ? ext(e.url, 'Event page') : '', ...e.links.filter(l => /menu/i.test(l.text)).map(l => ext(l.href, 'Menu (PDF)'))].filter(Boolean);
   const icsBtn = IN_ARTIFACT
     ? `<a class="btn" href="${esc(PUBLIC_URL + '#event=' + e.eventNo)}" target="_blank" rel="noopener">Add to calendar (.ics) ↗</a>`
     : `<button type="button" class="btn" data-ics="${e.eventNo}">Add to calendar (.ics)</button>`;
-  openSheet(`
-    <div class="g-${GROUP[e.type]}">
-      <div class="kicker"><span class="type">${esc(e.type)}</span><span>Event #${e.eventNo}</span></div>
-      <h2 id="sheet-title">${esc(e.title)}</h2>
-      <p class="when">${DAYS[e.date]} ${e.time} <span>· ${esc(e.venue)}</span></p>
+  const clash = clashes.has(no) ? `<div class="clashnote">⚠ Overlaps with your pick${clashes.get(no).length > 1 ? 's' : ''}: ${clashes.get(no).map(n => { const o = byNo.get(n); return `<button type="button" data-no="${n}">${esc(o.title)}</button> (${o.time}, ${esc(o.venue)})`; }).join(', ')}. Start times only — ${dur(e)}-minute sessions assumed.</div>` : '';
+  const b = BRIEFINGS[no];
+  const overview = `
       ${(people.length || acts.length) ? `<div class="people">${people.join('')}${acts.join('')}</div>` : ''}
-      <div class="desc">${paras}${e.descriptionSource === 'artist profile' ? '<p class="src">Description from the artist’s profile page.</p>' : ''}</div>
+      <div class="desc">${desc}${e.descriptionSource === 'artist profile' ? '<p class="src">Description from the artist’s profile page.</p>' : ''}</div>
+      ${mediaBlock(e)}
       <dl class="meta">
         <dt>Tickets</dt><dd>${esc(ticketLine(e))}</dd>
         <dt>Topics</dt><dd>${e.topics.map(esc).join(' · ')}</dd>
@@ -529,8 +691,15 @@ function showEvent(no, push = true){
         <button type="button" class="btn${p ? ' pickbtn' : ''}" data-pick="${e.eventNo}" aria-pressed="${p}">${p ? '★ In my picks' : '☆ Add to my picks'}</button>
         ${icsBtn}
         <a class="btn" href="${esc(gcalLink(e))}" target="_blank" rel="noopener">Google Calendar ↗</a>
-        <p class="note">Calendar entries include the talk summary, venue, speakers and ticket notes. End time is an estimate (${dur} min).</p>
-      </div>
+        <p class="note">Calendar entries include the talk summary, venue, speakers and ticket notes. End time is an estimate (${dur(e)} min).</p>
+      </div>`;
+  openSheet(`
+    <div class="g-${GROUP[e.type]}">
+      <div class="kicker"><span class="type">${esc(e.type)}</span><span>Event #${e.eventNo}</span></div>
+      <h2 id="sheet-title">${esc(e.title)}</h2>
+      <p class="when">${DAYS[e.date]} ${e.time} <span>· ${esc(e.venue)}</span></p>
+      ${clash}
+      ${b ? `<div class="tabs"><button type="button" data-tab="overview" aria-pressed="true">Overview</button><button type="button" data-tab="briefing" aria-pressed="false">Briefing</button></div><div data-pane="overview">${overview}</div><div data-pane="briefing" hidden>${briefingBlock(b)}</div>` : overview}
     </div>`);
 }
 function appearsList(nos){
@@ -539,23 +708,21 @@ function appearsList(nos){
 function showSpeaker(key, push = true){
   const s = spkBySlug.get(key) || spkByName.get(key.toLowerCase()); if (!s) return;
   if (push) sheetStack.push({kind:'speaker', key});
-  const paras = s.bio.split(/\n{2,}|\n/).filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('');
   openSheet(`
     <div class="kicker"><span>Speaker</span></div>
     <h2 id="sheet-title">${esc(s.name)}</h2>
-    <div class="bio">${s.tagline ? `<p class="tagline">${esc(s.tagline)}</p>` : ''}${paras}</div>
-    ${s.profileUrl ? `<dl class="meta"><dt>Profile</dt><dd><a href="${esc(s.profileUrl)}" target="_blank" rel="noopener">howthelightgetsin.org ↗</a></dd></dl>` : ''}
+    <div class="bio">${s.tagline ? `<p class="tagline">${esc(s.tagline)}</p>` : ''}${paras(s.bio)}</div>
+    ${s.profileUrl ? `<dl class="meta"><dt>Profile</dt><dd>${ext(s.profileUrl, 'howthelightgetsin.org')}</dd></dl>` : ''}
     <h3 class="sub">Appears in</h3>${appearsList([...s.speaks, ...s.hosts])}`);
 }
-function showAct(slug, push = true){
-  const a = actBySlug.get(slug); if (!a) return;
-  if (push) sheetStack.push({kind:'act', key:slug});
-  const paras = a.bio.split(/\n{2,}|\n/).filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('');
+function showAct(key, push = true){
+  const a = actBySlug.get(key); if (!a) return;
+  if (push) sheetStack.push({kind:'act', key});
   openSheet(`
     <div class="kicker"><span>${esc(a.kind)}</span></div>
     <h2 id="sheet-title">${esc(a.name)}</h2>
-    <div class="bio">${paras}</div>
-    <dl class="meta"><dt>Profile</dt><dd><a href="${esc(a.profileUrl)}" target="_blank" rel="noopener">howthelightgetsin.org ↗</a></dd></dl>
+    <div class="bio">${paras(a.bio)}</div>
+    <dl class="meta"><dt>Profile</dt><dd>${ext(a.profileUrl, 'howthelightgetsin.org')}</dd></dl>
     ${a.events.length ? `<h3 class="sub">Performing</h3>${appearsList(a.events)}` : ''}`);
 }
 function goBack(){
@@ -573,9 +740,7 @@ function togglePick(no){
   const top = sheetStack[sheetStack.length - 1];
   if (top && top.kind === 'event' && top.no === no) showEvent(no, false);
 }
-function picksLink(){
-  return location.origin + location.pathname + '#picks=' + [...picks].sort((a, b) => a - b).join(',');
-}
+const picksLink = () => location.origin + location.pathname + '#picks=' + [...picks].sort((a, b) => a - b).join(',');
 function showBanner(html){ const b = document.getElementById('banner'); b.innerHTML = `<div class="banner-inner">${html}</div>`; b.hidden = false; b.scrollIntoView({block:'nearest'}); }
 function hideBanner(){ document.getElementById('banner').hidden = true; }
 function checkHash(){
@@ -586,7 +751,7 @@ function checkHash(){
   const incoming = m[1].split(',').map(Number).filter(n => byNo.has(n));
   const fresh = incoming.filter(n => !picks.has(n));
   if (!incoming.length) return;
-  if (!fresh.length) { history.replaceState(null, '', location.pathname); return; }
+  if (!fresh.length) { history.replaceState(null, '', location.pathname + location.search); return; }
   showBanner(`<span>This link carries <b>${incoming.length} picks</b> (${fresh.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to my picks</button><button type="button" class="btn" data-dismiss>Not now</button>`);
   document.getElementById('banner').dataset.incoming = fresh.join(',');
 }
@@ -609,14 +774,16 @@ document.addEventListener('click', ev => {
   if (d.pick) { ev.stopPropagation(); togglePick(+d.pick); return; }
   if (d.ics) { downloadEvent(byNo.get(+d.ics)); return; }
   if ('exportPicks' in d) { downloadPicks(); return; }
+  if (d.tab) { t.closest('.sheet-body').querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === d.tab)); t.closest('.sheet-body').querySelectorAll('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== d.tab; }); document.getElementById('sheet-body').scrollTop = 0; return; }
+  if (d.yt) { const box = t.closest('.media-item').querySelector('.embed'); box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(d.yt)}?autoplay=1&rel=0" title="YouTube video" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`; box.hidden = false; t.hidden = true; return; }
   if (d.speaker) { showSpeaker(d.speaker); return; }
   if (d.act) { showAct(d.act); return; }
   if (d.no) { showEvent(+d.no); return; }
   if (t.id === 'close') { closeSheet(); return; }
   if (t.id === 'back') { goBack(); return; }
   if (t.id === 'clearq') { q = ''; document.getElementById('q').value = ''; t.hidden = true; render(); return; }
-  if ('import' in d) { const inc = (document.getElementById('banner').dataset.incoming || '').split(',').map(Number).filter(Boolean); inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]); history.replaceState(null, '', location.pathname); hideBanner(); render(); return; }
-  if ('dismiss' in d) { if (/picks=/.test(location.hash)) history.replaceState(null, '', location.pathname); hideBanner(); return; }
+  if ('import' in d) { const inc = (document.getElementById('banner').dataset.incoming || '').split(',').map(Number).filter(Boolean); inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]); history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return; }
+  if ('dismiss' in d) { if (/picks=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
   if ('share' in d) { sharePicks(); return; }
   if ('copy' in d) { const inp = document.getElementById('picklink'); inp.select(); try { navigator.clipboard.writeText(inp.value).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
 });
@@ -636,6 +803,10 @@ window.addEventListener('hashchange', checkHash);
   const t = document.getElementById('topic'); TOPICS.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; t.appendChild(o); });
   render();
   checkHash();
+  if (isFestivalDay) setInterval(renderNowNext, 60000);
+  if (!IN_ARTIFACT && 'serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
+  }
 })();
 })();
 </script>

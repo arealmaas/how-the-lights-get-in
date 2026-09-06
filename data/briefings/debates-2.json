@@ -1,0 +1,429 @@
+{
+  "30": {
+    "question": "Are the educated no longer winning — and if degrees have stopped paying, is the fault with education or with our idea of it?",
+    "why": "Graduate premiums are shrinking, student debt is at record levels and AI is aimed squarely at the cognitive skills universities sell. Whether the answer is more trades, less school, or a different kind of education decides what a generation is told to do at eighteen.",
+    "sides": [
+      {
+        "label": "The future belongs to the skilled and self-taught; mass higher education was a bubble",
+        "points": [
+          "For many degrees the lifetime earnings bounce is now smaller than the debt; electricians and plumbers out-earn graduates in their twenties.",
+          "Knowledge is free and instant; three years memorising it is a signalling ritual, not learning.",
+          "Illich's charge stands: compulsory schooling teaches conformity and the habit of being taught, not judgement."
+        ],
+        "objections": [
+          "Averages hide the point: the premium collapsed for some subjects and institutions, not for education as such.",
+          "AI automates the routine skills first — trades are not immune, and the judgement that survives is exactly what good education builds.",
+          "The self-taught who succeed are the survivors we hear about; most people learn better with structure and teachers."
+        ]
+      },
+      {
+        "label": "Education isn't failing; a factual, credential-driven version of it is. Rebuild it around judgement",
+        "points": [
+          "Wisdom to choose between facts is more valuable when facts are free, not less; that was always the point of a liberal education.",
+          "The debt crisis is a financing model, not an argument against learning.",
+          "Societies that abandoned broad education for narrow skills paid later in adaptability."
+        ],
+        "objections": [
+          "'Judgement' is what every curriculum reform has promised since Dewey; the results are hard to measure and easy to fake.",
+          "Rebuilding around judgement may just mean the elite keeps the good education while everyone else is steered into 'skills'.",
+          "Knowledge-rich schooling produced the very graduates now said to be losing; the diagnosis contradicts the evidence."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Daniel Susskind", "stance": "Oxford economist (A World Without Work; Growth: A Reckoning) who has argued that AI will hollow out cognitive work and that education must be rethought rather than expanded on autopilot."},
+      {"name": "Thangam Debbonaire", "stance": "Labour peer, former MP and professional musician. Likely to defend access to education and lifelong learning while conceding that the funding model is broken."},
+      {"name": "Michael Gove", "stance": "As Education Secretary he championed a knowledge-rich curriculum in the E. D. Hirsch tradition and academic rigour. Expect a defence of knowledge against 'skills-only' thinking and a critique of what universities did with their autonomy."},
+      {"name": "Philip Collins", "stance": "Hosts. Columnist and former chief speechwriter to Tony Blair."}
+    ],
+    "questions": [
+      "If a degree is a signal, what would you replace it with that employers would trust?",
+      "Which is more likely to survive AI: a plumber's apprenticeship or a philosophy degree — and why?",
+      "Should the state stop subsidising degrees that don't pay, or is that a market test that education was never meant to pass?"
+    ],
+    "reading": [
+      {"title": "Deschooling Society", "by": "Ivan Illich (1971)", "note": "The argument, cited in the billing, that schooling manufactures conformity."},
+      {"title": "A World Without Work", "by": "Daniel Susskind (2020)", "note": "His case on automation and what humans are left to do."},
+      {"title": "The Case Against Education", "by": "Bryan Caplan (2018)", "note": "The strongest economic version of 'it's mostly signalling'."}
+    ],
+    "terms": [
+      {"term": "Graduate premium", "def": "The extra lifetime earnings from a degree over the alternative — now negative for some courses once debt is counted."},
+      {"term": "Signalling", "def": "The theory that credentials mainly certify pre-existing ability and conscientiousness rather than adding skills."},
+      {"term": "Knowledge-rich curriculum", "def": "Schooling built on a defined body of facts and cultural literacy, as opposed to generic skills."}
+    ]
+  },
+  "33": {
+    "question": "Should we deliberately engineer the planet's climate — or is 'dominion over nature' the delusion that caused the crisis?",
+    "why": "Solar geoengineering is now funded by billionaires and debated in Nature; carbon removal is written into net-zero plans. As warming outruns emissions cuts, the question moves from whether to research it to who decides, on what evidence, and what happens if it stops.",
+    "sides": [
+      {
+        "label": "We are already engineering the planet — badly. Doing it on purpose may be the only responsible option",
+        "points": [
+          "Emissions are not falling fast enough; reflecting a fraction of sunlight is the one lever that works on the timescale of the damage.",
+          "Refusing to research it doesn't stop it; it guarantees that when a desperate government tries it, no one will know what they're doing.",
+          "Humans have taken planetary responsibility for good and ill since agriculture; the honest position is to manage it consciously."
+        ],
+        "objections": [
+          "Solar geoengineering doesn't remove carbon: it masks warming while oceans acidify, and stopping it abruptly is catastrophic ('termination shock').",
+          "Regional effects — monsoons, droughts — fall on people who had no vote; there is no governance for a global thermostat.",
+          "Moral hazard: a cheap-looking fix weakens the will to cut emissions."
+        ]
+      },
+      {
+        "label": "Geoengineering is the Enlightenment delusion at planetary scale; the answer is transformation, not control",
+        "points": [
+          "The crisis came from treating nature as a machine to be optimised; the same mindset cannot be the cure.",
+          "The risks are unbounded and irreversible, the benefits accrue to those who caused the problem, and the technology entrenches their power.",
+          "Cutting emissions, restoring ecosystems and changing economies are proven; stratospheric aerosols are a bet."
+        ],
+        "objections": [
+          "'Transformation' has been the plan for thirty years while emissions rose; refusing a tool on philosophical grounds has costs measured in lives.",
+          "Rejecting all intervention is itself a decision to accept whatever warming arrives.",
+          "Nature restoration and carbon removal are also engineering; the line between wise and hubristic is being drawn by preference."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Adrienne Buller", "stance": "Author of The Value of a Whale, a critique of green capitalism and market fixes. Expect scepticism of techno-solutions that leave the economic system intact."},
+      {"name": "Janos Pasztor", "stance": "Former UN assistant secretary-general and head of the Carnegie Climate Governance Initiative, which pushed for rules on geoengineering research without advocating deployment. Expect 'we must govern it before someone does it' rather than either camp."},
+      {"name": "Adam Frank", "stance": "Astrophysicist (Light of the Stars) who frames humanity as a planetary force that must learn to steer its 'technosphere'. Likely to argue that conscious management of the planet is now unavoidable."},
+      {"name": "Laurie Laybourn", "stance": "Researcher on climate 'derailment risk' and co-author of Planet on Fire, arguing for systemic economic change. Likely to warn that geoengineering distracts from and entrenches the causes."},
+      {"name": "Isabel Hilton", "stance": "Hosts. Journalist and founder of China Dialogue."}
+    ],
+    "questions": [
+      "Who should be able to veto a solar geoengineering programme — and who would actually be able to?",
+      "If research is fine but deployment isn't, what stops research from becoming deployment?",
+      "Is planting a forest engineering the planet? Where exactly does dominion begin?"
+    ],
+    "reading": [
+      {"title": "Under a White Sky", "by": "Elizabeth Kolbert (2021)", "note": "The best reported tour of deliberate planetary intervention and its ironies."},
+      {"title": "The Value of a Whale", "by": "Adrienne Buller (2022)", "note": "Her critique of market and technological climate fixes."},
+      {"title": "Light of the Stars", "by": "Adam Frank (2018)", "note": "His argument that civilisations and planets co-evolve — the frame he'll bring."}
+    ],
+    "terms": [
+      {"term": "Solar radiation management", "def": "Reflecting sunlight, typically with stratospheric aerosols, to cool the planet without removing carbon."},
+      {"term": "Termination shock", "def": "Rapid warming if a solar geoengineering programme were stopped while greenhouse gases remain high."},
+      {"term": "Moral hazard", "def": "A safety net that encourages riskier behaviour — here, a fix that weakens emissions cuts."}
+    ]
+  },
+  "41": {
+    "question": "Is the universe a law-governed mechanism, or an evolving, self-creating process whose 'laws' are themselves history?",
+    "why": "Cosmology's puzzles — why these laws, why these constants, why a universe hospitable to life — have led serious physicists to propose that laws evolve, are selected, or were not fixed at the start. It is a fight over what a fundamental explanation even looks like.",
+    "sides": [
+      {
+        "label": "The laws are timeless and universal; finding them is what physics is",
+        "points": [
+          "Relativity and quantum mechanics predict to a dozen decimal places; no evolutionary story has produced a single number.",
+          "'Evolving laws' either obey a deeper fixed rule (so the laws aren't really evolving) or nothing (so there is no explanation at all).",
+          "Selection needs variation and inheritance across many universes we cannot observe; that is metaphysics with equations."
+        ],
+        "objections": [
+          "Fixed laws cannot explain themselves: why these laws, these constants, this initial state?",
+          "The 'unreasonable effectiveness' of mathematics may be a selection effect of what physicists choose to study.",
+          "Physics already accepts that effective laws change with energy and epoch; 'timeless' is an assumption, not a finding."
+        ]
+      },
+      {
+        "label": "The cosmos evolves: laws, constants and even time emerged, and selection is the deepest explanation we have",
+        "points": [
+          "Hawking's final theory with Hertog: the laws we see crystallised in the early universe from a broader range, the way biology's rules emerged.",
+          "Smolin's cosmological natural selection makes a testable claim — that universes are tuned to make black holes.",
+          "Evolution explains complexity without a designer or a lawgiver; that is exactly the explanatory gap cosmology has."
+        ],
+        "objections": [
+          "Darwinian selection needs competing populations; one universe, or unobservable others, is not a population.",
+          "'Explains without predicting' is what the billing itself concedes; physics has always demanded more.",
+          "Evolving laws may just push the question back: what governs the evolution?"
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Thomas Hertog", "stance": "Stephen Hawking's collaborator and author of On the Origin of Time, which argues the laws of physics evolved in the early universe and should be read 'top-down' from our position. Expect the strongest case that laws have a history."},
+      {"name": "Daniel Whiteson", "stance": "CERN experimental particle physicist and co-author of We Have No Idea. Likely to defend the empirical, law-seeking method while cheerfully admitting how much remains unknown."},
+      {"name": "Ivette Fuentes", "stance": "Experimental quantum physicist working on quantum sensors and relativistic quantum information. Likely to ask what any 'evolving laws' picture would let us measure."},
+      {"name": "Philip Ball", "stance": "Hosts. Science writer and former Nature editor."}
+    ],
+    "questions": [
+      "What observation would show that a law of physics has changed — and has anyone made one?",
+      "If laws evolved, was there ever a moment with no laws? What did that look like?",
+      "Is 'the universe is an organism' a theory, an analogy, or a mood?"
+    ],
+    "reading": [
+      {"title": "On the Origin of Time", "by": "Thomas Hertog (2023)", "note": "Hawking's final cosmology as Hertog tells it — the position he brings."},
+      {"title": "The Singular Universe and the Reality of Time", "by": "Roberto Unger and Lee Smolin (2014)", "note": "The philosophical case that laws evolve and time is real."},
+      {"title": "We Have No Idea", "by": "Jorge Cham and Daniel Whiteson (2017)", "note": "Whiteson's guide to the unknowns — and his temperament."}
+    ],
+    "terms": [
+      {"term": "Cosmological natural selection", "def": "Smolin's proposal that universes reproduce through black holes, so physics is tuned to make many of them."},
+      {"term": "Top-down cosmology", "def": "Hawking and Hertog's idea that our observations select which histories of the universe are relevant, rather than one history running forward from the start."},
+      {"term": "Fine-tuning", "def": "The observation that small changes to physical constants would make life impossible — the puzzle both sides claim to solve."}
+    ]
+  },
+  "42": {
+    "question": "Have nation states already surrendered sovereignty to Big Tech — and can they take it back?",
+    "why": "Governments run on Amazon and Microsoft clouds, elections play out on Meta and Alphabet's feeds, and one company's satellites decide battlefield communications. The debate is whether regulation is still possible or whether states are now junior partners.",
+    "sides": [
+      {
+        "label": "The state has already lost: infrastructure, discourse and even war run through a few firms nobody elected",
+        "points": [
+          "60% of government cloud data sits on two American companies; that is not a supplier relationship but a dependency.",
+          "Platforms shape what three billion people see, with no oversight comparable to broadcasting law.",
+          "Firms now make sovereign decisions — restricting Starlink in wartime, refusing military uses — and states accept it because they must."
+        ],
+        "objections": [
+          "States retain the monopoly on law and force; a company can be broken up, taxed, or banned the moment a government is willing to bear the cost.",
+          "Dependency runs both ways: the same firms depend on states for spectrum, courts, contracts and protection.",
+          "The story confuses American corporate power with the end of the nation state; Europe and China are already writing different rules."
+        ]
+      },
+      {
+        "label": "Sovereignty is intact if states use it: regulate, diversify, and stop outsourcing judgement",
+        "points": [
+          "The EU's Digital Services and Markets Acts, China's platform crackdown and Australia's news bargaining code show states can bite.",
+          "Procurement is policy: governments chose the cheapest cloud; they can choose sovereign or federated ones.",
+          "Bans are blunt but real — India banned TikTok overnight, Brazil suspended X."
+        ],
+        "objections": [
+          "Regulation is slow, captured and always a generation behind the product.",
+          "Bans and 'sovereign' infrastructure impose real costs on citizens and often protect state surveillance more than liberty.",
+          "Fines in the billions are a rounding error for firms worth trillions; the rules are priced in."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Silkie Carlo", "stance": "Director of Big Brother Watch; campaigns against surveillance by states and corporations alike. Expect resistance to both Big Tech power and to 'sovereignty' that means state control over speech — the civil-liberties position between the two."},
+      {"name": "Leo Varadkar", "stance": "Former Taoiseach of Ireland, the European home of most US tech firms. Likely to argue that states can regulate through the EU while acknowledging the economic dependence of small countries."},
+      {"name": "Sebastian Mallaby", "stance": "Author of The Power Law on venture capital and a biography of Demis Hassabis. Likely to argue that tech power is real but that markets and states remain the more durable forces."},
+      {"name": "Michael Gove", "stance": "Former Cabinet minister and Spectator editor; a nation-state sovereigntist who supported the Online Safety Act. Expect the case that states must and can reassert control over platforms."},
+      {"name": "Roger Hearing", "stance": "Hosts. Journalist and broadcaster, formerly of the BBC World Service."}
+    ],
+    "questions": [
+      "Which government has actually taken power back from a platform, and what did it cost its citizens?",
+      "If Anthropic can veto a military use of its software, is that corporate overreach or exactly the check we'd want?",
+      "Would you rather your government's data sat with Microsoft or with your own government? Why?"
+    ],
+    "reading": [
+      {"title": "The Age of Surveillance Capitalism", "by": "Shoshana Zuboff (2019)", "note": "The influential case that platforms have accumulated a new kind of power."},
+      {"title": "The Power Law", "by": "Sebastian Mallaby (2022)", "note": "How venture capital built the firms in question — Mallaby's ground."},
+      {"title": "Digital Empires", "by": "Anu Bradford (2023)", "note": "The American, Chinese and European models of governing tech, compared."}
+    ],
+    "terms": [
+      {"term": "Digital sovereignty", "def": "A state's control over the data, infrastructure and platforms its citizens depend on."},
+      {"term": "DSA / DMA", "def": "The EU's Digital Services Act (content and platform duties) and Digital Markets Act (curbs on gatekeeper firms)."},
+      {"term": "Monopoly on violence", "def": "Weber's definition of the state: the sole legitimate user of force in a territory."}
+    ]
+  },
+  "48": {
+    "question": "Is boredom the route to a self and an inner life — or a luxury nostalgia for a world where entertainment was rationed?",
+    "why": "Attention is the most contested resource of the decade. Neuroscience of the default mode network gives the 'rest builds the self' intuition a mechanism, while the digital-detox industry turns it into a product. The question is whether constant stimulation costs us something real.",
+    "sides": [
+      {
+        "label": "Constant stimulation hollows the self; boredom is where identity and thought are made",
+        "points": [
+          "The default mode network, active in wakeful rest, is where autobiographical memory and self-reflection happen; feeds suppress it.",
+          "Creativity research consistently finds insight follows unstructured time; a life without gaps is a life without ideas.",
+          "The economics are revealing: the wealthy buy silence, retreats and phone-free schools while selling stimulation to everyone else."
+        ],
+        "objections": [
+          "The neuroscience is suggestive, not causal — nobody has shown scrolling erases the self.",
+          "Boredom in history meant drudgery and isolation, not creative reverie; its romance is a class privilege.",
+          "People have always feared new media would corrode the mind; the novel was once the infinite scroll."
+        ]
+      },
+      {
+        "label": "Entertainment on demand is a triumph — the problem is exploitation of attention, not stimulation as such",
+        "points": [
+          "Access to music, film, argument and community that once belonged to the rich is now universal; that is not a loss.",
+          "The self is made in engagement with others and the world, not in an empty room.",
+          "Blame the business model that farms attention, not the human appetite for stories."
+        ],
+        "objections": [
+          "Designed compulsion is not the same as chosen pleasure; 'we love it' is what the metrics were built to produce.",
+          "The universal abundance is thin: a hundred tabs is not a rich inner life.",
+          "Even if the appetite is ancient, the dose is new — and the harm data on sleep, attention and adolescence keeps accumulating."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Patricia Lockwood", "stance": "Novelist of the feed (No One Is Talking About This); lives in the internet and is ambivalent about it. Expect neither detox sermon nor techno-cheer, but a precise account of what the scroll does to a mind."},
+      {"name": "Jordan Stephens", "stance": "Musician (Rizzle Kicks), author of the memoir Avoidance, Drugs, Heartbreak and Dogs, and mental-health advocate. Likely to speak for rest, boredom and stepping away, from experience."},
+      {"name": "Tony D. Sampson", "stance": "Digital-culture theorist (Virality; A Sleepwalker's Guide to Social Media) who argues platforms work through affect and contagion below conscious attention. Expect a critique of Big Tech's grip on experience."},
+      {"name": "Jay Shapiro", "stance": "Hosts. Philosopher and podcaster (Dilemma)."}
+    ],
+    "questions": [
+      "When did you last do nothing for an hour — and did anything happen?",
+      "Is 'protect your attention' advice for individuals, or a way of letting the platforms off?",
+      "If boredom is a luxury good, who is being asked to give up the entertainment they only just got?"
+    ],
+    "reading": [
+      {"title": "Stolen Focus", "by": "Johann Hari (2022)", "note": "The popular case that attention is being taken from us, with the research and its critics."},
+      {"title": "A Philosophy of Boredom", "by": "Lars Svendsen (2005)", "note": "Boredom as a modern condition — the longer view."},
+      {"title": "A Sleepwalker's Guide to Social Media", "by": "Tony D. Sampson (2020)", "note": "Sampson's account of how platforms work on us below awareness."}
+    ],
+    "terms": [
+      {"term": "Default mode network", "def": "Brain regions most active during rest and mind-wandering, linked to self-reflection and memory."},
+      {"term": "Attention economy", "def": "Business built on capturing and reselling attention, so engagement is engineered."},
+      {"term": "Digital detox", "def": "Deliberate time away from screens — now a multi-billion industry, which is part of the argument."}
+    ]
+  },
+  "50": {
+    "question": "Is ageing a disease we can defeat — and if we could postpone death indefinitely, should we want to?",
+    "why": "Senolytics, rapamycin trials and one man's public $2m-a-year protocol have moved life extension from Gilgamesh to clinical research. The argument is scientific (does the biology allow it?) and philosophical (what would a life without an end be for?).",
+    "sides": [
+      {
+        "label": "Ageing is damage, damage can be repaired, and death from old age is an engineering problem",
+        "points": [
+          "Mice live 40% longer with senescent cells cleared; every ageing pathway identified so far is a target, not a mystery.",
+          "We already treat the diseases of ageing one at a time; treating the process is the same project done honestly.",
+          "'Death gives life meaning' was invented to console people who had no choice; nobody argues the same about cancer."
+        ],
+        "objections": [
+          "Mouse results have a poor record of translating; the human data for life extension is, so far, nil.",
+          "Even perfect repair leaves accident, violence and the second law; 'indefinite' postponement is marketing.",
+          "A therapy available first to the very rich would create a biological class divide unlike any before."
+        ]
+      },
+      {
+        "label": "The immortality quest is an ancient fantasy in a lab coat — impossible, and not even desirable",
+        "points": [
+          "Gilgamesh, the alchemists, the Immortalisation Commission of 1920s Russia: the dream recurs because it is a refusal of the human condition, not a research programme.",
+          "Swift's Struldbruggs are the answer: endless life without endless youth is a curse, and endless youth is a self that never changes.",
+          "Meaning depends on finitude — commitment, courage, generations — and a society of the undying would be a society of the entrenched."
+        ],
+        "objections": [
+          "Every extension of life expectancy so far was called unnatural and then welcomed; 80 is not the sacred number.",
+          "Nobody proposes forcing longevity on anyone; the argument against research is an argument to deny others a choice.",
+          "'Meaning needs death' is asserted by people who plan to live to 90; ask them at 60."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Aubrey de Grey", "stance": "Biogerontologist behind the SENS damage-repair approach and the idea of 'longevity escape velocity'. Expect the full engineering case that ageing is curable and that the first person to live to 1,000 may be alive."},
+      {"name": "Bryan Johnson", "stance": "Tech founder behind 'Blueprint' and the Don't Die movement, publicly measuring every biomarker. Joins from California; expect data, protocols and a moral case for treating death as the enemy."},
+      {"name": "John Gray", "stance": "Philosopher whose The Immortalization Commission traced how science took over religion's promise to abolish death. Expect the argument that the quest is a secular religion and a flight from the human."},
+      {"name": "Sarah Wilson", "stance": "Author (First, We Make the Beast Beautiful; This One Wild and Precious Life), critical of wellness and techno-optimism. Likely to argue for accepting mortality and for meaning over metrics."},
+      {"name": "Güneş Taylor", "stance": "Hosts. Geneticist and science communicator."}
+    ],
+    "questions": [
+      "What is the strongest human evidence — not mouse evidence — that ageing can be slowed?",
+      "If the treatment existed, who gets it first, and what happens to a democracy of people who never leave?",
+      "What would you do with year 300 that you couldn't do with year 80?"
+    ],
+    "reading": [
+      {"title": "The Immortalization Commission", "by": "John Gray (2011)", "note": "His history of science's attempts to cheat death — the frame he'll use."},
+      {"title": "Ending Aging", "by": "Aubrey de Grey and Michael Rae (2007)", "note": "The SENS programme laid out."},
+      {"title": "Gulliver's Travels, Part III (the Struldbruggs)", "by": "Jonathan Swift (1726)", "note": "The short, devastating case that living forever is not the same as staying young."}
+    ],
+    "terms": [
+      {"term": "Senescent cells", "def": "Aged cells that stop dividing but linger, secreting inflammatory signals; clearing them ('senolytics') extends mouse lifespans."},
+      {"term": "Longevity escape velocity", "def": "The point at which each year of research adds more than a year of life expectancy."},
+      {"term": "Compression of morbidity", "def": "The more modest goal: shortening the years of ill health before death rather than adding years."}
+    ]
+  },
+  "51": {
+    "question": "Do superpowers still run the world — or is 'great powers dividing the globe' a fairytale in an age of many hands on the wheel?",
+    "why": "Iran and Ukraine have humbled bigger powers; Taiwan's fabs and Egypt's canal hold leverage no navy can seize; half of trade runs outside the blocs. Whether fragmentation means danger or opportunity decides how middle powers should play the next decade.",
+    "sides": [
+      {
+        "label": "Power has fragmented for good: many centres, more leverage for the rest, a shared future if we manage it",
+        "points": [
+          "Chips, chokepoints, demographics and commodities give small and middle powers vetoes the Cold War never allowed.",
+          "The Global South's refusal to pick sides over Ukraine shows the blocs no longer command loyalty.",
+          "Multipolarity has kept the peace in Southeast Asia for decades; it can be organised, not just feared."
+        ],
+        "objections": [
+          "Fragmentation without rules is the 1930s: every previous multipolar system ended in general war.",
+          "Leverage is not power — Taiwan's chips make it a target as much as a player.",
+          "The 'rest' are hedging because they are weak, not because they are winning."
+        ]
+      },
+      {
+        "label": "The great powers still decide; the rest adapt. Pretending otherwise is dangerous",
+        "points": [
+          "Only the US and China can project force globally, print reserve currency, or set technology standards.",
+          "Europe learned in 2022 what dependence on someone else's security guarantee costs.",
+          "Middle-power 'autonomy' is real only until a great power decides it isn't."
+        ],
+        "objections": [
+          "The US could not bend Iran, Afghanistan or the Houthis; Russia could not take Kyiv. 'Deciding' has a poor recent record.",
+          "China's demographic decline and America's political volatility make both an uncertain anchor.",
+          "Great-power framing is self-serving: it is how the great powers describe a world that is slipping from them."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Kishore Mahbubani", "stance": "Former Singaporean ambassador and UN Security Council president; author of Has China Won? and The Asian 21st Century. Expect the argument that the West must adjust to an Asian-led, multipolar world, made with a diplomat's polish."},
+      {"name": "Kwasi Kwarteng", "stance": "Former Chancellor and historian of empire (Ghosts of Empire; War and Gold). Likely to argue that power remains concentrated and that Britain and the West should be realistic about their weight."},
+      {"name": "Leo Varadkar", "stance": "Former Taoiseach; the small-state, EU-embedded perspective. Likely to argue that pooled sovereignty is how small nations survive a multipolar world."},
+      {"name": "Mary Ann Sieghart", "stance": "Hosts. Journalist and author of The Authority Gap."}
+    ],
+    "questions": [
+      "Name a decision in the last five years that a great power wanted and a smaller one blocked. What does it prove?",
+      "If multipolarity is dangerous, is the alternative Chinese or American hegemony — and which would you choose?",
+      "What should a country of five million actually do differently in a fragmented world?"
+    ],
+    "reading": [
+      {"title": "Has China Won?", "by": "Kishore Mahbubani (2020)", "note": "His case that America is losing a contest it barely admits it's in."},
+      {"title": "The Tragedy of Great Power Politics", "by": "John Mearsheimer (2001)", "note": "The realist theory that great powers cannot help competing."},
+      {"title": "Ghosts of Empire", "by": "Kwasi Kwarteng (2011)", "note": "Kwarteng's history of how imperial power actually worked — and unravelled."}
+    ],
+    "terms": [
+      {"term": "Multipolar world", "def": "Several centres of power rather than one (unipolar) or two (bipolar)."},
+      {"term": "Middle power", "def": "A state too small to dominate but large enough to shape outcomes — Australia, Türkiye, Indonesia, Brazil."},
+      {"term": "Chokepoint", "def": "A physical or technological bottleneck (Suez, Taiwanese fabs, Dutch lithography) that confers leverage out of proportion to size."}
+    ]
+  },
+  "58": {
+    "question": "Are grand philosophical systems coming back — and can we even avoid having one, whether or not we admit it?",
+    "why": "Analytic piecemeal work, Wittgenstein's silence and postmodern suspicion all declared the total account of the world dead. Yet every science, ideology and 'anti-metaphysics' relies on a framework it rarely states. The debate is whether to build one deliberately or refuse on principle.",
+    "sides": [
+      {
+        "label": "We can't escape metaphysics, so we should do it well: the overall account returns",
+        "points": [
+          "Every claim presupposes a picture of what claims are, what the world is, and how the two meet; refusing to state it just leaves it unexamined.",
+          "Postmodernism itself was a system — a theory of language, power and meaning — that pretended not to be one.",
+          "The sciences are fragmenting; only a philosophical account can say how physics, biology and mind fit together."
+        ],
+        "objections": [
+          "Systems from Hegel to Marx ended in totalising politics; the suspicion of grand accounts was earned.",
+          "A framework is not a system: we can hold background assumptions provisionally without a cathedral.",
+          "Every system so far has been refuted; 'this time we'll get it right' is what every system said."
+        ]
+      },
+      {
+        "label": "The complete account is hubris; philosophy's job is to clear confusions and stay piecemeal",
+        "points": [
+          "Wittgenstein's point stands: the demand for a view of the whole is a picture holding us captive, not a task.",
+          "Local, revisable, problem-by-problem progress is how every successful inquiry works.",
+          "Claims to an overall account have always turned out to be one tradition's assumptions dressed as everyone's."
+        ],
+        "objections": [
+          "'Stay piecemeal' is itself an overall stance about what philosophy is and can do.",
+          "Refusing a framework doesn't remove one; it hands the job to physics or the market by default.",
+          "The confusion-clearing project has run for a century without agreement on what was cleared."
+        ]
+      }
+    ],
+    "speakers": [
+      {"name": "Hilary Lawson", "stance": "Author of Closure: A Story of Everything — an explicit overall account in which language 'closes' an open world. Expect the case that the systematic ambition is unavoidable and that his own theory shows it can be done without dogma."},
+      {"name": "Divya Dwivedi", "stance": "Indian philosopher (with Shaj Mohan, Gandhi and Philosophy; Indian Philosophy, Indian Revolution) working in the deconstructive tradition and against caste. Likely to be suspicious of systems as vehicles of power, while insisting philosophy must 'begin again'."},
+      {"name": "Sebastian Rödl", "stance": "Idealist philosopher (Self-Consciousness and Objectivity) who defends an absolute idealism in the Hegelian line. Expect the strongest case that a systematic account of thought and world is not just possible but required."},
+      {"name": "Danielle Sands", "stance": "Hosts. Philosopher working in continental philosophy and literature."}
+    ],
+    "questions": [
+      "State, in one sentence, the framework you're relying on tonight. If you can't, is that modesty or evasion?",
+      "What went wrong with Hegel and Marx — the systems, or what people did with them?",
+      "Is a scientist who says 'only physics is real' doing metaphysics? Badly?"
+    ],
+    "reading": [
+      {"title": "Closure: A Story of Everything", "by": "Hilary Lawson (2001)", "note": "The system on the table."},
+      {"title": "Philosophical Investigations", "by": "Ludwig Wittgenstein (1953)", "note": "The case against the demand for a view of the whole — sections 89–133 especially."},
+      {"title": "Self-Consciousness and Objectivity", "by": "Sebastian Rödl (2018)", "note": "Rödl's short, dense argument for absolute idealism."}
+    ],
+    "terms": [
+      {"term": "Metaphysics", "def": "The account of what fundamentally exists and how it hangs together — declared dead by positivists and postmodernists, and now contested."},
+      {"term": "Analytic philosophy", "def": "The tradition from Russell and Moore onwards favouring logical analysis and piecemeal problems over systems."},
+      {"term": "Closure", "def": "Lawson's term for the way language and thought make a definite world out of an 'open' one."}
+    ]
+  }
+}

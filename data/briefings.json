@@ -1,0 +1,2722 @@
+{
+ "_meta": {
+  "note": "Unofficial briefing notes written with Claude (Anthropic) on 6 September 2026 from the festival programme text and the speakers' published work. Speaker positions are inferred and hedged; they are not the speakers' or the festival's words. Corrections welcome via GitHub.",
+  "covers": "Debates"
+ },
+ "6": {
+  "question": "Did quantum mechanics end science's claim to describe reality itself — or just expose the wrong picture of it?",
+  "why": "A century after Copenhagen, the foundations argument is livelier than it has been since Bohr and Einstein: hidden-variable, many-worlds and informational readings all claim the same experiments. What is at stake is whether physics describes a world or only our knowledge of one.",
+  "sides": [
+   {
+    "label": "Accept the Copenhagen settlement: physics predicts measurements, not a picture of reality",
+    "points": [
+     "The formalism is confirmed to extraordinary precision; the demand for an underlying picture adds nothing testable.",
+     "Bell's theorem and its experiments rule out the most natural 'realist' escape routes (local hidden variables).",
+     "Insisting on a God's-eye view smuggles in a classical prejudice the theory itself undermined."
+    ],
+    "objections": [
+     "'Shut up and calculate' is not an interpretation; it leaves the measurement problem — when and why collapse happens — unanswered.",
+     "Every experiment presupposes a real apparatus, real records and real outcomes; instrumentalism helps itself to that reality.",
+     "Predictive success has never before been treated as a reason to stop asking what a theory is about."
+    ]
+   },
+   {
+    "label": "Keep realism: there is a definite world, and the theory is incomplete (Einstein's line)",
+    "points": [
+     "Pilot-wave (de Broglie–Bohm) theory reproduces all quantum predictions with particles that always have positions — so realism is not refuted, only unfashionable.",
+     "Bell excludes local hidden variables; non-local ones, or theories that give up 'statistical independence' (superdeterminism), remain open and possibly testable.",
+     "A theory of the world should say what exists between measurements; otherwise 'measurement' is an undefined primitive."
+    ],
+    "objections": [
+     "Non-locality sits awkwardly with relativity, and hidden-variable theories have so far made no distinctive confirmed prediction.",
+     "Superdeterminism is accused of undermining the very idea of free experimental choice — and with it, of experiment.",
+     "Adding unobservable structure to save a picture is exactly what critics call emotional attachment to classical reality."
+    ]
+   },
+   {
+    "label": "Take the theory literally: the wavefunction never collapses (many worlds)",
+    "points": [
+     "No collapse postulate, no special role for observers, no non-locality — the equations alone.",
+     "Decoherence explains why we see one outcome without adding anything to the theory."
+    ],
+    "objections": [
+     "It struggles to say what probability means when every outcome happens.",
+     "An uncountable infinity of worlds is a heavy price; critics call it the most reckless idea in physics."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Philip Ball",
+    "stance": "In Beyond Weird he argues quantum mechanics is best read as a theory about information and what can be known; he has been sharply critical of many-worlds. Expect him to resist both naive realism and the claim that the theory is 'just weird'."
+   },
+   {
+    "name": "Antony Valentini",
+    "stance": "A leading developer of de Broglie–Bohm pilot-wave theory; has argued the universe may carry traces of 'quantum non-equilibrium' that would make hidden variables detectable, for instance in the cosmic microwave background. Expect the case that realism was never refuted."
+   },
+   {
+    "name": "Sabine Hossenfelder",
+    "stance": "Author of Lost in Math and Existential Physics; has argued quantum mechanics is incomplete, defended superdeterminism as a live option, and dismissed many-worlds as untestable. Expect scepticism towards interpretations that make no new predictions."
+   },
+   {
+    "name": "Bjorn Ekeberg",
+    "stance": "Hosts. Philosopher of science whose Metaphysical Experiments questions the metaphysical assumptions behind physical cosmology."
+   }
+  ],
+  "questions": [
+   "What experiment, even in principle, would distinguish your interpretation from the others?",
+   "If physics only predicts measurements, what is a measurement — and who or what performs one?",
+   "Is 'the universe is real and describable' a scientific hypothesis or a precondition for doing science at all?"
+  ],
+  "reading": [
+   {
+    "title": "Beyond Weird",
+    "by": "Philip Ball (2018)",
+    "note": "Ball's own account of what the theory does and doesn't say."
+   },
+   {
+    "title": "Existential Physics",
+    "by": "Sabine Hossenfelder (2022)",
+    "note": "Chapter on whether the universe is deterministic sets up her position."
+   },
+   {
+    "title": "Quantum Mechanics: Myths and Facts",
+    "by": "Hrvoje Nikolić (arXiv, 2007)",
+    "note": "A short, sober list of what is and isn't settled — good armour against slogans."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Copenhagen interpretation",
+    "def": "Bohr and Heisenberg's view: the theory gives probabilities for measurement outcomes; asking what happens in between is meaningless."
+   },
+   {
+    "term": "Hidden variables",
+    "def": "Extra quantities, not in the standard theory, that would fix outcomes in advance — Einstein's hope, Bohm's construction."
+   },
+   {
+    "term": "Bell's theorem",
+    "def": "No theory that is both local and realist can reproduce quantum correlations; experiments since 1982 confirm the quantum side."
+   },
+   {
+    "term": "Superdeterminism",
+    "def": "Escapes Bell by denying that measurement settings are independent of the system measured."
+   }
+  ]
+ },
+ "7": {
+  "question": "Is free trade the engine of the greatest rise in living standards in history — or a doctrine that only the already-dominant can afford?",
+  "why": "Tariffs are back at the centre of American policy, the EU and China are openly industrial-strategists, and the post-1945 trade order is being renegotiated in real time. The argument is no longer academic: it decides where factories, jobs and alliances go.",
+  "sides": [
+   {
+    "label": "Free trade works: comparative advantage, cheaper goods, faster growth for everyone who opens up",
+    "points": [
+     "The 70 years of falling tariffs coincided with the fastest fall in global poverty ever recorded; East Asia's growth ran on exporting into open markets.",
+     "Tariffs are a tax on your own consumers and on the firms that import components; retaliation makes everyone poorer.",
+     "Protection breeds complacent industries and lobbying; the losers from trade are better helped with transfers and retraining than with walls."
+    ],
+    "objections": [
+     "The textbook case assumes full employment and immobile capital; when capital moves, comparative advantage stops guaranteeing shared gains.",
+     "The 'China shock' concentrated losses in particular towns for decades, and the promised compensation rarely arrived.",
+     "Historically, nearly every industrial economy — Britain, the US, Germany, Korea — protected its infant industries first and preached free trade afterwards."
+    ]
+   },
+   {
+    "label": "Trade is a tool, not a creed: strategic protection and industrial policy built the winners",
+    "points": [
+     "Hamilton's America, Bismarck's Germany, MITI's Japan and Korea's chaebol all grew behind tariffs and state-picked champions.",
+     "Security, resilience and technological sovereignty (semiconductors, energy, pharmaceuticals) are legitimate goals that pure efficiency ignores.",
+     "Free-trade orthodoxy served the hegemon of the day; the rules were written by whoever was already ahead."
+    ],
+    "objections": [
+     "For every Korea there is an Argentina or an India before 1991: protection more often produced stagnation and rent-seeking.",
+     "Governments are poor at picking winners; the successes are remembered, the expensive failures forgotten.",
+     "Protectionism invites retaliation and blocs; the 1930s show where a tariff war ends."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Steve Keen",
+    "stance": "Heterodox economist (Debunking Economics) who has argued that the Ricardian case for free trade collapses once capital is mobile and that mainstream trade theory ignores real-world assumptions. Expect the sharpest attack on the orthodoxy."
+   },
+   {
+    "name": "Jeremy Hunt",
+    "stance": "Former Chancellor; as a Conservative minister championed post-Brexit trade agreements. Likely to defend open trade in principle while conceding security and China-related exceptions."
+   },
+   {
+    "name": "Gillian Tett",
+    "stance": "FT columnist and anthropologist who has written on the shift from the 'Washington consensus' to geoeconomics. Likely to argue the assumptions behind free trade have changed rather than to take a purist side."
+   },
+   {
+    "name": "Martin Wolf",
+    "stance": "FT chief economics commentator and one of globalisation's most prominent defenders (Why Globalization Works; The Crisis of Democratic Capitalism), strongly critical of Trump-era tariffs. Expect the fullest case for openness, with acknowledgement of the China shock."
+   },
+   {
+    "name": "Hilary Lawson",
+    "stance": "Hosts. Founder of the festival and the Institute of Art and Ideas."
+   }
+  ],
+  "questions": [
+   "Which country's growth story is the exception to your rule — and why doesn't it count?",
+   "If the losers from trade could have been compensated but weren't, is that a failure of trade or of politics?",
+   "Is a tariff for national security different in kind from a tariff to protect jobs, or just better branded?"
+  ],
+  "reading": [
+   {
+    "title": "Why Globalization Works",
+    "by": "Martin Wolf (2004)",
+    "note": "The classic statement of the case he'll be defending."
+   },
+   {
+    "title": "Kicking Away the Ladder",
+    "by": "Ha-Joon Chang (2002)",
+    "note": "The historical case that rich countries protected first and preached later — the backbone of Keen's side."
+   },
+   {
+    "title": "'The China Shock'",
+    "by": "Autor, Dorn and Hanson (2016)",
+    "note": "The study everyone cites on concentrated losses from import competition."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Comparative advantage",
+    "def": "Ricardo's argument that countries gain by specialising in what they do relatively best, even if another country does everything better."
+   },
+   {
+    "term": "Infant-industry argument",
+    "def": "Temporary protection lets a new industry reach scale before facing established foreign rivals."
+   },
+   {
+    "term": "Industrial policy",
+    "def": "Government steering of particular sectors through subsidies, procurement, protection or state ownership."
+   }
+  ]
+ },
+ "12": {
+  "question": "Have we all been recruited into a cult of the online — and can the tools that get people out of cults get us out?",
+  "why": "This is a conversation rather than a formal debate: Louis Theroux has spent thirty years inside Scientology, Westboro Baptist and the far right. The proposal is to turn that lens on ordinary scrolling, arguing and belonging.",
+  "sides": [
+   {
+    "label": "The internet really does work like a cult",
+    "points": [
+     "The classic markers — us-versus-them, love-bombing on arrival, thought-terminating clichés, escalating commitment, punishment for leaving — map neatly onto online communities and fandoms.",
+     "Attention-farming platforms are designed to be hard to leave; certainty and outrage are rewarded, doubt is not.",
+     "Productivity culture is the same mechanism pointed at the self: optimise everything, never simply not know."
+    ],
+    "objections": [
+     "Cults have leaders, walls and total control; the internet has an exit button and a billion competing groups.",
+     "The analogy flatters us: 'we were groomed' removes responsibility for what we chose to read and join.",
+     "Most people use the internet for train times and recipes; the pathological cases make the story, not the norm."
+    ]
+   },
+   {
+    "label": "The cult frame misleads — this is ordinary human tribalism with a new medium",
+    "points": [
+     "Every mass medium was accused of manufacturing madness: novels, radio, television, video games.",
+     "Belonging, status and outrage predate platforms; the medium amplifies but does not create them.",
+     "The remedy is boring: media literacy, friction, and better institutions — not deprogramming."
+    ],
+    "objections": [
+     "Scale and personalisation are new: no previous medium tailored a private feed of certainty to each person.",
+     "Radicalisation pipelines are documented; 'it was always thus' is not an answer to a measured change."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Louis Theroux",
+    "stance": "Documentary-maker known for immersive, non-judgemental portraits of extreme groups (Scientology, the Westboro Baptist Church, US far right). Expect anecdotes on how people get pulled in and out, and reluctance to condemn from a distance."
+   },
+   {
+    "name": "Robin Clyfan",
+    "stance": "Hosts, for Sage & Jester, the organisation behind the event."
+   }
+  ],
+  "questions": [
+   "What is the single feature of a cult that the internet lacks — and does that make the analogy break or just wobble?",
+   "In your films, what actually got people out? Was it argument, or something else?",
+   "What would a healthy version of online belonging look like — not just less of the bad kind?"
+  ],
+  "reading": [
+   {
+    "title": "Thought Reform and the Psychology of Totalism",
+    "by": "Robert Jay Lifton (1961)",
+    "note": "The eight criteria of thought reform that every 'is it a cult?' checklist descends from."
+   },
+   {
+    "title": "Cultish: The Language of Fanaticism",
+    "by": "Amanda Montell (2021)",
+    "note": "Argues cult language runs from SoulCycle to Silicon Valley."
+   },
+   {
+    "title": "Louis Theroux: My Scientology Movie",
+    "by": "BBC Films (2015)",
+    "note": "His method in action."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Thought-terminating cliché",
+    "def": "A stock phrase that ends inquiry rather than answering it — Lifton's term, now applied to online slogans."
+   },
+   {
+    "term": "Attention economy",
+    "def": "Business models where the product is your attention, sold to advertisers, so engagement is optimised over wellbeing."
+   }
+  ]
+ },
+ "13": {
+  "question": "Is there a correct way to tell good from evil — or only competing codes that history keeps overturning?",
+  "why": "Moral confidence is everywhere in politics while moral agreement is nowhere. If yesterday's certainties (slavery, eugenics) were monstrous, what licenses today's? The debate pits universal principles against the record of how they've been used.",
+  "sides": [
+   {
+    "label": "Morality is discovered, not invented: some things are simply wrong, everywhere and always",
+    "points": [
+     "We do not say slavery became wrong; we say it always was and people failed to see it — that only makes sense if there is something to see.",
+     "Human rights, international law and the prohibition of genocide rest on the claim of universal wrongs; relativism disarms exactly the people who most need protection.",
+     "Disagreement about hard cases no more shows there is no moral truth than disagreement in science shows there are no facts."
+    ],
+    "objections": [
+     "Every era's confident universalism turned out to be its own prejudices in Sunday clothes — including, critics say, today's.",
+     "Which universal principle? Kant, Mill and the Torah give different answers, and each generates monstrous verdicts in some scenario.",
+     "'Discovered' by whom, with what faculty? Moral perception has no instrument to correct it the way telescopes correct sight."
+    ]
+   },
+   {
+    "label": "Moral codes are human, historical and tied to power — there is no view from nowhere",
+    "points": [
+     "Codes have always served someone: the Greeks' natural slavery, Manifest Destiny, the Supreme Court's eugenics — each was 'reason' at the time.",
+     "Rigid principles produce perverse outcomes in edge cases; ethics is better understood as judgement within a tradition than as calculation from an axiom.",
+     "Giving up the single correct code doesn't mean anything goes; it means arguing, revising, and owning our choices."
+    ],
+    "objections": [
+     "If it's all codes and power, the critic has no standing to call the eugenics ruling wrong rather than merely different.",
+     "Relativism is self-refuting when it condemns colonialism or oppression — it needs the universal standard it denies.",
+     "Traditions of judgement still smuggle in principles; they just refuse to state them."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Tommy Curry",
+    "stance": "Critical race theorist (The Man-Not) who has argued that Western moral and political theory was built around racial hierarchy. Expect the case that codes have served power and that universalism has a history worth suspecting."
+   },
+   {
+    "name": "Norman Finkelstein",
+    "stance": "Political scientist known for uncompromising arguments about international law and human rights, most recently on Gaza. Despite the 'controversial' billing, his method is morally absolutist: expect him to insist that some acts are wrong on any code."
+   },
+   {
+    "name": "Thangam Debbonaire",
+    "stance": "Labour peer and former shadow culture secretary. Likely to defend workable rules — rights frameworks, institutions — as the practical form moral principle takes, while accepting that they evolve."
+   },
+   {
+    "name": "Jay Shapiro",
+    "stance": "Hosts. Philosopher and podcaster (Dilemma)."
+   }
+  ],
+  "questions": [
+   "Name one thing you think is wrong in every possible society. What makes it different from the things past societies were sure about?",
+   "If moral codes serve power, what serves the powerless — and isn't that a moral claim?",
+   "When a principle gives a monstrous verdict in a thought experiment, is that a problem with the principle or with the experiment?"
+  ],
+  "reading": [
+   {
+    "title": "After Virtue",
+    "by": "Alasdair MacIntyre (1981)",
+    "note": "The influential argument that modern moral debate is interminable because we inherited fragments of incompatible traditions."
+   },
+   {
+    "title": "The Man-Not",
+    "by": "Tommy Curry (2017)",
+    "note": "Curry's position on race, theory and who counts."
+   },
+   {
+    "title": "Ethics: Inventing Right and Wrong",
+    "by": "J. L. Mackie (1977)",
+    "note": "The classic case that moral values are made, not found — and why that needn't be nihilism."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Moral realism",
+    "def": "The view that there are moral facts independent of anyone's beliefs or cultures."
+   },
+   {
+    "term": "Relativism",
+    "def": "Right and wrong are relative to a culture or framework; there is no standpoint outside all of them."
+   },
+   {
+    "term": "Genealogy",
+    "def": "Nietzsche's and Foucault's method: explaining a moral idea by the history and interests that produced it."
+   }
+  ]
+ },
+ "21": {
+  "question": "Is the United States still winning — and is 'winning' even the right way to think about power between nations?",
+  "why": "China builds warships five times faster; the dollar still settles half of world trade; American alliances look shakier than at any point since 1945. The question shapes everything from Ukraine to Taiwan to European defence budgets.",
+  "sides": [
+   {
+    "label": "America still leads and can keep leading — if it chooses to",
+    "points": [
+     "Military technology, the dollar, universities, energy independence and demographics all favour the US; China's growth is slowing into an ageing population.",
+     "Decline is a choice: retreat from alliances and commitments is what turns relative slippage into absolute loss.",
+     "Rivals' strengths are often exaggerated — the Soviet Union also 'overtook' the US in the 1970s, on paper."
+    ],
+    "objections": [
+     "Manufacturing capacity, shipbuilding and supply chains now sit in China; wars are won by production, not by the best prototype.",
+     "The alliance system depends on trust that recent policy swings have spent.",
+     "Primacy has been expensive and often self-defeating (Iraq, Afghanistan); 'lead more' is not a strategy."
+    ]
+   },
+   {
+    "label": "The unipolar moment is over; the question is how the US adjusts to being one power among several",
+    "points": [
+     "By purchasing-power measures China's economy is already larger; India, Indonesia, Nigeria and Brazil will follow.",
+     "The rest of the world is hedging: half of global trade already happens outside the big blocs.",
+     "A transactional America accelerates its own decline by treating allies as customers."
+    ],
+    "objections": [
+     "Multipolarity in theory has often meant great-power war in practice (1914).",
+     "GDP tables are not power: the US still dominates finance, technology standards and the seas.",
+     "Prophecies of American decline have a 60-year record of being wrong."
+    ]
+   },
+   {
+    "label": "'Winners and losers' is the mistake: security is not a league table",
+    "points": [
+     "Framing relations as a contest makes conflict more likely — the Thucydides trap is a story that can write itself.",
+     "Small and middle powers have shown the limits of great-power dominance: Ukraine, Iran, Taiwan's chip leverage.",
+     "The problems that matter — climate, pandemics, AI — are not won by any single nation."
+    ],
+    "objections": [
+     "Whether or not you think in contests, Beijing and Moscow do; unilateral disarmament of the frame is naive.",
+     "Cooperation still requires someone able to enforce rules — which is what hegemony provided."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "John Bolton",
+    "stance": "Former US National Security Advisor and long-time hawk; has argued for maintaining American primacy through strength and has been openly critical of Trump's deal-making and retreat from allies. Expect no concession that decline is inevitable."
+   },
+   {
+    "name": "Malcolm Rifkind",
+    "stance": "Former UK Foreign Secretary and Defence Secretary, an Atlanticist. Likely to argue that the US remains the indispensable power but only through alliances, and that Europe must do more."
+   },
+   {
+    "name": "Nicola Sturgeon",
+    "stance": "Former First Minister of Scotland. Likely to challenge the winners-and-losers framing itself, speak for smaller nations and multilateralism, and question American reliability."
+   },
+   {
+    "name": "John Prideaux",
+    "stance": "Hosts. The Economist's US editor and host of its Checks and Balance podcast."
+   }
+  ],
+  "questions": [
+   "What would count as evidence that the US has lost — and has any of it happened yet?",
+   "If alliances are America's key strength, what is the plan when allies stop trusting the next election?",
+   "Is China's shipbuilding lead a war-fighting advantage or a peacetime statistic?"
+  ],
+  "reading": [
+   {
+    "title": "Destined for War",
+    "by": "Graham Allison (2017)",
+    "note": "The 'Thucydides trap' argument that everyone in this debate will either lean on or attack."
+   },
+   {
+    "title": "The Room Where It Happened",
+    "by": "John Bolton (2020)",
+    "note": "Bolton's own account of policy inside the first Trump administration."
+   },
+   {
+    "title": "Has China Won?",
+    "by": "Kishore Mahbubani (2020)",
+    "note": "The strongest recent case for the 'America must adjust' view — Mahbubani speaks in the 17:30 Superpowers debate."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Unipolar moment",
+    "def": "Charles Krauthammer's 1990 phrase for post-Cold War American dominance."
+   },
+   {
+    "term": "Multipolarity",
+    "def": "A world with several centres of power rather than one or two."
+   },
+   {
+    "term": "Thucydides trap",
+    "def": "The claim that a rising power and a ruling power tend towards war."
+   }
+  ]
+ },
+ "22": {
+  "question": "Will scaling language models ever produce real intelligence — or has the hype outrun what pattern-matching on text can do?",
+  "why": "Trillions of dollars are riding on the assumption that more data and compute keep delivering. If the critics are right that models need a body and a world, the current paradigm peaks soon and a lot of capital is misallocated; if they're wrong, almost every cognitive job changes.",
+  "sides": [
+   {
+    "label": "Scaling works: the models keep getting more capable and there's no wall in sight",
+    "points": [
+     "Every predicted ceiling so far has been passed; capabilities that were 'impossible for a word predictor' arrived on schedule.",
+     "Reasoning, tool use and multimodal input are already being added on top of language; the transformer is a platform, not a dead end.",
+     "Intelligence is as intelligence does: if a system solves the problems, arguing it 'doesn't really understand' is a definition, not a discovery."
+    ],
+    "objections": [
+     "Human text is finite and largely consumed; synthetic data may not substitute for contact with the world.",
+     "Models still fail at simple novel tasks, confabulate, and don't know what they don't know — signs of pattern-matching rather than understanding.",
+     "Benchmark gains partly measure contamination and optimisation for the benchmark."
+    ]
+   },
+   {
+    "label": "Language models are sophisticated word calculators; intelligence needs a world, a body, and goals",
+    "points": [
+     "Meaning is grounded in action and perception; a system that only sees text has no access to what words are about.",
+     "Children learn from tiny data with bodies and stakes; the data-hungry approach is evidence of a missing ingredient, not a route to it.",
+     "The economics point the same way: when returns diminish, the investment cycle turns into a bubble."
+    ],
+    "objections": [
+     "'Grounding' is asserted more than demonstrated; blind people acquire colour concepts from language alone.",
+     "Embodiment can be added — robots run on the same models — so the criticism is about today's products, not the approach.",
+     "Every critic's list of what AI can't do has been shrinking for seventy years."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Michael Wooldridge",
+    "stance": "Oxford professor of AI and author of The Road to Conscious Machines; has argued that LLMs are remarkable but not on a path to general intelligence, and has been sceptical of existential-risk framing. Expect measured deflation of both hype and doom."
+   },
+   {
+    "name": "Sabrina Pasterski",
+    "stance": "Theoretical physicist (celestial holography). Her published work isn't on AI, so expect a first-principles view on what scaling laws can and cannot promise rather than a fixed position."
+   },
+   {
+    "name": "Hilary Lawson",
+    "stance": "His theory of 'closure' holds that language doesn't mirror the world but is a way of holding it. Expect the argument that models manipulate closures without ever engaging the world they close."
+   },
+   {
+    "name": "Audrey Borowski",
+    "stance": "Cambridge philosopher and historian of Leibniz and the origins of calculating machines. Likely to place today's claims in a 350-year history of promises that reasoning could be mechanised."
+   },
+   {
+    "name": "Güneş Taylor",
+    "stance": "Hosts. Geneticist and science communicator."
+   }
+  ],
+  "questions": [
+   "What is one task a model would have to do for you to concede it understands — and would you accept it if it did?",
+   "If the missing ingredient is a body, why do robotics labs run on the same language models?",
+   "Who bears the loss if scaling stalls: investors, or the public services now being built on it?"
+  ],
+  "reading": [
+   {
+    "title": "The Road to Conscious Machines",
+    "by": "Michael Wooldridge (2020)",
+    "note": "His history of AI's cycles of hype and winter."
+   },
+   {
+    "title": "'On the Dangers of Stochastic Parrots'",
+    "by": "Bender, Gebru et al. (2021)",
+    "note": "The paper that gave the sceptical side its slogan."
+   },
+   {
+    "title": "'Scaling Laws for Neural Language Models'",
+    "by": "Kaplan et al. (2020)",
+    "note": "Where the belief that bigger keeps getting better came from."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Transformer / attention",
+    "def": "The 2017 architecture behind current models: each word is processed in the light of every other, in parallel."
+   },
+   {
+    "term": "Scaling laws",
+    "def": "Empirical regularities showing predictable improvement as data, parameters and compute grow."
+   },
+   {
+    "term": "Grounding problem",
+    "def": "How symbols in a system come to be about things in the world rather than just other symbols."
+   }
+  ]
+ },
+ "24": {
+  "question": "Can you keep Christianity's culture and ethics while dropping its God — or is 'cultural Christianity' an incoherent halfway house?",
+  "why": "Churchgoing keeps falling while Dawkins, Murray and Peterson call themselves cultural Christians and the political right rediscovers religion. Whether the ethics survive the metaphysics is a question about the foundations of Western liberal values themselves.",
+  "sides": [
+   {
+    "label": "Keep the values, drop the metaphysics: the settlement Tolstoy proposed is workable and honest",
+    "points": [
+     "Equality, human dignity and care for the weak are historically Christian ideas; you can inherit them without believing a man rose from the dead.",
+     "Much of Europe already lives this way — cathedrals, carols, Christian festivals and secular law — without visible collapse.",
+     "Demanding all-or-nothing hands the tradition to fundamentalists and nationalists."
+    ],
+    "objections": [
+     "Values cut from their roots wither within a generation or two: the argument that liberalism is living off inherited capital it cannot replenish.",
+     "Without the transcendent claim, 'love thy neighbour' is one preference among others, with no answer to the strong who decline it.",
+     "It is parasitic: the cultural Christian enjoys the cathedral while relying on believers to keep it open."
+    ]
+   },
+   {
+    "label": "Christianity without God is incoherent — either take the claims seriously or let it go",
+    "points": [
+     "Christian ethics is not a list of nice values but a response to a claim about the world; remove the claim and the response has no content.",
+     "Treating religion as heritage is condescending to believers and dishonest about what you actually think is true.",
+     "The New Right's use of Christian symbols without belief shows exactly where cultural Christianity leads: identity politics in vestments."
+    ],
+    "objections": [
+     "Plenty of coherent ethical systems have no god; the incoherence charge proves too much.",
+     "Believers have always disagreed about the metaphysics while sharing the practice; the 'real' Christianity is itself contested.",
+     "Cultures inherit rituals from beliefs no one holds — nobody thinks December feasts require believing in the sun's rebirth."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "David Aaronovitch",
+    "stance": "Atheist journalist whose Saturday breakfast talk is on how Christian nationalism is being weaponised on the right. Expect him to reject the supernatural claims and to argue that cultural Christianity is being used as a political identity."
+   },
+   {
+    "name": "Laila Cunningham",
+    "stance": "Reform UK councillor in Westminster and former Conservative, billed as the party's London figurehead. Likely to defend Christianity's cultural and heritage role as part of national identity."
+   },
+   {
+    "name": "Alister McGrath",
+    "stance": "Oxford theologian and Dawkins critic (The Dawkins Delusion). Expect the argument that Christian ethics depends on Christian belief and that cultural Christianity is unstable — a case that oddly agrees with atheists on the incoherence."
+   },
+   {
+    "name": "Jack Symes",
+    "stance": "Hosts. Philosopher and presenter of The Panpsycast."
+   }
+  ],
+  "questions": [
+   "Name a specifically Christian value that survives if there is no God. What makes it Christian rather than just human?",
+   "Is a 'cultural Christian' politician defending a faith or a flag?",
+   "If the ethics can't survive the loss of belief, what explains secular Scandinavia?"
+  ],
+  "reading": [
+   {
+    "title": "Dominion",
+    "by": "Tom Holland (2019)",
+    "note": "The case that Western values are Christian to the core, including the values used against Christianity."
+   },
+   {
+    "title": "'A Confession' and 'What I Believe'",
+    "by": "Leo Tolstoy (1880s)",
+    "note": "The original proposal: keep the Sermon on the Mount, drop the supernatural."
+   },
+   {
+    "title": "The Dawkins Delusion?",
+    "by": "Alister McGrath (2007)",
+    "note": "McGrath's short reply to the New Atheists."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Cultural Christianity",
+    "def": "Identifying with Christian traditions, art and ethics without believing its doctrines."
+   },
+   {
+    "term": "Christian nationalism",
+    "def": "Politics that treats a nation's identity as Christian and seeks to entrench that in law and public life."
+   },
+   {
+    "term": "Secularisation thesis",
+    "def": "The claim that modernisation inevitably erodes religion — challenged by the US and much of the global South."
+   }
+  ]
+ },
+ "29": {
+  "question": "Is literature's turn to the self — memoir, autofiction, 'my story' — a truer mirror on life, or a narcissism that dissolves the shared stories that held us together?",
+  "why": "Publishers and prizes reward the first person; the epic, the social novel and the invented world look old-fashioned. The argument is about whether 'my truth' can still carry the universal, and whether a culture with only private stories has a common one at all.",
+  "sides": [
+   {
+    "label": "The personal is the route to the universal: honest particulars reach further than invented generalities",
+    "points": [
+     "Montaigne, Augustine and Wordsworth wrote themselves and are read for what they say about everyone; the self was never a new subject.",
+     "Autofiction is a form, not a confession — it uses the self as material exactly as Shakespeare used kings.",
+     "The 'universal' stories of the past were often one group's story presented as everyone's; the first person let the excluded speak."
+    ],
+    "objections": [
+     "When every story is 'my story', criticism becomes impossible — to doubt the work is to doubt the person.",
+     "A literature of experience narrows to what the writer has lived; imagination and research atrophy.",
+     "The market rewards the personal because it is cheap to brand; that is an economic fact, not an aesthetic one."
+    ]
+   },
+   {
+    "label": "The self is a small subject: epic, myth and the social novel gave us shared reality, and we are losing it",
+    "points": [
+     "The great works are about the world with the author absent; they build a common imagination a society can argue within.",
+     "A culture of 'lived experience' as the only authority ends in relativism — no overall story, only competing testimonies.",
+     "Confessional culture feeds and is fed by social media's incentives; literature should resist them, not ratify them."
+    ],
+    "objections": [
+     "Epics are full of selves — Odysseus lies about himself for a living; the Iliad is one man's rage.",
+     "The 'shared' story was shared by those allowed to tell it; nostalgia for it is nostalgia for a narrower canon.",
+     "Nobody chose this fashion in a vacuum: readers want it, and wanting the personal is itself a shared pattern worth reading."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Rebecca Goldstein",
+    "stance": "Philosopher and novelist (Plato at the Googleplex; Betraying Spinoza) who writes about 'mattering' — the need to matter beyond oneself. Likely to argue that the self only makes sense inside larger stories, without dismissing the personal."
+   },
+   {
+    "name": "Patricia Lockwood",
+    "stance": "Author of the memoir Priestdaddy and the internet novel No One Is Talking About This; writes from the self and the feed with formal daring. Expect a defence of the personal as a way into the universal, delivered with jokes."
+   },
+   {
+    "name": "Emily Wilson",
+    "stance": "Translator of the Odyssey and Iliad; has written on how epics are communal, performed and full of individual voices. Likely to argue the ego/epic opposition is a false one and that Homer already contains both."
+   },
+   {
+    "name": "Shahidha Bari",
+    "stance": "Hosts. Academic, critic and broadcaster (Front Row; Dressed)."
+   }
+  ],
+  "questions": [
+   "What is the last novel with no author-figure in it that changed how you see the world?",
+   "If the epic gave a society its shared story, what is our shared story now — and who is telling it?",
+   "Is the difference between memoir and autofiction one of truth, or just of the contract with the reader?"
+  ],
+  "reading": [
+   {
+    "title": "The Odyssey",
+    "by": "Homer, tr. Emily Wilson (2017)",
+    "note": "The translation that made the epic feel spoken — read Book 9, where Odysseus tells his own story."
+   },
+   {
+    "title": "No One Is Talking About This",
+    "by": "Patricia Lockwood (2021)",
+    "note": "The self, the feed, and then grief — the case for the personal in one book."
+   },
+   {
+    "title": "The Mind–Body Problem",
+    "by": "Rebecca Goldstein (1983)",
+    "note": "Her first novel: philosophy carried by a very particular self."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Autofiction",
+    "def": "Fiction that uses the author's own life and name as material while claiming the freedoms of the novel."
+   },
+   {
+    "term": "Epic",
+    "def": "Long narrative poetry of a culture's foundational stories — Gilgamesh, Homer, Virgil — usually performed, communal, and impersonal in voice."
+   },
+   {
+    "term": "Lived experience",
+    "def": "First-person testimony as a source of knowledge and authority — celebrated as inclusion, criticised as unarguable."
+   }
+  ]
+ },
+ "30": {
+  "question": "Are the educated no longer winning — and if degrees have stopped paying, is the fault with education or with our idea of it?",
+  "why": "Graduate premiums are shrinking, student debt is at record levels and AI is aimed squarely at the cognitive skills universities sell. Whether the answer is more trades, less school, or a different kind of education decides what a generation is told to do at eighteen.",
+  "sides": [
+   {
+    "label": "The future belongs to the skilled and self-taught; mass higher education was a bubble",
+    "points": [
+     "For many degrees the lifetime earnings bounce is now smaller than the debt; electricians and plumbers out-earn graduates in their twenties.",
+     "Knowledge is free and instant; three years memorising it is a signalling ritual, not learning.",
+     "Illich's charge stands: compulsory schooling teaches conformity and the habit of being taught, not judgement."
+    ],
+    "objections": [
+     "Averages hide the point: the premium collapsed for some subjects and institutions, not for education as such.",
+     "AI automates the routine skills first — trades are not immune, and the judgement that survives is exactly what good education builds.",
+     "The self-taught who succeed are the survivors we hear about; most people learn better with structure and teachers."
+    ]
+   },
+   {
+    "label": "Education isn't failing; a factual, credential-driven version of it is. Rebuild it around judgement",
+    "points": [
+     "Wisdom to choose between facts is more valuable when facts are free, not less; that was always the point of a liberal education.",
+     "The debt crisis is a financing model, not an argument against learning.",
+     "Societies that abandoned broad education for narrow skills paid later in adaptability."
+    ],
+    "objections": [
+     "'Judgement' is what every curriculum reform has promised since Dewey; the results are hard to measure and easy to fake.",
+     "Rebuilding around judgement may just mean the elite keeps the good education while everyone else is steered into 'skills'.",
+     "Knowledge-rich schooling produced the very graduates now said to be losing; the diagnosis contradicts the evidence."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Daniel Susskind",
+    "stance": "Oxford economist (A World Without Work; Growth: A Reckoning) who has argued that AI will hollow out cognitive work and that education must be rethought rather than expanded on autopilot."
+   },
+   {
+    "name": "Thangam Debbonaire",
+    "stance": "Labour peer, former MP and professional musician. Likely to defend access to education and lifelong learning while conceding that the funding model is broken."
+   },
+   {
+    "name": "Michael Gove",
+    "stance": "As Education Secretary he championed a knowledge-rich curriculum in the E. D. Hirsch tradition and academic rigour. Expect a defence of knowledge against 'skills-only' thinking and a critique of what universities did with their autonomy."
+   },
+   {
+    "name": "Philip Collins",
+    "stance": "Hosts. Columnist and former chief speechwriter to Tony Blair."
+   }
+  ],
+  "questions": [
+   "If a degree is a signal, what would you replace it with that employers would trust?",
+   "Which is more likely to survive AI: a plumber's apprenticeship or a philosophy degree — and why?",
+   "Should the state stop subsidising degrees that don't pay, or is that a market test that education was never meant to pass?"
+  ],
+  "reading": [
+   {
+    "title": "Deschooling Society",
+    "by": "Ivan Illich (1971)",
+    "note": "The argument, cited in the billing, that schooling manufactures conformity."
+   },
+   {
+    "title": "A World Without Work",
+    "by": "Daniel Susskind (2020)",
+    "note": "His case on automation and what humans are left to do."
+   },
+   {
+    "title": "The Case Against Education",
+    "by": "Bryan Caplan (2018)",
+    "note": "The strongest economic version of 'it's mostly signalling'."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Graduate premium",
+    "def": "The extra lifetime earnings from a degree over the alternative — now negative for some courses once debt is counted."
+   },
+   {
+    "term": "Signalling",
+    "def": "The theory that credentials mainly certify pre-existing ability and conscientiousness rather than adding skills."
+   },
+   {
+    "term": "Knowledge-rich curriculum",
+    "def": "Schooling built on a defined body of facts and cultural literacy, as opposed to generic skills."
+   }
+  ]
+ },
+ "33": {
+  "question": "Should we deliberately engineer the planet's climate — or is 'dominion over nature' the delusion that caused the crisis?",
+  "why": "Solar geoengineering is now funded by billionaires and debated in Nature; carbon removal is written into net-zero plans. As warming outruns emissions cuts, the question moves from whether to research it to who decides, on what evidence, and what happens if it stops.",
+  "sides": [
+   {
+    "label": "We are already engineering the planet — badly. Doing it on purpose may be the only responsible option",
+    "points": [
+     "Emissions are not falling fast enough; reflecting a fraction of sunlight is the one lever that works on the timescale of the damage.",
+     "Refusing to research it doesn't stop it; it guarantees that when a desperate government tries it, no one will know what they're doing.",
+     "Humans have taken planetary responsibility for good and ill since agriculture; the honest position is to manage it consciously."
+    ],
+    "objections": [
+     "Solar geoengineering doesn't remove carbon: it masks warming while oceans acidify, and stopping it abruptly is catastrophic ('termination shock').",
+     "Regional effects — monsoons, droughts — fall on people who had no vote; there is no governance for a global thermostat.",
+     "Moral hazard: a cheap-looking fix weakens the will to cut emissions."
+    ]
+   },
+   {
+    "label": "Geoengineering is the Enlightenment delusion at planetary scale; the answer is transformation, not control",
+    "points": [
+     "The crisis came from treating nature as a machine to be optimised; the same mindset cannot be the cure.",
+     "The risks are unbounded and irreversible, the benefits accrue to those who caused the problem, and the technology entrenches their power.",
+     "Cutting emissions, restoring ecosystems and changing economies are proven; stratospheric aerosols are a bet."
+    ],
+    "objections": [
+     "'Transformation' has been the plan for thirty years while emissions rose; refusing a tool on philosophical grounds has costs measured in lives.",
+     "Rejecting all intervention is itself a decision to accept whatever warming arrives.",
+     "Nature restoration and carbon removal are also engineering; the line between wise and hubristic is being drawn by preference."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Adrienne Buller",
+    "stance": "Author of The Value of a Whale, a critique of green capitalism and market fixes. Expect scepticism of techno-solutions that leave the economic system intact."
+   },
+   {
+    "name": "Janos Pasztor",
+    "stance": "Former UN assistant secretary-general and head of the Carnegie Climate Governance Initiative, which pushed for rules on geoengineering research without advocating deployment. Expect 'we must govern it before someone does it' rather than either camp."
+   },
+   {
+    "name": "Adam Frank",
+    "stance": "Astrophysicist (Light of the Stars) who frames humanity as a planetary force that must learn to steer its 'technosphere'. Likely to argue that conscious management of the planet is now unavoidable."
+   },
+   {
+    "name": "Laurie Laybourn",
+    "stance": "Researcher on climate 'derailment risk' and co-author of Planet on Fire, arguing for systemic economic change. Likely to warn that geoengineering distracts from and entrenches the causes."
+   },
+   {
+    "name": "Isabel Hilton",
+    "stance": "Hosts. Journalist and founder of China Dialogue."
+   }
+  ],
+  "questions": [
+   "Who should be able to veto a solar geoengineering programme — and who would actually be able to?",
+   "If research is fine but deployment isn't, what stops research from becoming deployment?",
+   "Is planting a forest engineering the planet? Where exactly does dominion begin?"
+  ],
+  "reading": [
+   {
+    "title": "Under a White Sky",
+    "by": "Elizabeth Kolbert (2021)",
+    "note": "The best reported tour of deliberate planetary intervention and its ironies."
+   },
+   {
+    "title": "The Value of a Whale",
+    "by": "Adrienne Buller (2022)",
+    "note": "Her critique of market and technological climate fixes."
+   },
+   {
+    "title": "Light of the Stars",
+    "by": "Adam Frank (2018)",
+    "note": "His argument that civilisations and planets co-evolve — the frame he'll bring."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Solar radiation management",
+    "def": "Reflecting sunlight, typically with stratospheric aerosols, to cool the planet without removing carbon."
+   },
+   {
+    "term": "Termination shock",
+    "def": "Rapid warming if a solar geoengineering programme were stopped while greenhouse gases remain high."
+   },
+   {
+    "term": "Moral hazard",
+    "def": "A safety net that encourages riskier behaviour — here, a fix that weakens emissions cuts."
+   }
+  ]
+ },
+ "41": {
+  "question": "Is the universe a law-governed mechanism, or an evolving, self-creating process whose 'laws' are themselves history?",
+  "why": "Cosmology's puzzles — why these laws, why these constants, why a universe hospitable to life — have led serious physicists to propose that laws evolve, are selected, or were not fixed at the start. It is a fight over what a fundamental explanation even looks like.",
+  "sides": [
+   {
+    "label": "The laws are timeless and universal; finding them is what physics is",
+    "points": [
+     "Relativity and quantum mechanics predict to a dozen decimal places; no evolutionary story has produced a single number.",
+     "'Evolving laws' either obey a deeper fixed rule (so the laws aren't really evolving) or nothing (so there is no explanation at all).",
+     "Selection needs variation and inheritance across many universes we cannot observe; that is metaphysics with equations."
+    ],
+    "objections": [
+     "Fixed laws cannot explain themselves: why these laws, these constants, this initial state?",
+     "The 'unreasonable effectiveness' of mathematics may be a selection effect of what physicists choose to study.",
+     "Physics already accepts that effective laws change with energy and epoch; 'timeless' is an assumption, not a finding."
+    ]
+   },
+   {
+    "label": "The cosmos evolves: laws, constants and even time emerged, and selection is the deepest explanation we have",
+    "points": [
+     "Hawking's final theory with Hertog: the laws we see crystallised in the early universe from a broader range, the way biology's rules emerged.",
+     "Smolin's cosmological natural selection makes a testable claim — that universes are tuned to make black holes.",
+     "Evolution explains complexity without a designer or a lawgiver; that is exactly the explanatory gap cosmology has."
+    ],
+    "objections": [
+     "Darwinian selection needs competing populations; one universe, or unobservable others, is not a population.",
+     "'Explains without predicting' is what the billing itself concedes; physics has always demanded more.",
+     "Evolving laws may just push the question back: what governs the evolution?"
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Thomas Hertog",
+    "stance": "Stephen Hawking's collaborator and author of On the Origin of Time, which argues the laws of physics evolved in the early universe and should be read 'top-down' from our position. Expect the strongest case that laws have a history."
+   },
+   {
+    "name": "Daniel Whiteson",
+    "stance": "CERN experimental particle physicist and co-author of We Have No Idea. Likely to defend the empirical, law-seeking method while cheerfully admitting how much remains unknown."
+   },
+   {
+    "name": "Ivette Fuentes",
+    "stance": "Experimental quantum physicist working on quantum sensors and relativistic quantum information. Likely to ask what any 'evolving laws' picture would let us measure."
+   },
+   {
+    "name": "Philip Ball",
+    "stance": "Hosts. Science writer and former Nature editor."
+   }
+  ],
+  "questions": [
+   "What observation would show that a law of physics has changed — and has anyone made one?",
+   "If laws evolved, was there ever a moment with no laws? What did that look like?",
+   "Is 'the universe is an organism' a theory, an analogy, or a mood?"
+  ],
+  "reading": [
+   {
+    "title": "On the Origin of Time",
+    "by": "Thomas Hertog (2023)",
+    "note": "Hawking's final cosmology as Hertog tells it — the position he brings."
+   },
+   {
+    "title": "The Singular Universe and the Reality of Time",
+    "by": "Roberto Unger and Lee Smolin (2014)",
+    "note": "The philosophical case that laws evolve and time is real."
+   },
+   {
+    "title": "We Have No Idea",
+    "by": "Jorge Cham and Daniel Whiteson (2017)",
+    "note": "Whiteson's guide to the unknowns — and his temperament."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Cosmological natural selection",
+    "def": "Smolin's proposal that universes reproduce through black holes, so physics is tuned to make many of them."
+   },
+   {
+    "term": "Top-down cosmology",
+    "def": "Hawking and Hertog's idea that our observations select which histories of the universe are relevant, rather than one history running forward from the start."
+   },
+   {
+    "term": "Fine-tuning",
+    "def": "The observation that small changes to physical constants would make life impossible — the puzzle both sides claim to solve."
+   }
+  ]
+ },
+ "42": {
+  "question": "Have nation states already surrendered sovereignty to Big Tech — and can they take it back?",
+  "why": "Governments run on Amazon and Microsoft clouds, elections play out on Meta and Alphabet's feeds, and one company's satellites decide battlefield communications. The debate is whether regulation is still possible or whether states are now junior partners.",
+  "sides": [
+   {
+    "label": "The state has already lost: infrastructure, discourse and even war run through a few firms nobody elected",
+    "points": [
+     "60% of government cloud data sits on two American companies; that is not a supplier relationship but a dependency.",
+     "Platforms shape what three billion people see, with no oversight comparable to broadcasting law.",
+     "Firms now make sovereign decisions — restricting Starlink in wartime, refusing military uses — and states accept it because they must."
+    ],
+    "objections": [
+     "States retain the monopoly on law and force; a company can be broken up, taxed, or banned the moment a government is willing to bear the cost.",
+     "Dependency runs both ways: the same firms depend on states for spectrum, courts, contracts and protection.",
+     "The story confuses American corporate power with the end of the nation state; Europe and China are already writing different rules."
+    ]
+   },
+   {
+    "label": "Sovereignty is intact if states use it: regulate, diversify, and stop outsourcing judgement",
+    "points": [
+     "The EU's Digital Services and Markets Acts, China's platform crackdown and Australia's news bargaining code show states can bite.",
+     "Procurement is policy: governments chose the cheapest cloud; they can choose sovereign or federated ones.",
+     "Bans are blunt but real — India banned TikTok overnight, Brazil suspended X."
+    ],
+    "objections": [
+     "Regulation is slow, captured and always a generation behind the product.",
+     "Bans and 'sovereign' infrastructure impose real costs on citizens and often protect state surveillance more than liberty.",
+     "Fines in the billions are a rounding error for firms worth trillions; the rules are priced in."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Silkie Carlo",
+    "stance": "Director of Big Brother Watch; campaigns against surveillance by states and corporations alike. Expect resistance to both Big Tech power and to 'sovereignty' that means state control over speech — the civil-liberties position between the two."
+   },
+   {
+    "name": "Leo Varadkar",
+    "stance": "Former Taoiseach of Ireland, the European home of most US tech firms. Likely to argue that states can regulate through the EU while acknowledging the economic dependence of small countries."
+   },
+   {
+    "name": "Sebastian Mallaby",
+    "stance": "Author of The Power Law on venture capital and a biography of Demis Hassabis. Likely to argue that tech power is real but that markets and states remain the more durable forces."
+   },
+   {
+    "name": "Michael Gove",
+    "stance": "Former Cabinet minister and Spectator editor; a nation-state sovereigntist who supported the Online Safety Act. Expect the case that states must and can reassert control over platforms."
+   },
+   {
+    "name": "Roger Hearing",
+    "stance": "Hosts. Journalist and broadcaster, formerly of the BBC World Service."
+   }
+  ],
+  "questions": [
+   "Which government has actually taken power back from a platform, and what did it cost its citizens?",
+   "If Anthropic can veto a military use of its software, is that corporate overreach or exactly the check we'd want?",
+   "Would you rather your government's data sat with Microsoft or with your own government? Why?"
+  ],
+  "reading": [
+   {
+    "title": "The Age of Surveillance Capitalism",
+    "by": "Shoshana Zuboff (2019)",
+    "note": "The influential case that platforms have accumulated a new kind of power."
+   },
+   {
+    "title": "The Power Law",
+    "by": "Sebastian Mallaby (2022)",
+    "note": "How venture capital built the firms in question — Mallaby's ground."
+   },
+   {
+    "title": "Digital Empires",
+    "by": "Anu Bradford (2023)",
+    "note": "The American, Chinese and European models of governing tech, compared."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Digital sovereignty",
+    "def": "A state's control over the data, infrastructure and platforms its citizens depend on."
+   },
+   {
+    "term": "DSA / DMA",
+    "def": "The EU's Digital Services Act (content and platform duties) and Digital Markets Act (curbs on gatekeeper firms)."
+   },
+   {
+    "term": "Monopoly on violence",
+    "def": "Weber's definition of the state: the sole legitimate user of force in a territory."
+   }
+  ]
+ },
+ "48": {
+  "question": "Is boredom the route to a self and an inner life — or a luxury nostalgia for a world where entertainment was rationed?",
+  "why": "Attention is the most contested resource of the decade. Neuroscience of the default mode network gives the 'rest builds the self' intuition a mechanism, while the digital-detox industry turns it into a product. The question is whether constant stimulation costs us something real.",
+  "sides": [
+   {
+    "label": "Constant stimulation hollows the self; boredom is where identity and thought are made",
+    "points": [
+     "The default mode network, active in wakeful rest, is where autobiographical memory and self-reflection happen; feeds suppress it.",
+     "Creativity research consistently finds insight follows unstructured time; a life without gaps is a life without ideas.",
+     "The economics are revealing: the wealthy buy silence, retreats and phone-free schools while selling stimulation to everyone else."
+    ],
+    "objections": [
+     "The neuroscience is suggestive, not causal — nobody has shown scrolling erases the self.",
+     "Boredom in history meant drudgery and isolation, not creative reverie; its romance is a class privilege.",
+     "People have always feared new media would corrode the mind; the novel was once the infinite scroll."
+    ]
+   },
+   {
+    "label": "Entertainment on demand is a triumph — the problem is exploitation of attention, not stimulation as such",
+    "points": [
+     "Access to music, film, argument and community that once belonged to the rich is now universal; that is not a loss.",
+     "The self is made in engagement with others and the world, not in an empty room.",
+     "Blame the business model that farms attention, not the human appetite for stories."
+    ],
+    "objections": [
+     "Designed compulsion is not the same as chosen pleasure; 'we love it' is what the metrics were built to produce.",
+     "The universal abundance is thin: a hundred tabs is not a rich inner life.",
+     "Even if the appetite is ancient, the dose is new — and the harm data on sleep, attention and adolescence keeps accumulating."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Patricia Lockwood",
+    "stance": "Novelist of the feed (No One Is Talking About This); lives in the internet and is ambivalent about it. Expect neither detox sermon nor techno-cheer, but a precise account of what the scroll does to a mind."
+   },
+   {
+    "name": "Jordan Stephens",
+    "stance": "Musician (Rizzle Kicks), author of the memoir Avoidance, Drugs, Heartbreak and Dogs, and mental-health advocate. Likely to speak for rest, boredom and stepping away, from experience."
+   },
+   {
+    "name": "Tony D. Sampson",
+    "stance": "Digital-culture theorist (Virality; A Sleepwalker's Guide to Social Media) who argues platforms work through affect and contagion below conscious attention. Expect a critique of Big Tech's grip on experience."
+   },
+   {
+    "name": "Jay Shapiro",
+    "stance": "Hosts. Philosopher and podcaster (Dilemma)."
+   }
+  ],
+  "questions": [
+   "When did you last do nothing for an hour — and did anything happen?",
+   "Is 'protect your attention' advice for individuals, or a way of letting the platforms off?",
+   "If boredom is a luxury good, who is being asked to give up the entertainment they only just got?"
+  ],
+  "reading": [
+   {
+    "title": "Stolen Focus",
+    "by": "Johann Hari (2022)",
+    "note": "The popular case that attention is being taken from us, with the research and its critics."
+   },
+   {
+    "title": "A Philosophy of Boredom",
+    "by": "Lars Svendsen (2005)",
+    "note": "Boredom as a modern condition — the longer view."
+   },
+   {
+    "title": "A Sleepwalker's Guide to Social Media",
+    "by": "Tony D. Sampson (2020)",
+    "note": "Sampson's account of how platforms work on us below awareness."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Default mode network",
+    "def": "Brain regions most active during rest and mind-wandering, linked to self-reflection and memory."
+   },
+   {
+    "term": "Attention economy",
+    "def": "Business built on capturing and reselling attention, so engagement is engineered."
+   },
+   {
+    "term": "Digital detox",
+    "def": "Deliberate time away from screens — now a multi-billion industry, which is part of the argument."
+   }
+  ]
+ },
+ "50": {
+  "question": "Is ageing a disease we can defeat — and if we could postpone death indefinitely, should we want to?",
+  "why": "Senolytics, rapamycin trials and one man's public $2m-a-year protocol have moved life extension from Gilgamesh to clinical research. The argument is scientific (does the biology allow it?) and philosophical (what would a life without an end be for?).",
+  "sides": [
+   {
+    "label": "Ageing is damage, damage can be repaired, and death from old age is an engineering problem",
+    "points": [
+     "Mice live 40% longer with senescent cells cleared; every ageing pathway identified so far is a target, not a mystery.",
+     "We already treat the diseases of ageing one at a time; treating the process is the same project done honestly.",
+     "'Death gives life meaning' was invented to console people who had no choice; nobody argues the same about cancer."
+    ],
+    "objections": [
+     "Mouse results have a poor record of translating; the human data for life extension is, so far, nil.",
+     "Even perfect repair leaves accident, violence and the second law; 'indefinite' postponement is marketing.",
+     "A therapy available first to the very rich would create a biological class divide unlike any before."
+    ]
+   },
+   {
+    "label": "The immortality quest is an ancient fantasy in a lab coat — impossible, and not even desirable",
+    "points": [
+     "Gilgamesh, the alchemists, the Immortalisation Commission of 1920s Russia: the dream recurs because it is a refusal of the human condition, not a research programme.",
+     "Swift's Struldbruggs are the answer: endless life without endless youth is a curse, and endless youth is a self that never changes.",
+     "Meaning depends on finitude — commitment, courage, generations — and a society of the undying would be a society of the entrenched."
+    ],
+    "objections": [
+     "Every extension of life expectancy so far was called unnatural and then welcomed; 80 is not the sacred number.",
+     "Nobody proposes forcing longevity on anyone; the argument against research is an argument to deny others a choice.",
+     "'Meaning needs death' is asserted by people who plan to live to 90; ask them at 60."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Aubrey de Grey",
+    "stance": "Biogerontologist behind the SENS damage-repair approach and the idea of 'longevity escape velocity'. Expect the full engineering case that ageing is curable and that the first person to live to 1,000 may be alive."
+   },
+   {
+    "name": "Bryan Johnson",
+    "stance": "Tech founder behind 'Blueprint' and the Don't Die movement, publicly measuring every biomarker. Joins from California; expect data, protocols and a moral case for treating death as the enemy."
+   },
+   {
+    "name": "John Gray",
+    "stance": "Philosopher whose The Immortalization Commission traced how science took over religion's promise to abolish death. Expect the argument that the quest is a secular religion and a flight from the human."
+   },
+   {
+    "name": "Sarah Wilson",
+    "stance": "Author (First, We Make the Beast Beautiful; This One Wild and Precious Life), critical of wellness and techno-optimism. Likely to argue for accepting mortality and for meaning over metrics."
+   },
+   {
+    "name": "Güneş Taylor",
+    "stance": "Hosts. Geneticist and science communicator."
+   }
+  ],
+  "questions": [
+   "What is the strongest human evidence — not mouse evidence — that ageing can be slowed?",
+   "If the treatment existed, who gets it first, and what happens to a democracy of people who never leave?",
+   "What would you do with year 300 that you couldn't do with year 80?"
+  ],
+  "reading": [
+   {
+    "title": "The Immortalization Commission",
+    "by": "John Gray (2011)",
+    "note": "His history of science's attempts to cheat death — the frame he'll use."
+   },
+   {
+    "title": "Ending Aging",
+    "by": "Aubrey de Grey and Michael Rae (2007)",
+    "note": "The SENS programme laid out."
+   },
+   {
+    "title": "Gulliver's Travels, Part III (the Struldbruggs)",
+    "by": "Jonathan Swift (1726)",
+    "note": "The short, devastating case that living forever is not the same as staying young."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Senescent cells",
+    "def": "Aged cells that stop dividing but linger, secreting inflammatory signals; clearing them ('senolytics') extends mouse lifespans."
+   },
+   {
+    "term": "Longevity escape velocity",
+    "def": "The point at which each year of research adds more than a year of life expectancy."
+   },
+   {
+    "term": "Compression of morbidity",
+    "def": "The more modest goal: shortening the years of ill health before death rather than adding years."
+   }
+  ]
+ },
+ "51": {
+  "question": "Do superpowers still run the world — or is 'great powers dividing the globe' a fairytale in an age of many hands on the wheel?",
+  "why": "Iran and Ukraine have humbled bigger powers; Taiwan's fabs and Egypt's canal hold leverage no navy can seize; half of trade runs outside the blocs. Whether fragmentation means danger or opportunity decides how middle powers should play the next decade.",
+  "sides": [
+   {
+    "label": "Power has fragmented for good: many centres, more leverage for the rest, a shared future if we manage it",
+    "points": [
+     "Chips, chokepoints, demographics and commodities give small and middle powers vetoes the Cold War never allowed.",
+     "The Global South's refusal to pick sides over Ukraine shows the blocs no longer command loyalty.",
+     "Multipolarity has kept the peace in Southeast Asia for decades; it can be organised, not just feared."
+    ],
+    "objections": [
+     "Fragmentation without rules is the 1930s: every previous multipolar system ended in general war.",
+     "Leverage is not power — Taiwan's chips make it a target as much as a player.",
+     "The 'rest' are hedging because they are weak, not because they are winning."
+    ]
+   },
+   {
+    "label": "The great powers still decide; the rest adapt. Pretending otherwise is dangerous",
+    "points": [
+     "Only the US and China can project force globally, print reserve currency, or set technology standards.",
+     "Europe learned in 2022 what dependence on someone else's security guarantee costs.",
+     "Middle-power 'autonomy' is real only until a great power decides it isn't."
+    ],
+    "objections": [
+     "The US could not bend Iran, Afghanistan or the Houthis; Russia could not take Kyiv. 'Deciding' has a poor recent record.",
+     "China's demographic decline and America's political volatility make both an uncertain anchor.",
+     "Great-power framing is self-serving: it is how the great powers describe a world that is slipping from them."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Kishore Mahbubani",
+    "stance": "Former Singaporean ambassador and UN Security Council president; author of Has China Won? and The Asian 21st Century. Expect the argument that the West must adjust to an Asian-led, multipolar world, made with a diplomat's polish."
+   },
+   {
+    "name": "Kwasi Kwarteng",
+    "stance": "Former Chancellor and historian of empire (Ghosts of Empire; War and Gold). Likely to argue that power remains concentrated and that Britain and the West should be realistic about their weight."
+   },
+   {
+    "name": "Leo Varadkar",
+    "stance": "Former Taoiseach; the small-state, EU-embedded perspective. Likely to argue that pooled sovereignty is how small nations survive a multipolar world."
+   },
+   {
+    "name": "Mary Ann Sieghart",
+    "stance": "Hosts. Journalist and author of The Authority Gap."
+   }
+  ],
+  "questions": [
+   "Name a decision in the last five years that a great power wanted and a smaller one blocked. What does it prove?",
+   "If multipolarity is dangerous, is the alternative Chinese or American hegemony — and which would you choose?",
+   "What should a country of five million actually do differently in a fragmented world?"
+  ],
+  "reading": [
+   {
+    "title": "Has China Won?",
+    "by": "Kishore Mahbubani (2020)",
+    "note": "His case that America is losing a contest it barely admits it's in."
+   },
+   {
+    "title": "The Tragedy of Great Power Politics",
+    "by": "John Mearsheimer (2001)",
+    "note": "The realist theory that great powers cannot help competing."
+   },
+   {
+    "title": "Ghosts of Empire",
+    "by": "Kwasi Kwarteng (2011)",
+    "note": "Kwarteng's history of how imperial power actually worked — and unravelled."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Multipolar world",
+    "def": "Several centres of power rather than one (unipolar) or two (bipolar)."
+   },
+   {
+    "term": "Middle power",
+    "def": "A state too small to dominate but large enough to shape outcomes — Australia, Türkiye, Indonesia, Brazil."
+   },
+   {
+    "term": "Chokepoint",
+    "def": "A physical or technological bottleneck (Suez, Taiwanese fabs, Dutch lithography) that confers leverage out of proportion to size."
+   }
+  ]
+ },
+ "58": {
+  "question": "Are grand philosophical systems coming back — and can we even avoid having one, whether or not we admit it?",
+  "why": "Analytic piecemeal work, Wittgenstein's silence and postmodern suspicion all declared the total account of the world dead. Yet every science, ideology and 'anti-metaphysics' relies on a framework it rarely states. The debate is whether to build one deliberately or refuse on principle.",
+  "sides": [
+   {
+    "label": "We can't escape metaphysics, so we should do it well: the overall account returns",
+    "points": [
+     "Every claim presupposes a picture of what claims are, what the world is, and how the two meet; refusing to state it just leaves it unexamined.",
+     "Postmodernism itself was a system — a theory of language, power and meaning — that pretended not to be one.",
+     "The sciences are fragmenting; only a philosophical account can say how physics, biology and mind fit together."
+    ],
+    "objections": [
+     "Systems from Hegel to Marx ended in totalising politics; the suspicion of grand accounts was earned.",
+     "A framework is not a system: we can hold background assumptions provisionally without a cathedral.",
+     "Every system so far has been refuted; 'this time we'll get it right' is what every system said."
+    ]
+   },
+   {
+    "label": "The complete account is hubris; philosophy's job is to clear confusions and stay piecemeal",
+    "points": [
+     "Wittgenstein's point stands: the demand for a view of the whole is a picture holding us captive, not a task.",
+     "Local, revisable, problem-by-problem progress is how every successful inquiry works.",
+     "Claims to an overall account have always turned out to be one tradition's assumptions dressed as everyone's."
+    ],
+    "objections": [
+     "'Stay piecemeal' is itself an overall stance about what philosophy is and can do.",
+     "Refusing a framework doesn't remove one; it hands the job to physics or the market by default.",
+     "The confusion-clearing project has run for a century without agreement on what was cleared."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Hilary Lawson",
+    "stance": "Author of Closure: A Story of Everything — an explicit overall account in which language 'closes' an open world. Expect the case that the systematic ambition is unavoidable and that his own theory shows it can be done without dogma."
+   },
+   {
+    "name": "Divya Dwivedi",
+    "stance": "Indian philosopher (with Shaj Mohan, Gandhi and Philosophy; Indian Philosophy, Indian Revolution) working in the deconstructive tradition and against caste. Likely to be suspicious of systems as vehicles of power, while insisting philosophy must 'begin again'."
+   },
+   {
+    "name": "Sebastian Rödl",
+    "stance": "Idealist philosopher (Self-Consciousness and Objectivity) who defends an absolute idealism in the Hegelian line. Expect the strongest case that a systematic account of thought and world is not just possible but required."
+   },
+   {
+    "name": "Danielle Sands",
+    "stance": "Hosts. Philosopher working in continental philosophy and literature."
+   }
+  ],
+  "questions": [
+   "State, in one sentence, the framework you're relying on tonight. If you can't, is that modesty or evasion?",
+   "What went wrong with Hegel and Marx — the systems, or what people did with them?",
+   "Is a scientist who says 'only physics is real' doing metaphysics? Badly?"
+  ],
+  "reading": [
+   {
+    "title": "Closure: A Story of Everything",
+    "by": "Hilary Lawson (2001)",
+    "note": "The system on the table."
+   },
+   {
+    "title": "Philosophical Investigations",
+    "by": "Ludwig Wittgenstein (1953)",
+    "note": "The case against the demand for a view of the whole — sections 89–133 especially."
+   },
+   {
+    "title": "Self-Consciousness and Objectivity",
+    "by": "Sebastian Rödl (2018)",
+    "note": "Rödl's short, dense argument for absolute idealism."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Metaphysics",
+    "def": "The account of what fundamentally exists and how it hangs together — declared dead by positivists and postmodernists, and now contested."
+   },
+   {
+    "term": "Analytic philosophy",
+    "def": "The tradition from Russell and Moore onwards favouring logical analysis and piecemeal problems over systems."
+   },
+   {
+    "term": "Closure",
+    "def": "Lawson's term for the way language and thought make a definite world out of an 'open' one."
+   }
+  ]
+ },
+ "59": {
+  "question": "Has 'mental health' become an industry that medicalises ordinary distress — or is this the first era with real treatment for real suffering?",
+  "why": "Antidepressant prescribing and therapy spending keep rising while measured rates of depression and anxiety don't fall — the 'treatment-prevalence paradox'. Whether that means the treatments don't work, the wrong people get them, or distress is being manufactured decides how billions are spent.",
+  "sides": [
+   {
+    "label": "We have medicalised life: distress is a response to circumstances, not a disease, and the industry profits from calling it one",
+    "points": [
+     "The serotonin story behind antidepressants has collapsed (the 2022 umbrella review); the drugs' effects are small and hard to separate from placebo and withdrawal.",
+     "Diagnoses have expanded to cover grief, shyness and adolescence; one in three women prescribed antidepressants is a cultural fact, not an epidemic of brain disease.",
+     "Treatment has risen for decades without prevalence falling — the paradox the billing cites — which is what you'd expect if the model is wrong."
+    ],
+    "objections": [
+     "The paradox has other explanations: more people recognising distress, treatment reaching the wrong people, or social conditions worsening faster than treatment helps.",
+     "'Natural response to life' is cold comfort to someone who cannot get out of bed; critics rarely say what they'd offer instead.",
+     "Disputing the serotonin story does not show the drugs don't work; the trials show modest benefit, and modest benefit across millions is large."
+    ]
+   },
+   {
+    "label": "Mental illness is real, treatable, and under-treated; scepticism costs lives",
+    "points": [
+     "Depression has biology — inflammation, sleep, genetics — and biological treatments help, as do therapies with strong evidence bases.",
+     "The alternative to treatment historically was not resilience but silence, shame and suicide.",
+     "Rising diagnosis reflects falling stigma; that people seek help is a success, not a scandal."
+    ],
+    "objections": [
+     "If treatment works and reaches more people every year, why does the population not get better?",
+     "A vocabulary in which every difficulty is a 'condition' can teach helplessness — the argument that awareness campaigns raise reported symptoms.",
+     "Biology of distress is not the same as disease: stress also inflames; grief also changes the brain."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Joanna Moncrieff",
+    "stance": "Psychiatrist and critic of the biomedical model (The Myth of the Chemical Cure), lead author of the 2022 review finding no consistent link between serotonin and depression. Expect the strongest case that antidepressants are over-sold and distress is not a brain disease."
+   },
+   {
+    "name": "Edward Bullmore",
+    "stance": "Cambridge neuropsychiatrist and author of The Inflamed Mind, linking depression to inflammation. Likely to defend biological psychiatry while agreeing the old chemical-imbalance story was too simple."
+   },
+   {
+    "name": "Mark Solms",
+    "stance": "Neuroscientist and psychoanalyst (The Hidden Spring) who argues feelings are the foundation of consciousness. Expect a middle path: distress has biology, but it is meaningful and about something."
+   },
+   {
+    "name": "Sarah Wilson",
+    "stance": "Author of the anxiety memoir First, We Make the Beast Beautiful, sceptical of the wellness industry while speaking from experience. Likely to challenge both the treatment machine and easy dismissals of suffering."
+   },
+   {
+    "name": "Jonny Thomson",
+    "stance": "Hosts. Philosophy writer (Mini Philosophy)."
+   }
+  ],
+  "questions": [
+   "If antidepressant effects are small and hard to separate from placebo, why do so many patients report they helped?",
+   "What is the line between distress that should be treated and distress that should be lived through — and who draws it?",
+   "If treatment rates doubled again, what would you predict happens to prevalence?"
+  ],
+  "reading": [
+   {
+    "title": "'The serotonin theory of depression: a systematic umbrella review'",
+    "by": "Moncrieff et al., Molecular Psychiatry (2022)",
+    "note": "The paper that reset the argument; read the responses too."
+   },
+   {
+    "title": "The Inflamed Mind",
+    "by": "Edward Bullmore (2018)",
+    "note": "The biological case, newer than serotonin."
+   },
+   {
+    "title": "The Hidden Spring",
+    "by": "Mark Solms (2021)",
+    "note": "Solms's theory of feeling and consciousness."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Treatment-prevalence paradox",
+    "def": "The observation that rising treatment rates have not reduced the population prevalence of depression and anxiety."
+   },
+   {
+    "term": "Medicalisation",
+    "def": "Redefining ordinary experiences as medical conditions requiring treatment."
+   },
+   {
+    "term": "Chemical-imbalance theory",
+    "def": "The claim that depression is caused by low serotonin — widely publicised, now widely disowned."
+   }
+  ]
+ },
+ "67": {
+  "question": "Does desire need prohibition — and did sexual liberation, by removing the limits, remove the thrill?",
+  "why": "Openness has never been greater and sex has never been rarer: a third fewer adults having weekly sex than in 1990, a quarter of young adults having none. Bataille and Lacan predicted this. The question is whether limits are the engine of desire or a romance of repression.",
+  "sides": [
+   {
+    "label": "Prohibition is the engine: eroticism needs transgression, desire needs lack, and total permission is deflating",
+    "points": [
+     "Bataille: the erotic is the violation of a taboo; remove the taboo and you remove the charge.",
+     "Lacan: desire is structured by what is missing; abundance and instant availability starve it.",
+     "The data fit: the most liberated generation is the least sexually active, and pornographic abundance coincides with reported anhedonia."
+    ],
+    "objections": [
+     "Correlation with phones, precarity, later partnering and loneliness explains the decline without invoking metaphysics of taboo.",
+     "'Reinstate limits' has no mechanism that isn't coercive; you cannot legislate mystery.",
+     "Repression's golden age had plenty of sex — and rape, shame and unwanted pregnancy. The nostalgia is selective."
+    ]
+   },
+   {
+    "label": "Liberation was right; what's missing is intimacy, time and conditions, not taboo",
+    "points": [
+     "Liberation freed women, gay people and the unmarried from real harm; that gain is not up for renegotiation.",
+     "Desire flourishes with safety, consent and communication; the recent decline tracks economic and social stress, not permissiveness.",
+     "Mystery and limits can be chosen inside freedom — boundaries between two people, not imposed on a society."
+    ],
+    "objections": [
+     "'Chosen limits' concedes the point: desire needs limits; the argument is only about who sets them.",
+     "Consent culture, however necessary, can turn seduction into a negotiation — a change in kind, not just in safety.",
+     "If liberation worked, the numbers should be rising, not falling."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Dasha Nekrasova",
+    "stance": "Actor (Succession) and co-host of the Red Scare podcast, known for contrarian, post-liberal takes on sex and culture. Likely to argue that liberation flattened desire and that limits and mystery matter."
+   },
+   {
+    "name": "Farha Khalidi",
+    "stance": "Feminist commentator with a large TikTok following. Likely to defend liberation, consent and openness and to resist any return to prohibition."
+   },
+   {
+    "name": "Agnieszka Piotrowska",
+    "stance": "Filmmaker and psychoanalytic theorist (director of Married to the Eiffel Tower; author on psychoanalysis and the ethics of encounter). Expect the Lacanian account of desire and lack, argued from film and clinical theory."
+   },
+   {
+    "name": "Güneş Taylor",
+    "stance": "Hosts. Geneticist and science communicator."
+   }
+  ],
+  "questions": [
+   "What is a limit on desire that isn't a limit on someone's freedom?",
+   "If liberation is to blame, why is the decline sharpest among people who grew up after it was complete?",
+   "Is porn abundance a prohibition problem or a supply problem?"
+  ],
+  "reading": [
+   {
+    "title": "Eroticism",
+    "by": "Georges Bataille (1957)",
+    "note": "Taboo and transgression — the thesis in the billing."
+   },
+   {
+    "title": "'Why Are Young People Having So Little Sex?'",
+    "by": "Kate Julian, The Atlantic (2018)",
+    "note": "The reported piece behind the 'sex recession' numbers."
+   },
+   {
+    "title": "Sexual Revolution",
+    "by": "Laurie Penny (2022)",
+    "note": "A feminist defence of liberation — Penny speaks in Sunday's Grown Up debate."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Transgression",
+    "def": "Bataille's idea that crossing a prohibition, not abolishing it, is what produces erotic intensity."
+   },
+   {
+    "term": "Lack (manque)",
+    "def": "In Lacan, desire is structured by an absence that can never be filled; satisfaction dissolves it."
+   },
+   {
+    "term": "Sex recession",
+    "def": "The measured decline in sexual frequency in rich countries since the 1990s, sharpest among the young."
+   }
+  ]
+ },
+ "84": {
+  "question": "Should cosmology abandon cosmic inflation — the theory that saved the Big Bang — as an untestable fix?",
+  "why": "Inflation explains the smoothness and flatness of the universe but no one knows what drove it or stopped it, and it predicts almost anything in some version. Penrose says it has been falsified; its defenders say nothing else fits the data. A Nobel laureate is about to say so in a tent.",
+  "sides": [
+   {
+    "label": "Keep inflation: it predicted the CMB fluctuations we see, and no rival matches the data",
+    "points": [
+     "Inflation predicted a nearly scale-invariant spectrum of primordial fluctuations before Planck measured it; that is a genuine successful prediction.",
+     "It solves the horizon and flatness problems in one stroke; alternatives solve them one at a time with extra assumptions.",
+     "Not knowing the inflaton is like not knowing the Higgs in 1980 — a gap, not a refutation."
+    ],
+    "objections": [
+     "Eternal inflation produces a multiverse in which anything happens somewhere, draining the theory of predictions.",
+     "The theory's parameters are adjusted to the data it is credited with predicting.",
+     "Penrose's point: inflation needs an even more special initial state than the problem it was meant to fix."
+    ]
+   },
+   {
+    "label": "Drop it: inflation is speculation that has become dogma, and there are simpler alternatives",
+    "points": [
+     "Penrose's conformal cyclic cosmology and Turok's mirror universe explain the same observations without an unknown field and an unexplained end.",
+     "The most-cited evidence for inflation — B-mode polarisation — has repeatedly failed to appear.",
+     "A theory that can be adjusted to fit any outcome is not doing the work of a scientific theory."
+    ],
+    "objections": [
+     "The alternatives are younger, less developed and make their own untested assumptions (a conformal bounce, a CPT-symmetric universe).",
+     "'Adjustable' describes most successful theories at their frontier; inflation's simplest versions have been ruled out, which is falsifiability working.",
+     "Penrose's 'Hawking points' in the CMB are not accepted by most of the field."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Roger Penrose",
+    "stance": "Nobel laureate; has argued inflation is 'falsified' and proposes conformal cyclic cosmology, in which our Big Bang follows a previous aeon. Joins from Oxford. Expect no concession to inflation at all."
+   },
+   {
+    "name": "Neil Turok",
+    "stance": "Co-developer of cyclic and ekpyrotic models with Paul Steinhardt and, with Latham Boyle, of a 'mirror universe' that is CPT-symmetric through the Big Bang. Expect the case that inflation is unnecessary and that simpler cosmologies exist."
+   },
+   {
+    "name": "Priya Natarajan",
+    "stance": "Yale astrophysicist (Mapping the Heavens) who works on black holes and dark matter observations. Likely to defend inflation as the framework best supported by data while staying open to alternatives."
+   },
+   {
+    "name": "Hilary Lawson",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "What single observation, if made, would make you abandon your cosmology?",
+   "Is a multiverse a prediction of inflation or a reason to distrust it?",
+   "If inflation is falsified, why do most cosmologists still use it — sociology, or evidence you're discounting?"
+  ],
+  "reading": [
+   {
+    "title": "Cycles of Time",
+    "by": "Roger Penrose (2010)",
+    "note": "Conformal cyclic cosmology explained by its author."
+   },
+   {
+    "title": "'Pop Goes the Universe'",
+    "by": "Ijjas, Steinhardt and Loeb, Scientific American (2017)",
+    "note": "The critics' broadside against inflation — and the 33-signatory reply defending it."
+   },
+   {
+    "title": "Mapping the Heavens",
+    "by": "Priya Natarajan (2016)",
+    "note": "How cosmological ideas won acceptance — the history behind tonight's fight."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Cosmic inflation",
+    "def": "A burst of exponential expansion in the first fraction of a second, proposed by Guth and others in 1980–82."
+   },
+   {
+    "term": "Horizon problem",
+    "def": "Why regions of the universe that could never have exchanged signals have the same temperature."
+   },
+   {
+    "term": "Conformal cyclic cosmology",
+    "def": "Penrose's proposal that the universe passes through endless aeons, each ending in a state that looks like the next Big Bang."
+   }
+  ]
+ },
+ "85": {
+  "question": "Is freedom humanity's greatest political ideal — or an empty word that every tyrant has claimed?",
+  "why": "Xi, Trump, Kim and Putin all speak of freedom; the Terror, the gulag and fascism were all justified in its name. Either the word is worthless, or the abuses are what happens when a real ideal is counterfeited. The answer shapes whether 'freedom' should be a goal or a warning sign.",
+  "sides": [
+   {
+    "label": "Freedom is the essential tool against tyranny; its abuse proves its value, not its emptiness",
+    "points": [
+     "Counterfeits presuppose the genuine article: tyrants claim freedom because people want it.",
+     "Concrete freedoms — speech, association, exit, property — are measurable and correlate with everything from longevity to innovation.",
+     "Every alternative goal (equality, security, virtue) has been used to justify worse, and needs freedom to be contested."
+    ],
+    "objections": [
+     "'Freedom' has no content until you say freedom from what, for whom — and those answers are where politics actually happens.",
+     "Formal freedom for the powerless is the freedom to sleep under bridges; without material conditions it is a word.",
+     "Prioritising freedom as an end has excused neglect of the interventions that actually improve lives."
+    ]
+   },
+   {
+    "label": "Freedom is a dangerous abstraction; focus on tangible goods and on who holds power",
+    "points": [
+     "The record of revolutions in freedom's name — 1793, 1917, 1922 Rome — is a record of terror.",
+     "The word has served to mask domination: freedom for slaveholders, freedom for capital, freedom for one caste.",
+     "Health, housing, safety and dignity are things you can measure and deliver; freedom is a story told afterwards."
+    ],
+    "objections": [
+     "Delivering 'tangible goods' without freedom is the programme of every paternalist regime; ask who decides what is tangible.",
+     "The critique of freedom is made freely, in a society that protects the critic — a performative contradiction.",
+     "Revolutions failed when they abandoned freedom for the leader's version of the good, which is the pro-freedom argument."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Tommy Curry",
+    "stance": "Critical race theorist; has argued that Western liberty was defined against and through the unfreedom of Black people. Expect the case that freedom-talk has masked racial domination."
+   },
+   {
+    "name": "Yaron Brook",
+    "stance": "Chairman of the Ayn Rand Institute and Objectivist; individual liberty and laissez-faire capitalism as the highest political values. Expect an uncompromising defence of freedom as the end of politics."
+   },
+   {
+    "name": "Divya Dwivedi",
+    "stance": "Indian philosopher and critic of caste (Indian Philosophy, Indian Revolution). Likely to examine how freedom is invoked within an order of caste and nation, and what liberation would actually require."
+   },
+   {
+    "name": "Mary Ann Sieghart",
+    "stance": "Hosts. Journalist and author."
+   }
+  ],
+  "questions": [
+   "Give a definition of freedom that Putin and Xi could not sign. Now, could a Western government sign it?",
+   "If freedom is an empty word, what is the non-empty word you would fight for instead?",
+   "Is freedom something a state grants, protects, or gets out of the way of?"
+  ],
+  "reading": [
+   {
+    "title": "'Two Concepts of Liberty'",
+    "by": "Isaiah Berlin (1958)",
+    "note": "Negative versus positive liberty — the distinction the whole debate turns on."
+   },
+   {
+    "title": "Capitalism: The Unknown Ideal",
+    "by": "Ayn Rand (1966)",
+    "note": "The tradition Brook speaks for."
+   },
+   {
+    "title": "The Man-Not",
+    "by": "Tommy Curry (2017)",
+    "note": "Curry's account of race and the theory of the free subject."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Negative liberty",
+    "def": "Freedom from interference — nobody stops you."
+   },
+   {
+    "term": "Positive liberty",
+    "def": "Freedom to act — having the means, capacity and self-mastery to do so; Berlin warned it can justify coercion 'for your own good'."
+   },
+   {
+    "term": "Capabilities approach",
+    "def": "Sen and Nussbaum's reframing: measure freedom by what people are actually able to do and be."
+   }
+  ]
+ },
+ "93": {
+  "question": "Is information the fundamental stuff of the universe — or a human way of describing it that we've mistaken for the thing itself?",
+  "why": "'It from bit' has moved from Wheeler's slogan to a working orthodoxy: black-hole information, holography, quantum information. But nobody agrees what information is without someone to be informed. The debate asks whether physics has found its foundation or confused the map with the territory.",
+  "sides": [
+   {
+    "label": "Information is physical and fundamental: the universe is made of it, or is a computation",
+    "points": [
+     "Black-hole thermodynamics and holography express physics in bits; information conservation is now a law physicists defend.",
+     "Landauer showed erasing a bit costs energy: information has physical consequences, so it is physical.",
+     "Quantum information theory reconstructs quantum mechanics from informational axioms — the theory is about information."
+    ],
+    "objections": [
+     "Information for whom? Shannon information is a measure of correlation; it needs a describer and a code, which is not fundamental.",
+     "'The universe is a computer' says nothing unless you can say what would count as not being one.",
+     "Physical consequences of information processing show that computers are physical, not that physics is information."
+    ]
+   },
+   {
+    "label": "Information is how we make sense of the world — a human construct, not the world's substance",
+    "points": [
+     "A description of reality cannot be reality; reifying the map is the oldest mistake in metaphysics.",
+     "Information presupposes distinction, observation and meaning — features of minds, not of electrons.",
+     "The 'blind spot' argument: physics abstracts from experience and then forgets the abstraction was made by experiencers."
+    ],
+    "objections": [
+     "The same argument would make energy, fields and spacetime 'human constructs'; it proves too much.",
+     "Quantum information has experimental content — teleportation, cryptography, error correction — which a mere construct wouldn't.",
+     "Denying that information is real leaves the black-hole paradox unstated."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Ivette Fuentes",
+    "stance": "Experimental quantum physicist in relativistic quantum information. Likely to treat information as a precise physical resource with measurable consequences, while wary of grand metaphysics."
+   },
+   {
+    "name": "Melvin Vopson",
+    "stance": "Physicist who has proposed a mass–energy–information equivalence, called information 'the fifth state of matter', and argued the universe may be a simulation. Expect the most literal 'reality is information' case."
+   },
+   {
+    "name": "Daniel Whiteson",
+    "stance": "CERN experimentalist and sceptical populariser (We Have No Idea). Likely to ask what any of this predicts and to resist unfalsifiable framings."
+   },
+   {
+    "name": "Adam Frank",
+    "stance": "Co-author of The Blind Spot, which argues science has mistaken its abstractions for reality and forgotten lived experience. Expect the case that information is a human construct built from observation."
+   },
+   {
+    "name": "Bjorn Ekeberg",
+    "stance": "Hosts. Philosopher of science."
+   }
+  ],
+  "questions": [
+   "What is one bit of information in a universe with no observers?",
+   "If the universe is a computation, what is it computing, and on what?",
+   "Does 'information is physical' mean anything more than 'computers obey physics'?"
+  ],
+  "reading": [
+   {
+    "title": "The Blind Spot",
+    "by": "Adam Frank, Marcelo Gleiser and Evan Thompson (2024)",
+    "note": "Frank's side, at length."
+   },
+   {
+    "title": "'Information, physics, quantum: the search for links'",
+    "by": "John Wheeler (1989)",
+    "note": "Where 'it from bit' comes from."
+   },
+   {
+    "title": "Decoding Reality",
+    "by": "Vlatko Vedral (2010)",
+    "note": "The accessible case that the universe is quantum information."
+   }
+  ],
+  "terms": [
+   {
+    "term": "It from bit",
+    "def": "Wheeler's proposal that every physical thing derives from yes/no answers to questions — information as the foundation."
+   },
+   {
+    "term": "Landauer's principle",
+    "def": "Erasing one bit of information dissipates a minimum amount of heat — the link between information and thermodynamics."
+   },
+   {
+    "term": "Holographic principle",
+    "def": "The idea that all the information in a region can be described on its boundary, as with black-hole entropy."
+   }
+  ]
+ },
+ "94": {
+  "question": "Does a meaningful life require commitment — or is 'growing up' an outdated script that keeping your options open has rightly replaced?",
+  "why": "Job tenures of a year, falling marriage, a fifth of adults abandoning long-term goals. One side sees liberation from a stale script; the other sees a culture that cannot commit and pays in loneliness and burnout. It is a debate about whether freedom is choosing or having chosen.",
+  "sides": [
+   {
+    "label": "Adulthood is commitment: the endless deferral of real choices is self-deception with a mental-health bill",
+    "points": [
+     "Kant and Sartre agree from opposite ends: to be free is to bind yourself; refusing to choose is a choice made badly.",
+     "Marriage, vocation and belief are how people accumulate a life; optionality accumulates nothing.",
+     "The loneliness and burnout data track the decline of commitment, not the persistence of it."
+    ],
+    "objections": [
+     "The markers of adulthood were withdrawn, not refused: housing, secure work and affordable childcare vanished first.",
+     "Traditional commitment fell hardest on women; its decline is the success of liberation, not a crisis.",
+     "Commitment to a bad job or marriage is not maturity; leaving is."
+    ]
+   },
+   {
+    "label": "'Growing up' is an ideology; staying open is a rational response to a world that no longer rewards commitment",
+    "points": [
+     "Institutions stopped committing first — to workers, tenants, citizens — and people adapted.",
+     "Serial careers and chosen families are new forms of commitment, not the absence of it.",
+     "The nostalgic script produced the mid-life crisis and the unhappy marriage; abandoning it is progress."
+    ],
+    "objections": [
+     "Precarity explains job-hopping; it does not explain the abandonment of goals or the flight from belief.",
+     "'New forms of commitment' that dissolve at the first cost are not commitments.",
+     "A generation that keeps every option open is easy to exploit — by employers and platforms alike."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Frank Furedi",
+    "stance": "Sociologist who has written on infantilisation, the culture of fear and the retreat from adulthood (Why Borders Matter; 100 Years of Identity Crisis). Expect the case that a culture unable to commit is in a crisis of meaning."
+   },
+   {
+    "name": "Laurie Penny",
+    "stance": "Journalist and author (Bitch Doctrine; Sexual Revolution). Likely to argue that refusing the old script of adulthood is a rational and often feminist response to precarity and bad institutions."
+   },
+   {
+    "name": "Jemima Kelly",
+    "stance": "FT columnist known for scepticism about crypto and tech hype. Likely to bring a sceptical, moderate line — pro-commitment without nostalgia."
+   },
+   {
+    "name": "Jonny Thomson",
+    "stance": "Hosts. Philosophy writer."
+   }
+  ],
+  "questions": [
+   "What is one thing you've committed to that you could not undo — and would you recommend it?",
+   "If institutions stopped committing to people, is the answer for people to commit less, or to rebuild institutions?",
+   "Is there a version of adulthood that isn't marriage, mortgage and a pension?"
+  ],
+  "reading": [
+   {
+    "title": "Dedicated: The Case for Commitment in an Age of Infinite Browsing",
+    "by": "Pete Davis (2021)",
+    "note": "The popular argument for the commitment side."
+   },
+   {
+    "title": "Why Borders Matter",
+    "by": "Frank Furedi (2020)",
+    "note": "Furedi on limits and adulthood."
+   },
+   {
+    "title": "Bitch Doctrine",
+    "by": "Laurie Penny (2017)",
+    "note": "Penny's essays on gender, work and refusal."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Optionality",
+    "def": "Keeping choices open as a value in itself — praised in finance, criticised here as a way of never choosing."
+   },
+   {
+    "term": "Bad faith",
+    "def": "Sartre's term for denying your own freedom by pretending you had no choice — or, here, by never making one."
+   },
+   {
+    "term": "Emerging adulthood",
+    "def": "Psychologist Jeffrey Arnett's term for the extended 18–29 period before traditional adult roles."
+   }
+  ]
+ },
+ "103": {
+  "question": "Is the manosphere's claim — feminism was zero-sum, women won, men lost — beyond the pale, or does it name something real that its critics refuse to see?",
+  "why": "A third of Gen Z men now say wives should obey husbands; boys are falling behind in school and out of work; a generation is being shaped by online figures who say feminism is a power grab. Dismissing them has not worked. The question is what a serious answer looks like.",
+  "sides": [
+   {
+    "label": "The manosphere is a dangerous ideology with a simple, false story — it should be answered and buried",
+    "points": [
+     "Equality is not zero-sum: the studies in the billing find gender equality raises wellbeing for men and women, and sexism lowers productivity and lifespan for both.",
+     "The manosphere's programme — obedience, dominance, contempt — is a recruitment pipeline for misogyny, not a men's movement.",
+     "Even where men lose relative advantage, losing an unfair advantage is justice, not a grievance."
+    ],
+    "objections": [
+     "Boys' educational decline, male suicide and the collapse of working-class male employment are real; 'answer and bury' has meant ignoring them.",
+     "Telling young men their grievance is illegitimate is how the manosphere recruits.",
+     "'Losing an unfair advantage' is easy to say for those who never had the working-class version of it."
+    ]
+   },
+   {
+    "label": "The manosphere misreads feminism but responds to real losses that feminism and the professional left have ignored",
+    "points": [
+     "Class, not gender, explains most of who lost: deindustrialisation hit men without degrees hardest, and identity politics offered them nothing.",
+     "Black men in particular have been theorised out of vulnerability — the argument that some feminist theory erased male victims.",
+     "Young men need models of masculinity, and the only people offering them are grifters — because the mainstream refused."
+    ],
+    "objections": [
+     "Acknowledging male problems does not vindicate the manosphere's solution, which is to reverse women's gains.",
+     "The 'class not gender' move can be a way of never addressing sexism at all.",
+     "Feminism did offer men something — freedom from the provider script — which the manosphere rejects."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Tommy Curry",
+    "stance": "Author of The Man-Not, which argues Black men have been rendered invisible as victims of racial patriarchy and that some feminist theory participates in that. Expect the case that the manosphere distorts a real problem."
+   },
+   {
+    "name": "Farha Khalidi",
+    "stance": "Feminist commentator on TikTok. Likely to argue the manosphere is a misogynist pipeline and that gender equality has not gone too far."
+   },
+   {
+    "name": "Jordan Stephens",
+    "stance": "Musician and writer on masculinity and vulnerability. Likely to speak to why young men are drawn in and to offer an alternative account of being a man."
+   },
+   {
+    "name": "Catherine Liu",
+    "stance": "Author of Virtue Hoarders: The Case Against the Professional Managerial Class, a Marxist critic of identity-focused progressivism. Expect the argument that class has been erased from the conversation and that professional-class feminism served itself."
+   },
+   {
+    "name": "Laura Kennedy",
+    "stance": "Hosts. Philosopher and journalist."
+   }
+  ],
+  "questions": [
+   "Name a male disadvantage you think is real. What should be done about it that isn't at women's expense?",
+   "If the manosphere is a grift, what is the honest version of what it sells?",
+   "Has any gender-equality measure gone too far? Which, and how would you know?"
+  ],
+  "reading": [
+   {
+    "title": "Of Boys and Men",
+    "by": "Richard Reeves (2022)",
+    "note": "The data on boys falling behind, from a writer who is not a manosphere sympathiser."
+   },
+   {
+    "title": "The Man-Not",
+    "by": "Tommy Curry (2017)",
+    "note": "Curry's argument in full."
+   },
+   {
+    "title": "Virtue Hoarders",
+    "by": "Catherine Liu (2021)",
+    "note": "Liu's class critique of progressive politics."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Manosphere",
+    "def": "Online communities — pickup artists, MGTOW, 'red pill' influencers — organised around the claim that men are disadvantaged by feminism."
+   },
+   {
+    "term": "Zero-sum",
+    "def": "A situation where one side's gain is exactly the other's loss — the manosphere's model of gender."
+   },
+   {
+    "term": "Professional-managerial class",
+    "def": "Liu's target: educated professionals whose progressivism, she argues, protects their own status."
+   }
+  ]
+ },
+ "104": {
+  "question": "Is democracy a moral good in itself — or a flawed procedure we've turned into a creed?",
+  "why": "Everyone from Beijing to Pyongyang claims to be democratic, majorities have elected monsters, and technical questions are not settled by vote. Yet the alternatives on offer — rule by the wise, the rich, or the party — have their own record. The debate asks what democracy is for.",
+  "sides": [
+   {
+    "label": "Democracy is an essential moral good: the only system that treats people as equals and lets them remove their rulers",
+    "points": [
+     "Its core moral claim is not that majorities are right but that no one has the standing to rule others without their consent.",
+     "The peaceful removal of governments is unique to democracy; every other system changes rulers by death or force.",
+     "Democracies fail less catastrophically — no famine in a functioning democracy, as Sen showed."
+    ],
+    "objections": [
+     "Majorities have voted for tyranny (1933) and minorities have been oppressed by procedure; the moral good needs limits that democracy cannot supply from within.",
+     "Voters are rationally ignorant; a system that rewards demagogues is not respecting people, it is exploiting them.",
+     "'Consent' via a vote every five years for one of two parties is a thin basis for legitimacy."
+    ]
+   },
+   {
+    "label": "Democracy is one procedure among others, valuable only when it delivers; treating it as sacred is naive",
+    "points": [
+     "Plato's objection stands: ruling is a skill, and we don't crowd-source surgery.",
+     "Rights, not votes, protect people; a constitutional order that limits majorities matters more than the ballot.",
+     "Governments judged by outcomes — poverty reduction, stability — include non-democracies that outperform democracies."
+    ],
+    "objections": [
+     "Who selects the experts, and who removes them when they fail? Every answer is either democracy or force.",
+     "Outcome-based legitimacy is what every authoritarian claims until the outcomes turn bad and no one can say so.",
+     "'Rights without democracy' has never lasted; rights are secured by the people who can vote out those who violate them."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Yaron Brook",
+    "stance": "Objectivist; argues that individual rights come first and that unlimited majority rule is a threat to them. Expect the case that constitutional limits, not democracy, are the moral good."
+   },
+   {
+    "name": "David Aaronovitch",
+    "stance": "Liberal journalist and former communist, defender of democratic institutions against populism. Expect a full-throated defence of democracy as a moral good."
+   },
+   {
+    "name": "Sally Haslanger",
+    "stance": "MIT philosopher of social structure and feminist theory. Likely to argue that formal democracy without structural justice is hollow, and to push for deeper, more egalitarian democracy rather than less."
+   },
+   {
+    "name": "Wang Hui",
+    "stance": "Tsinghua intellectual historian (China's New Order; The End of the Revolution), critic of Western liberal democracy's depoliticisation and of the 'end of history'. Expect a defence of alternative conceptions of popular rule."
+   },
+   {
+    "name": "Isabel Hilton",
+    "stance": "Hosts. Journalist and China specialist."
+   }
+  ],
+  "questions": [
+   "If democracy's value is its outcomes, what outcome would make you accept an unelected government?",
+   "What is the mechanism by which a wise elite is removed when it stops being wise?",
+   "Is a country with elections but no free press democratic? Is one with a free press but no elections?"
+  ],
+  "reading": [
+   {
+    "title": "Against Democracy",
+    "by": "Jason Brennan (2016)",
+    "note": "The strongest modern statement of the epistocratic case."
+   },
+   {
+    "title": "Democracy for Realists",
+    "by": "Achen and Bartels (2016)",
+    "note": "What voters actually do, and why the 'folk theory' fails — useful to both sides."
+   },
+   {
+    "title": "China's New Order",
+    "by": "Wang Hui (2003)",
+    "note": "Wang's critique of the neoliberal consensus from inside China."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Epistocracy",
+    "def": "Rule by the knowledgeable — Plato's philosopher-kings, Brennan's weighted voting."
+   },
+   {
+    "term": "Liberal democracy",
+    "def": "Majority rule constrained by rights, courts and a free press — the combination the debate keeps pulling apart."
+   },
+   {
+    "term": "Sen's famine thesis",
+    "def": "Amartya Sen's finding that no substantial famine has occurred in a functioning democracy with a free press."
+   }
+  ]
+ },
+ "106": {
+  "question": "Is the return of beauty — classical facades, symmetrical faces, elegant theories — a recovery of something real, or a flight from reality into a filtered ideal?",
+  "why": "After a century of art that prized the difficult, beauty is mandated by governments and enforced by algorithms; 90% of young women edit their faces before posting. In physics, elegance is accused of stalling progress. The debate asks whether beauty is in the world or imposed on it.",
+  "sides": [
+   {
+    "label": "Beauty is real, rooted in nature, and its return is cultural sanity after a century of ugliness on principle",
+    "points": [
+     "Symmetry, proportion and harmony recur across cultures and in nature; preferences for them are not arbitrary.",
+     "The modernist war on the pretty produced buildings people hate and art they ignore; beauty is how the public reclaims culture.",
+     "Beauty and truth were long allies — Keats, Dirac, the golden ratio — and elegance has guided real discoveries."
+    ],
+    "objections": [
+     "Whose beauty? The classical canon is one tradition's taste made law; symmetry-obsessed faces are one algorithm's.",
+     "Elegance has led physics astray for forty years — supersymmetry, string theory — the argument of Lost in Math.",
+     "The 'return to beauty' in architecture is often nostalgia enforced by decree, not craft."
+    ]
+   },
+   {
+    "label": "The new beauty is an avoidance of the real: filtered, ordered, and unable to face flaws",
+    "points": [
+     "When 90% of young women alter their faces online, the ideal is not beauty but its counterfeit, and actual faces become defects.",
+     "Difficult art was difficult for a reason: the twentieth century had things to show that prettiness couldn't.",
+     "An aesthetic that must filter out every complication is one that cannot see the world as it is."
+    ],
+    "objections": [
+     "Rejecting beauty because it can be faked is like rejecting truth because people lie.",
+     "The 'flaws' argument romanticises ugliness as authenticity — its own aesthetic ideology.",
+     "Ordinary people never signed up for the war on beauty; the elite did, and calls the result honesty."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Heather Widdows",
+    "stance": "Philosopher of beauty (Perfect Me) who argues beauty has become an ethical ideal that we feel obliged to meet. Expect a critique of beauty culture's demands rather than of beauty itself."
+   },
+   {
+    "name": "Dasha Nekrasova",
+    "stance": "Actor and Red Scare co-host who has defended beauty, prettiness and taste against what she sees as a culture of ugliness. Likely to argue for beauty's return, with contrarian relish."
+   },
+   {
+    "name": "Babette Babich",
+    "stance": "Nietzsche scholar and continental philosopher (The Hallelujah Effect). Expect the argument that beauty is bound to tragedy and nature, with suspicion of the digital filter."
+   },
+   {
+    "name": "Jay Shapiro",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "Is a filtered face beautiful? If not, what is it?",
+   "Name an ugly thing that is true, and a beautiful thing that is false. Which matters more?",
+   "Should governments mandate beautiful buildings? Who decides what counts?"
+  ],
+  "reading": [
+   {
+    "title": "Perfect Me",
+    "by": "Heather Widdows (2018)",
+    "note": "Widdows on beauty as an ethical ideal."
+   },
+   {
+    "title": "Lost in Math",
+    "by": "Sabine Hossenfelder (2018)",
+    "note": "The case that beauty has misled physics — Hossenfelder speaks Saturday in the quantum debate."
+   },
+   {
+    "title": "The Birth of Tragedy",
+    "by": "Friedrich Nietzsche (1872)",
+    "note": "Apollo and Dionysus — Babich's frame."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Aesthetic ideal",
+    "def": "A standard of appearance one feels obliged to pursue — Widdows's claim about modern beauty."
+   },
+   {
+    "term": "Naturalness",
+    "def": "In physics, the expectation that theories should not require fine-tuned numbers — an elegance criterion now under attack."
+   },
+   {
+    "term": "Kitsch",
+    "def": "Art that offers easy beauty and easy emotion — the modernist term of abuse for what may now be returning."
+   }
+  ]
+ },
+ "111": {
+  "question": "Can the self be known like any other object — or is it the one thing that can never appear in its own field of view?",
+  "why": "Self-help, therapy and neuroscience all promise to reveal your inner self; Schopenhauer and Wittgenstein said the knower cannot be among the known. The stakes are whether science can be complete and whether the modern project of 'knowing yourself' makes sense.",
+  "sides": [
+   {
+    "label": "The self can be dragged into the light: it is a natural phenomenon, studied like any other",
+    "points": [
+     "Neuroscience already predicts choices before we report them, maps personality, and alters the self with drugs and stimulation.",
+     "The 'eye that cannot see itself' is a metaphor; mirrors exist, and so does introspection checked against behaviour.",
+     "Mysterian talk about the self mostly protects a soul by another name."
+    ],
+    "objections": [
+     "Every measurement of the self is made by a self that is not measured in the act — the regress is structural, not a matter of better instruments.",
+     "Third-person data on brains do not tell you what it is like to be the person; the explanatory gap remains.",
+     "A self that changes when studied is not an object in the ordinary sense."
+    ]
+   },
+   {
+    "label": "The self is the limit of the world, not a thing in it; it cannot be known and science is therefore incomplete",
+    "points": [
+     "Wittgenstein: the subject does not belong to the world; it is a limit of the world — as the eye is not in the visual field.",
+     "Ancient Indian thought and Schopenhauer converge: the knower is presupposed by all knowing and can never be its object.",
+     "This is not mysticism but logic: any complete description leaves out the describer."
+    ],
+    "objections": [
+     "'Cannot be known' slides between 'cannot be an object of perception' and 'cannot be understood' — the second doesn't follow.",
+     "If the self is not in the world, what is neuroscience finding when it changes it?",
+     "The argument makes every science of anything incomplete, since all are done by subjects — a trivial result dressed as a profound one."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Galen Strawson",
+    "stance": "Philosopher (Selves) who argues selves are real but short-lived subjects of experience, that consciousness is a physical fact, and that not everyone lives a 'narrative' life. Expect a realist about the self who denies it is a mystery — and a panpsychist."
+   },
+   {
+    "name": "Hilary Lawson",
+    "stance": "His theory of closure treats the self as a way of holding the world rather than an object within it. Likely to argue the self is not a thing to be found."
+   },
+   {
+    "name": "Victoria Trumbull",
+    "stance": "Philosopher billed as challenging the materialist consensus. Likely to argue that the self, or consciousness, is fundamental rather than derivative — the idealist line."
+   },
+   {
+    "name": "Jack Symes",
+    "stance": "Hosts. Presenter of The Panpsycast."
+   }
+  ],
+  "questions": [
+   "When a brain scan predicts your choice before you know it, what has been known — you, or a mechanism you happen to be riding?",
+   "If the self is the limit of the world, is there one self or one per person?",
+   "Does 'know yourself' mean anything on your view — and is it good advice?"
+  ],
+  "reading": [
+   {
+    "title": "Selves: An Essay in Revisionary Metaphysics",
+    "by": "Galen Strawson (2009)",
+    "note": "Strawson's full theory; his short essay 'Against Narrativity' is the quick way in."
+   },
+   {
+    "title": "Tractatus Logico-Philosophicus, 5.6–5.641",
+    "by": "Ludwig Wittgenstein (1921)",
+    "note": "'The subject does not belong to the world' — a page long."
+   },
+   {
+    "title": "The World as Will and Representation, Book II",
+    "by": "Arthur Schopenhauer (1818)",
+    "note": "The knower that is known by none."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Introspection",
+    "def": "Observing one's own mental states — unreliable by experiment, indispensable by practice."
+   },
+   {
+    "term": "Explanatory gap",
+    "def": "Levine's term for why physical accounts of the brain seem to leave out what experience is like."
+   },
+   {
+    "term": "Panpsychism",
+    "def": "The view that consciousness is a fundamental feature of matter — Strawson's position."
+   }
+  ]
+ },
+ "112": {
+  "question": "Is the real divide generational — boomers versus the young — or between those who will inherit and those who won't?",
+  "why": "Millennials at 35 hold a third less wealth than boomers did, while $84 trillion is about to pass down unevenly. Fixing 'the generations' and fixing inheritance point to different policies: wealth and inheritance taxes, or planning reform and housing supply.",
+  "sides": [
+   {
+    "label": "Tax inheritance and wealth: the coming transfer will entrench a new aristocracy unless it's shared",
+    "points": [
+     "The lottery of birth is about to decide life chances more than work or talent; that is the opposite of a meritocracy.",
+     "Inheritance tax is one of the least distorting taxes and the most avoided; closing the loopholes funds the young directly.",
+     "Housing wealth is unearned windfall from planning restrictions and low rates — a pure case for taxation."
+    ],
+    "objections": [
+     "Inheritance taxes are politically radioactive, raise little, and hit the modestly propertied while the rich plan around them.",
+     "Families are not the state's enemy; passing on a home is how most people express care across generations.",
+     "Taxing the transfer does nothing about the cause — house prices — and may just make the young poorer as well."
+    ]
+   },
+   {
+    "label": "Fix supply and growth: build homes, free planning, and the generational gap closes on its own",
+    "points": [
+     "The gap is a housing gap; where supply is allowed (Tokyo, Austin) prices are flat and the young are fine.",
+     "Growth lifts wages faster than any redistribution; stagnation is what made inheritance matter.",
+     "Redistribution through the tax system is what boomers already control; the young need assets, not transfers."
+    ],
+    "objections": [
+     "Planning reform takes decades and existing owners vote; meanwhile the transfer happens.",
+     "Supply alone doesn't touch the concentration of wealth at the top, which is where the $84 trillion mostly sits.",
+     "'Growth' has been the promise for fifteen years of flat productivity; it is not a plan."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Rachel Millward",
+    "stance": "Deputy Leader of the Green Party. Expect the case for wealth and inheritance taxes and for treating housing as a right rather than an asset."
+   },
+   {
+    "name": "Kwasi Kwarteng",
+    "stance": "Former Conservative Chancellor, low-tax and pro-growth. Likely to argue against inheritance-tax rises and for planning liberalisation and growth as the fix."
+   },
+   {
+    "name": "Mariana Mazzucato",
+    "stance": "Economist (The Entrepreneurial State; Mission Economy; The Common Good Economy) who argues value is created collectively and captured privately. Expect the case that inherited wealth is unearned and that the state must shape markets to share it."
+   },
+   {
+    "name": "Philip Collins",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "What inheritance-tax rate would you set, and at what threshold? Why that number?",
+   "If you abolished planning restrictions tomorrow, when does the first young person notice?",
+   "Is the problem that boomers got lucky, or that the luck can be passed on?"
+  ],
+  "reading": [
+   {
+    "title": "Capital in the Twenty-First Century",
+    "by": "Thomas Piketty (2013)",
+    "note": "The argument that inherited wealth is returning to nineteenth-century dominance."
+   },
+   {
+    "title": "The Common Good Economy",
+    "by": "Mariana Mazzucato (2026)",
+    "note": "Her latest — she gives a talk on it on Sunday afternoon."
+   },
+   {
+    "title": "'The Housing Theory of Everything'",
+    "by": "Bowman, Myers and Southwood (2021)",
+    "note": "The supply-side case that housing explains most of the rest."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Wealth transfer",
+    "def": "The passing of assets between generations — estimated at $84 trillion in the US by 2045, mostly from boomers."
+   },
+   {
+    "term": "Inheritance tax",
+    "def": "A tax on estates or gifts at death; 40% above £325,000 in the UK, with wide exemptions."
+   },
+   {
+    "term": "Planning / zoning",
+    "def": "Rules on what can be built where — blamed by supply-siders for high house prices."
+   }
+  ]
+ },
+ "122": {
+  "question": "Do institutions inevitably end up serving themselves — or is the cynicism about them a travesty of what people can do together?",
+  "why": "Pournelle's Iron Law says organisations are captured by those who serve the organisation; Foucault says even doctors and teachers are vehicles of power. Harvard has more administrators than undergraduates. Whether to reform, defund or defend institutions depends on which story is true.",
+  "sides": [
+   {
+    "label": "The Iron Law holds: institutions drift to self-preservation, and scepticism should be equal-opportunity",
+    "points": [
+     "Administrative bloat is universal — universities, hospitals, charities — and it grows in proportion to funding, not need.",
+     "Professions define the problems they are paid to solve; the mental-health and safety industries expand their own remit.",
+     "Foucault's point is not that people are wicked but that institutions produce the knowledge that justifies them."
+    ],
+    "objections": [
+     "The Iron Law explains everything and predicts nothing; it cannot say which institutions will decay or when.",
+     "Institutions also cured smallpox, ran the NHS through a pandemic and educated the cynics who attack them.",
+     "Equal scepticism of a food bank and a hedge fund is not rigour; it is a refusal to judge."
+    ]
+   },
+   {
+    "label": "Institutions are how selfless vision becomes durable; the cynicism is corrosive and self-fulfilling",
+    "points": [
+     "Every good that outlasts a person — hospitals, universities, courts — is an institution; the alternative is charisma and decay.",
+     "Most people inside institutions are trying to do the job; capture is a failure mode, not a law.",
+     "Cynicism about institutions is now a political programme that leaves the powerful unconstrained."
+    ],
+    "objections": [
+     "'Most people are trying' is compatible with the system defeating them — which is the Iron Law's claim.",
+     "Defending institutions in general is how failing ones survive.",
+     "The people who most praise institutions are usually the ones the institutions employ."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Frank Furedi",
+    "stance": "Sociologist critical of therapeutic, managerial and risk-averse institutions. Expect the case that institutions have lost their sense of mission to self-protection."
+   },
+   {
+    "name": "Thangam Debbonaire",
+    "stance": "Labour peer and former MP, with a career in public and charitable bodies. Likely to defend public institutions and the people in them while accepting reform."
+   },
+   {
+    "name": "Catherine Liu",
+    "stance": "Author of Virtue Hoarders; argues that the professional-managerial class has captured institutions and uses moral language to protect its status. Expect a critique from the left that overlaps uncomfortably with Furedi's."
+   },
+   {
+    "name": "Roger Hearing",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "Name an institution that has resisted the Iron Law. What did it do differently?",
+   "If administrators outnumber students, what were they hired to do — and who decided?",
+   "Is your scepticism of institutions itself institutionalised — a think tank, a party, a university post?"
+  ],
+  "reading": [
+   {
+    "title": "Discipline and Punish",
+    "by": "Michel Foucault (1975)",
+    "note": "Institutions as producers of knowledge and power."
+   },
+   {
+    "title": "Virtue Hoarders",
+    "by": "Catherine Liu (2021)",
+    "note": "Liu on the professional class and its institutions."
+   },
+   {
+    "title": "Bullshit Jobs",
+    "by": "David Graeber (2018)",
+    "note": "Why organisations grow work that no one needs — the anthropological version of the Iron Law."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Iron Law of Bureaucracy",
+    "def": "Jerry Pournelle's rule that in any organisation those devoted to the organisation itself will come to control it."
+   },
+   {
+    "term": "Institutional capture",
+    "def": "When an organisation serves the interests of those inside it, or those it regulates, over its stated purpose."
+   },
+   {
+    "term": "Biopower",
+    "def": "Foucault's term for power exercised through managing life and health — medicine, welfare, statistics."
+   }
+  ]
+ },
+ "123": {
+  "question": "Do we share one reality seen from different perspectives — or live in different realities, so that 'my truth' is all there is?",
+  "why": "'Lived experience' is now an authority; so are unchallengeable political facts. Kuhn showed paradigms change the facts, and one culture's terrorist is another's freedom fighter. Whether a shared reality survives decides whether argument, science and Wikipedia can still work.",
+  "sides": [
+   {
+    "label": "There is one reality; perspectives are partial views of it, and some are better than others",
+    "points": [
+     "Disagreement presupposes a shared subject matter; without it there is nothing to disagree about.",
+     "Science converges: different paradigms, instruments and cultures agree about the boiling point of water and the age of the universe.",
+     "Wikipedia works — a neutral point of view built by millions who disagree about everything — which is evidence that shared facts are achievable."
+    ],
+    "objections": [
+     "Convergence in physics does not carry over to the social world, where the 'facts' include people's self-descriptions.",
+     "'Better perspectives' are judged from a perspective; the umpire is always a player.",
+     "Neutral point of view is a policy, not a discovery, and edit wars show how hard-won and fragile it is."
+    ]
+   },
+   {
+    "label": "We inhabit different realities: frameworks fix the facts, and 'the view from nowhere' is a fiction",
+    "points": [
+     "Kuhn: after a paradigm shift, scientists work in a different world; the data themselves change.",
+     "Social categories — race, gender, money — are made by us and real because we make them; different societies have different ones.",
+     "The demand for a single reality has historically meant one group's reality enforced on others."
+    ],
+    "objections": [
+     "If realities are plural, the claim that they are plural is true in only one of them.",
+     "Constructed categories are still real and can be got wrong — which is a realist point (Haslanger's own).",
+     "'Different realities' is how conspiracy theorists describe their situation; the view has consequences."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Steve Fuller",
+    "stance": "Sociologist of science (Post-Truth: Knowledge as a Power Game) who treats post-truth as a struggle over who gets to define reality rather than a fall from grace. Expect the most provocative defence of perspectivalism."
+   },
+   {
+    "name": "Jimmy Wales",
+    "stance": "Founder of Wikipedia, built on verifiability and neutral point of view. Expect a practical defence of shared facts and of the institutions that maintain them."
+   },
+   {
+    "name": "Sally Haslanger",
+    "stance": "MIT philosopher (Resisting Reality) who combines social construction with realism: categories like race are constructed and real. Likely to reject both naive objectivism and 'anything goes'."
+   },
+   {
+    "name": "Philip Collins",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "Is 'one person's terrorist is another's freedom fighter' a fact about reality or about the words?",
+   "What does Wikipedia do when two communities' 'lived experience' contradict each other?",
+   "If paradigms change the facts, was the Earth flat before Eratosthenes?"
+  ],
+  "reading": [
+   {
+    "title": "The Structure of Scientific Revolutions",
+    "by": "Thomas Kuhn (1962)",
+    "note": "Paradigms and the claim that scientists 'work in a different world' — chapter 10."
+   },
+   {
+    "title": "Resisting Reality",
+    "by": "Sally Haslanger (2012)",
+    "note": "Constructed but real: Haslanger's position."
+   },
+   {
+    "title": "Post-Truth: Knowledge as a Power Game",
+    "by": "Steve Fuller (2018)",
+    "note": "Fuller's case that post-truth is nothing new."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Perspectivism",
+    "def": "Nietzsche's view that all knowledge is from some perspective — there is no view from nowhere."
+   },
+   {
+    "term": "Paradigm",
+    "def": "Kuhn's term for the shared framework that defines what counts as a problem, a method and a fact in a science."
+   },
+   {
+    "term": "Social construction",
+    "def": "Categories that exist because of human practices — and, on Haslanger's view, are no less real for it."
+   }
+  ]
+ },
+ "133": {
+  "question": "Does history have a moral direction — is being 'on the right side of history' a real place — or is progress a myth we tell to justify ourselves?",
+  "why": "Hegel and Hollywood agree the good wins in the end; the twentieth century produced its counter-examples in industrial quantities. If history has no direction, 'progress' loses its authority — and so does the reassurance that our own values will be vindicated.",
+  "sides": [
+   {
+    "label": "Progress is real: the Great Enrichment, the end of slavery, the fall in violence — history has trended toward the good",
+    "points": [
+     "Since 1800 real income has risen thirtyfold and child mortality fallen by 95%; that is not a story but a measurement.",
+     "Moral circles have widened — slavery, women's rights, the treatment of children — in a broadly consistent direction.",
+     "Denying progress requires ignoring that the denier lives longer, freer and better than any ancestor."
+    ],
+    "objections": [
+     "Material progress is not moral direction: the century of penicillin was also the century of the camps.",
+     "'Widening circles' is measured from where we now stand, which is exactly the circularity the critics allege.",
+     "Trends are not destinies: every previous belle époque thought it was the end of history."
+    ]
+   },
+   {
+    "label": "History has no direction; the idea is a secular providence that excuses the present and its crimes",
+    "points": [
+     "Marxist and liberal teleologies both licensed atrocity as the price of the future.",
+     "Progress narratives are written by winners; the defeated do not appear on 'the right side of history'.",
+     "Without direction, responsibility returns to us: nothing will be vindicated by time, so we must decide now."
+    ],
+    "objections": [
+     "Denying direction cuts both ways: it undermines critique too, since 'this is worse than before' needs a measure.",
+     "The record of teleologies is bad, but the record of anti-progress politics — reaction, nihilism — is not better.",
+     "You can affirm progress as achievement without claiming it is guaranteed; that is what the pro side actually says."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Deirdre McCloskey",
+    "stance": "Economic historian of the 'Great Enrichment' (the Bourgeois Era trilogy) who argues that liberal ideas produced unprecedented progress. Expect the fullest case that progress is real and liberal."
+   },
+   {
+    "name": "Wang Hui",
+    "stance": "Chinese intellectual historian critical of the 'end of history' and of Western teleology, while attentive to China's revolutionary legacy. Likely to reject the Hollywood version while resisting nihilism."
+   },
+   {
+    "name": "Tariq Ali",
+    "stance": "Marxist writer and activist (Street Fighting Years; The Extreme Centre). Expect the argument that progress is won through struggle, not delivered by history, and that liberal triumphalism has decayed."
+   },
+   {
+    "name": "Jack Symes",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "Name a moral advance of the last century that you'd bet will still count as one in two hundred years.",
+   "If history has no direction, what makes the abolition of slavery better than its introduction — apart from your preference?",
+   "Is 'the right side of history' a claim about the future or a threat about the present?"
+  ],
+  "reading": [
+   {
+    "title": "Bourgeois Equality",
+    "by": "Deirdre McCloskey (2016)",
+    "note": "The Great Enrichment and its causes — McCloskey's case."
+   },
+   {
+    "title": "Straw Dogs",
+    "by": "John Gray (2002)",
+    "note": "The sharpest modern attack on the idea of progress; Gray speaks Saturday on immortality."
+   },
+   {
+    "title": "Reason in History",
+    "by": "G. W. F. Hegel (lectures, 1830)",
+    "note": "Where the direction of history comes from."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Teleology",
+    "def": "Explanation by purpose or end — history as going somewhere."
+   },
+   {
+    "term": "Great Enrichment",
+    "def": "McCloskey's term for the thirtyfold rise in living standards since 1800."
+   },
+   {
+    "term": "End of history",
+    "def": "Fukuyama's 1989 claim that liberal democracy was the final form of government — widely mocked, still argued about."
+   }
+  ]
+ },
+ "134": {
+  "question": "Have we built a culture of fear that stops us living — or are today's anxieties a rational response to real, novel dangers?",
+  "why": "By every measure humanity has never been safer, yet most people believe crime is rising and peril is unprecedented. Whether hyper-vigilance is a bug or a feature decides how we regulate, parent, and report the news.",
+  "sides": [
+   {
+    "label": "Safety culture has become a culture of fear: precaution paralyses, and risk is part of a life worth living",
+    "points": [
+     "The data are clear: violence, disease and accidents have collapsed while perceived danger has risen — fear is decoupled from risk.",
+     "Precautionary institutions grow by finding threats; every agency's budget is a reason to be afraid.",
+     "Children raised to avoid all risk arrive at adulthood unable to bear any; the anxiety epidemic is partly a safety epidemic."
+    ],
+    "objections": [
+     "We are safer because of the vigilance being mocked; the seatbelt argument cuts against those who never wore one.",
+     "Some risks are genuinely new and fat-tailed — pandemics, climate, AI — and the past's safety says nothing about them.",
+     "'Cultivate a desire for risk' is advice for the comfortable; the poor already live with more risk than they want."
+    ]
+   },
+   {
+    "label": "The saved lives speak for themselves: risk management works, and today's fears track real uncertainty",
+    "points": [
+     "Child mortality from one in three to one in twenty is not an accident; it is what tracking threats produces.",
+     "Modern risks are systemic and probabilistic; the intuition that 'it's never happened' is exactly wrong for tail risks.",
+     "The task is risk literacy — calibrating fear to evidence — not abolishing precaution."
+    ],
+    "objections": [
+     "Calibration is what a culture of fear cannot do: the same institutions that saved lives now warn about everything, so nothing is heard.",
+     "'Fat tails' can justify any restriction; the argument has no stopping point.",
+     "Gallup's crime finding shows fear isn't tracking evidence at all — it tracks media."
+    ]
+   }
+  ],
+  "speakers": [
+   {
+    "name": "Frank Furedi",
+    "stance": "Author of Culture of Fear (1997) and How Fear Works — the thesis of this debate is largely his. Expect the argument that fear has become a cultural script that infantilises."
+   },
+   {
+    "name": "Rachel Millward",
+    "stance": "Green Party Deputy Leader. Likely to argue that some fears — climate above all — are rational and that precaution is not paralysis."
+   },
+   {
+    "name": "David Spiegelhalter",
+    "stance": "Statistician (The Norm Chronicles; The Art of Uncertainty) who has spent a career calibrating public understanding of risk. Expect data on how much safer we are, and a plea for numeracy over panic — without dismissing genuine uncertainty."
+   },
+   {
+    "name": "Jay Shapiro",
+    "stance": "Hosts."
+   }
+  ],
+  "questions": [
+   "What is a risk you think the public underrates, and one it overrates? What would change their minds?",
+   "If precaution saved the lives in your statistics, which precaution would you now remove?",
+   "Is climate anxiety rational fear or a culture-of-fear symptom — and how would you tell?"
+  ],
+  "reading": [
+   {
+    "title": "How Fear Works",
+    "by": "Frank Furedi (2018)",
+    "note": "The updated thesis."
+   },
+   {
+    "title": "The Art of Uncertainty",
+    "by": "David Spiegelhalter (2024)",
+    "note": "How to think about risk, chance and ignorance — his own guide."
+   },
+   {
+    "title": "Risk Society",
+    "by": "Ulrich Beck (1986)",
+    "note": "The sociological argument that modern risks are manufactured and global."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Precautionary principle",
+    "def": "Act to prevent harm even without full scientific certainty — praised as prudence, attacked as paralysis."
+   },
+   {
+    "term": "Micromort",
+    "def": "A one-in-a-million chance of death — Spiegelhalter's favourite unit for comparing risks."
+   },
+   {
+    "term": "Availability heuristic",
+    "def": "Judging how common something is by how easily examples come to mind — why vivid dangers feel frequent."
+   }
+  ]
+ }
+}

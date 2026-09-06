@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "note": "Links looked up on 6 September 2026 and checked against the festival's own artist bios. 'youtube' is a specific video (embedded on click); 'links' are further pages. Where no reliable page was found the planner shows search links instead.",
+    "playlist": {"label": "Official HowTheLightGetsIn playlist on Spotify", "url": "https://open.spotify.com/playlist/2UBWjoHonX8QuYf1Pl5hxg"}
+  },
+  "acts": {
+    "patrick-wolf": {
+      "spotify": "https://open.spotify.com/artist/6s92YZUPkTK1HL1WIGrPKE",
+      "youtube": "https://www.youtube.com/watch?v=9OvX0vXhhvc", "youtubeLabel": "The Beast — official video",
+      "links": [{"label": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Patrick_Wolf"}, {"label": "YouTube channel", "url": "https://www.youtube.com/c/patrickwolf"}]
+    },
+    "prima-queen": {
+      "spotify": "https://open.spotify.com/artist/52fhNGn51RhUvjlapHT5T2",
+      "youtube": "https://www.youtube.com/watch?v=7ndGRmdnQsA", "youtubeLabel": "Live at the state51 Factory — full performance",
+      "links": [{"label": "Bandcamp", "url": "https://primaqueen.bandcamp.com/"}, {"label": "The Prize (album) on Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Prize_(album)"}, {"label": "YouTube channel", "url": "https://www.youtube.com/@primaqueen"}]
+    },
+    "the-turbans": {
+      "spotify": "https://open.spotify.com/artist/00TWdTQnOXqe6ylEr4AytB",
+      "youtube": "https://www.youtube.com/watch?v=JDwh_QMDB-Y", "youtubeLabel": "Live at Wilton's Music Hall",
+      "links": [{"label": "Bandcamp", "url": "https://turbans.bandcamp.com/"}, {"label": "Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Turbans_(music_group)"}, {"label": "YouTube channel", "url": "https://www.youtube.com/c/TheTurbans"}]
+    },
+    "elly-hopkins": {
+      "spotify": "https://open.spotify.com/artist/4QU6qe6zuUXPAobMxl1KBi",
+      "links": [{"label": "Website", "url": "https://www.ellyhopkins.com/"}, {"label": "Debut EP 'Animal' — Loud Women", "url": "https://loudwomen.org/2025/11/21/elly-hopkins-releases-debut-ep-animal/"}]
+    },
+    "eve-appleton-band": {
+      "spotify": "https://open.spotify.com/artist/3G39UOl3YtATyywWqQTGU9",
+      "links": [{"label": "Website", "url": "https://eveappletonband.com/"}, {"label": "Bandcamp", "url": "https://eveappletonband.bandcamp.com/"}, {"label": "YouTube channel", "url": "https://www.youtube.com/channel/UCcyO81EPBdI79lT06obCu9A"}, {"label": "SoundCloud", "url": "https://soundcloud.com/eveappletonband"}]
+    },
+    "ben-cipolla": {
+      "spotify": "https://open.spotify.com/artist/3xFVXRKNvxd25j3F7Ka3Gm",
+      "links": [{"label": "Website", "url": "https://www.bencipolla.com/"}, {"label": "Bandcamp", "url": "https://bencipolla.bandcamp.com/"}]
+    },
+    "ava-hincks": {
+      "links": [{"label": "LAMDA profile", "url": "https://www.lamda.ac.uk/ava-hincks"}, {"label": "Live review — Epigram", "url": "https://epigram.org.uk/review-ava-hincks-exchange/"}]
+    },
+    "preen": {
+      "spotify": "https://open.spotify.com/artist/4kF77OngKqrE7x8iIXn0MM",
+      "links": []
+    },
+    "miranda-joy": {
+      "spotify": "https://open.spotify.com/artist/1oRB19LPjNoIHEAb8cJt35",
+      "links": [{"label": "Profile — Hotvox", "url": "https://hotvox.co.uk/artist/miranda-joy/"}]
+    },
+    "katie-alice": {
+      "spotify": "https://open.spotify.com/artist/2zlTztlRoh6SP2kd8cT37t",
+      "links": []
+    },
+    "grace-harvey": {
+      "spotify": "https://open.spotify.com/artist/080u4j7EHvXT31JbymQTME",
+      "links": [{"label": "'The Dream of Common Language' — Record of the Day", "url": "https://www.recordoftheday.com/on-the-move/record/grace-elizabeth-harvey/the-dream-of-common-language2026"}]
+    },
+    "good-weather-for-an-airstrike": {
+      "spotify": "https://open.spotify.com/artist/1LcsFT5fwJajcpAqmlitHX",
+      "links": []
+    },
+    "sue-harding": {
+      "spotify": "https://open.spotify.com/artist/7a02WXv1O5ih4mBgcvsdFO",
+      "links": [{"label": "Website", "url": "https://www.suehardingsongs.com/"}, {"label": "Bandcamp", "url": "https://sueharding.bandcamp.com/"}]
+    },
+    "ned-holland": {
+      "spotify": "https://open.spotify.com/artist/07K14J4uSygt9eSWC4FIg2",
+      "links": [{"label": "YouTube channel", "url": "https://www.youtube.com/channel/UCaVmtwS6_UaCEQpxmF0U_ww"}, {"label": "Profile — Hotvox", "url": "https://hotvox.co.uk/artist/ned-holland-2/"}]
+    },
+    "delphis": {
+      "links": [{"label": "Bandcamp", "url": "https://delphis.bandcamp.com/"}, {"label": "Purbeck Valley Folk Festival", "url": "https://www.purbeckvalleyfolkfestival.co.uk/artists/delphis/"}]
+    },
+    "tia-meraki": {
+      "links": [{"label": "SoundCloud", "url": "https://soundcloud.com/tia_meraki"}]
+    },
+    "camdenist": {
+      "links": []
+    },
+    "harriet-kemsley": {
+      "youtube": "https://www.youtube.com/watch?v=uwaHB4Em3rA", "youtubeLabel": "Woman Child — full special",
+      "links": [{"label": "Website", "url": "https://harrietkemsley.com/"}, {"label": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Harriet_Kemsley"}, {"label": "YouTube channel", "url": "https://www.youtube.com/@harrietkemsleycomedy"}]
+    },
+    "fathiya-saleh": {
+      "links": [{"label": "YouTube channel", "url": "https://www.youtube.com/channel/UCaYt8ON1_WtyPZfB_HJO-rg"}, {"label": "Instagram", "url": "https://www.instagram.com/fathiyascomedy/"}, {"label": "British Comedy Guide", "url": "https://www.comedy.co.uk/people/fathiya-saleh/"}]
+    },
+    "alfie-dundas": {
+      "youtube": "https://www.youtube.com/watch?v=Odm0-uoS8-c", "youtubeLabel": "Privileged To Be Here — full special",
+      "links": [{"label": "YouTube channel", "url": "https://www.youtube.com/channel/UC6J4sphEjuvi7dACmZ199uw"}]
+    },
+    "maia-tassalini": {
+      "youtube": "https://www.youtube.com/watch?v=izIvQ-NremQ", "youtubeLabel": "BBC New Comedy Awards set",
+      "links": [{"label": "YouTube channel", "url": "https://www.youtube.com/@MaiaTassalini"}, {"label": "British Comedy Guide", "url": "https://www.comedy.co.uk/people/maia-tassalini/"}]
+    },
+    "lewis-garnham": {
+      "youtube": "https://www.youtube.com/watch?v=jcJqQ9ku47Q", "youtubeLabel": "Stream of Contentedness — full special",
+      "links": [{"label": "Website", "url": "https://lewisgarnham.com/"}, {"label": "YouTube channel", "url": "https://www.youtube.com/channel/UCu-JeN9DhD8qSyIXOojqHWA"}]
+    },
+    "marty-gleeson": {
+      "youtube": "https://www.youtube.com/shorts/kQEtTCcjRUU", "youtubeLabel": "'David Attenborough' — LGBTQ+ New Comedian of the Year",
+      "links": [{"label": "YouTube channel", "url": "https://www.youtube.com/@martygleeson4065"}, {"label": "Just the Tonic", "url": "https://www.justthetonic.com/comedian/marty-gleeson/"}]
+    },
+    "chantel-nash": {
+      "youtube": "https://www.youtube.com/watch?v=3IQinnYPDbA", "youtubeLabel": "Live from Komedia Comedy Club",
+      "links": [{"label": "Instagram", "url": "https://www.instagram.com/chantelnashdoesfunnies/"}, {"label": "Off The Kerb", "url": "https://www.offthekerb.com/artist/chantel-nash/"}]
+    },
+    "jen-nolan": {
+      "youtube": "https://www.youtube.com/shorts/Fy8yg1BbC4E", "youtubeLabel": "'Kids are Boring' at Angel Comedy Club",
+      "links": [{"label": "British Comedy Guide", "url": "https://www.comedy.co.uk/people/jen-nolan/"}]
+    },
+    "bourgeois-and-maurice": {
+      "youtube": "https://www.youtube.com/watch?v=T461IWSOYZg", "youtubeLabel": "Can't Dance",
+      "links": [{"label": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Bourgeois_%26_Maurice"}, {"label": "Pleasure Seekers at Wilton's — trailer", "url": "https://www.youtube.com/watch?v=QHDqOWD203A"}]
+    },
+    "alex-farrow-and-chelsea-birkby": {
+      "youtube": "https://www.youtube.com/watch?v=BUm98ilEo0o", "youtubeLabel": "Chelsea Birkby: No More Mr Nice Chelsea — full special",
+      "links": [{"label": "Alex Farrow: What Makes Things Funny? (video)", "url": "https://www.youtube.com/watch?v=S5BKknHVOEo"}, {"label": "Alex Farrow — website", "url": "https://alexfarrow.com"}, {"label": "Chelsea Birkby — website", "url": "https://www.chelseabirkby.com/home"}, {"label": "Chelsea Birkby — YouTube channel", "url": "https://www.youtube.com/@chelseabirkby"}]
+    }
+  },
+  "films": {
+    "Ulysses: From Myth to Science": {"year": 2025, "trailer": "https://tvfinternational.com/programme/31589/ulysses-from-myth-to-science?trailer=1", "links": [{"label": "FilmAffinity", "url": "https://www.filmaffinity.com/us/film266302.html"}]},
+    "The Message of the Lyrebird": {"year": 2021, "youtube": "https://www.youtube.com/watch?v=Oo7GUyyx4I4", "youtubeLabel": "Official trailer", "links": [{"label": "IMDb", "url": "https://www.imdb.com/title/tt17520402/"}, {"label": "Film website", "url": "https://www.themessageofthelyrebird.com/"}]},
+    "Trump & The Tech Giants": {"note": "Probably the BBC film 'Trump and the Tech Titans' (2025).", "links": [{"label": "Trump and the Tech Titans — BBC Select", "url": "https://www.bbcselect.com/ca/watch/trump-and-the-tech-titans/"}]},
+    "Wild Family: Living with Jaguars": {"links": [{"label": "TVF International", "url": "https://tvfinternational.com/programme/32478/wild-family-living-with-jaguars"}]},
+    "Robert Rauschenberg: Everything is Art": {"trailer": "https://tvfinternational.com/programme/32248/robert-rauschenberg-everything-is-art?trailer=1", "links": [{"label": "Robert Rauschenberg on Wikipedia", "url": "https://en.wikipedia.org/wiki/Robert_Rauschenberg"}]},
+    "Plastic Tsunami: Voices of the Pacific": {"note": "Probably 'Voices of the Pacific' on plastic pollution in Pacific communities.", "links": [{"label": "Documentary Australia", "url": "https://documentaryaustralia.com.au/project/voices-of-the-pacific/"}]}
+  }
+}
