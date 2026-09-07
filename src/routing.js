@@ -1,13 +1,17 @@
 // src/routing.js — hash-route handling. #event= opens the event sheet on boot and on hashchange,
-// switching the day first if the event isn't on the currently-selected one. picks=/verdicts=/notes=
-// offers to import whatever this device doesn't already have, via a store-driven banner. #join= is added
-// in a later task (this file grows, not replaces).
-import {byNo} from './data/index.js';
+// switching the day first if the event isn't on the currently-selected one. #join= stores the invite and
+// strips itself. picks=/verdicts=/notes= offers to import whatever this device doesn't already have, via
+// a store-driven banner.
+import {byNo, CLOUD} from './data/index.js';
 import {usePlanner} from './store/planner.js';
 import {useSheet} from './store/sheet.js';
+import {useCloud} from './store/cloud.js';
 import {showBanner, hideBanner} from './store/banner.js';
 import {parseImportHash} from './core/exports.js';
+import {parseJoinHash} from './core/crew.js';
 import {mergeNoteText} from './core/notes.js';
+import {loadFirebase} from './cloud/auth.js';
+import {offerJoin, SS_JOIN} from './cloud/crew.js';
 
 function applyEventHash(){
   const m = location.hash.match(/event=(\d+)/);
@@ -17,6 +21,20 @@ function applyEventHash(){
   if (!e) return;
   if (usePlanner.getState().day !== e.date) usePlanner.getState().setFilter({day: e.date});
   useSheet.getState().open('event', no);
+}
+
+// #join=<crewId>.<token>: keep the invite for an hour (it has to survive a redirect sign-in and a reload
+// while an account is being created) and take the token out of the address bar and the history at once.
+// Returns true when the hash was a join link, which ends the routing for this hash.
+function applyJoinHash(){
+  const j = parseJoinHash(location.hash);
+  if (!j) return false;
+  try { sessionStorage.setItem(SS_JOIN, JSON.stringify({...j, at: Date.now()})); } catch (e) {}
+  history.replaceState(null, '', location.pathname + location.search);
+  // reading the invite needs a session, so a signed-out visitor gets the "sign in to join" banner now and
+  // the real offer after sign-in (sync.js calls crew.afterSubscribe() once subscribed)
+  if (CLOUD) loadFirebase().then(() => { if (!useCloud.getState().user) offerJoin(); }).catch(() => {});
+  return true;
 }
 
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
@@ -60,10 +78,12 @@ function applyImportHash(){
 
 export function boot(){
   applyEventHash();
+  if (applyJoinHash()) return;
   applyImportHash();
 }
 
 export function onHashChange(){
   applyEventHash();
+  if (applyJoinHash()) return;
   applyImportHash();
 }

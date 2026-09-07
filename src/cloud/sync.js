@@ -5,7 +5,7 @@
 // its innerHTML banners become banner-store entries. No React here, and no firebase/* import: the SDK
 // arrives through auth.js's getFb().
 import {useCloud} from '../store/cloud.js';
-import {usePlanner} from '../store/planner.js';
+import {usePlanner, DEL} from '../store/planner.js';
 import {okBanner} from '../store/banner.js';
 import {mergeState} from '../core/notes.js';
 import {CLOUD} from '../data/index.js';
@@ -14,7 +14,6 @@ import * as crew from './crew.js';
 
 export const LS_ACCOUNT = 'htlgi-l26-account';   // {uid}: the account this device last synced with
 export const LS_QUEUE = 'htlgi-l26-queue';
-const DEL_MARK = '__DELETE__';                   // planner.js's DEL: a field to remove, kept out of JSON as a string
 
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -139,7 +138,7 @@ export function syncError(e){
 // next subscribe.
 const withSentinels = o => {
   const {F} = getFb();
-  return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, v === DEL_MARK ? F.deleteField() : v]));
+  return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, v === DEL ? F.deleteField() : v]));
 };
 function queueChange(userFields, memberFields){
   const q = load(LS_QUEUE, []) || [];

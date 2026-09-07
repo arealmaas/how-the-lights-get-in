@@ -1,12 +1,19 @@
 import {vi, test, expect, beforeEach} from 'vitest';
 vi.mock('./cloud/sync.js', () => ({change: vi.fn()}));
+// the cloud modules are seams here: routing only has to store the invite, strip the hash and, with a
+// Firebase config, hand over to the crew module. cloud/crew.test.js covers what happens next.
+vi.mock('./cloud/crew.js', () => ({SS_JOIN: 'htlgi-l26-join', offerJoin: vi.fn()}));
+vi.mock('./cloud/auth.js', () => ({loadFirebase: vi.fn(() => Promise.reject(new Error('cloud features are off')))}));
 import {boot, onHashChange} from './routing.js';
 import {usePlanner} from './store/planner.js';
 import {useBanner} from './store/banner.js';
 import {useSheet} from './store/sheet.js';
+import {loadFirebase} from './cloud/auth.js';
 
 beforeEach(() => {
+  vi.clearAllMocks();
   localStorage.clear();
+  sessionStorage.clear();
   usePlanner.setState({picks: new Set(), verdicts: {}, notes: {}, shared: {}});
   useBanner.setState({banner: null});
   useSheet.setState({stack: []});
@@ -72,4 +79,36 @@ test('onHashChange picks up an import link the same way boot does', () => {
 
   const banner = useBanner.getState().banner;
   expect(banner.text).toContain('1 pick');
+});
+
+// The token must not sit in the address bar, in the history, or in a referrer: it is stripped the moment
+// it is read, and kept in sessionStorage so it survives a redirect sign-in and a reload while an account
+// is being created. Without data/firebase.json (this repo, and the e2e run) CLOUD is false, so nothing
+// else happens at all — no SDK fetch, no banner.
+test('a #join= link is stored, stripped from the address, and silent without a Firebase config', () => {
+  location.hash = '#join=AbCdEfGhIjKlMnOpQrSt.abcdefghijklmnopqrstu_';
+  boot();
+
+  expect(JSON.parse(sessionStorage.getItem('htlgi-l26-join'))).toMatchObject({crew: 'AbCdEfGhIjKlMnOpQrSt', token: 'abcdefghijklmnopqrstu_'});
+  expect(JSON.parse(sessionStorage.getItem('htlgi-l26-join')).at).toBeGreaterThan(0);
+  expect(location.hash).toBe('');
+  expect(useBanner.getState().banner).toBeNull();
+  expect(loadFirebase).not.toHaveBeenCalled();
+});
+
+test('a malformed join hash is left to the import parser, which finds nothing in it', () => {
+  location.hash = '#join=tooshort.abcdefghijklmnopqrstu_';
+  boot();
+
+  expect(sessionStorage.getItem('htlgi-l26-join')).toBeNull();
+  expect(location.hash).toBe('#join=tooshort.abcdefghijklmnopqrstu_');
+});
+
+test('a join link ends the routing: the import half of the same hash is not offered', () => {
+  location.hash = '#join=AbCdEfGhIjKlMnOpQrSt.abcdefghijklmnopqrstu_&picks=3,6';
+  onHashChange();
+
+  expect(sessionStorage.getItem('htlgi-l26-join')).not.toBeNull();
+  expect(useBanner.getState().banner).toBeNull();
+  expect(usePlanner.getState().picks.size).toBe(0);
 });

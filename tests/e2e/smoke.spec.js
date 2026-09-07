@@ -85,3 +85,14 @@ test('without a Firebase config the hub offers no account and the SDK chunk is n
   await expect(dialog.getByText('Account and crew')).toHaveCount(0);
   expect(sdk).toEqual([]);
 });
+
+// An invite link opened by someone the planner cannot sign in (no data/firebase.json, so CLOUD is false)
+// must still take the token out of the address bar and the history, and must say nothing it cannot back
+// up — there is no account to join a crew with.
+test('a #join= link leaves an empty hash and, without a Firebase config, no banner', async ({page}) => {
+  await page.goto('/#join=AbCdEfGhIjKlMnOpQrSt.abcdefghijklmnopqrstu_');
+
+  await expect(page.locator('article.ev').first()).toBeVisible();
+  expect(new URL(page.url()).hash).toBe('');
+  await expect(page.locator('.banner')).toHaveCount(0);
+});

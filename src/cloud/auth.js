@@ -170,13 +170,17 @@ export async function reauth(){
 }
 
 export async function deleteAccount(){
-  const {crewId, user} = useCloud.getState();
+  let {crewId, user} = useCloud.getState();
   if (crewId && crew.crewOwnedByMe()) { okBanner('You created your crew: hand it over or close it before deleting your account.'); return; }
   if (!confirm('Delete your account and everything stored in it? Picks and notes stay on this device only.')) return;
   if (!confirm('This cannot be undone. Delete the account?')) return;
   const signedInAt = user.metadata && user.metadata.lastSignInTime ? Date.parse(user.metadata.lastSignInTime) : 0;
   if (Date.now() - signedInAt > 4 * 60e3) {   // Firebase demands a recent sign-in for deletion: do it before touching any data
     try { await reauth(); } catch (e) { authMessage(e); return; }
+    // the re-auth is a popup or a prompt: it can take a while, and a snapshot or a sign-out may have
+    // moved the pointer or the session underneath us. Delete what is in the store now, not what was.
+    ({crewId, user} = useCloud.getState());
+    if (!user) return;
   }
   const {A, F} = fb;
   if (deleting) return;

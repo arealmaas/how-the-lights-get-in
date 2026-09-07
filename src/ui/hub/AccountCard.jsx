@@ -61,7 +61,7 @@ export default function AccountCard(){
         <span className="hc-d"><PrivacyLine /></span>
         <div className="actions">{STANDALONE && IOS ? [mail, google] : [google, mail]}</div>
         {STANDALONE && IOS && <span className="hc-d">In the installed app, email and password is the reliable way in.</span>}
-        <form className="authform" hidden={!open} onSubmit={ev => { ev.preventDefault(); run('signin'); }}>
+        <form className="authform" noValidate hidden={!open} onSubmit={ev => { ev.preventDefault(); run('signin'); }}>
           <input ref={emailRef} type="email" name="email" placeholder="Email" autoComplete="email" required value={email} onChange={ev => setEmail(ev.target.value)} />
           <input type="password" name="password" placeholder="Password (8 or more characters)" autoComplete="current-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
           <input type="text" name="name" placeholder="Your name (for a new account)" maxLength={40} autoComplete="name" value={name} onChange={ev => setName(ev.target.value)} />
@@ -96,7 +96,7 @@ export default function AccountCard(){
         <button type="button" className="btn" onClick={() => { if (confirm('Sign out and remove all picks, notes and crew data from this device?')) signOutUser(true); }}>Sign out and clear this device</button>
         <button type="button" className="btn" onClick={() => deleteAccount()}>Delete account</button>
       </div>
-      <form className="authform" hidden={!open} onSubmit={ev => { ev.preventDefault(); run('link'); }}>
+      <form className="authform" noValidate hidden={!open} onSubmit={ev => { ev.preventDefault(); run('link'); }}>
         <input type="email" name="email" placeholder="Email" autoComplete="email" value={email} onChange={ev => setEmail(ev.target.value)} />
         <input ref={pwRef} type="password" name="password" placeholder="New password (8 or more characters)" autoComplete="new-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
         <div className="actions"><button type="submit" className="btn primary" disabled={busy}>Save password</button></div>
