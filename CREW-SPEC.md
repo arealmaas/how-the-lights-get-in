@@ -90,7 +90,7 @@ crews/{crewId}/invites/{token}     token: 22 characters, base64url of 16 random 
   createdBy, createdAt, expiresAt, revoked, v
 
 crews/{crewId}/removed/{uid}       block record written when the creator removes someone; checked by the join rule
-  removedAt, v
+  name, removedAt, v
 ```
 
 - Maps, not arrays: picks are keyed by event number so that two devices toggling different events merge instead of overwriting each other (section 6). Event numbers are integers, so map keys need no escaping.
@@ -229,7 +229,8 @@ service cloud.firestore {
       match /removed/{uid} {
         allow read: if isCreator(crew);
         allow create: if isCreator(crew) && uid != request.auth.uid
-          && request.resource.data.keys().hasOnly(['removedAt', 'v'])
+          && request.resource.data.keys().hasOnly(['name', 'removedAt', 'v'])
+          && str(request.resource.data.name, 40)
           && request.resource.data.removedAt == request.time
           && request.resource.data.v == 1;
         allow update: if false;
