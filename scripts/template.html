@@ -439,8 +439,8 @@ __PREVIEW_TAG__
 <main id="main"></main>
 <footer>
   <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions, speaker biographies and photographs are © the IAI and the respective photographers, reproduced at reduced size from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
-  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser, or in your account if you sign in. “My festival” in the header gathers them: a link that carries picks and verdicts to another device or a friend, a calendar export of all picks at once, a Markdown export of your notes, and the reading list built from the speakers you picked.</div>
-  <div class="noprint" id="privacy">If you sign in, your email address, name, picks, debate verdicts, notes and crew are stored in Firebase (Google), in the EU. Only you can read them; people in your crew see your picks, verdicts and the notes you choose to share. The site sets no cookies and has no analytics; Google sign-in opens Google’s pages, which do. “Delete account” in My festival removes everything.</div>
+  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. __SAVED_WHERE__ “My festival” in the header gathers them: a link that carries picks and verdicts to another device or a friend, a calendar export of all picks at once, a Markdown export of your notes, and the reading list built from the speakers you picked.</div>
+  __PRIVACY__
   <div class="noprint">Debate briefings are unofficial notes written with Claude (AI) from the programme text and the speakers’ published work — inferred, hedged, and not the speakers’ or the festival’s words; corrections welcome on GitHub. Music, comedy and film links were looked up by hand; where none was found the planner offers a search instead.</div>
   <div class="noprint offline-note">Once loaded, the planner works offline — add it to your home screen for the weekend. Add <code>?now=2026-09-19T14:00</code> to the address to preview festival-day mode.</div>
   <div class="noprint">Source code and data: <a href="https://github.com/arealmaas/how-the-lights-get-in" target="_blank" rel="noopener">github.com/arealmaas/how-the-lights-get-in</a></div>
@@ -1165,7 +1165,7 @@ function accountCard(){
   if (!user) {
     const google = `<button type="button" class="btn primary" data-auth-google>Continue with Google</button>`;
     const email = `<button type="button" class="btn" data-auth-email>Use email and password</button>`;
-    return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Keep your picks, verdicts and notes on every device, and join a crew.</span>
+    return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Keep your picks, verdicts and notes on every device.</span>
       <span class="hc-d">Where this is stored and who sees it: <button type="button" class="linkbtn" data-privacy>privacy</button>.</span>
       <div class="actions">${STANDALONE && IOS ? email + google : google + email}</div>
       ${STANDALONE && IOS ? '<span class="hc-d">In the installed app, email and password is the reliable way in.</span>' : ''}
@@ -1413,7 +1413,7 @@ document.addEventListener('click', ev => {
   if ('authSignin' in d || 'authCreate' in d || 'authReset' in d || 'authLink' in d) { emailAction(t, d); return; }
   if ('authAddpw' in d) { const f = t.closest('.hub-card').querySelector('[data-auth-form]'); f.hidden = false; f.querySelector('input[name=password]').focus(); return; }
   if ('authName' in d) { changeName(); return; }
-  if ('authSignout' in d) { signOutUser(false); return; }
+  if ('authSignout' in d) { if (confirm('Sign out? Your picks and notes stay in this browser. On a shared computer use “Sign out and clear this device” instead.')) signOutUser(false); return; }
   if ('authClear' in d) { if (confirm('Sign out and remove all picks, notes and crew data from this device?')) signOutUser(true); return; }
   if ('authDelete' in d) { deleteAccount(); return; }
   if ('hub' in d || 'share' in d) { showHub(); return; }

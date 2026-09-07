@@ -36,6 +36,12 @@ Everything is one static `index.html` with the data embedded — no build step a
 - `data/media.json` — Spotify / YouTube / Bandcamp links for acts, trailers and pages for films, and the official playlist.
 - `img/speakers/`, `img/acts/`, `img/events/` — WebP thumbnails (portraits 240×300, heroes 640×360, about 3.5 MB in total) made from the festival site's images by `scripts/fetch-images.js` + `scripts/unpack-images.py`. `programme.json` keeps the original image URL in `image` and the local path in `photo`.
 
+## Accounts
+
+Sign-in and sync are switched on by `data/firebase.json`, the public web config from the Firebase console (`apiKey`, `authDomain`, `projectId`, `appId`); without it the build hides the Account and Crew UI. Before the first real sign-in (details in `CREW-SPEC.md` section 9): create the project with Firestore in `europe-west2` or `eur3` and publish `firebase/firestore.rules`; enable the *Email/Password* and *Google* sign-in methods and leave email enumeration protection on; keep the site on `https://htlgi-planner.firebaseapp.com/` (the same origin as `authDomain`, which the redirect sign-in needs); then `python3 scripts/build.py` and check that `index.html` contains `"firebase":{`.
+
+Signed-in state lives in Firestore; signed-out state lives in this browser only, and Safari deletes a site's storage after seven days of Safari use without a visit (home-screen apps are exempt), so signing in is also what protects your picks between planning and the festival.
+
 ## Refreshing the programme
 
 The festival's programme page lazy-loads 40 events at a time from `FullEventListPage_Controller/getevents`, so the extraction runs in your browser, where the requests are same-origin:
