@@ -250,8 +250,10 @@ def main():
     preview_head = '<meta name="robots" content="noindex">' if preview else ''
     preview_tag = f'<div class="previewtag" role="note">Preview build · {escape(preview)} · not the live site</div>' if preview else ''
 
+    core_js = (ROOT / 'scripts' / 'crew-core.js').read_text(encoding='utf-8')
+
     def fill(payload):
-        h = template.replace('/*__DATA__*/', payload)
+        h = template.replace('/*__DATA__*/', payload).replace('/*__CORE__*/', core_js)
         h = h.replace('__PREVIEW_HEAD__', preview_head).replace('__PREVIEW_TAG__', preview_tag)
         h = h.replace('__EXTRACTED__', datetime.fromisoformat(data['meta']['extractedAt'].replace('Z', '+00:00')).strftime('%-d %B %Y'))
         h = h.replace('__COUNT_SAT__', str(counts.get('2026-09-19', 0))).replace('__COUNT_SUN__', str(counts.get('2026-09-20', 0)))
