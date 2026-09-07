@@ -248,8 +248,16 @@ def main():
     media = json.load(open(ROOT / 'data' / 'media.json', encoding='utf-8')) if (ROOT / 'data' / 'media.json').exists() else {}
     extra = json.load(open(ROOT / 'data' / 'speakers-extra.json', encoding='utf-8')) if (ROOT / 'data' / 'speakers-extra.json').exists() else {}
     firebase_path = ROOT / 'data' / 'firebase.json'
-    firebase = json.load(open(firebase_path, encoding='utf-8')) if firebase_path.exists() else None
-    if not firebase:
+    firebase = None
+    if firebase_path.exists():
+        try:
+            firebase = json.load(open(firebase_path, encoding='utf-8'))
+        except json.JSONDecodeError as e:
+            sys.exit(f'data/firebase.json is not valid JSON ({e}); paste the web app config from the Firebase console')
+        missing = [k for k in ('apiKey', 'authDomain', 'projectId', 'appId') if not firebase.get(k)]
+        if missing:
+            sys.exit(f"data/firebase.json is missing {', '.join(missing)}; it needs apiKey, authDomain, projectId and appId")
+    else:
         print('note: data/firebase.json not found; the account and crew features are hidden in this build')
     data = build(extract)
     (ROOT / 'programme.json').write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
