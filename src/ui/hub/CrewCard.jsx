@@ -1,39 +1,25 @@
 // src/ui/hub/CrewCard.jsx — the Crew card in My festival (CREW-SPEC section 7). Ported from the old
 // page's crewCard() plus the data-crew-* click handlers. Two differences from the template, both
-// deliberate: the crew names are typed into an inline form instead of window.prompt() (a prompt cannot be
-// driven by a test and blocks the page), and Copy says "Copied" for two seconds instead of rewriting its
-// own textContent. Destructive actions keep window.confirm, as the old page had them — the confirmations
-// live in cloud/crew.js next to the batches they guard.
+// deliberate: the crew names are typed into the shared inline NamePrompt instead of window.prompt() (a
+// prompt cannot be driven by a test and blocks the page), and Copy says "Copied" for two seconds instead
+// of rewriting its own textContent. Destructive actions keep window.confirm, as the old page had them —
+// the confirmations live in cloud/crew.js next to the batches they guard.
 // A third: the card is gated on selectMyUid, not on `user`, so a cold or offline start shows the crew
 // hydrateCrewCache() painted, with "last synced 13:45" instead of "live" (CREW-SPEC section 6, "Failure
 // modes"). The actions row is offered from that first paint: each action in cloud/crew.js checks the SDK
 // and the session itself and says "Still connecting; try again in a moment.", which is a truer answer than
 // a row of buttons appearing a second late. crewOwnedByMe() is false until there is a session, so the
 // owner-only controls stay hidden anyway.
-import {Fragment, useEffect, useRef, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {initials} from '../../core/labels.js';
 import {memberStyle} from '../CrewBadges.jsx';
+import NamePrompt from '../NamePrompt.jsx';
 import {
   crewOwnedByMe, liveInvites, inviteLink,
   createCrew, renameCrew, leaveCrew, closeCrew,
   removeMember, readmit, makeOwner, createInvite, revokeInvite,
 } from '../../cloud/crew.js';
-
-function NamePrompt({label, initial, onSave, onCancel}){
-  const [value, setValue] = useState(initial);
-  const ref = useRef(null);
-  useEffect(() => { ref.current?.focus(); ref.current?.select(); }, []);
-  return (
-    <form className="authform" onSubmit={ev => { ev.preventDefault(); onSave(value); }}>
-      <input ref={ref} type="text" name="crewname" maxLength={60} aria-label={label} placeholder={label} value={value} onChange={ev => setValue(ev.target.value)} />
-      <div className="actions">
-        <button type="submit" className="btn primary">Save</button>
-        <button type="button" className="btn" onClick={onCancel}>Cancel</button>
-      </div>
-    </form>
-  );
-}
 
 const hhmm = ms => new Date(ms).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
 
@@ -72,7 +58,8 @@ export default function CrewCard(){
           <button type="button" className="btn primary" onClick={() => setPrompt('create')}>Create a crew</button>
         </div>
         {prompt === 'create' && (
-          <NamePrompt label="Name your crew" initial="The Heath Three" onSave={name => { setPrompt(''); createCrew(name); }} onCancel={() => setPrompt('')} />
+          // an example, not a default: "The Heath Three" is the placeholder, so Save without typing names nothing
+          <NamePrompt label="Name your crew" placeholder="The Heath Three" onSave={name => { if (createCrew(name)) setPrompt(''); }} onCancel={() => setPrompt('')} />
         )}
       </div>
     );
@@ -130,7 +117,7 @@ export default function CrewCard(){
         {owner && <button type="button" className="btn" onClick={() => closeCrew(false)}>Close crew</button>}
       </div>
       {prompt === 'rename' && (
-        <NamePrompt label="Crew name" initial={crew.name} onSave={name => { setPrompt(''); renameCrew(name); }} onCancel={() => setPrompt('')} />
+        <NamePrompt label="Crew name" initial={crew.name} onSave={name => { if (renameCrew(name)) setPrompt(''); }} onCancel={() => setPrompt('')} />
       )}
     </div>
   );

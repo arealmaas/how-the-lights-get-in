@@ -85,6 +85,31 @@ test('signed in: the name, the email and the settled sync sentence, with every a
   expect(screen.getByRole('button', {name: 'Save password'})).toBeInTheDocument();
 });
 
+// The old page used window.prompt() here, which blocks the page and cannot be driven by a test. Change
+// name opens the same inline form the Crew card uses (src/ui/NamePrompt.jsx), pre-filled with the name.
+test('Change name opens the inline form filled with the current name; Cancel writes nothing', async () => {
+  const {changeName} = await import('../../cloud/auth.js');
+  signedIn();
+  render(<AccountCard />);
+  expect(document.querySelector('form.nameform')).toBeNull();
+
+  fireEvent.click(screen.getByRole('button', {name: 'Change name'}));
+  const form = document.querySelector('form.nameform');
+  expect(form.querySelector('input').value).toBe('Are');
+  expect(form.querySelector('input').maxLength).toBe(40);
+
+  fireEvent.click(screen.getByRole('button', {name: 'Cancel'}));
+  expect(changeName).not.toHaveBeenCalled();
+  expect(document.querySelector('form.nameform')).toBeNull();
+
+  fireEvent.click(screen.getByRole('button', {name: 'Change name'}));
+  fireEvent.change(document.querySelector('form.nameform input'), {target: {value: 'Are Almaas'}});
+  fireEvent.submit(document.querySelector('form.nameform'));
+
+  expect(changeName).toHaveBeenCalledWith('Are Almaas');
+  expect(document.querySelector('form.nameform')).toBeNull();
+});
+
 test('an account that already has a password is not offered another one', () => {
   signedIn({user: {...USER, providerData: [{providerId: 'password'}]}});
   render(<AccountCard />);

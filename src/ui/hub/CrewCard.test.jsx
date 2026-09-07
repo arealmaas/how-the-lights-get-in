@@ -5,12 +5,15 @@ import {render, screen, fireEvent, act} from '@testing-library/react';
 import CrewCard from './CrewCard.jsx';
 import {useCloud} from '../../store/cloud.js';
 
-const H = vi.hoisted(() => ({owner: {value: false}, invites: {value: []}}));
+const H = vi.hoisted(() => ({owner: {value: false}, invites: {value: []}, named: name => !!String(name || '').trim()}));
 vi.mock('../../cloud/crew.js', () => ({
   crewOwnedByMe: () => H.owner.value,
   liveInvites: () => H.invites.value,
   inviteLink: token => 'https://example.test/#join=c1.' + token,
-  createCrew: vi.fn(), renameCrew: vi.fn(), leaveCrew: vi.fn(), closeCrew: vi.fn(),
+  // createCrew and renameCrew answer whether the card is done with the name (cloud/crew.js): true closes
+  // the inline form, false leaves it open with what was typed still in it. The default here is what the
+  // real ones do with an empty field.
+  createCrew: vi.fn(H.named), renameCrew: vi.fn(H.named), leaveCrew: vi.fn(), closeCrew: vi.fn(),
   removeMember: vi.fn(), readmit: vi.fn(), makeOwner: vi.fn(), createInvite: vi.fn(), revokeInvite: vi.fn(),
 }));
 
@@ -29,6 +32,8 @@ beforeEach(() => {
   vi.clearAllMocks();
   H.owner.value = false;
   H.invites.value = [];
+  crewApi.createCrew.mockImplementation(H.named);
+  crewApi.renameCrew.mockImplementation(H.named);
   useCloud.setState({user: USER, accountName: 'Are', marker: null, crewId: 'c1', crew: CREW});
 });
 
@@ -42,11 +47,34 @@ test('no crew: Create a crew, the invite-link line, and an inline name form inst
   fireEvent.click(screen.getByRole('button', {name: 'Create a crew'}));
   const form = document.querySelector('form.authform');
   expect(form).not.toBeNull();
+  // the example crew name is the placeholder, not the value: Save without typing would otherwise name
+  // everybody's crew "The Heath Three"
+  expect(form.querySelector('input').value).toBe('');
+  expect(form.querySelector('input').placeholder).toBe('The Heath Three');
+  fireEvent.submit(form);
+  expect(crewApi.createCrew).toHaveBeenCalledWith('');
+
   fireEvent.change(form.querySelector('input'), {target: {value: 'The Heath Three'}});
   fireEvent.submit(form);
 
-  expect(crewApi.createCrew).toHaveBeenCalledWith('The Heath Three');
+  expect(crewApi.createCrew).toHaveBeenLastCalledWith('The Heath Three');
   expect(document.querySelector('form.authform')).toBeNull();
+});
+
+// An empty field or a "Still connecting; try again in a moment." both leave the form standing: the answer
+// is to type, or to press Save again, and neither should mean retyping the name.
+test('a name the crew module could not use keeps the form and the text', () => {
+  useCloud.setState({crewId: null, crew: null});
+  crewApi.createCrew.mockReturnValue(false);   // "Still connecting; try again in a moment."
+  render(<CrewCard />);
+
+  fireEvent.click(screen.getByRole('button', {name: 'Create a crew'}));
+  fireEvent.change(document.querySelector('form.authform input'), {target: {value: 'The Heath Three'}});
+  fireEvent.submit(document.querySelector('form.authform'));
+
+  expect(crewApi.createCrew).toHaveBeenCalledWith('The Heath Three');
+  expect(document.querySelector('form.authform')).not.toBeNull();
+  expect(document.querySelector('form.authform input').value).toBe('The Heath Three');
 });
 
 test('signed out the card is not built at all', () => {
@@ -167,6 +195,24 @@ test('Rename opens the inline form filled with the current name; Cancel writes n
   fireEvent.change(document.querySelector('form.authform input'), {target: {value: 'The Heath Four'}});
   fireEvent.submit(document.querySelector('form.authform'));
   expect(crewApi.renameCrew).toHaveBeenCalledWith('The Heath Four');
+  expect(document.querySelector('form.authform')).toBeNull();
+});
+
+test('a rename that could not be written keeps the form open with the new name still typed', () => {
+  crewApi.renameCrew.mockReturnValue(false);   // "Still connecting; try again in a moment."
+  render(<CrewCard />);
+
+  fireEvent.click(screen.getByRole('button', {name: 'Rename'}));
+  fireEvent.change(document.querySelector('form.authform input'), {target: {value: 'The Heath Four'}});
+  fireEvent.submit(document.querySelector('form.authform'));
+
+  expect(crewApi.renameCrew).toHaveBeenCalledWith('The Heath Four');
+  expect(document.querySelector('form.authform input').value).toBe('The Heath Four');
+
+  crewApi.renameCrew.mockReturnValue(true);   // and pressing Save again is all it takes
+  fireEvent.submit(document.querySelector('form.authform'));
+  expect(crewApi.renameCrew).toHaveBeenLastCalledWith('The Heath Four');
+  expect(document.querySelector('form.authform')).toBeNull();
 });
 
 test('Invite link and Leave crew reach the crew module', () => {

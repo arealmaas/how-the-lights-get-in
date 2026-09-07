@@ -1,5 +1,7 @@
 // src/ui/Banner.jsx — the store-driven banner (design section 5: real click handlers, no data attributes).
-// Nothing calls useBanner().show() yet — that starts in Task 6 — so this renders nothing for now.
+// One banner at a time: showBanner() replaces whatever is on screen, so two things happening at once —
+// a join offer and a sync message, say — cannot stack. Everything the cloud layer has to say arrives
+// here, as {text, input?, actions[]}; React escapes the text, which is why the old page's esc() is gone.
 import {useEffect, useRef} from 'react';
 import {useBanner} from '../store/banner.js';
 

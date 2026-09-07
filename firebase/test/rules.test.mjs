@@ -259,6 +259,72 @@ test('invites: members mint valid invites; names must match; expiry is bounded; 
   await assertSucceeds(deleteDoc(ref(TOKEN)));
 });
 
+// A block record is the only thing standing between a removed person and the invite link they still hold,
+// so it may be created and deleted by the creator and edited by nobody, including the creator.
+test('removed: a block record cannot be edited, and only the creator can delete one', async () => {
+  await seedCrew();
+  await admin(db => setDoc(doc(db, 'crews', CREW, 'removed', 'carol'), blockDoc()));
+  const ref = db => doc(db, 'crews', CREW, 'removed', 'carol');
+  await assertFails(updateDoc(ref(as('alice')), {name: 'Someone else'}));            // not even the creator
+  await assertFails(updateDoc(ref(as('alice')), {removedAt: serverTimestamp()}));
+  await assertFails(updateDoc(ref(as('bob')), {name: 'Someone else'}));
+  await assertFails(deleteDoc(ref(as('bob'))));                                       // a member is not the creator
+  await assertFails(deleteDoc(ref(as('carol'))));                                     // least of all the blocked person
+  await assertSucceeds(deleteDoc(ref(as('alice'))));
+});
+
+// The three fields the server owns on a create: a crew starts alive, and both stamps are request.time. A
+// client that sets its own would be able to back-date an invite window or ship a crew born closed.
+test('crews and members: a create cannot pre-set deleted, createdAt or joinedAt', async () => {
+  await admin(db => setDoc(doc(db, 'users', 'carol'), fullUser({name: 'Morten'})));
+  const db = as('carol'); const id = 'CarolsCrewIdAbcdefg1';
+  const create = over => {
+    const b = writeBatch(db);
+    b.set(doc(db, 'crews', id), crewDoc({createdBy: 'carol', ...over.crew}));
+    b.set(doc(db, 'crews', id, 'members', 'carol'), fullMember({name: 'Morten', ...over.member}));
+    return b.commit();
+  };
+  await assertFails(create({crew: {deleted: true}, member: {}}));
+  await assertFails(create({crew: {createdAt: Timestamp.fromMillis(Date.now())}, member: {}}));
+  await assertFails(create({crew: {}, member: {joinedAt: Timestamp.fromMillis(Date.now())}}));
+  await assertSucceeds(create({crew: {}, member: {}}));
+
+  // joining an existing crew is the same rule on the member document alone
+  await seedCrew();
+  await admin(dba => setDoc(doc(dba, 'users', 'erin'), fullUser({name: 'Erin'})));
+  const erin = as('erin');
+  const backdated = writeBatch(erin);
+  backdated.set(doc(erin, 'crews', CREW, 'members', 'erin'), fullMember({name: 'Erin', invite: TOKEN, joinedAt: Timestamp.fromMillis(Date.now())}));
+  backdated.update(doc(erin, 'users', 'erin'), {crew: CREW, updatedAt: serverTimestamp()});
+  await assertFails(backdated.commit());
+  await assertSucceeds(join(erin, 'erin', CREW, TOKEN, 'Erin'));
+});
+
+// The token is the secret and its length is part of it: a 22-character base64url string is 128 bits, and
+// nothing shorter is readable by someone who is not already a member.
+test('invites: a get with a token of the wrong length is denied whatever it names', async () => {
+  await seedCrew();
+  await admin(db => setDoc(doc(db, 'crews', CREW, 'invites', 'short'), inviteDoc()));
+  await admin(db => setDoc(doc(db, 'crews', CREW, 'invites', 'x'.repeat(23)), inviteDoc()));
+  const carol = as('carol');
+  await assertFails(getDoc(doc(carol, 'crews', CREW, 'invites', 'short')));
+  await assertFails(getDoc(doc(carol, 'crews', CREW, 'invites', 'x'.repeat(23))));
+  await assertSucceeds(getDoc(doc(carol, 'crews', CREW, 'invites', TOKEN)));
+});
+
+// Nothing outside users/ and crews/ is reachable at all: the catch-all is the last rule and denies both
+// ways, so a collection nobody has thought of yet is closed rather than open.
+test('the catch-all closes every other path, to everyone', async () => {
+  await admin(db => setDoc(doc(db, 'sessions', 'anything'), {v: 1}));
+  for (const db of [as('alice'), anon()]) {
+    await assertFails(getDoc(doc(db, 'sessions', 'anything')));
+    await assertFails(getDocs(collection(db, 'sessions')));
+    await assertFails(setDoc(doc(db, 'sessions', 'mine'), {v: 1}));
+    await assertFails(deleteDoc(doc(db, 'sessions', 'anything')));
+    await assertFails(setDoc(doc(db, 'users', 'alice', 'private', 'x'), {v: 1}));   // not even under a document we own
+  }
+});
+
 test('members: the shared-notes projection is enforced on create too; the remaining caps and allow-lists hold', async () => {
   await seedCrew();
   await admin(db => updateDoc(doc(db, 'users', 'carol'), {'shared.6': true, 'notes.6': 'shared', 'notes.7': 'private'}));

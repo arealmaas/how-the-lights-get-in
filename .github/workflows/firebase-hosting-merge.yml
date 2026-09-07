@@ -27,6 +27,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      # the Firestore emulator is a Java process; pin the JDK rather than trusting whatever the runner image
+      # ships with this month
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
       - name: Rules tests (Firestore emulator)
         run: cd firebase/test && npm ci && npm test
       - name: Deploy Firestore rules

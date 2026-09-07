@@ -158,11 +158,15 @@ export function crewGone(msg){
 }
 
 // ---------- create, rename, leave, close ----------
+// createCrew and renameCrew return whether the card is done with the name it was given: false leaves the
+// inline form open with the text still in it, so an empty field or a "try again in a moment" can be
+// answered without retyping.
 export function createCrew(name){
   const clean = String(name || '').trim().slice(0, 60);
   const fb = getFb();
   const {user, accountName} = st();
-  if (!clean || !fb || !user) return;
+  if (!clean) return false;                                   // the placeholder is an example, not a name
+  if (!fb || !user) { okBanner(NOT_READY); return false; }
   const {F} = fb;
   const id = F.doc(F.collection(fb.db, 'crews')).id;   // client-generated auto-id: the rules need it in one batch
   const b = F.writeBatch(fb.db);
@@ -170,16 +174,19 @@ export function createCrew(name){
   b.set(memberRef(id, user.uid), {name: accountName, joinedAt: F.serverTimestamp(), ...projectForCrew(usePlanner.getState().local()), updatedAt: F.serverTimestamp(), v: 1});
   b.update(userRef(), {crew: id, updatedAt: F.serverTimestamp()});
   b.commit().catch(authMessage);
+  return true;
 }
 
 export function renameCrew(name){
   const {crew, user} = st();
   const clean = String(name || '').trim().slice(0, 60);
-  if (!crew || !clean || clean === crew.name) return;
+  if (!crew || !clean) return false;
+  if (clean === crew.name) return true;                       // already called that: nothing to write, nothing to retype
   const fb = getFb();
-  if (!user || !fb) { okBanner(NOT_READY); return; }
+  if (!user || !fb) { okBanner(NOT_READY); return false; }
   const {F} = fb;
   F.updateDoc(crewRef(crew.id), {name: clean, updatedAt: F.serverTimestamp()}).catch(authMessage);
+  return true;
 }
 
 export async function leaveCrew(silent){

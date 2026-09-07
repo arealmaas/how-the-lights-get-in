@@ -89,11 +89,19 @@ test('createCrew writes the crew, the creator member document and the pointer in
 });
 
 test('createCrew ignores an empty name and trims one longer than sixty characters', async () => {
-  const {crew} = await setup();
-  crew.createCrew('   ');
+  const {useBanner, crew} = await setup();
+  expect(crew.createCrew('   ')).toBe(false);   // false keeps the card's inline form open, with the caret in it
   expect(H.batches).toHaveLength(0);
-  crew.createCrew('x'.repeat(80));
+  expect(useBanner.getState().banner).toBeNull();   // nothing to say: the field is empty and visibly so
+  expect(crew.createCrew('x'.repeat(80))).toBe(true);
   expect(H.batches[0].set.mock.calls[0][1].name).toHaveLength(60);
+});
+
+test('createCrew before the SDK has arrived says so and keeps the name', async () => {
+  const {useBanner, crew} = await setup({loadFb: false});
+  expect(crew.createCrew('The Heath Three')).toBe(false);
+  expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  expect(H.batches).toHaveLength(0);
 });
 
 test('a server members snapshot without your own document is removal: cleared, unsubscribed and said once', async () => {
@@ -636,15 +644,17 @@ test('onPointer subscribes when the pointer names a crew we are not listening to
   expect(H.F.onSnapshot).toHaveBeenCalledTimes(3);
 });
 
+// The return value is what the Crew card's inline form reads: true closes it, false leaves what was typed
+// where it is, so an empty field or a "try again in a moment" costs no retyping.
 test('renameCrew writes only the name and ignores an unchanged or empty one; onDenied is removal', async () => {
   const {useCloud, useBanner, crew} = await setup({crew: inCrew()});
 
-  crew.renameCrew('  The Heath Four  ');
+  expect(crew.renameCrew('  The Heath Four  ')).toBe(true);
   expect(H.F.updateDoc).toHaveBeenCalledWith('crews/c1', {name: 'The Heath Four', updatedAt: 'TS'});
 
   H.F.updateDoc.mockClear();
-  crew.renameCrew('The Heath Three');
-  crew.renameCrew('   ');
+  expect(crew.renameCrew('The Heath Three')).toBe(true);   // already called that: done, nothing written
+  expect(crew.renameCrew('   ')).toBe(false);              // nothing typed: the form stays
   expect(H.F.updateDoc).not.toHaveBeenCalled();
 
   crew.onDenied();

@@ -3,10 +3,12 @@
 // confirmations and the privacy link. The forms are real <form onSubmit> elements, so Enter submits the
 // primary action — the old page needed a document-level keydown handler for that. Messages are local
 // state under the form; anything the whole app should hear about goes to the banner store instead.
+// Change name opens the same inline NamePrompt the Crew card uses, rather than window.prompt().
 import {useEffect, useRef, useState} from 'react';
 import {useCloud} from '../../store/cloud.js';
 import {useSheet} from '../../store/sheet.js';
 import {STANDALONE, IOS} from '../../cloud/platform.js';
+import NamePrompt from '../NamePrompt.jsx';
 import {signInGoogle, emailAction, changeName, signOutUser, deleteAccount} from '../../cloud/auth.js';
 
 function showPrivacy(){
@@ -26,6 +28,7 @@ export default function AccountCard(){
   const syncStopped = useCloud(s => s.syncStopped);
 
   const [open, setOpen] = useState(false);
+  const [renaming, setRenaming] = useState(false);
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
   const [email, setEmail] = useState('');
@@ -36,7 +39,7 @@ export default function AccountCard(){
 
   // Signing in or out swaps the card: start the new one closed and empty, with the account's email
   // pre-filled for "Add a password" the way the old card's value= did.
-  useEffect(() => { setOpen(false); setMsg(''); setPassword(''); setName(''); setEmail((user && user.email) || ''); }, [user]);
+  useEffect(() => { setOpen(false); setRenaming(false); setMsg(''); setPassword(''); setName(''); setEmail((user && user.email) || ''); }, [user]);
   // Opening the form puts the caret where the old page put it: the email field, or the password field
   // when it was opened by "Add a password".
   useEffect(() => { if (open) (user ? pwRef.current : emailRef.current)?.focus(); }, [open, user]);
@@ -90,7 +93,7 @@ export default function AccountCard(){
         Signed in as <b>{accountName}</b>{user.email ? ` · ${user.email}` : ''}. {sync} <PrivacyLine />
       </span>
       <div className="actions">
-        <button type="button" className="btn" onClick={() => changeName(prompt('Your name, as your crew sees it', accountName) || '')}>Change name</button>
+        <button type="button" className="btn" onClick={() => setRenaming(r => !r)}>Change name</button>
         {!hasPw && <button type="button" className="btn" onClick={() => setOpen(true)}>Add a password</button>}
         <button type="button" className="btn" onClick={() => { if (confirm('Sign out? Your picks and notes stay in this browser. On a shared computer use “Sign out and clear this device” instead.')) signOutUser(false); }}>Sign out</button>
         <button type="button" className="btn" onClick={() => { if (confirm('Sign out and remove all picks, notes and crew data from this device?')) signOutUser(true); }}>Sign out and clear this device</button>
@@ -102,6 +105,10 @@ export default function AccountCard(){
         <div className="actions"><button type="submit" className="btn primary" disabled={busy}>Save password</button></div>
         <p className="src">{msg}</p>
       </form>
+      {renaming && (
+        <NamePrompt label="Your name, as your crew sees it" initial={accountName} maxLength={40}
+          onSave={next => { setRenaming(false); changeName(next); }} onCancel={() => setRenaming(false)} />
+      )}
     </div>
   );
 }
