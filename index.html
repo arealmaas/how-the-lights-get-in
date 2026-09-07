@@ -1178,7 +1178,7 @@ document.addEventListener('click', ev => {
     try { for (const [no, text] of Object.entries(JSON.parse(b.dataset.incomingNotes || '{}'))) notes[no] = CrewCore.mergeNoteText(notes[no], text); save(LS_NOTES, notes); } catch (e) {}
     history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return;
   }
-  if ('dismiss' in d) { if (/picks=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
+  if ('dismiss' in d) { if (/(?:^#|&)(picks|verdicts|notes)=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
   if ('copy' in d) { const inp = document.getElementById('picklink'); inp.select(); try { navigator.clipboard.writeText(inp.value).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
 });
 document.getElementById('scrim').addEventListener('click', closeSheet);
