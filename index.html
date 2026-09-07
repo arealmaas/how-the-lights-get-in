@@ -1208,6 +1208,7 @@ function loadFirebase(){
   }).catch(e => {
     fbLoading = null;
     showBanner(`<span>Sign-in is unavailable right now (${esc(e.message)}). Your picks stay on this device.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+    e.reported = true;
     throw e;
   });
   return fbLoading;
@@ -1279,7 +1280,7 @@ function authText(e){
   if (c === 'auth/invalid-email') return 'That does not look like an email address.';
   return (e && e.message) || 'Something went wrong.';
 }
-function authMessage(e){ showBanner(`<span>${esc(authText(e))}</span><button type="button" class="btn" data-dismiss>OK</button>`); }
+function authMessage(e){ if (e && e.reported) return; showBanner(`<span>${esc(authText(e))}</span><button type="button" class="btn" data-dismiss>OK</button>`); }
 async function afterSignIn(u){ afterSubscribe(); }
 
 // ---------- events ----------
