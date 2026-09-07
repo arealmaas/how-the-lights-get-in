@@ -179,12 +179,13 @@ self.addEventListener('install', e => {
   e.waitUntil(Promise.all([core, photos]).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith(PREFIX) && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith(PREFIX) && k !== CACHE && k !== IMG_CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  if (url.origin === self.location.origin && url.pathname.startsWith('/__/')) return;   // Firebase auth helpers and reserved URLs: never intercepted, never cached
   const isPage = req.mode === 'navigate' || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/');
   if (isPage) {
     // network first so updates arrive; the cached page is the offline fallback
@@ -197,8 +198,8 @@ self.addEventListener('fetch', e => {
     e.respondWith(caches.open(IMG_CACHE).then(c => c.match(req).then(hit => hit || fetch(req).then(r => { if (r.ok) c.put(req, r.clone()); return r; }))));
     return;
   }
-  // same-origin files (but never the Firebase auth helpers under /__/), fonts, and the Firebase SDK from gstatic
-  const cacheable = (url.origin === self.location.origin && !url.pathname.startsWith('/__/'))
+  // same-origin files, fonts, and the Firebase SDK from gstatic
+  const cacheable = url.origin === self.location.origin
     || url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com' || url.hostname === 'www.gstatic.com';
   if (!cacheable) return;
   // stale-while-revalidate for fonts and static files
