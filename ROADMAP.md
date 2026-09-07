@@ -1,6 +1,6 @@
 # Roadmap
 
-Ideas for the planner, to be done one at a time. Everything here works on a static GitHub Pages site — no backend, nothing tracked. Status: ✅ done · 🔨 in progress · ⬜ planned.
+Ideas for the planner, to be done one at a time. The planner is a static site (Firebase Hosting since Batch 5, GitHub Pages before); accounts and crews use Firebase Authentication and Firestore; nothing is tracked. Status: ✅ done · 🔨 in progress · ⬜ planned.
 
 ## Batch 1 (done 6 September 2026)
 

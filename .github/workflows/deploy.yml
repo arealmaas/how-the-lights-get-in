@@ -1,6 +1,5 @@
-# Publishes the planner to the gh-pages branch on every push to main.
-# GitHub Pages must be set to serve from gh-pages / root (Settings → Pages → Source: Deploy from a branch).
-# Pull-request previews (pr-preview.yml) live in the same branch under pr-preview/, which this job leaves alone.
+# The planner moved to Firebase Hosting. This workflow's only job is to publish the "moved" page in move/
+# to the root of gh-pages (clean: true wipes everything else there). It is removed once that has run.
 name: Deploy site
 
 on:

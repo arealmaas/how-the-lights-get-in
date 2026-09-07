@@ -1,4 +1,6 @@
-# Deploys the site to the live channel and publishes the Firestore rules on every push to main.
+# On every push to main: run the Firestore rules tests against the emulator, deploy the rules
+# (pinned to the firebase-tools version in firebase/test/package-lock.json, not @latest), then
+# build and deploy the site to the live channel. Rules go out tested, and before the site.
 name: Deploy on merge
 
 on:
@@ -19,6 +21,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Rules tests (Firestore emulator)
+        run: cd firebase/test && npm ci && npm test
+      - name: Deploy Firestore rules
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
+        run: |
+          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" firebase/test/node_modules/.bin/firebase deploy --only firestore:rules --project htlgi-planner --non-interactive
       - name: Build the site
         run: sh scripts/assemble-site.sh _site
       - uses: FirebaseExtended/action-hosting-deploy@v0
@@ -27,9 +40,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
           projectId: htlgi-planner
           channelId: live
-      - name: Deploy Firestore rules
-        env:
-          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
-        run: |
-          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
-          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" npx --yes firebase-tools@latest deploy --only firestore:rules --project htlgi-planner --non-interactive

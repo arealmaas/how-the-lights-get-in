@@ -1,6 +1,7 @@
 dist/
 .DS_Store
 _site/
+.omc/
 firebase/test/node_modules/
 .firebase/
 firebase-debug.log

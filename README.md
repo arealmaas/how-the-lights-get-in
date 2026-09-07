@@ -53,12 +53,14 @@ The festival's programme page lazy-loads 40 events at a time from `FullEventList
 
 ## Deployment and pull-request previews
 
+Merging to `main` is the deploy: `firebase-hosting-merge.yml` publishes the site and the rules, and `deploy.yml` (one last run) replaces the old GitHub Pages site with the move page. So before the hosting branch merges, the Firebase project must exist, the repository secret `FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER` must be set (created by `firebase init hosting:github`), and its service account must hold the *Firebase Rules Admin* role. The project id `htlgi-planner` appears in `README.md`, `ROADMAP.md`, `scripts/move-template.html`, `scripts/template.html`, `.firebaserc` and both `firebase-hosting-*.yml`; a different id is a search-and-replace across those seven files.
+
 The site is served by Firebase Hosting (`firebase.json`; Spark plan). Two workflows do the publishing:
 
-- `firebase-hosting-merge.yml` runs on every push to `main`: it builds (`scripts/assemble-site.sh _site`), deploys the site to the live channel and publishes `firebase/firestore.rules`.
-- `firebase-hosting-pull-request.yml` builds every pull request from this repository with `--preview "PR #N"` (a red ribbon and a `noindex` tag) and deploys it to a preview channel; the action leaves a comment on the PR with the URL. Previews expire after seven days and use the real Firestore project, so do not change the document schema on a preview.
+- `firebase-hosting-merge.yml` runs on every push to `main`: it first runs the rules tests in the emulator, then publishes `firebase/firestore.rules`, then builds (`scripts/assemble-site.sh _site`) and deploys the site to the live channel.
+- `firebase-hosting-pull-request.yml` builds every pull request from this repository with `--preview "PR #N"` (a red ribbon and a `noindex` tag) and deploys it to a preview channel; the action leaves a comment on the PR with the URL. Previews expire after seven days and use the real Firestore project, so do not change the document schema on a preview. Google sign-in does not work on a preview channel (its domain is not an authorised auth domain); test sign-in on localhost and the live site.
 
-Both need the repository secret created by `firebase init hosting:github`, and the deploy service account needs the *Firebase Rules Admin* role. The old GitHub Pages address serves a "moved" page (`move/index.html`) that carries a visitor's picks, verdicts and notes to the new origin.
+Both need the repository secret created by `firebase init hosting:github`, and the deploy service account needs the *Firebase Rules Admin* role. The old GitHub Pages address serves a "moved" page (`move/index.html`, generated from `scripts/move-template.html` by the build) that carries a visitor's picks, verdicts and notes to the new origin.
 
 Tests: `node --test scripts/test/*.test.mjs` for the pure helpers and the service worker; `cd firebase/test && npm test` for the Firestore rules (needs `firebase-tools` and a JDK for the emulator). On macOS with a Homebrew JDK, put it on the path first: `export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"`.
 
