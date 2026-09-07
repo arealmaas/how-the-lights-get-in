@@ -257,6 +257,7 @@ def main():
     preview_tag = f'<div class="previewtag" role="note">Preview build · {escape(preview)} · not the live site</div>' if preview else ''
 
     core_js = (ROOT / 'scripts' / 'crew-core.js').read_text(encoding='utf-8')
+    assert '</script>' not in core_js, 'crew-core.js must not contain </script>'
 
     def fill(payload):
         h = template.replace('/*__DATA__*/', payload).replace('/*__CORE__*/', core_js)
@@ -265,10 +266,18 @@ def main():
         h = h.replace('__COUNT_SAT__', str(counts.get('2026-09-19', 0))).replace('__COUNT_SUN__', str(counts.get('2026-09-20', 0)))
         h = h.replace('__TOTAL__', str(len(data['events']))).replace('__SPEAKERS__', str(len(data['speakers']))).replace('__ACTS__', str(len(data['acts'])))
         assert '__' not in re.sub(r'__(proto|dirname|filename)__', '', h.split('<script id="data"')[0]), 'unfilled placeholder'
+        assert '/*__CORE__*/' not in h and '/*__DATA__*/' not in h, 'unfilled placeholder'
         return h
 
     html = fill(page_payload(data, briefings, media, extra))
     (ROOT / 'index.html').write_text(html, encoding='utf-8')
+
+    # the GitHub Pages "moved" notice: scripts/move-template.html with the same crew-core.js inlined,
+    # so its notes-fragment link matches the live site
+    move_html = (ROOT / 'scripts' / 'move-template.html').read_text(encoding='utf-8').replace('/*__CORE__*/', core_js)
+    assert '/*__CORE__*/' not in move_html, 'unfilled placeholder'
+    (ROOT / 'move').mkdir(parents=True, exist_ok=True)
+    (ROOT / 'move' / 'index.html').write_text(move_html, encoding='utf-8')
 
     # offline support: versioned service worker (photos listed for precaching) + web app manifest
     build_id = hashlib.sha1(html.encode('utf-8')).hexdigest()[:10]

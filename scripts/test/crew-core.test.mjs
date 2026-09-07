@@ -35,3 +35,12 @@ test('mergeNoteText keeps both texts only when they differ', () => {
   assert.equal(CrewCore.mergeNoteText('same ', 'same'), 'same ');
   assert.equal(CrewCore.mergeNoteText('mine', 'theirs'), 'mine\n\n---\n\ntheirs');
 });
+
+test('encodeNotesParam reports how many notes were shortened to 20 000 characters', () => {
+  assert.equal(CrewCore.encodeNotesParam({1: 'x'.repeat(20001), 2: 'ok'}).shortened, 1);
+  assert.equal(CrewCore.encodeNotesParam({2: 'ok'}).shortened, 0);
+});
+
+test('mergeNoteText is idempotent when the incoming text is already included', () => {
+  assert.equal(CrewCore.mergeNoteText('mine\n\n---\n\ntheirs', 'theirs'), 'mine\n\n---\n\ntheirs');
+});

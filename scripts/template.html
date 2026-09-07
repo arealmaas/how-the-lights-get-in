@@ -898,6 +898,7 @@ function togglePick(no){
 const picksLink = () => { const v = Object.entries(verdicts).map(([no, who]) => `${no}:${encodeURIComponent(who)}`).join(';'); return location.origin + location.pathname + '#picks=' + [...picks].sort((a, b) => a - b).join(',') + (v ? '&verdicts=' + v : ''); };
 function showBanner(html){ const b = document.getElementById('banner'); b.innerHTML = `<div class="banner-inner">${html}</div>`; b.hidden = false; b.scrollIntoView({block:'nearest'}); }
 function hideBanner(){ document.getElementById('banner').hidden = true; }
+const safeDecode = s => { try { return decodeURIComponent(s); } catch (e) { return ''; } };
 function checkHash(){
   const ev = location.hash.match(/event=(\d+)/);
   if (ev && byNo.has(+ev[1])) { const e = byNo.get(+ev[1]); if (state.day !== e.date) { state.day = e.date; render(); } showEvent(+ev[1]); }
@@ -906,7 +907,7 @@ function checkHash(){
   const incoming = pm ? pm[1].split(',').map(Number).filter(n => byNo.has(n)) : [];
   const fresh = incoming.filter(n => !picks.has(n));
   const vm = location.hash.match(/verdicts=([^&]+)/);
-  const inV = vm ? Object.fromEntries(vm[1].split(';').map(x => x.split(':')).filter(([no]) => byNo.has(+no)).map(([no, who]) => [+no, decodeURIComponent(who || '')])) : {};
+  const inV = vm ? Object.fromEntries(vm[1].split(';').map(x => x.split(':')).filter(([no]) => byNo.has(+no)).map(([no, who]) => [+no, safeDecode(who || '')])) : {};
   const freshV = Object.keys(inV).filter(no => verdicts[no] !== inV[no]);
   const nm = location.hash.match(/notes=([A-Za-z0-9_-]+)/);
   const inN = nm ? Object.fromEntries(Object.entries(CrewCore.decodeNotesParam(nm[1])).filter(([no]) => byNo.has(+no))) : {};
@@ -914,9 +915,11 @@ function checkHash(){
   const clear = () => history.replaceState(null, '', location.pathname + location.search);
   if (!incoming.length && !freshV.length && !freshN.length) { clear(); return; }
   if (!fresh.length && !freshV.length && !freshN.length) { clear(); return; }
-  const parts = [`<b>${incoming.length} picks</b>`];
-  if (Object.keys(inV).length) parts.push(`<b>${Object.keys(inV).length} verdicts</b>`);
-  if (Object.keys(inN).length) parts.push(`<b>${Object.keys(inN).length} notes</b>`);
+  const plural = (n, word) => `<b>${n} ${word}${n === 1 ? '' : 's'}</b>`;
+  const parts = [];
+  if (incoming.length) parts.push(plural(incoming.length, 'pick'));
+  if (Object.keys(inV).length) parts.push(plural(Object.keys(inV).length, 'verdict'));
+  if (Object.keys(inN).length) parts.push(plural(Object.keys(inN).length, 'note'));
   showBanner(`<span>This link carries ${parts.join(', ')} (${fresh.length + freshV.length + freshN.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to mine</button><button type="button" class="btn" data-dismiss>Not now</button>`);
   const b = document.getElementById('banner');
   b.dataset.incoming = fresh.join(',');

@@ -27,20 +27,22 @@ const CrewCore = (() => {
     const m = (mine || '').trim(), t = (theirs || '').trim();
     if (!m) return theirs || '';
     if (!t || m === t) return mine;
+    if (m.includes(t)) return mine;
     return m + '\n\n---\n\n' + t;
   }
 
   // Notes travel in a URL fragment as base64url JSON (the move page and #notes= links).
   // The longest notes are dropped first until the parameter fits in maxChars.
   function encodeNotesParam(notes, maxChars = 30000){
+    const shortened = Object.values(notes || {}).filter(t => typeof t === 'string' && t.length > 20000).length;
     const entries = Object.entries(cleanNotes(notes)).sort((a, b) => a[1].length - b[1].length);
     const dropped = [];
     while (entries.length) {
       const param = b64u.encode(JSON.stringify(Object.fromEntries(entries)));
-      if (param.length <= maxChars) return {param, dropped};
+      if (param.length <= maxChars) return {param, dropped, shortened};
       dropped.push(+entries.pop()[0]);
     }
-    return {param: '', dropped};
+    return {param: '', dropped, shortened};
   }
   function decodeNotesParam(param){
     try {

@@ -1,5 +1,4 @@
 import test, {before, after, beforeEach} from 'node:test';
-import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {initializeTestEnvironment, assertSucceeds, assertFails} from '@firebase/rules-unit-testing';
 import {doc, getDoc, setDoc, serverTimestamp} from 'firebase/firestore';
