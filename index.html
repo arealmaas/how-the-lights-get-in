@@ -543,6 +543,13 @@ const DURATION = {};   // minutes by type; everything is assumed to last 60 — 
 const LONDON_OFFSET_MIN = 60;                                      // BST (UTC+1) on 19–20 September 2026
 const LS_STATE = 'htlgi-l26-state', LS_PICKS = 'htlgi-l26-picks', LS_NOTES = 'htlgi-l26-notes', LS_VERDICTS = 'htlgi-l26-verdicts';
 const EXTRA = (DATA.speakersExtra || {});
+const LS_ACCOUNT = 'htlgi-l26-account', LS_SHARED = 'htlgi-l26-shared', SS_REDIRECT = 'htlgi-l26-redirect';
+const FIREBASE = DATA.firebase || null;
+const CLOUD = !IN_ARTIFACT && !!FIREBASE && typeof CrewCore !== 'undefined';   // accounts and crews need the config and the inlined helpers
+const SDK = 'https://www.gstatic.com/firebasejs/12.18.0/';
+const STANDALONE = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+const IOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+const PHONE = /Mobi|Android|iP(hone|ad|od)/.test(navigator.userAgent);
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
@@ -556,6 +563,7 @@ if (!DAYS[state.day]) state.day = '2026-09-19';
 let picks = new Set((load(LS_PICKS, []) || []).filter(n => byNo.has(n)));
 let notes = load(LS_NOTES, {}) || {};
 let verdicts = load(LS_VERDICTS, {}) || {};
+let shared = load(LS_SHARED, {}) || {};   // notes marked "share with crew" (the checkbox arrives in Phase 2; the map is part of the account document from the start)
 const hasNote = no => !!(notes[no] && notes[no].trim()) || !!verdicts[no];
 let q = '';
 let sheetStack = [];

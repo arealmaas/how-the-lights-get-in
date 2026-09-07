@@ -221,7 +221,7 @@ MANIFEST = {
 }
 
 
-def page_payload(data, briefings, media, extra, inline_images=False):
+def page_payload(data, briefings, media, extra, inline_images=False, firebase=None):
     ev = [{k: e[k] for k in ('id', 'eventNo', 'title', 'type', 'venue', 'date', 'time', 'speakers', 'hosts', 'people', 'topics',
                              'description', 'descriptionSource', 'links', 'ticketing', 'fastPassPrice', 'prices', 'actSlugs', 'url', 'photo')} for e in data['events']]
     sp = [{k: s[k] for k in ('name', 'slug', 'tagline', 'bio', 'profileUrl', 'speaks', 'hosts', 'photo')} for s in data['speakers']]
@@ -232,6 +232,8 @@ def page_payload(data, briefings, media, extra, inline_images=False):
                'briefings': brief, 'briefingNote': briefings.get('_meta', {}).get('note', ''),
                'media': {'acts': media.get('acts', {}), 'films': media.get('films', {})}, 'playlist': media.get('_meta', {}).get('playlist'),
                'speakersExtra': extra.get('speakers', {})}
+    if firebase:
+        payload['firebase'] = {k: firebase[k] for k in ('apiKey', 'authDomain', 'projectId', 'appId')}
     if inline_images:
         # the artifact copy cannot load external files, so every referenced photo goes in as a data: URI (deduplicated)
         import base64
@@ -245,6 +247,10 @@ def main():
     briefings = json.load(open(ROOT / 'data' / 'briefings.json', encoding='utf-8')) if (ROOT / 'data' / 'briefings.json').exists() else {}
     media = json.load(open(ROOT / 'data' / 'media.json', encoding='utf-8')) if (ROOT / 'data' / 'media.json').exists() else {}
     extra = json.load(open(ROOT / 'data' / 'speakers-extra.json', encoding='utf-8')) if (ROOT / 'data' / 'speakers-extra.json').exists() else {}
+    firebase_path = ROOT / 'data' / 'firebase.json'
+    firebase = json.load(open(firebase_path, encoding='utf-8')) if firebase_path.exists() else None
+    if not firebase:
+        print('note: data/firebase.json not found; the account and crew features are hidden in this build')
     data = build(extract)
     (ROOT / 'programme.json').write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
 
@@ -269,7 +275,7 @@ def main():
         assert '/*__CORE__*/' not in h and '/*__DATA__*/' not in h, 'unfilled placeholder'
         return h
 
-    html = fill(page_payload(data, briefings, media, extra))
+    html = fill(page_payload(data, briefings, media, extra, firebase=firebase))
     (ROOT / 'index.html').write_text(html, encoding='utf-8')
 
     # the GitHub Pages "moved" notice: scripts/move-template.html with the same crew-core.js inlined,
