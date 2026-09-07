@@ -182,7 +182,8 @@ export function change(userFields, memberFields){
   if (!fb || !user || !accountMarker()) { if (CLOUD && accountMarker()) queueChange(userFields, memberFields); return; }
   const {F} = fb; const b = F.writeBatch(fb.db);
   const coupled = !!(crewId && memberFields);
-  b.update(userRef(), {...withSentinels(userFields), updatedAt: F.serverTimestamp()});
+  const ref = userRef();   // captured now: the session may be gone by the time a rejection arrives
+  b.update(ref, {...withSentinels(userFields), updatedAt: F.serverTimestamp()});
   if (coupled) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...withSentinels(memberFields), updatedAt: F.serverTimestamp()});
   bump('writes');
   b.commit().catch(e => {
@@ -193,7 +194,7 @@ export function change(userFields, memberFields){
     // from happening again).
     const code = (e && e.code) || '';
     if (coupled && (code === 'permission-denied' || code === 'not-found')) {
-      F.updateDoc(userRef(), {...withSentinels(userFields), updatedAt: F.serverTimestamp()}).catch(() => {});   // the batch's error is reported below; a second banner would say nothing new
+      F.updateDoc(ref, {...withSentinels(userFields), updatedAt: F.serverTimestamp()}).catch(() => {});   // the batch's error is reported below; a second banner would say nothing new
     }
     syncError(e);
   });
