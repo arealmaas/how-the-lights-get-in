@@ -981,6 +981,7 @@ function goBack(){
 function togglePick(no){
   if (picks.has(no)) picks.delete(no); else picks.add(no);
   save(LS_PICKS, [...picks]);
+  syncChange({['picks.' + no]: picks.has(no) ? true : DEL()}, {['picks.' + no]: picks.has(no) ? true : DEL()});
   render();
   const top = sheetStack[sheetStack.length - 1];
   if (top && top.kind === 'event' && top.no === no) showEvent(no, false);
@@ -1065,6 +1066,7 @@ let notesDirty = false, noteTimer = null;
 function setNote(no, text){
   if (text.trim()) notes[no] = text; else delete notes[no];
   save(LS_NOTES, notes); notesDirty = true;
+  syncChange({['notes.' + no]: notes[no] || DEL()}, shared[no] ? {['notes.' + no]: notes[no] || DEL()} : null);
 }
 function notesMarkdown(){
   const involved = EVENTS.filter(e => picks.has(e.eventNo) || hasNote(e.eventNo));
@@ -1352,6 +1354,16 @@ function syncError(e){
   if (code === 'permission-denied' && crewId) { onCrewDenied(); return; }
   console.warn('sync', e);
 }
+// One batch per change: the user document, plus (while in a crew, Phase 2) the member projection.
+const DEL = () => fb ? fb.F.deleteField() : null;
+function syncChange(userFields, memberFields){
+  if (!fb || !user || !accountMarker()) return;          // signed out, or sync stopped: local only
+  const {F} = fb; const b = F.writeBatch(fb.db);
+  b.update(userRef(), {...userFields, updatedAt: F.serverTimestamp()});
+  if (crewId && memberFields) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...memberFields, updatedAt: F.serverTimestamp()});
+  syncStats.writes++;
+  b.commit().catch(syncError);
+}
 
 // ---------- events ----------
 document.addEventListener('click', ev => {
@@ -1380,7 +1392,7 @@ document.addEventListener('click', ev => {
   if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('copyLink' in d) { const inp = document.getElementById('picklink'); if (inp) inp.select(); try { navigator.clipboard.writeText(picksLink()).then(() => { t.textContent = 'Copied'; setTimeout(() => { t.textContent = 'Copy'; }, 2000); }, () => {}); } catch (e) {} return; }
-  if (d.verdict) { const no = +d.verdict; verdicts[no] = verdicts[no] === d.who ? undefined : d.who; if (!verdicts[no]) delete verdicts[no]; save(LS_VERDICTS, verdicts); notesDirty = true; t.parentElement.querySelectorAll('[data-verdict]').forEach(b => b.setAttribute('aria-pressed', b.dataset.who === verdicts[no])); return; }
+  if (d.verdict) { const no = +d.verdict; verdicts[no] = verdicts[no] === d.who ? undefined : d.who; if (!verdicts[no]) delete verdicts[no]; save(LS_VERDICTS, verdicts); syncChange({['verdicts.' + no]: verdicts[no] || DEL()}, {['verdicts.' + no]: verdicts[no] || DEL()}); notesDirty = true; t.parentElement.querySelectorAll('[data-verdict]').forEach(b => b.setAttribute('aria-pressed', b.dataset.who === verdicts[no])); return; }
   if (d.tab) { t.closest('.sheet-body').querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === d.tab)); t.closest('.sheet-body').querySelectorAll('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== d.tab; }); document.getElementById('sheet-body').scrollTop = 0; return; }
   if (d.yt) { const box = t.closest('.media-item').querySelector('.embed'); box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(d.yt)}?autoplay=1&rel=0" title="YouTube video" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`; box.hidden = false; t.hidden = true; return; }
   if (d.speaker) { showSpeaker(d.speaker); return; }
