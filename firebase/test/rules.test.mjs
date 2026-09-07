@@ -258,3 +258,33 @@ test('invites: members mint valid invites; names must match; expiry is bounded; 
   await assertFails(updateDoc(ref(TOKEN), {crewName: 'x'}));
   await assertSucceeds(deleteDoc(ref(TOKEN)));
 });
+
+test('members: the shared-notes projection is enforced on create too; the remaining caps and allow-lists hold', async () => {
+  await seedCrew();
+  await admin(db => updateDoc(doc(db, 'users', 'carol'), {'shared.6': true, 'notes.6': 'shared', 'notes.7': 'private'}));
+  const carol = as('carol');
+  // joining with a projection that carries a private note is refused; with only the shared note it passes
+  let b = writeBatch(carol);
+  b.set(doc(carol, 'crews', CREW, 'members', 'carol'), fullMember({name: 'Morten', invite: TOKEN, notes: {6: 'shared', 7: 'private'}}));
+  b.update(doc(carol, 'users', 'carol'), {crew: CREW, updatedAt: serverTimestamp()});
+  await assertFails(b.commit());
+  b = writeBatch(carol);
+  b.set(doc(carol, 'crews', CREW, 'members', 'carol'), fullMember({name: 'Morten', invite: TOKEN, notes: {6: 'shared'}}));
+  b.update(doc(carol, 'users', 'carol'), {crew: CREW, updatedAt: serverTimestamp()});
+  await assertSucceeds(b.commit());
+  // creating a crew: the creator's projection obeys the same rule, and the caps and allow-lists hold
+  await admin(db => setDoc(doc(db, 'users', 'erin'), fullUser({name: 'Erin', shared: {6: true}, notes: {6: 'shared', 7: 'private'}})));
+  const erin = as('erin'); const id = 'ErinsCrewIdAbcdefghi';
+  const create = (crewOver, memberOver) => { const w = writeBatch(erin); w.set(doc(erin, 'crews', id), crewDoc({createdBy: 'erin', ...crewOver})); w.set(doc(erin, 'crews', id, 'members', 'erin'), fullMember({name: 'Erin', ...memberOver})); return w.commit(); };
+  await assertFails(create({}, {notes: {6: 'shared', 7: 'private'}}));
+  await assertFails(create({name: 'x'.repeat(61)}, {}));
+  await assertFails(create({extra: true}, {}));
+  await assertFails(create({}, {name: 'x'.repeat(41)}));
+  await assertFails(create({}, {extra: true}));
+  await assertSucceeds(create({}, {notes: {6: 'shared'}}));
+  // invites and block records: type and length caps
+  await assertFails(setDoc(doc(as('alice'), 'crews', CREW, 'invites', 'validtokenvalidtoken18'), inviteDoc({expiresAt: 'tomorrow'})));
+  await assertFails(setDoc(doc(as('alice'), 'crews', CREW, 'invites', 'validtokenvalidtoken19'), inviteDoc({extra: true})));
+  await assertFails(setDoc(doc(as('alice'), 'crews', CREW, 'removed', 'carol'), blockDoc('x'.repeat(41))));
+  await assertFails(setDoc(doc(as('alice'), 'crews', CREW, 'removed', 'carol'), {...blockDoc(), extra: true}));
+});
