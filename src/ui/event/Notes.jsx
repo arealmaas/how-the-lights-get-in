@@ -5,6 +5,8 @@
 // (Escape while focused, or routing.js opening another event, closes this sheet without a blur ever
 // firing) commits the latest draft instead of losing it — the old page's closeSheet() always flushed
 // unconditionally, so losing the last keystrokes here would be a regression.
+// `data-note` on the textarea is how cloud/sync.js's applyUserData() spots which note is being typed and
+// keeps the local text for that one event when a snapshot lands.
 import {useEffect, useRef, useState} from 'react';
 import {usePlanner} from '../../store/planner.js';
 import {useCloud} from '../../store/cloud.js';
@@ -52,6 +54,7 @@ export default function Notes({no}){
       <textarea
         ref={ref}
         className="notes"
+        data-note={no}
         placeholder="Thoughts, quotes, questions to ask…"
         rows={4}
         value={draft}

@@ -15,7 +15,12 @@ export default defineConfig({
       // too would add the same two files a second time under the same URL, and Cache.addAll() (used in
       // src/sw.js's install handler) throws InvalidStateError on duplicate requests — the service worker
       // would then never finish installing, in every browser.
-      injectManifest: {globPatterns: ['**/*.{js,css,html}', 'img/**/*.webp'], maximumFileSizeToCacheInBytes: 4 * 1024 * 1024},
+      // The Firebase SDK chunk is deliberately not precached: cloud/auth.js only imports it when the
+      // device has an account, a redirect is returning or an invite is waiting (CREW-SPEC section 6),
+      // and putting 700 KB into the install-time addAll() would make every visitor download it anyway.
+      // The service worker's ordinary same-origin fetch handler still caches it after the first real
+      // load, which is what the spec asks for.
+      injectManifest: {globPatterns: ['**/*.{js,css,html}', 'img/**/*.webp'], globIgnores: ['**/firebase-*.js'], maximumFileSizeToCacheInBytes: 4 * 1024 * 1024},
       includeAssets: ['icon-192.png', 'icon-512.png'],
       manifest: {
         name: 'HTLGI London 2026 Planner', short_name: 'HTLGI 2026',

@@ -67,3 +67,21 @@ test('an import link banners picks/verdicts/notes; accepting adds them and they 
   await expect(dialog.getByRole('button', {name: 'Draw', exact: true})).toHaveAttribute('aria-pressed', 'true');
   await expect(dialog.locator('textarea.notes')).toHaveValue('a note carried by the link');
 });
+
+// The e2e build has no data/firebase.json, so CLOUD is false: the hub must not advertise an account it
+// cannot offer, and the Firebase chunk must never be fetched — it is behind a dynamic import that only
+// runs for a device with an account, a returning redirect or a pending invite.
+test('without a Firebase config the hub offers no account and the SDK chunk is never fetched', async ({page}) => {
+  const sdk = [];
+  page.on('request', r => { if (/firebase/i.test(r.url())) sdk.push(r.url()); });
+
+  await page.goto('/');
+  await page.getByRole('button', {name: /My festival/}).click();
+
+  const dialog = page.locator('#sheet');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('heading', {name: 'Your weekend'})).toBeVisible();
+  await expect(dialog.locator('.hub-card.account')).toHaveCount(0);
+  await expect(dialog.getByText('Account and crew')).toHaveCount(0);
+  expect(sdk).toEqual([]);
+});
