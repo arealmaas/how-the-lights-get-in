@@ -56,7 +56,7 @@ The festival's programme page lazy-loads 40 events at a time from `FullEventList
 
 ## Development
 
-`scripts/template.html` is the whole app (CSS + JS). `python3 scripts/build.py` regenerates `index.html`; open it directly in a browser — no server needed.
+`npm install`, then `npm run dev` for a live-reloading dev server, `npm run build` for `dist/`, `npm test` for the unit and component tests, `npm run test:e2e` for the browser smoke (`npx playwright install chromium` once), `npm run test:rules` for the Firestore rules. `python3 scripts/build.py` regenerates `programme.json` from `data/extract.json`.
 
 ## Deployment and pull-request previews
 
