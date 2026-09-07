@@ -16,7 +16,10 @@ export default function EventCard({e, picked, clash, hasNote}){
       role="button"
       aria-label={e.title}
       onClick={() => useSheet.getState().open('event', e.eventNo)}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); useSheet.getState().open('event', e.eventNo); } }}
+      onKeyDown={ev => {
+        if (ev.target !== ev.currentTarget) return;   // let the nested pick button handle its own Enter/Space
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); useSheet.getState().open('event', e.eventNo); }
+      }}
     >
       <div className="ev-head">
         <span className="ev-type">{e.type}</span>
