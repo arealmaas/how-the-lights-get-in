@@ -1564,6 +1564,7 @@ function crewError(e){ if (e && e.code === 'permission-denied') crewGone('You ar
 function onCrewDenied(){ crewGone('You are no longer in this crew.'); }
 // Removed, or the crew was closed: drop the overlay, clear the pointer, keep everything of your own.
 function crewGone(msg){
+  if (!crewId && !crew) return;
   unsubscribeCrew(); crew = null; crewId = null; localStorage.removeItem(LS_CREW_CACHE); state.crewOnly = false;
   syncChange({crew: DEL()}, null);
   showBanner(`<span>${esc(msg)} Your own picks and notes are untouched.</span><button type="button" class="btn" data-dismiss>OK</button>`);
@@ -1592,7 +1593,8 @@ async function leaveCrew(silent){
   leaving = true; unsubscribeCrew();
   const b = F.writeBatch(fb.db);
   b.delete(memberRef(id, user.uid)); b.update(userRef(), {crew: F.deleteField(), updatedAt: F.serverTimestamp()});
-  try { await b.commit(); } catch (e) { authMessage(e); }
+  try { await b.commit(); }
+  catch (e) { leaving = false; authMessage(e); subscribeCrew(id); return false; }   // still a member: put the listeners back
   leaving = false;
   crew = null; crewId = null; localStorage.removeItem(LS_CREW_CACHE); state.crewOnly = false; render(); refreshSheet();
   return true;
