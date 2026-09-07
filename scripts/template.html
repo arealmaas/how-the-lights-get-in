@@ -329,6 +329,26 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .authform input{border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;font:inherit;font-size:14px;background:var(--surface);color:var(--ink)}
 .authform input:focus{outline:2px solid var(--focus);outline-offset:1px}
 .authform .src{margin:0}
+/* ---------- crew ---------- */
+.cdot{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font-size:9px;font-weight:700;font-style:normal;letter-spacing:.02em;flex:none}
+.cbadges{display:inline-flex;gap:2px;margin-left:4px;vertical-align:middle}
+.tile .cbadges{display:flex;margin:0 0 2px}
+.members{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}
+.members li{display:flex;align-items:center;gap:8px;font-size:13.5px;flex-wrap:wrap}
+.members .cname{flex:1;min-width:0}
+.members .cpicks{color:var(--ink-3);font-size:12.5px}
+.cname-h{font-family:var(--display);font-size:17px}
+.btn.small{padding:3px 8px;font-size:12px}
+.going{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0;font-size:14px}
+.going .lab{font-size:12px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.tally{font-size:13px;color:var(--ink-2);margin:0 0 10px}
+.crewnote{border-left:3px solid var(--line-strong);padding:2px 10px;margin:6px 0;font-size:14px}
+.crewnote b{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:2px}
+.share{display:flex;gap:8px;align-items:center;font-size:13px;margin:6px 0 0}
+.splitrow{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:start}
+.splitrow .t{grid-row:1/99}
+.hub-more summary{cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;margin:14px 0 6px}
+.chip.crewchip[aria-pressed="true"]{background:var(--talks);border-color:var(--talks);color:#fff}
 .badge.note{background:color-mix(in oklab,var(--pick) 22%,var(--surface));color:var(--pick-ink)}
 :root[data-theme="dark"] .badge.note,:root:not([data-theme="light"]) .badge.note{color:var(--ink)}
 
@@ -1117,15 +1137,6 @@ const syncStats = {writes: 0, snapshots: 0};   // spec section 10, quota sanity:
 window.htlgiSyncStats = syncStats;
 const userRef = () => fb.F.doc(fb.db, 'users', user.uid);
 const accountMarker = () => load(LS_ACCOUNT, null);   // {uid}: the account this device last synced with
-// Phase 2 replaces these; Phase 1 has no crews.
-function crewCard(){ return ''; }
-function crewSection(){ return ''; }
-function onCrewPointer(){}
-function unsubscribeCrew(){}
-function onCrewDenied(){}
-function crewOwnedByMe(){ return false; }
-function afterSubscribe(){}
-const pendingJoin = () => null;
 
 function loadFirebase(auto){
   if (!CLOUD) return Promise.reject(new Error('cloud features are off'));
@@ -1165,7 +1176,7 @@ function accountCard(){
   if (!user) {
     const google = `<button type="button" class="btn primary" data-auth-google>Continue with Google</button>`;
     const email = `<button type="button" class="btn" data-auth-email>Use email and password</button>`;
-    return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Keep your picks, verdicts and notes on every device.</span>
+    return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Keep your picks, verdicts and notes on every device, and join a crew.</span>
       <span class="hc-d">Where this is stored and who sees it: <button type="button" class="linkbtn" data-privacy>privacy</button>.</span>
       <div class="actions">${STANDALONE && IOS ? email + google : google + email}</div>
       ${STANDALONE && IOS ? '<span class="hc-d">In the installed app, email and password is the reliable way in.</span>' : ''}
@@ -1389,6 +1400,103 @@ if (new URLSearchParams(location.search).has('selftest')) {
   setInterval(() => console.log('selftest: sync writes', syncStats.writes, '· snapshots', syncStats.snapshots), 60000);
 }
 
+// ---------- crew (crews/{id}, its members, invites and block records) ----------
+const LS_CREW_CACHE = 'htlgi-l26-crew-cache', SS_JOIN = 'htlgi-l26-join';
+let crewUnsubs = [], removedUnsub = null, leaving = false;
+const crewRef = id => fb.F.doc(fb.db, 'crews', id);
+const memberRef = (id, uid) => fb.F.doc(fb.db, 'crews', id, 'members', uid);
+const crewOwnedByMe = () => !!(crew && user && crew.createdBy === user.uid);
+const others = () => (crew && user) ? crew.members.filter(m => m.uid !== user.uid) : [];
+const memberStyle = i => `--c:var(--${CrewCore.memberColour(i)})`;
+const liveInvites = () => crew ? crew.invites.filter(i => !i.revoked && i.expiresAt && i.expiresAt.toMillis() > Date.now()) : [];
+const inviteLink = token => PUBLIC_URL + '#join=' + crew.id + '.' + token;
+const saveCrewCache = () => save(LS_CREW_CACHE, {id: crew.id, name: crew.name, createdBy: crew.createdBy, members: crew.members, syncedAt: crew.syncedAt});
+function crewSection(){ return ''; }   // Task 7 replaces this
+function afterSubscribe(){}            // Task 4 replaces this
+const pendingJoin = () => null;         // Task 4 replaces this
+
+// Called after every user-document snapshot: the pointer decides whether we listen to a crew.
+function onCrewPointer(){
+  if (!user || !fb) return;
+  if (crewId && (!crew || crew.id !== crewId || !crewUnsubs.length)) subscribeCrew(crewId);
+  else if (!crewId && crew) { unsubscribeCrew(); crew = null; localStorage.removeItem(LS_CREW_CACHE); state.crewOnly = false; render(); }
+}
+function unsubscribeCrew(){ crewUnsubs.forEach(u => u()); crewUnsubs = []; if (removedUnsub) { removedUnsub(); removedUnsub = null; } }
+function subscribeCrew(id){
+  unsubscribeCrew();
+  const {F} = fb;
+  const cached = load(LS_CREW_CACHE, null);
+  crew = cached && cached.id === id ? {...cached, invites: [], removed: [], live: false} : {id, name: '', createdBy: '', members: [], invites: [], removed: [], syncedAt: null, live: false};
+  const opts = {serverTimestamps: 'estimate'};
+  crewUnsubs.push(F.onSnapshot(crewRef(id), s => {
+    if (!s.exists()) return;
+    const d = s.data();
+    if (d.deleted) { crewGone('The crew was closed.'); return; }
+    crew.name = d.name; crew.createdBy = d.createdBy;
+    if (crewOwnedByMe() && !removedUnsub) removedUnsub = F.onSnapshot(F.collection(fb.db, 'crews', id, 'removed'), r => { crew.removed = r.docs.map(x => ({uid: x.id, name: (x.data().name || '')})); refreshSheet(); }, () => {});
+    if (!crewOwnedByMe() && removedUnsub) { removedUnsub(); removedUnsub = null; crew.removed = []; }
+    saveCrewCache(); refreshSheet();
+  }, crewError));
+  crewUnsubs.push(F.onSnapshot(F.collection(fb.db, 'crews', id, 'members'), s => {
+    const ms = s.docs.map(x => { const d = x.data(opts); return {uid: x.id, name: d.name || '', joinedAt: d.joinedAt ? d.joinedAt.toMillis() : 0, picks: d.picks || {}, verdicts: d.verdicts || {}, notes: d.notes || {}}; }).sort((a, b) => a.joinedAt - b.joinedAt);
+    if (!s.metadata.fromCache && !leaving && !ms.some(m => m.uid === user.uid)) { crewGone('You are no longer in this crew.'); return; }
+    crew.members = ms; crew.syncedAt = Date.now(); crew.live = !s.metadata.fromCache;
+    saveCrewCache(); render(); refreshSheet();
+  }, crewError));
+  crewUnsubs.push(F.onSnapshot(F.collection(fb.db, 'crews', id, 'invites'), s => { crew.invites = s.docs.map(x => ({token: x.id, ...x.data(opts)})); refreshSheet(); }, () => {}));
+}
+function crewError(e){ if (e && e.code === 'permission-denied') crewGone('You are no longer in this crew.'); else console.warn('crew', e); }
+function onCrewDenied(){ crewGone('You are no longer in this crew.'); }
+// Removed, or the crew was closed: drop the overlay, clear the pointer, keep everything of your own.
+function crewGone(msg){
+  unsubscribeCrew(); crew = null; crewId = null; localStorage.removeItem(LS_CREW_CACHE); state.crewOnly = false;
+  syncChange({crew: DEL()}, null);
+  showBanner(`<span>${esc(msg)} Your own picks and notes are untouched.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+  render(); refreshSheet();
+}
+function createCrew(){
+  const name = (prompt('Name your crew', 'The Heath Three') || '').trim().slice(0, 60);
+  if (!name) return;
+  const {F} = fb; const id = F.doc(F.collection(fb.db, 'crews')).id;
+  const b = F.writeBatch(fb.db);
+  b.set(crewRef(id), {name, createdBy: user.uid, deleted: false, createdAt: F.serverTimestamp(), updatedAt: F.serverTimestamp(), v: 1});
+  b.set(memberRef(id, user.uid), {name: accountName, joinedAt: F.serverTimestamp(), ...CrewCore.projectForCrew(localState()), updatedAt: F.serverTimestamp(), v: 1});
+  b.update(userRef(), {crew: id, updatedAt: F.serverTimestamp()});
+  b.commit().catch(authMessage);
+}
+function renameCrew(){
+  const name = (prompt('Crew name', crew.name) || '').trim().slice(0, 60);
+  if (!name || name === crew.name) return;
+  fb.F.updateDoc(crewRef(crew.id), {name, updatedAt: fb.F.serverTimestamp()}).catch(authMessage);
+}
+async function leaveCrew(silent){
+  if (crewOwnedByMe() && others().length) { showBanner('<span>You created this crew: make someone else the owner, or close the crew, before leaving.</span><button type="button" class="btn" data-dismiss>OK</button>'); return false; }
+  if (crewOwnedByMe()) return closeCrew(silent);   // alone in the crew: leaving closes it
+  if (!silent && !confirm(`Leave ${crew.name}? Your picks and notes stay in your account.`)) return false;
+  const {F} = fb; const id = crew.id;
+  leaving = true; unsubscribeCrew();
+  const b = F.writeBatch(fb.db);
+  b.delete(memberRef(id, user.uid)); b.update(userRef(), {crew: F.deleteField(), updatedAt: F.serverTimestamp()});
+  try { await b.commit(); } catch (e) { authMessage(e); }
+  leaving = false;
+  crew = null; crewId = null; localStorage.removeItem(LS_CREW_CACHE); state.crewOnly = false; render(); refreshSheet();
+  return true;
+}
+async function closeCrew(silent){ return false; }   // Task 5 replaces this
+function crewCard(){
+  if (!CLOUD || !user) return '';
+  if (!crew) return `<div class="hub-card crew"><span class="hc-k">Crew</span><span class="hc-d">See who’s going where, where you split, and the notes your friends share. Create a crew and send an invite link, or open the link a friend sent you.</span><div class="actions"><button type="button" class="btn primary" data-crew-create>Create a crew</button></div></div>`;
+  const owner = crewOwnedByMe();
+  const rows = crew.members.map((m, i) => `<li><i class="cdot" style="${memberStyle(i)}">${esc(initials(m.name))}</i><span class="cname">${esc(m.name)}${m.uid === user.uid ? ' (you)' : ''}${m.uid === crew.createdBy ? ' · owner' : ''}</span><span class="cpicks">${Object.keys(m.picks).length} picks</span>${owner && m.uid !== user.uid ? `<button type="button" class="btn small" data-crew-owner="${esc(m.uid)}">Make owner</button><button type="button" class="btn small" data-crew-remove="${esc(m.uid)}">Remove</button>` : ''}</li>`).join('');
+  const inv = liveInvites().map(i => `<li><span class="cname">Invite by ${esc(i.createdByName)} · until ${new Date(i.expiresAt.toMillis()).toLocaleDateString('en-GB', {day: 'numeric', month: 'short'})}</span><button type="button" class="btn small" data-copy-invite="${esc(inviteLink(i.token))}">Copy</button><button type="button" class="btn small" data-crew-revoke="${esc(i.token)}">Revoke</button></li>`).join('');
+  const removed = owner && crew.removed.length ? `<p class="src">Removed: ${crew.removed.map(r => `${esc(r.name || 'someone')} <button type="button" class="linkbtn" data-crew-readmit="${esc(r.uid)}">re-admit</button>`).join(' · ')}</p>` : '';
+  const synced = crew.syncedAt ? (crew.live ? 'live' : 'last synced ' + new Date(crew.syncedAt).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'})) : 'not synced yet';
+  return `<div class="hub-card crew"><span class="hc-k">Crew · ${esc(synced)}</span><b class="cname-h">${esc(crew.name)}</b>
+    <ul class="members">${rows}</ul>
+    ${inv ? `<ul class="members invites">${inv}</ul>` : ''}${removed}
+    <div class="actions"><button type="button" class="btn primary" data-crew-invite>Invite link</button><button type="button" class="btn" data-crew-rename>Rename</button><button type="button" class="btn" data-crew-leave>Leave crew</button>${owner ? '<button type="button" class="btn" data-crew-close>Close crew</button>' : ''}</div></div>`;
+}
+
 // ---------- events ----------
 document.addEventListener('click', ev => {
   const t = ev.target.closest('button, article.ev');
@@ -1416,6 +1524,9 @@ document.addEventListener('click', ev => {
   if ('authSignout' in d) { if (confirm('Sign out? Your picks and notes stay in this browser. On a shared computer use “Sign out and clear this device” instead.')) signOutUser(false); return; }
   if ('authClear' in d) { if (confirm('Sign out and remove all picks, notes and crew data from this device?')) signOutUser(true); return; }
   if ('authDelete' in d) { deleteAccount(); return; }
+  if ('crewCreate' in d) { createCrew(); return; }
+  if ('crewRename' in d) { renameCrew(); return; }
+  if ('crewLeave' in d) { leaveCrew(false); return; }
   if ('hub' in d || 'share' in d) { showHub(); return; }
   if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
@@ -1455,7 +1566,7 @@ document.addEventListener('input', ev => {
   pendingNote = {no: +ev.target.dataset.note, text: ev.target.value};
   clearTimeout(noteTimer); noteTimer = setTimeout(flushNote, 250);
 });
-document.addEventListener('submit', ev => { const f = ev.target; if (!f.matches('[data-auth-form]')) return; ev.preventDefault(); const b = f.querySelector('[data-auth-signin], [data-auth-link]'); if (b) b.click(); });
+document.addEventListener('keydown', ev => { if (ev.key !== 'Enter' || !ev.target.matches('[data-auth-form] input')) return; ev.preventDefault(); const b = ev.target.closest('[data-auth-form]').querySelector('[data-auth-signin], [data-auth-link]'); if (b) b.click(); });
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Escape' && !document.getElementById('sheet').hidden) { closeSheet(); return; }
   if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('article.ev')) { ev.preventDefault(); showEvent(+ev.target.dataset.no); }
@@ -1469,6 +1580,7 @@ window.addEventListener('hashchange', checkHash);
 (function init(){
   const v = document.getElementById('venue'); VENUES.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; v.appendChild(o); });
   const t = document.getElementById('topic'); TOPICS.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; t.appendChild(o); });
+  if (CLOUD && accountMarker()) { const c = load(LS_CREW_CACHE, null); if (c && c.id) { crew = {...c, invites: [], removed: [], live: false}; crewId = c.id; } }   // overlay before the SDK loads
   if (CLOUD && (accountMarker() || sessionStorage.getItem(SS_REDIRECT) || pendingJoin())) loadFirebase(true).catch(() => {});
   render();
   checkHash();

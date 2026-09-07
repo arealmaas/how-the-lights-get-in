@@ -87,7 +87,48 @@ const CrewCore = (() => {
     return {picks, verdicts, notes, shared, added};
   }
 
-  return {b64u, mergeNoteText, encodeNotesParam, decodeNotesParam, picksToMap, mapToPicks, mergeState};
+  // ---- crews ----
+  // the crew-visible projection of an account: picks, verdicts, and only the notes marked shared
+  function projectForCrew(s){
+    const shared = (s && s.shared) || {};
+    return {
+      picks: {...((s && s.picks) || {})},
+      verdicts: {...((s && s.verdicts) || {})},
+      notes: Object.fromEntries(Object.entries((s && s.notes) || {}).filter(([no, t]) => shared[no] && typeof t === 'string' && t.trim())),
+    };
+  }
+  // #join=<crewId>.<token>: a 20-character auto-id and a 22-character base64url token
+  function parseJoinHash(hash){
+    const m = String(hash || '').match(/(?:^#|&)join=([A-Za-z0-9]{20})\.([A-Za-z0-9_-]{22})(?:&|$)/);
+    return m ? {crew: m[1], token: m[2]} : null;
+  }
+  const COLOURS = ['debates', 'talks', 'music', 'cinema', 'inner', 'kids'];   // the strand colours, defined for light and dark
+  const memberColour = i => COLOURS[((i % COLOURS.length) + COLOURS.length) % COLOURS.length];
+  // members other than me who picked an event
+  const pickedBy = (members, myUid, no) => (members || []).filter(m => m.uid !== myUid && m.picks && m.picks[no]);
+  // members: [{uid, name, picks}] in join order; events: the programme. Returns event lists for the hub section.
+  function crewSummary(members, myUid, events){
+    const has = (m, no) => !!(m.picks && m.picks[no]);
+    const me = members.find(m => m.uid === myUid) || null;
+    const others = members.filter(m => m.uid !== myUid);
+    const sorted = [...events].sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+    const all = members.length > 1 ? sorted.filter(e => members.every(m => has(m, e.eventNo))) : [];
+    const onlyMe = sorted.filter(e => me && has(me, e.eventNo) && !others.some(m => has(m, e.eventNo)));
+    const onlyThem = sorted.filter(e => !(me && has(me, e.eventNo)) && others.some(m => has(m, e.eventNo)));
+    const slots = new Map();
+    for (const e of sorted) for (const m of members) {
+      if (!has(m, e.eventNo)) continue;
+      const k = e.date + ' ' + e.time;
+      if (!slots.has(k)) slots.set(k, new Map());
+      const s = slots.get(k);
+      if (!s.has(e.eventNo)) s.set(e.eventNo, []);
+      s.get(e.eventNo).push(m.name);
+    }
+    const split = [...slots].filter(([, s]) => s.size > 1).map(([slot, s]) => ({slot, choices: [...s].map(([no, names]) => ({no, names}))}));
+    return {all, split, onlyMe, onlyThem};
+  }
+
+  return {b64u, mergeNoteText, encodeNotesParam, decodeNotesParam, picksToMap, mapToPicks, mergeState, projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary};
 })();
 if (typeof module !== 'undefined' && module.exports) module.exports = CrewCore;
 </script>

@@ -273,11 +273,11 @@ def main():
     core_js = (ROOT / 'scripts' / 'crew-core.js').read_text(encoding='utf-8')
     assert '</script>' not in core_js, 'crew-core.js must not contain </script>'
 
-    def fill(payload):
+    def fill(payload, cloud):
         h = template.replace('/*__DATA__*/', payload).replace('/*__CORE__*/', core_js)
         h = h.replace('__PREVIEW_HEAD__', preview_head).replace('__PREVIEW_TAG__', preview_tag)
-        saved_where = 'Picks, notes and debate verdicts are saved in this browser, or in your account if you sign in.' if firebase else 'Picks, notes and debate verdicts are saved in this browser.'
-        privacy = ('<div class="noprint" id="privacy">If you sign in, your email address, name, picks, debate verdicts, notes and crew are stored in Firebase (Google), in the EU. Only you can read them; people in your crew see your picks, verdicts and the notes you choose to share. The site sets no cookies and has no analytics; Google sign-in opens Google’s pages, which do. “Delete account” in My festival removes everything.</div>') if firebase else ''
+        saved_where = 'Picks, notes and debate verdicts are saved in this browser, or in your account if you sign in.' if cloud else 'Picks, notes and debate verdicts are saved in this browser.'
+        privacy = ('<div class="noprint" id="privacy">If you sign in, your email address, name, picks, debate verdicts, notes and crew are stored in Firebase (Google), in the EU. Only you can read them; people in your crew see your picks, verdicts and the notes you choose to share. The site sets no cookies and has no analytics; Google sign-in opens Google’s pages, which do. “Delete account” in My festival removes everything.</div>') if cloud else ''
         h = h.replace('__SAVED_WHERE__', saved_where).replace('__PRIVACY__', privacy)
         h = h.replace('__EXTRACTED__', datetime.fromisoformat(data['meta']['extractedAt'].replace('Z', '+00:00')).strftime('%-d %B %Y'))
         h = h.replace('__COUNT_SAT__', str(counts.get('2026-09-19', 0))).replace('__COUNT_SUN__', str(counts.get('2026-09-20', 0)))
@@ -286,7 +286,7 @@ def main():
         assert '/*__CORE__*/' not in h and '/*__DATA__*/' not in h, 'unfilled placeholder'
         return h
 
-    html = fill(page_payload(data, briefings, media, extra, firebase=firebase))
+    html = fill(page_payload(data, briefings, media, extra, firebase=firebase), cloud=bool(firebase))
     (ROOT / 'index.html').write_text(html, encoding='utf-8')
 
     # the GitHub Pages "moved" notice: scripts/move-template.html with the same crew-core.js inlined,
@@ -307,7 +307,7 @@ def main():
         out = Path(sys.argv[sys.argv.index('--artifact') + 1])
         # body-only, self-contained copy for publishing as a claude.ai artifact (the publisher adds doctype/head/body;
         # external images are blocked there, so the photos go in as data: URIs)
-        ahtml = fill(page_payload(data, briefings, media, extra, inline_images=True))
+        ahtml = fill(page_payload(data, briefings, media, extra, inline_images=True), cloud=False)
         head = re.search(r'<title>.*?</title>', ahtml, re.S).group(0)
         links = ''.join(re.findall(r'<link rel="stylesheet"[^>]*>', ahtml))
         style = re.search(r'<style>.*?</style>', ahtml, re.S).group(0)
