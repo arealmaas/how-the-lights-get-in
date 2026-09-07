@@ -50,8 +50,13 @@ export function crewPicked(members, myUid){
   }
   return set;
 }
-// who is going to one event, written from my point of view: "you" for my own row, names for the rest.
+// Who is going to one event, me first (CREW-SPEC section 7: "Going: Are, Kari"), then the other members
+// in join order. myName is how I am written — the account name in the event sheet's Going row, the
+// default "you" in the crew calendar and the crew reading list, where it also marks my own picks.
 // myPicks (the live local Set) wins over my own member document, which may lag a snapshot behind.
-export const goingNames = (members, myUid, myPicks, no) => (members || [])
-  .filter(m => (m.picks && m.picks[no]) || (m.uid === myUid && myPicks.has(no)))
-  .map(m => (m.uid === myUid ? 'you' : m.name));
+export function goingNames(members, myUid, myPicks, no, myName = 'you'){
+  const me = (members || []).find(m => m.uid === myUid);
+  const mine = !!me && (myPicks.has(no) || !!(me.picks && me.picks[no]));
+  const rest = (members || []).filter(m => m.uid !== myUid && m.picks && m.picks[no]).map(m => m.name);
+  return mine ? [myName, ...rest] : rest;
+}

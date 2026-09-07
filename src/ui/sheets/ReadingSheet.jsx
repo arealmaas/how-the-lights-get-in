@@ -2,7 +2,8 @@
 // two books per speaker, plus each briefing's "read or watch first"), with a Markdown export and a
 // copy-as-text button. In a crew it also gets the Mine / Crew tabs of CREW-SPEC section 7: Crew builds
 // the list from the union of everyone's picks and ends each event's line with who is going. The mode is
-// component state, so it starts at Mine every time the sheet is opened.
+// component state, seeded from the sheet entry's `mode`: the hub's "Crew reading list" opens on Crew,
+// everything else on Mine.
 import {useState} from 'react';
 import {EVENTS, EXTRA, BRIEFINGS, DAYS} from '../../data/index.js';
 import {usePlanner} from '../../store/planner.js';
@@ -13,13 +14,13 @@ import {goingNames} from '../../core/crew.js';
 import {useCrewAny} from '../useFiltered.js';
 import {download} from '../download.js';
 
-export default function ReadingSheet(){
+export default function ReadingSheet({mode: opensOn}){
   const picks = usePlanner(s => s.picks);
   const crew = useCloud(s => s.crew);
   const user = useCloud(s => s.user);
   const crewAny = useCrewAny();
   const [copied, setCopied] = useState(false);
-  const [mode, setMode] = useState('mine');
+  const [mode, setMode] = useState(opensOn === 'crew' ? 'crew' : 'mine');
 
   const inCrew = !!(crew && user);
   const crewMode = inCrew && mode === 'crew';

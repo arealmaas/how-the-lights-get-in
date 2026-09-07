@@ -16,6 +16,7 @@ import {Briefing} from '../event/Briefing.jsx';
 import Verdict from '../event/Verdict.jsx';
 import Notes from '../event/Notes.jsx';
 import CrewRow from '../event/CrewRow.jsx';
+import CrewTally from '../event/CrewTally.jsx';
 
 function ClashRef({no}){
   const o = byNo.get(no);
@@ -50,6 +51,7 @@ export default function EventSheet({no}){
   const overview = (
     <>
       <People e={e} />
+      <CrewRow e={e} />
       <div className="desc">
         {desc
           ? desc.split(/\n{2,}|\n/).filter(Boolean).map((t, i) => <p key={i}>{t}</p>)
@@ -86,9 +88,9 @@ export default function EventSheet({no}){
         <a className="btn" href={gcalLink(e)} target="_blank" rel="noopener">Google Calendar ↗</a>
         <p className="note">Calendar entries include the talk summary, venue, speakers and ticket notes. Sessions are assumed to last an hour — the festival publishes start times only.</p>
       </div>
-      <CrewRow e={e} />
       <h3 className="sub">My notes</h3>
       {e.type === 'Debates' && <Verdict e={e} />}
+      <CrewTally e={e} />
       <Notes no={no} />
     </>
   );

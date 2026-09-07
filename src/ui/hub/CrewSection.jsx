@@ -75,7 +75,7 @@ export default function CrewSection(){
       </details>
       <div className="actions">
         <button type="button" className="btn" onClick={downloadCrewPicks}>Crew calendar (.ics)</button>
-        <button type="button" className="btn" onClick={() => useSheet.getState().open('reading')}>Crew reading list</button>
+        <button type="button" className="btn" onClick={() => useSheet.getState().open('reading', undefined, 'crew')}>Crew reading list</button>
       </div>
     </>
   );

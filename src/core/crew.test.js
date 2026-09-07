@@ -54,3 +54,16 @@ test('crewPicked is every event someone else picked, and goingNames writes me as
   expect(goingNames(members, 'me', new Set([4]), 4)).toEqual(['you', 'Morten']);
   expect(goingNames(members, 'me', new Set(), 9)).toEqual([]);
 });
+
+test('goingNames writes me first, under whichever name the caller gives it', () => {
+  // I joined last, so join order would have put me third
+  const members = [
+    {uid: 'k', name: 'Kari', picks: {3: true}},
+    {uid: 'm', name: 'Morten', picks: {3: true}},
+    {uid: 'me', name: 'Are', picks: {3: true}},
+  ];
+  expect(goingNames(members, 'me', new Set([3]), 3, 'Are')).toEqual(['Are', 'Kari', 'Morten']);
+  expect(goingNames(members, 'me', new Set([3]), 3)).toEqual(['you', 'Kari', 'Morten']);   // default
+  // a uid that is not in the crew: nobody is "me", so everyone is listed under their own name
+  expect(goingNames(members, 'not-a-member', new Set([3]), 3, 'Are')).toEqual(['Kari', 'Morten', 'Are']);
+});

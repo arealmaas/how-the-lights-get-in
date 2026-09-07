@@ -88,10 +88,10 @@ test('an empty crew calendar says so instead of downloading an empty file', () =
   expect(useBanner.getState().banner.text).toBe('No picks in the crew yet.');
 });
 
-test('Crew reading list opens the reading sheet; with no crew the section is not built at all', () => {
+test('Crew reading list opens the reading sheet on its Crew tab; with no crew the section is not built', () => {
   const {unmount} = render(<CrewSection />);
   fireEvent.click(screen.getByRole('button', {name: 'Crew reading list'}));
-  expect(useSheet.getState().stack.at(-1).kind).toBe('reading');
+  expect(useSheet.getState().stack.at(-1)).toEqual({kind: 'reading', key: undefined, mode: 'crew'});
   unmount();
 
   useCloud.setState({crew: null, crewId: null});

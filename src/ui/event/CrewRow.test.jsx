@@ -10,7 +10,6 @@ import {usePlanner} from '../../store/planner.js';
 import {EVENTS} from '../../data/index.js';
 
 const DEBATE = EVENTS.find(e => e.eventNo === 6);        // Debates
-const TALK = EVENTS.find(e => e.eventNo === 1);          // not a debate: no verdict tally
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
 const member = (uid, name, extra = {}) => ({uid, name, joinedAt: 1, picks: {}, verdicts: {}, notes: {}, ...extra});
 
@@ -24,7 +23,7 @@ beforeEach(() => {
   useSheet.setState({stack: []});
   usePlanner.setState({picks: new Set(), verdicts: {}, notes: {}, shared: {}});
   useCloud.setState({
-    user: USER, accountName: 'Are', crewId: 'c1',
+    user: USER, accountName: 'Are Almaas', crewId: 'c1',
     crew: crewOf(member('u1', 'Are'), member('u2', 'Kari', {picks: {6: true}}), member('u3', 'Morten')),
   });
 });
@@ -38,12 +37,31 @@ test('who is going, who is not yet, and Join them while I have not picked it', (
   expect(usePlanner.getState().picks.has(6)).toBe(true);
 });
 
-test('Join them is gone once I have picked it, and my own name is never in the going list', () => {
+// CREW-SPEC section 7's example line is "Going: Are, Kari · not yet: Morten": my own name leads the list
+// once I have picked it, and "not yet" only ever names the others.
+test('once I have picked it my own account name leads the list and Join them is gone', () => {
   usePlanner.setState({picks: new Set([6])});
   useCloud.setState({crew: crewOf(member('u1', 'Are', {picks: {6: true}}), member('u2', 'Kari', {picks: {6: true}}), member('u3', 'Morten'))});
   render(<CrewRow e={DEBATE} />);
 
-  expect(screen.getByText('Going: Kari · not yet: Morten')).toBeInTheDocument();
+  expect(screen.getByText('Going: Are Almaas, Kari · not yet: Morten')).toBeInTheDocument();
+  expect(screen.queryByRole('button', {name: 'Join them'})).toBeNull();
+});
+
+test('with no account name I am written as "you"', () => {
+  usePlanner.setState({picks: new Set([6])});
+  useCloud.setState({accountName: '', crew: crewOf(member('u1', 'Are'), member('u2', 'Kari', {picks: {6: true}}))});
+  render(<CrewRow e={DEBATE} />);
+  expect(screen.getByText('Going: you, Kari')).toBeInTheDocument();
+});
+
+// I have starred it locally but my member document has not caught up: Join them still asks about them.
+test('Join them stays hidden on my own pick even before the member document catches up', () => {
+  usePlanner.setState({picks: new Set([6])});
+  useCloud.setState({crew: crewOf(member('u1', 'Are'), member('u2', 'Kari'), member('u3', 'Morten'))});
+  render(<CrewRow e={DEBATE} />);
+
+  expect(screen.getByText('Going: Are Almaas · not yet: Kari, Morten')).toBeInTheDocument();
   expect(screen.queryByRole('button', {name: 'Join them'})).toBeNull();
 });
 
@@ -56,23 +74,6 @@ test('nobody yet, and a crew of one, each get their own line', () => {
   useCloud.setState({crew: crewOf(member('u1', 'Are'))});
   render(<CrewRow e={DEBATE} />);
   expect(screen.getByText('You are the only one in the crew so far.')).toBeInTheDocument();
-});
-
-test('a debate shows the crew verdict tally; other event types do not', () => {
-  useCloud.setState({crew: crewOf(
-    member('u1', 'Are', {verdicts: {6: 'Hossenfelder'}}),
-    member('u2', 'Kari', {picks: {6: true}, verdicts: {6: 'Draw'}}),
-    member('u3', 'Morten'),
-  )});
-  const {unmount} = render(<CrewRow e={DEBATE} />);
-
-  const tally = document.querySelector('p.tally');
-  expect(tally).toHaveTextContent('Crew verdicts — Kari: Draw');
-  expect(tally.textContent).not.toContain('Hossenfelder');   // my own vote is the block above, not the tally
-  unmount();
-
-  render(<CrewRow e={TALK} />);
-  expect(document.querySelector('p.tally')).toBeNull();
 });
 
 test('a shared note appears under Crew notes with its author, as text — markup in it is not markup', () => {
@@ -104,12 +105,13 @@ test('signed out, or with no crew, the row is not built at all', () => {
   expect(document.querySelector('.going')).toBeNull();
 });
 
-test('the event sheet puts it under the actions and above My notes', () => {
+// CREW-SPEC section 7: "a 'Going' row under the people pills".
+test('the event sheet puts it directly under the people pills', () => {
   useSheet.getState().open('event', 6);
   render(<Sheet />);
 
   const going = document.querySelector('.going');
   expect(going).toHaveTextContent('Going: Kari · not yet: Morten');
-  expect(going.previousElementSibling).toHaveClass('actions');
-  expect(going.nextElementSibling).toHaveTextContent('My notes');
+  expect(going.previousElementSibling).toHaveClass('people');
+  expect(going.nextElementSibling).toHaveClass('desc');
 });

@@ -42,7 +42,9 @@ export default function Sheet(){
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'hub') body = <HubSheet key={top.key} />;
     else if (top.kind === 'stats') body = <StatsSheet key={top.key} />;
-    else if (top.kind === 'reading') body = <ReadingSheet key={top.key} />;
+    // the reading sheet is the one kind with a `mode`; keying on it too means opening it a second time
+    // in a different mode remounts, so the tab it opens on is always the one that was asked for
+    else if (top.kind === 'reading') body = <ReadingSheet key={top.mode || top.key} mode={top.mode} />;
   }
 
   return (

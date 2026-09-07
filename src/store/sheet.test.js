@@ -22,3 +22,17 @@ test('close empties the stack', () => {
   expect(topSheet()).toBeNull();
   expect(useSheet.getState().stack).toEqual([]);
 });
+
+// A sheet entry may carry an opening mode (the hub's "Crew reading list" → the reading sheet's Crew tab).
+// It is only present when asked for, so every other entry keeps exactly the shape it had.
+test('an entry carries an optional mode, and only when one is given', () => {
+  useSheet.getState().open('reading', undefined, 'crew');
+  expect(topSheet()).toEqual({kind: 'reading', key: undefined, mode: 'crew'});
+
+  useSheet.getState().open('event', 3);
+  expect(Object.keys(topSheet())).toEqual(['kind', 'key']);
+
+  useSheet.getState().replaceTop('reading', undefined, 'crew');
+  expect(topSheet()).toEqual({kind: 'reading', key: undefined, mode: 'crew'});
+  expect(useSheet.getState().stack).toHaveLength(2);
+});
