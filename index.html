@@ -499,7 +499,24 @@ const CrewCore = (() => {
     } catch (e) { return {}; }
   }
 
-  return {b64u, mergeNoteText, encodeNotesParam, decodeNotesParam};
+  // ---- account state ----
+  // picks are a Set of event numbers in the page and a map {eventNo: true} in Firestore
+  const picksToMap = picks => Object.fromEntries([...(picks || [])].filter(n => Number.isInteger(n)).map(n => [n, true]));
+  const mapToPicks = map => new Set(Object.keys(map || {}).filter(isEventKey).map(Number));
+  // First sync of a device with an account: union of picks, local wins a verdict conflict, both note texts kept.
+  // `added` counts the picks this device contributed, for the "Merged N picks" line.
+  function mergeState(local, remote){
+    const l = local || {}, r = remote || {};
+    const picks = {...(r.picks || {}), ...(l.picks || {})};
+    const verdicts = {...(r.verdicts || {}), ...(l.verdicts || {})};
+    const notes = {...(r.notes || {})};
+    for (const [no, mine] of Object.entries(l.notes || {})) { if (mine && mine.trim()) notes[no] = mergeNoteText(mine, notes[no]); }
+    const shared = {...(r.shared || {}), ...(l.shared || {})};
+    const added = Object.keys(picks).filter(no => !(r.picks || {})[no]).length;
+    return {picks, verdicts, notes, shared, added};
+  }
+
+  return {b64u, mergeNoteText, encodeNotesParam, decodeNotesParam, picksToMap, mapToPicks, mergeState};
 })();
 if (typeof module !== 'undefined' && module.exports) module.exports = CrewCore;
 </script>

@@ -44,3 +44,21 @@ test('encodeNotesParam reports how many notes were shortened to 20 000 character
 test('mergeNoteText is idempotent when the incoming text is already included', () => {
   assert.equal(CrewCore.mergeNoteText('mine\n\n---\n\ntheirs', 'theirs'), 'mine\n\n---\n\ntheirs');
 });
+
+test('picks convert between a Set and a map', () => {
+  assert.deepEqual(CrewCore.picksToMap(new Set([3, 41])), {3: true, 41: true});
+  assert.deepEqual([...CrewCore.mapToPicks({3: true, 41: true, abc: true})].sort((a, b) => a - b), [3, 41]);
+  assert.deepEqual(CrewCore.picksToMap(['x', 2.5, 7]), {7: true});
+});
+
+test('mergeState unions picks, lets local verdicts win and keeps both note texts', () => {
+  const local = {picks: {3: true, 6: true}, verdicts: {6: 'Draw'}, notes: {6: 'from phone', 9: 'phone only'}, shared: {}};
+  const remote = {picks: {6: true, 41: true}, verdicts: {6: 'Sabine Hossenfelder', 43: 'Draw'}, notes: {6: 'from laptop', 41: 'laptop only'}, shared: {41: true}};
+  const m = CrewCore.mergeState(local, remote);
+  assert.deepEqual(m.picks, {3: true, 6: true, 41: true});
+  assert.deepEqual(m.verdicts, {6: 'Draw', 43: 'Draw'});
+  assert.deepEqual(m.notes, {6: 'from phone\n\n---\n\nfrom laptop', 9: 'phone only', 41: 'laptop only'});
+  assert.deepEqual(m.shared, {41: true});
+  assert.equal(m.added, 1);
+  assert.deepEqual(CrewCore.mergeState({}, {}), {picks: {}, verdicts: {}, notes: {}, shared: {}, added: 0});
+});
