@@ -1298,7 +1298,8 @@ async function signOutUser(clearDevice){
   if (clearDevice) {
     Object.keys(localStorage).filter(k => k.startsWith('htlgi-l26-')).forEach(k => localStorage.removeItem(k));
     sessionStorage.clear();
-    try { await fb.F.terminate(fb.db); await fb.F.clearIndexedDbPersistence(fb.db); } catch (e) {}
+    try { await fb.F.terminate(fb.db); await fb.F.clearIndexedDbPersistence(fb.db); }
+    catch (e) { alert('Your picks and notes were removed from this device, but the offline cache could not be cleared because another planner tab is open. Close the other tabs and use “Sign out and clear this device” once more.'); }
     location.reload(); return;
   }
   crewId = null; crew = null; onCrewPointer(); refreshSheet();
@@ -1322,19 +1323,25 @@ async function deleteAccount(){
   if (!confirm('Delete your account and everything stored in it? Picks and notes stay on this device only.')) return;
   if (!confirm('This cannot be undone. Delete the account?')) return;
   const {A, F} = fb;
+  if (deleting) return;
   deleting = true;
   if (unsubUser) { unsubUser(); unsubUser = null; }
   unsubscribeCrew();
+  let dataGone = false;
   try {
     const b = F.writeBatch(fb.db);
     if (crewId) b.delete(F.doc(fb.db, 'crews', crewId, 'members', user.uid));
     b.delete(userRef());
     await b.commit();
+    dataGone = true;
+    localStorage.removeItem(LS_ACCOUNT); crewId = null; crew = null; onCrewPointer();   // the data is gone: never sync this device to it again
     try { await A.deleteUser(user); }
     catch (e) { if (e.code !== 'auth/requires-recent-login') throw e; await reauth(); await A.deleteUser(user); }
-    localStorage.removeItem(LS_ACCOUNT); crewId = null; crew = null; onCrewPointer();
     showBanner('<span>Account deleted. This device keeps its local copy of your picks and notes.</span><button type="button" class="btn" data-dismiss>OK</button>');
-  } catch (e) { authMessage(e); }
+  } catch (e) {
+    if (dataGone) showBanner(`<span>Your data was deleted, but the sign-in itself could not be removed (${esc(authText(e))}). Sign in again and use “Delete account” once more to finish.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+    else authMessage(e);
+  }
   deleting = false;
 }
 
