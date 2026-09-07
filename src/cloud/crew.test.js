@@ -54,15 +54,16 @@ beforeEach(() => {
 });
 afterEach(() => { vi.unstubAllGlobals(); });
 
-// Imports the freshly-reset module graph. `marker` is what makes sync.change() write rather than queue.
-async function setup({signedIn = true, marker = true, crew: crewState = null, crewId = null} = {}){
+// Imports the freshly-reset module graph. `marker` is what makes sync.change() write rather than queue;
+// `loadFb: false` leaves getFb() null, which is the cold-start and offline case.
+async function setup({signedIn = true, marker = true, loadFb = true, crew: crewState = null, crewId = null} = {}){
   if (marker) localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
   const {useCloud} = await import('../store/cloud.js');
   const {usePlanner} = await import('../store/planner.js');
   const {useBanner} = await import('../store/banner.js');
   const auth = await import('./auth.js');
   const crew = await import('./crew.js');
-  await auth.loadFirebase();
+  if (loadFb) await auth.loadFirebase();
   if (signedIn) useCloud.getState().patch({user: USER, accountName: 'Are'});
   if (crewState || crewId) useCloud.getState().patch({crew: crewState, crewId: crewId || (crewState && crewState.id) || null});
   return {useCloud, usePlanner, useBanner, crew};
@@ -220,7 +221,7 @@ test('offerJoin asks the signed-out visitor to sign in, and says so when the inv
   expect(sessionStorage.getItem(SS_JOIN)).toBeNull();
 });
 
-test('offerJoin from another crew offers the swap, and Join runs it', async () => {
+test('offerJoin from another crew offers the swap, and Join leaves the old crew and joins the new one', async () => {
   sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
   const {useBanner, crew} = await setup({crew: inCrew({createdBy: 'u9', members: [member('u9', 'Kari'), member('u1', 'Are')]}), crewId: 'c1'});
   H.F.getDoc.mockResolvedValue({exists: () => true, data: () => ({crewName: 'Theirs', createdByName: 'Kari', revoked: false, expiresAt: future()})});
@@ -229,6 +230,32 @@ test('offerJoin from another crew offers the swap, and Join runs it', async () =
 
   expect(useBanner.getState().banner.text).toBe('Leave The Heath Three and join Theirs? Invited by Kari.');
   expect(useBanner.getState().banner.actions.map(a => a.label)).toEqual(['Join', 'Not now']);
+
+  useBanner.getState().banner.actions.find(a => a.label === 'Join').onClick();
+  await vi.waitFor(() => expect(H.batches).toHaveLength(2));
+
+  expect(H.batches[0].delete).toHaveBeenCalledWith('crews/c1/members/u1');      // left the old crew first
+  expect(H.batches[1].set).toHaveBeenCalledWith('crews/c2/members/u1', expect.objectContaining({name: 'Are', invite: 'tokentokentokentokent1'}));
+  expect(H.batches[1].update).toHaveBeenCalledWith('users/u1', {crew: 'c2', updatedAt: 'TS'});
+  expect(sessionStorage.getItem(SS_JOIN)).toBeNull();
+  expect(useBanner.getState().banner).toBeNull();
+});
+
+// The join survives a removal landing while the invite is being read: the pointer is re-read after the
+// round trip, so acceptJoin does not try to leave a crew it is no longer in (that would fail and abort).
+test('a removal during the invite round trip does not abort the join', async () => {
+  sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
+  const {useCloud, crew} = await setup({crew: inCrew({createdBy: 'u9', members: [member('u9', 'Kari'), member('u1', 'Are')]}), crewId: 'c1'});
+  H.F.getDoc.mockImplementation(async () => {
+    useCloud.getState().patch({crew: null, crewId: null});   // crewGone(), mid-flight
+    return {exists: () => true, data: () => ({crewName: 'Theirs', createdByName: 'Kari', revoked: false, expiresAt: future()})};
+  });
+
+  await crew.acceptJoin();
+
+  expect(H.batches).toHaveLength(1);                                            // no leave batch: nothing to leave
+  expect(H.batches[0].set).toHaveBeenCalledWith('crews/c2/members/u1', expect.objectContaining({name: 'Are'}));
+  expect(H.batches[0].update).toHaveBeenCalledWith('users/u1', {crew: 'c2', updatedAt: 'TS'});
 });
 
 test('a pending invite older than an hour is not pending any more', async () => {
@@ -295,6 +322,50 @@ test('closeCrew deletes the other documents in chunks of at most nine, then tomb
   expect(localStorage.getItem(LS_CREW_CACHE)).toBeNull();
 });
 
+// A cache-only crew (hydrateCrewCache paints one without invites or block records) must not be closed:
+// the tombstone would go up and those documents would stay behind, readable and deletable by nobody.
+test('closeCrew refuses on a crew that is only the cache, and closes once a server snapshot has landed', async () => {
+  const {useCloud, useBanner, crew} = await setup({crew: inCrew({live: false, invites: [{token: 'a'.repeat(22)}]})});
+
+  expect(await crew.closeCrew(true)).toBe(false);
+  expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  expect(H.batches).toHaveLength(0);
+  expect(useCloud.getState().crew).not.toBeNull();
+
+  useCloud.getState().patch({crew: inCrew({live: true, invites: [{token: 'a'.repeat(22)}]})});
+  expect(await crew.closeCrew(true)).toBe(true);
+  expect(H.batches[0].delete).toHaveBeenCalledWith('crews/c1/invites/' + 'a'.repeat(22));
+});
+
+// Every write is offered from the first paint (the card no longer waits for `user`), so each one has to
+// answer for itself when the SDK chunk has not arrived — offline, or in the second before it loads.
+test('the crew actions say so instead of throwing when the SDK is not loaded', async () => {
+  const {useBanner, crew} = await setup({loadFb: false, crew: inCrew({members: [member('u1', 'Are'), member('u2', 'Kari')], invites: [{token: 'a'.repeat(22)}], removed: [{uid: 'u3', name: 'Morten'}]})});
+
+  for (const run of [
+    () => crew.renameCrew('The Heath Four'),
+    () => crew.removeMember('u2'),
+    () => crew.makeOwner('u2'),
+    () => crew.readmit('u3'),
+    () => crew.revokeInvite('a'.repeat(22)),
+  ]) {
+    useBanner.getState().hide();
+    expect(run).not.toThrow();
+    expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  }
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
+  expect(H.F.deleteDoc).not.toHaveBeenCalled();
+  expect(H.batches).toHaveLength(0);
+
+  for (const run of [() => crew.createInvite(), () => crew.leaveCrew(false), () => crew.closeCrew(true)]) {
+    useBanner.getState().hide();
+    expect(await run()).toBeFalsy();
+    expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  }
+  expect(H.F.setDoc).not.toHaveBeenCalled();
+  expect(H.batches).toHaveLength(0);
+});
+
 test('leaveCrew batches the member delete and the pointer removal after detaching the listeners', async () => {
   const {useCloud, crew} = await setup({crew: inCrew({createdBy: 'u9', members: [member('u9', 'Kari'), member('u1', 'Are')]})});
   const unsub = vi.fn();
@@ -343,7 +414,12 @@ test('createInvite writes a fourteen-day token of twenty-two characters and offe
   expect(token).toMatch(/^[A-Za-z0-9_-]{22}$/);
   const [ref, data] = H.F.setDoc.mock.calls[0];
   expect(ref).toBe('crews/c1/invites/' + token);
-  expect(data).toMatchObject({crewName: 'The Heath Three', createdBy: 'u1', createdByName: 'Are', createdAt: 'TS', revoked: false, v: 1});
+  // exact equality, not a subset: the rules reject an invite carrying any field they do not name, so an
+  // extra key here would be a write that always fails
+  expect(data).toEqual({
+    crewName: 'The Heath Three', createdBy: 'u1', createdByName: 'Are',
+    createdAt: 'TS', expiresAt: expect.any(Object), revoked: false, v: 1,
+  });
   const days = (data.expiresAt.toMillis() - before) / 864e5;
   expect(days).toBeGreaterThan(13.9);
   expect(days).toBeLessThan(14.1);
@@ -373,6 +449,16 @@ test('hydrateCrewCache paints the cached crew on boot, but only for a device wit
   crew.hydrateCrewCache();
   expect(useCloud.getState().crewId).toBe('c1');
   expect(useCloud.getState().crew).toEqual({...cached, invites: [], removed: [], live: false});
+});
+
+// The overlay and the card work from the cached crew before the SDK produces a `user`; the account marker
+// is the identity in the meantime (store/cloud.js, selectMyUid), so "who are the others" works there too.
+test('others() tells the rest of the crew apart from the account marker alone', async () => {
+  const {useCloud, crew} = await setup({signedIn: false, loadFb: false, crew: inCrew({members: [member('u1', 'Are'), member('u2', 'Kari')]})});
+
+  expect(crew.others()).toEqual([]);                                     // no identity at all yet
+  useCloud.getState().patch({marker: {uid: 'u1'}});
+  expect(crew.others().map(m => m.uid)).toEqual(['u2']);
 });
 
 test('a members snapshot writes the cache the next cold start reads, and the pointer going away clears it', async () => {

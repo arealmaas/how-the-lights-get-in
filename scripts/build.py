@@ -48,7 +48,11 @@ def absolute(url):
 
 
 def local_photo(kind, name):
-    """Relative path of a thumbnail under img/<kind>/ if it exists (see scripts/fetch-images.js), else None."""
+    """Served path of a thumbnail (img/<kind>/<name>.webp) if public/img/ holds one, else None.
+
+    The files live under public/, which Vite copies to the root of dist/, so the path recorded here is
+    what the page requests. See scripts/fetch-images.js and scripts/unpack-images.py.
+    """
     if not name:
         return None
     rel = f'img/{kind}/{name}.webp'

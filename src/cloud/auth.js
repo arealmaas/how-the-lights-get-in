@@ -181,6 +181,9 @@ export async function deleteAccount(){
     // moved the pointer or the session underneath us. Delete what is in the store now, not what was.
     ({crewId, user} = useCloud.getState());
     if (!user) return;
+    // the same snapshot may have handed the crew *to* us: the refusal is re-run rather than assumed, or
+    // the owner's member document would go without the tombstone and leave the crew unclosable.
+    if (crewId && crew.crewOwnedByMe()) { okBanner('You created your crew: hand it over or close it before deleting your account.'); return; }
   }
   const {A, F} = fb;
   if (deleting) return;

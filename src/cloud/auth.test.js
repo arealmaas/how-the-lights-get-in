@@ -257,6 +257,25 @@ test('deleteAccount re-authenticates first when the last sign-in is older than f
   expect(useBanner.getState().banner.text).toMatch(/^Account deleted/);
 });
 
+// A re-auth is a popup or a prompt and can stand open for a while. If the crew is handed to you in that
+// time, deleting now would take the owner's member document out without setting the tombstone, and the
+// crew could never be closed by anyone. The refusal is re-run rather than assumed to still hold.
+test('deleteAccount refuses again when the crew is handed over during the re-authentication', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, useBanner, auth, crew} = await setup({user: password({metadata: {lastSignInTime: stale}})});
+  useCloud.getState().patch({crewId: 'c1'});
+  crew.crewOwnedByMe.mockReturnValue(false);                                                                          // a member when the button is pressed
+  H.A.reauthenticateWithCredential.mockImplementationOnce(async () => { crew.crewOwnedByMe.mockReturnValue(true); });  // handed over while the prompt is open
+
+  await auth.deleteAccount();
+
+  expect(H.A.reauthenticateWithCredential).toHaveBeenCalled();
+  expect(useBanner.getState().banner.text).toMatch(/hand it over or close it/);
+  expect(H.batch.delete).not.toHaveBeenCalled();
+  expect(H.A.deleteUser).not.toHaveBeenCalled();
+  expect(localStorage.getItem(LS_ACCOUNT)).not.toBeNull();
+});
+
 test('deleteAccount on a phone tells a Google user to sign in again, and deletes nothing', async () => {
   H.platform.PHONE = true;
   const user = password({providerData: [{providerId: 'google.com'}], metadata: {lastSignInTime: stale}});

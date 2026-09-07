@@ -72,12 +72,12 @@ test('in a crew: the name, the sync state, members with colours, pick counts, "(
 
 test('a crew that has not synced since the SDK failed says when it last did', () => {
   useCloud.setState({crew: {...CREW, live: false}});
-  render(<CrewCard />);
+  const {rerender} = render(<CrewCard />);
   expect(document.querySelector('.hc-k').textContent).toMatch(/^Crew · last synced \d\d:\d\d$/);
 
-  useCloud.setState({crew: {...CREW, syncedAt: null}});
-  render(<CrewCard />);
-  expect(document.querySelectorAll('.hc-k')[1].textContent).toBe('Crew · not synced yet');
+  act(() => useCloud.setState({crew: {...CREW, syncedAt: null}}));
+  rerender(<CrewCard />);
+  expect(document.querySelector('.hc-k').textContent).toBe('Crew · not synced yet');
 });
 
 test('the creator gets Remove and Make owner per other member, and Close crew', () => {
@@ -166,16 +166,19 @@ test('Invite link and Leave crew reach the crew module', () => {
 
 // CREW-SPEC section 6, "Failure modes": on a cold or offline start hydrateCrewCache() has painted the
 // crew but the SDK has not loaded, so there is no `user` yet. The card shows the cached crew and its last
-// sync time; everything that writes waits for a real session.
-test('a cached crew with only the account marker renders, without the actions that need a session', () => {
+// sync time, and offers the same actions — each one in cloud/crew.js checks the SDK and the session and
+// says "Still connecting; try again in a moment." rather than writing (cloud/crew.test.js covers that).
+// The owner-only controls stay away, because crewOwnedByMe() cannot be true without a session.
+test('a cached crew with only the account marker renders, with actions that answer for themselves', () => {
   useCloud.setState({user: null, marker: {uid: 'u1'}, crew: {...CREW, live: false}});
   render(<CrewCard />);
 
   expect(screen.getByText('The Heath Three')).toBeInTheDocument();
   expect(document.querySelector('.hub-card.crew .hc-k').textContent).toMatch(/^Crew · last synced /);
   expect(screen.getByText(/Are Almaas \(you\)/)).toBeInTheDocument();   // the marker is my identity
-  expect(document.querySelector('.hub-card.crew .actions')).toBeNull();
-  expect(screen.queryByRole('button', {name: 'Leave crew'})).toBeNull();
+  expect(labels()).toEqual(['Invite link', 'Rename', 'Leave crew']);
+  fireEvent.click(screen.getByRole('button', {name: 'Leave crew'}));
+  expect(crewApi.leaveCrew).toHaveBeenCalledWith(false);
 });
 
 test('with no crew cached and no session yet, the card is not built at all', () => {

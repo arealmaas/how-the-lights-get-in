@@ -6,8 +6,10 @@
 // live in cloud/crew.js next to the batches they guard.
 // A third: the card is gated on selectMyUid, not on `user`, so a cold or offline start shows the crew
 // hydrateCrewCache() painted, with "last synced 13:45" instead of "live" (CREW-SPEC section 6, "Failure
-// modes"). Everything that writes needs a real signed-in session and the SDK, so the actions row and the
-// owner-only controls wait for `user`; crewOwnedByMe() is false until then, which hides the latter anyway.
+// modes"). The actions row is offered from that first paint: each action in cloud/crew.js checks the SDK
+// and the session itself and says "Still connecting; try again in a moment.", which is a truer answer than
+// a row of buttons appearing a second late. crewOwnedByMe() is false until there is a session, so the
+// owner-only controls stay hidden anyway.
 import {Fragment, useEffect, useRef, useState} from 'react';
 import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {initials} from '../../core/labels.js';
@@ -121,14 +123,12 @@ export default function CrewCard(){
           ))}
         </p>
       )}
-      {user && (
-        <div className="actions">
-          <button type="button" className="btn primary" onClick={() => createInvite()}>Invite link</button>
-          <button type="button" className="btn" onClick={() => setPrompt('rename')}>Rename</button>
-          <button type="button" className="btn" onClick={() => leaveCrew(false)}>Leave crew</button>
-          {owner && <button type="button" className="btn" onClick={() => closeCrew(false)}>Close crew</button>}
-        </div>
-      )}
+      <div className="actions">
+        <button type="button" className="btn primary" onClick={() => createInvite()}>Invite link</button>
+        <button type="button" className="btn" onClick={() => setPrompt('rename')}>Rename</button>
+        <button type="button" className="btn" onClick={() => leaveCrew(false)}>Leave crew</button>
+        {owner && <button type="button" className="btn" onClick={() => closeCrew(false)}>Close crew</button>}
+      </div>
       {prompt === 'rename' && (
         <NamePrompt label="Crew name" initial={crew.name} onSave={name => { setPrompt(''); renameCrew(name); }} onCancel={() => setPrompt('')} />
       )}

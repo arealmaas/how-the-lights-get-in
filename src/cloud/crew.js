@@ -7,7 +7,7 @@
 // lands; the only module state left is the listener handles and the `leaving` flag, which are not UI.
 // Its innerHTML banners become banner-store entries with real handlers. No React here, and no firebase/*
 // import: the SDK arrives through auth.js's getFb().
-import {useCloud} from '../store/cloud.js';
+import {useCloud, selectMyUid} from '../store/cloud.js';
 import {usePlanner, DEL} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
 import {showBanner, okBanner, hideBanner} from '../store/banner.js';
@@ -33,8 +33,16 @@ const patchCrew = fields => { const cur = st().crew; if (cur) st().patch({crew: 
 const crewRef = id => { const fb = getFb(); return fb.F.doc(fb.db, 'crews', id); };
 const memberRef = (id, uid) => { const fb = getFb(); return fb.F.doc(fb.db, 'crews', id, 'members', uid); };
 
+// The card and its actions are on screen from the moment hydrateCrewCache() paints the cached crew, which
+// is before the SDK chunk has loaded and, on an offline start, instead of it. Every writer below says this
+// rather than throwing on getFb().F; closeCrew says it too, because a cache-only crew has no invite or
+// block records to delete and closing on that list would orphan them.
+const NOT_READY = 'Still connecting; try again in a moment.';
+
 export function crewOwnedByMe(){ const {crew, user} = st(); return !!(crew && user && crew.createdBy === user.uid); }
-export function others(){ const {crew, user} = st(); return (crew && user) ? crew.members.filter(m => m.uid !== user.uid) : []; }
+// Identity, not session: on a cold or offline start the account marker is who I am (see selectMyUid), so
+// the cached crew's members can be told apart before the SDK has produced a `user`.
+export function others(){ const s = st(); const uid = selectMyUid(s); return (s.crew && uid) ? s.crew.members.filter(m => m.uid !== uid) : []; }
 export function liveInvites(){ const {crew} = st(); return crew ? crew.invites.filter(i => !i.revoked && i.expiresAt && i.expiresAt.toMillis() > Date.now()) : []; }
 export function inviteLink(token){ const {crew} = st(); return crew ? PUBLIC_URL + '#join=' + crew.id + '.' + token : ''; }
 const validInvite = inv => !!(inv && !inv.revoked && inv.expiresAt && inv.expiresAt.toMillis() > Date.now());
@@ -152,16 +160,19 @@ export function createCrew(name){
 }
 
 export function renameCrew(name){
-  const {crew} = st();
+  const {crew, user} = st();
   const clean = String(name || '').trim().slice(0, 60);
   if (!crew || !clean || clean === crew.name) return;
-  const {F} = getFb();
+  const fb = getFb();
+  if (!user || !fb) { okBanner(NOT_READY); return; }
+  const {F} = fb;
   F.updateDoc(crewRef(crew.id), {name: clean, updatedAt: F.serverTimestamp()}).catch(authMessage);
 }
 
 export async function leaveCrew(silent){
   const {crew, user} = st();
-  if (!crew || !user) return false;
+  if (!crew) return false;
+  if (!user || !getFb()) { okBanner(NOT_READY); return false; }
   if (crewOwnedByMe() && others().length) { okBanner('You created this crew: make someone else the owner, or close the crew, before leaving.'); return false; }
   if (crewOwnedByMe()) return closeCrew(silent);   // alone in the crew: leaving closes it
   if (!silent && !confirm(`Leave ${crew.name}? Your picks and notes stay in your account.`)) return false;
@@ -186,7 +197,12 @@ export async function closeCrew(silent){
   if (!crew || !user) return false;
   if (!silent && !confirm(`Close ${crew.name} for everyone? Members keep their own picks and notes.`)) return false;
   if (!navigator.onLine) { okBanner('Closing a crew needs a connection.'); return false; }
-  const fb = getFb(); const {F} = fb; const id = crew.id;
+  const fb = getFb();
+  // A crew painted from the cache carries no invites and no block records (hydrateCrewCache stores neither),
+  // so closing on that list would tombstone the crew and leave those documents behind, readable by nobody
+  // and deletable by nobody. Wait for a server snapshot.
+  if (!fb || !crew.live) { okBanner(NOT_READY); return false; }
+  const {F} = fb; const id = crew.id;
   const docs = [
     ...others().map(m => memberRef(id, m.uid)),
     ...crew.invites.map(i => F.doc(fb.db, 'crews', id, 'invites', i.token)),
@@ -218,7 +234,9 @@ export function removeMember(uid){
   const m = crew && crew.members.find(x => x.uid === uid);
   if (!m) return;
   if (!confirm(`Remove ${m.name} from ${crew.name}? Their invite links stop working; you can re-admit them later.`)) return;
-  const fb = getFb(); const {F} = fb;
+  const fb = getFb();
+  if (!fb) { okBanner(NOT_READY); return; }
+  const {F} = fb;
   const b = F.writeBatch(fb.db);
   b.delete(memberRef(crew.id, uid));
   b.set(F.doc(fb.db, 'crews', crew.id, 'removed', uid), {name: m.name, removedAt: F.serverTimestamp(), v: 1});
@@ -228,7 +246,9 @@ export function removeMember(uid){
 export function readmit(uid){
   const {crew} = st();
   if (!crew) return;
-  const fb = getFb(); const {F} = fb;
+  const fb = getFb();
+  if (!fb) { okBanner(NOT_READY); return; }
+  const {F} = fb;
   F.deleteDoc(F.doc(fb.db, 'crews', crew.id, 'removed', uid)).catch(authMessage);
 }
 
@@ -237,7 +257,9 @@ export function makeOwner(uid){
   const m = crew && crew.members.find(x => x.uid === uid);
   if (!m) return;
   if (!confirm(`Make ${m.name} the owner of ${crew.name}? You stay a member.`)) return;
-  const {F} = getFb();
+  const fb = getFb();
+  if (!fb) { okBanner(NOT_READY); return; }
+  const {F} = fb;
   F.updateDoc(crewRef(crew.id), {createdBy: uid, updatedAt: F.serverTimestamp()}).catch(authMessage);
 }
 
@@ -250,9 +272,11 @@ const newToken = () => {
 
 export async function createInvite(){
   const {crew, user, accountName} = st();
-  if (!crew || !user) return null;
+  if (!crew) return null;
   if (!navigator.onLine) { okBanner('Invite links need a connection.'); return null; }
-  const fb = getFb(); const {F} = fb; const token = newToken();
+  const fb = getFb();
+  if (!user || !fb) { okBanner(NOT_READY); return null; }
+  const {F} = fb; const token = newToken();
   try {
     await F.setDoc(F.doc(fb.db, 'crews', crew.id, 'invites', token), {
       crewName: crew.name, createdBy: user.uid, createdByName: accountName,
@@ -266,7 +290,9 @@ export async function createInvite(){
 export function revokeInvite(token){
   const {crew} = st();
   if (!crew) return;
-  const fb = getFb(); const {F} = fb;
+  const fb = getFb();
+  if (!fb) { okBanner(NOT_READY); return; }
+  const {F} = fb;
   F.updateDoc(F.doc(fb.db, 'crews', crew.id, 'invites', token), {revoked: true}).catch(authMessage);   // the rules allow this field only
 }
 
@@ -325,11 +351,10 @@ export async function offerJoin(){
 
 export async function acceptJoin(){
   const j = pendingJoin();
-  const {user, accountName, crewId} = st();
-  if (!j || !user) return;
+  if (!j || !st().user) return;
   if (!navigator.onLine) { okBanner('Joining needs a connection.'); return; }
   const fb = getFb();
-  if (!fb) return;
+  if (!fb) { okBanner(NOT_READY); return; }
   const {F} = fb;
   // Leave-then-join is two batches, so the invite is re-read here and not only when the banner was built:
   // a token revoked in between would otherwise leave someone in no crew at all.
@@ -337,6 +362,11 @@ export async function acceptJoin(){
   try { const s = await F.getDoc(F.doc(fb.db, 'crews', j.crew, 'invites', j.token)); inv = s.exists() ? s.data() : null; }
   catch (e) { inv = null; }
   if (!validInvite(inv)) { clearJoin(); okBanner('This invite link no longer works; ask for a new one.'); return; }
+  // The store is read after that round trip, not before it: a removal landing while the invite was being
+  // fetched clears the pointer, and leaving a crew we are no longer in fails and would abort the join. The
+  // name is read late for the same reason — the member document should carry whatever it is now.
+  const {user, accountName, crewId} = st();
+  if (!user) return;
   if (crewId) { const left = await leaveCrew(true); if (!left) return; }
   const mref = memberRef(j.crew, user.uid);
   const b = F.writeBatch(fb.db);
