@@ -63,3 +63,22 @@ test('users: the owner can delete their document', async () => {
   await admin(db => setDoc(doc(db, 'users', 'alice'), fullUser()));
   await assertSucceeds(deleteDoc(doc(as('alice'), 'users', 'alice')));
 });
+
+test('users: the remaining clauses — non-owner create, every map cap and type, crew length, boundaries', async () => {
+  const big = n => Object.fromEntries(Array.from({length: n}, (_, i) => [i + 1, true]));
+  await admin(db => setDoc(doc(db, 'users', 'alice'), fullUser()));
+  await assertFails(setDoc(doc(as('bob'), 'users', 'carol'), fullUser({name: 'Carol'})));               // only the owner creates
+  await assertFails(setDoc(doc(anon(), 'users', 'carol'), fullUser({name: 'Carol'})));
+  await assertSucceeds(setDoc(doc(as('carol'), 'users', 'carol'), fullUser({name: 'x'.repeat(40), picks: big(300), crew: 'y'.repeat(40)})));   // boundaries pass
+  await assertFails(setDoc(doc(as('dave'), 'users', 'dave'), fullUser({name: 'Dave', picks: big(301)})));
+  await assertFails(setDoc(doc(as('dave'), 'users', 'dave'), fullUser({name: 'Dave', verdicts: big(301)})));
+  await assertFails(setDoc(doc(as('dave'), 'users', 'dave'), fullUser({name: 'Dave', notes: big(301)})));
+  await assertFails(setDoc(doc(as('dave'), 'users', 'dave'), fullUser({name: 'Dave', shared: big(301)})));
+  const me = doc(as('alice'), 'users', 'alice');
+  await assertSucceeds(updateDoc(me, {'verdicts.6': 'Draw', 'notes.6': 'a note', 'shared.6': true, updatedAt: serverTimestamp()}));
+  await assertSucceeds(updateDoc(me, {'verdicts.6': deleteField(), updatedAt: serverTimestamp()}));
+  await assertFails(updateDoc(me, {crew: 'z'.repeat(41), updatedAt: serverTimestamp()}));                // pointer too long
+  await assertFails(updateDoc(me, {verdicts: 'nope', updatedAt: serverTimestamp()}));                    // each map replaced by a scalar
+  await assertFails(updateDoc(me, {notes: 'nope', updatedAt: serverTimestamp()}));
+  await assertFails(updateDoc(me, {shared: 'nope', updatedAt: serverTimestamp()}));
+});
