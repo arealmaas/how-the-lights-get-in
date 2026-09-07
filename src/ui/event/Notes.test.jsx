@@ -28,3 +28,15 @@ test('typing debounces into the store after 250ms; a snapshot arriving while foc
   expect(textarea.value).toBe('my thoughts');
   expect(usePlanner.getState().notes[6]).toBe('my thoughts');
 });
+
+test('unmounting with a pending debounce (no blur) still commits the latest draft', () => {
+  const {container, unmount} = render(<Notes no={6} />);
+  const textarea = container.querySelector('textarea.notes');
+
+  textarea.focus();
+  fireEvent.change(textarea, {target: {value: 'unsaved thoughts'}});
+  expect(usePlanner.getState().notes[6]).toBeUndefined();   // debounce hasn't fired yet
+
+  unmount();
+  expect(usePlanner.getState().notes[6]).toBe('unsaved thoughts');
+});
