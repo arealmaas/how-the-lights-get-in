@@ -28,17 +28,22 @@
   // Someone following a link (an event or a friend's picks) goes straight through with the fragment intact.
   if (!hasState || /(event|picks)=/.test(location.hash)) { location.replace(NEW + location.hash); return; }
   const b64u = s => { const bytes = new TextEncoder().encode(s); let bin = ''; for (const c of bytes) bin += String.fromCharCode(c); return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+  const MAX_NOTE = 20000;   // the planner keeps at most this many characters per note
   function notesParam(max){
-    const entries = Object.entries(notes).filter(([no, t]) => /^\d+$/.test(no) && typeof t === 'string' && t.trim()).sort((x, y) => x[1].length - y[1].length);
+    let shortened = 0;
+    const entries = Object.entries(notes).filter(([no, t]) => /^\d+$/.test(no) && typeof t === 'string' && t.trim()).map(([no, t]) => { if (t.length > MAX_NOTE) shortened++; return [no, t.slice(0, MAX_NOTE)]; }).sort((x, y) => x[1].length - y[1].length);
     let dropped = 0;
-    while (entries.length) { const p = b64u(JSON.stringify(Object.fromEntries(entries))); if (p.length <= max) return {p, dropped}; entries.pop(); dropped++; }
-    return {p: '', dropped};
+    while (entries.length) { const p = b64u(JSON.stringify(Object.fromEntries(entries))); if (p.length <= max) return {p, dropped, shortened}; entries.pop(); dropped++; }
+    return {p: '', dropped, shortened};
   }
-  const {p, dropped} = notesParam(30000);
+  const {p, dropped, shortened} = notesParam(30000);
   const v = Object.entries(verdicts).map(([no, who]) => no + ':' + encodeURIComponent(who)).join(';');
   const link = NEW + '#picks=' + picks.join(',') + (v ? '&verdicts=' + v : '') + (p ? '&notes=' + p : '');
   document.getElementById('carry').hidden = false; document.getElementById('go').hidden = false;
-  if (dropped) { const w = document.getElementById('warn'); w.hidden = false; w.textContent = dropped + ' long note' + (dropped === 1 ? '' : 's') + ' will not fit in the link; export your notes (.md) from the old planner first if you need them.'; }
+  const problems = [];
+  if (dropped) problems.push(dropped + ' long note' + (dropped === 1 ? '' : 's') + ' will not fit in the link');
+  if (shortened) problems.push(shortened + ' very long note' + (shortened === 1 ? '' : 's') + ' will be shortened to ' + MAX_NOTE + ' characters');
+  if (problems.length) { const w = document.getElementById('warn'); w.hidden = false; w.textContent = problems.join('; ') + '; export your notes (.md) from the old planner first if you need them in full.'; }
   document.getElementById('btn').addEventListener('click', () => { location.href = link; });
 })();
 </script>
