@@ -830,6 +830,7 @@ function openSheet(html){
   const first = body.querySelector('h2'); if (first) { first.setAttribute('tabindex', '-1'); first.focus({preventScroll:true}); }
 }
 function closeSheet(){
+  flushNote();
   sheetStack = [];
   document.getElementById('sheet').hidden = true; document.getElementById('scrim').hidden = true;
   if (notesDirty) { notesDirty = false; render(); }
@@ -1281,7 +1282,73 @@ function authText(e){
   return (e && e.message) || 'Something went wrong.';
 }
 function authMessage(e){ if (e && e.reported) return; showBanner(`<span>${esc(authText(e))}</span><button type="button" class="btn" data-dismiss>OK</button>`); }
-async function afterSignIn(u){ afterSubscribe(); }
+const localState = () => ({picks: CrewCore.picksToMap(picks), verdicts: {...verdicts}, notes: {...notes}, shared: {...shared}});
+// Spec section 6, "Signing in": create from local, merge once per device and account, or replace when the device
+// belonged to a different account; only then subscribe.
+async function afterSignIn(u){
+  const marker = accountMarker();
+  if (marker && marker.uid === u.uid) { subscribeUser(); afterSubscribe(); return; }
+  const {F} = fb; const ref = userRef();
+  let snap;
+  try { snap = await F.getDocFromServer(ref); }
+  catch (e) { showBanner('<span>Signing in for the first time on this device needs a connection. Try again when you are online.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  const local = localState();
+  if (!snap.exists()) {
+    await F.setDoc(ref, {name: accountName, ...local, updatedAt: F.serverTimestamp(), v: 1});
+  } else if (!marker) {
+    const remote = snap.data();
+    const m = CrewCore.mergeState(local, remote);
+    accountName = (remote.name || accountName).slice(0, 40);
+    await F.setDoc(ref, {name: accountName, ...(remote.crew ? {crew: remote.crew} : {}), picks: m.picks, verdicts: m.verdicts, notes: m.notes, shared: m.shared, updatedAt: F.serverTimestamp(), v: 1});
+    if (m.added) showBanner(`<span>Merged <b>${m.added} pick${m.added === 1 ? '' : 's'}</b> from this device into your account.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+  }
+  // otherwise this device synced with a different account before: the first snapshot replaces local state
+  save(LS_ACCOUNT, {uid: u.uid});
+  subscribeUser();
+  afterSubscribe();
+}
+function subscribeUser(){
+  if (unsubUser) unsubUser();
+  unsubUser = fb.F.onSnapshot(userRef(), snap => {
+    syncStats.snapshots++;
+    if (!snap.exists()) { if (!deleting) stopSync('Your account was deleted on another device. This device keeps its local copy.'); return; }
+    applyUserData(snap.data());
+  }, err => syncError(err));
+}
+function stopSync(msg){
+  if (unsubUser) { unsubUser(); unsubUser = null; }
+  localStorage.removeItem(LS_ACCOUNT);
+  if (msg) showBanner(`<span>${esc(msg)}</span><button type="button" class="btn" data-dismiss>OK</button>`);
+}
+const sameState = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+// Apply a snapshot in place. Two guards: the note being typed wins, and nothing is rebuilt under a focused textarea.
+function applyUserData(d){
+  flushNote();
+  const focused = document.activeElement && document.activeElement.matches('textarea[data-note]') ? +document.activeElement.dataset.note : null;
+  const nextPicks = new Set([...CrewCore.mapToPicks(d.picks)].filter(n => byNo.has(n)));
+  const nextVerdicts = Object.fromEntries(Object.entries(d.verdicts || {}).filter(([k, v]) => byNo.has(+k) && typeof v === 'string'));
+  const nextNotes = Object.fromEntries(Object.entries(d.notes || {}).filter(([k, v]) => byNo.has(+k) && typeof v === 'string' && v.trim()));
+  if (focused != null) { if (notes[focused] && notes[focused].trim()) nextNotes[focused] = notes[focused]; else delete nextNotes[focused]; }
+  const nextShared = Object.fromEntries(Object.entries(d.shared || {}).filter(([k]) => byNo.has(+k)));
+  accountName = (d.name || accountName).slice(0, 40);
+  const nextCrew = typeof d.crew === 'string' ? d.crew : null;
+  const changed = !sameState([[...picks].sort(), verdicts, notes, shared, crewId], [[...nextPicks].sort(), nextVerdicts, nextNotes, nextShared, nextCrew]);
+  picks = nextPicks; verdicts = nextVerdicts; notes = nextNotes; shared = nextShared; crewId = nextCrew;
+  save(LS_PICKS, [...picks]); save(LS_VERDICTS, verdicts); save(LS_NOTES, notes); save(LS_SHARED, shared);
+  onCrewPointer();
+  if (!changed) return;
+  render();
+  if (focused == null) refreshSheet();
+}
+function syncError(e){
+  const code = (e && e.code) || '';
+  if (code === 'resource-exhausted') {
+    if (!syncPaused) { syncPaused = true; showBanner('<span>Sync is paused until tomorrow: the free daily limit is used up. Your planner keeps working on this device.</span><button type="button" class="btn" data-dismiss>OK</button>'); }
+    return;
+  }
+  if (code === 'permission-denied' && crewId) { onCrewDenied(); return; }
+  console.warn('sync', e);
+}
 
 // ---------- events ----------
 document.addEventListener('click', ev => {
@@ -1330,10 +1397,12 @@ document.addEventListener('click', ev => {
   if ('copy' in d) { const inp = document.getElementById('picklink'); inp.select(); try { navigator.clipboard.writeText(inp.value).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
 });
 document.getElementById('scrim').addEventListener('click', closeSheet);
+let pendingNote = null;
+function flushNote(){ if (!pendingNote) return; clearTimeout(noteTimer); const {no, text} = pendingNote; pendingNote = null; setNote(no, text); }
 document.addEventListener('input', ev => {
   if (!ev.target.matches('textarea[data-note]')) return;
-  const no = +ev.target.dataset.note, text = ev.target.value;
-  clearTimeout(noteTimer); noteTimer = setTimeout(() => setNote(no, text), 250);
+  pendingNote = {no: +ev.target.dataset.note, text: ev.target.value};
+  clearTimeout(noteTimer); noteTimer = setTimeout(flushNote, 250);
 });
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Escape' && !document.getElementById('sheet').hidden) { closeSheet(); return; }
