@@ -322,6 +322,13 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .verdict .lab{flex-basis:100%;font-size:12px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
 .verdict button{border:1px solid var(--line-strong);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500;background:var(--surface)}
 .verdict button[aria-pressed="true"]{background:var(--pick);border-color:var(--pick);color:var(--pick-ink)}
+
+/* ---------- account ---------- */
+.hub-card.account,.hub-card.crew{grid-column:1/-1}
+.authform{display:grid;gap:6px;margin-top:4px}
+.authform input{border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;font:inherit;font-size:14px;background:var(--surface);color:var(--ink)}
+.authform input:focus{outline:2px solid var(--focus);outline-offset:1px}
+.authform .src{margin:0}
 .badge.note{background:color-mix(in oklab,var(--pick) 22%,var(--surface));color:var(--pick-ink)}
 :root[data-theme="dark"] .badge.note,:root:not([data-theme="light"]) .badge.note{color:var(--ink)}
 
@@ -957,7 +964,7 @@ function showHub(push = true){
     ? `<a class="btn" href="${esc(PUBLIC_URL + '#picks=' + [...picks].sort((a, b) => a - b).join(','))}" target="_blank" rel="noopener">Export on the public site ↗</a>`
     : `<button type="button" class="btn" data-export-picks>Export picks (.ics)</button>`;
   const notesBtn = IN_ARTIFACT ? '' : `<button type="button" class="btn" data-export-notes>Export notes (.md)</button>`;
-  const cards = !mine.length ? `<div class="hub-empty"><b>Build your own weekend</b><span>Tap ☆ on any event to pick it. Your picks, clash warnings, reading list, calendar export and a shareable link all build from there — everything is saved in this browser.</span><button type="button" class="btn primary" data-browse>Browse the programme</button></div>`
+  const cards = !mine.length ? `<div class="hub-empty"><b>Build your own weekend</b><span>Tap ☆ on any event to pick it. Your picks, clash warnings, reading list, calendar export and a shareable link all build from there — everything is saved in this browser.</span>${CLOUD && !user ? '<span>Sign in (below) to keep your picks on every device.</span>' : ''}<button type="button" class="btn primary" data-browse>Browse the programme</button></div>`
     : `<div class="hub-cards">
       <button type="button" class="hub-card rl" data-reading><b>${rl}</b><span class="hc-k">Reading list</span><span class="hc-t">${rl ? 'Books and articles to read before you go' : 'Nothing on file yet for these picks'}</span><span class="hc-go">Open →</span></button>
       <div class="hub-card"><span class="hc-k">Calendar</span><span class="hc-d">All picks as one file, with summaries, venue, speakers and a 15-minute reminder.</span><div class="actions">${icsBtn}</div></div>
@@ -969,6 +976,7 @@ function showHub(push = true){
     <h2 id="sheet-title">Your weekend</h2>
     <p class="src">${summary}</p>
     ${cards}${days}
+    ${CLOUD ? `<h3 class="sub">Account${crew ? ' and crew' : ''}</h3><div class="hub-cards">${accountCard()}${crewCard()}</div>${crewSection()}` : ''}
     <p class="hub-foot"><button type="button" data-stats>The festival in numbers</button><span>·</span><button type="button" data-about>About &amp; disclaimer</button></p>`);
 }
 
@@ -1095,6 +1103,111 @@ function showStats(push = true){
     <h3 class="sub">Who appears together</h3>${together.length ? `<ul class="pairs">${together.map(([k, n]) => `<li>${esc(k)} <span>· ${n} events</span></li>`).join('')}</ul>` : '<p class="src">No pair shares more than one event.</p>'}`);
 }
 
+// ---------- account (Firebase Authentication + the private user document) ----------
+let fb = null, fbLoading = null;          // {A: auth module, F: firestore module, auth, db} once the SDK is loaded
+let user = null, accountName = '', crewId = null, crew = null;
+let unsubUser = null, deleting = false, syncPaused = false;
+const syncStats = {writes: 0, snapshots: 0};   // spec section 10, quota sanity: shown by ?selftest and as window.htlgiSyncStats
+window.htlgiSyncStats = syncStats;
+const userRef = () => fb.F.doc(fb.db, 'users', user.uid);
+const accountMarker = () => load(LS_ACCOUNT, null);   // {uid}: the account this device last synced with
+// Phase 2 replaces these; Phase 1 has no crews.
+function crewCard(){ return ''; }
+function crewSection(){ return ''; }
+function onCrewPointer(){}
+function unsubscribeCrew(){}
+function onCrewDenied(){}
+function crewOwnedByMe(){ return false; }
+function afterSubscribe(){}
+const pendingJoin = () => null;
+
+function loadFirebase(){
+  if (!CLOUD) return Promise.reject(new Error('cloud features are off'));
+  if (fbLoading) return fbLoading;
+  fbLoading = Promise.all([import(SDK + 'firebase-app.js'), import(SDK + 'firebase-auth.js'), import(SDK + 'firebase-firestore.js')]).then(([app, A, F]) => {
+    const inst = app.initializeApp(FIREBASE);
+    const db = F.initializeFirestore(inst, {localCache: F.persistentLocalCache({tabManager: F.persistentMultipleTabManager()})});
+    fb = {A, F, auth: A.getAuth(inst), db};
+    A.onAuthStateChanged(fb.auth, onAuth);
+    if (sessionStorage.getItem(SS_REDIRECT)) { sessionStorage.removeItem(SS_REDIRECT); A.getRedirectResult(fb.auth).catch(e => authMessage(e)); }
+    return fb;
+  }).catch(e => {
+    fbLoading = null;
+    showBanner(`<span>Sign-in is unavailable right now (${esc(e.message)}). Your picks stay on this device.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+    throw e;
+  });
+  return fbLoading;
+}
+function onAuth(u){
+  const was = user; user = u;
+  if (u) { accountName = (u.displayName || accountName || 'Me').slice(0, 40); afterSignIn(u).catch(e => authMessage(e)); }
+  else { if (unsubUser) { unsubUser(); unsubUser = null; } accountName = ''; }
+  if (was !== u) refreshSheet();
+}
+// Re-render whatever sheet is open without pushing it again; never while someone is typing in it.
+function refreshSheet(){
+  const top = sheetStack[sheetStack.length - 1]; if (!top) return;
+  if (document.activeElement && document.activeElement.matches('input, textarea')) return;
+  if (top.kind === 'event') showEvent(top.no, false); else if (top.kind === 'speaker') showSpeaker(top.key, false); else if (top.kind === 'act') showAct(top.key, false);
+  else if (top.kind === 'reading') showReadingList(false); else if (top.kind === 'stats') showStats(false); else if (top.kind === 'hub') showHub(false);
+}
+function accountCard(){
+  if (!CLOUD) return '';
+  if (!user) {
+    const google = `<button type="button" class="btn primary" data-auth-google>Continue with Google</button>`;
+    const email = `<button type="button" class="btn" data-auth-email>Use email and password</button>`;
+    return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Keep your picks, verdicts and notes on every device, and join a crew.</span>
+      <div class="actions">${STANDALONE && IOS ? email + google : google + email}</div>
+      ${STANDALONE && IOS ? '<span class="hc-d">In the installed app, email and password is the reliable way in.</span>' : ''}
+      <form class="authform" data-auth-form hidden>
+        <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+        <input type="password" name="password" placeholder="Password (8 or more characters)" autocomplete="current-password" minlength="8">
+        <input type="text" name="name" placeholder="Your name (for a new account)" maxlength="40" autocomplete="name">
+        <div class="actions"><button type="button" class="btn primary" data-auth-signin>Sign in</button><button type="button" class="btn" data-auth-create>Create account</button><button type="button" class="btn" data-auth-reset>Forgot password?</button></div>
+        <p class="src" data-auth-msg></p>
+      </form></div>`;
+  }
+  const hasPw = user.providerData.some(p => p.providerId === 'password');
+  return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Signed in as <b>${esc(accountName)}</b>${user.email ? ` · ${esc(user.email)}` : ''}. Your picks, verdicts and notes follow this account.</span>
+    <div class="actions"><button type="button" class="btn" data-auth-name>Change name</button>${hasPw ? '' : '<button type="button" class="btn" data-auth-addpw>Add a password</button>'}<button type="button" class="btn" data-auth-signout>Sign out</button><button type="button" class="btn" data-auth-clear>Sign out and clear this device</button><button type="button" class="btn" data-auth-delete>Delete account</button></div>
+    <form class="authform" data-auth-form hidden><input type="email" name="email" value="${esc(user.email || '')}" placeholder="Email" autocomplete="email"><input type="password" name="password" placeholder="New password (8 or more characters)" autocomplete="new-password" minlength="8"><div class="actions"><button type="button" class="btn primary" data-auth-link>Save password</button></div><p class="src" data-auth-msg></p></form></div>`;
+}
+async function signInGoogle(){
+  try {
+    const {A, auth} = await loadFirebase();
+    const provider = new A.GoogleAuthProvider();
+    if (PHONE || STANDALONE) { sessionStorage.setItem(SS_REDIRECT, '1'); await A.signInWithRedirect(auth, provider); }
+    else await A.signInWithPopup(auth, provider);
+  } catch (e) { authMessage(e); }
+}
+async function emailAction(t, d){
+  const form = t.closest('[data-auth-form]');
+  const email = form.email.value.trim(), password = form.password.value, name = (form.name ? form.name.value.trim() : '').slice(0, 40);
+  const msg = s => { form.querySelector('[data-auth-msg]').textContent = s; };
+  try {
+    const {A, auth} = await loadFirebase();
+    if ('authReset' in d) { if (!email) return msg('Enter your email first.'); await A.sendPasswordResetEmail(auth, email); return msg('Password reset email sent. Check your inbox.'); }
+    if (!email || password.length < 8) return msg('Enter your email and a password of 8 or more characters.');
+    if ('authSignin' in d) { await A.signInWithEmailAndPassword(auth, email, password); return; }
+    if ('authCreate' in d) { if (name) accountName = name; const cred = await A.createUserWithEmailAndPassword(auth, email, password); if (name) await A.updateProfile(cred.user, {displayName: name}); return; }
+    if ('authLink' in d) { await A.linkWithCredential(auth.currentUser, A.EmailAuthProvider.credential(email, password)); msg('Password added: you can now sign in with email and password too.'); refreshSheet(); return; }
+  } catch (e) { msg(authText(e)); }
+}
+function authText(e){
+  const c = (e && e.code) || '';
+  if (c === 'auth/invalid-credential' || c === 'auth/wrong-password' || c === 'auth/user-not-found') return 'Wrong email or password. New here? Use “Create account”.';
+  if (c === 'auth/email-already-in-use') return 'That email already has an account. Sign in with Google, then add a password from the Account card.';
+  if (c === 'auth/weak-password') return 'Use a longer password (8 or more characters).';
+  if (c === 'auth/popup-blocked') return 'The sign-in window was blocked. Allow pop-ups for this site, or use email and password.';
+  if (c === 'auth/popup-closed-by-user' || c === 'auth/cancelled-popup-request') return 'Sign-in was cancelled.';
+  if (c === 'auth/network-request-failed') return 'No connection. Try again when you are online.';
+  if (c === 'auth/requires-recent-login') return 'Please sign in again first.';
+  if (c === 'auth/invalid-email') return 'That does not look like an email address.';
+  return (e && e.message) || 'Something went wrong.';
+}
+function authMessage(e){ showBanner(`<span>${esc(authText(e))}</span><button type="button" class="btn" data-dismiss>OK</button>`); }
+async function afterSignIn(u){ afterSubscribe(); }
+
 // ---------- events ----------
 document.addEventListener('click', ev => {
   const t = ev.target.closest('button, article.ev');
@@ -1114,6 +1227,10 @@ document.addEventListener('click', ev => {
   if ('copyReading' in d) { try { navigator.clipboard.writeText(readingMarkdown(readingList())).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
   if ('reading' in d) { showReadingList(); return; }
   if ('stats' in d) { showStats(); return; }
+  if ('authGoogle' in d) { signInGoogle(); return; }
+  if ('authEmail' in d) { const f = t.closest('.hub-card').querySelector('[data-auth-form]'); f.hidden = !f.hidden; if (!f.hidden) f.querySelector('input').focus(); return; }
+  if ('authSignin' in d || 'authCreate' in d || 'authReset' in d || 'authLink' in d) { emailAction(t, d); return; }
+  if ('authAddpw' in d) { const f = t.closest('.hub-card').querySelector('[data-auth-form]'); f.hidden = false; f.querySelector('input[name=password]').focus(); return; }
   if ('hub' in d || 'share' in d) { showHub(); return; }
   if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
@@ -1156,6 +1273,7 @@ window.addEventListener('hashchange', checkHash);
 (function init(){
   const v = document.getElementById('venue'); VENUES.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; v.appendChild(o); });
   const t = document.getElementById('topic'); TOPICS.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; t.appendChild(o); });
+  if (CLOUD && (accountMarker() || sessionStorage.getItem(SS_REDIRECT) || pendingJoin())) loadFirebase().catch(() => {});
   render();
   checkHash();
   if (isFestivalDay) setInterval(renderNowNext, 60000);
