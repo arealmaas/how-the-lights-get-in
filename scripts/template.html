@@ -1329,9 +1329,16 @@ document.addEventListener('click', ev => {
   if (t.id === 'clearq') { q = ''; document.getElementById('q').value = ''; t.hidden = true; render(); return; }
   if ('import' in d) {
     const b = document.getElementById('banner');
-    (b.dataset.incoming || '').split(',').map(Number).filter(Boolean).forEach(n => picks.add(n)); save(LS_PICKS, [...picks]);
-    try { Object.assign(verdicts, JSON.parse(b.dataset.incomingVerdicts || '{}')); save(LS_VERDICTS, verdicts); } catch (e) {}
-    try { for (const [no, text] of Object.entries(JSON.parse(b.dataset.incomingNotes || '{}'))) notes[no] = CrewCore.mergeNoteText(notes[no], text); save(LS_NOTES, notes); } catch (e) {}
+    const inc = (b.dataset.incoming || '').split(',').map(Number).filter(Boolean);
+    inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]);
+    let inV = {}, inN = {};
+    try { inV = JSON.parse(b.dataset.incomingVerdicts || '{}'); Object.assign(verdicts, inV); save(LS_VERDICTS, verdicts); } catch (e) {}
+    try { inN = JSON.parse(b.dataset.incomingNotes || '{}'); for (const [no, text] of Object.entries(inN)) notes[no] = CrewCore.mergeNoteText(notes[no], text); save(LS_NOTES, notes); } catch (e) {}
+    const uf = {}, mf = {};
+    inc.forEach(n => { uf['picks.' + n] = true; mf['picks.' + n] = true; });
+    for (const no of Object.keys(inV)) { uf['verdicts.' + no] = verdicts[no]; mf['verdicts.' + no] = verdicts[no]; }
+    for (const no of Object.keys(inN)) { uf['notes.' + no] = notes[no]; if (shared[no]) mf['notes.' + no] = notes[no]; }
+    if (Object.keys(uf).length) syncChange(uf, mf);
     history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return;
   }
   if ('dismiss' in d) { if (/(?:^#|&)(picks|verdicts|notes)=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
