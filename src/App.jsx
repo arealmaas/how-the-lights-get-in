@@ -1,8 +1,29 @@
-// src/App.jsx — Task 4 fills this in; for now the masthead title so the smoke test has something to find
+// src/App.jsx — the shell: masthead, toolbar, banner, now & next, the list or grid by view, footer.
+// The sheet (Task 5) and the hash-route boot (Task 5) are not wired in yet.
+import Masthead from './ui/Masthead.jsx';
+import Toolbar from './ui/Toolbar.jsx';
+import Banner from './ui/Banner.jsx';
+import NowNext from './ui/NowNext.jsx';
+import EventList from './ui/EventList.jsx';
+import EventGrid from './ui/EventGrid.jsx';
+import Footer from './ui/Footer.jsx';
+import {usePlanner} from './store/planner.js';
+import {useFiltered} from './ui/useFiltered.js';
+
 export default function App(){
+  const view = usePlanner(s => s.view);
+  const {list, clashes} = useFiltered();
+
   return (
-    <header className="mast"><div className="mast-inner"><div className="brand">
-      <h1>HowTheLightGetsIn <span>London 2026</span></h1>
-    </div></div></header>
+    <>
+      <Masthead />
+      <Toolbar clashes={clashes} shown={list.length} />
+      <Banner />
+      <NowNext />
+      <main id="main">
+        {view === 'grid' ? <EventGrid list={list} clashes={clashes} /> : <EventList list={list} clashes={clashes} />}
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -12,6 +12,7 @@ export const BRIEF_NOTE = briefingsRaw._meta.note;
 export const MEDIA = {acts: mediaRaw.acts, films: mediaRaw.films};
 export const PLAYLIST = mediaRaw._meta.playlist;
 export const PUBLIC_URL = 'https://htlgi-planner.firebaseapp.com/';
+export const EXTRACTED_AT = programme.meta.extractedAt;   // ISO string; the footer formats it for display
 
 export const byNo = new Map(EVENTS.map(e => [e.eventNo, e]));
 export const spkBySlug = new Map(SPEAKERS.filter(s => s.slug).map(s => [s.slug, s]));
