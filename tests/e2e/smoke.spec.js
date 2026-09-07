@@ -1,4 +1,6 @@
 import {test, expect} from '@playwright/test';
+import programme from '../../programme.json' with {type: 'json'};
+
 test('the programme renders, filters and picks work', async ({page}) => {
   await page.goto('/');
   await expect(page.getByRole('heading', {level: 1})).toContainText('HowTheLightGetsIn');
@@ -16,4 +18,31 @@ test('the programme renders, filters and picks work', async ({page}) => {
   await expect(page.locator('table.grid')).toBeVisible();
   await page.reload();
   await expect(page.locator('[data-count-picks]')).toHaveText('1');   // persisted
+});
+
+test('opening the first card shows the dialog with its title; a note survives closing and reopening it', async ({page}) => {
+  await page.goto('/');
+  const firstTitle = await page.locator('article.ev .ev-title').first().textContent();
+  await page.locator('article.ev').first().click();
+
+  const dialog = page.locator('#sheet');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('#sheet-title')).toHaveText(firstTitle);
+
+  const note = dialog.locator('textarea.notes');
+  await note.fill('a thought worth keeping');
+  await page.locator('#close').click();
+  await expect(dialog).toBeHidden();
+
+  await page.locator('article.ev').first().click();
+  await expect(dialog.locator('textarea.notes')).toHaveValue('a thought worth keeping');
+});
+
+test('visiting #event= opens the dialog on that event', async ({page}) => {
+  const title = programme.events.find(e => e.eventNo === 6).title;
+  await page.goto('/#event=6');
+
+  const dialog = page.locator('#sheet');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('#sheet-title')).toHaveText(title);
 });
