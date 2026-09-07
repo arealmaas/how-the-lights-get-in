@@ -1162,6 +1162,7 @@ function accountCard(){
     const google = `<button type="button" class="btn primary" data-auth-google>Continue with Google</button>`;
     const email = `<button type="button" class="btn" data-auth-email>Use email and password</button>`;
     return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Keep your picks, verdicts and notes on every device, and join a crew.</span>
+      <span class="hc-d">Where this is stored and who sees it: <button type="button" class="linkbtn" data-privacy>privacy</button>.</span>
       <div class="actions">${STANDALONE && IOS ? email + google : google + email}</div>
       ${STANDALONE && IOS ? '<span class="hc-d">In the installed app, email and password is the reliable way in.</span>' : ''}
       <form class="authform" data-auth-form hidden>
@@ -1173,7 +1174,7 @@ function accountCard(){
       </form></div>`;
   }
   const hasPw = user.providerData.some(p => p.providerId === 'password');
-  return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Signed in as <b>${esc(accountName)}</b>${user.email ? ` · ${esc(user.email)}` : ''}. Your picks, verdicts and notes follow this account.</span>
+  return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Signed in as <b>${esc(accountName)}</b>${user.email ? ` · ${esc(user.email)}` : ''}. Your picks, verdicts and notes follow this account. Where this is stored and who sees it: <button type="button" class="linkbtn" data-privacy>privacy</button>.</span>
     <div class="actions"><button type="button" class="btn" data-auth-name>Change name</button>${hasPw ? '' : '<button type="button" class="btn" data-auth-addpw>Add a password</button>'}<button type="button" class="btn" data-auth-signout>Sign out</button><button type="button" class="btn" data-auth-clear>Sign out and clear this device</button><button type="button" class="btn" data-auth-delete>Delete account</button></div>
     <form class="authform" data-auth-form hidden><input type="email" name="email" value="${esc(user.email || '')}" placeholder="Email" autocomplete="email"><input type="password" name="password" placeholder="New password (8 or more characters)" autocomplete="new-password" minlength="8"><div class="actions"><button type="button" class="btn primary" data-auth-link>Save password</button></div><p class="src" data-auth-msg></p></form></div>`;
 }
@@ -1386,6 +1387,7 @@ document.addEventListener('click', ev => {
   if ('hub' in d || 'share' in d) { showHub(); return; }
   if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
+  if ('privacy' in d) { closeSheet(); document.getElementById('privacy').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('copyLink' in d) { const inp = document.getElementById('picklink'); if (inp) inp.select(); try { navigator.clipboard.writeText(picksLink()).then(() => { t.textContent = 'Copied'; setTimeout(() => { t.textContent = 'Copy'; }, 2000); }, () => {}); } catch (e) {} return; }
   if (d.verdict) { const no = +d.verdict; verdicts[no] = verdicts[no] === d.who ? undefined : d.who; if (!verdicts[no]) delete verdicts[no]; save(LS_VERDICTS, verdicts); syncChange({['verdicts.' + no]: verdicts[no] || DEL()}, {['verdicts.' + no]: verdicts[no] || DEL()}); notesDirty = true; t.parentElement.querySelectorAll('[data-verdict]').forEach(b => b.setAttribute('aria-pressed', b.dataset.who === verdicts[no])); return; }
   if (d.tab) { t.closest('.sheet-body').querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === d.tab)); t.closest('.sheet-body').querySelectorAll('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== d.tab; }); document.getElementById('sheet-body').scrollTop = 0; return; }
