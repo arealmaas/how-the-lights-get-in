@@ -1,0 +1,26 @@
+# Builds every pull request from this repository and publishes it to a Firebase Hosting preview channel.
+# The action comments the preview URL on the PR; previews expire after 7 days unless redeployed.
+name: Preview on pull request
+
+on:
+  pull_request:
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the preview (ribbon + noindex)
+        run: sh scripts/assemble-site.sh _site "PR #${{ github.event.number }}"
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
+          projectId: htlgi-planner
+          expires: 7d
