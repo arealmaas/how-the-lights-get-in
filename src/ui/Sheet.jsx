@@ -7,6 +7,9 @@ import {useSheet} from '../store/sheet.js';
 import EventSheet from './sheets/EventSheet.jsx';
 import SpeakerSheet from './sheets/SpeakerSheet.jsx';
 import ActSheet from './sheets/ActSheet.jsx';
+import HubSheet from './sheets/HubSheet.jsx';
+import StatsSheet from './sheets/StatsSheet.jsx';
+import ReadingSheet from './sheets/ReadingSheet.jsx';
 
 export default function Sheet(){
   const stack = useSheet(s => s.stack);
@@ -37,7 +40,9 @@ export default function Sheet(){
     if (top.kind === 'event') body = <EventSheet key={top.key} no={top.key} />;
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
-    // hub/reading/stats sheets arrive in Task 6.
+    else if (top.kind === 'hub') body = <HubSheet key={top.key} />;
+    else if (top.kind === 'stats') body = <StatsSheet key={top.key} />;
+    else if (top.kind === 'reading') body = <ReadingSheet key={top.key} />;
   }
 
   return (

@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test';
 import programme from '../../programme.json' with {type: 'json'};
+import {encodeNotesParam} from '../../src/core/notes.js';
 
 test('the programme renders, filters and picks work', async ({page}) => {
   await page.goto('/');
@@ -45,4 +46,22 @@ test('visiting #event= opens the dialog on that event', async ({page}) => {
   const dialog = page.locator('#sheet');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#sheet-title')).toHaveText(title);
+});
+
+test('an import link banners picks/verdicts/notes; accepting adds them and they show on the event', async ({page}) => {
+  const {param} = encodeNotesParam({6: 'a note carried by the link'});
+  await page.goto(`/#picks=3,6&verdicts=6:Draw&notes=${param}`);
+
+  const addButton = page.getByRole('button', {name: 'Add them to mine'});
+  await expect(addButton).toBeVisible();
+  await addButton.click();
+  await expect(addButton).toBeHidden();
+
+  await expect(page.locator('[data-count-picks]')).toHaveText('2');
+
+  await page.goto('/#event=6');
+  const dialog = page.locator('#sheet');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('button', {name: 'Draw', exact: true})).toHaveAttribute('aria-pressed', 'true');
+  await expect(dialog.locator('textarea.notes')).toHaveValue('a note carried by the link');
 });
