@@ -39,7 +39,7 @@ const LS_ACCOUNT = 'htlgi-l26-account', LS_CREW_CACHE = 'htlgi-l26-crew-cache', 
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com', providerData: [], metadata: {}};
 const future = () => ({toMillis: () => Date.now() + 864e5});
 const member = (uid, name, extra = {}) => ({uid, name, joinedAt: 1, picks: {}, verdicts: {}, notes: {}, ...extra});
-const inCrew = over => ({id: 'c1', name: 'The Heath Three', createdBy: 'u1', members: [member('u1', 'Are')], invites: [], removed: [], syncedAt: 1, live: true, ...over});
+const inCrew = over => ({id: 'c1', name: 'The Heath Three', createdBy: 'u1', members: [member('u1', 'Are')], invites: [], removed: [], syncedAt: 1, live: true, invitesLive: true, ...over});
 
 beforeEach(() => {
   vi.resetModules();
@@ -132,7 +132,7 @@ test('a cached members snapshot without your own document is not removal, and ne
 
   expect(useCloud.getState().crew).not.toBeNull();
   expect(useCloud.getState().crew.live).toBe(false);
-  expect(useCloud.getState().crew.members).toEqual([{uid: 'u2', name: 'Kari', joinedAt: 0, picks: {3: true}, verdicts: {}, notes: {}}]);
+  expect(useCloud.getState().crew.members).toEqual([{uid: 'u2', name: 'Kari', joinedAt: 0, updatedAt: 0, picks: {3: true}, verdicts: {}, notes: {}}]);
   expect(useBanner.getState().banner).toBeNull();
 });
 
@@ -205,6 +205,29 @@ test('acceptJoin with a live invite batches the member and the pointer, then dro
   expect(H.F.updateDoc).toHaveBeenCalledWith('crews/c2/members/u1', {invite: 'DELETE_FIELD', updatedAt: 'TS'});
   expect(sessionStorage.getItem(SS_JOIN)).toBeNull();
   expect(useBanner.getState().banner).toBeNull();
+});
+
+// The rules' verdict on the invite (revoked between the read and the write, a block record, a crew closed
+// in the meantime) is final: the pending join goes. Every other failure is worth trying again.
+test('acceptJoin drops the invite when the rules refuse it, and keeps it when the connection does', async () => {
+  const pend = () => sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
+  pend();
+  const {useBanner, crew} = await setup();
+  H.F.getDoc.mockResolvedValue({exists: () => true, data: () => ({crewName: 'Theirs', createdByName: 'Kari', revoked: false, expiresAt: future()})});
+  H.F.writeBatch.mockImplementationOnce(() => ({set: vi.fn(), update: vi.fn(), delete: vi.fn(), commit: vi.fn(async () => { throw {code: 'permission-denied'}; })}));
+
+  await crew.acceptJoin();
+
+  expect(useBanner.getState().banner.text).toBe('This invite link no longer works; ask for a new one.');
+  expect(sessionStorage.getItem(SS_JOIN)).toBeNull();
+
+  pend();
+  H.F.writeBatch.mockImplementationOnce(() => ({set: vi.fn(), update: vi.fn(), delete: vi.fn(), commit: vi.fn(async () => { throw {code: 'unavailable'}; })}));
+
+  await crew.acceptJoin();
+
+  expect(useBanner.getState().banner.text).toBe('Couldn’t join right now; try again when you’re online.');
+  expect(sessionStorage.getItem(SS_JOIN)).not.toBeNull();   // the same tap will work later
 });
 
 test('offerJoin asks the signed-out visitor to sign in, and says so when the invite is for the crew you are in', async () => {
@@ -337,6 +360,108 @@ test('closeCrew refuses on a crew that is only the cache, and closes once a serv
   expect(H.batches[0].delete).toHaveBeenCalledWith('crews/c1/invites/' + 'a'.repeat(22));
 });
 
+// The invites arrive on their own listener, so a members snapshot says nothing about how many invites are
+// out: closing before the invites have been listed by the server would leave the ones it never saw behind.
+test('closeCrew waits for the invites listener’s first server snapshot as well', async () => {
+  const {useCloud, useBanner, crew} = await setup({crew: inCrew({live: true, invitesLive: false})});
+
+  expect(await crew.closeCrew(true)).toBe(false);
+  expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  expect(H.batches).toHaveLength(0);
+
+  crew.subscribeCrew('c1');
+  useCloud.getState().patch({crewId: 'c1'});
+  const onInvites = H.F.onSnapshot.mock.calls[2][1];
+  onInvites({metadata: {fromCache: true}, docs: []});
+  expect(useCloud.getState().crew.invitesLive).toBe(false);
+  onInvites({metadata: {fromCache: false}, docs: [{id: 'a'.repeat(22), data: () => ({revoked: false})}]});
+  expect(useCloud.getState().crew.invitesLive).toBe(true);
+
+  useCloud.getState().patch({crew: {...useCloud.getState().crew, live: true, createdBy: 'u1', members: [member('u1', 'Are')]}});
+  expect(await crew.closeCrew(true)).toBe(true);
+  expect(H.batches[0].delete).toHaveBeenCalledWith('crews/c1/invites/' + 'a'.repeat(22));
+});
+
+// Nobody should answer "yes, remove them" and only then be told to try again in a moment: the readiness
+// check comes before the confirmation, as it does for leaving.
+test('the destructive actions check they can write before they ask', async () => {
+  vi.stubGlobal('confirm', vi.fn(() => true));
+  const {useBanner, crew} = await setup({loadFb: false, crew: inCrew({members: [member('u1', 'Are'), member('u2', 'Kari')]})});
+
+  crew.removeMember('u2');
+  crew.makeOwner('u2');
+  expect(await crew.closeCrew(false)).toBe(false);
+
+  expect(confirm).not.toHaveBeenCalled();
+  expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  expect(H.batches).toHaveLength(0);
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
+});
+
+test('a crew painted from the cache is not one to remove people from either', async () => {
+  const {useBanner, crew} = await setup({crew: inCrew({live: false, members: [member('u1', 'Are'), member('u2', 'Kari')]})});
+
+  crew.removeMember('u2');
+  expect(confirm).not.toHaveBeenCalled();
+  expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  expect(H.batches).toHaveLength(0);
+});
+
+test('the three crew listeners count their snapshots, and members carry their last sync time', async () => {
+  const {useCloud, crew} = await setup();
+  crew.subscribeCrew('c1');
+  useCloud.getState().patch({crewId: 'c1'});
+  const [onCrew, onMembers, onInvites] = [0, 1, 2].map(i => H.F.onSnapshot.mock.calls[i][1]);
+
+  onCrew({exists: () => true, data: () => ({name: 'The Heath Three', createdBy: 'u1', deleted: false})});
+  onMembers({metadata: {fromCache: false}, docs: [{id: 'u1', data: () => ({name: 'Are', picks: {3: true}, updatedAt: {toMillis: () => 1758288300000}})}]});
+  onInvites({metadata: {fromCache: false}, docs: []});
+
+  expect(useCloud.getState().stats.snapshots).toBe(3);
+  expect(useCloud.getState().crew.members[0].updatedAt).toBe(1758288300000);
+});
+
+test('an invites listener error is logged rather than swallowed', async () => {
+  const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+  const {crew} = await setup();
+  crew.subscribeCrew('c1');
+
+  H.F.onSnapshot.mock.calls[2][2]({code: 'unavailable'});
+
+  expect(warn).toHaveBeenCalledWith('crew invites', {code: 'unavailable'});
+  warn.mockRestore();
+});
+
+// The invite is already written by the time the share sheet opens, so a sheet that fails or is dismissed
+// must not leave the link nowhere: it falls through to the copy banner.
+test('shareLink falls back to the copy banner when the share sheet rejects', async () => {
+  H.platform.PHONE = true;
+  const share = vi.fn(async () => { throw new Error('NotAllowedError'); });
+  vi.stubGlobal('navigator', {...navigator, share, onLine: true});
+  const {useBanner, crew} = await setup({crew: inCrew()});
+
+  crew.shareLink('https://example.test/#join=c1.' + 'a'.repeat(22));
+  await vi.waitFor(() => expect(useBanner.getState().banner).not.toBeNull());
+
+  expect(share).toHaveBeenCalled();
+  expect(useBanner.getState().banner.input).toBe('https://example.test/#join=c1.' + 'a'.repeat(22));
+  expect(useBanner.getState().banner.actions.map(a => a.label)).toEqual(['Copy', 'Close']);
+});
+
+test('a share sheet that works says nothing more', async () => {
+  H.platform.PHONE = true;
+  const share = vi.fn(async () => {});
+  vi.stubGlobal('navigator', {...navigator, share, onLine: true});
+  const {useBanner, crew} = await setup({crew: inCrew()});
+
+  crew.shareLink('https://example.test/#join=c1.' + 'a'.repeat(22));
+  await Promise.resolve();
+  await Promise.resolve();
+
+  expect(share).toHaveBeenCalled();
+  expect(useBanner.getState().banner).toBeNull();
+});
+
 // Every write is offered from the first paint (the card no longer waits for `user`), so each one has to
 // answer for itself when the SDK chunk has not arrived — offline, or in the second before it loads.
 test('the crew actions say so instead of throwing when the SDK is not loaded', async () => {
@@ -448,7 +573,7 @@ test('hydrateCrewCache paints the cached crew on boot, but only for a device wit
   localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
   crew.hydrateCrewCache();
   expect(useCloud.getState().crewId).toBe('c1');
-  expect(useCloud.getState().crew).toEqual({...cached, invites: [], removed: [], live: false});
+  expect(useCloud.getState().crew).toEqual({...cached, invites: [], removed: [], live: false, invitesLive: false});
 });
 
 // The overlay and the card work from the cached crew before the SDK produces a `user`; the account marker

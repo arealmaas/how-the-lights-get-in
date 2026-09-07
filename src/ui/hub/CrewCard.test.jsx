@@ -70,6 +70,19 @@ test('in a crew: the name, the sync state, members with colours, pick counts, "(
   expect(rows[1].querySelector('.cname').textContent).toBe('Kari Nordmann');
 });
 
+// CREW-SPEC section 7: "each member's pick count and last sync time". The member documents carry an
+// updatedAt; a member whose document has not been written since joining has none, and says nothing.
+test('a member with an updatedAt shows when they last synced, beside their pick count', () => {
+  const at = Date.parse('2026-09-19T13:45:00Z');
+  useCloud.setState({crew: {...CREW, members: [{...member('u1', 'Are Almaas', {3: true, 6: true}), updatedAt: at}, member('u2', 'Kari Nordmann', {3: true})]}});
+  render(<CrewCard />);
+
+  const rows = [...document.querySelectorAll('.members li')];
+  expect(rows[0].querySelector('.cpicks').textContent).toBe('2 picks · synced ' + new Date(at).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'}));
+  expect(rows[0].querySelector('.cpicks').textContent).toMatch(/ · synced \d\d:\d\d$/);
+  expect(rows[1].querySelector('.cpicks').textContent).toBe('1 picks');
+});
+
 test('a crew that has not synced since the SDK failed says when it last did', () => {
   useCloud.setState({crew: {...CREW, live: false}});
   const {rerender} = render(<CrewCard />);

@@ -42,6 +42,7 @@ beforeEach(() => {
   sessionStorage.clear();
   H.F.getDocFromServer.mockReset();
   H.F.setDoc.mockReset().mockResolvedValue(undefined);
+  H.F.updateDoc.mockReset().mockResolvedValue(undefined);
   H.F.onSnapshot.mockReset().mockImplementation(() => () => {});
   H.batch.commit.mockReset().mockResolvedValue(undefined);
 });
@@ -116,6 +117,38 @@ test('(d) a document and no marker merges, writes the merge up and says how many
   expect(H.F.setDoc.mock.calls[0][1]).toMatchObject({name: 'Remote name', picks: {3: true, 41: true}, v: 1});
   expect(useCloud.getState().accountName).toBe('Remote name');
   expect(useBanner.getState().banner.text).toBe('Merged 1 pick from this device into your account.');
+});
+
+// The merge writes the account, and the account is in a crew: the member projection is a copy of it, so it
+// has to be brought up to the merged state too — otherwise this device's picks stay invisible to the crew
+// until the next toggle. Separate from the setDoc, because the member rule reads `shared` off the user
+// document with getAfter() and that has to be the merged map by then.
+test('(d2) a merge while the account is in a crew brings the member projection up with it', async () => {
+  const {sync} = await setup({local: {picks: new Set([3]), notes: {6: 'mine', 41: 'private'}, shared: {6: true}}});
+  H.F.getDocFromServer.mockResolvedValue({exists: () => true, data: () => ({
+    name: 'Remote name', crew: 'c1', picks: {41: true}, verdicts: {6: 'Draw'}, notes: {}, shared: {},
+  })});
+
+  await sync.afterSignIn(USER);
+
+  expect(H.F.updateDoc).toHaveBeenCalledTimes(1);
+  expect(H.F.updateDoc).toHaveBeenCalledWith('crews/c1/members/u1', {
+    name: 'Remote name', picks: {3: true, 41: true}, verdicts: {6: 'Draw'}, notes: {6: 'mine'}, updatedAt: 'TS',
+  });
+  // the projection carries only the notes the merged `shared` map names — the rules refuse any other key
+  expect(H.F.updateDoc.mock.calls[0][1].notes[41]).toBeUndefined();
+  // written after the account, never before: `shared` has to be on the server first
+  expect(H.F.setDoc.mock.invocationCallOrder[0]).toBeLessThan(H.F.updateDoc.mock.invocationCallOrder[0]);
+});
+
+test('(d3) a merge with no crew pointer writes no member document', async () => {
+  const {sync} = await setup({local: {picks: new Set([3])}});
+  H.F.getDocFromServer.mockResolvedValue({exists: () => true, data: () => ({name: 'Remote name', picks: {41: true}})});
+
+  await sync.afterSignIn(USER);
+
+  expect(H.F.setDoc).toHaveBeenCalledTimes(1);
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
 });
 
 test('(e) a document and a foreign marker replaces: nothing is written up, the snapshot decides', async () => {
@@ -205,4 +238,82 @@ test('a change while in a crew writes the member projection in the same batch', 
   expect(H.batch.update).toHaveBeenNthCalledWith(1, 'users/u1', {'notes.6': 'mine', 'shared.6': 'DELETE_FIELD', updatedAt: 'TS'});
   expect(H.batch.update).toHaveBeenNthCalledWith(2, 'crews/c1/members/u1', {'notes.6': 'DELETE_FIELD', updatedAt: 'TS'});
   expect(H.batch.commit).toHaveBeenCalledTimes(1);
+});
+
+// A batch is atomic, so a member write the rules refuse would take the account write with it: the pick made
+// offline after a removal, or a queued change replayed against a crew this account has left, would be gone
+// from the account too. The account half is always allowed, so it goes up on its own.
+test('a batch the rules refuse still writes the account half, and the crew hears about it once', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, sync, crew} = await setup();
+  useCloud.getState().patch({crewId: 'c1'});
+  H.batch.commit.mockRejectedValueOnce({code: 'permission-denied'});
+
+  sync.change({'picks.3': true}, {'picks.3': true});
+  await vi.waitFor(() => expect(H.F.updateDoc).toHaveBeenCalledTimes(1));
+
+  expect(H.F.updateDoc).toHaveBeenCalledWith('users/u1', {'picks.3': true, updatedAt: 'TS'});
+  expect(crew.onDenied).toHaveBeenCalledTimes(1);
+});
+
+test('a batch that fails for any other reason is not retried on its own', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, sync, crew} = await setup();
+  useCloud.getState().patch({crewId: 'c1'});
+  H.batch.commit.mockRejectedValueOnce({code: 'unavailable'});
+
+  sync.change({'picks.3': true}, {'picks.3': true});
+  await vi.waitFor(() => expect(H.batch.commit).toHaveBeenCalledTimes(1));
+  await Promise.resolve();
+
+  expect(H.F.updateDoc).not.toHaveBeenCalled();   // Firestore's own queue will send this one again
+  expect(crew.onDenied).not.toHaveBeenCalled();
+});
+
+test('a change outside a crew that is refused is not retried either: there was nothing coupled to it', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {sync} = await setup();
+  H.batch.commit.mockRejectedValueOnce({code: 'permission-denied'});
+
+  sync.change({'picks.3': true}, null);
+  await vi.waitFor(() => expect(H.batch.commit).toHaveBeenCalledTimes(1));
+  await Promise.resolve();
+
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
+});
+
+// CREW-SPEC section 6, "Failure modes": permission-denied on the user document cannot happen with these
+// rules unless the account is gone, so it is the "deleted elsewhere" case and not a crew removal. Only the
+// write path can be denied for a crew reason.
+test('permission-denied on the user listener stops sync; on a write it is the crew that is gone', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, useBanner, sync, crew} = await setup();
+  useCloud.getState().patch({crewId: 'c1'});
+
+  await sync.afterSignIn(USER);
+  const onError = H.F.onSnapshot.mock.calls[0][2];
+  onError({code: 'permission-denied'});
+
+  expect(useCloud.getState().syncStopped).toBe(true);
+  expect(useBanner.getState().banner.text).toContain('deleted on another device');
+  expect(localStorage.getItem(LS_ACCOUNT)).toBeNull();
+  expect(crew.onDenied).not.toHaveBeenCalled();
+
+  // the same code from a commit is the crew's answer, not the account's
+  useCloud.getState().patch({crewId: 'c1'});
+  sync.syncError({code: 'permission-denied'});
+  expect(crew.onDenied).toHaveBeenCalledTimes(1);
+});
+
+test('any other listener error is reported, not treated as a deletion', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, sync} = await setup();
+
+  await sync.afterSignIn(USER);
+  const onError = H.F.onSnapshot.mock.calls[0][2];
+  onError({code: 'resource-exhausted'});
+
+  expect(useCloud.getState().syncStopped).toBe(false);
+  expect(useCloud.getState().syncPaused).toBe(true);
+  expect(localStorage.getItem(LS_ACCOUNT)).not.toBeNull();
 });

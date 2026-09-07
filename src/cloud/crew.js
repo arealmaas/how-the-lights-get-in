@@ -15,7 +15,7 @@ import {projectForCrew} from '../core/crew.js';
 import {CLOUD, PUBLIC_URL} from '../data/index.js';
 import {getFb, authMessage} from './auth.js';
 import {IOS, PHONE, STANDALONE} from './platform.js';
-import {change, userRef, accountMarker} from './sync.js';
+import {change, userRef, accountMarker, bump} from './sync.js';
 
 export const LS_CREW_CACHE = 'htlgi-l26-crew-cache';   // the overlay that renders before the SDK loads
 export const SS_JOIN = 'htlgi-l26-join';               // the pending invite, for an hour
@@ -36,8 +36,13 @@ const memberRef = (id, uid) => { const fb = getFb(); return fb.F.doc(fb.db, 'cre
 // The card and its actions are on screen from the moment hydrateCrewCache() paints the cached crew, which
 // is before the SDK chunk has loaded and, on an offline start, instead of it. Every writer below says this
 // rather than throwing on getFb().F; closeCrew says it too, because a cache-only crew has no invite or
-// block records to delete and closing on that list would orphan them.
-const NOT_READY = 'Still connecting; try again in a moment.';
+// block records to delete and closing on that list would orphan them. auth.js says it as well, for a
+// delete that cannot yet tell whether this account owns its crew.
+export const NOT_READY = 'Still connecting; try again in a moment.';
+// The writes that act on other people's documents all need a crew the server has confirmed, not one
+// painted from the cache: `live` says the members list came from a server snapshot. Asked before the
+// confirmation dialog, so nobody answers "yes, remove them" and is only then told to try again.
+const ready = () => { const {crew} = st(); return !!(getFb() && navigator.onLine && crew && crew.live); };
 
 export function crewOwnedByMe(){ const {crew, user} = st(); return !!(crew && user && crew.createdBy === user.uid); }
 // Identity, not session: on a cold or offline start the account marker is who I am (see selectMyUid), so
@@ -56,7 +61,7 @@ function saveCrewCache(){
 export function hydrateCrewCache(){
   if (!CLOUD || !accountMarker()) return;
   const c = load(LS_CREW_CACHE, null);
-  if (c && c.id) st().patch({crewId: c.id, crew: {...c, invites: [], removed: [], live: false}});
+  if (c && c.id) st().patch({crewId: c.id, crew: {...c, invites: [], removed: [], live: false, invitesLive: false}});
 }
 
 // ---------- subscriptions ----------
@@ -86,13 +91,14 @@ export function subscribeCrew(id){
   const {F} = fb;
   const cached = load(LS_CREW_CACHE, null);
   st().patch({crew: cached && cached.id === id
-    ? {...cached, invites: [], removed: [], live: false}
-    : {id, name: '', createdBy: '', members: [], invites: [], removed: [], syncedAt: null, live: false}});
+    ? {...cached, invites: [], removed: [], live: false, invitesLive: false}
+    : {id, name: '', createdBy: '', members: [], invites: [], removed: [], syncedAt: null, live: false, invitesLive: false}});
   const opts = {serverTimestamps: 'estimate'};
   // a snapshot that arrives after crewGone() or a re-subscribe belongs to a crew we no longer hold
   const alive = () => { const c = st().crew; return !!c && c.id === id; };
 
   crewUnsubs.push(F.onSnapshot(crewRef(id), s => {
+    bump('snapshots');
     if (!s.exists() || !alive()) return;
     const d = s.data();
     if (d.deleted) { crewGone('The crew was closed.'); return; }
@@ -108,10 +114,14 @@ export function subscribeCrew(id){
   }, crewError));
 
   crewUnsubs.push(F.onSnapshot(F.collection(fb.db, 'crews', id, 'members'), s => {
+    bump('snapshots');
     if (!alive()) return;
+    // updatedAt is what the card's per-member "synced 13:45" reads (CREW-SPEC section 7). It is a server
+    // timestamp, so it is null in the snapshot that echoes a member's own pending write; serverTimestamps:
+    // 'estimate' fills that in with the local clock rather than showing nothing.
     const ms = s.docs.map(x => {
       const d = x.data(opts);
-      return {uid: x.id, name: d.name || '', joinedAt: d.joinedAt ? d.joinedAt.toMillis() : 0, picks: d.picks || {}, verdicts: d.verdicts || {}, notes: d.notes || {}};
+      return {uid: x.id, name: d.name || '', joinedAt: d.joinedAt ? d.joinedAt.toMillis() : 0, updatedAt: d.updatedAt ? d.updatedAt.toMillis() : 0, picks: d.picks || {}, verdicts: d.verdicts || {}, notes: d.notes || {}};
     }).sort((a, b) => a.joinedAt - b.joinedAt);
     // removal, detected the first way (CREW-SPEC section 3): a server snapshot without your own document
     const {user} = st();
@@ -120,9 +130,12 @@ export function subscribeCrew(id){
     saveCrewCache();
   }, crewError));
 
+  // invitesLive is what closeCrew waits for: until a server snapshot has listed the invites, the ones this
+  // client knows about are whatever the cache held, and closing on that list would leave the rest behind.
   crewUnsubs.push(F.onSnapshot(F.collection(fb.db, 'crews', id, 'invites'), s => {
-    if (alive()) patchCrew({invites: s.docs.map(x => ({token: x.id, ...x.data(opts)}))});
-  }, () => {}));
+    bump('snapshots');
+    if (alive()) patchCrew({invites: s.docs.map(x => ({token: x.id, ...x.data(opts)})), invitesLive: !s.metadata.fromCache});
+  }, e => console.warn('crew invites', e)));
 }
 
 function crewError(e){
@@ -195,14 +208,14 @@ export async function leaveCrew(silent){
 export async function closeCrew(silent){
   const {crew, user} = st();
   if (!crew || !user) return false;
-  if (!silent && !confirm(`Close ${crew.name} for everyone? Members keep their own picks and notes.`)) return false;
   if (!navigator.onLine) { okBanner('Closing a crew needs a connection.'); return false; }
-  const fb = getFb();
   // A crew painted from the cache carries no invites and no block records (hydrateCrewCache stores neither),
   // so closing on that list would tombstone the crew and leave those documents behind, readable by nobody
-  // and deletable by nobody. Wait for a server snapshot.
-  if (!fb || !crew.live) { okBanner(NOT_READY); return false; }
-  const {F} = fb; const id = crew.id;
+  // and deletable by nobody. Wait for a server snapshot of the members *and* of the invites: the invites
+  // arrive on their own listener, and a members snapshot says nothing about how many invites are out.
+  if (!ready() || !crew.invitesLive) { okBanner(NOT_READY); return false; }
+  if (!silent && !confirm(`Close ${crew.name} for everyone? Members keep their own picks and notes.`)) return false;
+  const fb = getFb(); const {F} = fb; const id = crew.id;
   const docs = [
     ...others().map(m => memberRef(id, m.uid)),
     ...crew.invites.map(i => F.doc(fb.db, 'crews', id, 'invites', i.token)),
@@ -233,10 +246,9 @@ export function removeMember(uid){
   const {crew} = st();
   const m = crew && crew.members.find(x => x.uid === uid);
   if (!m) return;
+  if (!ready()) { okBanner(NOT_READY); return; }
   if (!confirm(`Remove ${m.name} from ${crew.name}? Their invite links stop working; you can re-admit them later.`)) return;
-  const fb = getFb();
-  if (!fb) { okBanner(NOT_READY); return; }
-  const {F} = fb;
+  const fb = getFb(); const {F} = fb;
   const b = F.writeBatch(fb.db);
   b.delete(memberRef(crew.id, uid));
   b.set(F.doc(fb.db, 'crews', crew.id, 'removed', uid), {name: m.name, removedAt: F.serverTimestamp(), v: 1});
@@ -256,10 +268,9 @@ export function makeOwner(uid){
   const {crew} = st();
   const m = crew && crew.members.find(x => x.uid === uid);
   if (!m) return;
+  if (!ready()) { okBanner(NOT_READY); return; }
   if (!confirm(`Make ${m.name} the owner of ${crew.name}? You stay a member.`)) return;
-  const fb = getFb();
-  if (!fb) { okBanner(NOT_READY); return; }
-  const {F} = fb;
+  const fb = getFb(); const {F} = fb;
   F.updateDoc(crewRef(crew.id), {createdBy: uid, updatedAt: F.serverTimestamp()}).catch(authMessage);
 }
 
@@ -299,11 +310,7 @@ export function revokeInvite(token){
 export function shareLink(url){
   const {crew} = st();
   const name = crew ? crew.name : 'my crew';
-  if (navigator.share && PHONE) {
-    navigator.share({title: `Join ${name}`, text: `Join my crew “${name}” in the HowTheLightGetsIn planner:`, url}).catch(() => {});
-    return;
-  }
-  showBanner({
+  const banner = () => showBanner({
     text: 'Invite link — anyone with it can join until you revoke it:',
     input: url,
     actions: [
@@ -311,6 +318,12 @@ export function shareLink(url){
       {label: 'Close', onClick: hideBanner},
     ],
   });
+  // The invite is already written by the time we get here, so a share sheet that fails or is dismissed —
+  // iOS rejects with NotAllowedError when the gesture has expired, which the await before this makes
+  // likely — must not leave the link nowhere. Fall through to the copy banner, which is also the whole
+  // non-phone path.
+  if (navigator.share && PHONE) { navigator.share({title: `Join ${name}`, text: `Join my crew “${name}” in the HowTheLightGetsIn planner:`, url}).catch(() => banner()); return; }
+  banner();
 }
 
 // ---------- joining ----------
@@ -377,5 +390,13 @@ export async function acceptJoin(){
     clearJoin();
     hideBanner();
     F.updateDoc(mref, {invite: F.deleteField(), updatedAt: F.serverTimestamp()}).catch(() => {});   // the token need not stay readable by the crew
-  } catch (e) { clearJoin(); okBanner('This invite link no longer works; ask for a new one.'); }
+  } catch (e) {
+    // Only the rules can say the invite is spent (revoked between the read and the write, a block record,
+    // a crew closed in between): that verdict will not change, so the pending join goes with it. Any other
+    // failure — the connection dropped mid-batch, a server error — leaves the invite where it is, because
+    // the same tap will work later. Someone who left a crew to join this one is now in no crew, which is
+    // what the account says and what the card shows; the offer comes back on the next load.
+    if (e && e.code === 'permission-denied') { clearJoin(); okBanner('This invite link no longer works; ask for a new one.'); }
+    else okBanner('Couldn’t join right now; try again when you’re online.');
+  }
 }

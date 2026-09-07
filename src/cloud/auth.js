@@ -164,27 +164,39 @@ export async function reauth(){
     await A.reauthenticateWithPopup(user, new A.GoogleAuthProvider());
     return;
   }
+  // The one window.prompt() left in the app (the Crew and Account cards use the inline NamePrompt form).
+  // It stays: this is the cloud layer, which has no React and must not grow any, and the alternative is a
+  // real modal — a password field the rest of the page cannot be typed into while Firebase waits for the
+  // credential. Worth building if the delete flow ever grows; not worth a component tree for two lines.
   const pw = prompt('Confirm your password to continue');
   if (!pw) throw new Error('Cancelled.');
   await A.reauthenticateWithCredential(user, A.EmailAuthProvider.credential(user.email, pw));
 }
 
+const OWNS_CREW = 'You created your crew: hand it over or close it before deleting your account.';
+
 export async function deleteAccount(){
   let {crewId, user} = useCloud.getState();
-  if (crewId && crew.crewOwnedByMe()) { okBanner('You created your crew: hand it over or close it before deleting your account.'); return; }
+  if (crewId && crew.crewOwnedByMe()) { okBanner(OWNS_CREW); return; }
   if (!confirm('Delete your account and everything stored in it? Picks and notes stay on this device only.')) return;
   if (!confirm('This cannot be undone. Delete the account?')) return;
   const signedInAt = user.metadata && user.metadata.lastSignInTime ? Date.parse(user.metadata.lastSignInTime) : 0;
   if (Date.now() - signedInAt > 4 * 60e3) {   // Firebase demands a recent sign-in for deletion: do it before touching any data
     try { await reauth(); } catch (e) { authMessage(e); return; }
-    // the re-auth is a popup or a prompt: it can take a while, and a snapshot or a sign-out may have
-    // moved the pointer or the session underneath us. Delete what is in the store now, not what was.
-    ({crewId, user} = useCloud.getState());
-    if (!user) return;
-    // the same snapshot may have handed the crew *to* us: the refusal is re-run rather than assumed, or
-    // the owner's member document would go without the tombstone and leave the crew unclosable.
-    if (crewId && crew.crewOwnedByMe()) { okBanner('You created your crew: hand it over or close it before deleting your account.'); return; }
   }
+  // Two confirmations, and possibly a popup or a password prompt, have stood open: a snapshot or a sign-out
+  // may have moved the pointer or the session underneath us. Delete what is in the store now, not what was.
+  const state = useCloud.getState();
+  ({crewId, user} = state);
+  if (!user) return;
+  // The same snapshot may have handed the crew *to* us. The refusal is re-run rather than assumed, whether
+  // or not a re-auth happened, or the owner's member document would go without the tombstone and leave the
+  // crew unclosable by anyone.
+  if (crewId && crew.crewOwnedByMe()) { okBanner(OWNS_CREW); return; }
+  // crewOwnedByMe() reads createdBy off the crew document, so before that document has landed — a cold or
+  // offline start painting the cache, or the second between the pointer and the first snapshot — its "no"
+  // means "not known yet", and deleting on it risks exactly the unclosable crew above. Say so instead.
+  if (crewId && (!state.crew || !state.crew.live || !state.crew.createdBy)) { okBanner(crew.NOT_READY); return; }
   const {A, F} = fb;
   if (deleting) return;
   deleting = true;

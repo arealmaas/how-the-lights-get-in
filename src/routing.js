@@ -5,7 +5,6 @@
 import {byNo, CLOUD} from './data/index.js';
 import {usePlanner} from './store/planner.js';
 import {useSheet} from './store/sheet.js';
-import {useCloud} from './store/cloud.js';
 import {showBanner, hideBanner} from './store/banner.js';
 import {parseImportHash} from './core/exports.js';
 import {parseJoinHash} from './core/crew.js';
@@ -31,9 +30,12 @@ function applyJoinHash(){
   if (!j) return false;
   try { sessionStorage.setItem(SS_JOIN, JSON.stringify({...j, at: Date.now()})); } catch (e) {}
   history.replaceState(null, '', location.pathname + location.search);
-  // reading the invite needs a session, so a signed-out visitor gets the "sign in to join" banner now and
-  // the real offer after sign-in (sync.js calls crew.afterSubscribe() once subscribed)
-  if (CLOUD) loadFirebase().then(() => { if (!useCloud.getState().user) offerJoin(); }).catch(() => {});
+  // Offered as soon as the SDK is there, signed in or not: a signed-out visitor gets the "sign in to join"
+  // banner and the real offer after sign-in (sync.js calls crew.afterSubscribe() once subscribed), while a
+  // tab that is already signed in — the link opened in a running app, arriving through hashchange — has no
+  // sign-in coming and would otherwise see nothing at all. On boot the subscription offers it a second
+  // time; that costs one invite read and no duplicate banner, because showBanner replaces the current one.
+  if (CLOUD) loadFirebase().then(() => offerJoin()).catch(() => {});
   return true;
 }
 

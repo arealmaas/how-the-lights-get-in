@@ -10,9 +10,9 @@ vi.mock('./cloud/sync.js', () => ({change: vi.fn()}));
 vi.mock('./cloud/crew.js', () => ({SS_JOIN: 'htlgi-l26-join', offerJoin: vi.fn()}));
 vi.mock('./cloud/auth.js', () => ({loadFirebase: vi.fn(async () => ({}))}));
 
-import {boot} from './routing.js';
+import {boot, onHashChange} from './routing.js';
 import {useCloud} from './store/cloud.js';
-import {useBanner} from './store/banner.js';
+import {useBanner, showBanner} from './store/banner.js';
 import {loadFirebase} from './cloud/auth.js';
 import {offerJoin} from './cloud/crew.js';
 
@@ -20,6 +20,7 @@ const JOIN = '#join=AbCdEfGhIjKlMnOpQrSt.abcdefghijklmnopqrstu_';
 
 beforeEach(() => {
   vi.clearAllMocks();
+  offerJoin.mockReset();   // clearAllMocks keeps implementations; one test gives offerJoin a banner to show
   loadFirebase.mockResolvedValue({});
   sessionStorage.clear();
   useCloud.setState({user: null});
@@ -38,17 +39,36 @@ test('a signed-out visitor gets the SDK fetched and the join offered once it is 
   expect(JSON.parse(sessionStorage.getItem('htlgi-l26-join')).crew).toBe('AbCdEfGhIjKlMnOpQrSt');
 });
 
-// Someone already signed in is on the sync path: cloud/sync.js calls crew.afterSubscribe() once the crew
-// listeners are up, and that offers the join against a subscription rather than a bare session.
-test('a signed-in visitor loads the SDK but is left to the crew subscription', async () => {
+// A tab that is already signed in when the link arrives — pasted into the address bar of a running app, so
+// hashchange rather than boot — has no sign-in coming and so no afterSubscribe() to offer the join. The
+// offer is unconditional for that reason.
+test('a #join= arriving by hashchange in a signed-in tab is offered', async () => {
+  useCloud.setState({user: {uid: 'u1'}});
+  location.hash = JOIN;
+  onHashChange();
+
+  expect(loadFirebase).toHaveBeenCalledTimes(1);
+  await vi.waitFor(() => expect(offerJoin).toHaveBeenCalledTimes(1));
+  expect(location.hash).toBe('');
+  expect(JSON.parse(sessionStorage.getItem('htlgi-l26-join')).crew).toBe('AbCdEfGhIjKlMnOpQrSt');
+});
+
+// On boot a signed-in visitor is now offered the join twice: here, and again from cloud/sync.js when the
+// crew listeners are up (crew.afterSubscribe()). That is one extra invite read and no second banner — the
+// banner store holds one banner, and showBanner replaces it.
+test('a signed-in visitor on boot is offered the join, and the subscription’s later offer replaces it', async () => {
+  offerJoin.mockImplementation(() => showBanner({text: 'Join Theirs? Invited by Kari.', actions: []}));
   useCloud.setState({user: {uid: 'u1'}});
   location.hash = JOIN;
   boot();
 
-  await loadFirebase.mock.results[0].value;
-  await Promise.resolve();
-  expect(loadFirebase).toHaveBeenCalledTimes(1);
-  expect(offerJoin).not.toHaveBeenCalled();
+  await vi.waitFor(() => expect(offerJoin).toHaveBeenCalledTimes(1));
+  const first = useBanner.getState().banner;
+  offerJoin();   // what afterSubscribe() does a moment later
+  expect(offerJoin).toHaveBeenCalledTimes(2);
+  // the store holds one banner and showBanner replaced it: two offers, one thing on screen
+  expect(useBanner.getState().banner).not.toBe(first);
+  expect(useBanner.getState().banner.text).toBe('Join Theirs? Invited by Kari.');
 });
 
 test('an SDK that cannot be fetched is not an unhandled rejection, and says nothing here', async () => {

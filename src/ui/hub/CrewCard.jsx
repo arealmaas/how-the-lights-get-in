@@ -35,6 +35,8 @@ function NamePrompt({label, initial, onSave, onCancel}){
   );
 }
 
+const hhmm = ms => new Date(ms).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
+
 function CopyButton({url}){
   const [copied, setCopied] = useState(false);
   useEffect(() => {
@@ -80,9 +82,7 @@ export default function CrewCard(){
   const owner = crewOwnedByMe();
   const invites = liveInvites();
   const removed = crew.removed || [];
-  const synced = crew.syncedAt
-    ? (crew.live ? 'live' : 'last synced ' + new Date(crew.syncedAt).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'}))
-    : 'not synced yet';
+  const synced = crew.syncedAt ? (crew.live ? 'live' : 'last synced ' + hhmm(crew.syncedAt)) : 'not synced yet';
 
   return (
     <div className="hub-card crew">
@@ -93,7 +93,7 @@ export default function CrewCard(){
           <li key={m.uid}>
             <i className="cdot" style={memberStyle(i)}>{initials(m.name)}</i>
             <span className="cname">{m.name}{m.uid === myUid ? ' (you)' : ''}{m.uid === crew.createdBy ? ' · owner' : ''}</span>
-            <span className="cpicks">{Object.keys(m.picks || {}).length} picks</span>
+            <span className="cpicks">{Object.keys(m.picks || {}).length} picks{m.updatedAt ? ' · synced ' + hhmm(m.updatedAt) : ''}</span>
             {owner && m.uid !== myUid && (
               <>
                 <button type="button" className="btn small" onClick={() => makeOwner(m.uid)}>Make owner</button>

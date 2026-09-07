@@ -8,6 +8,7 @@ import {useCloud} from '../store/cloud.js';
 import {usePlanner, DEL} from '../store/planner.js';
 import {okBanner} from '../store/banner.js';
 import {mergeState} from '../core/notes.js';
+import {projectForCrew} from '../core/crew.js';
 import {CLOUD} from '../data/index.js';
 import {getFb, isDeleting, authMessage} from './auth.js';
 import * as crew from './crew.js';
@@ -25,8 +26,9 @@ export function setMarker(m){
   if (m) save(LS_ACCOUNT, m); else localStorage.removeItem(LS_ACCOUNT);
   useCloud.getState().patch({marker: m || null});
 }
-// spec section 10, quota sanity: two counters, in the store instead of the old window.htlgiSyncStats
-function bump(k){ const s = useCloud.getState().stats || {writes: 0, snapshots: 0}; useCloud.getState().patch({stats: {...s, [k]: s[k] + 1}}); }
+// spec section 10, quota sanity: two counters, in the store instead of the old window.htlgiSyncStats.
+// crew.js counts its own three listeners through this, so "snapshots" is every snapshot the app receives.
+export function bump(k){ const s = useCloud.getState().stats || {writes: 0, snapshots: 0}; useCloud.getState().patch({stats: {...s, [k]: s[k] + 1}}); }
 
 export const userRef = () => { const fb = getFb(); return fb.F.doc(fb.db, 'users', useCloud.getState().user.uid); };
 
@@ -68,6 +70,17 @@ export async function afterSignIn(u){
     name = (remote.name || name).slice(0, 40);
     useCloud.getState().patch({accountName: name});
     await F.setDoc(ref, {name, ...(remote.crew ? {crew: remote.crew} : {}), picks: m.picks, verdicts: m.verdicts, notes: m.notes, shared: m.shared, updatedAt: F.serverTimestamp(), v: 1});
+    // The merge only wrote the account. While the account is in a crew, the member projection is a copy of
+    // it (CREW-SPEC section 6, "Writes") and would otherwise stay at whatever the crew last saw until the
+    // next toggle — this device's picks would be missing from the crew view. Written after the setDoc has
+    // landed, never in the same batch: the member rule checks the note keys against `shared` on the user
+    // document with getAfter(), which has to be the merged map by then. A removal while we were away makes
+    // this write fail, and that is all it should do: onPointer() clears the pointer from the next snapshot.
+    if (typeof remote.crew === 'string') {
+      F.updateDoc(F.doc(fb.db, 'crews', remote.crew, 'members', u.uid), {
+        name, ...projectForCrew({picks: m.picks, verdicts: m.verdicts, notes: m.notes, shared: m.shared}), updatedAt: F.serverTimestamp(),
+      }).catch(() => {});
+    }
     if (m.added) okBanner(`Merged ${m.added} pick${m.added === 1 ? '' : 's'} from this device into your account.`);
   } else {
     // this device synced with a different account before: the first snapshot replaces local state
@@ -82,15 +95,18 @@ export async function afterSignIn(u){
 
 // ---------- the live user document ----------
 let unsubUser = null;
+// The one honest thing to say when the account is not there any more, whichever way we find out: a snapshot
+// of a missing document, or a listener refused because there is nothing left to read (CREW-SPEC line 273).
+const GONE = 'Your account was deleted on another device. This device keeps its local copy.';
 
 export function subscribeUser(){
   const fb = getFb();
   unsubscribeUser();
   unsubUser = fb.F.onSnapshot(userRef(), snap => {
     bump('snapshots');
-    if (!snap.exists()) { if (!isDeleting()) stopSync('Your account was deleted on another device. This device keeps its local copy.'); return; }
+    if (!snap.exists()) { if (!isDeleting()) stopSync(GONE); return; }
     applyUserData(snap.data());
-  }, err => syncError(err));
+  }, err => userError(err));
 }
 export function unsubscribeUser(){ if (unsubUser) { unsubUser(); unsubUser = null; } }
 
@@ -117,6 +133,17 @@ export function applyUserData(d){
     crewId: d && typeof d.crew === 'string' ? d.crew : null,
   });
   crew.onPointer();
+}
+
+// The user document's own listener. `permission-denied` here is not a crew matter: the rules let the owner
+// read their own document and nobody else's, so the only way to be refused is that the account is gone
+// (CREW-SPEC section 6, "Failure modes": "On the user document: cannot happen with these rules unless the
+// account is gone; treat as 'account deleted elsewhere'"). Saying "you are no longer in this crew" here
+// would be a guess, and a wrong one. Only the write path — change()'s commits and the queue replay — can
+// be denied for a crew reason, and that is what routes to crew.onDenied().
+export function userError(e){
+  if (e && e.code === 'permission-denied') { if (!isDeleting()) stopSync(GONE); return; }
+  syncError(e);
 }
 
 export function syncError(e){
@@ -154,8 +181,20 @@ export function change(userFields, memberFields){
   const fb = getFb(); const {user, crewId} = useCloud.getState();
   if (!fb || !user || !accountMarker()) { if (CLOUD && accountMarker()) queueChange(userFields, memberFields); return; }
   const {F} = fb; const b = F.writeBatch(fb.db);
+  const coupled = !!(crewId && memberFields);
   b.update(userRef(), {...withSentinels(userFields), updatedAt: F.serverTimestamp()});
-  if (crewId && memberFields) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...withSentinels(memberFields), updatedAt: F.serverTimestamp()});
+  if (coupled) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...withSentinels(memberFields), updatedAt: F.serverTimestamp()});
   bump('writes');
-  b.commit().catch(syncError);
+  b.commit().catch(e => {
+    // A batch is all or nothing, so a member write the rules refuse takes the account write down with it:
+    // a pick made offline after a removal, or a queued change replayed against a crew this account has
+    // left, would be lost from the account too. The account half is always allowed — write it on its own,
+    // then let the original error be handled (crew.onDenied() clears the pointer, which stops the coupling
+    // from happening again).
+    const code = (e && e.code) || '';
+    if (coupled && (code === 'permission-denied' || code === 'not-found')) {
+      F.updateDoc(userRef(), {...withSentinels(userFields), updatedAt: F.serverTimestamp()}).catch(() => {});   // the batch's error is reported below; a second banner would say nothing new
+    }
+    syncError(e);
+  });
 }

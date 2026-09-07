@@ -37,6 +37,7 @@ vi.mock('./platform.js', () => H.platform);
 vi.mock('./crew.js', () => ({
   onPointer: vi.fn(), crewOwnedByMe: vi.fn(() => false), unsubscribeCrew: vi.fn(),
   offerJoin: vi.fn(), afterSubscribe: vi.fn(), onDenied: vi.fn(), pendingJoin: vi.fn(() => null),
+  NOT_READY: 'Still connecting; try again in a moment.',
 }));
 vi.mock('../data/index.js', async orig => ({...await orig(), CLOUD: true, FIREBASE: {apiKey: 'test'}}));
 
@@ -274,6 +275,49 @@ test('deleteAccount refuses again when the crew is handed over during the re-aut
   expect(H.batch.delete).not.toHaveBeenCalled();
   expect(H.A.deleteUser).not.toHaveBeenCalled();
   expect(localStorage.getItem(LS_ACCOUNT)).not.toBeNull();
+});
+
+// The crew can be handed over while the two confirmations stand open, with no re-authentication anywhere
+// near: the refusal runs immediately before the batch, not only on the re-auth path.
+test('deleteAccount refuses when the crew is handed over during the confirmations', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, useBanner, auth, crew} = await setup({user: password()});   // signed in a moment ago: no re-auth
+  useCloud.getState().patch({crewId: 'c1', crew: {id: 'c1', createdBy: 'u9', live: true}});
+  confirm.mockImplementationOnce(() => true).mockImplementationOnce(() => {
+    crew.crewOwnedByMe.mockReturnValue(true);
+    useCloud.getState().patch({crew: {id: 'c1', createdBy: 'u1', live: true}});
+    return true;
+  });
+
+  await auth.deleteAccount();
+
+  expect(H.A.reauthenticateWithCredential).not.toHaveBeenCalled();
+  expect(useBanner.getState().banner.text).toMatch(/hand it over or close it/);
+  expect(H.batch.delete).not.toHaveBeenCalled();
+  expect(H.A.deleteUser).not.toHaveBeenCalled();
+  expect(localStorage.getItem(LS_ACCOUNT)).not.toBeNull();
+});
+
+// crewOwnedByMe() reads createdBy off the crew document. Before that document has landed its "no" means
+// "not known yet", and deleting on it could take the owner's member document out without the tombstone.
+test('deleteAccount waits for the crew document rather than guessing at the ownership', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, useBanner, auth, crew} = await setup({user: password()});
+  crew.crewOwnedByMe.mockReturnValue(false);   // a member, as far as anything can tell
+
+  for (const crewState of [null, {id: 'c1', createdBy: 'u9', live: false}, {id: 'c1', createdBy: '', live: true}]) {
+    useCloud.getState().patch({crewId: 'c1', crew: crewState});
+    await auth.deleteAccount();
+    expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+    expect(H.batch.delete).not.toHaveBeenCalled();
+    expect(H.A.deleteUser).not.toHaveBeenCalled();
+    expect(localStorage.getItem(LS_ACCOUNT)).not.toBeNull();
+  }
+
+  useCloud.getState().patch({crew: {id: 'c1', createdBy: 'u9', live: true}});   // a member of a crew we can see
+  await auth.deleteAccount();
+  expect(H.batch.delete).toHaveBeenCalledWith('crews/c1/members/u1');
+  expect(H.batch.delete).toHaveBeenCalledWith('users/u1');
 });
 
 test('deleteAccount on a phone tells a Google user to sign in again, and deletes nothing', async () => {
