@@ -1,0 +1,35 @@
+# Publishes the planner to the gh-pages branch on every push to main.
+# GitHub Pages must be set to serve from gh-pages / root (Settings → Pages → Source: Deploy from a branch).
+# Pull-request previews (pr-preview.yml) live in the same branch under pr-preview/, which this job leaves alone.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the site
+        run: sh scripts/assemble-site.sh _site
+
+      - name: Publish to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site
+          clean: true
+          clean-exclude: pr-preview
+          force: false
+          commit-message: "Deploy ${{ github.sha }}"

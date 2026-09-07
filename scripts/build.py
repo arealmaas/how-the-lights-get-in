@@ -3,10 +3,12 @@
 
     python3 scripts/build.py            # writes programme.json + index.html in the repo root
     python3 scripts/build.py --artifact dist/artifact.html   # additionally writes a body-only copy
+    python3 scripts/build.py --preview "PR #12"              # marks the build as a preview (noindex + ribbon)
 
 data/extract.json is produced by scripts/extract-in-browser.js (see README).
 """
 import hashlib, json, re, sys, unicodedata
+from html import escape
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -243,8 +245,14 @@ def main():
     template = (ROOT / 'scripts' / 'template.html').read_text(encoding='utf-8')
     counts = Counter(e['date'] for e in data['events'])
 
+    # --preview "PR #12": marks the build as a preview (noindex + a small ribbon), used by the pull-request preview workflow
+    preview = sys.argv[sys.argv.index('--preview') + 1] if '--preview' in sys.argv else ''
+    preview_head = '<meta name="robots" content="noindex">' if preview else ''
+    preview_tag = f'<div class="previewtag" role="note">Preview build · {escape(preview)} · not the live site</div>' if preview else ''
+
     def fill(payload):
         h = template.replace('/*__DATA__*/', payload)
+        h = h.replace('__PREVIEW_HEAD__', preview_head).replace('__PREVIEW_TAG__', preview_tag)
         h = h.replace('__EXTRACTED__', datetime.fromisoformat(data['meta']['extractedAt'].replace('Z', '+00:00')).strftime('%-d %B %Y'))
         h = h.replace('__COUNT_SAT__', str(counts.get('2026-09-19', 0))).replace('__COUNT_SUN__', str(counts.get('2026-09-20', 0)))
         h = h.replace('__TOTAL__', str(len(data['events']))).replace('__SPEAKERS__', str(len(data['speakers']))).replace('__ACTS__', str(len(data['acts'])))

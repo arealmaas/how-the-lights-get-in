@@ -12,14 +12,14 @@ This is an **unofficial, fan-made** planner. It is not affiliated with, endorsed
 
 - **List view** grouped by start time, and a **grid view** (venues across, times down) for spotting clashes.
 - Filters by day, strand (debates, talks, music & comedy, cinema, Inner Circle, children's), venue and topic, plus free-text search across titles, speakers and descriptions.
-- **Picks**: star events; the list is stored in the browser and can be shared or moved to another device with *Copy link to my picks* (`#picks=…`). A link with `#event=<number>` opens one event directly.
+- **Picks and My festival**: star events; *My festival* in the header gathers your weekend — picks per day with clash markers, the reading list, calendar export, a link that moves picks and verdicts to another device (`#picks=…`), and the notes export. A link with `#event=<number>` opens one event directly.
 - **Calendar export**: each event has *Add to calendar (.ics)* and a *Google Calendar* link; *Export picks to calendar* produces one `.ics` with all picked events. Entries carry the talk summary, venue (with the Kenwood House address), speakers and hosts, ticketing notes, topics, the official event page and a 15-minute reminder. Times are exported in UTC with `Europe/London` as the calendar time zone, so they show correctly wherever you are.
 - **Briefings** on every debate, talk and IAI Academy course (69): a *Briefing* tab with the question, the sides' (or the speaker's) strongest arguments and the usual objections, where each speaker is likely to stand (inferred from their published work, hedged), three questions worth asking, and what to read first. Unofficial notes written with Claude; corrections welcome.
-- **Notes and verdicts**: a notes field on every event and a "who won?" vote on debates, saved in the browser; *Export notes (.md)* writes picks, notes and verdicts to Markdown, and the picks link carries verdicts too.
+- **Notes and verdicts**: a notes field on every event and a "who won?" vote on debates, saved in the browser; *Export notes (.md)* in My festival writes picks, notes and verdicts to Markdown, and the picks link carries verdicts too.
 - **Photos**: a portrait on every speaker and act sheet, round avatars in each event's speaker list, and the programme image at the top of the event sheet (music and comedy slots use the act's photo). Thumbnails live under `img/` and are precached for offline use; anyone without a photo gets their initials.
 - **Speaker extras**: Wikipedia, the festival organiser's IAI TV archive, and a selection of each speaker's books (`data/speakers-extra.json`).
 - **Reading list**: built from your picks — up to two books per speaker plus each briefing's suggestions; copy as text or export as Markdown.
-- **Stats**: most-booked speakers, busiest start times, events by venue and type, topics, and who appears together.
+- **Stats**: most-booked speakers, busiest start times, events by venue and type, topics, and who appears together (from the foot of My festival).
 - **Listen & watch**: Spotify, a YouTube video (embedded on click), Bandcamp and other pages for each music and comedy act, trailers for the DokBox films, and the festival's official playlist.
 - **Now & next** on the festival days: what's on and what starts in the next 45 minutes in each tent, a countdown to your next pick, and **clash warnings** when two picks start within 15 minutes of each other (sessions are assumed to last an hour; a half-hour overlap is shown as a quiet note instead). Add `?now=2026-09-19T14:00` to the address to preview it.
 - **Works offline** once loaded: a service worker caches the page and fonts, and the web-app manifest lets you add it to your home screen.
@@ -43,13 +43,22 @@ The festival's programme page lazy-loads 40 events at a time from `FullEventList
 2. Open the developer console and paste the contents of `scripts/extract-in-browser.js`. After ~30 seconds it downloads `extract.json` (135 events, ~100 speaker profiles and the music/comedy acts as of September 2026).
 3. Save it as `data/extract.json`, then run `python3 scripts/build.py` (Python 3.9+, no dependencies). This rewrites `programme.json`, `index.html`, `sw.js` (with a new cache version) and `manifest.webmanifest`. Briefings, media links and photos are keyed by event number and speaker/act slug, so they survive a refresh unless the festival renumbers events.
 4. For new speakers or changed photos, paste `scripts/fetch-images.js` into the console on the festival site (it downloads `images.json`), then `python3 scripts/unpack-images.py ~/Downloads/images.json` and build again.
-5. Commit and push — GitHub Pages serves `index.html` from the `main` branch.
+5. Commit and push — the deploy workflow publishes it (see below).
 
 `scripts/build.py` does the normalisation: parses "A, B, C. D hosts" speaker strings (including initials), converts times, links people to their profile pages, attaches artist bios to music and comedy slots that have no programme text, and injects the data into `scripts/template.html`.
 
 ## Development
 
 `scripts/template.html` is the whole app (CSS + JS). `python3 scripts/build.py` regenerates `index.html`; open it directly in a browser — no server needed.
+
+## Deployment and pull-request previews
+
+Two GitHub Actions workflows publish the site to the `gh-pages` branch, so GitHub Pages should be set to **Settings → Pages → Source: Deploy from a branch → `gh-pages` / root** (a one-time switch; until then Pages keeps serving `main` as before and the workflows simply prepare the branch).
+
+- `deploy.yml` runs on every push to `main`: it builds (`scripts/assemble-site.sh _site`) and publishes the site files to the root of `gh-pages`, leaving `pr-preview/` untouched.
+- `pr-preview.yml` runs on every pull request from this repository: it builds the branch with `--preview "PR #N"` (a red ribbon and a `noindex` tag so nobody mistakes it for the live site) and publishes it to `gh-pages/pr-preview/pr-N/`, then leaves a comment on the PR with the link — `https://arealmaas.github.io/how-the-lights-get-in/pr-preview/pr-N/`. New commits update the preview; closing the PR removes it.
+
+Because the preview is built from `scripts/template.html` and the data files, a PR only needs to change those — `index.html` can be regenerated on merge. The workflows need *Settings → Actions → General → Workflow permissions: Read and write*.
 
 ## Rights
 

@@ -10,6 +10,7 @@
 <meta property="og:title" content="HTLGI London 2026 Planner (unofficial)">
 <meta property="og:description" content="Every HowTheLightGetsIn London 2026 event with descriptions, speaker bios, a venue grid, picks and calendar export. Not affiliated with the festival.">
 <meta property="og:type" content="website">
+__PREVIEW_HEAD__
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎪%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -65,15 +66,30 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .g-debates{--c:var(--debates)} .g-talks{--c:var(--talks)} .g-music{--c:var(--music)} .g-cinema{--c:var(--cinema)} .g-inner{--c:var(--inner)} .g-kids{--c:var(--kids)}
 
-/* ---------- header / toolbar ---------- */
-.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.top-inner{max-width:1180px;margin:0 auto;padding:10px 16px 8px;display:grid;gap:8px}
-.brand{display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap}
-.brand h1{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-.01em;margin:0;line-height:1.1;text-wrap:balance}
+/* ---------- masthead ---------- */
+.mast{background:var(--surface);position:relative}
+.mast::after{content:"";display:block;height:3px;background:linear-gradient(90deg,var(--debates) 0 17%,var(--talks) 17% 34%,var(--music) 34% 51%,var(--cinema) 51% 68%,var(--inner) 68% 85%,var(--kids) 85% 100%)}
+.mast-inner{max-width:1180px;margin:0 auto;padding:14px 16px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap}
+.brand{min-width:0}
+.brand h1{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-.015em;margin:0;line-height:1.1}
 .brand h1 span{color:var(--ink-3);font-weight:600}
-.brand .where{font-size:12.5px;color:var(--ink-2)}
-.unofficial{font-size:12px;color:var(--ink-3);letter-spacing:.02em}
-.unofficial a{color:var(--ink-2)}
+.brand .sub{margin:4px 0 0;font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:2px 0}
+.brand .sub .where{color:var(--ink-2)}
+.brand .sub .where::after{content:"·";margin:0 6px}
+.brand .sub a{color:var(--ink-2)}
+.mast-actions{display:flex;gap:8px;flex:0 0 auto}
+.mbtn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-strong);border-radius:999px;padding:8px 14px 8px 12px;font-weight:600;font-size:13.5px;background:var(--surface);color:var(--ink);line-height:1.2;transition:border-color .15s,background .15s}
+.mbtn svg{width:16px;height:16px;fill:currentColor;flex:none}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn .count{font-family:var(--mono);font-size:12px;font-weight:600;background:var(--surface-2);color:var(--ink-2);border-radius:999px;padding:1px 7px;min-width:22px;text-align:center;font-variant-numeric:tabular-nums}
+.mbtn.has{background:var(--pick-bg);border-color:var(--pick);color:var(--ink)}
+.mbtn.has svg{color:var(--pick)}
+.mbtn.has .count{background:var(--pick);color:var(--pick-ink)}
+:root[data-theme="dark"] .mbtn.has svg,:root:not([data-theme="light"]) .mbtn.has svg{color:var(--pick)}
+
+/* ---------- sticky toolbar ---------- */
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-inner{max-width:1180px;margin:0 auto;padding:8px 16px;display:grid;gap:8px}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--surface)}
 .seg button{padding:7px 12px;font-weight:600;font-size:14px;color:var(--ink-2);border-right:1px solid var(--line)}
@@ -81,25 +97,32 @@ a{color:inherit}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 .seg.days button{min-width:96px}
 .seg.days small{display:block;font-weight:500;font-size:11px;opacity:.8;letter-spacing:.02em}
-.search{flex:1 1 180px;display:flex;align-items:center;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);padding:0 8px 0 10px;min-width:160px}
+.search{flex:1 1 200px;display:flex;align-items:center;gap:2px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);padding:0 8px 0 10px;min-width:160px;max-width:420px;margin-left:auto}
+.search svg{width:15px;height:15px;fill:var(--ink-3);flex:none}
 .search input{flex:1;border:0;background:none;padding:8px 6px;min-width:0}
 .search input::placeholder{color:var(--ink-3)}
+.search input::-webkit-search-cancel-button{display:none}
 .search button{color:var(--ink-3);padding:4px;font-size:16px;line-height:1}
-.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}
-.chips::-webkit-scrollbar{display:none}
+.strip{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+@media (max-width:900px){.strip{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}}
+.strip::-webkit-scrollbar{display:none}
+.strip-sep{flex:0 0 1px;height:20px;background:var(--line-strong);margin:0 4px}
+@media (min-width:901px){.strip-sep{display:none}}
+.chips{display:flex;gap:6px;flex:0 0 auto}
 .chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500;background:var(--surface);color:var(--ink-2);white-space:nowrap}
 .chip i{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block}
 .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .chip[aria-pressed="true"] i{outline:2px solid var(--accent-ink);outline-offset:-1px}
 .chip.pickchip[aria-pressed="true"]{background:var(--pick);color:var(--pick-ink);border-color:var(--pick)}
 .chip.now{border-style:dashed}
-.selects{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.selects select{border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);padding:5px 28px 5px 11px;font-size:13px;font-weight:500;color:var(--ink-2);appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 15px) 12px,calc(100% - 10px) 12px;background-size:5px 5px;background-repeat:no-repeat;max-width:210px}
-.selects select.active{background-color:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.selects{display:flex;gap:6px;flex:0 0 auto;align-items:center}
+.selects select{border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);padding:5px 28px 5px 11px;font-size:13px;font-weight:500;color:var(--ink-2);appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 15px) 12px,calc(100% - 10px) 12px;background-size:5px 5px;background-repeat:no-repeat;width:112px;text-overflow:ellipsis}
+.selects select.active{background-color:var(--accent);color:var(--accent-ink);border-color:var(--accent);width:auto;max-width:230px}
 .status{font-size:12.5px;color:var(--ink-2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .status b{color:var(--ink);font-weight:600}
 .linkbtn{text-decoration:underline;color:var(--ink-2);font-size:12.5px}
 .linkbtn:hover{color:var(--ink)}
+.previewtag{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--debates);color:#fff;font-size:12px;font-weight:600;letter-spacing:.03em;padding:5px 10px;border-radius:999px;box-shadow:var(--shadow);pointer-events:none}
 
 /* ---------- banner ---------- */
 .banner{max-width:1180px;margin:12px auto 0;padding:0 16px}
@@ -124,9 +147,9 @@ main{max-width:1180px;margin:0 auto;padding:8px 16px 80px}
 .ev:hover{border-color:var(--line-strong)}
 .ev.picked{border-color:var(--pick);box-shadow:inset 3px 0 0 var(--pick)}
 .ev-head{display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
-.ev-type{color:var(--c);display:inline-flex;align-items:center;gap:6px}
+.ev-type{color:var(--c);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:none}
 .ev-type::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
-.ev-venue{font-family:var(--mono);color:var(--ink-2);letter-spacing:.04em;text-transform:none;font-weight:500;font-size:12px}
+.ev-venue{font-family:var(--mono);color:var(--ink-2);letter-spacing:.04em;text-transform:none;font-weight:500;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .pick{margin-left:auto;width:32px;height:28px;border-radius:6px;color:var(--ink-3);font-size:18px;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
 .pick:hover{background:var(--surface-2);color:var(--pick)}
 .pick[aria-pressed="true"]{color:var(--pick)}
@@ -214,14 +237,19 @@ footer a{color:var(--ink-2)}
 footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(--ink-2)}
 
 @media (max-width:600px){
+  .mast-inner{padding:12px 12px 10px;gap:10px}
+  .brand h1{font-size:19px}
+  .brand .sub{font-size:12px}
+  .brand .sub .where{display:none}
+  .mast-actions{flex:1 1 100%}
+  .mbtn{flex:1 1 0;justify-content:center;padding:8px 10px}
   .top-inner{padding:8px 12px 6px;gap:6px}
-  .brand h1{font-size:18px}
+  .search{flex-basis:100%;max-width:none;margin-left:0}
   main{padding:6px 12px 80px}
   .slot{grid-template-columns:52px 1fr;gap:0 8px;padding:10px 0 12px}
   .slot-time{font-size:14px;padding-top:9px}
   .slot-events{grid-template-columns:1fr}
   .ev-title{font-size:16px}
-  .brand .where{display:none}
   .seg.days button{min-width:0;padding:6px 10px}
   .gridwrap{max-height:calc(100vh - 250px)}
 }
@@ -231,7 +259,7 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 }
 @media print{
   .top{position:static}
-  .chips,.selects,.search,.linkbtn,.pick,.noprint{display:none}
+  .strip,.search,.linkbtn,.pick,.noprint,.mast-actions,.previewtag{display:none}
   .ev{break-inside:avoid;border-color:#bbb}
   main{padding-bottom:0}
 }
@@ -296,8 +324,6 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .verdict button[aria-pressed="true"]{background:var(--pick);border-color:var(--pick);color:var(--pick-ink)}
 .badge.note{background:color-mix(in oklab,var(--pick) 22%,var(--surface));color:var(--pick-ink)}
 :root[data-theme="dark"] .badge.note,:root:not([data-theme="light"]) .badge.note{color:var(--ink)}
-.brand .tools{display:flex;gap:6px;margin-left:auto}
-.brand .tools .btn{font-size:12px;padding:4px 9px}
 
 /* ---------- stats ---------- */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:0 0 6px}
@@ -314,6 +340,31 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .bar-v{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);font-size:12.5px;min-width:2ch;text-align:right}
 .pairs{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:13.5px}
 .pairs li span{color:var(--ink-3)}
+
+/* ---------- my festival hub ---------- */
+.hub-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:12px 0 4px}
+.hub-card{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--surface-2);display:grid;gap:6px;align-content:start;text-align:left;min-width:0}
+.hub-card .hc-k{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
+.hub-card .hc-d{font-size:13px;color:var(--ink-2);line-height:1.4}
+.hub-card .actions{margin:2px 0 0}
+.hub-cards .hub-card:nth-child(4):last-child{grid-column:1/-1}
+.hub-card.rl{grid-column:1/-1;background:var(--pick-bg);border-color:var(--pick);cursor:pointer;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 14px;transition:box-shadow .15s}
+.hub-card.rl:hover{box-shadow:inset 0 0 0 1px var(--pick)}
+.hub-card.rl b{font-family:var(--display);font-size:34px;font-weight:700;line-height:1;grid-row:1/3;font-variant-numeric:tabular-nums;min-width:1.4ch}
+.hub-card.rl .hc-k{color:var(--ink-2)}
+.hub-card.rl .hc-t{font-family:var(--display);font-weight:600;font-size:15px;line-height:1.2}
+.hub-card.rl .hc-go{grid-column:3;grid-row:1/3;font-weight:600;font-size:13.5px;white-space:nowrap;border:1px solid var(--pick);border-radius:999px;padding:6px 12px;background:var(--surface)}
+.linkrow{display:flex;gap:6px;min-width:0}
+.linkrow input{flex:1;min-width:0;border:1px solid var(--line-strong);border-radius:6px;padding:6px 8px;font-family:var(--mono);font-size:12px;background:var(--surface);color:var(--ink)}
+.hub-list .m{grid-column:2;font-size:12.5px;color:var(--ink-3)}
+.hub-list .m .warn{color:var(--debates);font-weight:600}
+.hub-list .m .nt{color:var(--pick-ink)}
+:root[data-theme="dark"] .hub-list .m .nt,:root:not([data-theme="light"]) .hub-list .m .nt{color:var(--pick)}
+.hub-empty{border:1px dashed var(--line-strong);border-radius:8px;padding:16px;margin:12px 0;font-size:14px;color:var(--ink-2);display:grid;gap:10px;justify-items:start}
+.hub-empty b{color:var(--ink);font-family:var(--display);font-size:17px}
+.hub-foot{font-size:13px;color:var(--ink-2);margin:20px 0 0;display:flex;gap:6px;flex-wrap:wrap}
+.hub-foot button{text-decoration:underline;text-underline-offset:2px;color:var(--ink-2)}
+.hub-foot button:hover{color:var(--ink)}
 
 /* ---------- reading list ---------- */
 .rl{display:grid;gap:12px}
@@ -338,14 +389,21 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="top-inner">
+__PREVIEW_TAG__
+<header class="mast">
+  <div class="mast-inner">
     <div class="brand">
       <h1>HowTheLightGetsIn <span>London 2026</span></h1>
-      <div class="where">Kenwood House, Hampstead Heath · Sat 19 – Sun 20 September</div>
-      <div class="unofficial">Unofficial fan-made planner · not affiliated with HowTheLightGetsIn or the IAI · <a href="#about">about &amp; disclaimer</a></div>
-      <div class="tools"><button type="button" class="btn" data-reading>Reading list</button><button type="button" class="btn" data-stats>Stats</button></div>
+      <p class="sub"><span class="where">Kenwood House, Hampstead Heath · 19–20 September</span><span class="unofficial">Unofficial fan-made planner, not affiliated with the festival · <a href="#about">about</a></span></p>
     </div>
+    <nav class="mast-actions" aria-label="My festival">
+      <button type="button" class="mbtn" data-hub><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6l1.9 4 4.4.6-3.2 3.1.8 4.4L8 11.6l-3.9 2.1.8-4.4L1.7 6.2l4.4-.6z"/></svg><span class="label">My festival</span><span class="count" data-count-picks hidden>0</span></button>
+      <button type="button" class="mbtn" data-reading><svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M2 2.5h4.2c.9 0 1.6.5 1.8 1.1.2-.6.9-1.1 1.8-1.1H14v10.3H9.9c-.9 0-1.6.4-1.9 1-.3-.6-1-1-1.9-1H2zm1.3 1.3v7.7h2.9c.7 0 1.3.2 1.8.5V5c0-.7-.7-1.2-1.6-1.2zm9.4 0H9.6c-.9 0-1.6.5-1.6 1.2v7c.5-.3 1.1-.5 1.8-.5h2.9z"/></svg><span class="label">Reading list</span><span class="count" data-count-reading hidden>0</span></button>
+    </nav>
+  </div>
+</header>
+<div class="top">
+  <div class="top-inner">
     <div class="row">
       <div class="seg days" role="group" aria-label="Day">
         <button type="button" data-day="2026-09-19" aria-pressed="true">Saturday<small>19 Sept · __COUNT_SAT__ events</small></button>
@@ -355,28 +413,26 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
         <button type="button" data-view="list" aria-pressed="true">List</button>
         <button type="button" data-view="grid" aria-pressed="false">Grid</button>
       </div>
-      <label class="search"><input id="q" type="search" aria-label="Search" placeholder="Search titles, speakers, topics…" autocomplete="off"><button type="button" id="clearq" hidden aria-label="Clear search">×</button></label>
+      <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.8 1.5a5.3 5.3 0 014.2 8.5l3.4 3.4-1 1-3.4-3.4A5.3 5.3 0 116.8 1.5zm0 1.4a3.9 3.9 0 100 7.8 3.9 3.9 0 000-7.8z"/></svg><input id="q" type="search" aria-label="Search" placeholder="Search titles, speakers, topics…" autocomplete="off"><button type="button" id="clearq" hidden aria-label="Clear search">×</button></label>
     </div>
-    <div class="chips" id="chips"></div>
-    <div class="row">
+    <div class="strip">
+      <div class="chips" id="chips"></div>
+      <span class="strip-sep" aria-hidden="true"></span>
       <div class="selects">
-        <select id="venue" aria-label="Venue"><option value="">All venues</option></select>
-        <select id="topic" aria-label="Topic"><option value="">All topics</option></select>
+        <select id="venue" aria-label="Venue"><option value="">Venue</option></select>
+        <select id="topic" aria-label="Topic"><option value="">Topic</option></select>
       </div>
-      <div class="status" id="status"></div>
-      <button type="button" class="linkbtn" data-share>Copy link to my picks</button>
-      <button type="button" class="linkbtn" data-export-picks>Export picks to calendar (.ics)</button>
-      <button type="button" class="linkbtn" data-export-notes hidden>Export notes (.md)</button>
     </div>
+    <div class="status" id="status" hidden></div>
   </div>
-</header>
+</div>
 
 <div class="banner" id="banner" hidden></div>
 <div class="nownext" id="nownext" hidden></div>
 <main id="main"></main>
 <footer>
   <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions, speaker biographies and photographs are © the IAI and the respective photographers, reproduced at reduced size from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
-  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser; “Copy link to my picks” carries picks and verdicts to another device or a friend, “Export notes” writes everything to a Markdown file, and “Export picks to calendar” adds them all to your calendar at once.</div>
+  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser. “My festival” in the header gathers them: a link that carries picks and verdicts to another device or a friend, a calendar export of all picks at once, a Markdown export of your notes, and the reading list built from the speakers you picked.</div>
   <div class="noprint">Debate briefings are unofficial notes written with Claude (AI) from the programme text and the speakers’ published work — inferred, hedged, and not the speakers’ or the festival’s words; corrections welcome on GitHub. Music, comedy and film links were looked up by hand; where none was found the planner offers a search instead.</div>
   <div class="noprint offline-note">Once loaded, the planner works offline — add it to your home screen for the weekend. Add <code>?now=2026-09-19T14:00</code> to the address to preview festival-day mode.</div>
   <div class="noprint">Source code and data: <a href="https://github.com/arealmaas/how-the-lights-get-in" target="_blank" rel="noopener">github.com/arealmaas/how-the-lights-get-in</a></div>
@@ -582,14 +638,20 @@ function renderStatus(){
   const total = EVENTS.filter(e => e.date === state.day).length;
   const shown = EVENTS.filter(matches).length;
   const s = document.getElementById('status');
-  s.innerHTML = `<span><b>${DAYS[state.day]}</b> · ${shown === total ? total + ' events' : `<b>${shown}</b> of ${total} events`}</span>` + (hasFilters() ? ' <button type="button" class="linkbtn" data-clear>Clear filters</button>' : '');
+  // the day tabs already carry the full count; the status line only appears while a filter is narrowing the list
+  s.hidden = !hasFilters();
+  s.innerHTML = hasFilters() ? `<span>Showing <b>${shown}</b> of ${total} ${DAYS[state.day]} events</span><button type="button" class="linkbtn" data-clear>Clear filters</button>` : '';
   document.querySelectorAll('.days button').forEach(b => b.setAttribute('aria-pressed', b.dataset.day === state.day));
   document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === state.view));
   const v = document.getElementById('venue'); v.value = state.venue; v.classList.toggle('active', !!state.venue);
   const t = document.getElementById('topic'); t.value = state.topic; t.classList.toggle('active', !!state.topic);
-  document.querySelector('[data-export-picks]').hidden = picks.size === 0;
-  document.querySelector('[data-export-notes]').hidden = !Object.keys(notes).some(k => notes[k] && notes[k].trim()) && !Object.keys(verdicts).length;
+  // masthead counters
+  const hub = document.querySelector('[data-hub]'), pc = document.querySelector('[data-count-picks]');
+  pc.textContent = picks.size; pc.hidden = !picks.size; hub.classList.toggle('has', picks.size > 0);
+  const rl = readingCount(), rb = document.querySelector('[data-reading]'), rc = document.querySelector('[data-count-reading]');
+  rc.textContent = rl; rc.hidden = !rl; rb.classList.toggle('has', rl > 0);
 }
+const readingCount = () => readingList().reduce((n, x) => n + x.bks.length + x.reads.length, 0);
 
 // ---------- now & next ----------
 function renderNowNext(){
@@ -821,7 +883,7 @@ function goBack(){
   sheetStack.pop();
   const top = sheetStack[sheetStack.length - 1];
   if (!top) return closeSheet();
-  if (top.kind === 'event') showEvent(top.no, false); else if (top.kind === 'speaker') showSpeaker(top.key, false); else if (top.kind === 'reading') showReadingList(false); else if (top.kind === 'stats') showStats(false); else showAct(top.key, false);
+  if (top.kind === 'event') showEvent(top.no, false); else if (top.kind === 'speaker') showSpeaker(top.key, false); else if (top.kind === 'reading') showReadingList(false); else if (top.kind === 'stats') showStats(false); else if (top.kind === 'hub') showHub(false); else showAct(top.key, false);
 }
 
 // ---------- picks ----------
@@ -850,9 +912,42 @@ function checkHash(){
   showBanner(`<span>This link carries <b>${incoming.length} picks</b>${Object.keys(inV).length ? ` and <b>${Object.keys(inV).length} verdicts</b>` : ''} (${fresh.length + freshV.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to mine</button><button type="button" class="btn" data-dismiss>Not now</button>`);
   const b = document.getElementById('banner'); b.dataset.incoming = fresh.join(','); b.dataset.incomingVerdicts = JSON.stringify(Object.fromEntries(freshV.map(no => [no, inV[no]])));
 }
-function sharePicks(){
-  if (!picks.size) { showBanner('<span>No picks yet — tap ☆ on an event to add it.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
-  showBanner(`<span><b>${picks.size} picks</b> in this link — open it on another device or send it to a friend.</span><input id="picklink" readonly value="${esc(picksLink())}"><button type="button" class="btn primary" data-copy>Copy</button><button type="button" class="btn" data-dismiss>Close</button>`);
+// ---------- my festival (picks hub) ----------
+function hubList(evs){
+  return `<ul class="applist hub-list">${evs.map(e => {
+    const marks = [];
+    if (clashes.has(e.eventNo)) marks.push('<span class="warn">⚠ clashes with ' + clashes.get(e.eventNo).map(x => esc(byNo.get(x.no).title)).join(', ') + '</span>');
+    else if (overlapsSoft.has(e.eventNo)) marks.push(`overlaps ${overlapsSoft.get(e.eventNo).map(x => x.min + ' min with ' + esc(byNo.get(x.no).title)).join(', ')}`);
+    if (hasNote(e.eventNo)) marks.push('<span class="nt">✎ notes</span>');
+    if (verdicts[e.eventNo]) marks.push(`verdict: ${esc(verdicts[e.eventNo])}`);
+    return `<li><button type="button" data-no="${e.eventNo}"><span class="t">${e.time}</span><span class="n">${esc(e.title)}</span><span class="v">${esc(e.type)} · ${esc(e.venue)}${whoPlain(e) ? ' · ' + esc(whoPlain(e)) : ''}</span>${marks.length ? `<span class="m">${marks.join(' · ')}</span>` : ''}</button></li>`;
+  }).join('')}</ul>`;
+}
+function showHub(push = true){
+  if (push) sheetStack.push({kind: 'hub'});
+  const mine = EVENTS.filter(e => picks.has(e.eventNo));
+  const byDay = Object.keys(DAYS).map(d => [d, mine.filter(e => e.date === d)]);
+  const clashN = mine.filter(e => clashes.has(e.eventNo)).length;
+  const noteN = Object.keys(notes).filter(k => notes[k] && notes[k].trim()).length, verdictN = Object.keys(verdicts).length;
+  const rl = readingCount();
+  const summary = mine.length ? `${mine.length} pick${mine.length === 1 ? '' : 's'} · ${byDay.map(([d, evs]) => `${evs.length} ${DAYS[d].slice(0, 3)}`).join(', ')}${clashN ? ` · <span class="warn">${clashN} clash${clashN === 1 ? '' : 'es'}</span>` : ''}` : 'Nothing picked yet';
+  const icsBtn = IN_ARTIFACT
+    ? `<a class="btn" href="${esc(PUBLIC_URL + '#picks=' + [...picks].sort((a, b) => a - b).join(','))}" target="_blank" rel="noopener">Export on the public site ↗</a>`
+    : `<button type="button" class="btn" data-export-picks>Export picks (.ics)</button>`;
+  const notesBtn = IN_ARTIFACT ? '' : `<button type="button" class="btn" data-export-notes>Export notes (.md)</button>`;
+  const cards = !mine.length ? `<div class="hub-empty"><b>Build your own weekend</b><span>Tap ☆ on any event to pick it. Your picks, clash warnings, reading list, calendar export and a shareable link all build from there — everything is saved in this browser.</span><button type="button" class="btn primary" data-browse>Browse the programme</button></div>`
+    : `<div class="hub-cards">
+      <button type="button" class="hub-card rl" data-reading><b>${rl}</b><span class="hc-k">Reading list</span><span class="hc-t">${rl ? 'Books and articles to read before you go' : 'Nothing on file yet for these picks'}</span><span class="hc-go">Open →</span></button>
+      <div class="hub-card"><span class="hc-k">Calendar</span><span class="hc-d">All picks as one file, with summaries, venue, speakers and a 15-minute reminder.</span><div class="actions">${icsBtn}</div></div>
+      <div class="hub-card"><span class="hc-k">Share or move to your phone</span><div class="linkrow"><input id="picklink" readonly value="${esc(picksLink())}" aria-label="Link to my picks"><button type="button" class="btn primary" data-copy-link>Copy</button></div><span class="hc-d">Carries your picks and debate verdicts.</span></div>
+      <div class="hub-card"><span class="hc-k">Notes</span><span class="hc-d">${noteN || verdictN ? `${noteN} note${noteN === 1 ? '' : 's'} · ${verdictN} verdict${verdictN === 1 ? '' : 's'}` : 'No notes yet — every event sheet has a notes box, debates have a “who won?” vote.'}</span>${(noteN || verdictN) && notesBtn ? `<div class="actions">${notesBtn}</div>` : ''}</div>
+    </div>`;
+  const days = byDay.filter(([, evs]) => evs.length).map(([d, evs]) => `<h3 class="sub">${DAYS[d]} · ${evs.length} pick${evs.length === 1 ? '' : 's'}</h3>${hubList(evs)}`).join('');
+  openSheet(`<div class="kicker"><span>My festival</span></div>
+    <h2 id="sheet-title">Your weekend</h2>
+    <p class="src">${summary}</p>
+    ${cards}${days}
+    <p class="hub-foot"><button type="button" data-stats>The festival in numbers</button><span>·</span><button type="button" data-about>About &amp; disclaimer</button></p>`);
 }
 
 // ---------- verdicts, notes export ----------
@@ -997,6 +1092,10 @@ document.addEventListener('click', ev => {
   if ('copyReading' in d) { try { navigator.clipboard.writeText(readingMarkdown(readingList())).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
   if ('reading' in d) { showReadingList(); return; }
   if ('stats' in d) { showStats(); return; }
+  if ('hub' in d || 'share' in d) { showHub(); return; }
+  if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
+  if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
+  if ('copyLink' in d) { const inp = document.getElementById('picklink'); if (inp) inp.select(); try { navigator.clipboard.writeText(picksLink()).then(() => { t.textContent = 'Copied'; setTimeout(() => { t.textContent = 'Copy'; }, 2000); }, () => {}); } catch (e) {} return; }
   if (d.verdict) { const no = +d.verdict; verdicts[no] = verdicts[no] === d.who ? undefined : d.who; if (!verdicts[no]) delete verdicts[no]; save(LS_VERDICTS, verdicts); notesDirty = true; t.parentElement.querySelectorAll('[data-verdict]').forEach(b => b.setAttribute('aria-pressed', b.dataset.who === verdicts[no])); return; }
   if (d.tab) { t.closest('.sheet-body').querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === d.tab)); t.closest('.sheet-body').querySelectorAll('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== d.tab; }); document.getElementById('sheet-body').scrollTop = 0; return; }
   if (d.yt) { const box = t.closest('.media-item').querySelector('.embed'); box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(d.yt)}?autoplay=1&rel=0" title="YouTube video" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`; box.hidden = false; t.hidden = true; return; }
@@ -1008,7 +1107,6 @@ document.addEventListener('click', ev => {
   if (t.id === 'clearq') { q = ''; document.getElementById('q').value = ''; t.hidden = true; render(); return; }
   if ('import' in d) { const b = document.getElementById('banner'); const inc = (b.dataset.incoming || '').split(',').map(Number).filter(Boolean); inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]); try { Object.assign(verdicts, JSON.parse(b.dataset.incomingVerdicts || '{}')); save(LS_VERDICTS, verdicts); } catch (e) {} history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return; }
   if ('dismiss' in d) { if (/picks=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
-  if ('share' in d) { sharePicks(); return; }
   if ('copy' in d) { const inp = document.getElementById('picklink'); inp.select(); try { navigator.clipboard.writeText(inp.value).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
 });
 document.getElementById('scrim').addEventListener('click', closeSheet);
