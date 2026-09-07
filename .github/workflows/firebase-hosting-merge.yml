@@ -1,6 +1,6 @@
-# On every push to main: run the Firestore rules tests against the emulator, deploy the rules
-# (pinned to the firebase-tools version in firebase/test/package-lock.json, not @latest), then
-# build and deploy the site to the live channel. Rules go out tested, and before the site.
+# On every push to main: run the app tests, run the Firestore rules tests against the emulator, deploy the
+# rules (pinned to the firebase-tools version in firebase/test/package-lock.json, not @latest), then build
+# and deploy the site to the live channel. Rules go out tested, and before the site.
 name: Deploy on merge
 
 on:
@@ -24,6 +24,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
       - name: Rules tests (Firestore emulator)
         run: cd firebase/test && npm ci && npm test
       - name: Deploy Firestore rules
@@ -33,7 +36,7 @@ jobs:
           printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
           GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" firebase/test/node_modules/.bin/firebase deploy --only firestore:rules --project htlgi-planner --non-interactive
       - name: Build the site
-        run: sh scripts/assemble-site.sh _site
+        run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

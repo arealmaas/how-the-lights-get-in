@@ -1,5 +1,6 @@
-# The planner moved to Firebase Hosting. This workflow's only job is to publish the "moved" page in move/
-# to the root of gh-pages (clean: true wipes everything else there). It is removed once that has run.
+# The planner moved to Firebase Hosting. This workflow's only job is to build the move/ page (a single-file
+# Vite build into dist-move/) and publish it to the root of gh-pages (clean: true wipes everything else
+# there). It is removed once that has run: one final run.
 name: Deploy site
 
 on:
@@ -19,11 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build:move
       - name: Publish the moved notice to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: move
+          folder: dist-move
           clean: true
           force: false
           commit-message: "The planner has moved to Firebase Hosting"

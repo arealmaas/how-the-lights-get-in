@@ -19,6 +19,8 @@ test('the programme renders, filters and picks work', async ({page}) => {
   await expect(page.locator('table.grid')).toBeVisible();
   await page.reload();
   await expect(page.locator('[data-count-picks]')).toHaveText('1');   // persisted
+  const swActive = await page.evaluate(() => navigator.serviceWorker.ready.then(r => !!r.active));
+  expect(swActive).toBe(true);
 });
 
 test('opening the first card shows the dialog with its title; a note survives closing and reopening it', async ({page}) => {
