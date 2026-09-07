@@ -1364,6 +1364,53 @@ function syncChange(userFields, memberFields){
   syncStats.writes++;
   b.commit().catch(syncError);
 }
+async function signOutUser(clearDevice){
+  if (unsubUser) { unsubUser(); unsubUser = null; }
+  unsubscribeCrew();
+  localStorage.removeItem(LS_ACCOUNT);
+  try { await fb.A.signOut(fb.auth); } catch (e) {}
+  if (clearDevice) {
+    Object.keys(localStorage).filter(k => k.startsWith('htlgi-l26-')).forEach(k => localStorage.removeItem(k));
+    sessionStorage.clear();
+    try { await fb.F.terminate(fb.db); await fb.F.clearIndexedDbPersistence(fb.db); } catch (e) {}
+    location.reload(); return;
+  }
+  crewId = null; crew = null; onCrewPointer(); refreshSheet();
+}
+async function changeName(){
+  const name = (prompt('Your name, as your crew sees it', accountName) || '').trim().slice(0, 40);
+  if (!name || name === accountName) return;
+  accountName = name;
+  try { await fb.A.updateProfile(user, {displayName: name}); } catch (e) {}
+  syncChange({name}, {name});
+  refreshSheet();
+}
+async function reauth(){
+  const {A} = fb;
+  if (user.providerData.some(p => p.providerId === 'google.com')) { await A.reauthenticateWithPopup(user, new A.GoogleAuthProvider()); return; }
+  const pw = prompt('Confirm your password to continue'); if (!pw) throw new Error('Cancelled.');
+  await A.reauthenticateWithCredential(user, A.EmailAuthProvider.credential(user.email, pw));
+}
+async function deleteAccount(){
+  if (crewId && crewOwnedByMe()) { showBanner('<span>You created your crew: hand it over or close it before deleting your account.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  if (!confirm('Delete your account and everything stored in it? Picks and notes stay on this device only.')) return;
+  if (!confirm('This cannot be undone. Delete the account?')) return;
+  const {A, F} = fb;
+  deleting = true;
+  if (unsubUser) { unsubUser(); unsubUser = null; }
+  unsubscribeCrew();
+  try {
+    const b = F.writeBatch(fb.db);
+    if (crewId) b.delete(F.doc(fb.db, 'crews', crewId, 'members', user.uid));
+    b.delete(userRef());
+    await b.commit();
+    try { await A.deleteUser(user); }
+    catch (e) { if (e.code !== 'auth/requires-recent-login') throw e; await reauth(); await A.deleteUser(user); }
+    localStorage.removeItem(LS_ACCOUNT); crewId = null; crew = null; onCrewPointer();
+    showBanner('<span>Account deleted. This device keeps its local copy of your picks and notes.</span><button type="button" class="btn" data-dismiss>OK</button>');
+  } catch (e) { authMessage(e); }
+  deleting = false;
+}
 
 // ---------- events ----------
 document.addEventListener('click', ev => {
@@ -1388,6 +1435,10 @@ document.addEventListener('click', ev => {
   if ('authEmail' in d) { const f = t.closest('.hub-card').querySelector('[data-auth-form]'); f.hidden = !f.hidden; if (!f.hidden) f.querySelector('input').focus(); return; }
   if ('authSignin' in d || 'authCreate' in d || 'authReset' in d || 'authLink' in d) { emailAction(t, d); return; }
   if ('authAddpw' in d) { const f = t.closest('.hub-card').querySelector('[data-auth-form]'); f.hidden = false; f.querySelector('input[name=password]').focus(); return; }
+  if ('authName' in d) { changeName(); return; }
+  if ('authSignout' in d) { signOutUser(false); return; }
+  if ('authClear' in d) { if (confirm('Sign out and remove all picks, notes and crew data from this device?')) signOutUser(true); return; }
+  if ('authDelete' in d) { deleteAccount(); return; }
   if ('hub' in d || 'share' in d) { showHub(); return; }
   if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
