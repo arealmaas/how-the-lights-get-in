@@ -40,3 +40,18 @@ export function crewSummary(members, myUid, events){
   const split = [...slots].filter(([, s]) => s.size > 1).map(([slot, s]) => ({slot, choices: [...s].map(([no, names]) => ({no, names}))}));
   return {all, split, onlyMe, onlyThem};
 }
+// every event number picked by someone other than me: the Crew chip's set, the crewOnly filter, and the
+// union behind the crew calendar and the reading list's Crew tab. A Set, so the callers stay O(1).
+export function crewPicked(members, myUid){
+  const set = new Set();
+  for (const m of members || []) {
+    if (m.uid === myUid) continue;
+    for (const [no, on] of Object.entries(m.picks || {})) if (on) set.add(+no);
+  }
+  return set;
+}
+// who is going to one event, written from my point of view: "you" for my own row, names for the rest.
+// myPicks (the live local Set) wins over my own member document, which may lag a snapshot behind.
+export const goingNames = (members, myUid, myPicks, no) => (members || [])
+  .filter(m => (m.picks && m.picks[no]) || (m.uid === myUid && myPicks.has(no)))
+  .map(m => (m.uid === myUid ? 'you' : m.name));

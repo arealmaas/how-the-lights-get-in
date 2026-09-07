@@ -3,6 +3,7 @@ import {EVENTS, VENUES, GROUP} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
 import {NOW} from './useFiltered.js';
+import CrewBadges from './CrewBadges.jsx';
 
 export default function EventGrid({list, clashes}){
   const day = usePlanner(s => s.day);
@@ -40,6 +41,7 @@ export default function EventGrid({list, clashes}){
                         >
                           {clashes.has(e.eventNo) && <span className="warn" title="Clashes with another pick">⚠</span>}
                           {picks.has(e.eventNo) && <span className="star">★</span>}
+                          <CrewBadges no={e.eventNo} />
                           <b>{e.title}</b>
                           {(e.speakers.length > 0 || e.hosts.length > 0) && (
                             <span>{[...e.speakers, ...e.hosts.map(x => x + ' (host)')].join(', ')}</span>

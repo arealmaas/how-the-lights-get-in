@@ -4,6 +4,7 @@ import {byNo, BRIEFINGS, GROUP} from '../data/index.js';
 import {ticketBadge} from '../core/labels.js';
 import {usePlanner} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
+import CrewBadges from './CrewBadges.jsx';
 
 export default function EventCard({e, picked, clash, hasNote}){
   const badge = ticketBadge(e);
@@ -25,6 +26,7 @@ export default function EventCard({e, picked, clash, hasNote}){
         <span className="ev-type">{e.type}</span>
         <span className="ev-venue">{e.venue}</span>
         {BRIEFINGS[e.eventNo] && <span className="brief-badge">Briefing</span>}
+        <CrewBadges no={e.eventNo} />
         <button
           type="button"
           className="pick"

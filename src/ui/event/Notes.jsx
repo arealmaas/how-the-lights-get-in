@@ -7,13 +7,19 @@
 // unconditionally, so losing the last keystrokes here would be a regression.
 // `data-note` on the textarea is how cloud/sync.js's applyUserData() spots which note is being typed and
 // keeps the local text for that one event when a snapshot lands.
+// The "Share this note with the crew" checkbox (CREW-SPEC section 7) appears only while in a crew. It
+// flushes the draft first, exactly as the old page's change handler called flushNote() before writing
+// `shared`: setShared() copies the note the store holds into the member document, so an uncommitted
+// draft would otherwise share the previous text — or nothing at all.
 import {useEffect, useRef, useState} from 'react';
 import {usePlanner} from '../../store/planner.js';
 import {useCloud} from '../../store/cloud.js';
 
 export default function Notes({no}){
   const storeNote = usePlanner(s => s.notes[no] || '');
+  const isShared = usePlanner(s => !!s.shared[no]);
   const user = useCloud(s => s.user);
+  const crew = useCloud(s => s.crew);
   const [draft, setDraft] = useState(storeNote);
   const ref = useRef(null);
   const timer = useRef(null);
@@ -61,6 +67,16 @@ export default function Notes({no}){
         onChange={onChange}
         onBlur={() => flush(true)}
       />
+      {crew && user && (
+        <label className="share">
+          <input
+            type="checkbox"
+            checked={isShared}
+            onChange={ev => { flush(true); usePlanner.getState().setShared(no, ev.target.checked); }}
+          />
+          {' '}Share this note with the crew
+        </label>
+      )}
       <p className="src">
         {user ? 'Saved to your account.' : 'Saved in this browser only.'} “Export notes” in My festival writes picks, notes and verdicts to a Markdown file.
       </p>

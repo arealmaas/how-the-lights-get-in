@@ -1,4 +1,4 @@
-import {readingList, readingCount, readingMarkdown} from './reading.js';
+import {readingList, readingCount, readingMarkdown, withGoing} from './reading.js';
 test('two books per speaker plus the briefing reading', () => {
   const events = [{eventNo: 1, date: '2026-09-19', time: '10:00', title: 'T', people: [{name: 'Sam', slug: 'sam'}]}];
   const extras = {sam: {books: [{title: 'A'}, {title: 'B'}, {title: 'C'}]}};
@@ -24,4 +24,12 @@ test('readingMarkdown lists each event once, books then briefing reading', () =>
   expect(md).toContain('## Sat 10:00 · A talk');
   expect(md).toContain('Sam: *A book* (2001)');
   expect(md).toContain('An essay — X');
+});
+
+test('withGoing marks each reading item with who is going, leaving the rest untouched', () => {
+  const items = [{e: {eventNo: 3}, bks: [{who: 'A', title: 'B'}], reads: []}, {e: {eventNo: 9}, bks: [], reads: []}];
+  const out = withGoing(items, no => (no === 3 ? ['you', 'Kari'] : []));
+  expect(out.map(x => x.going)).toEqual([['you', 'Kari'], []]);
+  expect(out[0].bks).toBe(items[0].bks);
+  expect(items[0].going).toBeUndefined();   // the input is not mutated
 });

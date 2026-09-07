@@ -1,9 +1,10 @@
 // src/ui/Chips.jsx — ported from the old renderChips(): the "My picks" chip (with a same-day clash
-// count), one chip per event group, and a "Now" chip on festival days that jumps to the current time.
-import {byNo, GROUPS} from '../data/index.js';
+// count), the "Crew" chip (only while in a crew), one chip per event group, and a "Now" chip on festival
+// days that jumps to the current time.
+import {byNo, EVENTS, GROUPS} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {isFestivalDay} from '../core/time.js';
-import {NOW} from './useFiltered.js';
+import {NOW, useCrewAny, useInCrew} from './useFiltered.js';
 
 function jumpToNow(){
   usePlanner.getState().setFilter({day: NOW.date, view: 'list'});
@@ -18,11 +19,16 @@ export default function Chips({clashes}){
   const day = usePlanner(s => s.day);
   const groups = usePlanner(s => s.groups);
   const picksOnly = usePlanner(s => s.picksOnly);
+  const crewOnly = usePlanner(s => s.crewOnly);
   const picks = usePlanner(s => s.picks);
   const setFilter = usePlanner(s => s.setFilter);
+  const crewAny = useCrewAny();
+  const inCrew = useInCrew();
 
   const dayPicks = [...picks].filter(n => byNo.get(n).date === day);
   const dayClash = dayPicks.filter(n => clashes.has(n)).length;
+  // the whole day's crew events, not the currently visible ones: the count says what pressing it would find
+  const dayCrew = inCrew ? EVENTS.filter(e => e.date === day && crewAny.has(e.eventNo)).length : 0;
 
   return (
     <div className="chips" id="chips">
@@ -35,6 +41,16 @@ export default function Chips({clashes}){
         ★ My picks <span>({dayPicks.length})</span>
         {dayClash > 0 && <span className="warn">⚠ {dayClash} clash</span>}
       </button>
+      {inCrew && (
+        <button
+          type="button"
+          className="chip crewchip"
+          aria-pressed={crewOnly}
+          onClick={() => setFilter({crewOnly: !crewOnly})}
+        >
+          Crew <span>({dayCrew})</span>
+        </button>
+      )}
       {GROUPS.map(([key, label]) => (
         <button
           key={key}

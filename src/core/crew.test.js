@@ -1,5 +1,5 @@
 // Moved from scripts/test/crew-core.test.mjs (the crew half): same assertions, ESM imports.
-import {projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary} from './crew.js';
+import {projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary, crewPicked, goingNames} from './crew.js';
 
 test('projectForCrew drops notes that are not shared', () => {
   const p = projectForCrew({picks: {3: true}, verdicts: {6: 'Draw'}, notes: {3: 'private', 6: 'shared one', 7: '  '}, shared: {6: true, 7: true}});
@@ -34,4 +34,23 @@ test('crewSummary finds shared events, splits and one-sided picks', () => {
   expect(pickedBy(members, 'me', 3).map(m => m.name)).toEqual(['Kari', 'Morten']);
   expect(crewSummary([members[0]], 'me', events).all).toEqual([]);
   expect(memberColour(7)).toBe('talks');
+});
+
+test('crewPicked is every event someone else picked, and goingNames writes me as "you"', () => {
+  const members = [
+    {uid: 'me', name: 'Are', picks: {1: true, 3: true}},
+    {uid: 'k', name: 'Kari', picks: {2: true, 3: true, 9: false}},
+    {uid: 'm', name: 'Morten', picks: {4: true}},
+  ];
+  expect([...crewPicked(members, 'me')].sort((a, b) => a - b)).toEqual([2, 3, 4]);   // never my own 1, never a false
+  expect(crewPicked(members, 'me').has(1)).toBe(false);
+  expect(crewPicked([], 'me').size).toBe(0);
+  expect(crewPicked(null, 'me').size).toBe(0);
+
+  const mine = new Set([1, 3]);
+  expect(goingNames(members, 'me', mine, 3)).toEqual(['you', 'Kari']);
+  expect(goingNames(members, 'me', mine, 2)).toEqual(['Kari']);
+  // my local picks win over my own member document, which can lag a snapshot behind
+  expect(goingNames(members, 'me', new Set([4]), 4)).toEqual(['you', 'Morten']);
+  expect(goingNames(members, 'me', new Set(), 9)).toEqual([]);
 });

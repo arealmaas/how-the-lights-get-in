@@ -31,3 +31,8 @@ export function readingMarkdown(items){
   }
   return lines.join('\n');
 }
+// The reading list's Crew tab (CREW-SPEC section 7): decorate each item with who is going, so the line
+// under the title can end with their names. namesFor(eventNo) is core/crew.js's goingNames bound to the
+// crew by the UI layer, which keeps this module free of any crew shape. readingMarkdown ignores `going`,
+// as the old page's export did: the file is the union of the picks, not a roll call.
+export const withGoing = (items, namesFor) => items.map(x => ({...x, going: namesFor(x.e.eventNo)}));

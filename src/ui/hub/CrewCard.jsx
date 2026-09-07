@@ -6,16 +6,13 @@
 // live in cloud/crew.js next to the batches they guard.
 import {Fragment, useEffect, useRef, useState} from 'react';
 import {useCloud} from '../../store/cloud.js';
-import {memberColour} from '../../core/crew.js';
 import {initials} from '../../core/labels.js';
+import {memberStyle} from '../CrewBadges.jsx';
 import {
   crewOwnedByMe, liveInvites, inviteLink,
   createCrew, renameCrew, leaveCrew, closeCrew,
   removeMember, readmit, makeOwner, createInvite, revokeInvite,
 } from '../../cloud/crew.js';
-
-// the strand colour of a member, by join order; the dot itself is .cdot in the stylesheet
-export const memberStyle = i => ({'--c': `var(--${memberColour(i)})`});
 
 function NamePrompt({label, initial, onSave, onCancel}){
   const [value, setValue] = useState(initial);
