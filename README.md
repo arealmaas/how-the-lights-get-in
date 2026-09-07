@@ -1,6 +1,6 @@
 # HowTheLightGetsIn London 2026 — unofficial planner
 
-**Live site:** https://arealmaas.github.io/how-the-lights-get-in/
+**Live site:** https://htlgi-planner.firebaseapp.com/
 
 A single-page planner for the HowTheLightGetsIn London festival (Kenwood House, Hampstead Heath, 19–20 September 2026): every programmed event with its description, speaker bios, a venue-by-time grid, personal picks that travel by link, and calendar export.
 
@@ -53,12 +53,14 @@ The festival's programme page lazy-loads 40 events at a time from `FullEventList
 
 ## Deployment and pull-request previews
 
-Two GitHub Actions workflows publish the site to the `gh-pages` branch, so GitHub Pages should be set to **Settings → Pages → Source: Deploy from a branch → `gh-pages` / root** (a one-time switch; until then Pages keeps serving `main` as before and the workflows simply prepare the branch).
+The site is served by Firebase Hosting (`firebase.json`; Spark plan). Two workflows do the publishing:
 
-- `deploy.yml` runs on every push to `main`: it builds (`scripts/assemble-site.sh _site`) and publishes the site files to the root of `gh-pages`, leaving `pr-preview/` untouched.
-- `pr-preview.yml` runs on every pull request from this repository: it builds the branch with `--preview "PR #N"` (a red ribbon and a `noindex` tag so nobody mistakes it for the live site) and publishes it to `gh-pages/pr-preview/pr-N/`, then leaves a comment on the PR with the link — `https://arealmaas.github.io/how-the-lights-get-in/pr-preview/pr-N/`. New commits update the preview; closing the PR removes it.
+- `firebase-hosting-merge.yml` runs on every push to `main`: it builds (`scripts/assemble-site.sh _site`), deploys the site to the live channel and publishes `firebase/firestore.rules`.
+- `firebase-hosting-pull-request.yml` builds every pull request from this repository with `--preview "PR #N"` (a red ribbon and a `noindex` tag) and deploys it to a preview channel; the action leaves a comment on the PR with the URL. Previews expire after seven days and use the real Firestore project, so do not change the document schema on a preview.
 
-Because the preview is built from `scripts/template.html` and the data files, a PR only needs to change those — `index.html` can be regenerated on merge. The workflows need *Settings → Actions → General → Workflow permissions: Read and write*.
+Both need the repository secret created by `firebase init hosting:github`, and the deploy service account needs the *Firebase Rules Admin* role. The old GitHub Pages address serves a "moved" page (`move/index.html`) that carries a visitor's picks, verdicts and notes to the new origin.
+
+Tests: `node --test scripts/test/*.test.mjs` for the pure helpers and the service worker; `cd firebase/test && npm test` for the Firestore rules (needs `firebase-tools` and a JDK for the emulator). On macOS with a Homebrew JDK, put it on the path first: `export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"`.
 
 ## Rights
 

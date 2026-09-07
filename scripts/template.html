@@ -453,7 +453,7 @@ const DATA = JSON.parse(document.getElementById('data').textContent);
 const EVENTS = DATA.events, SPEAKERS = DATA.speakers, ACTS = DATA.acts;
 const BRIEFINGS = DATA.briefings || {}, BRIEF_NOTE = DATA.briefingNote || '';
 const MEDIA = DATA.media || {acts: {}, films: {}}, PLAYLIST = DATA.playlist || null;
-const PUBLIC_URL = 'https://arealmaas.github.io/how-the-lights-get-in/';
+const PUBLIC_URL = 'https://htlgi-planner.firebaseapp.com/';
 const IN_ARTIFACT = !!(window.claude && typeof window.claude.use === 'function');   // claude.ai artifact viewer: no downloads, no service worker, no iframes
 const byNo = new Map(EVENTS.map(e => [e.eventNo, e]));
 const spkBySlug = new Map(SPEAKERS.filter(s => s.slug).map(s => [s.slug, s]));

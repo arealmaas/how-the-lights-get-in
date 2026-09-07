@@ -20,16 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build the site
-        run: sh scripts/assemble-site.sh _site
-
-      - name: Publish to gh-pages
+      - name: Publish the moved notice to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: _site
+          folder: move
           clean: true
-          clean-exclude: pr-preview
           force: false
-          commit-message: "Deploy ${{ github.sha }}"
+          commit-message: "The planner has moved to Firebase Hosting"

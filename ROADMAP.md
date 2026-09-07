@@ -27,6 +27,10 @@ Ideas for the planner, to be done one at a time. Everything here works on a stat
 - ✅ **My festival hub.** Picks per day with clash and note markers, a highlighted reading-list card, calendar export, an inline share link, notes export, and links to stats and the disclaimer.
 - ✅ **Pull-request previews.** GitHub Actions publish `main` to `gh-pages` and every PR to `gh-pages/pr-preview/pr-N/` with a link in a PR comment (`.github/workflows/`); preview builds carry a ribbon and `noindex`.
 
+## Batch 5 (in progress, September 2026)
+
+- 🔨 **Accounts and crews.** Firebase Authentication (Google, email + password) keeps picks, verdicts and notes on every device; crews share picks, verdicts and chosen notes by invite link. Spec: `CREW-SPEC.md`. Hosting moved to Firebase Hosting (`https://htlgi-planner.firebaseapp.com/`), with a move page left on GitHub Pages.
+
 ## Skipped (decided 6 September 2026)
 
 Free-slot finder, weather and travel notes, bingo, "surprise me", share card — not needed.
