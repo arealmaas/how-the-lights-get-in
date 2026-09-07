@@ -901,17 +901,27 @@ function hideBanner(){ document.getElementById('banner').hidden = true; }
 function checkHash(){
   const ev = location.hash.match(/event=(\d+)/);
   if (ev && byNo.has(+ev[1])) { const e = byNo.get(+ev[1]); if (state.day !== e.date) { state.day = e.date; render(); } showEvent(+ev[1]); }
-  const m = location.hash.match(/picks=([\d,]+)/);
-  if (!m) return;
-  const incoming = m[1].split(',').map(Number).filter(n => byNo.has(n));
+  if (!/(?:^#|&)(picks|verdicts|notes)=/.test(location.hash)) return;
+  const pm = location.hash.match(/picks=([\d,]*)/);
+  const incoming = pm ? pm[1].split(',').map(Number).filter(n => byNo.has(n)) : [];
   const fresh = incoming.filter(n => !picks.has(n));
   const vm = location.hash.match(/verdicts=([^&]+)/);
   const inV = vm ? Object.fromEntries(vm[1].split(';').map(x => x.split(':')).filter(([no]) => byNo.has(+no)).map(([no, who]) => [+no, decodeURIComponent(who || '')])) : {};
   const freshV = Object.keys(inV).filter(no => verdicts[no] !== inV[no]);
-  if (!incoming.length && !freshV.length) return;
-  if (!fresh.length && !freshV.length) { history.replaceState(null, '', location.pathname + location.search); return; }
-  showBanner(`<span>This link carries <b>${incoming.length} picks</b>${Object.keys(inV).length ? ` and <b>${Object.keys(inV).length} verdicts</b>` : ''} (${fresh.length + freshV.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to mine</button><button type="button" class="btn" data-dismiss>Not now</button>`);
-  const b = document.getElementById('banner'); b.dataset.incoming = fresh.join(','); b.dataset.incomingVerdicts = JSON.stringify(Object.fromEntries(freshV.map(no => [no, inV[no]])));
+  const nm = location.hash.match(/notes=([A-Za-z0-9_-]+)/);
+  const inN = nm ? Object.fromEntries(Object.entries(CrewCore.decodeNotesParam(nm[1])).filter(([no]) => byNo.has(+no))) : {};
+  const freshN = Object.keys(inN).filter(no => (notes[no] || '').trim() !== inN[no].trim());
+  const clear = () => history.replaceState(null, '', location.pathname + location.search);
+  if (!incoming.length && !freshV.length && !freshN.length) { clear(); return; }
+  if (!fresh.length && !freshV.length && !freshN.length) { clear(); return; }
+  const parts = [`<b>${incoming.length} picks</b>`];
+  if (Object.keys(inV).length) parts.push(`<b>${Object.keys(inV).length} verdicts</b>`);
+  if (Object.keys(inN).length) parts.push(`<b>${Object.keys(inN).length} notes</b>`);
+  showBanner(`<span>This link carries ${parts.join(', ')} (${fresh.length + freshV.length + freshN.length} you don’t have yet).</span><button type="button" class="btn primary" data-import>Add them to mine</button><button type="button" class="btn" data-dismiss>Not now</button>`);
+  const b = document.getElementById('banner');
+  b.dataset.incoming = fresh.join(',');
+  b.dataset.incomingVerdicts = JSON.stringify(Object.fromEntries(freshV.map(no => [no, inV[no]])));
+  b.dataset.incomingNotes = JSON.stringify(Object.fromEntries(freshN.map(no => [no, inN[no]])));
 }
 // ---------- my festival (picks hub) ----------
 function hubList(evs){
@@ -1106,7 +1116,13 @@ document.addEventListener('click', ev => {
   if (t.id === 'close') { closeSheet(); return; }
   if (t.id === 'back') { goBack(); return; }
   if (t.id === 'clearq') { q = ''; document.getElementById('q').value = ''; t.hidden = true; render(); return; }
-  if ('import' in d) { const b = document.getElementById('banner'); const inc = (b.dataset.incoming || '').split(',').map(Number).filter(Boolean); inc.forEach(n => picks.add(n)); save(LS_PICKS, [...picks]); try { Object.assign(verdicts, JSON.parse(b.dataset.incomingVerdicts || '{}')); save(LS_VERDICTS, verdicts); } catch (e) {} history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return; }
+  if ('import' in d) {
+    const b = document.getElementById('banner');
+    (b.dataset.incoming || '').split(',').map(Number).filter(Boolean).forEach(n => picks.add(n)); save(LS_PICKS, [...picks]);
+    try { Object.assign(verdicts, JSON.parse(b.dataset.incomingVerdicts || '{}')); save(LS_VERDICTS, verdicts); } catch (e) {}
+    try { for (const [no, text] of Object.entries(JSON.parse(b.dataset.incomingNotes || '{}'))) notes[no] = CrewCore.mergeNoteText(notes[no], text); save(LS_NOTES, notes); } catch (e) {}
+    history.replaceState(null, '', location.pathname + location.search); hideBanner(); render(); return;
+  }
   if ('dismiss' in d) { if (/picks=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); hideBanner(); return; }
   if ('copy' in d) { const inp = document.getElementById('picklink'); inp.select(); try { navigator.clipboard.writeText(inp.value).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
 });
