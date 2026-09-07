@@ -940,6 +940,13 @@ const safeDecode = s => { try { return decodeURIComponent(s); } catch (e) { retu
 function checkHash(){
   const ev = location.hash.match(/event=(\d+)/);
   if (ev && byNo.has(+ev[1])) { const e = byNo.get(+ev[1]); if (state.day !== e.date) { state.day = e.date; render(); } showEvent(+ev[1]); }
+  const j = CrewCore.parseJoinHash(location.hash);
+  if (j) {
+    sessionStorage.setItem(SS_JOIN, JSON.stringify({...j, at: Date.now()}));
+    history.replaceState(null, '', location.pathname + location.search);   // the token must not sit in the address bar or history
+    if (CLOUD) loadFirebase().then(() => { if (!user) offerJoin(); }).catch(() => {});
+    return;
+  }
   if (!/(?:^#|&)(picks|verdicts|notes)=/.test(location.hash)) return;
   const pm = location.hash.match(/picks=([\d,]*)/);
   const incoming = pm ? pm[1].split(',').map(Number).filter(n => byNo.has(n)) : [];
@@ -1412,8 +1419,6 @@ const liveInvites = () => crew ? crew.invites.filter(i => !i.revoked && i.expire
 const inviteLink = token => PUBLIC_URL + '#join=' + crew.id + '.' + token;
 const saveCrewCache = () => save(LS_CREW_CACHE, {id: crew.id, name: crew.name, createdBy: crew.createdBy, members: crew.members, syncedAt: crew.syncedAt});
 function crewSection(){ return ''; }   // Task 7 replaces this
-function afterSubscribe(){}            // Task 4 replaces this
-const pendingJoin = () => null;         // Task 4 replaces this
 
 // Called after every user-document snapshot: the pointer decides whether we listen to a crew.
 function onCrewPointer(){
@@ -1498,6 +1503,47 @@ function crewCard(){
     ${inv ? `<ul class="members invites">${inv}</ul>` : ''}${removed}
     <div class="actions"><button type="button" class="btn primary" data-crew-invite>Invite link</button><button type="button" class="btn" data-crew-rename>Rename</button><button type="button" class="btn" data-crew-leave>Leave crew</button>${owner ? '<button type="button" class="btn" data-crew-close>Close crew</button>' : ''}</div></div>`;
 }
+const newToken = () => { const b = new Uint8Array(16); crypto.getRandomValues(b); return btoa(String.fromCharCode(...b)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+async function createInvite(){
+  if (!navigator.onLine) { showBanner('<span>Invite links need a connection.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  const {F} = fb; const token = newToken();
+  try {
+    await F.setDoc(F.doc(fb.db, 'crews', crew.id, 'invites', token), {crewName: crew.name, createdBy: user.uid, createdByName: accountName, createdAt: F.serverTimestamp(), expiresAt: F.Timestamp.fromMillis(Date.now() + 14 * 864e5), revoked: false, v: 1});
+    shareLink(inviteLink(token));
+  } catch (e) { authMessage(e); }
+}
+function shareLink(url){
+  if (navigator.share && PHONE) { navigator.share({title: `Join ${crew.name}`, text: `Join my crew “${crew.name}” in the HowTheLightGetsIn planner:`, url}).catch(() => {}); return; }
+  showBanner(`<span>Invite link — anyone with it can join until you revoke it:</span><input readonly value="${esc(url)}" aria-label="Invite link"><button type="button" class="btn primary" data-copy-invite="${esc(url)}">Copy</button><button type="button" class="btn" data-dismiss>Close</button>`);
+}
+// The pending invite survives the redirect sign-in round trip and a reload while creating an account, for an hour.
+const pendingJoin = () => { try { const j = JSON.parse(sessionStorage.getItem(SS_JOIN) || 'null'); return j && j.crew && j.token && Date.now() - j.at < 36e5 ? j : null; } catch (e) { return null; } };
+const clearJoin = () => sessionStorage.removeItem(SS_JOIN);
+function afterSubscribe(){ offerJoin(); }
+async function offerJoin(){
+  const j = pendingJoin(); if (!j || !CLOUD) return;
+  if (!user) { showBanner('<span>You’ve been invited to a crew. Sign in or create an account to join.</span><button type="button" class="btn primary" data-hub>Sign in</button><button type="button" class="btn" data-join-decline>Not now</button>'); return; }
+  if (crewId === j.crew) { clearJoin(); showBanner(`<span>You’re already in ${esc(crew ? crew.name : 'this crew')}.</span><button type="button" class="btn" data-dismiss>OK</button>`); return; }
+  let inv = null;
+  try { const s = await fb.F.getDoc(fb.F.doc(fb.db, 'crews', j.crew, 'invites', j.token)); inv = s.exists() ? s.data() : null; } catch (e) { inv = null; }
+  if (!inv || inv.revoked || !inv.expiresAt || inv.expiresAt.toMillis() < Date.now()) { clearJoin(); showBanner('<span>This invite link no longer works; ask for a new one.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  const lead = crewId ? `Leave ${esc(crew ? crew.name : 'your crew')} and join ` : 'Join ';
+  const ios = IOS && !STANDALONE ? ' On iPhone, join here in Safari; the installed app picks it up when you sign in there.' : '';
+  showBanner(`<span>${lead}<b>${esc(inv.crewName)}</b>? Invited by ${esc(inv.createdByName)}.${ios}</span><button type="button" class="btn primary" data-join-accept>Join</button><button type="button" class="btn" data-join-decline>Not now</button>`);
+}
+async function acceptJoin(){
+  const j = pendingJoin(); if (!j || !user) return;
+  if (!navigator.onLine) { showBanner('<span>Joining needs a connection.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  if (crewId) { const left = await leaveCrew(true); if (!left) return; }
+  const {F} = fb; const mref = memberRef(j.crew, user.uid);
+  const b = F.writeBatch(fb.db);
+  b.set(mref, {name: accountName, joinedAt: F.serverTimestamp(), ...CrewCore.projectForCrew(localState()), invite: j.token, updatedAt: F.serverTimestamp(), v: 1});
+  b.update(userRef(), {crew: j.crew, updatedAt: F.serverTimestamp()});
+  try {
+    await b.commit(); clearJoin(); hideBanner();
+    F.updateDoc(mref, {invite: F.deleteField(), updatedAt: F.serverTimestamp()}).catch(() => {});   // the token need not stay readable by the crew
+  } catch (e) { clearJoin(); showBanner('<span>This invite link no longer works; ask for a new one.</span><button type="button" class="btn" data-dismiss>OK</button>'); }
+}
 
 // ---------- events ----------
 document.addEventListener('click', ev => {
@@ -1529,6 +1575,11 @@ document.addEventListener('click', ev => {
   if ('crewCreate' in d) { createCrew(); return; }
   if ('crewRename' in d) { renameCrew(); return; }
   if ('crewLeave' in d) { leaveCrew(false); return; }
+  if ('crewInvite' in d) { createInvite(); return; }
+  if (d.crewRevoke) { fb.F.updateDoc(fb.F.doc(fb.db, 'crews', crew.id, 'invites', d.crewRevoke), {revoked: true}).catch(authMessage); return; }
+  if (d.copyInvite) { try { navigator.clipboard.writeText(d.copyInvite).then(() => { t.textContent = 'Copied'; }, () => {}); } catch (e) {} return; }
+  if ('joinAccept' in d) { acceptJoin(); return; }
+  if ('joinDecline' in d) { clearJoin(); hideBanner(); return; }
   if ('hub' in d || 'share' in d) { showHub(); return; }
   if ('browse' in d) { closeSheet(); document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
   if ('about' in d) { closeSheet(); document.getElementById('about').scrollIntoView({behavior: 'smooth', block: 'start'}); return; }
