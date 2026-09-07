@@ -1,5 +1,5 @@
 // src/core/crew.js — crew helpers: projection, join-link parsing, colours and summaries, moved from
-// scripts/crew-core.js as ES exports (no IIFE, no module.exports). No DOM, no Firebase.
+// the old single-file page's shared core as ES exports (no IIFE, no module.exports). No DOM, no Firebase.
 
 // the crew-visible projection of an account: picks, verdicts, and only the notes marked shared
 export function projectForCrew(s){

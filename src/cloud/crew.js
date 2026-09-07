@@ -1,5 +1,5 @@
 // src/cloud/crew.js — the crew layer: crews/{id}, its members, invites and block records. Ported
-// function for function from the crew section of the old scripts/template.html (subscriptions, the cache,
+// function for function from the crew section of the old single-file page (subscriptions, the cache,
 // create, rename, leave, invites, joining) plus the four functions Phase 2's Task 5 planned but never
 // applied to that page (removeMember, readmit, makeOwner, closeCrew).
 //

@@ -1,6 +1,6 @@
 # Crew spec — review
 
-Status: decisions 1–3, 5, 6 and 10 were taken on 7 September 2026 (Firebase Hosting, no encryption, notes synced, one crew per person, creator-only removal and closing, Spark for now) and `CREW-SPEC.md` was rewritten accordingly. This document stays as the record of the reasoning.
+Status: decisions 1–3, 5, 6 and 10 were taken on 7 September 2026 (Firebase Hosting, no encryption, notes synced, one crew per person, creator-only removal and closing, Spark for now) and `CREW-SPEC.md` was rewritten accordingly. This document stays as the record of the reasoning, frozen at the commit it reviewed: it describes the single-file `scripts/template.html` app, which has since been replaced by the Vite + React codebase in `src/` (`docs/superpowers/specs/2026-09-07-react-restructure-design.md`). Read its file and build-step references as history, not as instructions.
 
 Reviewed on 7 September 2026: `CREW-SPEC.md` and `firebase/firestore.rules` at cc2f683, read against the app in `scripts/template.html` (state model, share links, sheet rendering, service worker, build and deploy workflows). A first draft of this review was then challenged by two independent reviewer passes (design critique and security review of the rules); their accepted findings are folded in below.
 

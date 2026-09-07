@@ -1,4 +1,5 @@
-// Moved from scripts/test/crew-core.test.mjs (the notes/picks half): same assertions, ESM imports.
+// Moved from the old node --test suite for the page's shared core (the notes/picks half): same
+// assertions, ESM imports.
 import {b64u, mergeNoteText, encodeNotesParam, decodeNotesParam, picksToMap, mapToPicks, mergeState} from './notes.js';
 
 test('notes round-trip through the fragment param', () => {

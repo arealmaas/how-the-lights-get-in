@@ -1,6 +1,6 @@
 // src/cloud/sync.js — the account document: the sign-in sequence, the live subscription, the snapshot
 // apply, the field-level write batches and the offline queue. Ported function for function from the
-// account section of the old scripts/template.html (afterSignIn, subscribeUser, stopSync, applyUserData,
+// account section of the old single-file page (afterSignIn, subscribeUser, stopSync, applyUserData,
 // syncError, queueChange/replayQueue/syncChange). The old page's globals become store reads and writes;
 // its innerHTML banners become banner-store entries. No React here, and no firebase/* import: the SDK
 // arrives through auth.js's getFb().

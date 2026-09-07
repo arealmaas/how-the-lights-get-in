@@ -1,4 +1,5 @@
-// Moved from scripts/test/crew-core.test.mjs (the crew half): same assertions, ESM imports.
+// Moved from the old node --test suite for the page's shared core (the crew half): same assertions,
+// ESM imports.
 import {projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary, crewPicked, goingNames} from './crew.js';
 
 test('projectForCrew drops notes that are not shared', () => {

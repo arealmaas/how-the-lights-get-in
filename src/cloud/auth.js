@@ -1,7 +1,7 @@
 // src/cloud/auth.js — Firebase Authentication: the lazy SDK loader, the auth-state bridge into the cloud
 // store, the sign-in methods, the message table, and the account chores (change name, sign out, sign out
 // and clear this device, delete account). Ported function for function from the account section of the
-// old scripts/template.html; the old globals become store reads and writes and the innerHTML banners
+// old single-file page; the old globals become store reads and writes and the innerHTML banners
 // become banner-store entries. No React here; firebase/* is only ever reached through the dynamic
 // import('./firebase.js') below, which is what keeps the SDK in its own chunk.
 import {FIREBASE, CLOUD} from '../data/index.js';

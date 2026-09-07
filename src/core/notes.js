@@ -1,4 +1,5 @@
-// src/core/notes.js — notes and picks codecs, moved from scripts/crew-core.js as ES exports (no IIFE, no
+// src/core/notes.js — notes and picks codecs, moved from the old single-file page's shared core as ES
+// exports (no IIFE, no
 // module.exports). Shared by the app and the move page. No DOM, no Firebase: plain data in, plain data out.
 
 // base64url without padding, UTF-8 safe, available in browsers and Node 18+
