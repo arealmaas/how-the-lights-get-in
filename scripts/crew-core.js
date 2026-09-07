@@ -1,4 +1,4 @@
-// crew-core.js — pure helpers shared by the page (inlined by scripts/build.py at /*__CORE__*/) and the
+// crew-core.js — pure helpers shared by the page (inlined by scripts/build.py at the CORE placeholder) and the
 // Node tests in scripts/test/. No DOM, no Firebase: everything here takes plain data and returns plain data.
 const CrewCore = (() => {
   'use strict';
