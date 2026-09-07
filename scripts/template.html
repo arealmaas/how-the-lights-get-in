@@ -925,7 +925,7 @@ function checkHash(){
   const incoming = pm ? pm[1].split(',').map(Number).filter(n => byNo.has(n)) : [];
   const fresh = incoming.filter(n => !picks.has(n));
   const vm = location.hash.match(/verdicts=([^&]+)/);
-  const inV = vm ? Object.fromEntries(vm[1].split(';').map(x => x.split(':')).filter(([no]) => byNo.has(+no)).map(([no, who]) => [+no, safeDecode(who || '')])) : {};
+  const inV = vm ? Object.fromEntries(vm[1].split(';').map(x => x.split(':')).filter(([no, who]) => byNo.has(+no) && who).map(([no, who]) => [+no, safeDecode(who || '')])) : {};
   const freshV = Object.keys(inV).filter(no => verdicts[no] !== inV[no]);
   const nm = location.hash.match(/notes=([A-Za-z0-9_-]+)/);
   const inN = nm ? Object.fromEntries(Object.entries(CrewCore.decodeNotesParam(nm[1])).filter(([no]) => byNo.has(+no))) : {};
@@ -991,6 +991,7 @@ function verdictBlock(e){
 }
 let notesDirty = false, noteTimer = null;
 function setNote(no, text){
+  text = String(text || '').slice(0, 20000);
   if (text.trim()) notes[no] = text; else delete notes[no];
   save(LS_NOTES, notes); notesDirty = true;
   syncChange({['notes.' + no]: notes[no] || DEL()}, shared[no] ? {['notes.' + no]: notes[no] || DEL()} : null);
@@ -1111,6 +1112,7 @@ function showStats(push = true){
 let fb = null, fbLoading = null;          // {A: auth module, F: firestore module, auth, db} once the SDK is loaded
 let user = null, accountName = '', crewId = null, crew = null;
 let unsubUser = null, deleting = false, syncPaused = false;
+let syncPending = false, syncStopped = false, signInBranch = '';
 const syncStats = {writes: 0, snapshots: 0};   // spec section 10, quota sanity: shown by ?selftest and as window.htlgiSyncStats
 window.htlgiSyncStats = syncStats;
 const userRef = () => fb.F.doc(fb.db, 'users', user.uid);
@@ -1125,7 +1127,7 @@ function crewOwnedByMe(){ return false; }
 function afterSubscribe(){}
 const pendingJoin = () => null;
 
-function loadFirebase(){
+function loadFirebase(auto){
   if (!CLOUD) return Promise.reject(new Error('cloud features are off'));
   if (fbLoading) return fbLoading;
   fbLoading = Promise.all([import(SDK + 'firebase-app.js'), import(SDK + 'firebase-auth.js'), import(SDK + 'firebase-firestore.js')]).then(([app, A, F]) => {
@@ -1137,7 +1139,9 @@ function loadFirebase(){
     return fb;
   }).catch(e => {
     fbLoading = null;
-    showBanner(`<span>Sign-in is unavailable right now (${esc(e.message)}). Your picks stay on this device.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+    if (!auto) showBanner(`<span>Sign-in is unavailable right now (${esc(e.message)}). Your picks stay on this device.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+    else if (!navigator.onLine) showBanner('<span>You’re offline — your picks are saved on this device and will sync when you are back online.</span><button type="button" class="btn" data-dismiss>OK</button>');
+    else console.warn('firebase', e);
     e.reported = true;
     throw e;
   });
@@ -1174,7 +1178,7 @@ function accountCard(){
       </form></div>`;
   }
   const hasPw = user.providerData.some(p => p.providerId === 'password');
-  return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Signed in as <b>${esc(accountName)}</b>${user.email ? ` · ${esc(user.email)}` : ''}. Your picks, verdicts and notes follow this account. Where this is stored and who sees it: <button type="button" class="linkbtn" data-privacy>privacy</button>.</span>
+  return `<div class="hub-card account"><span class="hc-k">Account</span><span class="hc-d">Signed in as <b>${esc(accountName)}</b>${user.email ? ` · ${esc(user.email)}` : ''}. ${syncStopped ? 'Sync stopped: this account was deleted on another device; sign out and in again to start afresh.' : syncPending || !accountMarker() ? 'Signed in, not synced yet — you were offline; it will catch up when you are back online.' : 'Your picks, verdicts and notes follow this account.'} Where this is stored and who sees it: <button type="button" class="linkbtn" data-privacy>privacy</button>.</span>
     <div class="actions"><button type="button" class="btn" data-auth-name>Change name</button>${hasPw ? '' : '<button type="button" class="btn" data-auth-addpw>Add a password</button>'}<button type="button" class="btn" data-auth-signout>Sign out</button><button type="button" class="btn" data-auth-clear>Sign out and clear this device</button><button type="button" class="btn" data-auth-delete>Delete account</button></div>
     <form class="authform" data-auth-form hidden><input type="email" name="email" value="${esc(user.email || '')}" placeholder="Email" autocomplete="email"><input type="password" name="password" placeholder="New password (8 or more characters)" autocomplete="new-password" minlength="8"><div class="actions"><button type="button" class="btn primary" data-auth-link>Save password</button></div><p class="src" data-auth-msg></p></form></div>`;
 }
@@ -1196,8 +1200,8 @@ async function emailAction(t, d){
     if (!email || password.length < 8) return msg('Enter your email and a password of 8 or more characters.');
     if ('authSignin' in d) { await A.signInWithEmailAndPassword(auth, email, password); return; }
     if ('authCreate' in d) { if (name) accountName = name; const cred = await A.createUserWithEmailAndPassword(auth, email, password); if (name) await A.updateProfile(cred.user, {displayName: name}); return; }
-    if ('authLink' in d) { await A.linkWithCredential(auth.currentUser, A.EmailAuthProvider.credential(email, password)); msg('Password added: you can now sign in with email and password too.'); refreshSheet(); return; }
-  } catch (e) { msg(authText(e)); }
+    if ('authLink' in d) { await A.linkWithCredential(auth.currentUser, A.EmailAuthProvider.credential(email, password)); refreshSheet(); showBanner('<span>Password added: you can now sign in with email and password too.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  } catch (e) { msg('authLink' in d && e.code === 'auth/email-already-in-use' ? 'That email already belongs to another account.' : authText(e)); }
 }
 function authText(e){
   const c = (e && e.code) || '';
@@ -1207,7 +1211,7 @@ function authText(e){
   if (c === 'auth/popup-blocked') return 'The sign-in window was blocked. Allow pop-ups for this site, or use email and password.';
   if (c === 'auth/popup-closed-by-user' || c === 'auth/cancelled-popup-request') return 'Sign-in was cancelled.';
   if (c === 'auth/network-request-failed') return 'No connection. Try again when you are online.';
-  if (c === 'auth/requires-recent-login') return 'Please sign in again first.';
+  if (c === 'auth/requires-recent-login') return (e.message && /Sign out/.test(e.message)) ? e.message : 'Please sign in again first.';
   if (c === 'auth/invalid-email') return 'That does not look like an email address.';
   return (e && e.message) || 'Something went wrong.';
 }
@@ -1217,25 +1221,36 @@ const localState = () => ({picks: CrewCore.picksToMap(picks), verdicts: {...verd
 // belonged to a different account; only then subscribe.
 async function afterSignIn(u){
   const marker = accountMarker();
-  if (marker && marker.uid === u.uid) { subscribeUser(); afterSubscribe(); return; }
+  if (marker && marker.uid === u.uid) { signInBranch = 'subscribe'; subscribeUser(); replayQueue(); afterSubscribe(); return; }
   const {F} = fb; const ref = userRef();
   let snap;
   try { snap = await F.getDocFromServer(ref); }
-  catch (e) { showBanner('<span>Signing in for the first time on this device needs a connection. Try again when you are online.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
+  catch (e) {
+    syncPending = true;
+    showBanner('<span>Signing in for the first time on this device needs a connection. Your picks stay on this device until you are back online.</span><button type="button" class="btn" data-dismiss>OK</button>');
+    window.addEventListener('online', () => { if (syncPending && user) afterSignIn(user).catch(err => authMessage(err)); }, {once: true});
+    refreshSheet(); return;
+  }
   const local = localState();
   if (!snap.exists()) {
     // a device that last synced with another account does not seed a new account with that account's data
     const fresh = marker ? {picks: {}, verdicts: {}, notes: {}, shared: {}} : local;
+    signInBranch = marker ? 'create-empty' : 'create-from-local';
     await F.setDoc(ref, {name: accountName, ...fresh, updatedAt: F.serverTimestamp(), v: 1});
   } else if (!marker) {
+    signInBranch = 'merge';
     const remote = snap.data();
     const m = CrewCore.mergeState(local, remote);
     accountName = (remote.name || accountName).slice(0, 40);
     await F.setDoc(ref, {name: accountName, ...(remote.crew ? {crew: remote.crew} : {}), picks: m.picks, verdicts: m.verdicts, notes: m.notes, shared: m.shared, updatedAt: F.serverTimestamp(), v: 1});
     if (m.added) showBanner(`<span>Merged <b>${m.added} pick${m.added === 1 ? '' : 's'}</b> from this device into your account.</span><button type="button" class="btn" data-dismiss>OK</button>`);
+  } else {
+    // this device synced with a different account before: the first snapshot replaces local state
+    signInBranch = 'replace';
   }
-  // otherwise this device synced with a different account before: the first snapshot replaces local state
+  localStorage.removeItem(LS_QUEUE);
   save(LS_ACCOUNT, {uid: u.uid});
+  syncPending = false;
   subscribeUser();
   afterSubscribe();
 }
@@ -1248,9 +1263,11 @@ function subscribeUser(){
   }, err => syncError(err));
 }
 function stopSync(msg){
+  syncStopped = true;
   if (unsubUser) { unsubUser(); unsubUser = null; }
   localStorage.removeItem(LS_ACCOUNT);
   if (msg) showBanner(`<span>${esc(msg)}</span><button type="button" class="btn" data-dismiss>OK</button>`);
+  refreshSheet();
 }
 const sameState = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 // Apply a snapshot in place. Two guards: the note being typed wins, and nothing is rebuilt under a focused textarea.
@@ -1267,9 +1284,9 @@ function applyUserData(d){
   const changed = !sameState([[...picks].sort(), verdicts, notes, shared, crewId, accountName], [[...nextPicks].sort(), nextVerdicts, nextNotes, nextShared, nextCrew, nextName]);
   accountName = nextName;
   picks = nextPicks; verdicts = nextVerdicts; notes = nextNotes; shared = nextShared; crewId = nextCrew;
-  save(LS_PICKS, [...picks]); save(LS_VERDICTS, verdicts); save(LS_NOTES, notes); save(LS_SHARED, shared);
   onCrewPointer();
   if (!changed) return;
+  save(LS_PICKS, [...picks]); save(LS_VERDICTS, verdicts); save(LS_NOTES, notes); save(LS_SHARED, shared);
   render();
   if (focused == null) refreshSheet();
 }
@@ -1282,13 +1299,18 @@ function syncError(e){
   if (code === 'permission-denied' && crewId) { onCrewDenied(); return; }
   console.warn('sync', e);
 }
-// One batch per change: the user document, plus (while in a crew, Phase 2) the member projection.
-const DEL = () => fb ? fb.F.deleteField() : null;
+// One batch per change: the user document, plus (while in a crew) the member projection. When the SDK or the
+// session is not ready on a device that has an account, the change is queued and replayed after the next subscribe.
+const LS_QUEUE = 'htlgi-l26-queue', DEL_MARK = '__DELETE__';
+const DEL = () => DEL_MARK;
+const withSentinels = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, v === DEL_MARK ? fb.F.deleteField() : v]));
+function queueChange(userFields, memberFields){ const q = load(LS_QUEUE, []) || []; q.push({uf: userFields, mf: memberFields || null}); save(LS_QUEUE, q.slice(-500)); }
+function replayQueue(){ const q = load(LS_QUEUE, []) || []; localStorage.removeItem(LS_QUEUE); q.forEach(x => syncChange(x.uf, x.mf)); }
 function syncChange(userFields, memberFields){
-  if (!fb || !user || !accountMarker()) return;          // signed out, or sync stopped: local only
+  if (!fb || !user || !accountMarker()) { if (CLOUD && accountMarker()) queueChange(userFields, memberFields); return; }
   const {F} = fb; const b = F.writeBatch(fb.db);
-  b.update(userRef(), {...userFields, updatedAt: F.serverTimestamp()});
-  if (crewId && memberFields) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...memberFields, updatedAt: F.serverTimestamp()});
+  b.update(userRef(), {...withSentinels(userFields), updatedAt: F.serverTimestamp()});
+  if (crewId && memberFields) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...withSentinels(memberFields), updatedAt: F.serverTimestamp()});
   syncStats.writes++;
   b.commit().catch(syncError);
 }
@@ -1296,6 +1318,8 @@ async function signOutUser(clearDevice){
   if (unsubUser) { unsubUser(); unsubUser = null; }
   unsubscribeCrew();
   localStorage.removeItem(LS_ACCOUNT);
+  localStorage.removeItem(LS_QUEUE);
+  syncStopped = false; syncPending = false;
   try { await fb.A.signOut(fb.auth); } catch (e) {}
   if (clearDevice) {
     Object.keys(localStorage).filter(k => k.startsWith('htlgi-l26-')).forEach(k => localStorage.removeItem(k));
@@ -1316,7 +1340,10 @@ async function changeName(){
 }
 async function reauth(){
   const {A} = fb;
-  if (user.providerData.some(p => p.providerId === 'google.com')) { await A.reauthenticateWithPopup(user, new A.GoogleAuthProvider()); return; }
+  if (user.providerData.some(p => p.providerId === 'google.com')) {
+    if (PHONE || STANDALONE) throw Object.assign(new Error('Sign out, sign in again with Google, and then delete the account.'), {code: 'auth/requires-recent-login', reported: false});
+    await A.reauthenticateWithPopup(user, new A.GoogleAuthProvider()); return;
+  }
   const pw = prompt('Confirm your password to continue'); if (!pw) throw new Error('Cancelled.');
   await A.reauthenticateWithCredential(user, A.EmailAuthProvider.credential(user.email, pw));
 }
@@ -1324,6 +1351,10 @@ async function deleteAccount(){
   if (crewId && crewOwnedByMe()) { showBanner('<span>You created your crew: hand it over or close it before deleting your account.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
   if (!confirm('Delete your account and everything stored in it? Picks and notes stay on this device only.')) return;
   if (!confirm('This cannot be undone. Delete the account?')) return;
+  const signedInAt = user.metadata && user.metadata.lastSignInTime ? Date.parse(user.metadata.lastSignInTime) : 0;
+  if (Date.now() - signedInAt > 4 * 60e3) {   // Firebase demands a recent sign-in for deletion: do it before touching any data
+    try { await reauth(); } catch (e) { authMessage(e); return; }
+  }
   const {A, F} = fb;
   if (deleting) return;
   deleting = true;
@@ -1336,6 +1367,7 @@ async function deleteAccount(){
     b.delete(userRef());
     await b.commit();
     dataGone = true;
+    localStorage.removeItem(LS_QUEUE);
     localStorage.removeItem(LS_ACCOUNT); crewId = null; crew = null; onCrewPointer();   // the data is gone: never sync this device to it again
     try { await A.deleteUser(user); }
     catch (e) { if (e.code !== 'auth/requires-recent-login') throw e; await reauth(); await A.deleteUser(user); }
@@ -1353,7 +1385,7 @@ if (new URLSearchParams(location.search).has('selftest')) {
   ok('merge keeps both notes', CrewCore.mergeNoteText('a', 'b') === 'a\n\n---\n\nb');
   ok('picks round-trip', [...CrewCore.mapToPicks(CrewCore.picksToMap(new Set([3, 6])))].join() === '3,6');
   ok('merge counts added picks', CrewCore.mergeState({picks: {1: true}}, {picks: {2: true}}).added === 1);
-  console.log('selftest: standalone', STANDALONE, '· ios', IOS, '· cloud', CLOUD);
+  console.log('selftest: standalone', STANDALONE, '· ios', IOS, '· cloud', CLOUD, '· sign-in branch', signInBranch, '· marker', (accountMarker() || {}).uid || 'none');
   setInterval(() => console.log('selftest: sync writes', syncStats.writes, '· snapshots', syncStats.snapshots), 60000);
 }
 
@@ -1423,6 +1455,7 @@ document.addEventListener('input', ev => {
   pendingNote = {no: +ev.target.dataset.note, text: ev.target.value};
   clearTimeout(noteTimer); noteTimer = setTimeout(flushNote, 250);
 });
+document.addEventListener('submit', ev => { const f = ev.target; if (!f.matches('[data-auth-form]')) return; ev.preventDefault(); const b = f.querySelector('[data-auth-signin], [data-auth-link]'); if (b) b.click(); });
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Escape' && !document.getElementById('sheet').hidden) { closeSheet(); return; }
   if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('article.ev')) { ev.preventDefault(); showEvent(+ev.target.dataset.no); }
@@ -1436,7 +1469,7 @@ window.addEventListener('hashchange', checkHash);
 (function init(){
   const v = document.getElementById('venue'); VENUES.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; v.appendChild(o); });
   const t = document.getElementById('topic'); TOPICS.forEach(x => { const o = document.createElement('option'); o.value = x; o.textContent = x; t.appendChild(o); });
-  if (CLOUD && (accountMarker() || sessionStorage.getItem(SS_REDIRECT) || pendingJoin())) loadFirebase().catch(() => {});
+  if (CLOUD && (accountMarker() || sessionStorage.getItem(SS_REDIRECT) || pendingJoin())) loadFirebase(true).catch(() => {});
   render();
   checkHash();
   if (isFestivalDay) setInterval(renderNowNext, 60000);
