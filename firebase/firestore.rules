@@ -1,0 +1,19 @@
+// Crew mode rules — see CREW-SPEC.md. Documents live at crews/{crewId}/members/{memberId};
+// crewId is a 43-character base64url hash derived from the crew passphrase on the device, so the
+// id is the secret. Member documents hold only AES-GCM ciphertext; nothing readable is stored.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /crews/{crew}/members/{member} {
+      allow read: if crew.size() == 43 && member.size() <= 40;
+      allow create, update: if crew.size() == 43 && member.size() <= 40
+        && request.resource.data.keys().hasOnly(['blob', 'iv', 'v', 'updatedAt'])
+        && request.resource.data.blob is string && request.resource.data.blob.size() <= 32768
+        && request.resource.data.iv is string && request.resource.data.iv.size() <= 32
+        && request.resource.data.v == 1
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if crew.size() == 43;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
