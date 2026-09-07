@@ -1220,7 +1220,9 @@ async function afterSignIn(u){
   catch (e) { showBanner('<span>Signing in for the first time on this device needs a connection. Try again when you are online.</span><button type="button" class="btn" data-dismiss>OK</button>'); return; }
   const local = localState();
   if (!snap.exists()) {
-    await F.setDoc(ref, {name: accountName, ...local, updatedAt: F.serverTimestamp(), v: 1});
+    // a device that last synced with another account does not seed a new account with that account's data
+    const fresh = marker ? {picks: {}, verdicts: {}, notes: {}, shared: {}} : local;
+    await F.setDoc(ref, {name: accountName, ...fresh, updatedAt: F.serverTimestamp(), v: 1});
   } else if (!marker) {
     const remote = snap.data();
     const m = CrewCore.mergeState(local, remote);
@@ -1256,9 +1258,10 @@ function applyUserData(d){
   const nextNotes = Object.fromEntries(Object.entries(d.notes || {}).filter(([k, v]) => byNo.has(+k) && typeof v === 'string' && v.trim()));
   if (focused != null) { if (notes[focused] && notes[focused].trim()) nextNotes[focused] = notes[focused]; else delete nextNotes[focused]; }
   const nextShared = Object.fromEntries(Object.entries(d.shared || {}).filter(([k]) => byNo.has(+k)));
-  accountName = (d.name || accountName).slice(0, 40);
   const nextCrew = typeof d.crew === 'string' ? d.crew : null;
-  const changed = !sameState([[...picks].sort(), verdicts, notes, shared, crewId], [[...nextPicks].sort(), nextVerdicts, nextNotes, nextShared, nextCrew]);
+  const nextName = (d.name || accountName).slice(0, 40);
+  const changed = !sameState([[...picks].sort(), verdicts, notes, shared, crewId, accountName], [[...nextPicks].sort(), nextVerdicts, nextNotes, nextShared, nextCrew, nextName]);
+  accountName = nextName;
   picks = nextPicks; verdicts = nextVerdicts; notes = nextNotes; shared = nextShared; crewId = nextCrew;
   save(LS_PICKS, [...picks]); save(LS_VERDICTS, verdicts); save(LS_NOTES, notes); save(LS_SHARED, shared);
   onCrewPointer();

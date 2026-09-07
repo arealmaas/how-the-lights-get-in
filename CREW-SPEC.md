@@ -262,7 +262,7 @@ Loading
 Signing in (also the first run on a new device)
 
 1. Sign-in completes. Read `users/{uid}` once from the server.
-2. Missing: write the complete document from local state (name from the profile or the sign-up form, `shared: {}`).
+2. Missing: write the complete document from local state (name from the profile or the sign-up form, `shared: {}`). If this device last synced with a different account, the new document starts empty instead (the replace rule of step 4).
 3. Present, and this device has never synced with this uid: merge, never discard. Picks: union. Verdicts: union, local wins a conflict. Notes: a note that differs on both sides keeps both texts with `---` between them. Write the merged state up and say "Merged 12 picks from this device into your account". Imports from `#picks=` links were confirmed by the user and count as their picks.
 4. Present, and this device last synced with a different uid: replace local state with the account; the previous person's data is in their account.
 5. Record the uid in `htlgi-l26-account`. Only now subscribe.
