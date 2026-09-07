@@ -439,7 +439,8 @@ __PREVIEW_TAG__
 <main id="main"></main>
 <footer>
   <div class="disclaimer" id="about"><b>Unofficial.</b> This planner is fan-made by a festival-goer and is not affiliated with, endorsed by, or connected to HowTheLightGetsIn or the Institute of Art and Ideas (IAI). Event descriptions, speaker biographies and photographs are © the IAI and the respective photographers, reproduced at reduced size from <a href="https://howthelightgetsin.org/festivals/london/programme" target="_blank" rel="noopener">howthelightgetsin.org</a> (extracted __EXTRACTED__: __TOTAL__ events, __SPEAKERS__ speakers and hosts, __ACTS__ acts) so festival-goers can plan their weekend. The programme may change — check the official programme for the latest details and for tickets. Times shown are start times; end times in calendar exports are estimates.</div>
-  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser. “My festival” in the header gathers them: a link that carries picks and verdicts to another device or a friend, a calendar export of all picks at once, a Markdown export of your notes, and the reading list built from the speakers you picked.</div>
+  <div class="noprint">Ticketing: “Fast Pass” events are included with a Festival Ticket, with an optional paid pass that skips the queue and reserves a seat. Inner Circle meals and banquets are sold separately. Picks, notes and debate verdicts are saved in this browser, or in your account if you sign in. “My festival” in the header gathers them: a link that carries picks and verdicts to another device or a friend, a calendar export of all picks at once, a Markdown export of your notes, and the reading list built from the speakers you picked.</div>
+  <div class="noprint" id="privacy">If you sign in, your email address, name, picks, debate verdicts, notes and crew are stored in Firebase (Google), in the EU. Only you can read them; people in your crew see your picks, verdicts and the notes you choose to share. The site sets no cookies and has no analytics; Google sign-in opens Google’s pages, which do. “Delete account” in My festival removes everything.</div>
   <div class="noprint">Debate briefings are unofficial notes written with Claude (AI) from the programme text and the speakers’ published work — inferred, hedged, and not the speakers’ or the festival’s words; corrections welcome on GitHub. Music, comedy and film links were looked up by hand; where none was found the planner offers a search instead.</div>
   <div class="noprint offline-note">Once loaded, the planner works offline — add it to your home screen for the weekend. Add <code>?now=2026-09-19T14:00</code> to the address to preview festival-day mode.</div>
   <div class="noprint">Source code and data: <a href="https://github.com/arealmaas/how-the-lights-get-in" target="_blank" rel="noopener">github.com/arealmaas/how-the-lights-get-in</a></div>
@@ -849,7 +850,7 @@ function showEvent(no, push = true){
       <h3 class="sub">My notes</h3>
       ${e.type === 'Debates' ? verdictBlock(e) : ''}
       <textarea class="notes" data-note="${e.eventNo}" placeholder="Thoughts, quotes, questions to ask…" rows="4">${esc(notes[e.eventNo] || '')}</textarea>
-      <p class="src">Saved in this browser only. “Export notes” in the header writes picks, notes and verdicts to a Markdown file.</p>`;
+      <p class="src">${user ? 'Saved to your account.' : 'Saved in this browser only.'} “Export notes” in My festival writes picks, notes and verdicts to a Markdown file.</p>`;
   openSheet(`
     <div class="g-${GROUP[e.type]}">
       ${hero(e.photo)}
@@ -1343,6 +1344,16 @@ async function deleteAccount(){
     else authMessage(e);
   }
   deleting = false;
+}
+
+if (new URLSearchParams(location.search).has('selftest')) {
+  const ok = (name, cond) => console[cond ? 'log' : 'error'](`${cond ? 'ok' : 'FAIL'} ${name}`);
+  ok('esc escapes hostile names', esc('<img src=x onerror=alert(1)>') === '&lt;img src=x onerror=alert(1)&gt;');
+  ok('merge keeps both notes', CrewCore.mergeNoteText('a', 'b') === 'a\n\n---\n\nb');
+  ok('picks round-trip', [...CrewCore.mapToPicks(CrewCore.picksToMap(new Set([3, 6])))].join() === '3,6');
+  ok('merge counts added picks', CrewCore.mergeState({picks: {1: true}}, {picks: {2: true}}).added === 1);
+  console.log('selftest: standalone', STANDALONE, '· ios', IOS, '· cloud', CLOUD);
+  setInterval(() => console.log('selftest: sync writes', syncStats.writes, '· snapshots', syncStats.snapshots), 60000);
 }
 
 // ---------- events ----------
