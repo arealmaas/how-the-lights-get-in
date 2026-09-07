@@ -84,3 +84,18 @@ test('ticking it commits the draft first, then shares; unticking clears the flag
   expect(usePlanner.getState().shared[6]).toBeUndefined();
   expect(usePlanner.getState().notes[6]).toBe('half a thought');
 });
+
+// The flush before setShared is unforced: pendingRef still catches a half-typed draft (the test above),
+// but ticking and unticking a note nobody has touched must not rewrite it on every click.
+test('ticking a note nobody has edited does not rewrite it', () => {
+  const setNote = vi.fn();
+  useCloud.setState({user: USER, crewId: 'c1', crew: CREW});
+  usePlanner.setState({notes: {6: 'written last week'}, shared: {}, setNote});
+
+  const {container} = render(<Notes no={6} />);
+  fireEvent.click(container.querySelector('label.share input'));
+  fireEvent.click(container.querySelector('label.share input'));
+
+  expect(setNote).not.toHaveBeenCalled();
+  expect(usePlanner.getState().shared[6]).toBeUndefined();
+});

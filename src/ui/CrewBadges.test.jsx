@@ -20,7 +20,7 @@ const dots = () => [...document.querySelectorAll('.cbadges .cdot')];
 beforeEach(() => {
   localStorage.clear();
   usePlanner.setState({day: '2026-09-19', view: 'list', picks: new Set([6]), verdicts: {}, notes: {}, shared: {}});
-  useCloud.setState({user: USER, accountName: 'Are', crewId: 'c1', crew: CREW});
+  useCloud.setState({user: USER, accountName: 'Are', marker: null, crewId: 'c1', crew: CREW});
 });
 
 test('a card shows one dot per other member who picked it, coloured by join order, never my own', () => {
@@ -51,4 +51,14 @@ test('nothing is drawn when nobody else picked it, or when there is no crew', ()
   useCloud.setState({user: null, crew: null, crewId: null});
   render(<EventCard e={E6} picked={true} clash={undefined} hasNote={false} />);
   expect(document.querySelector('.cbadges')).toBeNull();
+});
+
+// CREW-SPEC section 6, "Failure modes": hydrateCrewCache() paints the cached crew before the SDK loads,
+// and on an offline start it never loads at all. The overlay gates on the account marker's uid, not on a
+// signed-in `user`, so the badges are there on a cold start.
+test('a cached crew with only the account marker still draws its badges', () => {
+  useCloud.setState({user: null, crew: CREW, crewId: 'c1', marker: {uid: 'u1'}});
+  render(<EventCard e={E6} picked={true} clash={undefined} hasNote={false} />);
+
+  expect(dots().map(d => d.textContent)).toEqual(['KN']);   // still not my own, because the marker is me
 });

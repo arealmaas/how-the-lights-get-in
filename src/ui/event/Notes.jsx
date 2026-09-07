@@ -10,16 +10,18 @@
 // The "Share this note with the crew" checkbox (CREW-SPEC section 7) appears only while in a crew. It
 // flushes the draft first, exactly as the old page's change handler called flushNote() before writing
 // `shared`: setShared() copies the note the store holds into the member document, so an uncommitted
-// draft would otherwise share the previous text — or nothing at all.
+// draft would otherwise share the previous text — or nothing at all. The flush is unforced, so pendingRef
+// still catches a half-typed draft while ticking a note nobody has touched does not rewrite it.
 import {useEffect, useRef, useState} from 'react';
 import {usePlanner} from '../../store/planner.js';
-import {useCloud} from '../../store/cloud.js';
+import {useCloud, selectMyUid} from '../../store/cloud.js';
 
 export default function Notes({no}){
   const storeNote = usePlanner(s => s.notes[no] || '');
   const isShared = usePlanner(s => !!s.shared[no]);
   const user = useCloud(s => s.user);
   const crew = useCloud(s => s.crew);
+  const myUid = useCloud(selectMyUid);
   const [draft, setDraft] = useState(storeNote);
   const ref = useRef(null);
   const timer = useRef(null);
@@ -67,12 +69,12 @@ export default function Notes({no}){
         onChange={onChange}
         onBlur={() => flush(true)}
       />
-      {crew && user && (
+      {crew && myUid && (
         <label className="share">
           <input
             type="checkbox"
             checked={isShared}
-            onChange={ev => { flush(true); usePlanner.getState().setShared(no, ev.target.checked); }}
+            onChange={ev => { flush(); usePlanner.getState().setShared(no, ev.target.checked); }}
           />
           {' '}Share this note with the crew
         </label>

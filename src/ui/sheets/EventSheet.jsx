@@ -17,6 +17,7 @@ import Verdict from '../event/Verdict.jsx';
 import Notes from '../event/Notes.jsx';
 import CrewRow from '../event/CrewRow.jsx';
 import CrewTally from '../event/CrewTally.jsx';
+import CrewNotes from '../event/CrewNotes.jsx';
 
 function ClashRef({no}){
   const o = byNo.get(no);
@@ -92,6 +93,7 @@ export default function EventSheet({no}){
       {e.type === 'Debates' && <Verdict e={e} />}
       <CrewTally e={e} />
       <Notes no={no} />
+      <CrewNotes no={no} />
     </>
   );
 

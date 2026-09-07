@@ -52,6 +52,20 @@ test('All of you, Where you split and the Only you / Only them expanders', () =>
   expect(useSheet.getState().stack.at(-1)).toEqual({kind: 'event', key: 2});
 });
 
+// Starring an event is local first; my member document catches up a sync round trip later. "Only you"
+// and the crew calendar must agree the moment the star lands, not a second afterwards.
+test('a just-starred event counts as mine before my member document catches up', () => {
+  usePlanner.setState({picks: new Set([1, 6, 12])});   // 12 is Morten's; the member document has 1 and 6
+  render(<CrewSection />);
+
+  expect(screen.getByText('Only them · 1')).toBeInTheDocument();          // 2 only; 12 has just become shared
+  expect(screen.getByRole('heading', {name: 'All of you · 1'})).toBeInTheDocument();
+
+  const [, onlyThem] = document.querySelectorAll('details.hub-more');
+  expect(onlyThem.textContent).toContain('Philosophy Breakfast with David Aaronovitch');   // event 2, Kari's
+  expect(onlyThem.textContent).not.toContain('The Cult of the Internet');                  // event 12, now mine too
+});
+
 test('with nothing in common the lists say so instead of rendering empty', () => {
   usePlanner.setState({picks: new Set([1])});
   useCloud.setState({crew: crewOf(member('u1', 'Are', {1: true}), member('u2', 'Kari', {12: true}))});
@@ -74,7 +88,7 @@ test('the crew calendar is the union of the picks, each entry prefixed with who 
 
   // union: 1 (mine), 2 (Kari), 6 (all), 12 (Morten) — four events, no more
   expect(text.match(/BEGIN:VEVENT/g)).toHaveLength(4);
-  expect(text).toContain('DESCRIPTION:Going: you\\, Kari\\, Morten');   // event 6
+  expect(text).toContain('DESCRIPTION:Going: Are\\, Kari\\, Morten');   // event 6, me under my account name
   expect(text).toContain('DESCRIPTION:Going: Kari');                    // event 2, which I have not picked
 });
 

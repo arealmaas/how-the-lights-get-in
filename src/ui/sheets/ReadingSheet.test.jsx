@@ -20,7 +20,7 @@ beforeEach(() => {
   localStorage.clear();
   useSheet.setState({stack: []});
   usePlanner.setState({picks: new Set([6]), verdicts: {}, notes: {}, shared: {}});
-  useCloud.setState({user: null, accountName: '', crewId: null, crew: null});
+  useCloud.setState({user: null, accountName: 'Are', marker: null, crewId: null, crew: null});
 });
 
 test('without a crew there are no tabs and the list is only mine', () => {
@@ -42,7 +42,7 @@ test('Crew lists the union of the picks and ends each line with who is going', (
 
   const crewLines = lines();
   expect(crewLines).toHaveLength(2);                       // 6 (mine) and 12 (Kari's)
-  expect(crewLines[0]).toMatch(/· you$/);
+  expect(crewLines[0]).toMatch(/· Are$/);   // me under my account name
   expect(crewLines[1]).toMatch(/· Kari$/);
   expect(screen.getByText(/Built from everyone’s picks in the crew/)).toBeInTheDocument();
 });
@@ -72,4 +72,17 @@ test('opened without a mode it is still Mine', () => {
 
   expect(screen.getByRole('button', {name: 'Mine'})).toHaveAttribute('aria-pressed', 'true');
   expect(lines()).toHaveLength(1);
+});
+
+test('switching tab clears a stale "Copied" — the two tabs are two different lists', async () => {
+  Object.defineProperty(navigator, 'clipboard', {value: {writeText: () => Promise.resolve()}, configurable: true});
+  useCloud.setState({user: USER, crewId: 'c1', crew: CREW});
+  render(<ReadingSheet />);
+
+  fireEvent.click(screen.getByRole('button', {name: 'Copy as text'}));
+  await screen.findByRole('button', {name: 'Copied'});
+
+  fireEvent.click(screen.getByRole('button', {name: 'Crew'}));
+  expect(screen.getByRole('button', {name: 'Copy as text'})).toBeInTheDocument();
+  expect(screen.queryByRole('button', {name: 'Copied'})).toBeNull();
 });

@@ -7,7 +7,7 @@
 import {useState} from 'react';
 import {EVENTS, EXTRA, BRIEFINGS, DAYS} from '../../data/index.js';
 import {usePlanner} from '../../store/planner.js';
-import {useCloud} from '../../store/cloud.js';
+import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {useSheet} from '../../store/sheet.js';
 import {readingList, readingMarkdown, withGoing} from '../../core/reading.js';
 import {goingNames} from '../../core/crew.js';
@@ -17,16 +17,19 @@ import {download} from '../download.js';
 export default function ReadingSheet({mode: opensOn}){
   const picks = usePlanner(s => s.picks);
   const crew = useCloud(s => s.crew);
-  const user = useCloud(s => s.user);
+  const myUid = useCloud(selectMyUid);
+  const accountName = useCloud(s => s.accountName);
   const crewAny = useCrewAny();
   const [copied, setCopied] = useState(false);
   const [mode, setMode] = useState(opensOn === 'crew' ? 'crew' : 'mine');
+  // the two tabs are two different lists, so a "Copied" from the other one is stale the moment you switch
+  const selectTab = m => { setMode(m); setCopied(false); };
 
-  const inCrew = !!(crew && user);
+  const inCrew = !!(crew && myUid);
   const crewMode = inCrew && mode === 'crew';
   const set = crewMode ? new Set([...picks, ...crewAny]) : picks;
   const built = readingList(EVENTS, set, EXTRA, BRIEFINGS);
-  const items = crewMode ? withGoing(built, no => goingNames(crew.members, user.uid, picks, no)) : built;
+  const items = crewMode ? withGoing(built, no => goingNames(crew.members, myUid, picks, no, accountName || 'you')) : built;
   const total = items.reduce((n, x) => n + x.bks.length + x.reads.length, 0);
 
   function copyText(){
@@ -49,8 +52,8 @@ export default function ReadingSheet({mode: opensOn}){
       </p>
       {inCrew && (
         <div className="tabs">
-          <button type="button" aria-pressed={mode === 'mine'} onClick={() => setMode('mine')}>Mine</button>
-          <button type="button" aria-pressed={mode === 'crew'} onClick={() => setMode('crew')}>Crew</button>
+          <button type="button" aria-pressed={mode === 'mine'} onClick={() => selectTab('mine')}>Mine</button>
+          <button type="button" aria-pressed={mode === 'crew'} onClick={() => selectTab('crew')}>Crew</button>
         </div>
       )}
       {items.length > 0 && (

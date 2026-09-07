@@ -4,8 +4,12 @@
 // driven by a test and blocks the page), and Copy says "Copied" for two seconds instead of rewriting its
 // own textContent. Destructive actions keep window.confirm, as the old page had them — the confirmations
 // live in cloud/crew.js next to the batches they guard.
+// A third: the card is gated on selectMyUid, not on `user`, so a cold or offline start shows the crew
+// hydrateCrewCache() painted, with "last synced 13:45" instead of "live" (CREW-SPEC section 6, "Failure
+// modes"). Everything that writes needs a real signed-in session and the SDK, so the actions row and the
+// owner-only controls wait for `user`; crewOwnedByMe() is false until then, which hides the latter anyway.
 import {Fragment, useEffect, useRef, useState} from 'react';
-import {useCloud} from '../../store/cloud.js';
+import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {initials} from '../../core/labels.js';
 import {memberStyle} from '../CrewBadges.jsx';
 import {
@@ -45,14 +49,16 @@ function CopyButton({url}){
 
 export default function CrewCard(){
   const user = useCloud(s => s.user);
+  const myUid = useCloud(selectMyUid);
   const crew = useCloud(s => s.crew);
   const [prompt, setPrompt] = useState('');   // '' | 'create' | 'rename'
 
   useEffect(() => { setPrompt(''); }, [user, crew && crew.id]);
 
-  if (!user) return null;
-
+  // No crew to paint: creating one needs the SDK and a signed-in session, so this half still waits for
+  // `user`; there is nothing cached to show a device that has not finished signing in.
   if (!crew) {
+    if (!user) return null;
     return (
       <div className="hub-card crew">
         <span className="hc-k">Crew</span>
@@ -67,6 +73,7 @@ export default function CrewCard(){
       </div>
     );
   }
+  if (!myUid) return null;   // a crew but no identity to compare its members against: nothing to say yet
 
   const owner = crewOwnedByMe();
   const invites = liveInvites();
@@ -83,9 +90,9 @@ export default function CrewCard(){
         {crew.members.map((m, i) => (
           <li key={m.uid}>
             <i className="cdot" style={memberStyle(i)}>{initials(m.name)}</i>
-            <span className="cname">{m.name}{m.uid === user.uid ? ' (you)' : ''}{m.uid === crew.createdBy ? ' · owner' : ''}</span>
+            <span className="cname">{m.name}{m.uid === myUid ? ' (you)' : ''}{m.uid === crew.createdBy ? ' · owner' : ''}</span>
             <span className="cpicks">{Object.keys(m.picks || {}).length} picks</span>
-            {owner && m.uid !== user.uid && (
+            {owner && m.uid !== myUid && (
               <>
                 <button type="button" className="btn small" onClick={() => makeOwner(m.uid)}>Make owner</button>
                 <button type="button" className="btn small" onClick={() => removeMember(m.uid)}>Remove</button>
@@ -114,12 +121,14 @@ export default function CrewCard(){
           ))}
         </p>
       )}
-      <div className="actions">
-        <button type="button" className="btn primary" onClick={() => createInvite()}>Invite link</button>
-        <button type="button" className="btn" onClick={() => setPrompt('rename')}>Rename</button>
-        <button type="button" className="btn" onClick={() => leaveCrew(false)}>Leave crew</button>
-        {owner && <button type="button" className="btn" onClick={() => closeCrew(false)}>Close crew</button>}
-      </div>
+      {user && (
+        <div className="actions">
+          <button type="button" className="btn primary" onClick={() => createInvite()}>Invite link</button>
+          <button type="button" className="btn" onClick={() => setPrompt('rename')}>Rename</button>
+          <button type="button" className="btn" onClick={() => leaveCrew(false)}>Leave crew</button>
+          {owner && <button type="button" className="btn" onClick={() => closeCrew(false)}>Close crew</button>}
+        </div>
+      )}
       {prompt === 'rename' && (
         <NamePrompt label="Crew name" initial={crew.name} onSave={name => { setPrompt(''); renameCrew(name); }} onCancel={() => setPrompt('')} />
       )}

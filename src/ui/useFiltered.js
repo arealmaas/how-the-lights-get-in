@@ -5,7 +5,7 @@
 // ignored, so nothing here changes what a signed-out or CLOUD-off visitor sees.
 import {useMemo} from 'react';
 import {usePlanner} from '../store/planner.js';
-import {useCloud} from '../store/cloud.js';
+import {useCloud, selectMyUid} from '../store/cloud.js';
 import {EVENTS} from '../data/index.js';
 import {matches} from '../core/filters.js';
 import {crewPicked} from '../core/crew.js';
@@ -18,14 +18,15 @@ export const NOW = currentNow(typeof window !== 'undefined' ? window.location.se
 
 const EMPTY = new Set();
 
-// signed in and in a crew: the one condition the whole overlay hangs on
-export const useInCrew = () => !!(useCloud(s => s.crew) && useCloud(s => s.user));
+// In a crew and knowing who I am: the one condition the whole overlay hangs on. It is deliberately
+// selectMyUid and not `user`, so a cold or offline start paints the cached crew (see store/cloud.js).
+export const useInCrew = () => !!(useCloud(s => s.crew) && useCloud(selectMyUid));
 
 // the set on its own, for the components that want it without the filtered list (the Crew chip, the hub)
 export function useCrewAny(){
   const crew = useCloud(s => s.crew);
-  const user = useCloud(s => s.user);
-  return useMemo(() => (crew && user ? crewPicked(crew.members, user.uid) : EMPTY), [crew, user]);
+  const myUid = useCloud(selectMyUid);
+  return useMemo(() => (crew && myUid ? crewPicked(crew.members, myUid) : EMPTY), [crew, myUid]);
 }
 
 export function useFiltered(){

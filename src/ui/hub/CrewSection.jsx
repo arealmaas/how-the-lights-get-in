@@ -7,7 +7,7 @@
 import {useMemo} from 'react';
 import {EVENTS, DAYS, byNo} from '../../data/index.js';
 import {usePlanner} from '../../store/planner.js';
-import {useCloud} from '../../store/cloud.js';
+import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {useSheet} from '../../store/sheet.js';
 import {okBanner} from '../../store/banner.js';
 import {crewSummary, goingNames} from '../../core/crew.js';
@@ -19,18 +19,24 @@ import DayList from './DayList.jsx';
 
 export default function CrewSection(){
   const crew = useCloud(s => s.crew);
-  const user = useCloud(s => s.user);
+  const myUid = useCloud(selectMyUid);
+  const accountName = useCloud(s => s.accountName);
   const picks = usePlanner(s => s.picks);
   const crewAny = useCrewAny();
-  const summary = useMemo(
-    () => (crew && user ? crewSummary(crew.members, user.uid, EVENTS) : null),
-    [crew, user],
-  );
+  // My own member document is a sync round trip behind the star I just tapped, so the summary reads my
+  // live local picks for my own row. Everyone else's comes from the snapshot, which is all we have of
+  // them — and it is what the crew calendar and goingNames already use, so the two now agree at once.
+  const summary = useMemo(() => {
+    if (!crew || !myUid) return null;
+    const mine = Object.fromEntries([...picks].map(n => [n, true]));
+    const members = crew.members.map(m => (m.uid === myUid ? {...m, picks: mine} : m));
+    return crewSummary(members, myUid, EVENTS);
+  }, [crew, myUid, picks]);
   const {clashes, soft} = useMemo(() => computeClashes(EVENTS, picks), [picks]);
 
   if (!summary) return null;
 
-  const names = no => goingNames(crew.members, user.uid, picks, no);
+  const names = no => goingNames(crew.members, myUid, picks, no, accountName || 'you');
   const list = evs => (evs.length ? <DayList events={evs} clashes={clashes} soft={soft} /> : <p className="src">Nothing here yet.</p>);
 
   function downloadCrewPicks(){

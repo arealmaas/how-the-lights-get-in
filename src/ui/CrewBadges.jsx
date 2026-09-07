@@ -1,8 +1,9 @@
 // src/ui/CrewBadges.jsx — ports the old page's crewBadges(no): the initials dots of the crew members
 // other than me who picked this event (my own star already says I am going), coloured by join order.
 // CREW-SPEC section 7 "Everywhere". Rendered on every event card and grid tile; nothing at all without a
-// crew, which is also the CLOUD-off case. Names render as text — never innerHTML.
-import {useCloud} from '../store/cloud.js';
+// crew, which is also the CLOUD-off case. Names render as text — never innerHTML. Gated on selectMyUid
+// rather than on `user`, so the cached crew painted on a cold or offline start carries its badges.
+import {useCloud, selectMyUid} from '../store/cloud.js';
 import {memberColour, pickedBy} from '../core/crew.js';
 import {initials} from '../core/labels.js';
 
@@ -12,10 +13,10 @@ export const memberStyle = i => ({'--c': `var(--${memberColour(i)})`});
 
 export default function CrewBadges({no}){
   const crew = useCloud(s => s.crew);
-  const user = useCloud(s => s.user);
-  if (!crew || !user) return null;
+  const myUid = useCloud(selectMyUid);
+  if (!crew || !myUid) return null;
 
-  const who = pickedBy(crew.members, user.uid, no);
+  const who = pickedBy(crew.members, myUid, no);
   if (!who.length) return null;
 
   return (

@@ -1,5 +1,5 @@
-// The crew overlay inside an event sheet (CREW-SPEC section 7 "Everywhere"). Crew state is set straight
-// on useCloud, the way a members snapshot would; cloud/crew.js's others() reads the same store.
+// The "Going" row inside an event sheet (CREW-SPEC section 7 "Everywhere"). Crew state is set straight on
+// useCloud, the way a members snapshot would. The shared notes are CrewNotes, the tally is CrewTally.
 import {test, expect, beforeEach} from 'vitest';
 import {render, screen, fireEvent} from '@testing-library/react';
 import CrewRow from './CrewRow.jsx';
@@ -74,24 +74,6 @@ test('nobody yet, and a crew of one, each get their own line', () => {
   useCloud.setState({crew: crewOf(member('u1', 'Are'))});
   render(<CrewRow e={DEBATE} />);
   expect(screen.getByText('You are the only one in the crew so far.')).toBeInTheDocument();
-});
-
-test('a shared note appears under Crew notes with its author, as text — markup in it is not markup', () => {
-  useCloud.setState({crew: crewOf(
-    member('u1', 'Are', {notes: {6: 'mine, never echoed back at me'}}),
-    member('u2', 'Kari', {picks: {6: true}, notes: {6: 'A <b>bold</b> claim\n\nSecond thought'}}),
-    member('u3', 'Morten', {notes: {6: '   '}}),   // whitespace only: not a note
-  )});
-  render(<CrewRow e={DEBATE} />);
-
-  expect(screen.getByRole('heading', {name: 'Crew notes'})).toBeInTheDocument();
-  const notes = [...document.querySelectorAll('.crewnote')];
-  expect(notes).toHaveLength(1);
-  expect(notes[0].querySelector('b').textContent).toBe('Kari');
-
-  const ps = [...notes[0].querySelectorAll('p')];
-  expect(ps.map(p => p.textContent)).toEqual(['A <b>bold</b> claim', 'Second thought']);
-  expect(ps.some(p => p.querySelector('b'))).toBe(false);   // the <b> is text, not an element
 });
 
 test('signed out, or with no crew, the row is not built at all', () => {

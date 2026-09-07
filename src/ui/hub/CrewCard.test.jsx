@@ -29,7 +29,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   H.owner.value = false;
   H.invites.value = [];
-  useCloud.setState({user: USER, accountName: 'Are', crewId: 'c1', crew: CREW});
+  useCloud.setState({user: USER, accountName: 'Are', marker: null, crewId: 'c1', crew: CREW});
 });
 
 test('no crew: Create a crew, the invite-link line, and an inline name form instead of a prompt', () => {
@@ -162,4 +162,24 @@ test('Invite link and Leave crew reach the crew module', () => {
   expect(crewApi.createInvite).toHaveBeenCalled();
   fireEvent.click(screen.getByRole('button', {name: 'Leave crew'}));
   expect(crewApi.leaveCrew).toHaveBeenCalledWith(false);
+});
+
+// CREW-SPEC section 6, "Failure modes": on a cold or offline start hydrateCrewCache() has painted the
+// crew but the SDK has not loaded, so there is no `user` yet. The card shows the cached crew and its last
+// sync time; everything that writes waits for a real session.
+test('a cached crew with only the account marker renders, without the actions that need a session', () => {
+  useCloud.setState({user: null, marker: {uid: 'u1'}, crew: {...CREW, live: false}});
+  render(<CrewCard />);
+
+  expect(screen.getByText('The Heath Three')).toBeInTheDocument();
+  expect(document.querySelector('.hub-card.crew .hc-k').textContent).toMatch(/^Crew · last synced /);
+  expect(screen.getByText(/Are Almaas \(you\)/)).toBeInTheDocument();   // the marker is my identity
+  expect(document.querySelector('.hub-card.crew .actions')).toBeNull();
+  expect(screen.queryByRole('button', {name: 'Leave crew'})).toBeNull();
+});
+
+test('with no crew cached and no session yet, the card is not built at all', () => {
+  useCloud.setState({user: null, marker: {uid: 'u1'}, crewId: null, crew: null});
+  render(<CrewCard />);
+  expect(document.querySelector('.hub-card.crew')).toBeNull();
 });
