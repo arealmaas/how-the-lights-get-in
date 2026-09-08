@@ -1,7 +1,7 @@
 // src/ui/sheets/EventSheet.jsx — ports showEvent(): hero, kicker, title, when, the clash and soft-overlap
 // notes (from useFiltered's clash maps), tabs when a briefing exists, the overview (people, description,
-// media, meta, actions: pick toggle / .ics export / Google Calendar), the verdict pills for debates, and
-// the notes textarea.
+// media, meta, actions: pick toggle / crew-plan toggle while in a crew / .ics export / Google Calendar),
+// the verdict pills for debates, and the notes textarea.
 import {useState, Fragment} from 'react';
 import {byNo, BRIEFINGS, GROUP, DAYS} from '../../data/index.js';
 import {ticketLine, cleanDesc} from '../../core/labels.js';
@@ -18,6 +18,7 @@ import Notes from '../event/Notes.jsx';
 import CrewRow from '../event/CrewRow.jsx';
 import CrewTally from '../event/CrewTally.jsx';
 import CrewNotes from '../event/CrewNotes.jsx';
+import {CrewPlanButton} from '../CrewPick.jsx';
 
 function ClashRef({no}){
   const o = byNo.get(no);
@@ -79,6 +80,7 @@ export default function EventSheet({no}){
         >
           {picked ? '★ In my picks' : '☆ Add to my picks'}
         </button>
+        <CrewPlanButton no={no} />
         <button
           type="button"
           className="btn"

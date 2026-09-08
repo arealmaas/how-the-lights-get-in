@@ -1,7 +1,9 @@
 // src/ui/sheets/HubSheet.jsx — ports showHub(): the summary line, the four cards or the empty-state
-// nudge (HubCards), the day-by-day pick lists (DayList), the account/crew slot (Tasks 8-10, rendered only
-// when CLOUD is on), and the foot linking to stats and the about section.
-import {Fragment} from 'react';
+// nudge (HubCards), the day-by-day pick lists (DayList), the crew/account slot (Tasks 8-10, rendered only
+// when CLOUD is on; the Crew card comes first, because in a crew it is the card that changes day to day),
+// and the foot linking to stats and the about section. `mode` is where the hub opens: 'crew' (the
+// masthead's crew button) scrolls to the crew cards once the sheet has scrolled itself to the top.
+import {Fragment, useEffect} from 'react';
 import {EVENTS, DAYS, CLOUD} from '../../data/index.js';
 import {usePlanner} from '../../store/planner.js';
 import {useSheet} from '../../store/sheet.js';
@@ -12,8 +14,18 @@ import AccountCard from '../hub/AccountCard.jsx';
 import CrewCard from '../hub/CrewCard.jsx';
 import CrewSection from '../hub/CrewSection.jsx';
 
-export default function HubSheet(){
+export default function HubSheet({mode}){
   const picks = usePlanner(s => s.picks);
+  // Sheet.jsx scrolls the body to the top in its own effect, which runs after this one (parents' effects
+  // run after their children's), so the scroll to the crew cards waits a tick to have the last word.
+  useEffect(() => {
+    if (mode !== 'crew') return undefined;
+    const t = setTimeout(() => {
+      const el = document.getElementById('crew');
+      if (el && typeof el.scrollIntoView === 'function') el.scrollIntoView({block: 'start'});
+    }, 0);
+    return () => clearTimeout(t);
+  }, [mode]);
   const mine = EVENTS.filter(e => picks.has(e.eventNo));
   const byDay = Object.keys(DAYS).map(d => [d, mine.filter(e => e.date === d)]);
   const {clashes, soft} = computeClashes(EVENTS, picks);
@@ -42,10 +54,10 @@ export default function HubSheet(){
       ))}
       {CLOUD && (
         <>
-          <h3 className="sub">Account and crew</h3>
+          <h3 className="sub" id="crew">Crew and account</h3>
           <div className="hub-cards">
-            <AccountCard />
             <CrewCard />
+            <AccountCard />
           </div>
           <CrewSection />
         </>

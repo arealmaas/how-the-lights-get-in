@@ -14,6 +14,7 @@ import {Fragment, useEffect, useState} from 'react';
 import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {initials} from '../../core/labels.js';
 import {memberStyle} from '../CrewBadges.jsx';
+import {useCrewPlan} from '../useFiltered.js';
 import NamePrompt from '../NamePrompt.jsx';
 import {
   crewOwnedByMe, liveInvites, inviteLink,
@@ -41,6 +42,7 @@ export default function CrewCard(){
   const user = useCloud(s => s.user);
   const myUid = useCloud(selectMyUid);
   const crew = useCloud(s => s.crew);
+  const plan = useCrewPlan();
   const [prompt, setPrompt] = useState('');   // '' | 'create' | 'rename'
 
   useEffect(() => { setPrompt(''); }, [user, crew && crew.id]);
@@ -52,7 +54,7 @@ export default function CrewCard(){
     return (
       <div className="hub-card crew">
         <span className="hc-k">Crew</span>
-        <span className="hc-d">See who’s going where, where you split, and the notes your friends share. Create a crew and send an invite link, or open the link a friend sent you.</span>
+        <span className="hc-d">Plan the weekend together: one shared list of events, who’s going where, where you split, and the notes your friends share. Create a crew and send an invite link, or open the link a friend sent you.</span>
         <span className="hc-d">Have an invite link? Open it.</span>
         <div className="actions">
           <button type="button" className="btn primary" onClick={() => setPrompt('create')}>Create a crew</button>
@@ -75,6 +77,9 @@ export default function CrewCard(){
     <div className="hub-card crew">
       <span className="hc-k">Crew · {synced}</span>
       <b className="cname-h">{crew.name}</b>
+      <span className="hc-d planline">
+        {plan.size ? `${plan.size} event${plan.size === 1 ? '' : 's'} in the crew’s plan.` : 'Nothing in the crew’s plan yet.'} Tap the crew button next to the star on any event to add it for everyone.
+      </span>
       <ul className="members">
         {crew.members.map((m, i) => (
           <li key={m.uid}>

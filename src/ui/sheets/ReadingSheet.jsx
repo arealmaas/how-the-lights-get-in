@@ -1,9 +1,9 @@
 // src/ui/sheets/ReadingSheet.jsx — ports showReadingList(): the reading list built from your picks (up to
 // two books per speaker, plus each briefing's "read or watch first"), with a Markdown export and a
 // copy-as-text button. In a crew it also gets the Mine / Crew tabs of CREW-SPEC section 7: Crew builds
-// the list from the union of everyone's picks and ends each event's line with who is going. The mode is
-// component state, seeded from the sheet entry's `mode`: the hub's "Crew reading list" opens on Crew,
-// everything else on Mine.
+// the list from the crew's plan and ends each event's line with who is going. The mode is component
+// state, seeded from the sheet entry's `mode`: the hub's "Crew reading list" opens on Crew, everything
+// else on Mine.
 import {useState} from 'react';
 import {EVENTS, EXTRA, BRIEFINGS, DAYS} from '../../data/index.js';
 import {usePlanner} from '../../store/planner.js';
@@ -11,7 +11,7 @@ import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {useSheet} from '../../store/sheet.js';
 import {readingList, readingMarkdown, withGoing} from '../../core/reading.js';
 import {goingNames} from '../../core/crew.js';
-import {useCrewAny} from '../useFiltered.js';
+import {useCrewPlan} from '../useFiltered.js';
 import {download} from '../download.js';
 
 export default function ReadingSheet({mode: opensOn}){
@@ -19,7 +19,7 @@ export default function ReadingSheet({mode: opensOn}){
   const crew = useCloud(s => s.crew);
   const myUid = useCloud(selectMyUid);
   const accountName = useCloud(s => s.accountName);
-  const crewAny = useCrewAny();
+  const plan = useCrewPlan();
   const [copied, setCopied] = useState(false);
   const [mode, setMode] = useState(opensOn === 'crew' ? 'crew' : 'mine');
   // the two tabs are two different lists, so a "Copied" from the other one is stale the moment you switch
@@ -27,7 +27,7 @@ export default function ReadingSheet({mode: opensOn}){
 
   const inCrew = !!(crew && myUid);
   const crewMode = inCrew && mode === 'crew';
-  const set = crewMode ? new Set([...picks, ...crewAny]) : picks;
+  const set = crewMode ? plan : picks;
   const built = readingList(EVENTS, set, EXTRA, BRIEFINGS);
   const items = crewMode ? withGoing(built, no => goingNames(crew.members, myUid, picks, no, accountName || 'you')) : built;
   const total = items.reduce((n, x) => n + x.bks.length + x.reads.length, 0);
@@ -47,7 +47,7 @@ export default function ReadingSheet({mode: opensOn}){
       <h2 id="sheet-title" tabIndex={-1}>Read before you go</h2>
       <p className="src">
         {crewMode
-          ? 'Built from everyone’s picks in the crew: up to two books per speaker, plus each briefing’s “read or watch first”.'
+          ? 'Built from the crew’s plan: up to two books per speaker, plus each briefing’s “read or watch first”.'
           : 'Built from your picks: up to two books per speaker, plus each briefing’s “read or watch first”.'}
       </p>
       {inCrew && (
@@ -63,7 +63,11 @@ export default function ReadingSheet({mode: opensOn}){
         </div>
       )}
       {!items.length ? (
-        <p className="src">No picks yet — star some events and the reading list builds itself from the speakers’ books and each briefing’s suggestions.</p>
+        <p className="src">
+          {crewMode
+            ? 'Nothing in the crew’s plan yet — add some events to it and the reading list builds itself from the speakers’ books and each briefing’s suggestions.'
+            : 'No picks yet — star some events and the reading list builds itself from the speakers’ books and each briefing’s suggestions.'}
+        </p>
       ) : (
         <div className="rl">
           {items.map(({e, bks, reads, going}) => (

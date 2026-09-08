@@ -22,7 +22,7 @@ const crewApi = await import('../../cloud/crew.js');
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
 const member = (uid, name, picks = {}) => ({uid, name, joinedAt: 1, picks, verdicts: {}, notes: {}});
 const CREW = {
-  id: 'c1', name: 'The Heath Three', createdBy: 'u1',
+  id: 'c1', name: 'The Heath Three', createdBy: 'u1', picks: {3: 'u1', 6: 'u2'},
   members: [member('u1', 'Are Almaas', {3: true, 6: true}), member('u2', 'Kari Nordmann', {3: true})],
   invites: [], removed: [], syncedAt: Date.parse('2026-09-19T13:45:00Z'), live: true,
 };
@@ -96,6 +96,23 @@ test('in a crew: the name, the sync state, members with colours, pick counts, "(
   expect(rows[0].querySelector('.cdot').style.getPropertyValue('--c')).toBe('var(--debates)');
   expect(rows[1].querySelector('.cdot').style.getPropertyValue('--c')).toBe('var(--talks)');
   expect(rows[1].querySelector('.cname').textContent).toBe('Kari Nordmann');
+});
+
+// The card says how big the crew's plan is and how to add to it — the one line of instruction for the
+// toggle on the cards, for someone who has just joined and wonders what the second button is.
+test('the card counts the crew’s plan and says how to add to it', () => {
+  const {unmount} = render(<CrewCard />);
+  expect(document.querySelector('.planline').textContent).toBe('2 events in the crew’s plan. Tap the crew button next to the star on any event to add it for everyone.');
+  unmount();
+
+  useCloud.setState({crew: {...CREW, picks: {3: 'u1'}}});
+  const second = render(<CrewCard />);
+  expect(document.querySelector('.planline').textContent).toMatch(/^1 event in the crew’s plan\./);
+  second.unmount();
+
+  useCloud.setState({crew: {...CREW, picks: {}}});
+  render(<CrewCard />);
+  expect(document.querySelector('.planline').textContent).toMatch(/^Nothing in the crew’s plan yet\./);
 });
 
 // CREW-SPEC section 7: "each member's pick count and last sync time". The member documents carry an

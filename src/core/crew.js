@@ -40,15 +40,22 @@ export function crewSummary(members, myUid, events){
   const split = [...slots].filter(([, s]) => s.size > 1).map(([slot, s]) => ({slot, choices: [...s].map(([no, names]) => ({no, names}))}));
   return {all, split, onlyMe, onlyThem};
 }
-// every event number picked by someone other than me: the Crew chip's set, the crewOnly filter, and the
-// union behind the crew calendar and the reading list's Crew tab. A Set, so the callers stay O(1).
-export function crewPicked(members, myUid){
+// The crew's plan: the map on the crew document, eventNo → uid of whoever added it (CREW-SPEC section 3,
+// "The crew plan"). It backs the Crew chip's count, the crewOnly filter, the card and tile highlight, the
+// crew calendar and the reading list's Crew tab. A Set, so the callers stay O(1); a false or missing
+// value is not in the plan, whatever key it sits under.
+export function crewPlan(picks){
   const set = new Set();
-  for (const m of members || []) {
-    if (m.uid === myUid) continue;
-    for (const [no, on] of Object.entries(m.picks || {})) if (on) set.add(+no);
-  }
+  for (const [no, by] of Object.entries(picks || {})) if (by) set.add(+no);
   return set;
+}
+// Who put an event into the crew's plan, by name, for the event sheet's "added by Kari". The value is a
+// uid; someone who has since left the crew is nobody we can name, so that reads as null, not as "".
+export function planAddedBy(members, picks, no){
+  const by = picks && picks[no];
+  if (!by) return null;
+  const m = (members || []).find(x => x.uid === by);
+  return m && m.name ? m.name : null;
 }
 // Who is going to one event, me first (CREW-SPEC section 7: "Going: Are, Kari"), then the other members
 // in join order. myName is how I am written — the account name in the event sheet's Going row, the

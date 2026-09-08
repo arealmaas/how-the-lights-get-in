@@ -39,7 +39,7 @@ const LS_ACCOUNT = 'htlgi-l26-account', LS_CREW_CACHE = 'htlgi-l26-crew-cache', 
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com', providerData: [], metadata: {}};
 const future = () => ({toMillis: () => Date.now() + 864e5});
 const member = (uid, name, extra = {}) => ({uid, name, joinedAt: 1, picks: {}, verdicts: {}, notes: {}, ...extra});
-const inCrew = over => ({id: 'c1', name: 'The Heath Three', createdBy: 'u1', members: [member('u1', 'Are')], invites: [], removed: [], syncedAt: 1, live: true, invitesLive: true, ...over});
+const inCrew = over => ({id: 'c1', name: 'The Heath Three', createdBy: 'u1', picks: {}, members: [member('u1', 'Are')], invites: [], removed: [], syncedAt: 1, live: true, invitesLive: true, ...over});
 
 beforeEach(() => {
   vi.resetModules();
@@ -77,8 +77,9 @@ test('createCrew writes the crew, the creator member document and the pointer in
 
   expect(H.batches).toHaveLength(1);
   const b = H.batches[0];
+  // the plan starts empty — the crew document carries the map, not a copy of the creator's picks
   expect(b.set).toHaveBeenNthCalledWith(1, 'crews/NewCrewIdAbcdefghijk', {
-    name: 'The Heath Three', createdBy: 'u1', deleted: false, createdAt: 'TS', updatedAt: 'TS', v: 1,
+    name: 'The Heath Three', createdBy: 'u1', deleted: false, picks: {}, createdAt: 'TS', updatedAt: 'TS', v: 1,
   });
   // only notes marked "share with crew" reach the projection — the rules check the keys against users/{uid}.shared
   expect(b.set).toHaveBeenNthCalledWith(2, 'crews/NewCrewIdAbcdefghijk/members/u1', {
@@ -683,7 +684,76 @@ test('hydrateCrewCache paints the cached crew on boot, but only for a device wit
   localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
   crew.hydrateCrewCache();
   expect(useCloud.getState().crewId).toBe('c1');
-  expect(useCloud.getState().crew).toEqual({...cached, invites: [], removed: [], live: false, invitesLive: false});
+  // a cache written before the plan existed carries no picks: it paints as an empty plan, not as a crash
+  expect(useCloud.getState().crew).toEqual({...cached, picks: {}, invites: [], removed: [], live: false, invitesLive: false});
+
+  localStorage.setItem(LS_CREW_CACHE, JSON.stringify({...cached, picks: {6: 'u2'}}));
+  crew.hydrateCrewCache();
+  expect(useCloud.getState().crew.picks).toEqual({6: 'u2'});
+});
+
+// The crew's plan (CREW-SPEC section 3, "The crew plan") lives on the crew document: the listener reads
+// it, the cache keeps it for the next cold start, and toggleCrewPick() writes one field of it.
+test('the crew document snapshot carries the plan into the store and the cache; an old crew without one is an empty plan', async () => {
+  const {useCloud, crew} = await setup();
+  crew.subscribeCrew('c1');
+  useCloud.getState().patch({crewId: 'c1'});
+  const onCrew = H.F.onSnapshot.mock.calls[0][1];
+
+  onCrew({exists: () => true, data: () => ({name: 'The Heath Three', createdBy: 'u1', deleted: false, picks: {6: 'u2', 41: 'u1'}})});
+  expect(useCloud.getState().crew.picks).toEqual({6: 'u2', 41: 'u1'});
+  expect(JSON.parse(localStorage.getItem(LS_CREW_CACHE)).picks).toEqual({6: 'u2', 41: 'u1'});
+
+  onCrew({exists: () => true, data: () => ({name: 'The Heath Three', createdBy: 'u1', deleted: false})});   // made before the plan existed
+  expect(useCloud.getState().crew.picks).toEqual({});
+});
+
+test('toggleCrewPick writes my uid under the event, or deletes the entry, with the stamp the rules require', async () => {
+  const {crew} = await setup({crew: inCrew({picks: {6: 'u2'}})});
+
+  expect(crew.toggleCrewPick(41)).toBe(true);
+  expect(H.F.updateDoc).toHaveBeenLastCalledWith('crews/c1', {'picks.41': 'u1', updatedAt: 'TS'});
+
+  expect(crew.toggleCrewPick(6)).toBe(false);   // someone else's entry: any member may take it out
+  expect(H.F.updateDoc).toHaveBeenLastCalledWith('crews/c1', {'picks.6': 'DELETE_FIELD', updatedAt: 'TS'});
+
+  expect(crew.toggleCrewPick(999999)).toBe(false);   // not an event in the programme
+  expect(H.F.updateDoc).toHaveBeenCalledTimes(2);
+  expect(H.batches).toHaveLength(0);                 // one field-level update, never a batch or a whole map
+});
+
+test('toggleCrewPick says so before the SDK has loaded, like every other crew action', async () => {
+  const {useBanner, crew} = await setup({loadFb: false, crew: inCrew()});
+  expect(crew.toggleCrewPick(41)).toBe(false);
+  expect(useBanner.getState().banner.text).toBe('Still connecting; try again in a moment.');
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
+});
+
+// A refused plan write is reported and nothing more. Removal is the listeners' to detect; a refusal for
+// any other reason (rules that have not caught up with this client) must not clear the pointer.
+test('a toggleCrewPick that fails is reported, and never treated as removal', async () => {
+  const {useBanner, useCloud, crew} = await setup({crew: inCrew()});
+  H.F.updateDoc.mockRejectedValueOnce({code: 'permission-denied', message: 'Missing or insufficient permissions.'});
+  crew.toggleCrewPick(41);
+  await vi.waitFor(() => expect(useBanner.getState().banner).not.toBeNull());
+  expect(useBanner.getState().banner.text).toBe('Missing or insufficient permissions.');
+  expect(useCloud.getState().crewId).toBe('c1');
+  expect(useCloud.getState().crew).not.toBeNull();
+  expect(H.batches).toHaveLength(0);   // no pointer-clearing batch
+
+  useBanner.getState().hide();
+  H.F.updateDoc.mockRejectedValueOnce(new Error('offline'));
+  crew.toggleCrewPick(41);
+  await vi.waitFor(() => expect(useBanner.getState().banner).not.toBeNull());
+  expect(useBanner.getState().banner.text).toBe('offline');
+  expect(useCloud.getState().crewId).toBe('c1');
+});
+
+test('with no crew at all toggleCrewPick does nothing', async () => {
+  const {useBanner, crew} = await setup();
+  expect(crew.toggleCrewPick(41)).toBe(false);
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
+  expect(useBanner.getState().banner).toBeNull();
 });
 
 // The overlay and the card work from the cached crew before the SDK produces a `user`; the account marker

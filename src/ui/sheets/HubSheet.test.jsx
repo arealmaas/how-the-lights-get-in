@@ -33,7 +33,8 @@ test('without a Firebase config the hub has no Account card and no account headi
   render(<Sheet />);
 
   expect(document.querySelector('.hub-card.account')).toBeNull();
-  expect(screen.queryByText('Account and crew')).toBeNull();
+  expect(screen.queryByText('Crew and account')).toBeNull();
+  expect(document.getElementById('crew')).toBeNull();
   expect(screen.queryByRole('button', {name: /Continue with Google/})).toBeNull();
 });
 

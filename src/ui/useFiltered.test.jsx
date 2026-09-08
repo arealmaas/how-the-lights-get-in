@@ -11,7 +11,7 @@ import {usePlanner} from '../store/planner.js';
 
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
 const CREW = {
-  id: 'c1', name: 'The Heath Three', createdBy: 'u1',
+  id: 'c1', name: 'The Heath Three', createdBy: 'u1', picks: {6: 'u1'},
   members: [{uid: 'u1', name: 'Are', joinedAt: 1, picks: {}, verdicts: {}, notes: {}}],
   invites: [], removed: [], syncedAt: Date.now(), live: true,
 };
@@ -43,4 +43,16 @@ test('Status survives a crew arriving while it is mounted', () => {
   render(<Status shown={40} onClear={() => {}} />);
   expect(() => act(() => { useCloud.setState({crewId: 'c1', crew: CREW}); })).not.toThrow();
   expect(document.getElementById('status')).not.toHaveAttribute('hidden');
+});
+
+// The plan changes under a mounted App on every toggle: a card's useInPlan, the grid's and the chips'
+// useCrewPlan and the masthead's crew button all read it with unconditional hooks.
+test('the plan changing under a mounted App does not change the hook count', () => {
+  useCloud.setState({user: USER, accountName: 'Are', crewId: 'c1', crew: CREW});
+  usePlanner.setState({view: 'grid'});
+  render(<App />);
+  expect(() => act(() => { useCloud.setState({crew: {...CREW, picks: {6: 'u1', 12: 'u1'}}}); })).not.toThrow();
+  expect(() => act(() => { useCloud.setState({crew: {...CREW, picks: {}}}); })).not.toThrow();
+  expect(() => act(() => { usePlanner.setState({view: 'list'}); })).not.toThrow();
+  expect(() => act(() => { useCloud.setState({crew: {...CREW, picks: {6: 'u1'}}}); })).not.toThrow();
 });

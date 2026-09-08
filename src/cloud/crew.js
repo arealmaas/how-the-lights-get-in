@@ -7,12 +7,14 @@
 // lands; the only module state left is the listener handles and the `leaving` flag, which are not UI.
 // Its innerHTML banners become banner-store entries with real handlers. No React here, and no firebase/*
 // import: the SDK arrives through auth.js's getFb().
+// The crew's plan (the picks map on the crew document, CREW-SPEC section 3) is read by the crew-document
+// listener and written by toggleCrewPick(); it has no local copy beyond the crew cache.
 import {useCloud, selectMyUid} from '../store/cloud.js';
 import {usePlanner, DEL} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
 import {showBanner, okBanner, hideBanner} from '../store/banner.js';
 import {projectForCrew} from '../core/crew.js';
-import {CLOUD, PUBLIC_URL} from '../data/index.js';
+import {CLOUD, PUBLIC_URL, byNo} from '../data/index.js';
 import {getFb, authMessage} from './auth.js';
 import {IOS, PHONE, STANDALONE} from './platform.js';
 import {change, userRef, accountMarker, bump} from './sync.js';
@@ -70,14 +72,15 @@ const validInvite = inv => !!(inv && !inv.revoked && inv.expiresAt && inv.expire
 
 function saveCrewCache(){
   const {crew} = st();
-  if (crew) save(LS_CREW_CACHE, {id: crew.id, name: crew.name, createdBy: crew.createdBy, members: crew.members, syncedAt: crew.syncedAt});
+  if (crew) save(LS_CREW_CACHE, {id: crew.id, name: crew.name, createdBy: crew.createdBy, picks: crew.picks || {}, members: crew.members, syncedAt: crew.syncedAt});
 }
 // Boot overlay (CREW-SPEC section 6, "Failure modes"): a device with an account paints its crew from the
-// cache before the SDK is fetched, so the card and the badges are there on a cold, offline start.
+// cache before the SDK is fetched, so the card, the badges and the plan's highlight are there on a cold,
+// offline start. A cache written before the plan existed has no picks: that is an empty plan, not a crash.
 export function hydrateCrewCache(){
   if (!CLOUD || !accountMarker()) return;
   const c = load(LS_CREW_CACHE, null);
-  if (c && c.id) st().patch({crewId: c.id, crew: {...c, invites: [], removed: [], live: false, invitesLive: false}});
+  if (c && c.id) st().patch({crewId: c.id, crew: {...c, picks: c.picks || {}, invites: [], removed: [], live: false, invitesLive: false}});
 }
 
 // ---------- subscriptions ----------
@@ -107,8 +110,8 @@ export function subscribeCrew(id){
   const {F} = fb;
   const cached = load(LS_CREW_CACHE, null);
   st().patch({crew: cached && cached.id === id
-    ? {...cached, invites: [], removed: [], live: false, invitesLive: false}
-    : {id, name: '', createdBy: '', members: [], invites: [], removed: [], syncedAt: null, live: false, invitesLive: false}});
+    ? {...cached, picks: cached.picks || {}, invites: [], removed: [], live: false, invitesLive: false}
+    : {id, name: '', createdBy: '', picks: {}, members: [], invites: [], removed: [], syncedAt: null, live: false, invitesLive: false}});
   const opts = {serverTimestamps: 'estimate'};
   // a snapshot that arrives after crewGone() or a re-subscribe belongs to a crew we no longer hold
   const alive = () => { const c = st().crew; return !!c && c.id === id; };
@@ -118,7 +121,8 @@ export function subscribeCrew(id){
     if (!s.exists() || !alive()) return;
     const d = s.data();
     if (d.deleted) { crewGone('The crew was closed.'); return; }
-    patchCrew({name: d.name, createdBy: d.createdBy});
+    // the plan rides on the crew document (CREW-SPEC section 4); a crew made before it existed has none
+    patchCrew({name: d.name, createdBy: d.createdBy, picks: d.picks || {}});
     // block records are readable by the creator only, so that listener follows the ownership
     if (crewOwnedByMe() && !removedUnsub) {
       removedUnsub = F.onSnapshot(F.collection(fb.db, 'crews', id, 'removed'), r => {
@@ -195,7 +199,8 @@ export function createCrew(name){
   const {F} = fb;
   const id = F.doc(F.collection(fb.db, 'crews')).id;   // client-generated auto-id: the rules need it in one batch
   const b = F.writeBatch(fb.db);
-  b.set(crewRef(id), {name: clean, createdBy: user.uid, deleted: false, createdAt: F.serverTimestamp(), updatedAt: F.serverTimestamp(), v: 1});
+  // the plan starts empty: what the crew does together is what its members add, not a copy of anyone's picks
+  b.set(crewRef(id), {name: clean, createdBy: user.uid, deleted: false, picks: {}, createdAt: F.serverTimestamp(), updatedAt: F.serverTimestamp(), v: 1});
   b.set(memberRef(id, user.uid), {name: accountName, joinedAt: F.serverTimestamp(), ...projectForCrew(usePlanner.getState().local()), updatedAt: F.serverTimestamp(), v: 1});
   b.update(userRef(), {crew: id, updatedAt: F.serverTimestamp()});
   const commit = b.commit();
@@ -214,6 +219,25 @@ export function renameCrew(name){
   const {F} = fb;
   F.updateDoc(crewRef(crew.id), {name: clean, updatedAt: F.serverTimestamp()}).catch(authMessage);
   return true;
+}
+
+// The crew's plan (CREW-SPEC section 3, "The crew plan"): one field-level write on the crew document,
+// `picks.<eventNo>` set to my uid or deleted, with the stamp the rules require. Any member may add or
+// remove any entry. The crew-document listener echoes the local write at once (latency compensation), so
+// the card, the chip and the sheet follow without any local state of their own; offline, the write waits
+// in Firestore's queue and the echo still arrives. Before the SDK has loaded there is no queue to put it
+// in, so it says so, like every other crew action. A refusal is reported and nothing more: the listeners
+// are what detect a removal (CREW-SPEC section 3), and a write refused for any other reason — rules that
+// have not caught up with this client, say — must not clear the pointer and throw the crew away.
+export function toggleCrewPick(no){
+  const {crew, user} = st();
+  if (!crew || !byNo.has(no)) return false;
+  const fb = getFb();
+  if (!user || !fb) { okBanner(NOT_READY); return false; }
+  const {F} = fb;
+  const on = !(crew.picks && crew.picks[no]);
+  F.updateDoc(crewRef(crew.id), {['picks.' + no]: on ? user.uid : F.deleteField(), updatedAt: F.serverTimestamp()}).catch(authMessage);
+  return on;
 }
 
 export async function leaveCrew(silent){

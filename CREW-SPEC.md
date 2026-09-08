@@ -1,12 +1,12 @@
 # Crew mode — specification
 
-Status: implemented, 8 September 2026 (v2, replacing the passphrase design; the reasoning is in `CREW-SPEC-REVIEW.md`). The product behaviour below is what the app does. The "changes to the repo" parts of section 8, the build steps in section 9 and the in-page checks in section 10 describe the single-file page this was written against; the app has since been restructured as a Vite + React codebase — see **Codebase** at the top of section 8. Backend: Firebase Authentication, Cloud Firestore and Firebase Hosting on the free Spark plan. Accounts (Google, or email + password) hold your picks, debate verdicts and notes, so every device you sign in on shows the same planner. Any signed-in user can create a crew; others join by invite link. A crew shares picks, verdicts and the notes each member chooses to share.
+Status: implemented, 8 September 2026 (v2, replacing the passphrase design; the reasoning is in `CREW-SPEC-REVIEW.md`; v2.1 the same day adds the crew plan — see section 3, "The crew plan", and `docs/superpowers/specs/2026-09-08-crew-plan-design.md`). The product behaviour below is what the app does. The "changes to the repo" parts of section 8, the build steps in section 9 and the in-page checks in section 10 describe the single-file page this was written against; the app has since been restructured as a Vite + React codebase — see **Codebase** at the top of section 8. Backend: Firebase Authentication, Cloud Firestore and Firebase Hosting on the free Spark plan. Accounts (Google, or email + password) hold your picks, debate verdicts and notes, so every device you sign in on shows the same planner. Any signed-in user can create a crew; others join by invite link. A crew has a plan of its own — the events its members add to it — and its members see each other's picks, verdicts and the notes each chooses to share.
 
 ## 1. Goals and non-goals
 
 Goals
 
-- Three (or more) people see each other's picks in the planner, on the phone, at the festival: who is going where, where the crew splits, one crew calendar, one crew reading list, a verdict tally on debates, and notes a member chooses to share.
+- Three (or more) people plan the festival together, on the phone, at the festival: one shared list of events (the crew's plan, which anyone in the crew adds to), who is going where, where the crew splits, one crew calendar, one crew reading list, a verdict tally on debates, and notes a member chooses to share.
 - The same picks, verdicts and notes on every device you sign in on. Sign-in is Google or email + password.
 - Creating a crew is typing a name. Joining is opening an invite link; someone without an account creates one on the spot.
 - Your own planner keeps working exactly as today when signed out or offline. Own picks stay local-first; the account is the sync layer; the crew is an overlay.
@@ -44,6 +44,14 @@ Crew and membership
 - Close (creator): delete the other members' documents, the invites and the block records in batches of at most nine (each delete of someone else's document costs two rule lookups; a batch allows twenty), then one final batch: delete the own member document, set `deleted: true` on the crew, clear the pointer. The crew document itself is never deleted: while it exists the id cannot be re-created, so nobody can resurrect a half-closed crew and inherit its data. Members still subscribed see `deleted: true` and treat it as removal, with the message "The crew was closed".
 - Colours: one of six, in `joinedAt` order; past six they repeat.
 
+The crew plan
+
+- The crew has a list of its own: `picks` on the crew document, a map from event number to the uid of the member who added it. It is not the union of anyone's own picks. A new crew's plan is empty; nothing copies the creator's picks into it, and nothing copies a joiner's picks into it either.
+- Any member adds an event to the plan or takes one out — including one somebody else added — with one field-level write on the crew document (`picks.41: <uid>` or `deleteField()`, with `updatedAt`), the way any member renames the crew. The crew is a small group that trusts each other; there is no per-entry ownership and no creator power over the plan.
+- Own picks stay personal. "Is it in the plan" and "who is going" are two different questions, and the app asks both: the plan is the ring on the card and the Crew chip; going is the star and the members' badges. The crew calendar and the crew reading list are built from the plan, with who is going in each entry.
+- The crew cache (`htlgi-l26-crew-cache`) carries the plan, so the rings and the counts are on screen on a cold or offline start. The write itself needs the SDK, like every other crew write; before it has loaded the toggle says "Still connecting; try again in a moment."
+- A crew created before the plan existed has no `picks` field: the client reads that as an empty plan, and the first add creates the map.
+
 Invites
 
 - Any member presses *Invite link*. The client makes a token of 16 bytes from `crypto.getRandomValues`, base64url, 22 characters, and writes `crews/{crew}/invites/{token}` with the crew name, the inviter's name and an expiry 14 days out (the rules require the expiry to be in the future and at most 30 days out). The link is `<site>/#join=<crewId>.<token>`; the fragment keeps the token out of server logs and referrers. *Copy*, and *Share* on phones (Web Share API).
@@ -75,6 +83,7 @@ crews/{crewId}                     crewId: a client-generated Firestore auto-id 
   name        string ≤ 60
   createdBy   uid                  may be handed to another member, never to a non-member
   deleted     false | true         closed crews keep their document (tombstone)
+  picks       map   eventNo → uid  the crew's plan: who added each event; any member writes it
   createdAt, updatedAt, v
 
 crews/{crewId}/members/{uid}       the crew-visible projection; each member writes only their own
@@ -94,7 +103,7 @@ crews/{crewId}/removed/{uid}       block record written when the creator removes
 ```
 
 - Maps, not arrays: picks are keyed by event number so that two devices toggling different events merge instead of overwriting each other (section 6). Event numbers are integers, so map keys need no escaping.
-- The first write to `users/{uid}`, and to a member document, is the complete document with every map present (empty if need be). Every rule dereferences `name`, `picks`, `verdicts`, `notes`, `v` and `updatedAt`, so a partial create is denied, and `updateDoc` on a missing document fails.
+- The first write to `users/{uid}`, and to a member document, is the complete document with every map present (empty if need be). The client writes a crew document the same way (`picks: {}`), but the rules let a crew be created without the plan map, so they can go live before a client from before the plan is replaced; a missing map reads as an empty plan. Every rule dereferences `name`, `picks`, `verdicts`, `notes`, `v` and `updatedAt`, so a partial create is denied, and `updateDoc` on a missing document fails.
 - Size: 135 picks, a few verdicts and a handful of notes is a few KB. The rules cap entry counts at 300 per map; Firestore's 1 MiB document limit bounds the rest.
 - Every write carries `updatedAt: serverTimestamp()`; the rules require it to equal the request time.
 
@@ -106,6 +115,7 @@ crews/{crewId}/removed/{uid}       block record written when the creator removes
 // Crew mode rules — see CREW-SPEC.md sections 4 and 5. Draft: run the emulator tests in firebase/test
 // before publishing. Accounts (Firebase Authentication) own users/{uid}; a crew is crews/{crewId} with
 // one members/{uid} projection per person, invites/{token} for joining and removed/{uid} block records.
+// The crew's plan — the events its members have added to the crew — is the picks map on the crew document.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{db}/documents {
@@ -144,22 +154,32 @@ service cloud.firestore {
     match /crews/{crew} {
       allow get: if isMember(crew);
       allow list: if false;
-      // creating a crew must, in the same batch, create the creator's member document
+      // the crew's plan: a map keyed by event number, the value the uid of the member who added it. Rules
+      // cannot iterate a map, so only the entry count is bounded here, as for the member projections.
+      function planOk(d) { return d.picks is map && d.picks.size() <= 300; }
+      // creating a crew must, in the same batch, create the creator's member document. The client writes
+      // the plan as an empty map; a client from before the plan existed writes none, and is still allowed
+      // to create a crew, so these rules can go live ahead of that client being replaced.
       allow create: if signedIn()
-        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'deleted', 'createdAt', 'updatedAt', 'v'])
+        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'deleted', 'picks', 'createdAt', 'updatedAt', 'v'])
         && str(request.resource.data.name, 60)
         && request.resource.data.createdBy == request.auth.uid
         && request.resource.data.deleted == false
+        && (!('picks' in request.resource.data) || planOk(request.resource.data))
         && request.resource.data.createdAt == request.time
         && stamped(request.resource.data)
         && getAfter(memberPath(crew, request.auth.uid)).data.joinedAt == request.time;
-      // rename: any member. Hand over to another member, or close: the creator only.
+      // rename, and add to or remove from the plan: any member. Hand over to another member, or close:
+      // the creator only.
       allow update: if resource.data.deleted == false
         && request.resource.data.updatedAt == request.time
         && (
           (isMember(crew)
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'updatedAt'])
             && str(request.resource.data.name, 60))
+          || (isMember(crew)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['picks', 'updatedAt'])
+            && planOk(request.resource.data))
           || (isCreator(crew)
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['createdBy', 'updatedAt'])
             && exists(memberPath(crew, request.resource.data.createdBy)))
@@ -245,7 +265,7 @@ service cloud.firestore {
 
 Notes
 
-- Rule lookups (`get`, `exists`, `getAfter`) per request, against the limits of 10 per operation and 20 per batch: create crew 4, join 7, list members 1, a member's own update 1, create invite 3, remove someone 2 per delete.
+- Rule lookups (`get`, `exists`, `getAfter`) per request, against the limits of 10 per operation and 20 per batch: create crew 4, join 7, list members 1, a member's own update 1, a plan add or remove 1, create invite 3, remove someone 2 per delete.
 - `get()` and `exists()` see the state before a batch; `getAfter()` sees the state after it. That forces "crew document and creator's member document arrive together", lets the closing batch pass `isCreator` while deleting the creator's own member document, and stops a non-member planting a member document under someone else's crew: the crew document exists, `createdBy` can only move to an existing member, and there is no token.
 - A rule that throws (for instance dereferencing a missing document) denies; the `exists()` guards are for clarity.
 - Not enforced, on purpose: the `crew` pointer on the user document (only its owner reads it), and the byte size of notes inside the maps (rules cannot iterate a map; a member can bloat only their own document, and every write is attributable).
@@ -271,11 +291,12 @@ Signing in (also the first run on a new device)
 Subscriptions
 
 - `users/{uid}`: apply only when the document exists (a missing document while signed in means the account was deleted elsewhere: stop syncing, keep local, say so). Apply in place: update the in-memory maps, save to `localStorage` (the existing keys, so the signed-out path is unchanged), `render()`. First flush the pending 250 ms note write; if the event sheet is open with its textarea focused, do not rebuild the sheet, and keep the local text for that one note. With those two guards, latency compensation makes each snapshot consistent with this device's own writes.
-- `crews/{crew}` and `crews/{crew}/members`, when the pointer is set. Every members snapshot rebuilds the crew state, stores it in `localStorage` (`htlgi-l26-crew-cache`) so the overlay renders on the next cold start before the SDK loads, and re-renders. Removal and closing are detected as in section 3.
+- `crews/{crew}` and `crews/{crew}/members`, when the pointer is set. Every crew-document snapshot carries the name, the creator and the plan; every members snapshot rebuilds the member list. Both store the crew state in `localStorage` (`htlgi-l26-crew-cache`, plan included) so the overlay renders on the next cold start before the SDK loads, and re-render. Removal and closing are detected as in section 3.
 
 Writes
 
 - Every change is one batch: a field-level `updateDoc` on the user document (`picks.41: true` or `deleteField()`, `verdicts.41`, `notes.41`, `shared.41`) with `updatedAt: serverTimestamp()`, plus, while in a crew, the same fields on the member document (notes only when shared; sharing or unsharing updates `shared` and the projection together, which the rules require). Never write a whole map.
+- The crew plan is one `updateDoc` on the crew document per toggle (`picks.41: <uid>` or `deleteField()`, plus `updatedAt`), not a batch: there is no account-side copy of the plan. The crew-document listener echoes the local write at once (latency compensation), so the card, the chip and the sheet follow without local state of their own; offline, the write waits in Firestore's queue and the echo still arrives.
 - Picks and verdicts write at once; notes keep the existing 250 ms input debounce and write on that. Expected volume: tens of writes a day per person, two per change, far inside 20 000 a day.
 - Conflicts: field-level updates merge on the server and in the offline queue; a genuine conflict on one field is last-writer-wins, which is right for a toggle or a note.
 
@@ -303,23 +324,28 @@ Account (in *My festival*, an "Account" card, plus one line in the first-run nud
 Crew (the "Crew" card below it)
 
 - No crew: *Create a crew* (asks for a name), and "Have an invite link? Open it."
-- In a crew: the crew name, members with initials and colours, each member's pick count and last sync time, *Invite link*, live invites with *Revoke*, *Leave crew*; for the creator, *Remove* next to each member, *Make owner*, *Close crew*, and a *Removed* list with *Re-admit*.
+- In a crew: the crew name, how many events are in the crew's plan and how to add one, members with initials and colours, each member's pick count and last sync time, *Invite link*, live invites with *Revoke*, *Leave crew*; for the creator, *Remove* next to each member, *Make owner*, *Close crew*, and a *Removed* list with *Re-admit*. The Crew card comes before the Account card under the heading "Crew and account".
 - Join banner for `#join=` links, cases as in section 3.
 
-Everywhere (unchanged from the first draft)
+The crew colour: `--crew` (indigo, `#4F46E5` light / `#8B8DF7` dark, with `--crew-ink` and `--crew-bg`), defined next to the pick amber. It is none of the six strand colours, which are also the member colours, so a ring is never mistaken for a member's badge; and it is not the amber, so the plan is never mistaken for a pick.
 
-- Event cards and grid tiles: small initials badges for crew members who picked the event (not you — your star already says so). Colours are per member, assigned in join order from a fixed palette that reads in light and dark.
-- Filter strip: a **Crew** chip — events picked by anyone in the crew. It composes with the other filters like the picks chip does.
-- Event sheet: a "Going" row under the people pills — "Going: Are, Kari · not yet: Morten" — and a **Join them** button when you have not picked it (it just toggles your pick). Debates: the verdict block shows the crew tally beneath your own vote ("Kari: Hossenfelder · Morten: Draw").
+Everywhere
+
+- Masthead: in a crew, a third button beside *My festival* and *Reading list*, named after the crew, in the crew colour, counting the events in its plan. It opens *My festival* at the crew cards. On a phone it takes a row of its own.
+- Event cards: a second toggle beside the star, the crew glyph (two heads and shoulders), pressed and filled in the crew colour while the event is in the crew's plan; its label is "Add to the crew's plan" / "Remove from the crew's plan". A card in the plan is ringed in the crew colour, independently of the amber pick bar — both can be on. Small initials badges for crew members who picked the event (not you — your star already says so) stay as they were, before the toggle. Colours are per member, assigned in join order from a fixed palette that reads in light and dark.
+- Grid tiles: the ring and the glyph beside the star; a tile is one button, so the toggle is on the card and in the sheet.
+- Filter strip: the **My picks** and **Crew** chips are the two plans, drawn heavier than the group chips — tinted and bold at rest, filled (amber, indigo) when pressed — with a hairline between them and the group chips. **Crew** is the crew's plan, and only the plan: an event a member has starred but nobody has added is not in it. It composes with the other filters like the picks chip does, and counts the day's share of the plan.
+- Event sheet: the actions row has **Add to the crew's plan** / **In the crew's plan** beside **Add to my picks**. The crew row under the people pills says first whether the event is in the plan and who added it ("In the crew's plan · added by Kari" / "Not in the crew's plan"), then "Going: Are, Kari · not yet: Morten", with a **Join them** button when you have not picked it (it just toggles your pick). Debates: the verdict block shows the crew tally beneath your own vote ("Kari: Hossenfelder · Morten: Draw").
 - Notes: a "Share with crew" checkbox under the notes box (off by default). Shared notes from others appear as "Crew notes" with the author's name, read-only.
 
-*My festival* crew section (below your own days)
+*My festival* crew section (below the Crew and Account cards)
 
+- **Crew plan**: the plan by day, each row with who is going ("Going: Are, Kari", or "Nobody going yet") and who added it. Empty: one line saying how to add to it.
+- **Crew calendar (.ics)**: the plan; each entry's description starts with "Going: Are, Kari", or "In the crew's plan" when nobody has starred it yet. Same fields as the personal export otherwise.
+- **Crew reading list**: the reading-list sheet gets a "Mine / Crew" toggle; crew mode is built from the plan, each item marked with who is going.
 - **All of you**: events every member picked, by day and time.
 - **Where you split**: time slots where members hold different events (with who is where). This is the list to talk through beforehand.
 - **Only you / only them**: quick counts, expandable.
-- **Crew calendar (.ics)**: the union of everyone's picks; each entry's description starts with "Going: Are, Kari" and your own picks are marked. Same fields as the personal export otherwise.
-- **Crew reading list**: the reading-list sheet gets a "Mine / Crew" toggle; crew mode is the union of picks, each item marked with who is going.
 
 Copy and safety
 
@@ -359,8 +385,9 @@ Spark limits that matter: Firestore 50 000 reads, 20 000 writes, 20 000 deletes 
 
 ## 10. Testing
 
-- Rules tests against the Firestore emulator (`npm run test:rules` from the repo root, which runs `firebase emulators:exec --only firestore --project demo-htlgi "node --test firebase/test/rules.test.mjs"` — the `--project` flag is what keeps the emulator off any real project; needs Node and a JDK, `export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"` on a Homebrew macOS), required before the rules go live: a user reads and writes only their own document, and a partial create is denied; `list` on `users` and `crews` is denied; a non-member cannot read a crew, its members, its invites or its block records; creating a crew without the member document in the batch is denied, with it allowed; joining with a valid token allowed; with an expired, revoked, other-crew or missing token denied; without a token denied; joining while blocked denied, allowed again after the record is deleted; joining a closed crew denied; a member's projection may not contain a note key that is not in their `shared` map; a member cannot change `joinedAt` or `invite` but can drop `invite`; a member cannot delete another member, the creator can; a creator who has left cannot; `createdBy` can move only to an existing member and only by the creator; closing sets the tombstone, `create` on that id is denied, and nothing can be updated afterwards; invite `crewName` and `createdByName` must match; `expiresAt` must be in the future and within 30 days; every allow-list and size cap.
-- Automated checks, `npm test` (Vitest, jsdom): the sign-in sequence and merge (create-from-local, union, local-wins verdicts, conflicting notes, different-uid replace), map/array conversion, `#join=` parsing and stripping, `notes=` import, the crew batches and their failure branches, and the components that render crew-supplied strings — React escapes them, so the old escaping checks became rendering assertions. `npm run test:e2e` (Playwright, Chromium) is the signed-out browser smoke against `vite preview`.
+- Rules tests against the Firestore emulator (`npm run test:rules` from the repo root, which runs `firebase emulators:exec --only firestore --project demo-htlgi "node --test firebase/test/rules.test.mjs"` — the `--project` flag is what keeps the emulator off any real project; needs Node and a JDK, `export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"` on a Homebrew macOS), required before the rules go live: a user reads and writes only their own document, and a partial create is denied; `list` on `users` and `crews` is denied; a non-member cannot read a crew, its members, its invites or its block records; creating a crew without the member document in the batch is denied, with it allowed; joining with a valid token allowed; with an expired, revoked, other-crew or missing token denied; without a token denied; joining while blocked denied, allowed again after the record is deleted; joining a closed crew denied; a member's projection may not contain a note key that is not in their `shared` map; a member cannot change `joinedAt` or `invite` but can drop `invite`; a member cannot delete another member, the creator can; a creator who has left cannot; `createdBy` can move only to an existing member and only by the creator; closing sets the tombstone, `create` on that id is denied, and nothing can be updated afterwards; a crew is created with its plan map, or without one by a pre-plan client, but not with a plan that is not a map; any member adds to and removes from the plan, a non-member cannot, a plan write carries nothing else, the map is capped at 300, a pre-plan crew takes its first add, a closed crew takes none; invite `crewName` and `createdByName` must match; `expiresAt` must be in the future and within 30 days; every allow-list and size cap.
+- Automated checks, `npm test` (Vitest, jsdom): the sign-in sequence and merge (create-from-local, union, local-wins verdicts, conflicting notes, different-uid replace), map/array conversion, `#join=` parsing and stripping, `notes=` import, the crew batches and their failure branches, the plan toggle's write and its echo through the listener and the cache, the card and tile rings, the chips, the masthead button, the hub's plan lists and calendar, and the components that render crew-supplied strings — React escapes them, so the old escaping checks became rendering assertions. `npm run test:e2e` (Playwright, Chromium) is the signed-out browser smoke against `vite preview`.
+- The crew plan against the live project, `npm run test:live` (`tests/live/`, two test accounts from `.env.local`): builds, resets both accounts to "no crew", then two headless browsers create a crew, add to the plan from a card and from the sheet, invite and join, see each other's entries arrive live, remove the other's entry, check the hub's plan list, the Crew filter and the cached ring on a reload, and close the crew. Thirty-odd checks; it creates and closes a crew on the live project and needs the rules deployed.
 - Manual matrix before the freeze: desktop Chrome (popup); Safari tab on iPhone (redirect); the installed iOS app: the Google redirect test first, then email + password, then a Google account after *Add a password*; Android Chrome (redirect); airplane mode on one device, then reconnect (queued writes arrive); sign in on a second device and see the same state; remove a member and watch their client drop out; open an invite while signed out and complete account creation; open a preview channel and confirm the live site still works offline; open the old GitHub Pages URL and confirm the move page carries picks, verdicts and notes across.
 - Quota sanity: `src/cloud/sync.js` counts writes and snapshots into `useCloud.getState().stats`; a day of three people is expected to stay under 1 000 reads and 300 writes. Check the console's usage page the day before the festival.
 
@@ -377,4 +404,5 @@ Spark limits that matter: Firestore 50 000 reads, 20 000 writes, 20 000 deletes 
 - Member colours: six, in join order; past six they repeat. Fine for three.
 - "Join them" does not copy the other member's Fast Pass note: Fast Passes are personal purchases; the sheet keeps showing the ticketing line as today.
 - Crew verdicts are visible before you have voted yourself: yes; it is a festival, not a poll.
+- Anyone in the crew can take an event out of the plan, whoever added it: a crew is three friends, and a plan nobody can prune is a list, not a plan. The event sheet says who added each entry, which is what a "why is this gone?" needs.
 - Deferred: App Check; Blaze; several crews per person (the data model allows it, the UI does not); guest accounts with a later upgrade; a subscribable calendar feed (needs server code).
