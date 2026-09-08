@@ -5,6 +5,7 @@
 // become banner-store entries. No React here; firebase/* is only ever reached through the dynamic
 // import('./firebase.js') below, which is what keeps the SDK in its own chunk.
 import {FIREBASE, CLOUD} from '../data/index.js';
+import {nameFromEmail} from '../core/labels.js';
 import {useCloud} from '../store/cloud.js';
 import {usePlanner} from '../store/planner.js';
 import {okBanner} from '../store/banner.js';
@@ -56,7 +57,7 @@ export function bootCloud(){
 export function onAuth(u){
   if (u) {
     const {accountName} = useCloud.getState();
-    useCloud.getState().patch({user: u, accountName: (u.displayName || accountName || 'Me').slice(0, 40)});
+    useCloud.getState().patch({user: u, accountName: (u.displayName || accountName || nameFromEmail(u.email) || 'Me').slice(0, 40)});
     sync.afterSignIn(u).catch(e => authMessage(e));
   } else {
     sync.unsubscribeUser();
@@ -75,41 +76,67 @@ export async function signInGoogle(){
   } catch (e) { authMessage(e); }
 }
 
-// kind: 'signin' | 'create' | 'reset' | 'link'. Returns the line to show under the form ('' when there is
-// nothing to say and the auth state change speaks for itself).
+// kind: 'signin' | 'create' | 'reset' | 'link'. Answers {text, newHere}: `text` is the line to show under
+// the form ('' when there is nothing to say and the auth state change speaks for itself), and `newHere`
+// asks the card to offer registration — the name field and a "Create account" button.
+//
+// `newHere` exists because this project has email enumeration protection switched on, and Firebase then
+// returns auth/invalid-credential both for an account that does not exist and for the wrong password
+// (fetchSignInMethodsForEmail answers [] as well). Nothing here can tell those apart, so the form asks
+// rather than guessing. Guessing by trying to create the account behind the scenes would turn one typo in
+// the email into a second, empty account instead of "wrong password", which is a worse answer than a
+// question. create is the one call that still distinguishes them, with auth/email-already-in-use.
+const said = (text, newHere) => (newHere === undefined ? {text} : {text, newHere});
+
 export async function emailAction(kind, {email = '', password = '', name = ''} = {}){
   const mail = String(email || '').trim();
   const who = String(name || '').trim().slice(0, 40);
   try {
     const {A, auth} = await loadFirebase();
     if (kind === 'reset') {
-      if (!mail) return 'Enter your email first.';
+      if (!mail) return said('Enter your email first.');
       await A.sendPasswordResetEmail(auth, mail);
-      return 'Password reset email sent. Check your inbox.';
+      return said('Password reset email sent. Check your inbox.');
     }
-    if (!mail || password.length < 8) return 'Enter your email and a password of 8 or more characters.';
-    if (kind === 'signin') { await A.signInWithEmailAndPassword(auth, mail, password); return ''; }
+    if (!mail || password.length < 8) return said('Enter your email and a password of 8 or more characters.');
+    if (kind === 'signin') { await A.signInWithEmailAndPassword(auth, mail, password); return said(''); }
     if (kind === 'create') {
+      // The name is the point of this step: a crew that cannot tell its members apart is no use, and the
+      // account is the only moment anyone is asked. Refused before the account exists, not after.
+      if (!who) return said('Add your name, so your crew knows who you are.', true);
       // the typed name is in place before onAuth fires, so the first document written carries it
-      if (who) useCloud.getState().patch({accountName: who});
+      useCloud.getState().patch({accountName: who});
       const cred = await A.createUserWithEmailAndPassword(auth, mail, password);
-      if (who) await A.updateProfile(cred.user, {displayName: who});
-      return '';
+      await A.updateProfile(cred.user, {displayName: who});
+      return said('');
     }
     if (kind === 'link') {
       await A.linkWithCredential(auth.currentUser, A.EmailAuthProvider.credential(mail, password));
       okBanner('Password added: you can now sign in with email and password too.');
-      return '';
+      return said('');
     }
-    return '';
+    return said('');
   } catch (e) {
-    return kind === 'link' && e && e.code === 'auth/email-already-in-use' ? 'That email already belongs to another account.' : authText(e);
+    const code = (e && e.code) || '';
+    if (kind === 'link' && code === 'auth/email-already-in-use') return said('That email already belongs to another account.');
+    // The sign-in failed in the one way that might mean there is no account yet: offer to make one.
+    if (kind === 'signin' && (code === 'auth/invalid-credential' || code === 'auth/user-not-found')) {
+      return said('Wrong email or password. If you are new here, add your name and we will create your account.', true);
+    }
+    // ...and this is the answer that proves there is one, so the form goes back to signing in.
+    if (kind === 'create' && code === 'auth/email-already-in-use') {
+      // the name typed for an account we are not making must not linger as this device's account name
+      useCloud.getState().patch({accountName: ''});
+      return said('That email already has an account. Check your password, or sign in with Google if that is how you made it.', false);
+    }
+    if (kind === 'create') { useCloud.getState().patch({accountName: ''}); return said(authText(e), true); }
+    return said(authText(e));
   }
 }
 
 export function authText(e){
   const c = (e && e.code) || '';
-  if (c === 'auth/invalid-credential' || c === 'auth/wrong-password' || c === 'auth/user-not-found') return 'Wrong email or password. New here? Use “Create account”.';
+  if (c === 'auth/invalid-credential' || c === 'auth/wrong-password' || c === 'auth/user-not-found') return 'Wrong email or password.';
   if (c === 'auth/email-already-in-use') return 'That email already has an account. Sign in with Google, then add a password from the Account card.';
   if (c === 'auth/weak-password') return 'Use a longer password (8 or more characters).';
   if (c === 'auth/popup-blocked') return 'The sign-in window was blocked. Allow pop-ups for this site, or use email and password.';

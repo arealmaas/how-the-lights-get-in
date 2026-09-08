@@ -34,24 +34,37 @@ export default function AccountCard(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  // The signed-out form has two steps. It starts on 'signin' with only an email and a password; it moves to
+  // 'register' when emailAction says the failure might mean there is no account yet, which is as much as
+  // Firebase will tell us (see cloud/auth.js). Editing either field puts it back, so correcting a password
+  // signs in rather than quietly creating a second account under a mistyped address.
+  const [step, setStep] = useState('signin');
   const emailRef = useRef(null);
   const pwRef = useRef(null);
+  const nameRef = useRef(null);
 
   // Signing in or out swaps the card: start the new one closed and empty, with the account's email
   // pre-filled for "Add a password" the way the old card's value= did.
-  useEffect(() => { setOpen(false); setRenaming(false); setMsg(''); setPassword(''); setName(''); setEmail((user && user.email) || ''); }, [user]);
+  useEffect(() => { setOpen(false); setRenaming(false); setMsg(''); setPassword(''); setName(''); setStep('signin'); setEmail((user && user.email) || ''); }, [user]);
   // Opening the form puts the caret where the old page put it: the email field, or the password field
   // when it was opened by "Add a password".
   useEffect(() => { if (open) (user ? pwRef.current : emailRef.current)?.focus(); }, [open, user]);
+  // Reaching the registration step puts the caret in the field it appeared for.
+  useEffect(() => { if (step === 'register') nameRef.current?.focus(); }, [step]);
+
+  // Back to step one whenever the credentials themselves change: what came back was about those, and the
+  // same answer may not apply to the new ones.
+  const editCredential = set => value => { set(value); setStep('signin'); };
 
   async function run(kind){
     setBusy(true);
     setMsg('');
-    const line = await emailAction(kind, {email, password, name});
+    const {text, newHere} = await emailAction(kind, {email, password, name});
     setBusy(false);
-    setMsg(line || '');
+    setMsg(text || '');
+    if (newHere !== undefined) setStep(newHere ? 'register' : 'signin');
     // a linked password is done with: the old card re-rendered closed, and "Add a password" is gone
-    if (kind === 'link' && !line) { setOpen(false); setPassword(''); }
+    if (kind === 'link' && !text) { setOpen(false); setPassword(''); }
   }
 
   if (!user) {
@@ -64,13 +77,14 @@ export default function AccountCard(){
         <span className="hc-d"><PrivacyLine /></span>
         <div className="actions">{STANDALONE && IOS ? [mail, google] : [google, mail]}</div>
         {STANDALONE && IOS && <span className="hc-d">In the installed app, email and password is the reliable way in.</span>}
-        <form className="authform" noValidate hidden={!open} onSubmit={ev => { ev.preventDefault(); run('signin'); }}>
-          <input ref={emailRef} type="email" name="email" placeholder="Email" autoComplete="email" required value={email} onChange={ev => setEmail(ev.target.value)} />
-          <input type="password" name="password" placeholder="Password (8 or more characters)" autoComplete="current-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
-          <input type="text" name="name" placeholder="Your name (for a new account)" maxLength={40} autoComplete="name" value={name} onChange={ev => setName(ev.target.value)} />
+        <form className="authform" noValidate hidden={!open} onSubmit={ev => { ev.preventDefault(); run(step === 'register' ? 'create' : 'signin'); }}>
+          <input ref={emailRef} type="email" name="email" placeholder="Email" autoComplete="email" required value={email} onChange={ev => editCredential(setEmail)(ev.target.value)} />
+          <input type="password" name="password" placeholder="Password (8 or more characters)" autoComplete={step === 'register' ? 'new-password' : 'current-password'} minLength={8} value={password} onChange={ev => editCredential(setPassword)(ev.target.value)} />
+          {step === 'register' && (
+            <input ref={nameRef} type="text" name="name" placeholder="Your name, as your crew sees it" maxLength={40} autoComplete="name" required value={name} onChange={ev => setName(ev.target.value)} />
+          )}
           <div className="actions">
-            <button type="submit" className="btn primary" disabled={busy}>Sign in</button>
-            <button type="button" className="btn" disabled={busy} onClick={() => run('create')}>Create account</button>
+            <button type="submit" className="btn primary" disabled={busy}>{step === 'register' ? 'Create account' : 'Sign in'}</button>
             <button type="button" className="btn" disabled={busy} onClick={() => run('reset')}>Forgot password?</button>
           </div>
           <p className="src">{msg}</p>
