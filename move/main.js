@@ -22,7 +22,7 @@ import {mergeCarry, parseVerdicts, encodeVerdicts} from '../src/core/carry.js';
   const incV = location.hash.match(/verdicts=([^&]+)/);
   const incN = location.hash.match(/notes=([^&]+)/);
   const ev = location.hash.match(/event=(\d+)/);
-  const carried = mergeCarry({picks, verdicts}, {picks: inc ? inc[1].split(',') : [], verdicts: incV ? parseVerdicts(incV[1]) : {}});
+  const carried = mergeCarry({picks, verdicts, notes}, {picks: inc ? inc[1].split(',') : [], verdicts: incV ? parseVerdicts(incV[1]) : {}, notes: incN ? decodeNotesParam(incN[1]) : {}});
   const {param: p, dropped: droppedList, shortened} = encodeNotesParam(carried.notes, 30000);
   const dropped = droppedList.length;
   const MAX_NOTE = 20000;
