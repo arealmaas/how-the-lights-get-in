@@ -102,7 +102,9 @@ a{color:inherit}
 .previewtag{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--debates);color:#fff;font-size:12px;font-weight:600;letter-spacing:.03em;padding:5px 10px;border-radius:999px;box-shadow:var(--shadow);pointer-events:none}
 
 /* ---------- banner ---------- */
-.banner{max-width:1180px;margin:12px auto 0;padding:0 16px}
+/* above the scrim (40) and the sheet (41): a banner is a question, and one raised while a sheet is open —
+   an invite link opened in a tab that is already running, say — has to be answerable without closing it */
+.banner{max-width:1180px;margin:12px auto 0;padding:0 16px;position:relative;z-index:42}
 .banner-inner{background:var(--pick-bg);color:var(--ink);border:1px solid var(--pick);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px}
 .banner-inner .btn{margin-left:auto}
 .banner-inner .btn + .btn{margin-left:0}
