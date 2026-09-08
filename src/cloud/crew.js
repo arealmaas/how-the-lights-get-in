@@ -20,7 +20,7 @@ import {change, userRef, accountMarker, bump} from './sync.js';
 export const LS_CREW_CACHE = 'htlgi-l26-crew-cache';   // the overlay that renders before the SDK loads
 export const SS_JOIN = 'htlgi-l26-join';               // the pending invite, for an hour
 
-let crewUnsubs = [], removedUnsub = null, leaving = false;
+let crewUnsubs = [], removedUnsub = null, leaving = false, joining = false;
 // A create or a join writes the membership and the pointer in one batch, and the pointer is visible from
 // the local write long before the batch reaches the server. onPointer() subscribes on that pointer, so the
 // rules — which only know the crew as it stands on the server — refuse the listen from an account whose
@@ -391,12 +391,23 @@ export async function offerJoin(){
   const lead = crewId ? `Leave ${crew ? crew.name : 'your crew'} and join ` : 'Join ';
   const ios = IOS && !STANDALONE ? ' On iPhone, join here in Safari; the installed app picks it up when you sign in there.' : '';
   showBanner({text: `${lead}${inv.crewName}? Invited by ${inv.createdByName}.${ios}`, actions: [
-    {label: 'Join', primary: true, onClick: () => { acceptJoin(); }},
+    {label: 'Join', primary: true, onClick: () => { hideBanner(); acceptJoin(); }},
     {label: 'Not now', onClick: () => { clearJoin(); hideBanner(); }},
   ]});
 }
 
+// One join at a time. The banner goes as Join is tapped, but the tap can land twice before React has
+// taken it off the screen, and a second run would write its own member document: a set() carrying a
+// fresh joinedAt, which the rules refuse as an update to a member who already exists. That rejected
+// commit would take the live one's place in `settling`, and crewError would read it as a join that
+// failed and never listen to the crew again. Released however the join ends, so a later invite joins.
 export async function acceptJoin(){
+  if (joining) return;
+  joining = true;
+  try { await join(); } finally { joining = false; }
+}
+
+async function join(){
   const j = pendingJoin();
   if (!j || !st().user) return;
   if (!navigator.onLine) { okBanner('Joining needs a connection.'); return; }
