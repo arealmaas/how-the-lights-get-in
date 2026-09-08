@@ -1,4 +1,4 @@
-import {encodeNotesParam} from '../src/core/notes.js';
+import {encodeNotesParam, decodeNotesParam} from '../src/core/notes.js';
 import {mergeCarry, parseVerdicts, encodeVerdicts} from '../src/core/carry.js';
 
 (function(){
@@ -16,12 +16,14 @@ import {mergeCarry, parseVerdicts, encodeVerdicts} from '../src/core/carry.js';
   if (!hasState) { location.replace(NEW + location.hash); return; }
   // Someone with local state who arrived via a link: carry this browser's state and keep what the link
   // asked for as well. Picks are the union; a verdict the link carries fills only an event this browser
-  // has no verdict for. src/core/carry.js has the rules and the tests.
+  // has no verdict for; notes the link carries are merged as the app merges an import (a friend's note
+  // opened here must not be lost on the way over). src/core/carry.js has the rules and the tests.
   const inc = location.hash.match(/picks=([\d,]*)/);
   const incV = location.hash.match(/verdicts=([^&]+)/);
+  const incN = location.hash.match(/notes=([^&]+)/);
   const ev = location.hash.match(/event=(\d+)/);
   const carried = mergeCarry({picks, verdicts}, {picks: inc ? inc[1].split(',') : [], verdicts: incV ? parseVerdicts(incV[1]) : {}});
-  const {param: p, dropped: droppedList, shortened} = encodeNotesParam(notes, 30000);
+  const {param: p, dropped: droppedList, shortened} = encodeNotesParam(carried.notes, 30000);
   const dropped = droppedList.length;
   const MAX_NOTE = 20000;
   const v = encodeVerdicts(carried.verdicts);

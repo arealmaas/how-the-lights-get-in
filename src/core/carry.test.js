@@ -27,7 +27,7 @@ test('an empty or ragged picks parameter yields no picks at all, and never a zer
 });
 
 test('mergeCarry copes with nothing on either side', () => {
-  expect(mergeCarry(null, null)).toEqual({picks: [], verdicts: {}});
+  expect(mergeCarry(null, null)).toEqual({picks: [], verdicts: {}, notes: {}});
 });
 
 test('verdicts survive the round trip through the parameter, encoded and back', () => {
@@ -40,4 +40,14 @@ test('a ragged verdicts parameter drops what it cannot read rather than throwing
   expect(parseVerdicts('6:%E0%A4%A')).toEqual({});   // unreadable, so not carried — never re-encoded as "6:"
   expect(parseVerdicts('')).toEqual({});
   expect(parseVerdicts(null)).toEqual({});
+});
+
+// A #notes= link opened in a browser that has notes of its own: the same rule the app's import uses, so a
+// note held here is kept, a friend's different text is appended under a rule, and a new note is added.
+test('notes from the link are merged the way the app merges a #notes= import', () => {
+  const r = mergeCarry({notes: {41: 'mine'}}, {notes: {41: 'theirs', 6: 'new'}});
+  expect(r.notes).toEqual({41: 'mine\n\n---\n\ntheirs', 6: 'new'});
+  expect(mergeCarry({notes: {41: 'same'}}, {notes: {41: 'same'}}).notes).toEqual({41: 'same'});
+  expect(mergeCarry({notes: {41: 'kept'}}, {}).notes).toEqual({41: 'kept'});
+  expect(mergeCarry({}, {notes: {6: 'only theirs'}}).notes).toEqual({6: 'only theirs'});
 });

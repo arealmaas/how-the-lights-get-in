@@ -3,9 +3,11 @@
 // #picks=…&verdicts=…&notes=… link out of this browser's own state plus whatever the link that brought
 // someone here was already asking for.
 //
-// Deliberately dependency-free: move/main.js is built into one small file (vite.move.config.js), and
-// importing src/core/exports.js for safeDecode would drag the whole programme in with it. Pure data in,
-// pure data out — no DOM, no storage, no Firebase.
+// Deliberately light: move/main.js is built into one small file (vite.move.config.js), and importing
+// src/core/exports.js for safeDecode would drag the whole programme in with it. The one import is
+// src/core/notes.js, which is as pure as this file. Pure data in, pure data out — no DOM, no storage,
+// no Firebase.
+import {mergeNoteText} from './notes.js';
 
 // picks arrive as numbers from localStorage and as strings from the hash. Only digit runs are events:
 // `''.split(',')` is `['']`, and Number('') is 0, which would otherwise carry a pick for event zero.
@@ -26,9 +28,13 @@ export const encodeVerdicts = verdicts =>
 
 // Picks are the union. Verdicts are the union too, but a verdict this browser already holds is never
 // overwritten: the link is an invitation, and what you voted here is what you meant. Order is stable —
-// this device's own picks first, then whatever the link added.
+// this device's own picks first, then whatever the link added. Notes the link carries are merged the way
+// the app merges a #notes= import: a note held here is kept, a different incoming text is appended under
+// a rule, a new one is added.
 export function mergeCarry(local, incoming){
   const picks = [...new Set([...nums(local && local.picks), ...nums(incoming && incoming.picks)])];
   const verdicts = {...((incoming && incoming.verdicts) || {}), ...((local && local.verdicts) || {})};
-  return {picks, verdicts};
+  const notes = {...((local && local.notes) || {})};
+  for (const [no, t] of Object.entries((incoming && incoming.notes) || {})) notes[no] = mergeNoteText(notes[no], t);
+  return {picks, verdicts, notes};
 }
