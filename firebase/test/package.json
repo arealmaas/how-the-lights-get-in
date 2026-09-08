@@ -1,0 +1,13 @@
+{
+  "name": "htlgi-rules-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "cd ../.. && firebase/test/node_modules/.bin/firebase emulators:exec --only firestore --project demo-htlgi \"node --test firebase/test/rules.test.mjs\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "firebase": "^12.18.0",
+    "firebase-tools": "^15.29.0"
+  }
+}

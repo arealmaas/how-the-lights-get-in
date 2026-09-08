@@ -1,19 +1,138 @@
-// Crew mode rules — see CREW-SPEC.md. Documents live at crews/{crewId}/members/{memberId};
-// crewId is a 43-character base64url hash derived from the crew passphrase on the device, so the
-// id is the secret. Member documents hold only AES-GCM ciphertext; nothing readable is stored.
+// Crew mode rules — see CREW-SPEC.md sections 4 and 5. Draft: run the emulator tests in firebase/test
+// before publishing. Accounts (Firebase Authentication) own users/{uid}; a crew is crews/{crewId} with
+// one members/{uid} projection per person, invites/{token} for joining and removed/{uid} block records.
 rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents {
-    match /crews/{crew}/members/{member} {
-      allow read: if crew.size() == 43 && member.size() <= 40;
-      allow create, update: if crew.size() == 43 && member.size() <= 40
-        && request.resource.data.keys().hasOnly(['blob', 'iv', 'v', 'updatedAt'])
-        && request.resource.data.blob is string && request.resource.data.blob.size() <= 32768
-        && request.resource.data.iv is string && request.resource.data.iv.size() <= 32
-        && request.resource.data.v == 1
-        && request.resource.data.updatedAt == request.time;
-      allow delete: if crew.size() == 43;
+  match /databases/{db}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function self(uid) { return signedIn() && request.auth.uid == uid; }
+    function crewPath(crew) { return /databases/$(db)/documents/crews/$(crew); }
+    function memberPath(crew, uid) { return /databases/$(db)/documents/crews/$(crew)/members/$(uid); }
+    function isMember(crew) { return signedIn() && exists(memberPath(crew, request.auth.uid)); }
+    // the creator keeps their powers only while they are a member
+    function isCreator(crew) { return isMember(crew) && get(crewPath(crew)).data.createdBy == request.auth.uid; }
+
+    function str(s, max) { return s is string && s.size() <= max; }
+    function stamped(d) { return d.v == 1 && d.updatedAt == request.time; }
+    // picks, verdicts and notes are maps keyed by event number. Rules cannot iterate a map, so only
+    // entry counts are bounded here; Firestore's 1 MiB document limit bounds the rest.
+    function stateOk(d) {
+      return d.picks is map && d.picks.size() <= 300
+        && d.verdicts is map && d.verdicts.size() <= 300
+        && d.notes is map && d.notes.size() <= 300;
     }
+
+    // Private planner state: one document per account, readable and writable only by its owner.
+    // The first write must be the complete document; later writes are field-level updates on it.
+    match /users/{uid} {
+      allow get, delete: if self(uid);
+      allow list: if false;
+      allow create, update: if self(uid)
+        && request.resource.data.keys().hasOnly(['name', 'crew', 'picks', 'verdicts', 'notes', 'shared', 'updatedAt', 'v'])
+        && str(request.resource.data.name, 40)
+        && (!('crew' in request.resource.data) || str(request.resource.data.crew, 40))
+        && request.resource.data.shared is map && request.resource.data.shared.size() <= 300
+        && stateOk(request.resource.data) && stamped(request.resource.data);
+    }
+
+    match /crews/{crew} {
+      allow get: if isMember(crew);
+      allow list: if false;
+      // creating a crew must, in the same batch, create the creator's member document
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'deleted', 'createdAt', 'updatedAt', 'v'])
+        && str(request.resource.data.name, 60)
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.deleted == false
+        && request.resource.data.createdAt == request.time
+        && stamped(request.resource.data)
+        && getAfter(memberPath(crew, request.auth.uid)).data.joinedAt == request.time;
+      // rename: any member. Hand over to another member, or close: the creator only.
+      allow update: if resource.data.deleted == false
+        && request.resource.data.updatedAt == request.time
+        && (
+          (isMember(crew)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'updatedAt'])
+            && str(request.resource.data.name, 60))
+          || (isCreator(crew)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['createdBy', 'updatedAt'])
+            && exists(memberPath(crew, request.resource.data.createdBy)))
+          || (isCreator(crew)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['deleted', 'updatedAt'])
+            && request.resource.data.deleted == true)
+        );
+      // a crew document is never deleted: the tombstone keeps the id from being re-created
+      allow delete: if false;
+
+      function memberOk(d) {
+        return d.keys().hasOnly(['name', 'joinedAt', 'picks', 'verdicts', 'notes', 'invite', 'updatedAt', 'v'])
+          && str(d.name, 40) && stateOk(d) && stamped(d)
+          // only notes the owner marked "share with crew" may appear in the projection
+          && d.notes.keys().hasOnly(getAfter(/databases/$(db)/documents/users/$(request.auth.uid)).data.shared.keys());
+      }
+      function invitePath(token) { return /databases/$(db)/documents/crews/$(crew)/invites/$(token); }
+      function validInvite(token) {
+        return exists(invitePath(token))
+          && get(invitePath(token)).data.revoked == false
+          && get(invitePath(token)).data.expiresAt > request.time;
+      }
+      function blocked() { return exists(/databases/$(db)/documents/crews/$(crew)/removed/$(request.auth.uid)); }
+
+      match /members/{uid} {
+        allow get, list: if isMember(crew);
+        allow create: if self(uid) && memberOk(request.resource.data)
+          && request.resource.data.joinedAt == request.time
+          && (
+            // the creator, in the batch that creates the crew document
+            (!exists(crewPath(crew)) && getAfter(crewPath(crew)).data.createdBy == request.auth.uid)
+            // or an invitee holding a live token for this open crew, who has not been removed from it
+            || (get(crewPath(crew)).data.deleted == false
+                && !blocked()
+                && 'invite' in request.resource.data
+                && str(request.resource.data.invite, 22)
+                && validInvite(request.resource.data.invite))
+          );
+        // own document only; joinedAt is fixed; invite may be dropped but not changed
+        allow update: if self(uid) && memberOk(request.resource.data)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'picks', 'verdicts', 'notes', 'invite', 'updatedAt'])
+          && (!('invite' in request.resource.data) || request.resource.data.invite == resource.data.invite);
+        allow delete: if self(uid) || isCreator(crew);
+      }
+
+      match /invites/{token} {
+        // the token is the secret: any signed-in user who has it may read the invite; only members can list them
+        allow get: if signedIn() && token.size() == 22;
+        allow list: if isMember(crew);
+        allow create: if isMember(crew) && token.size() == 22
+          && request.resource.data.keys().hasOnly(['crewName', 'createdBy', 'createdByName', 'createdAt', 'expiresAt', 'revoked', 'v'])
+          && request.resource.data.crewName == get(crewPath(crew)).data.name
+          && request.resource.data.createdBy == request.auth.uid
+          && request.resource.data.createdByName == get(memberPath(crew, request.auth.uid)).data.name
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.expiresAt is timestamp
+          && request.resource.data.expiresAt > request.time
+          && request.resource.data.expiresAt - request.time <= duration.value(30, 'd')
+          && request.resource.data.revoked == false
+          && request.resource.data.v == 1;
+        allow update: if isMember(crew)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['revoked'])
+          && request.resource.data.revoked == true;
+        allow delete: if isMember(crew);
+      }
+
+      match /removed/{uid} {
+        allow read: if isCreator(crew);
+        allow create: if isCreator(crew) && uid != request.auth.uid
+          && request.resource.data.keys().hasOnly(['name', 'removedAt', 'v'])
+          && str(request.resource.data.name, 40)
+          && request.resource.data.removedAt == request.time
+          && request.resource.data.v == 1;
+        allow update: if false;
+        allow delete: if isCreator(crew);
+      }
+    }
+
     match /{document=**} { allow read, write: if false; }
   }
 }

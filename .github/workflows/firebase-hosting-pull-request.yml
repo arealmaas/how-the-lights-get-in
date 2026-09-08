@@ -1,0 +1,40 @@
+# Builds every pull request from this repository and publishes it to a Firebase Hosting preview channel.
+# The action comments the preview URL on the PR; previews expire after 7 days unless redeployed.
+# VITE_PREVIEW on the build step is what puts the "Preview build · PR #N" ribbon and the noindex tag on
+# the page (src/App.jsx); the live build sets no such variable and shows neither.
+name: Preview on pull request
+
+on:
+  pull_request:
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Build the preview
+        run: npm run build
+        env:
+          VITE_PREVIEW: "PR #${{ github.event.number }}"
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HOW_THE_LIGHT_GETS_IN }}
+          projectId: how-the-light-gets-in
+          expires: 7d

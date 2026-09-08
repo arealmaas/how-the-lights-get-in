@@ -1,0 +1,70 @@
+// Moved from the old node --test suite for the page's shared core (the crew half): same assertions,
+// ESM imports.
+import {projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary, crewPicked, goingNames} from './crew.js';
+
+test('projectForCrew drops notes that are not shared', () => {
+  const p = projectForCrew({picks: {3: true}, verdicts: {6: 'Draw'}, notes: {3: 'private', 6: 'shared one', 7: '  '}, shared: {6: true, 7: true}});
+  expect(p).toEqual({picks: {3: true}, verdicts: {6: 'Draw'}, notes: {6: 'shared one'}});
+  expect(projectForCrew(null)).toEqual({picks: {}, verdicts: {}, notes: {}});
+});
+
+test('parseJoinHash accepts only well-formed links', () => {
+  const crew = 'AbCdEfGhIjKlMnOpQrSt', token = 'abcdefghijklmnopqrstu_';
+  expect(parseJoinHash(`#join=${crew}.${token}`)).toEqual({crew, token});
+  expect(parseJoinHash(`#event=3&join=${crew}.${token}&x=1`)).toEqual({crew, token});
+  expect(parseJoinHash('#join=short.token')).toBeNull();
+  expect(parseJoinHash(`#join=${crew}.${token}extra`)).toBeNull();
+  expect(parseJoinHash('')).toBeNull();
+});
+
+test('crewSummary finds shared events, splits and one-sided picks', () => {
+  const events = [
+    {eventNo: 1, date: '2026-09-19', time: '10:00'}, {eventNo: 2, date: '2026-09-19', time: '10:00'},
+    {eventNo: 3, date: '2026-09-19', time: '11:00'}, {eventNo: 4, date: '2026-09-20', time: '09:00'},
+  ];
+  const members = [
+    {uid: 'me', name: 'Are', picks: {1: true, 3: true}},
+    {uid: 'k', name: 'Kari', picks: {2: true, 3: true}},
+    {uid: 'm', name: 'Morten', picks: {3: true, 4: true}},
+  ];
+  const s = crewSummary(members, 'me', events);
+  expect(s.all.map(e => e.eventNo)).toEqual([3]);
+  expect(s.split).toEqual([{slot: '2026-09-19 10:00', choices: [{no: 1, names: ['Are']}, {no: 2, names: ['Kari']}]}]);
+  expect(s.onlyMe.map(e => e.eventNo)).toEqual([1]);
+  expect(s.onlyThem.map(e => e.eventNo)).toEqual([2, 4]);
+  expect(pickedBy(members, 'me', 3).map(m => m.name)).toEqual(['Kari', 'Morten']);
+  expect(crewSummary([members[0]], 'me', events).all).toEqual([]);
+  expect(memberColour(7)).toBe('talks');
+});
+
+test('crewPicked is every event someone else picked, and goingNames writes me as "you"', () => {
+  const members = [
+    {uid: 'me', name: 'Are', picks: {1: true, 3: true}},
+    {uid: 'k', name: 'Kari', picks: {2: true, 3: true, 9: false}},
+    {uid: 'm', name: 'Morten', picks: {4: true}},
+  ];
+  expect([...crewPicked(members, 'me')].sort((a, b) => a - b)).toEqual([2, 3, 4]);   // never my own 1, never a false
+  expect(crewPicked(members, 'me').has(1)).toBe(false);
+  expect(crewPicked([], 'me').size).toBe(0);
+  expect(crewPicked(null, 'me').size).toBe(0);
+
+  const mine = new Set([1, 3]);
+  expect(goingNames(members, 'me', mine, 3)).toEqual(['you', 'Kari']);
+  expect(goingNames(members, 'me', mine, 2)).toEqual(['Kari']);
+  // my local picks win over my own member document, which can lag a snapshot behind
+  expect(goingNames(members, 'me', new Set([4]), 4)).toEqual(['you', 'Morten']);
+  expect(goingNames(members, 'me', new Set(), 9)).toEqual([]);
+});
+
+test('goingNames writes me first, under whichever name the caller gives it', () => {
+  // I joined last, so join order would have put me third
+  const members = [
+    {uid: 'k', name: 'Kari', picks: {3: true}},
+    {uid: 'm', name: 'Morten', picks: {3: true}},
+    {uid: 'me', name: 'Are', picks: {3: true}},
+  ];
+  expect(goingNames(members, 'me', new Set([3]), 3, 'Are')).toEqual(['Are', 'Kari', 'Morten']);
+  expect(goingNames(members, 'me', new Set([3]), 3)).toEqual(['you', 'Kari', 'Morten']);   // default
+  // a uid that is not in the crew: nobody is "me", so everyone is listed under their own name
+  expect(goingNames(members, 'not-a-member', new Set([3]), 3, 'Are')).toEqual(['Kari', 'Morten', 'Are']);
+});

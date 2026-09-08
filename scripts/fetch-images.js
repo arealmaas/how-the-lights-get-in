@@ -4,14 +4,14 @@
 //   1. open any page on https://howthelightgetsin.org/ and open the developer console,
 //   2. paste this whole file and press Enter,
 //   3. after a minute it downloads images.json (base64 WebP thumbnails, ~5 MB),
-//   4. run  python3 scripts/unpack-images.py ~/Downloads/images.json  to write them into img/,
-//   5. run  python3 scripts/build.py  — the build picks up whatever exists under img/.
+//   4. run  python3 scripts/unpack-images.py ~/Downloads/images.json  to write them into public/img/,
+//   5. run  npm run data  — the build picks up whatever exists under public/img/.
 //
 // Sizes: portraits 240×300 (the site's own 480×600 crop, halved), event and act heroes 640×360 from the 1200×675 originals.
 // The photos remain © the Institute of Art and Ideas and the respective photographers.
 
 (async () => {
-  const PROGRAMME = 'https://arealmaas.github.io/how-the-lights-get-in/programme.json';   // or paste the JSON into `data` below
+  const PROGRAMME = 'https://raw.githubusercontent.com/arealmaas/how-the-lights-get-in/main/programme.json';   // or paste the JSON into `data` below
   const data = await fetch(PROGRAMME).then(r => r.json());
   const original = u => u.replace(/_resampled\/[A-Za-z0-9]+\//, '');
   const jobs = [];

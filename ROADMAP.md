@@ -1,6 +1,6 @@
 # Roadmap
 
-Ideas for the planner, to be done one at a time. Everything here works on a static GitHub Pages site — no backend, nothing tracked. Status: ✅ done · 🔨 in progress · ⬜ planned.
+Ideas for the planner, to be done one at a time. The planner is a static site (Firebase Hosting since Batch 5, GitHub Pages before); accounts and crews use Firebase Authentication and Firestore; nothing is tracked. Status: ✅ done · 🔨 in progress · ⬜ planned.
 
 ## Batch 1 (done 6 September 2026)
 
@@ -19,13 +19,18 @@ Ideas for the planner, to be done one at a time. Everything here works on a stat
 
 ## Batch 3 (done 6 September 2026)
 
-- ✅ **Photos.** Portraits from the festival site on every speaker and act sheet, avatars in the event's speaker list, the programme image at the top of each event sheet (act photos for music and comedy). 240 WebP thumbnails under `img/`, precached for offline use, embedded as data URIs in the artifact copy. `scripts/fetch-images.js` + `scripts/unpack-images.py` refresh them.
+- ✅ **Photos.** Portraits from the festival site on every speaker and act sheet, avatars in the event's speaker list, the programme image at the top of each event sheet (act photos for music and comedy). 240 WebP thumbnails under `public/img/`, precached for offline use. `scripts/fetch-images.js` + `scripts/unpack-images.py` refresh them.
 
 ## Batch 4 (done 6 September 2026)
 
 - ✅ **Cleaner top.** A masthead with the wordmark, one quiet line (venue, dates, unofficial, about) and a strand-colour hairline; two prominent buttons with live counts — *My festival* and *Reading list*; a sticky toolbar with day, view, search and one filter strip; the status line only appears while a filter is active. Share and export links moved out of the toolbar.
 - ✅ **My festival hub.** Picks per day with clash and note markers, a highlighted reading-list card, calendar export, an inline share link, notes export, and links to stats and the disclaimer.
-- ✅ **Pull-request previews.** GitHub Actions publish `main` to `gh-pages` and every PR to `gh-pages/pr-preview/pr-N/` with a link in a PR comment (`.github/workflows/`); preview builds carry a ribbon and `noindex`.
+- ✅ **Pull-request previews.** GitHub Actions publish every PR to a preview channel with a link in a PR comment (`.github/workflows/`); preview builds carry a ribbon and `noindex`. (On GitHub Pages at the time, under `gh-pages/pr-preview/pr-N/`; on Firebase Hosting since Batch 5.)
+
+## Batch 5 (done 8 September 2026)
+
+- ✅ **Accounts and crews.** Firebase Authentication (Google, email + password) keeps picks, verdicts and notes on every device; crews share picks, verdicts and chosen notes by invite link — badges on the cards, a Crew filter chip, a "Going" row and crew verdict tally in the event sheet, shared notes, and a crew section in *My festival* with the split, the crew calendar and the crew reading list. Spec: `CREW-SPEC.md`. Hosting moved to Firebase Hosting (`https://how-the-light-gets-in.firebaseapp.com/`), with a move page left on GitHub Pages.
+- ✅ **Restructured as a Vite + React app.** The 1 650-line single-file page became a Vite 8 + React 19 codebase: pure `src/core/` modules, four Zustand stores, a lazily-loaded Firebase layer under `src/cloud/`, components under `src/ui/`, and real tests (Vitest with jsdom, Playwright for the browser smoke, the Firestore rules suite in the emulator) in place of the old in-page self-test block. Design: `docs/superpowers/specs/2026-09-07-react-restructure-design.md`.
 
 ## Skipped (decided 6 September 2026)
 
