@@ -1,6 +1,7 @@
 // Crew mode rules — see CREW-SPEC.md sections 4 and 5. Draft: run the emulator tests in firebase/test
 // before publishing. Accounts (Firebase Authentication) own users/{uid}; a crew is crews/{crewId} with
 // one members/{uid} projection per person, invites/{token} for joining and removed/{uid} block records.
+// The crew's plan — the events its members have added to the crew — is the picks map on the crew document.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{db}/documents {
@@ -39,22 +40,32 @@ service cloud.firestore {
     match /crews/{crew} {
       allow get: if isMember(crew);
       allow list: if false;
-      // creating a crew must, in the same batch, create the creator's member document
+      // the crew's plan: a map keyed by event number, the value the uid of the member who added it. Rules
+      // cannot iterate a map, so only the entry count is bounded here, as for the member projections.
+      function planOk(d) { return d.picks is map && d.picks.size() <= 300; }
+      // creating a crew must, in the same batch, create the creator's member document. The client writes
+      // the plan as an empty map; a client from before the plan existed writes none, and is still allowed
+      // to create a crew, so these rules can go live ahead of that client being replaced.
       allow create: if signedIn()
-        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'deleted', 'createdAt', 'updatedAt', 'v'])
+        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'deleted', 'picks', 'createdAt', 'updatedAt', 'v'])
         && str(request.resource.data.name, 60)
         && request.resource.data.createdBy == request.auth.uid
         && request.resource.data.deleted == false
+        && (!('picks' in request.resource.data) || planOk(request.resource.data))
         && request.resource.data.createdAt == request.time
         && stamped(request.resource.data)
         && getAfter(memberPath(crew, request.auth.uid)).data.joinedAt == request.time;
-      // rename: any member. Hand over to another member, or close: the creator only.
+      // rename, and add to or remove from the plan: any member. Hand over to another member, or close:
+      // the creator only.
       allow update: if resource.data.deleted == false
         && request.resource.data.updatedAt == request.time
         && (
           (isMember(crew)
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'updatedAt'])
             && str(request.resource.data.name, 60))
+          || (isMember(crew)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['picks', 'updatedAt'])
+            && planOk(request.resource.data))
           || (isCreator(crew)
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['createdBy', 'updatedAt'])
             && exists(memberPath(crew, request.resource.data.createdBy)))

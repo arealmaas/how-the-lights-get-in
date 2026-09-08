@@ -82,7 +82,7 @@ test('without a Firebase config the hub offers no account and the SDK chunk is n
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('heading', {name: 'Your weekend'})).toBeVisible();
   await expect(dialog.locator('.hub-card.account')).toHaveCount(0);
-  await expect(dialog.getByText('Account and crew')).toHaveCount(0);
+  await expect(dialog.getByText('Crew and account')).toHaveCount(0);
   expect(sdk).toEqual([]);
 });
 

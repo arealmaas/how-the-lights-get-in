@@ -1,11 +1,13 @@
-// src/ui/event/CrewRow.jsx — the "Going" row of CREW-SPEC section 7 "Everywhere", directly under the
-// people pills: who in the crew is going, who has not picked it yet, and a "Join them" button while I have
-// not. The debate tally is CrewTally (beneath my own vote) and the shared notes are CrewNotes (beside my
-// own notes box). Names render as text by React, which is what replaces the old page's esc().
+// src/ui/event/CrewRow.jsx — the crew row of CREW-SPEC section 7 "Everywhere", directly under the people
+// pills: whether the event is in the crew's plan (and who put it there), then who in the crew is going,
+// who has not picked it yet, and a "Join them" button while I have not. The plan toggle itself is in the
+// actions row (CrewPlanButton), beside "Add to my picks". The debate tally is CrewTally (beneath my own
+// vote) and the shared notes are CrewNotes (beside my own notes box). Names render as text by React,
+// which is what replaces the old page's esc().
 // Gated on selectMyUid rather than on `user`: a cold or offline start has the cached crew but no SDK yet.
 import {useCloud, selectMyUid} from '../../store/cloud.js';
 import {usePlanner} from '../../store/planner.js';
-import {pickedBy, goingNames} from '../../core/crew.js';
+import {pickedBy, goingNames, planAddedBy} from '../../core/crew.js';
 
 export default function CrewRow({e}){
   const crew = useCloud(s => s.crew);
@@ -28,9 +30,14 @@ export default function CrewRow({e}){
       ? `Going: ${going.join(', ')}${notYet.length ? ` · not yet: ${notYet.map(m => m.name).join(', ')}` : ''}`
       : 'Nobody in the crew has picked this yet.';
 
+  const inPlan = !!(crew.picks && crew.picks[no]);
+  const by = inPlan ? planAddedBy(crew.members, crew.picks, no) : null;
+  const planLine = inPlan ? `In the crew’s plan${by ? ' · added by ' + by : ''}` : 'Not in the crew’s plan';
+
   return (
     <div className="going">
       <span className="lab">Crew</span>
+      <span className={'plan' + (inPlan ? ' on' : '')}>{planLine}</span>
       <span>{line}</span>
       {othersGoing.length > 0 && !picks.has(no) && (
         <button type="button" className="btn primary" onClick={() => usePlanner.getState().togglePick(no)}>Join them</button>

@@ -1,13 +1,21 @@
 // src/ui/Masthead.jsx — ported from the old <header class="mast">: brand, and the My festival/Reading
-// list buttons, whose counts come from the picks set and the reading list built from those picks.
+// list buttons, whose counts come from the picks set and the reading list built from those picks. In a
+// crew there is a third button, named after the crew and counting its plan, so being in a crew is visible
+// from the top of every page; it opens My festival at the crew cards (CREW-SPEC section 7).
 import {EVENTS, EXTRA, BRIEFINGS} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
+import {useCloud} from '../store/cloud.js';
 import {readingList, readingCount} from '../core/reading.js';
+import {useCrewPlan, useInCrew} from './useFiltered.js';
+import CrewIcon from './CrewIcon.jsx';
 
 export default function Masthead(){
   const picks = usePlanner(s => s.picks);
   const rl = readingCount(readingList(EVENTS, picks, EXTRA, BRIEFINGS));
+  const crewName = useCloud(s => (s.crew && s.crew.name) || '');
+  const inCrew = useInCrew();
+  const plan = useCrewPlan();
 
   return (
     <header className="mast">
@@ -30,6 +38,18 @@ export default function Masthead(){
             <span className="label">Reading list</span>
             <span className="count" data-count-reading hidden={!rl}>{rl}</span>
           </button>
+          {inCrew && (
+            <button
+              type="button"
+              className="mbtn crewbtn"
+              title={`Your crew${crewName ? ': ' + crewName : ''} · ${plan.size} in the crew’s plan`}
+              onClick={() => useSheet.getState().open('hub', undefined, 'crew')}
+            >
+              <CrewIcon />
+              <span className="label">{crewName || 'Crew'}</span>
+              <span className="count" data-count-crew hidden={!plan.size}>{plan.size}</span>
+            </button>
+          )}
         </nav>
       </div>
     </header>

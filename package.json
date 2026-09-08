@@ -12,6 +12,9 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:rules": "cd firebase/test && npm test",
+    "test:live": "npm run build && npm run test:live:reset && node --env-file-if-exists=.env.local tests/live/crew-plan.mjs",
+    "test:live:reset": "node --env-file-if-exists=.env.local tests/live/reset.mjs",
+    "test:live:state": "node --env-file-if-exists=.env.local tests/live/state.mjs",
     "data": "python3 scripts/build.py"
   },
   "dependencies": {

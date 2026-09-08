@@ -14,7 +14,7 @@ const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
 const member = (uid, name, extra = {}) => ({uid, name, joinedAt: 1, picks: {}, verdicts: {}, notes: {}, ...extra});
 
 const crewOf = (...members) => ({
-  id: 'c1', name: 'The Heath Three', createdBy: 'u1', members,
+  id: 'c1', name: 'The Heath Three', createdBy: 'u1', picks: {}, members,
   invites: [], removed: [], syncedAt: Date.now(), live: true,
 });
 
@@ -74,6 +74,29 @@ test('nobody yet, and a crew of one, each get their own line', () => {
   useCloud.setState({crew: crewOf(member('u1', 'Are'))});
   render(<CrewRow e={DEBATE} />);
   expect(screen.getByText('You are the only one in the crew so far.')).toBeInTheDocument();
+});
+
+// The first line of the row is the plan (CREW-SPEC section 7): in it or not, and who put it there. The
+// toggle itself is the CrewPlanButton in the actions row, so this line only states.
+test('the plan line says whether the event is in the crew’s plan and who added it', () => {
+  const base = crewOf(member('u1', 'Are'), member('u2', 'Kari', {picks: {6: true}}), member('u3', 'Morten'));
+  useCloud.setState({crew: {...base, picks: {6: 'u2'}}});
+  const {unmount} = render(<CrewRow e={DEBATE} />);
+  const plan = document.querySelector('.going .plan');
+  expect(plan.textContent).toBe('In the crew’s plan · added by Kari');
+  expect(plan).toHaveClass('on');
+  expect(plan.nextElementSibling.textContent).toBe('Going: Kari · not yet: Morten');   // the going line is still there
+  unmount();
+
+  useCloud.setState({crew: {...base, picks: {6: 'someone-who-left'}}});
+  const second = render(<CrewRow e={DEBATE} />);
+  expect(document.querySelector('.going .plan').textContent).toBe('In the crew’s plan');
+  second.unmount();
+
+  useCloud.setState({crew: base});
+  render(<CrewRow e={DEBATE} />);
+  expect(document.querySelector('.going .plan').textContent).toBe('Not in the crew’s plan');
+  expect(document.querySelector('.going .plan')).not.toHaveClass('on');
 });
 
 test('signed out, or with no crew, the row is not built at all', () => {

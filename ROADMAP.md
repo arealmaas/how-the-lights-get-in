@@ -32,6 +32,10 @@ Ideas for the planner, to be done one at a time. The planner is a static site (F
 - ✅ **Accounts and crews.** Firebase Authentication (Google, email + password) keeps picks, verdicts and notes on every device; crews share picks, verdicts and chosen notes by invite link — badges on the cards, a Crew filter chip, a "Going" row and crew verdict tally in the event sheet, shared notes, and a crew section in *My festival* with the split, the crew calendar and the crew reading list. Spec: `CREW-SPEC.md`. Hosting moved to Firebase Hosting (`https://how-the-light-gets-in.firebaseapp.com/`), with a move page left on GitHub Pages.
 - ✅ **Restructured as a Vite + React app.** The 1 650-line single-file page became a Vite 8 + React 19 codebase: pure `src/core/` modules, four Zustand stores, a lazily-loaded Firebase layer under `src/cloud/`, components under `src/ui/`, and real tests (Vitest with jsdom, Playwright for the browser smoke, the Firestore rules suite in the emulator) in place of the old in-page self-test block. Design: `docs/superpowers/specs/2026-09-07-react-restructure-design.md`.
 
+## Batch 6 (done 8 September 2026)
+
+- ✅ **The crew's plan.** A crew now has a list of its own, separate from everyone's picks: any member adds an event with the crew button next to the star (on the cards and in the event sheet), and everyone sees the same plan — a ring in the crew colour on the card and the tile, the *Crew* chip filtering to it, a crew button in the masthead named after the crew and counting it, and a *Crew plan* list by day in *My festival* saying who is going and who added each event. The crew calendar and the crew reading list are built from the plan. *My picks* and *Crew* are drawn heavier than the group chips. Stored as a map on the crew document; the rules let any member write it (`CREW-SPEC.md` section 3, "The crew plan"; design: `docs/superpowers/specs/2026-09-08-crew-plan-design.md`).
+
 ## Skipped (decided 6 September 2026)
 
 Free-slot finder, weather and travel notes, bingo, "surprise me", share card — not needed.

@@ -40,7 +40,8 @@ export default function Sheet(){
     if (top.kind === 'event') body = <EventSheet key={top.key} no={top.key} />;
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
-    else if (top.kind === 'hub') body = <HubSheet key={top.key} />;
+    // the hub's `mode` is where it opens: 'crew' scrolls to the crew cards (the masthead's crew button)
+    else if (top.kind === 'hub') body = <HubSheet key={top.key} mode={top.mode} />;
     else if (top.kind === 'stats') body = <StatsSheet key={top.key} />;
     // the reading sheet is the one kind with a `mode`; keying on it too means opening it a second time
     // in a different mode remounts, so the tab it opens on is always the one that was asked for

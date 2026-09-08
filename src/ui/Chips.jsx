@@ -1,10 +1,13 @@
 // src/ui/Chips.jsx — ported from the old renderChips(): the "My picks" chip (with a same-day clash
-// count), the "Crew" chip (only while in a crew), one chip per event group, and a "Now" chip on festival
-// days that jumps to the current time.
+// count), the "Crew" chip (only while in a crew; it filters to the crew's plan), one chip per event
+// group, and a "Now" chip on festival days that jumps to the current time. The two plan chips are the
+// ones that answer "where am I going" and "where are we going", so they are drawn heavier than the group
+// chips — tinted at rest, filled when pressed — and a hairline separates them from the rest of the strip.
 import {byNo, EVENTS, GROUPS} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {isFestivalDay} from '../core/time.js';
-import {NOW, useCrewAny, useInCrew} from './useFiltered.js';
+import {NOW, useCrewPlan, useInCrew} from './useFiltered.js';
+import CrewIcon from './CrewIcon.jsx';
 
 function jumpToNow(){
   usePlanner.getState().setFilter({day: NOW.date, view: 'list'});
@@ -22,13 +25,13 @@ export default function Chips({clashes}){
   const crewOnly = usePlanner(s => s.crewOnly);
   const picks = usePlanner(s => s.picks);
   const setFilter = usePlanner(s => s.setFilter);
-  const crewAny = useCrewAny();
+  const plan = useCrewPlan();
   const inCrew = useInCrew();
 
   const dayPicks = [...picks].filter(n => byNo.get(n).date === day);
   const dayClash = dayPicks.filter(n => clashes.has(n)).length;
-  // the whole day's crew events, not the currently visible ones: the count says what pressing it would find
-  const dayCrew = inCrew ? EVENTS.filter(e => e.date === day && crewAny.has(e.eventNo)).length : 0;
+  // the whole day's crew plan, not the currently visible part of it: the count says what pressing it would find
+  const dayCrew = inCrew ? EVENTS.filter(e => e.date === day && plan.has(e.eventNo)).length : 0;
 
   return (
     <div className="chips" id="chips">
@@ -47,10 +50,12 @@ export default function Chips({clashes}){
           className="chip crewchip"
           aria-pressed={crewOnly}
           onClick={() => setFilter({crewOnly: !crewOnly})}
+          title="The crew’s plan"
         >
-          Crew <span>({dayCrew})</span>
+          <CrewIcon />Crew <span>({dayCrew})</span>
         </button>
       )}
+      <span className="chips-sep" aria-hidden="true"></span>
       {GROUPS.map(([key, label]) => (
         <button
           key={key}

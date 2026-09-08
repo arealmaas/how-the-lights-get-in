@@ -6,11 +6,13 @@ import Sheet from '../Sheet.jsx';
 import {useSheet} from '../../store/sheet.js';
 import {useCloud} from '../../store/cloud.js';
 import {usePlanner} from '../../store/planner.js';
+import {EVENTS} from '../../data/index.js';
 
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
 const member = (uid, name, picks = {}) => ({uid, name, joinedAt: 1, picks, verdicts: {}, notes: {}});
+// the plan is 12 (Kari has starred it) and 41 (nobody has); my own pick 6 is not in it
 const CREW = {
-  id: 'c1', name: 'The Heath Three', createdBy: 'u1',
+  id: 'c1', name: 'The Heath Three', createdBy: 'u1', picks: {12: 'u2', 41: 'u1'},
   members: [member('u1', 'Are', {6: true}), member('u2', 'Kari', {12: true})],
   invites: [], removed: [], syncedAt: Date.now(), live: true,
 };
@@ -29,7 +31,7 @@ test('without a crew there are no tabs and the list is only mine', () => {
   expect(lines()).toHaveLength(1);
 });
 
-test('Crew lists the union of the picks and ends each line with who is going', () => {
+test('Crew lists the crew’s plan and ends each line with who is going', () => {
   useCloud.setState({user: USER, crewId: 'c1', crew: CREW});
   render(<ReadingSheet />);
 
@@ -40,11 +42,20 @@ test('Crew lists the union of the picks and ends each line with who is going', (
   fireEvent.click(screen.getByRole('button', {name: 'Crew'}));
   expect(screen.getByRole('button', {name: 'Crew'})).toHaveAttribute('aria-pressed', 'true');
 
-  const crewLines = lines();
-  expect(crewLines).toHaveLength(2);                       // 6 (mine) and 12 (Kari's)
-  expect(crewLines[0]).toMatch(/· Are$/);   // me under my account name
-  expect(crewLines[1]).toMatch(/· Kari$/);
-  expect(screen.getByText(/Built from everyone’s picks in the crew/)).toBeInTheDocument();
+  const titles = [...document.querySelectorAll('.rl-ev h4')].map(el => el.textContent);
+  expect(titles).toHaveLength(2);                                                          // 12 and 41: the plan, not my pick 6
+  expect(titles).not.toContain(EVENTS.find(e => e.eventNo === 6).title);
+  const line = no => document.querySelectorAll('.rl-ev')[titles.indexOf(EVENTS.find(e => e.eventNo === no).title)].querySelector('.t').textContent;
+  expect(line(12)).toMatch(/· Kari$/);                                                     // who has starred it
+  expect(line(41)).not.toMatch(/·\s*$/);                                                   // nobody yet: no trailing names
+  expect(screen.getByText(/Built from the crew’s plan/)).toBeInTheDocument();
+});
+
+test('an empty plan says so on the Crew tab', () => {
+  useCloud.setState({user: USER, crewId: 'c1', crew: {...CREW, picks: {}}});
+  render(<ReadingSheet mode="crew" />);
+  expect(lines()).toHaveLength(0);
+  expect(screen.getByText(/Nothing in the crew’s plan yet/)).toBeInTheDocument();
 });
 
 // CREW-SPEC section 7: the hub's "Crew reading list" is the crew list, so it opens on the Crew tab.

@@ -1,6 +1,6 @@
 // Moved from the old node --test suite for the page's shared core (the crew half): same assertions,
 // ESM imports.
-import {projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary, crewPicked, goingNames} from './crew.js';
+import {projectForCrew, parseJoinHash, memberColour, pickedBy, crewSummary, crewPlan, planAddedBy, goingNames} from './crew.js';
 
 test('projectForCrew drops notes that are not shared', () => {
   const p = projectForCrew({picks: {3: true}, verdicts: {6: 'Draw'}, notes: {3: 'private', 6: 'shared one', 7: '  '}, shared: {6: true, 7: true}});
@@ -37,17 +37,34 @@ test('crewSummary finds shared events, splits and one-sided picks', () => {
   expect(memberColour(7)).toBe('talks');
 });
 
-test('crewPicked is every event someone else picked, and goingNames writes me as "you"', () => {
+// The crew's plan is its own map on the crew document, eventNo → the uid that added it. It is not the
+// union of anyone's picks: an event nobody has starred can be in the plan, and a starred one need not be.
+test('crewPlan is the set of events in the crew document\'s picks map, and planAddedBy names who added each', () => {
   const members = [
     {uid: 'me', name: 'Are', picks: {1: true, 3: true}},
     {uid: 'k', name: 'Kari', picks: {2: true, 3: true, 9: false}},
     {uid: 'm', name: 'Morten', picks: {4: true}},
   ];
-  expect([...crewPicked(members, 'me')].sort((a, b) => a - b)).toEqual([2, 3, 4]);   // never my own 1, never a false
-  expect(crewPicked(members, 'me').has(1)).toBe(false);
-  expect(crewPicked([], 'me').size).toBe(0);
-  expect(crewPicked(null, 'me').size).toBe(0);
+  const picks = {2: 'k', 5: 'me', 9: false, 12: 'gone'};
+  expect([...crewPlan(picks)].sort((a, b) => a - b)).toEqual([2, 5, 12]);   // a false is not in the plan
+  expect(crewPlan({}).size).toBe(0);
+  expect(crewPlan(null).size).toBe(0);
+  expect(crewPlan(undefined).size).toBe(0);
 
+  expect(planAddedBy(members, picks, 2)).toBe('Kari');
+  expect(planAddedBy(members, picks, 5)).toBe('Are');
+  expect(planAddedBy(members, picks, 12)).toBeNull();   // added by someone who has since left
+  expect(planAddedBy(members, picks, 1)).toBeNull();    // not in the plan at all
+  expect(planAddedBy(members, null, 2)).toBeNull();
+  expect(planAddedBy(null, picks, 2)).toBeNull();
+});
+
+test('goingNames writes me as "you" by default', () => {
+  const members = [
+    {uid: 'me', name: 'Are', picks: {1: true, 3: true}},
+    {uid: 'k', name: 'Kari', picks: {2: true, 3: true, 9: false}},
+    {uid: 'm', name: 'Morten', picks: {4: true}},
+  ];
   const mine = new Set([1, 3]);
   expect(goingNames(members, 'me', mine, 3)).toEqual(['you', 'Kari']);
   expect(goingNames(members, 'me', mine, 2)).toEqual(['Kari']);

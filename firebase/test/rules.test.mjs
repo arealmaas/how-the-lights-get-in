@@ -87,7 +87,7 @@ test('users: the remaining clauses — non-owner create, every map cap and type,
 const CREW = 'AbCdEfGhIjKlMnOpQrSt', OTHER = 'OtherCrewIdAbcdefghi';
 const TOKEN = 'abcdefghijklmnopqrstu_', TOKEN2 = 'ABCDEFGHIJKLMNOPQRSTU-';
 const fullMember = (over = {}) => ({name: 'Are', joinedAt: serverTimestamp(), picks: {}, verdicts: {}, notes: {}, updatedAt: serverTimestamp(), v: 1, ...over});
-const crewDoc = (over = {}) => ({name: 'The Heath Three', createdBy: 'alice', deleted: false, createdAt: serverTimestamp(), updatedAt: serverTimestamp(), v: 1, ...over});
+const crewDoc = (over = {}) => ({name: 'The Heath Three', createdBy: 'alice', deleted: false, picks: {}, createdAt: serverTimestamp(), updatedAt: serverTimestamp(), v: 1, ...over});
 const inviteDoc = (over = {}) => ({crewName: 'The Heath Three', createdBy: 'alice', createdByName: 'Are', createdAt: serverTimestamp(), expiresAt: Timestamp.fromMillis(Date.now() + 14 * 864e5), revoked: false, v: 1, ...over});
 const blockDoc = (name = 'Morten') => ({name, removedAt: serverTimestamp(), v: 1});
 // alice owns CREW with bob (who shares note 6) as a member and a live invite; carol has an account and no crew;
@@ -138,11 +138,49 @@ test('crews: creating a crew needs the creator member document in the same batch
   wrong.set(doc(db, 'crews', id), crewDoc({createdBy: 'alice'}));
   wrong.set(doc(db, 'crews', id, 'members', 'carol'), fullMember({name: 'Morten'}));
   await assertFails(wrong.commit());
+  // the plan, when written, must be a map; a client from before the plan existed writes none and may
+  // still create a crew (the rules go live before that client is replaced)
+  const notMap = writeBatch(db);
+  notMap.set(doc(db, 'crews', id), crewDoc({createdBy: 'carol', picks: 'nope'}));
+  notMap.set(doc(db, 'crews', id, 'members', 'carol'), fullMember({name: 'Morten'}));
+  await assertFails(notMap.commit());
   const b = writeBatch(db);
   b.set(doc(db, 'crews', id), crewDoc({createdBy: 'carol'}));
   b.set(doc(db, 'crews', id, 'members', 'carol'), fullMember({name: 'Morten'}));
   b.update(doc(db, 'users', 'carol'), {crew: id, updatedAt: serverTimestamp()});
   await assertSucceeds(b.commit());
+  const {picks, ...noPlan} = crewDoc({createdBy: 'carol'});
+  const old = 'OldClientCrewIdAbcde';
+  const legacy = writeBatch(db);
+  legacy.set(doc(db, 'crews', old), noPlan);
+  legacy.set(doc(db, 'crews', old, 'members', 'carol'), fullMember({name: 'Morten'}));
+  await assertSucceeds(legacy.commit());
+});
+
+// The crew's plan (CREW-SPEC section 3, "The crew plan"): the picks map on the crew document, which any
+// member may add to or take from with a field-level update, one event at a time. It is the crew's, not
+// the creator's: a member removes an event someone else added just as they would rename the crew.
+test('crews: any member adds to and removes from the plan; a non-member cannot; nothing else rides along', async () => {
+  await seedCrew();
+  const bob = as('bob'); const ref = doc(bob, 'crews', CREW);
+  await assertSucceeds(updateDoc(ref, {'picks.41': 'bob', updatedAt: serverTimestamp()}));
+  await assertSucceeds(updateDoc(ref, {'picks.6': 'bob', 'picks.41': deleteField(), updatedAt: serverTimestamp()}));
+  await assertSucceeds(updateDoc(doc(as('alice'), 'crews', CREW), {'picks.6': deleteField(), updatedAt: serverTimestamp()}));   // someone else's entry
+  await assertFails(updateDoc(doc(as('carol'), 'crews', CREW), {'picks.41': 'carol', updatedAt: serverTimestamp()}));            // not a member
+  await assertFails(updateDoc(doc(as('dave'), 'crews', CREW), {'picks.41': 'dave', updatedAt: serverTimestamp()}));              // a member of another crew
+  await assertFails(updateDoc(doc(anon(), 'crews', CREW), {'picks.41': 'x', updatedAt: serverTimestamp()}));
+  await assertFails(updateDoc(ref, {'picks.41': 'bob'}));                                                                        // no updatedAt
+  await assertFails(updateDoc(ref, {'picks.41': 'bob', name: 'Renamed too', updatedAt: serverTimestamp()}));                      // one thing per write
+  await assertFails(updateDoc(ref, {'picks.41': 'bob', createdBy: 'bob', updatedAt: serverTimestamp()}));                        // the plan is not a way to the creator's powers
+  await assertFails(updateDoc(ref, {picks: 'nope', updatedAt: serverTimestamp()}));                                              // the map replaced by a scalar
+  const big = Object.fromEntries(Array.from({length: 301}, (_, i) => ['picks.' + (i + 1), 'bob']));
+  await assertFails(updateDoc(ref, {...big, updatedAt: serverTimestamp()}));                                                     // over the cap
+  // a crew from before the plan existed has no picks field: the first add creates the map
+  await admin(db => updateDoc(doc(db, 'crews', CREW), {picks: deleteField()}));
+  await assertSucceeds(updateDoc(ref, {'picks.41': 'bob', updatedAt: serverTimestamp()}));
+  // and a closed crew takes no more
+  await admin(db => updateDoc(doc(db, 'crews', CREW), {deleted: true}));
+  await assertFails(updateDoc(ref, {'picks.12': 'bob', updatedAt: serverTimestamp()}));
 });
 
 test('members: joining with a live token works; expired, revoked, foreign, missing or no token fails', async () => {

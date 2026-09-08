@@ -1,13 +1,18 @@
 // src/ui/EventGrid.jsx — ported from the old renderGrid(list): a venue × time table, one tile per event.
+// A tile in the crew's plan gets the `crew` class (a ring inside the tile, in the crew colour) and the crew
+// glyph beside the star. A tile is one button, so it cannot hold the plan toggle the way a card does; the
+// toggle is on the card and in the event sheet the tile opens.
 import {EVENTS, VENUES, GROUP} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
-import {NOW} from './useFiltered.js';
+import {NOW, useCrewPlan} from './useFiltered.js';
 import CrewBadges from './CrewBadges.jsx';
+import CrewIcon from './CrewIcon.jsx';
 
 export default function EventGrid({list, clashes}){
   const day = usePlanner(s => s.day);
   const picks = usePlanner(s => s.picks);
+  const plan = useCrewPlan();
 
   if (!list.length) {
     return <div className="empty"><b>Nothing matches</b>Try another day, clear a filter, or search for a speaker.</div>;
@@ -36,11 +41,12 @@ export default function EventGrid({list, clashes}){
                         <button
                           key={e.eventNo}
                           type="button"
-                          className={`tile g-${GROUP[e.type]}${picks.has(e.eventNo) ? ' picked' : ''}`}
+                          className={`tile g-${GROUP[e.type]}${picks.has(e.eventNo) ? ' picked' : ''}${plan.has(e.eventNo) ? ' crew' : ''}`}
                           onClick={() => useSheet.getState().open('event', e.eventNo)}
                         >
                           {clashes.has(e.eventNo) && <span className="warn" title="Clashes with another pick">⚠</span>}
                           {picks.has(e.eventNo) && <span className="star">★</span>}
+                          {plan.has(e.eventNo) && <span className="crewmark" title="In the crew’s plan"><CrewIcon /></span>}
                           <CrewBadges no={e.eventNo} />
                           <b>{e.title}</b>
                           {(e.speakers.length > 0 || e.hosts.length > 0) && (

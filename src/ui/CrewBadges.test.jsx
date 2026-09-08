@@ -11,7 +11,7 @@ const E6 = EVENTS.find(e => e.eventNo === 6);
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
 const member = (uid, name, picks = {}) => ({uid, name, joinedAt: 1, picks, verdicts: {}, notes: {}});
 const CREW = {
-  id: 'c1', name: 'The Heath Three', createdBy: 'u1',
+  id: 'c1', name: 'The Heath Three', createdBy: 'u1', picks: {},
   members: [member('u1', 'Are Almaas', {6: true}), member('u2', 'Kari Nordmann', {6: true}), member('u3', 'Morten Vik')],
   invites: [], removed: [], syncedAt: Date.now(), live: true,
 };
@@ -30,9 +30,10 @@ test('a card shows one dot per other member who picked it, coloured by join orde
   expect(dots()[0].getAttribute('title')).toBe('Kari Nordmann');
   expect(dots()[0].style.getPropertyValue('--c')).toBe('var(--talks)');   // index 1 in the strand palette
 
-  // and the badges sit between the briefing badge and the pick star, as on the old page
+  // and the badges sit before the crew-plan toggle, which sits beside the pick star
   const head = document.querySelector('.ev-head');
-  expect(head.querySelector('.cbadges').nextElementSibling).toHaveClass('pick');
+  expect(head.querySelector('.cbadges').nextElementSibling).toHaveClass('crewpick');
+  expect(head.querySelector('.crewpick').nextElementSibling).toHaveClass('pick');
 });
 
 test('a grid tile carries the same badges', () => {

@@ -12,3 +12,5 @@ dist-move/
 test-results/
 playwright-report/
 dist-e2e/
+.env
+.env*.local

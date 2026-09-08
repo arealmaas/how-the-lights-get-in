@@ -1,14 +1,15 @@
 // src/ui/useFiltered.js — the toolbar's filtered list plus the clash maps, recomputed only when the
-// planner store's filters, picks or search text change. `crewAny` is the set of event numbers picked by
-// at least one crew member other than me (CREW-SPEC section 7 "Everywhere"): it backs the Crew chip's
-// count, the crewOnly filter and the crew calendar's union. Without a crew it is empty and crewOnly is
-// ignored, so nothing here changes what a signed-out or CLOUD-off visitor sees.
+// planner store's filters, picks or search text change. `crewPlan` is the set of event numbers in the
+// crew's plan — the picks map on the crew document (CREW-SPEC section 3, "The crew plan"): it backs the
+// Crew chip's count, the crewOnly filter, the card and tile highlight, the crew calendar and the reading
+// list's Crew tab. Without a crew it is empty and crewOnly is ignored, so nothing here changes what a
+// signed-out or CLOUD-off visitor sees.
 import {useMemo} from 'react';
 import {usePlanner} from '../store/planner.js';
 import {useCloud, selectMyUid} from '../store/cloud.js';
-import {EVENTS} from '../data/index.js';
+import {EVENTS, byNo} from '../data/index.js';
 import {matches} from '../core/filters.js';
-import {crewPicked} from '../core/crew.js';
+import {crewPlan} from '../core/crew.js';
 import {computeClashes} from '../core/clashes.js';
 import {currentNow} from '../core/time.js';
 
@@ -29,12 +30,21 @@ export const useInCrew = () => {
   return !!(crew && myUid);
 };
 
-// the set on its own, for the components that want it without the filtered list (the Crew chip, the hub)
-export function useCrewAny(){
-  const crew = useCloud(s => s.crew);
+// the plan on its own, for the components that want it without the filtered list (the Crew chip, the
+// masthead, the hub, the grid). Memoised on the map itself, which a snapshot replaces as a whole.
+export function useCrewPlan(){
+  const picks = useCloud(s => (s.crew ? s.crew.picks : null));
   const myUid = useCloud(selectMyUid);
-  return useMemo(() => (crew && myUid ? crewPicked(crew.members, myUid) : EMPTY), [crew, myUid]);
+  return useMemo(() => (picks && myUid ? new Set([...crewPlan(picks)].filter(no => byNo.has(no))) : EMPTY), [picks, myUid]);
 }
+
+// one event's membership of the plan, for a card: a boolean selector, so a card re-renders only when
+// its own entry changes, not on every snapshot of the crew document
+export const useInPlan = no => {
+  const inCrew = useInCrew();
+  const on = useCloud(s => !!(s.crew && s.crew.picks && s.crew.picks[no]));
+  return inCrew && on;
+};
 
 export function useFiltered(){
   const day = usePlanner(s => s.day);
@@ -45,7 +55,7 @@ export function useFiltered(){
   const crewOnly = usePlanner(s => s.crewOnly);
   const q = usePlanner(s => s.q);
   const picks = usePlanner(s => s.picks);
-  const crewAny = useCrewAny();
+  const plan = useCrewPlan();
   const inCrew = useInCrew();
 
   return useMemo(() => {
@@ -54,8 +64,8 @@ export function useFiltered(){
     // boot that finds no crew (signed out, offline before the SDK loads, a build with no Firebase config)
     // must not leave an un-pressable chip hiding the whole programme.
     const filters = {day, groups, venue, topic, picksOnly, crewOnly: crewOnly && inCrew, q};
-    const list = EVENTS.filter(e => matches(e, filters, picks, no => crewAny.has(no)));
+    const list = EVENTS.filter(e => matches(e, filters, picks, no => plan.has(no)));
     const {clashes, soft} = computeClashes(EVENTS, picks);
-    return {list, clashes, soft, crewAny};
-  }, [day, groups, venue, topic, picksOnly, crewOnly, q, picks, crewAny, inCrew]);
+    return {list, clashes, soft, crewPlan: plan};
+  }, [day, groups, venue, topic, picksOnly, crewOnly, q, picks, plan, inCrew]);
 }
