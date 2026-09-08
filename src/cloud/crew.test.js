@@ -298,6 +298,48 @@ test('acceptJoin drops the invite when the rules refuse it, and keeps it when th
   expect(sessionStorage.getItem(SS_JOIN)).not.toBeNull();   // the same tap will work later
 });
 
+// The banner's Join button is on screen throughout acceptJoin's invite round trip, so it can be tapped
+// twice. The second run used to write its own member document: a set() carrying a fresh joinedAt, which
+// the rules refuse as an update, and whose rejected commit replaced the first in `settling` — so the
+// listener refusal that always follows a join was told the join had failed, and never listened again.
+test('a second Join tap while the first is still in flight writes nothing', async () => {
+  const pend = () => sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
+  pend();
+  const {crew} = await setup();
+  H.F.getDoc.mockResolvedValue({exists: () => true, data: () => ({crewName: 'Theirs', createdByName: 'Kari', revoked: false, expiresAt: future()})});
+  let land;
+  H.F.writeBatch.mockImplementationOnce(() => {
+    const b = {set: vi.fn(), update: vi.fn(), delete: vi.fn(), commit: vi.fn(() => new Promise(res => { land = res; }))};
+    H.batches.push(b);
+    return b;
+  });
+
+  const first = crew.acceptJoin();
+  await vi.waitFor(() => expect(H.batches).toHaveLength(1));   // the batch is out, its commit still in flight
+  await crew.acceptJoin();
+
+  expect(H.batches).toHaveLength(1);
+  land();
+  await first;
+
+  // and the guard is released with the join, however it ended: a later invite still joins
+  pend();
+  await crew.acceptJoin();
+  expect(H.batches).toHaveLength(2);
+});
+
+test('the Join button hides the banner as it is tapped, not when the join lands', async () => {
+  sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
+  const {useBanner, crew} = await setup();
+  H.F.getDoc.mockResolvedValue({exists: () => true, data: () => ({crewName: 'Theirs', createdByName: 'Kari', revoked: false, expiresAt: future()})});
+  await crew.offerJoin();
+
+  useBanner.getState().banner.actions.find(a => a.label === 'Join').onClick();
+
+  expect(useBanner.getState().banner).toBeNull();              // before the round trip, so there is nothing left to tap
+  await vi.waitFor(() => expect(H.batches).toHaveLength(1));
+});
+
 test('offerJoin asks the signed-out visitor to sign in, and says so when the invite is for the crew you are in', async () => {
   sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c1', token: 'tokentokentokentokent1', at: Date.now()}));
   const {useCloud, useBanner, crew} = await setup({signedIn: false});
