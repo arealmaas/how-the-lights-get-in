@@ -257,7 +257,7 @@ Notes
 
 Loading
 
-- The Firebase SDK (`firebase-app`, `firebase-auth`, `firebase-firestore`, modular ES modules from `https://www.gstatic.com/firebasejs/12.18.0/`, about 945 KB uncompressed, cached by the service worker after the first load) is loaded with `import()` only when the device has an account session (`localStorage` key `htlgi-l26-account` holds the uid this device last synced with), when a redirect sign-in is returning, or when the user opens Sign in, Create crew or an invite link. Nobody else downloads anything extra.
+- The Firebase SDK (`firebase-app`, `firebase-auth`, `firebase-firestore`, modular ES modules from `https://www.gstatic.com/firebasejs/12.18.0/`, about 945 KB uncompressed, cached by the service worker after the first load) is loaded with `import()` only when the device has an account session (`localStorage` key `htlgi-l26-account` marks a live account session on this device; `htlgi-l26-last-uid` holds the uid it last synced with), when a redirect sign-in is returning, or when the user opens Sign in, Create crew or an invite link. Nobody else downloads anything extra.
 - Firestore is initialised with `persistentLocalCache` and `persistentMultipleTabManager`: reads work from cache offline, writes queue until the phone is back online.
 
 Signing in (also the first run on a new device)
@@ -266,7 +266,7 @@ Signing in (also the first run on a new device)
 2. Missing: write the complete document from local state (name from the profile or the sign-up form, `shared: {}`). If this device last synced with a different account, the new document starts empty instead (the replace rule of step 4).
 3. Present, and this device has never synced with this uid: merge, never discard. Picks: union. Verdicts: union, local wins a conflict. Notes: a note that differs on both sides keeps both texts with `---` between them. Write the merged state up and say "Merged 12 picks from this device into your account". Imports from `#picks=` links were confirmed by the user and count as their picks.
 4. Present, and this device last synced with a different uid: replace local state with the account; the previous person's data is in their account.
-5. Record the uid in `htlgi-l26-account`. Only now subscribe.
+5. Record the uid in `htlgi-l26-account` (the session marker: the next boot loads the SDK and changes queue; a plain sign-out removes it) and in `htlgi-l26-last-uid` (the uid this device last synced with, which steps 2 and 4 read; only *Sign out and clear this device* removes it). Only now subscribe.
 
 Subscriptions
 

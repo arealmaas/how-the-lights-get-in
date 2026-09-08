@@ -317,3 +317,43 @@ test('any other listener error is reported, not treated as a deletion', async ()
   expect(useCloud.getState().syncPaused).toBe(true);
   expect(localStorage.getItem(LS_ACCOUNT)).not.toBeNull();
 });
+
+// A plain sign-out removes the session marker but not the last-synced uid: the next account to sign in on
+// this browser replaces the local state instead of merging the previous person's picks, notes and share
+// flags into its own (spec section 6, steps 2 and 4). The same account signing back in still merges.
+test('(e2) after a plain sign-out a different account replaces, and nothing local is written up', async () => {
+  localStorage.setItem('htlgi-l26-last-uid', 'someone-else');
+  const {useCloud, sync} = await setup({local: {picks: new Set([3]), notes: {41: 'private'}, shared: {41: true}}});
+  H.F.getDocFromServer.mockResolvedValue({exists: () => true, data: () => ({name: 'Remote', picks: {41: true}})});
+
+  await sync.afterSignIn(USER);
+
+  expect(useCloud.getState().signInBranch).toBe('replace');
+  expect(H.F.setDoc).not.toHaveBeenCalled();
+  expect(H.F.updateDoc).not.toHaveBeenCalled();
+  expect(localStorage.getItem('htlgi-l26-last-uid')).toBe('u1');
+  expect(marker()).toEqual({uid: 'u1'});
+});
+
+test('(c2) after a plain sign-out a different, new account starts empty', async () => {
+  localStorage.setItem('htlgi-l26-last-uid', 'someone-else');
+  const {useCloud, sync} = await setup({local: {picks: new Set([3]), notes: {41: 'private'}}});
+  H.F.getDocFromServer.mockResolvedValue({exists: () => false});
+
+  await sync.afterSignIn(USER);
+
+  expect(useCloud.getState().signInBranch).toBe('create-empty');
+  expect(H.F.setDoc).toHaveBeenCalledWith('users/u1', {name: 'Are', picks: {}, verdicts: {}, notes: {}, shared: {}, updatedAt: 'TS', v: 1});
+});
+
+test('(d4) the same account signing back in after a plain sign-out merges what it did while signed out', async () => {
+  localStorage.setItem('htlgi-l26-last-uid', 'u1');
+  const {useCloud, sync} = await setup({local: {picks: new Set([3])}});
+  H.F.getDocFromServer.mockResolvedValue({exists: () => true, data: () => ({name: 'Are', picks: {41: true}, verdicts: {}, notes: {}, shared: {}})});
+
+  await sync.afterSignIn(USER);
+
+  expect(useCloud.getState().signInBranch).toBe('merge');
+  expect(H.F.setDoc).toHaveBeenCalledTimes(1);
+  expect(H.F.setDoc.mock.calls[0][1].picks).toEqual({3: true, 41: true});
+});

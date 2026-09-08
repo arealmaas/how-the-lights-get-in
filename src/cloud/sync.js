@@ -13,17 +13,19 @@ import {CLOUD} from '../data/index.js';
 import {getFb, isDeleting, authMessage} from './auth.js';
 import * as crew from './crew.js';
 
-export const LS_ACCOUNT = 'htlgi-l26-account';   // {uid}: the account this device last synced with
+export const LS_ACCOUNT = 'htlgi-l26-account';   // {uid}: this device has a live account session (the next boot loads the SDK; changes queue)
+export const LS_LAST_UID = 'htlgi-l26-last-uid';   // the uid this device last synced with; a plain sign-out keeps it (spec section 6, steps 2 and 4)
 export const LS_QUEUE = 'htlgi-l26-queue';
 
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
 
 export const accountMarker = () => load(LS_ACCOUNT, null);
+export const lastUid = () => localStorage.getItem(LS_LAST_UID) || null;
 // The marker is also mirrored into the cloud store: the Account card's sync sentence reads it, and
 // localStorage on its own does not re-render anything.
 export function setMarker(m){
-  if (m) save(LS_ACCOUNT, m); else localStorage.removeItem(LS_ACCOUNT);
+  if (m) { save(LS_ACCOUNT, m); if (m.uid) localStorage.setItem(LS_LAST_UID, m.uid); } else localStorage.removeItem(LS_ACCOUNT);
   useCloud.getState().patch({marker: m || null});
 }
 // spec section 10, quota sanity: two counters, in the store instead of the old window.htlgiSyncStats.
@@ -37,6 +39,10 @@ export const userRef = () => { const fb = getFb(); return fb.F.doc(fb.db, 'users
 // different account; only then subscribe.
 export async function afterSignIn(u){
   const marker = accountMarker();
+  // "Last synced with a different uid" (steps 2 and 4) must survive a plain sign-out, or the next account to
+  // sign in on a shared browser would merge the previous person's picks, notes and share flags into its own.
+  const last = lastUid() || (marker && marker.uid) || null;
+  const foreign = !!last && last !== u.uid;
   if (marker && marker.uid === u.uid) {
     useCloud.getState().patch({signInBranch: 'subscribe'});
     subscribeUser();
@@ -60,10 +66,10 @@ export async function afterSignIn(u){
   let name = useCloud.getState().accountName;
   if (!snap.exists()) {
     // a device that last synced with another account does not seed a new account with that account's data
-    const fresh = marker ? {picks: {}, verdicts: {}, notes: {}, shared: {}} : local;
-    useCloud.getState().patch({signInBranch: marker ? 'create-empty' : 'create-from-local'});
+    const fresh = foreign ? {picks: {}, verdicts: {}, notes: {}, shared: {}} : local;
+    useCloud.getState().patch({signInBranch: foreign ? 'create-empty' : 'create-from-local'});
     await F.setDoc(ref, {name, ...fresh, updatedAt: F.serverTimestamp(), v: 1});
-  } else if (!marker) {
+  } else if (!foreign) {
     useCloud.getState().patch({signInBranch: 'merge'});
     const remote = snap.data();
     const m = mergeState(local, remote);

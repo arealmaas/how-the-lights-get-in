@@ -95,7 +95,7 @@ export default function AccountCard(){
       <div className="actions">
         <button type="button" className="btn" onClick={() => setRenaming(r => !r)}>Change name</button>
         {!hasPw && <button type="button" className="btn" onClick={() => setOpen(true)}>Add a password</button>}
-        <button type="button" className="btn" onClick={() => { if (confirm('Sign out? Your picks and notes stay in this browser. On a shared computer use “Sign out and clear this device” instead.')) signOutUser(false); }}>Sign out</button>
+        <button type="button" className="btn" onClick={() => { if (confirm('Sign out? Your picks and notes stay in this browser for when you sign back in; signing in with a different account replaces them. On a shared computer use “Sign out and clear this device” instead.')) signOutUser(false); }}>Sign out</button>
         <button type="button" className="btn" onClick={() => { if (confirm('Sign out and remove all picks, notes and crew data from this device?')) signOutUser(true); }}>Sign out and clear this device</button>
         <button type="button" className="btn" onClick={() => deleteAccount()}>Delete account</button>
       </div>

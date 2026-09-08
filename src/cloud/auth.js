@@ -128,7 +128,7 @@ export function authMessage(e){ if (e && e.reported) return; okBanner(authText(e
 export async function signOutUser(clearDevice){
   sync.unsubscribeUser();
   crew.unsubscribeCrew();
-  sync.setMarker(null);
+  sync.setMarker(null);   // the session marker goes; htlgi-l26-last-uid stays, so another account signing in here replaces this state instead of merging it
   localStorage.removeItem(sync.LS_QUEUE);
   useCloud.getState().patch({syncStopped: false, syncPending: false});
   try { await fb.A.signOut(fb.auth); } catch (e) {}

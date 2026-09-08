@@ -189,6 +189,7 @@ test('changeName writes the name to the profile and to both documents', async ()
 test('a plain sign out drops the marker and the queue but leaves the picks alone', async () => {
   localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
   localStorage.setItem('htlgi-l26-queue', '[]');
+  localStorage.setItem('htlgi-l26-last-uid', 'u1');
   localStorage.setItem('htlgi-l26-picks', '[3]');
   const {useCloud, auth} = await setup({user: password()});
   useCloud.getState().patch({syncStopped: true});
@@ -199,6 +200,7 @@ test('a plain sign out drops the marker and the queue but leaves the picks alone
   expect(localStorage.getItem(LS_ACCOUNT)).toBeNull();
   expect(localStorage.getItem('htlgi-l26-queue')).toBeNull();
   expect(localStorage.getItem('htlgi-l26-picks')).toBe('[3]');
+  expect(localStorage.getItem('htlgi-l26-last-uid')).toBe('u1');   // survives: the replace rule needs it
   expect(useCloud.getState().syncStopped).toBe(false);
   expect(useCloud.getState().crewId).toBeNull();
 });
@@ -209,6 +211,7 @@ test('sign out and clear this device wipes the keys, the caches and reloads', as
   localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
   localStorage.setItem('htlgi-l26-picks', '[3]');
   localStorage.setItem('htlgi-l26-crew-cache', '{"id":"c1"}');
+  localStorage.setItem('htlgi-l26-last-uid', 'u1');
   localStorage.setItem('somebody-elses-key', 'kept');
   sessionStorage.setItem('htlgi-l26-join', '{}');
   const reload = vi.fn();
@@ -223,6 +226,7 @@ test('sign out and clear this device wipes the keys, the caches and reloads', as
   expect(cleared).toHaveBeenCalled();
   expect(localStorage.getItem('htlgi-l26-picks')).toBeNull();
   expect(localStorage.getItem('htlgi-l26-crew-cache')).toBeNull();
+  expect(localStorage.getItem('htlgi-l26-last-uid')).toBeNull();
   expect(localStorage.getItem(LS_ACCOUNT)).toBeNull();
   expect(localStorage.getItem('somebody-elses-key')).toBe('kept');
   expect(sessionStorage.getItem('htlgi-l26-join')).toBeNull();
