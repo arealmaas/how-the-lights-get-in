@@ -20,7 +20,14 @@ const EMPTY = new Set();
 
 // In a crew and knowing who I am: the one condition the whole overlay hangs on. It is deliberately
 // selectMyUid and not `user`, so a cold or offline start paints the cached crew (see store/cloud.js).
-export const useInCrew = () => !!(useCloud(s => s.crew) && useCloud(selectMyUid));
+// Both selectors are read unconditionally and combined afterwards: `&&` between two useCloud calls would
+// skip the second one whenever there is no crew, so the render that first sees a crew — the moment you
+// create or join one — would run one hook more than the render before it (React error #310).
+export const useInCrew = () => {
+  const crew = useCloud(s => s.crew);
+  const myUid = useCloud(selectMyUid);
+  return !!(crew && myUid);
+};
 
 // the set on its own, for the components that want it without the filtered list (the Crew chip, the hub)
 export function useCrewAny(){

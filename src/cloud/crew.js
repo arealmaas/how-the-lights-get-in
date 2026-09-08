@@ -21,11 +21,27 @@ export const LS_CREW_CACHE = 'htlgi-l26-crew-cache';   // the overlay that rende
 export const SS_JOIN = 'htlgi-l26-join';               // the pending invite, for an hour
 
 let crewUnsubs = [], removedUnsub = null, leaving = false;
+// A create or a join writes the membership and the pointer in one batch, and the pointer is visible from
+// the local write long before the batch reaches the server. onPointer() subscribes on that pointer, so the
+// rules — which only know the crew as it stands on the server — refuse the listen from an account whose
+// member document has not arrived yet. `settling` remembers such a batch so crewError can tell that refusal
+// ("not yet") from a real removal, and listen again once the write has landed.
+let settling = null;      // {id, done: Promise<boolean>} while a create or join batch is in flight
+let relistening = false;  // one re-subscribe for the several listeners that are refused together
 
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
 
 const st = () => useCloud.getState();
+// Registers a create or join batch as in flight. The returned promise never rejects, so remembering it
+// cannot turn a commit failure the caller already handles into an unhandled rejection.
+function settle(id, promise){
+  const done = promise.then(() => true, () => false);
+  settling = {id, done};
+  done.then(() => { if (settling && settling.done === done) settling = null; });
+  return done;
+}
+const inFlight = id => !!(settling && settling.id === id);
 // Every listener owns a few fields of the same crew object; each patch merges onto whatever the others
 // have already put in the store, which is what the old page got for free by mutating one global.
 const patchCrew = fields => { const cur = st().crew; if (cur) st().patch({crew: {...cur, ...fields}}); };
@@ -125,7 +141,7 @@ export function subscribeCrew(id){
     }).sort((a, b) => a.joinedAt - b.joinedAt);
     // removal, detected the first way (CREW-SPEC section 3): a server snapshot without your own document
     const {user} = st();
-    if (!s.metadata.fromCache && !leaving && user && !ms.some(m => m.uid === user.uid)) { crewGone('You are no longer in this crew.'); return; }
+    if (!s.metadata.fromCache && !leaving && !inFlight(id) && user && !ms.some(m => m.uid === user.uid)) { crewGone('You are no longer in this crew.'); return; }
     patchCrew({members: ms, syncedAt: Date.now(), live: !s.metadata.fromCache});
     saveCrewCache();
   }, crewError));
@@ -139,8 +155,17 @@ export function subscribeCrew(id){
 }
 
 function crewError(e){
-  if (e && e.code === 'permission-denied') crewGone('You are no longer in this crew.');
-  else console.warn('crew', e);
+  if (!e || e.code !== 'permission-denied') { console.warn('crew', e); return; }
+  const s = settling;
+  // Our own membership is still on its way to the server: this is the refusal described above, not a
+  // removal. Nobody who has just made or joined a crew should be told they are no longer in it.
+  if (s && s.id === st().crewId) {
+    if (relistening) return;
+    relistening = true;
+    s.done.then(ok => { relistening = false; if (ok && st().crewId === s.id) subscribeCrew(s.id); });
+    return;
+  }
+  crewGone('You are no longer in this crew.');
 }
 export function onDenied(){ crewGone('You are no longer in this crew.'); }
 
@@ -173,7 +198,9 @@ export function createCrew(name){
   b.set(crewRef(id), {name: clean, createdBy: user.uid, deleted: false, createdAt: F.serverTimestamp(), updatedAt: F.serverTimestamp(), v: 1});
   b.set(memberRef(id, user.uid), {name: accountName, joinedAt: F.serverTimestamp(), ...projectForCrew(usePlanner.getState().local()), updatedAt: F.serverTimestamp(), v: 1});
   b.update(userRef(), {crew: id, updatedAt: F.serverTimestamp()});
-  b.commit().catch(authMessage);
+  const commit = b.commit();
+  commit.catch(authMessage);
+  settle(id, commit);
   return true;
 }
 
@@ -393,7 +420,9 @@ export async function acceptJoin(){
   b.set(mref, {name: accountName, joinedAt: F.serverTimestamp(), ...projectForCrew(usePlanner.getState().local()), invite: j.token, updatedAt: F.serverTimestamp(), v: 1});
   b.update(userRef(), {crew: j.crew, updatedAt: F.serverTimestamp()});
   try {
-    await b.commit();
+    const commit = b.commit();
+    settle(j.crew, commit);
+    await commit;
     clearJoin();
     hideBanner();
     F.updateDoc(mref, {invite: F.deleteField(), updatedAt: F.serverTimestamp()}).catch(() => {});   // the token need not stay readable by the crew

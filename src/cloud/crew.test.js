@@ -167,6 +167,66 @@ test('a permission-denied on a crew listener is removal too', async () => {
   expect(useBanner.getState().banner.text).toMatch(/no longer in this crew/);
 });
 
+// The create and join batches write the membership and the pointer together. The pointer is visible from
+// the local write at once, so onPointer() subscribes while the batch is still travelling — and the rules,
+// which only see the crew as it is on the server, refuse a listen from an account whose member document
+// has not landed yet. That refusal is "not yet", not "you were removed": the crew must survive it and the
+// listeners must be attached again once the batch is acknowledged.
+test('a permission-denied while the crew we just created is still in flight is not a removal', async () => {
+  const {useCloud, useBanner, crew} = await setup();
+  let land;
+  const commit = vi.fn(() => new Promise(res => { land = res; }));
+  H.F.writeBatch.mockImplementationOnce(() => { const b = {set: vi.fn(), update: vi.fn(), delete: vi.fn(), commit}; H.batches.push(b); return b; });
+
+  expect(crew.createCrew('The Heath Three')).toBe(true);
+  useCloud.getState().patch({crewId: 'NewCrewIdAbcdefghijk'});   // the local write, echoed by the user listener
+  crew.subscribeCrew('NewCrewIdAbcdefghijk');                    // what onPointer() does with it
+  const attached = H.F.onSnapshot.mock.calls.length;
+  H.F.onSnapshot.mock.calls[0][2]({code: 'permission-denied'});  // the server has not got the batch yet
+
+  expect(useCloud.getState().crewId).toBe('NewCrewIdAbcdefghijk');
+  expect(useCloud.getState().crew).not.toBeNull();
+  expect(useBanner.getState().banner).toBeNull();
+
+  land();
+  await vi.waitFor(() => expect(H.F.onSnapshot.mock.calls.length).toBeGreaterThan(attached));   // subscribed again
+  expect(useCloud.getState().crewId).toBe('NewCrewIdAbcdefghijk');
+});
+
+test('a permission-denied while a join is still in flight is not a removal either', async () => {
+  sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
+  const {useCloud, useBanner, crew} = await setup();
+  H.F.getDoc.mockResolvedValue({exists: () => true, data: () => ({crewName: 'Theirs', createdByName: 'Kari', revoked: false, expiresAt: future()})});
+  let land;
+  const commit = vi.fn(() => new Promise(res => { land = res; }));
+  H.F.writeBatch.mockImplementationOnce(() => { const b = {set: vi.fn(), update: vi.fn(), delete: vi.fn(), commit}; H.batches.push(b); return b; });
+
+  const joined = crew.acceptJoin();
+  await vi.waitFor(() => expect(H.batches).toHaveLength(1));
+  useCloud.getState().patch({crewId: 'c2'});
+  crew.subscribeCrew('c2');
+  H.F.onSnapshot.mock.calls[0][2]({code: 'permission-denied'});
+
+  expect(useCloud.getState().crewId).toBe('c2');
+  expect(useBanner.getState().banner).toBeNull();
+  land();
+  await joined;
+});
+
+// The genuine case must still be heard: no batch of ours is in flight, so the refusal really is a removal.
+test('a permission-denied after the batch has landed is still a removal', async () => {
+  const {useCloud, useBanner, crew} = await setup();
+  crew.createCrew('The Heath Three');
+  useCloud.getState().patch({crewId: 'NewCrewIdAbcdefghijk'});
+  await vi.waitFor(() => expect(H.batches[0].commit).toHaveBeenCalled());
+  await Promise.resolve();
+  crew.subscribeCrew('NewCrewIdAbcdefghijk');
+  H.F.onSnapshot.mock.calls[0][2]({code: 'permission-denied'});
+
+  expect(useCloud.getState().crewId).toBeNull();
+  expect(useBanner.getState().banner.text).toMatch(/no longer in this crew/);
+});
+
 test('acceptJoin stops on a revoked invite before leaving the crew it is in', async () => {
   sessionStorage.setItem(SS_JOIN, JSON.stringify({crew: 'c2', token: 'tokentokentokentokent1', at: Date.now()}));
   const {useCloud, useBanner, crew} = await setup({crew: inCrew({createdBy: 'u9'}), crewId: 'c1'});

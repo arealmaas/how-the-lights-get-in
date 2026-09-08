@@ -18,13 +18,17 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith(PREFIX) && k !== CACHE && k !== IMG_CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
+// The copy that goes to the cache is always taken in the same tick as the response, before it is returned
+// from respondWith(): caches.open() settles a task later, and by then the page has started reading the
+// body and clone() throws "Response body is already used". Where the cache is already open (the image
+// path below) the clone can be written straight away.
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin === self.location.origin && url.pathname.startsWith('/__/')) return;   // Firebase auth helpers: never intercepted
   if (req.mode === 'navigate') {
-    e.respondWith(fetch(req).then(r => { if (r.ok) caches.open(CACHE).then(c => c.put(self.registration.scope, r.clone())); return r; }).catch(() => caches.match(self.registration.scope)));
+    e.respondWith(fetch(req).then(r => { if (r.ok) { const copy = r.clone(); caches.open(CACHE).then(c => c.put(self.registration.scope, copy)); } return r; }).catch(() => caches.match(self.registration.scope)));
     return;
   }
   if (url.origin === self.location.origin && url.pathname.includes('/img/')) {
@@ -34,7 +38,7 @@ self.addEventListener('fetch', e => {
   const cacheable = url.origin === self.location.origin || url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com';
   if (!cacheable) return;
   e.respondWith(caches.match(req).then(cached => {
-    const net = fetch(req).then(r => { if (r.ok || r.type === 'opaque') caches.open(CACHE).then(c => c.put(req, r.clone())); return r; }).catch(() => cached);
+    const net = fetch(req).then(r => { if (r.ok || r.type === 'opaque') { const copy = r.clone(); caches.open(CACHE).then(c => c.put(req, copy)); } return r; }).catch(() => cached);
     return cached || net;
   }));
 });
