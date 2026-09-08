@@ -20,6 +20,10 @@ export function ticketLine(e){
 }
 export const whoPlain = e => [e.speakers.join(', '), e.hosts.length ? 'hosted by ' + e.hosts.join(' & ') : ''].filter(Boolean).join(' · ');
 export const initials = n => { const w = String(n).split(/\s+/).filter(Boolean); return (w.length ? w[0][0] + (w.length > 1 ? w[w.length - 1][0] : '') : '?').toUpperCase().replace(/[^\p{L}\p{N}]/gu, ''); };
+// The name a crew sees when nobody has typed one. Google hands us a displayName, so this is for accounts
+// made before the name was asked for, and for the rare provider that gives neither. "Me" told a crew
+// nothing — a card reading "Me · owner / Me (you)" is worse than a rough guess at a person.
+export const nameFromEmail = e => String(e || '').split('@')[0].trim().slice(0, 40);
 export const slug = s => s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 export const cleanDesc = s => (s || '').replace(/\s*Click here to view the [^.]*menu\.?/g, '').trim();
 export const ytId = url => { const m = String(url).match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/)([\w-]{6,})/); return m ? m[1] : null; };

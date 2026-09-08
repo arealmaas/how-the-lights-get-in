@@ -8,6 +8,7 @@ import EventSheet from './sheets/EventSheet.jsx';
 import SpeakerSheet from './sheets/SpeakerSheet.jsx';
 import ActSheet from './sheets/ActSheet.jsx';
 import HubSheet from './sheets/HubSheet.jsx';
+import CrewSheet from './sheets/CrewSheet.jsx';
 import StatsSheet from './sheets/StatsSheet.jsx';
 import ReadingSheet from './sheets/ReadingSheet.jsx';
 
@@ -41,6 +42,7 @@ export default function Sheet(){
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'hub') body = <HubSheet key={top.key} />;
+    else if (top.kind === 'crew') body = <CrewSheet key={top.key} />;
     else if (top.kind === 'stats') body = <StatsSheet key={top.key} />;
     // the reading sheet is the one kind with a `mode`; keying on it too means opening it a second time
     // in a different mode remounts, so the tab it opens on is always the one that was asked for

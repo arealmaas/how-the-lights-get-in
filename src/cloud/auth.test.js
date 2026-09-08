@@ -139,22 +139,52 @@ test('bootCloud loads the SDK only when this device has an account, and mirrors 
   await vi.waitFor(() => expect(H.init).toHaveBeenCalledTimes(1));   // the SDK arrives through a dynamic import
 });
 
+// emailAction answers with {text, newHere}: what to put under the form, and whether the card should offer
+// to register. The second field exists because this project has email enumeration protection switched on,
+// so a sign-in against an account that does not exist and one with the wrong password both come back as
+// auth/invalid-credential — the app cannot tell them apart and has to ask.
 test('emailAction reports what the form should say, and creates an account with the typed name', async () => {
   const {useCloud, auth} = await setup();
-  expect(await auth.emailAction('reset', {email: ' '})).toBe('Enter your email first.');
-  expect(await auth.emailAction('reset', {email: 'are@example.com'})).toBe('Password reset email sent. Check your inbox.');
-  expect(await auth.emailAction('signin', {email: 'are@example.com', password: 'short'})).toBe('Enter your email and a password of 8 or more characters.');
-  expect(await auth.emailAction('signin', {email: 'are@example.com', password: 'long enough'})).toBe('');
+  expect(await auth.emailAction('reset', {email: ' '})).toEqual({text: 'Enter your email first.'});
+  expect(await auth.emailAction('reset', {email: 'are@example.com'})).toEqual({text: 'Password reset email sent. Check your inbox.'});
+  expect(await auth.emailAction('signin', {email: 'are@example.com', password: 'short'})).toEqual({text: 'Enter your email and a password of 8 or more characters.'});
+  expect(await auth.emailAction('signin', {email: 'are@example.com', password: 'long enough'})).toEqual({text: ''});
   expect(H.A.signInWithEmailAndPassword).toHaveBeenCalledWith(H.fake.auth, 'are@example.com', 'long enough');
 
-  expect(await auth.emailAction('create', {email: 'are@example.com', password: 'long enough', name: 'Are'})).toBe('');
+  expect(await auth.emailAction('create', {email: 'are@example.com', password: 'long enough', name: 'Are'})).toEqual({text: ''});
   expect(useCloud.getState().accountName).toBe('Are');
   expect(H.A.updateProfile).toHaveBeenCalledWith({uid: 'u1'}, {displayName: 'Are'});
 
-  H.A.signInWithEmailAndPassword.mockRejectedValueOnce({code: 'auth/invalid-credential'});
-  expect(await auth.emailAction('signin', {email: 'are@example.com', password: 'long enough'})).toMatch(/Wrong email or password/);
   H.A.linkWithCredential.mockRejectedValueOnce({code: 'auth/email-already-in-use'});
-  expect(await auth.emailAction('link', {email: 'other@example.com', password: 'long enough'})).toBe('That email already belongs to another account.');
+  expect(await auth.emailAction('link', {email: 'other@example.com', password: 'long enough'})).toEqual({text: 'That email already belongs to another account.'});
+});
+
+test('a sign-in that does not match asks whether you are new, because Firebase will not say', async () => {
+  const {auth} = await setup();
+  H.A.signInWithEmailAndPassword.mockRejectedValueOnce({code: 'auth/invalid-credential'});
+  const r = await auth.emailAction('signin', {email: 'are@example.com', password: 'long enough'});
+  expect(r.newHere).toBe(true);
+  expect(r.text).toMatch(/Wrong email or password/);
+  expect(r.text).toMatch(/new here/i);
+});
+
+// The whole point of the change: nobody joins a crew as "Me" because they skipped a field.
+test('creating an account without a name is refused, and nothing is created', async () => {
+  const {useCloud, auth} = await setup();
+  const r = await auth.emailAction('create', {email: 'are@example.com', password: 'long enough', name: '   '});
+  expect(r.text).toMatch(/name/i);
+  expect(r.newHere).toBe(true);                       // stay on the registration step rather than bouncing back
+  expect(H.A.createUserWithEmailAndPassword).not.toHaveBeenCalled();
+  expect(useCloud.getState().accountName).toBe('');
+});
+
+// create is the one call that can still tell an existing account apart, so it is where the ambiguity ends.
+test('creating over an email that is already taken sends you back to signing in', async () => {
+  const {auth} = await setup();
+  H.A.createUserWithEmailAndPassword.mockRejectedValueOnce({code: 'auth/email-already-in-use'});
+  const r = await auth.emailAction('create', {email: 'are@example.com', password: 'long enough', name: 'Are'});
+  expect(r.newHere).toBe(false);
+  expect(r.text).toMatch(/already has an account/);
 });
 
 test('onAuth puts the account in the store on the way in and empties it on the way out', async () => {
@@ -168,6 +198,20 @@ test('onAuth puts the account in the store on the way in and empties it on the w
   auth.onAuth(null);
   expect(useCloud.getState().user).toBeNull();
   expect(useCloud.getState().accountName).toBe('');
+});
+
+// Google hands us a displayName; an account made before the name was asked for has none, and "Me" told
+// a crew nothing — least of all which "Me" it was looking at.
+test('an account with no name falls back to the part before the @, not to "Me"', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, auth} = await setup();
+
+  auth.onAuth(password({displayName: null}));
+  expect(useCloud.getState().accountName).toBe('are');
+
+  auth.onAuth(null);
+  auth.onAuth(password({displayName: null, email: null}));   // no name and no email at all: "Me" is all that is left
+  expect(useCloud.getState().accountName).toBe('Me');
 });
 
 test('changeName writes the name to the profile and to both documents', async () => {

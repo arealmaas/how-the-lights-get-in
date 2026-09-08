@@ -25,10 +25,11 @@ test('the hub summarises picks, offers a share link that carries them, and a rea
   expect(screen.getByRole('button', {name: /reading list/i})).toBeInTheDocument();
 });
 
-// Without data/firebase.json — the state of this repo, of the e2e run and of anyone self-hosting
-// without a Firebase project — CLOUD is false and the account and crew half of the hub is not built at
-// all. The signed-out planner must never advertise an account it cannot offer.
-test('without a Firebase config the hub has no Account card and no account heading', () => {
+// The account and the crew are a screen of their own now (sheets/CrewSheet.jsx), so the hub carries
+// neither in any build. Kept as a regression guard: the signed-out planner must never advertise an
+// account here, and in a build without data/firebase.json there is no account to advertise anywhere —
+// Masthead.test.jsx covers the button that would lead to one.
+test('the hub has no Account card and no account heading', () => {
   useSheet.getState().open('hub');
   render(<Sheet />);
 

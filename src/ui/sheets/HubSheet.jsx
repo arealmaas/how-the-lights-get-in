@@ -1,16 +1,14 @@
 // src/ui/sheets/HubSheet.jsx — ports showHub(): the summary line, the four cards or the empty-state
-// nudge (HubCards), the day-by-day pick lists (DayList), the account/crew slot (Tasks 8-10, rendered only
-// when CLOUD is on), and the foot linking to stats and the about section.
+// nudge (HubCards), the day-by-day pick lists (DayList), and the foot linking to stats and the about
+// section. The account and crew slot that used to close this sheet is a screen of its own now, reached
+// from the masthead's Crew button — see sheets/CrewSheet.jsx.
 import {Fragment} from 'react';
-import {EVENTS, DAYS, CLOUD} from '../../data/index.js';
+import {EVENTS, DAYS} from '../../data/index.js';
 import {usePlanner} from '../../store/planner.js';
 import {useSheet} from '../../store/sheet.js';
 import {computeClashes} from '../../core/clashes.js';
 import HubCards from '../hub/HubCards.jsx';
 import DayList from '../hub/DayList.jsx';
-import AccountCard from '../hub/AccountCard.jsx';
-import CrewCard from '../hub/CrewCard.jsx';
-import CrewSection from '../hub/CrewSection.jsx';
 
 export default function HubSheet(){
   const picks = usePlanner(s => s.picks);
@@ -40,16 +38,6 @@ export default function HubSheet(){
           <DayList events={evs} clashes={clashes} soft={soft} />
         </Fragment>
       ))}
-      {CLOUD && (
-        <>
-          <h3 className="sub">Account and crew</h3>
-          <div className="hub-cards">
-            <AccountCard />
-            <CrewCard />
-          </div>
-          <CrewSection />
-        </>
-      )}
       <p className="hub-foot">
         <button type="button" onClick={() => useSheet.getState().open('stats')}>The festival in numbers</button>
         <span>·</span>

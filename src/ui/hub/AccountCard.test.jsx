@@ -6,7 +6,7 @@ import {useSheet} from '../../store/sheet.js';
 
 // platform.js is a mutable mock: the button order and the sign-in method depend on it, and both the
 // desktop and the installed-iOS arrangement need covering in one file.
-const H = vi.hoisted(() => ({platform: {STANDALONE: false, IOS: false, PHONE: false}, emailAction: vi.fn(async () => '')}));
+const H = vi.hoisted(() => ({platform: {STANDALONE: false, IOS: false, PHONE: false}, emailAction: vi.fn(async () => ({text: ''}))}));
 vi.mock('../../cloud/platform.js', () => H.platform);
 vi.mock('../../cloud/auth.js', () => ({
   emailAction: H.emailAction, signInGoogle: vi.fn(), changeName: vi.fn(), signOutUser: vi.fn(), deleteAccount: vi.fn(),
@@ -18,7 +18,7 @@ const names = () => [...document.querySelector('.hub-card.account .actions').que
 
 beforeEach(() => {
   vi.clearAllMocks();
-  H.emailAction.mockResolvedValue('');
+  H.emailAction.mockResolvedValue({text: ''});
   Object.assign(H.platform, {STANDALONE: false, IOS: false, PHONE: false});
   useCloud.setState({user: null, accountName: '', marker: null, syncPending: false, syncStopped: false, crewId: null});
   useSheet.setState({stack: []});
@@ -31,8 +31,10 @@ test('signed out: both ways in, Google first, and the email form hidden until it
   // hidden, so it is out of the accessibility tree: read it from the DOM rather than by role
   const form = document.querySelector('form.authform');
   expect(form.hidden).toBe(true);
-  expect([...form.querySelectorAll('input')].map(i => i.name)).toEqual(['email', 'password', 'name']);
-  expect([...form.querySelectorAll('button')].map(b => b.textContent)).toEqual(['Sign in', 'Create account', 'Forgot password?']);
+  // one way in: email and password. The name is asked for only once signing in has failed, because until
+  // then there is nothing to say it is needed (see the registration test below).
+  expect([...form.querySelectorAll('input')].map(i => i.name)).toEqual(['email', 'password']);
+  expect([...form.querySelectorAll('button')].map(b => b.textContent)).toEqual(['Sign in', 'Forgot password?']);
 
   fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
   expect(document.querySelector('form.authform').hidden).toBe(false);
@@ -46,7 +48,7 @@ test('in the installed iOS app the email button comes first, with a line saying 
 });
 
 test('submitting the form (Enter, or the Sign in button) signs in and shows what came back', async () => {
-  H.emailAction.mockResolvedValue('Wrong email or password. New here? Use “Create account”.');
+  H.emailAction.mockResolvedValue({text: 'Wrong email or password.'});
   render(<AccountCard />);
   fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
   fireEvent.change(document.querySelector('input[name=email]'), {target: {value: 'are@example.com'}});
@@ -56,20 +58,76 @@ test('submitting the form (Enter, or the Sign in button) signs in and shows what
 
   expect(H.emailAction).toHaveBeenCalledWith('signin', {email: 'are@example.com', password: 'long enough', name: ''});
   expect(await screen.findByText(/Wrong email or password/)).toBeInTheDocument();
+  expect(document.querySelector('input[name=name]')).toBeNull();   // a plain failure is not an invitation to register
 });
 
-test('“Forgot password?” and “Create account” run their own actions without submitting', async () => {
-  H.emailAction.mockResolvedValue('Password reset email sent. Check your inbox.');
+test('“Forgot password?” runs its own action without submitting', async () => {
+  H.emailAction.mockResolvedValue({text: 'Password reset email sent. Check your inbox.'});
   render(<AccountCard />);
   fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
   fireEvent.change(document.querySelector('input[name=email]'), {target: {value: 'are@example.com'}});
   fireEvent.click(screen.getByRole('button', {name: 'Forgot password?'}));
   expect(H.emailAction).toHaveBeenCalledWith('reset', {email: 'are@example.com', password: '', name: ''});
   expect(await screen.findByText(/reset email sent/)).toBeInTheDocument();
+});
 
+// The registration step: sign-in came back "might be new", so the name is asked for and the primary
+// button becomes Create account.
+test('a sign-in that might mean "new here" turns the form into registration', async () => {
+  H.emailAction.mockResolvedValue({text: 'Wrong email or password. If you are new here, add your name and we will create your account.', newHere: true});
+  render(<AccountCard />);
+  fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
+  fireEvent.change(document.querySelector('input[name=email]'), {target: {value: 'are@example.com'}});
+  fireEvent.change(document.querySelector('input[name=password]'), {target: {value: 'long enough'}});
+  fireEvent.submit(document.querySelector('form.authform'));
+
+  expect(await screen.findByText(/new here/)).toBeInTheDocument();
+  expect(document.querySelector('input[name=name]')).not.toBeNull();
+  const form = document.querySelector('form.authform');
+  expect([...form.querySelectorAll('button')].map(b => b.textContent)).toEqual(['Create account', 'Forgot password?']);
+
+  H.emailAction.mockResolvedValue({text: ''});
   fireEvent.change(document.querySelector('input[name=name]'), {target: {value: 'Are'}});
-  fireEvent.click(screen.getByRole('button', {name: 'Create account'}));
-  expect(H.emailAction).toHaveBeenLastCalledWith('create', {email: 'are@example.com', password: '', name: 'Are'});
+  fireEvent.submit(form);
+  expect(H.emailAction).toHaveBeenLastCalledWith('create', {email: 'are@example.com', password: 'long enough', name: 'Are'});
+});
+
+// Correcting the password is the other reading of that same failure, and it must not create an account.
+test('editing the password puts the registration step away again', async () => {
+  H.emailAction.mockResolvedValue({text: 'Wrong email or password. If you are new here, add your name and we will create your account.', newHere: true});
+  render(<AccountCard />);
+  fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
+  fireEvent.change(document.querySelector('input[name=email]'), {target: {value: 'are@example.com'}});
+  fireEvent.change(document.querySelector('input[name=password]'), {target: {value: 'wrong one'}});
+  fireEvent.submit(document.querySelector('form.authform'));
+  expect(await screen.findByText(/new here/)).toBeInTheDocument();
+
+  fireEvent.change(document.querySelector('input[name=password]'), {target: {value: 'the right one'}});
+  expect(document.querySelector('input[name=name]')).toBeNull();
+  const form = document.querySelector('form.authform');
+  expect([...form.querySelectorAll('button')].map(b => b.textContent)).toEqual(['Sign in', 'Forgot password?']);
+
+  H.emailAction.mockResolvedValue({text: ''});
+  fireEvent.submit(form);
+  expect(H.emailAction).toHaveBeenLastCalledWith('signin', {email: 'are@example.com', password: 'the right one', name: ''});
+});
+
+// The email is taken after all: back to signing in, with the reason.
+test('an email that is already taken sends the form back to signing in', async () => {
+  H.emailAction.mockResolvedValue({text: 'Wrong email or password. If you are new here, add your name and we will create your account.', newHere: true});
+  render(<AccountCard />);
+  fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
+  fireEvent.change(document.querySelector('input[name=email]'), {target: {value: 'are@example.com'}});
+  fireEvent.change(document.querySelector('input[name=password]'), {target: {value: 'long enough'}});
+  fireEvent.submit(document.querySelector('form.authform'));
+  expect(await screen.findByText(/new here/)).toBeInTheDocument();
+
+  H.emailAction.mockResolvedValue({text: 'That email already has an account. Check your password, or sign in with Google if that is how you made it.', newHere: false});
+  fireEvent.change(document.querySelector('input[name=name]'), {target: {value: 'Are'}});
+  fireEvent.submit(document.querySelector('form.authform'));
+
+  expect(await screen.findByText(/already has an account/)).toBeInTheDocument();
+  expect(document.querySelector('input[name=name]')).toBeNull();
 });
 
 test('signed in: the name, the email and the settled sync sentence, with every account action', () => {

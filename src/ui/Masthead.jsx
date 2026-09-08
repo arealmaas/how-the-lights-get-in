@@ -1,13 +1,23 @@
 // src/ui/Masthead.jsx — ported from the old <header class="mast">: brand, and the My festival/Reading
-// list buttons, whose counts come from the picks set and the reading list built from those picks.
-import {EVENTS, EXTRA, BRIEFINGS} from '../data/index.js';
+// list buttons, whose counts come from the picks set and the reading list built from those picks, plus
+// the Crew button that opens sheets/CrewSheet.jsx.
+//
+// Crew is shown to signed-out visitors too, in any build that has a Firebase project: the crew screen
+// carries the account card, so it is the way in, and hiding it until sign-in would leave nowhere to sign
+// in from. A build without data/firebase.json has no accounts at all and keeps the two buttons it had.
+import {EVENTS, EXTRA, BRIEFINGS, CLOUD} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
+import {useCloud, selectMyUid} from '../store/cloud.js';
 import {readingList, readingCount} from '../core/reading.js';
 
 export default function Masthead(){
   const picks = usePlanner(s => s.picks);
   const rl = readingCount(readingList(EVENTS, picks, EXTRA, BRIEFINGS));
+  // the same reading of "in a crew" the chip and the overlay use: a crew and someone to compare it against
+  const crew = useCloud(s => s.crew);
+  const myUid = useCloud(selectMyUid);
+  const crewN = crew && myUid ? crew.members.length : 0;
 
   return (
     <header className="mast">
@@ -30,6 +40,13 @@ export default function Masthead(){
             <span className="label">Reading list</span>
             <span className="count" data-count-reading hidden={!rl}>{rl}</span>
           </button>
+          {CLOUD && (
+            <button type="button" className={'mbtn' + (crewN > 0 ? ' has' : '')} onClick={() => useSheet.getState().open('crew')}>
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.8 7.7a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2m5 .3a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4M1 13.4c0-2.1 2.1-3.6 4.8-3.6s4.8 1.5 4.8 3.6v.4H1zm10.2-4c2.3.1 3.8 1.4 3.8 3.2v1.2h-3.2v-.8c0-1.4-.6-2.6-1.7-3.4z"/></svg>
+              <span className="label">Crew</span>
+              <span className="count" data-count-crew hidden={!crewN}>{crewN}</span>
+            </button>
+          )}
         </nav>
       </div>
     </header>
