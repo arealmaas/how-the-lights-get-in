@@ -35,6 +35,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
-          projectId: htlgi-planner
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HOW_THE_LIGHT_GETS_IN }}
+          projectId: how-the-light-gets-in
           expires: 7d

@@ -37,15 +37,15 @@ jobs:
         run: cd firebase/test && npm ci && npm test
       - name: Deploy Firestore rules
         env:
-          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HOW_THE_LIGHT_GETS_IN }}
         run: |
           printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
-          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" firebase/test/node_modules/.bin/firebase deploy --only firestore:rules --project htlgi-planner --non-interactive
+          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" firebase/test/node_modules/.bin/firebase deploy --only firestore:rules --project how-the-light-gets-in --non-interactive
       - name: Build the site
         run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTLGI_PLANNER }}
-          projectId: htlgi-planner
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HOW_THE_LIGHT_GETS_IN }}
+          projectId: how-the-light-gets-in
           channelId: live

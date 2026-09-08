@@ -11,7 +11,7 @@ export const BRIEFINGS = Object.fromEntries(Object.entries(briefingsRaw).filter(
 export const BRIEF_NOTE = briefingsRaw._meta.note;
 export const MEDIA = {acts: mediaRaw.acts, films: mediaRaw.films};
 export const PLAYLIST = mediaRaw._meta.playlist;
-export const PUBLIC_URL = 'https://htlgi-planner.firebaseapp.com/';
+export const PUBLIC_URL = 'https://how-the-light-gets-in.firebaseapp.com/';
 export const EXTRACTED_AT = programme.meta.extractedAt;   // ISO string; the footer formats it for display
 
 export const byNo = new Map(EVENTS.map(e => [e.eventNo, e]));

@@ -556,7 +556,7 @@ test('createInvite writes a fourteen-day token of twenty-two characters and offe
   const days = (data.expiresAt.toMillis() - before) / 864e5;
   expect(days).toBeGreaterThan(13.9);
   expect(days).toBeLessThan(14.1);
-  expect(useBanner.getState().banner.input).toBe('https://htlgi-planner.firebaseapp.com/#join=c1.' + token);
+  expect(useBanner.getState().banner.input).toBe('https://how-the-light-gets-in.firebaseapp.com/#join=c1.' + token);
 });
 
 test('revokeInvite touches only the revoked field, and liveInvites hides what it revoked', async () => {

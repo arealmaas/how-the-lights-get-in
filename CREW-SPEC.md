@@ -348,7 +348,7 @@ Spark limits that matter: Firestore 50 000 reads, 20 000 writes, 20 000 deletes 
 
 ## 9. Setup on your side (about 45 minutes)
 
-1. https://console.firebase.google.com → Add project → name it (e.g. `htlgi-planner`; the id becomes the URL), Google Analytics off.
+1. https://console.firebase.google.com → Add project → name it (e.g. `how-the-light-gets-in`; the id becomes the URL), Google Analytics off.
 2. Build → Firestore Database → Create database → location `europe-west2` (London) or `eur3` → production mode. Rules tab: paste `firebase/firestore.rules`, Publish. (The `main` workflow republishes them on every deploy once the service account has the Rules Admin role.)
 3. Build → Authentication → Get started → Sign-in method: enable *Email/Password* and *Google* (it asks for a public-facing name and a support email). Settings → Authorized domains: the project's `firebaseapp.com` and `web.app` domains and `localhost` are already there; add a custom domain if you use one.
 4. Build → Hosting → Get started (the CLI does the rest).

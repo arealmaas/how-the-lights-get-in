@@ -5,7 +5,7 @@ import {mergeCarry, parseVerdicts, encodeVerdicts} from '../src/core/carry.js';
   // this origin is retired: drop its service worker and caches so an offline load can never resurrect the old planner
   if (navigator.serviceWorker) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
   if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k))).catch(() => {});
-  const NEW = 'https://htlgi-planner.firebaseapp.com/';
+  const NEW = 'https://how-the-light-gets-in.firebaseapp.com/';
   const a = document.getElementById('new'); a.href = NEW; a.textContent = NEW.replace(/^https:\/\//, '').replace(/\/$/, '');
   const load = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
   const picks = (load('htlgi-l26-picks') || []).filter(n => Number.isInteger(n));

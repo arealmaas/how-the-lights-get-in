@@ -42,7 +42,7 @@ test('the fixed festival constants are as published', () => {
   expect(GROUP['IAI Academy']).toBe('talks');
   expect(PERFORMANCE.has('Music')).toBe(true);
   expect(LONDON_OFFSET_MIN).toBe(60);
-  expect(PUBLIC_URL).toBe('https://htlgi-planner.firebaseapp.com/');
+  expect(PUBLIC_URL).toBe('https://how-the-light-gets-in.firebaseapp.com/');
   expect(TOPICS.length).toBeGreaterThan(0);
   expect(TOPICS).toEqual([...TOPICS].sort());
 });
