@@ -31,5 +31,5 @@ export default defineConfig({
     }),
   ],
   build: {sourcemap: true},
-  test: {environment: 'jsdom', setupFiles: ['./tests/setup.js'], include: ['src/**/*.test.{js,jsx}'], css: false, globals: true},
+  test: {environment: 'jsdom', setupFiles: ['./tests/setup.js'], include: ['src/**/*.test.{js,jsx}'], css: false, globals: true, env: {VITE_CLOUD: 'off'}},
 });

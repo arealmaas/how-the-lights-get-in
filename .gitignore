@@ -11,3 +11,4 @@ node_modules/
 dist-move/
 test-results/
 playwright-report/
+dist-e2e/

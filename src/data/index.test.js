@@ -1,3 +1,4 @@
+import {readFileSync} from 'node:fs';
 import {EVENTS, SPEAKERS, ACTS, BRIEFINGS, BRIEF_NOTE, MEDIA, PLAYLIST, EXTRA, byNo, spkBySlug, spkByName, actBySlug, GROUP, GROUPS, VENUES, TOPICS, DAYS, PERFORMANCE, LONDON_OFFSET_MIN, PUBLIC_URL, FIREBASE, CLOUD} from './index.js';
 
 test('the programme loads with events, speakers and acts, and byNo finds them', () => {
@@ -47,7 +48,15 @@ test('the fixed festival constants are as published', () => {
   expect(TOPICS).toEqual([...TOPICS].sort());
 });
 
-test('there is no firebase config in this build, so cloud features are off', () => {
+test('the unit tests run with VITE_CLOUD=off, so cloud features are off whatever data/firebase.json says', () => {
   expect(FIREBASE).toBeNull();
   expect(CLOUD).toBe(false);
+});
+
+test('the committed data/firebase.json is the public web config for the site origin', () => {
+  const cfg = JSON.parse(readFileSync('data/firebase.json', 'utf8'));
+  expect(Object.keys(cfg).sort()).toEqual(['apiKey', 'appId', 'authDomain', 'projectId']);
+  for (const v of Object.values(cfg)) expect(typeof v).toBe('string');
+  expect(cfg.projectId).toBe('how-the-light-gets-in');
+  expect(PUBLIC_URL).toBe('https://' + cfg.authDomain + '/');
 });

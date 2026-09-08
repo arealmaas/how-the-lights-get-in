@@ -28,5 +28,8 @@ export const LONDON_OFFSET_MIN = 60;                                      // BST
 export const EXTRA = extraRaw.speakers;
 
 // data/firebase.json is optional: a glob (not a static import) so the build succeeds without it.
-export const FIREBASE = Object.values(import.meta.glob('/data/firebase.json', {eager: true}))[0]?.default ?? null;
+// VITE_CLOUD=off builds without accounts even when the file exists: the unit tests (vite.config.js) and the e2e
+// build (playwright.config.js) use it so they never depend on the committed config or touch the real project.
+const FIREBASE_FILE = Object.values(import.meta.glob('/data/firebase.json', {eager: true}))[0]?.default ?? null;
+export const FIREBASE = import.meta.env.VITE_CLOUD === 'off' ? null : FIREBASE_FILE;
 export const CLOUD = !!FIREBASE;
