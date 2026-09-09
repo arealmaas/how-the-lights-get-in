@@ -1,11 +1,23 @@
-# The planner moved to Firebase Hosting. This workflow's only job is to build the move/ page (a single-file
-# Vite build into dist-move/) and publish it to the root of gh-pages (clean: true wipes everything else
-# there). It is removed once that has run: one final run.
-name: Deploy site
+# The planner itself lives on Firebase Hosting. This workflow owns the old GitHub Pages address: it
+# builds move/ (a single-file Vite build into dist-move/) and publishes it to the root of gh-pages,
+# where the page tells a visitor where the planner went and carries their saved picks and notes over.
+#
+# GitHub Pages must be set to serve this branch — repository Settings → Pages → "Deploy from a branch",
+# gh-pages / (root). Pointed at main / (root) instead it serves the repository's Vite entry index.html,
+# whose /src/main.jsx does not exist as a built file, and the address is a blank page.
+#
+# The paths filter keeps it from rebuilding an unchanged page on every push to main.
+name: Publish the old address
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'move/**'
+      - 'src/core/notes.js'
+      - 'src/core/carry.js'
+      - 'vite.move.config.js'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -25,12 +37,15 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # the page shares its codec with the app (src/core/notes.js), so the link it builds is one the
+      # live site understands; the unit tests cover that pairing
+      - run: npm test
       - run: npm run build:move
-      - name: Publish the moved notice to gh-pages
+      - name: Publish to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: dist-move
           clean: true
           force: false
-          commit-message: "The planner has moved to Firebase Hosting"
+          commit-message: "Publish the old address"

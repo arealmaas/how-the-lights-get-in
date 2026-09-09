@@ -6,14 +6,17 @@ import {mergeCarry, parseVerdicts, encodeVerdicts} from '../src/core/carry.js';
   if (navigator.serviceWorker) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
   if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k))).catch(() => {});
   const NEW = 'https://how-the-light-gets-in.firebaseapp.com/';
-  const a = document.getElementById('new'); a.href = NEW; a.textContent = NEW.replace(/^https:\/\//, '').replace(/\/$/, '');
   const load = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
   const picks = (load('htlgi-l26-picks') || []).filter(n => Number.isInteger(n));
   const verdicts = load('htlgi-l26-verdicts') || {};
   const notes = load('htlgi-l26-notes') || {};
   const hasState = picks.length || Object.keys(verdicts).length || Object.values(notes).some(t => t && t.trim());
-  // With no local state, go straight through with the fragment intact; old #event= and #picks= links keep working.
-  if (!hasState) { location.replace(NEW + location.hash); return; }
+
+  // Nothing of this browser's to carry, so there is nothing to ask about. A link that points at
+  // something specific — #event=, #picks=, a crew invite — is honoured straight through with the
+  // fragment intact; a bare visit is left on the page, which already links to the new address.
+  if (!hasState) { if (location.hash) location.replace(NEW + location.hash); return; }
+
   // Someone with local state who arrived via a link: carry this browser's state and keep what the link
   // asked for as well. Picks are the union; a verdict the link carries fills only an event this browser
   // has no verdict for; notes the link carries are merged as the app merges an import (a friend's note
@@ -28,10 +31,13 @@ import {mergeCarry, parseVerdicts, encodeVerdicts} from '../src/core/carry.js';
   const MAX_NOTE = 20000;
   const v = encodeVerdicts(carried.verdicts);
   const link = NEW + '#picks=' + carried.picks.join(',') + (v ? '&verdicts=' + v : '') + (p ? '&notes=' + p : '') + (ev ? '&event=' + ev[1] : '');
-  document.getElementById('carry').hidden = false; document.getElementById('go').hidden = false;
+  // The page's own link already reaches the new site; point it at the carrying one and say so.
+  const btn = document.getElementById('btn');
+  btn.href = link;
+  btn.textContent = 'Open the planner with my picks and notes';
+  document.getElementById('carry').hidden = false;
   const problems = [];
   if (dropped) problems.push(dropped + ' long note' + (dropped === 1 ? '' : 's') + ' will not fit in the link');
   if (shortened) problems.push(shortened + ' very long note' + (shortened === 1 ? '' : 's') + ' will be shortened to ' + MAX_NOTE + ' characters');
   if (problems.length) { const w = document.getElementById('warn'); w.hidden = false; w.textContent = problems.join('; ') + '; export your notes (.md) from the old planner first if you need them in full.'; }
-  document.getElementById('btn').addEventListener('click', () => { location.href = link; });
 })();

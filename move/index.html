@@ -1,20 +1,122 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The HowTheLightGetsIn London 2026 planner has a new address</title>
+<meta name="description" content="This address is retired. The unofficial HowTheLightGetsIn London 2026 planner now lives at how-the-light-gets-in.firebaseapp.com.">
+<!-- the old address must not compete with the new one in search, and must point at it -->
 <meta name="robots" content="noindex">
-<title>The planner has moved</title>
+<link rel="canonical" href="https://how-the-light-gets-in.firebaseapp.com/">
+<meta name="theme-color" content="#F3F4F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121416" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-  body{font:16px/1.5 -apple-system,system-ui,sans-serif;max-width:560px;margin:60px auto;padding:0 20px;color:#17191c;background:#f3f4f1}
-  h1{font-size:26px;margin:0 0 12px} p{margin:0 0 14px} a{color:#17191c}
-  button{font:inherit;font-weight:600;padding:10px 16px;border:1px solid #17191c;border-radius:8px;background:#17191c;color:#fff;cursor:pointer}
-  .small{font-size:13px;color:#555}
+  /* The palette, the two display faces and the six strand colours are the app's own
+     (src/styles/app.css), so the door looks like the room behind it. */
+  :root{
+    --bg:#F3F4F1; --ink:#17191C; --ink-2:#565D64; --line:#D9DDD6;
+    --accent:#17191C; --accent-ink:#FFFFFF; --focus:#1E62C4;
+    --debates:#CF3A2B; --talks:#1E62C4; --music:#DE2777; --cinema:#7247B8; --inner:#128A75; --kids:#3F8F2E;
+    --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+    --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#121416; --ink:#ECEEEA; --ink-2:#AEB5BB; --line:#2B3036;
+      --accent:#ECEEEA; --accent-ink:#121416; --focus:#66A3F3;
+      --debates:#F26B5C; --talks:#66A3F3; --music:#F566A6; --cinema:#B195EF; --inner:#3FC5AB; --kids:#7CC968;
+      color-scheme:dark;
+    }
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    display:flex;align-items:center;align-items:safe center;
+    padding:56px 28px 56px clamp(58px,8vw,132px);
+  }
+  main{max-width:34rem}
+
+  /* The one bold element: the app masthead's six-strand rule, stood on its end and run the
+     full height of the page. Drawn once on load as a single stroke — the only motion here. */
+  .strands{
+    position:fixed;inset:0 auto 0 0;width:14px;transform-origin:top;
+    background:linear-gradient(180deg,
+      var(--debates) 0 16.666%, var(--talks) 16.666% 33.333%, var(--music) 33.333% 50%,
+      var(--cinema) 50% 66.666%, var(--inner) 66.666% 83.333%, var(--kids) 83.333% 100%);
+    animation:draw-down .85s cubic-bezier(.2,.75,.2,1) both;
+  }
+  @keyframes draw-down{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+  h1{
+    font-family:var(--display);font-weight:800;letter-spacing:-.035em;line-height:.94;
+    font-size:clamp(26px,7.8vw,57px);margin:0;
+  }
+  .sub{
+    font-family:var(--display);font-weight:600;letter-spacing:-.02em;color:var(--ink-2);
+    font-size:clamp(16px,3.2vw,25px);line-height:1.15;margin:9px 0 0;
+  }
+  .lead{font-size:18px;margin:30px 0 0;max-width:31rem}
+  .carry{font-size:18px;margin:22px 0 0;max-width:31rem}
+
+  .cta{
+    display:inline-block;margin:26px 0 0;padding:13px 22px;border-radius:9px;
+    background:var(--accent);color:var(--accent-ink);text-decoration:none;
+    font-weight:600;font-size:16.5px;line-height:1.2;
+    transition:opacity .15s ease;
+  }
+  .cta:hover{opacity:.86}
+  .cta:active{opacity:.74}
+
+  .where{margin:14px 0 0;font-size:14px;color:var(--ink-2)}
+  .where a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+  .warn{margin:14px 0 0;font-size:14px;color:var(--ink-2);max-width:31rem}
+  .note{margin:34px 0 0;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2);max-width:31rem}
+
+  a:focus-visible,.cta:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+  @media (max-width:719px){
+    body{padding:44px 22px}
+    .strands{
+      inset:0 0 auto 0;width:auto;height:8px;transform-origin:left;
+      background:linear-gradient(90deg,
+        var(--debates) 0 16.666%, var(--talks) 16.666% 33.333%, var(--music) 33.333% 50%,
+        var(--cinema) 50% 66.666%, var(--inner) 66.666% 83.333%, var(--kids) 83.333% 100%);
+      animation-name:draw-across;
+    }
+    @keyframes draw-across{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    .lead,.carry{font-size:17px}
+  }
+  @media (prefers-reduced-motion:reduce){.strands{animation:none}}
 </style>
-<h1>The planner has moved</h1>
-<p>The HowTheLightGetsIn London 2026 planner now lives at <a id="new" href="#"></a>.</p>
-<p id="carry" hidden>This browser has picks or notes saved from the old address. Carry them over:</p>
-<p id="go" hidden><button type="button" id="btn">Open the new site with my picks and notes</button></p>
-<p id="warn" class="small" hidden></p>
-<p class="small">If you added the old address to your home screen, remove it and add the new one instead.</p>
+</head>
+<body>
+<div class="strands" aria-hidden="true"></div>
+<main>
+  <h1>HowTheLightGetsIn</h1>
+  <p class="sub">London 2026 planner</p>
+
+  <p class="lead">This address is retired. The planner moved — the same programme, now with picks that
+    follow you onto every device you sign in on, and crews to plan with.</p>
+
+  <p class="carry" id="carry" hidden>This browser still has picks and notes saved at the old address.
+    The button brings them across.</p>
+
+  <!-- href works without JavaScript; main.js swaps in a link carrying this browser's picks and notes -->
+  <a class="cta" id="btn" href="https://how-the-light-gets-in.firebaseapp.com/">Open the planner</a>
+
+  <p class="where"><a id="new" href="https://how-the-light-gets-in.firebaseapp.com/">how-the-light-gets-in.firebaseapp.com</a></p>
+
+  <p class="warn" id="warn" hidden></p>
+
+  <p class="note">If you added the old address to your home screen, remove it and add the new one instead.</p>
+</main>
 <script type="module" src="./main.js"></script>
+</body>
 </html>
