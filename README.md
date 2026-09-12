@@ -11,6 +11,7 @@ This is an **unofficial, fan-made** planner. It is not affiliated with, endorsed
 ## Features
 
 - **Mobile event details**: expand any event or speaker sheet with *Full screen*, return with *Compact view*, and close it without losing your place in the programme. Larger touch controls and full-width mobile cards make it easier to browse; event picks are at the top of the details.
+- **Back and Forward**: browser navigation follows event and speaker details, preserving each visit’s section and reading position during the session. Close or Escape returns to the programme; reloading a detail restores its navigation stack. Opening an event updates its shareable `#event=` address. Import and invitation payloads leave the address immediately, before you accept or decline them.
 - **Festival map**: *Show on map* beside an event’s venue opens the official 2025 area map, with zoom controls and Back to the event. It shows the grounds and nearby transport, not individual tents; the 2026 layout may differ. The original IAI map is credited and linked, and the local WebP is cached for offline use.
 - **List view** grouped by start time, and a **grid view** (venues across, times down) for spotting clashes.
 - Filters by day, strand (debates, talks, music & comedy, cinema, Inner Circle, children's), venue and topic, plus free-text search across titles, speakers and descriptions.
@@ -75,7 +76,7 @@ The code is a Vite 8 + React 19 app; `docs/superpowers/specs/2026-09-07-react-re
 - `src/store/` — four small Zustand stores: `planner` (filters, picks, verdicts, notes, and their localStorage persistence), `sheet` (the sheet stack), `banner`, `cloud` (session, sync flags, crew).
 - `src/cloud/` — the Firebase layer, no React: `firebase.js` is the only file that imports `firebase/*`, and it is loaded lazily into its own chunk; `auth.js`, `sync.js` and `crew.js` read and write the stores.
 - `src/ui/` — the components: the masthead and toolbar, the list and grid, the sheets under `sheets/`, the event-sheet parts under `event/`, the *My festival* cards under `hub/`.
-- `src/App.jsx` the shell, `src/main.jsx` the boot sequence, `src/routing.js` the hash routes (`#event=`, `#picks=…`, `#join=`), `src/sw.js` the service-worker source that `vite-plugin-pwa` injects the precache list into, `src/styles/app.css` the whole stylesheet.
+- `src/App.jsx` the shell, `src/main.jsx` the boot sequence, `src/routing.js` the hash routes (`#event=`, `#picks=…`, `#join=`), `src/history.js` the browser Back/Forward bridge for the sheet stack, `src/sw.js` the service-worker source that `vite-plugin-pwa` injects the precache list into, `src/styles/app.css` the whole stylesheet.
 - `tests/e2e/` — Playwright; `tests/live/` — the crew plan against the live project, with two test accounts from `.env.local`; `firebase/test/` — the Firestore rules suite (needs a JDK).
 
 ## Deployment and pull-request previews

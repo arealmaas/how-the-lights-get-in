@@ -4,11 +4,17 @@
 // exactly the shape it had.
 import {create} from 'zustand';
 const entry = (kind, key, mode) => (mode === undefined ? {kind, key} : {kind, key, mode});
+// The browser bridge is installed at boot. Component/unit use remains an in-memory stack.
+let navigation = null;
+export function attachSheetNavigation(next){
+  navigation = next;
+  return () => { if (navigation === next) navigation = null; };
+}
 export const useSheet = create((set, get) => ({
   stack: [],
-  open(kind, key, mode){ set({stack: [...get().stack, entry(kind, key, mode)]}); },
-  replaceTop(kind, key, mode){ const s = get().stack.slice(0, -1); set({stack: [...s, entry(kind, key, mode)]}); },
-  back(){ set({stack: get().stack.slice(0, -1)}); },
-  close(){ set({stack: []}); },
+  open(kind, key, mode){ const next = entry(kind, key, mode); if (navigation) return navigation.open(next); set({stack: [...get().stack, next]}); },
+  replaceTop(kind, key, mode){ const next = entry(kind, key, mode); if (navigation) return navigation.replaceTop(next); set({stack: [...get().stack.slice(0, -1), next]}); },
+  back(){ if (navigation) return navigation.back(); set({stack: get().stack.slice(0, -1)}); },
+  close(){ if (navigation) return navigation.close(); set({stack: []}); },
 }));
 export const topSheet = () => useSheet.getState().stack.at(-1) || null;

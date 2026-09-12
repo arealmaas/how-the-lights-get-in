@@ -73,6 +73,18 @@ test('a hash with no import data leaves the banner untouched', () => {
   expect(useBanner.getState().banner).toBeNull();
 });
 
+test('event parameters require exact boundaries and repeated routing does not duplicate a sheet', () => {
+  for (const hash of ['#notanevent=6', '#event=6junk']) {
+    history.replaceState(null, '', '/' + hash);
+    boot();
+    expect(useSheet.getState().stack).toHaveLength(0);
+  }
+  history.replaceState(null, '', '/#event=6');
+  boot();
+  onHashChange();
+  expect(useSheet.getState().stack).toEqual([{kind: 'event', key: 6}]);
+});
+
 test('onHashChange picks up an import link the same way boot does', () => {
   location.hash = '#picks=41';
   onHashChange();

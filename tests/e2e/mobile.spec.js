@@ -168,7 +168,10 @@ test.describe('mobile notes', () => {
     await editor.fill(edited);
     // Escape closes without depending on blur or waiting for autosave.
     await page.keyboard.press('Escape');
+    await expect(page).toHaveURL(url => url.hash === '');
     await page.reload();
+    await expect(dialog).toBeHidden();
+    await page.locator('article.ev .ev-open').filter({hasText: event.title}).click();
     await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
     expect(await text.textContent()).toBe(edited);
     await dialog.getByRole('button', {name: 'Close', exact: true}).tap();

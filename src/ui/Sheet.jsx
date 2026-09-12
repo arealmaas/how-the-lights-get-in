@@ -2,7 +2,7 @@
 // is on top of the stack. Ports openSheet()/closeSheet()/goBack()'s DOM bookkeeping (scroll-to-top on
 // open, focus the h2, Escape to close) as effects instead of imperative DOM writes; no innerHTML — the
 // body is real components keyed off the sheet store.
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {useSheet} from '../store/sheet.js';
 import EventSheet from './sheets/EventSheet.jsx';
 import SpeakerSheet from './sheets/SpeakerSheet.jsx';
@@ -23,6 +23,7 @@ export default function Sheet(){
   const nextEntryId = useRef(0);
   const [expanded, setExpanded] = useState(false);
   const top = stack.length ? stack[stack.length - 1] : null;
+  const visibleEntry = useRef(top);
   const open = !!top;
   // Entries are stable while they remain on the stack. Keep their reading context without
   // leaving hidden dialogs mounted, which would duplicate titles and form IDs.
@@ -32,9 +33,19 @@ export default function Sheet(){
   const position = top ? positions.current.get(top) : null;
   const firstVisit = position && !position.visited;
 
+  // Scroll events can arrive after a history traversal has replaced the body. Save the
+  // outgoing position synchronously while its content is still rendered, including
+  // consecutive store changes that React may combine into one render.
+  useLayoutEffect(() => useSheet.subscribe(state => {
+    const outgoing = visibleEntry.current;
+    if (outgoing && outgoing !== state.stack.at(-1) && bodyRef.current) {
+      positions.current.get(outgoing).scrollTop = bodyRef.current.scrollTop;
+    }
+  }), []);
+
   // Fix the page in place on phones too, and return to the opener without losing the time slot.
   // This runs before title focus so we remember the element that opened the sheet.
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!open) {
       setExpanded(false);
       return;
@@ -59,9 +70,10 @@ export default function Sheet(){
     };
   }, [open]);
 
-  // Going forward starts at the title; Back restores the previous sheet's reading position.
+  // New visits start at the title; Back/Forward restore a visited sheet's reading position.
   // Expanding only changes layout: tab selection, notes and reading position stay intact.
-  useEffect(() => {
+  useLayoutEffect(() => {
+    visibleEntry.current = top;
     if (!open) return;
     const body = bodyRef.current;
     if (body) body.scrollTop = position.scrollTop;

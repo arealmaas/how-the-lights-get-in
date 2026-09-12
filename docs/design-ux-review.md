@@ -28,12 +28,12 @@ The secondary-text token on white improved from **3.40:1 to 5.18:1**; on the dar
 
 ## Recommended next work
 
-1. **Make browser Back follow detail navigation.** The in-app Back button now preserves context, but browser history still does not represent the sheet stack. Treat event deep links, imported picks, crew invitations and close behaviour as one navigation change and test them together.
+1. **Completed: browser Back follows detail navigation.** Back, Forward and the in-app Back button share the sheet stack; visited event sections and scroll positions survive navigation within a session. Close/Escape rewinds to the programme. Reload restores public navigation descriptors without adding a duplicate visit. Import and invitation payloads are stripped before history entries are written. This pass includes browser regressions for the combined flows.
 2. **Improve long-form section navigation.** Overview, Briefing and Notes still live below the event hero, and switching a section returns to the top. Test keeping section navigation visible while reading, particularly on phones.
 3. **Give the growing notebook a direct route.** Moving notes below the itinerary protects the main task. For frequent note-taking, a direct My notes entry would reduce scrolling without truncating writing. Validate the importance of notes versus reading-list access with actual festival users before changing the header again.
 4. **Measure first-visit performance on a weak mobile connection.** The production build still reports large chunks: the main JS bundle is about 289 kB compressed and the lazy Firebase bundle about 207 kB. Offline coverage is valuable, but initial load time deserves measurement before deciding what to split or defer.
 
-These are recommendations, not features implemented in this pass. A short usability check with a few festival-goers should ask them to find a Sunday talk, identify whether it costs extra, save two competing events, return from a speaker profile, and revise a saved note. Observe completion and hesitation rather than asking only whether the page looks better.
+Items 2–4 remain recommendations. A short usability check with a few festival-goers should ask them to find a Sunday talk, identify whether it costs extra, save two competing events, return from a speaker profile, and revise a saved note. Observe completion and hesitation rather than asking only whether the page looks better.
 
 ## Verification and limits
 
@@ -41,7 +41,11 @@ These are recommendations, not features implemented in this pass. A short usabil
 - All **290 unit/component tests** pass.
 - The complete **42-test browser suite** passed in Chromium/WebKit. After final refinements, all **16 browsing checks** and **20 detail/mobile checks** were rerun successfully.
 - Visual inspection covered light and dark themes, 320 px and 390 px phones, and a 1280 px desktop. Existing landscape, keyboard, scroll-restoration, note export and offline-editing checks also pass.
-- Changes are local. No production deployment, real account sign-in, or live crew test was performed. Screen-reader behaviour and physical iOS/Android keyboards still need a device check; browser automation does not substitute for that.
+- The initial review was committed as `a46c9ed`, pushed to `main`, and successfully deployed. No real account sign-in or live crew test was performed. Screen-reader behaviour and physical iOS/Android keyboards still need a device check; browser automation does not substitute for that.
 - Separate map work appeared in the shared checkout near the end. It was preserved and included in the successful final build, but its UX is outside this review and the test totals above describe the review changes.
 
 Key implementation files: [toolbar](../src/ui/Toolbar.jsx), [empty states](../src/ui/EmptyEvents.jsx), [cards](../src/ui/EventCard.jsx), [grid](../src/ui/EventGrid.jsx), [detail navigation](../src/ui/Sheet.jsx), and [styles](../src/styles/app.css). Regression coverage is in [browsing tests](../tests/e2e/browse.spec.js) and [mobile/detail tests](../tests/e2e/mobile.spec.js).
+
+### Navigation follow-up
+
+The browser-history improvement is implemented. The combined checkout passes **300 unit/component tests**, **62 browser tests** across Chromium and WebKit, and the production build. Coverage includes nested event/speaker visits, saved sections and scroll positions, Close/Escape, reloads, direct links, and import/invitation cleanup. See the [history bridge](../src/history.js) and [browser regressions](../tests/e2e/history.spec.js).

@@ -46,6 +46,31 @@ test('Back restores each stack entry’s scroll and event tab, even when an even
   expect(body.scrollTop).toBe(0);
 });
 
+test('history restores the outgoing scroll position even before its scroll event is delivered', async () => {
+  useSheet.getState().open('event', 6);
+  render(<Sheet />);
+  const body = document.getElementById('sheet-body');
+  body.scrollTop = 110;
+  const speaker = byNo.get(6).people.find(person => person.slug);
+  act(() => useSheet.getState().open('speaker', speaker.slug));
+  body.scrollTop = 180;
+  act(() => useSheet.getState().open('event', 6));
+  await userEvent.click(screen.getByRole('button', {name: 'Briefing', exact: true}));
+  body.scrollTop = 260;
+  const forwardStack = useSheet.getState().stack;
+
+  // Browser history restores the existing entries directly. No scroll event has
+  // fired for any of these positions before the next navigation starts.
+  act(() => useSheet.setState({stack: forwardStack.slice(0, -1)}));
+  expect(body.scrollTop).toBe(180);
+  act(() => useSheet.setState({stack: forwardStack}));
+  expect(screen.getByRole('button', {name: 'Briefing', exact: true})).toHaveAttribute('aria-pressed', 'true');
+  expect(body.scrollTop).toBe(260);
+  act(() => useSheet.setState({stack: forwardStack.slice(0, 1)}));
+  expect(screen.getByRole('button', {name: 'Overview', exact: true})).toHaveAttribute('aria-pressed', 'true');
+  expect(body.scrollTop).toBe(110);
+});
+
 test('Tab moves between banner and dialog controls without entering the background', async () => {
   vi.spyOn(HTMLElement.prototype, 'getClientRects').mockImplementation(function(){
     return this.closest('[hidden]') ? [] : [new DOMRect(0, 0, 100, 40)];

@@ -5,6 +5,6 @@ export default defineConfig({
   webServer: {command: 'VITE_CLOUD=off vite build --outDir dist-e2e && vite preview --outDir dist-e2e --port 4173 --strictPort', url: 'http://localhost:4173', reuseExistingServer: !process.env.CI, timeout: 120000},
   projects: [
     {name: 'chromium', use: {browserName: 'chromium'}},
-    {name: 'webkit', testMatch: ['mobile.spec.js', 'browse.spec.js'], use: {browserName: 'webkit'}},
+    {name: 'webkit', testMatch: ['mobile.spec.js', 'browse.spec.js', 'history.spec.js'], use: {browserName: 'webkit'}},
   ],
 });
