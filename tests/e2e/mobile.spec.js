@@ -82,7 +82,7 @@ test.describe('mobile event details', () => {
     await dialog.getByRole('button', {name: 'Close', exact: true}).tap();
     await expect(dialog).toBeHidden();
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeCloseTo(scrollBefore, 0);
-    await expect(card).toBeFocused();
+    await expect(card.locator('.ev-open')).toBeFocused();
     await card.tap();
     await expect(dialog.getByRole('button', {name: 'Full screen', exact: true})).toHaveAttribute('aria-pressed', 'false');
     await dialog.getByRole('button', {name: 'Close', exact: true}).tap();
@@ -118,7 +118,7 @@ test.describe('mobile event details', () => {
 test('keyboard focus stays in the event and Escape returns to its opener', async ({page}) => {
   await page.goto('/');
   const card = page.locator('article.ev').first();
-  await card.focus();
+  await card.locator('.ev-open').focus();
   await page.keyboard.press('Enter');
   const dialog = page.getByRole('dialog');
   await expect(dialog.locator('#sheet-title')).toBeFocused();
@@ -133,7 +133,7 @@ test('keyboard focus stays in the event and Escape returns to its opener', async
   await expect(dialog.getByRole('button', {name: 'Compact view', exact: true})).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
-  await expect(card).toBeFocused();
+  await expect(card.locator('.ev-open')).toBeFocused();
 });
 
 test.describe('mobile notes', () => {
@@ -231,4 +231,73 @@ test.describe('mobile notes', () => {
     await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
     await expect(dialog.locator('.note-card .note-text')).toContainText('Written offline.');
   });
+});
+
+test('Back restores event and speaker reading positions through nested details', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.emulateMedia({reducedMotion: 'reduce'});
+  await page.goto('/#event=6');
+  await page.evaluate(() => document.fonts.ready);
+  const dialog = page.getByRole('dialog');
+  const body = dialog.locator('#sheet-body');
+  const speaker = dialog.locator('.people button.link').first();
+  await body.evaluate(el => { el.scrollTop = 160; });
+  await speaker.scrollIntoViewIfNeeded();
+  const eventPosition = await body.evaluate(el => el.scrollTop);
+  expect(eventPosition).toBeGreaterThan(0);
+  await speaker.click();
+  await expect(dialog.locator('.profile')).toBeVisible();
+  const speakerTitle = await dialog.locator('#sheet-title').textContent();
+  const appearance = dialog.locator('.applist button').first();
+  await appearance.scrollIntoViewIfNeeded();
+  const speakerPosition = await body.evaluate(el => el.scrollTop);
+  expect(speakerPosition).toBeGreaterThan(0);
+  await appearance.click();
+  await expect(dialog.locator('.event-sheet')).toBeVisible();
+  await expect.poll(() => body.evaluate(el => el.scrollTop)).toBe(0);
+  await dialog.getByRole('button', {name: '← Back', exact: true}).click();
+  await expect(dialog.locator('#sheet-title')).toHaveText(speakerTitle);
+  await expect.poll(() => body.evaluate(el => el.scrollTop)).toBeCloseTo(speakerPosition, 0);
+  await dialog.getByRole('button', {name: '← Back', exact: true}).click();
+  await expect(dialog.locator('#sheet-title')).toHaveText(event.title);
+  await expect.poll(() => body.evaluate(el => el.scrollTop)).toBeCloseTo(eventPosition, 0);
+});
+
+test('an open sheet keeps keyboard navigation within its banner and dialog', async ({page}) => {
+  await page.goto('/#event=6');
+  await page.evaluate(() => { window.location.hash = 'picks=3,9'; });
+  const accept = page.getByRole('button', {name: 'Add them to mine', exact: true});
+  const dismiss = page.getByRole('button', {name: 'Not now', exact: true});
+  await expect(dismiss).toBeVisible();
+  await expect(page.getByRole('dialog').locator('.banner')).toBeVisible();
+  await dismiss.focus();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', {name: 'Full screen', exact: true})).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(dismiss).toBeFocused();
+  await accept.focus();
+  await page.keyboard.press('Shift+Tab');
+  await expect(page.getByRole('link', {name: 'Google Calendar ↗'})).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(accept).toBeFocused();
+});
+
+test('Edit note from My festival opens with the editor focused and visible on a phone', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.emulateMedia({reducedMotion: 'reduce'});
+  await page.goto('/#event=6');
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('button', {name: 'Notes', exact: true}).click();
+  const editor = dialog.getByRole('textbox', {name: 'My note'});
+  await editor.fill('A thought to revise from My festival.');
+  await dialog.getByRole('button', {name: 'Save note', exact: true}).click();
+  await dialog.getByRole('button', {name: 'Close', exact: true}).click();
+  await page.getByRole('button', {name: /My festival/}).click();
+  await dialog.getByRole('button', {name: `Edit note for ${event.title}`}).click();
+  await expect(editor).toBeFocused();
+  await expect(editor).toBeInViewport();
+  const editorTop = (await editor.boundingBox()).y;
+  const bodyTop = (await dialog.locator('#sheet-body').boundingBox()).y;
+  expect(editorTop).toBeGreaterThanOrEqual(bodyTop);
+  expect(editorTop - bodyTop).toBeLessThan(160);
 });

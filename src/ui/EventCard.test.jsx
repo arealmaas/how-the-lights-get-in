@@ -45,20 +45,39 @@ test('a picked event with a clash and a note shows the star, note badge and clas
   expect(togglePick).toHaveBeenCalledWith(e.eventNo);
 });
 
-test('keyboard Enter on the nested star does not open the sheet; Enter on the card itself does', () => {
+test.each(['{Enter}', ' '])('keyboard %s opens details from the native title button and preserves its focus', async key => {
   const open = vi.fn();
   useSheet.setState({open});
 
   const e = EVENTS[0];
-  const {container} = render(<EventCard e={e} picked={false} clash={null} hasNote={false} />);
+  const {container, getByRole} = render(<EventCard e={e} picked={false} clash={null} hasNote={false} />);
+  const details = getByRole('button', {name: e.title});
+  expect(details).toHaveAttribute('aria-haspopup', 'dialog');
+  expect(details.closest('h3')).toHaveClass('ev-title');
+  expect(container.querySelector('article.ev')).not.toHaveAttribute('role', 'button');
+  expect(container.querySelector('article.ev')).not.toHaveAttribute('tabindex');
 
-  const star = container.querySelector('button.pick');
-  fireEvent.keyDown(star, {key: 'Enter'});
-  expect(open).not.toHaveBeenCalled();
-
-  const article = container.querySelector('article.ev');
-  fireEvent.keyDown(article, {key: 'Enter'});
+  details.focus();
+  await userEvent.keyboard(key);
+  expect(open).toHaveBeenCalledTimes(1);
   expect(open).toHaveBeenCalledWith('event', e.eventNo);
+  expect(details).toHaveFocus();
+});
+
+test.each(['{Enter}', ' '])('keyboard %s on the star toggles the pick without opening details', async key => {
+  const open = vi.fn(), togglePick = vi.fn();
+  useSheet.setState({open});
+  usePlanner.setState({togglePick});
+
+  const e = EVENTS[0];
+  const {getByRole} = render(<EventCard e={e} picked={false} clash={null} hasNote={false} />);
+  const star = getByRole('button', {name: `Add to my picks: ${e.title}`});
+
+  star.focus();
+  await userEvent.keyboard(key);
+  expect(togglePick).toHaveBeenCalledTimes(1);
+  expect(togglePick).toHaveBeenCalledWith(e.eventNo);
+  expect(open).not.toHaveBeenCalled();
 });
 
 // CREW-SPEC section 7 "Everywhere": in a crew every card has a second toggle beside the star, for the

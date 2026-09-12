@@ -19,15 +19,6 @@ export default function EventCard({e, picked, clash, hasNote}){
   return (
     <article
       className={`ev g-${GROUP[e.type]}${picked ? ' picked' : ''}${inPlan ? ' crew' : ''}`}
-      tabIndex={0}
-      role="button"
-      aria-label={e.title}
-      aria-haspopup="dialog"
-      onClick={ev => { ev.currentTarget.focus({preventScroll: true}); useSheet.getState().open('event', e.eventNo); }}
-      onKeyDown={ev => {
-        if (ev.target !== ev.currentTarget) return;   // let the nested pick and crew buttons handle their own Enter/Space
-        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); useSheet.getState().open('event', e.eventNo); }
-      }}
     >
       <div className="ev-head">
         <div className="ev-details">
@@ -41,13 +32,25 @@ export default function EventCard({e, picked, clash, hasNote}){
           type="button"
           className="pick"
           aria-pressed={picked}
-          aria-label={(picked ? 'Remove from' : 'Add to') + ' my picks'}
+          aria-label={`${picked ? 'Remove from' : 'Add to'} my picks: ${e.title}`}
           onClick={ev => { ev.stopPropagation(); usePlanner.getState().togglePick(e.eventNo); }}
         >
           {picked ? '★' : '☆'}
         </button>
       </div>
-      <h3 className="ev-title">{e.title}</h3>
+      <h3 className="ev-title">
+        <button
+          type="button"
+          className="ev-open"
+          aria-haspopup="dialog"
+          onClick={ev => {
+            ev.currentTarget.focus({preventScroll: true});
+            useSheet.getState().open('event', e.eventNo);
+          }}
+        >
+          {e.title}
+        </button>
+      </h3>
       {hasWho && (
         <p className="ev-who">
           {e.speakers.join(', ')}

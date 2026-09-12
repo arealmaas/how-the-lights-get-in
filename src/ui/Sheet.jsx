@@ -10,6 +10,7 @@ import ActSheet from './sheets/ActSheet.jsx';
 import HubSheet from './sheets/HubSheet.jsx';
 import StatsSheet from './sheets/StatsSheet.jsx';
 import ReadingSheet from './sheets/ReadingSheet.jsx';
+import Banner from './Banner.jsx';
 
 export default function Sheet(){
   const stack = useSheet(s => s.stack);
@@ -17,9 +18,18 @@ export default function Sheet(){
   const close = useSheet(s => s.close);
   const bodyRef = useRef(null);
   const sheetRef = useRef(null);
+  const positions = useRef(new WeakMap());
+  const nextEntryId = useRef(0);
   const [expanded, setExpanded] = useState(false);
   const top = stack.length ? stack[stack.length - 1] : null;
   const open = !!top;
+  // Entries are stable while they remain on the stack. Keep their reading context without
+  // leaving hidden dialogs mounted, which would duplicate titles and form IDs.
+  if (top && !positions.current.has(top)) {
+    positions.current.set(top, {id: ++nextEntryId.current, scrollTop: 0});
+  }
+  const position = top ? positions.current.get(top) : null;
+  const firstVisit = position && !position.visited;
 
   // Fix the page in place on phones too, and return to the opener without losing the time slot.
   // This runs before title focus so we remember the element that opened the sheet.
@@ -48,13 +58,27 @@ export default function Sheet(){
     };
   }, [open]);
 
+  // Going forward starts at the title; Back restores the previous sheet's reading position.
   // Expanding only changes layout: tab selection, notes and reading position stay intact.
   useEffect(() => {
     if (!open) return;
-    if (bodyRef.current) bodyRef.current.scrollTop = 0;
+    const body = bodyRef.current;
+    if (body) body.scrollTop = position.scrollTop;
+    position.visited = true;
+    // An explicit Edit note action should arrive ready to write. Only do this on entry:
+    // Back keeps the reading position the user chose before opening another sheet.
+    const editor = firstVisit && top.kind === 'event' && top.mode === 'edit-note'
+      ? body?.querySelector('textarea.notes') : null;
+    if (editor) {
+      editor.focus({preventScroll: true});
+      const card = editor.closest('.note-card') || editor;
+      body.scrollTop += card.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
+      position.scrollTop = body.scrollTop;
+      return;
+    }
     const h2 = document.getElementById('sheet-title');
     if (h2) h2.focus({preventScroll: true});
-  }, [stack]);
+  }, [top]);
 
   useEffect(() => {
     if (!open) return;
@@ -63,15 +87,16 @@ export default function Sheet(){
       if (ev.key !== 'Tab') return;
       // Account/invite banners are deliberately above the sheet and must stay reachable.
       const surfaces = [document.querySelector('.banner'), sheetRef.current].filter(Boolean);
-      const controls = surfaces.flatMap(surface => [...surface.querySelectorAll(
+      const controls = [...new Set(surfaces.flatMap(surface => [...surface.querySelectorAll(
         'a[href], button, input, select, textarea, iframe, [tabindex]'
-      )]).filter(el => !el.disabled && el.tabIndex >= 0 && el.getClientRects().length > 0);
-      const first = controls[0], last = controls.at(-1), active = document.activeElement;
-      if (!controls.length) { ev.preventDefault(); sheetRef.current?.focus(); }
-      else if (!controls.includes(active) || (ev.shiftKey ? active === first : active === last)) {
-        ev.preventDefault();
-        (ev.shiftKey ? last : first).focus();
-      }
+      )]))].filter(el => !el.disabled && el.tabIndex >= 0 && el.getClientRects().length > 0);
+      // Own every Tab step so navigation cannot enter the obscured programme.
+      ev.preventDefault();
+      if (!controls.length) { sheetRef.current?.focus(); return; }
+      const activeIndex = controls.indexOf(document.activeElement);
+      const nextIndex = activeIndex < 0 ? (ev.shiftKey ? controls.length - 1 : 0)
+        : (activeIndex + (ev.shiftKey ? -1 : 1) + controls.length) % controls.length;
+      controls[nextIndex].focus();
     };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
@@ -79,7 +104,7 @@ export default function Sheet(){
 
   let body = null;
   if (top) {
-    if (top.kind === 'event') body = <EventSheet key={`${top.key}-${top.mode || ''}`} no={top.key} mode={top.mode} />;
+    if (top.kind === 'event') body = <EventSheet key={position.id} no={top.key} mode={top.mode} initialTab={position.tab} onTabChange={tab => { position.tab = tab; }} />;
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
     // the hub's `mode` is where it opens: 'crew' scrolls to the crew cards (the masthead's crew button)
@@ -94,6 +119,7 @@ export default function Sheet(){
     <>
       <div id="scrim" className="scrim" hidden={!open} onClick={close} />
       <section id="sheet" ref={sheetRef} className={`sheet${expanded ? ' expanded' : ''}`} role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabIndex={-1} hidden={!open}>
+        {open && <Banner />}
         <div className="sheet-bar">
           <div className="grip" aria-hidden="true" />
           <button type="button" className="btn" id="back" hidden={stack.length < 2} onClick={back}>← Back</button>
@@ -105,7 +131,7 @@ export default function Sheet(){
           </button>
           <button type="button" className="close" id="close" aria-label="Close" onClick={close}>×</button>
         </div>
-        <div className="sheet-body" id="sheet-body" ref={bodyRef}>
+        <div className="sheet-body" id="sheet-body" ref={bodyRef} onScroll={ev => { if (position) position.scrollTop = ev.currentTarget.scrollTop; }}>
           {body}
         </div>
       </section>

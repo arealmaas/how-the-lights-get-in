@@ -47,7 +47,6 @@ export default function HubSheet({mode}){
         ) : 'Nothing picked yet'}
       </p>
       <HubCards mine={mine} />
-      <NotesSection />
       {byDay.filter(([, evs]) => evs.length).map(([d, evs]) => (
         <Fragment key={d}>
           <h3 className="sub">{DAYS[d]} · {evs.length} pick{evs.length === 1 ? '' : 's'}</h3>
@@ -64,6 +63,7 @@ export default function HubSheet({mode}){
           <CrewSection />
         </>
       )}
+      <NotesSection />
       <p className="hub-foot">
         <button type="button" onClick={() => useSheet.getState().open('stats')}>The festival in numbers</button>
         <span>·</span>

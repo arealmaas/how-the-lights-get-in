@@ -1,5 +1,5 @@
 import {test, expect, beforeEach, vi} from 'vitest';
-import {render, screen, fireEvent} from '@testing-library/react';
+import {render, screen, fireEvent, act} from '@testing-library/react';
 import AccountCard from './AccountCard.jsx';
 import {useCloud} from '../../store/cloud.js';
 import {useSheet} from '../../store/sheet.js';
@@ -36,6 +36,9 @@ test('signed out: both ways in, Google first, and the email form hidden until it
 
   fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
   expect(document.querySelector('form.authform').hidden).toBe(false);
+  expect(screen.getByLabelText('Email')).toHaveFocus();
+  expect(screen.getByLabelText('Password (8 or more characters)')).toHaveAttribute('type', 'password');
+  expect(screen.getByLabelText('Your name (for a new account)')).toHaveAttribute('name', 'name');
 });
 
 test('in the installed iOS app the email button comes first, with a line saying why', () => {
@@ -56,6 +59,28 @@ test('submitting the form (Enter, or the Sign in button) signs in and shows what
 
   expect(H.emailAction).toHaveBeenCalledWith('signin', {email: 'are@example.com', password: 'long enough', name: ''});
   expect(await screen.findByText(/Wrong email or password/)).toBeInTheDocument();
+  expect(screen.getByRole('status')).toHaveTextContent('Wrong email or password.');
+});
+
+test('account feedback announces the pending action and its result while field labels remain visible', async () => {
+  let finish;
+  H.emailAction.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+  render(<AccountCard />);
+  fireEvent.click(screen.getByRole('button', {name: 'Use email and password'}));
+  const email = screen.getByLabelText('Email');
+  fireEvent.change(email, {target: {value: 'are@example.com'}});
+  expect(email.closest('label')).toHaveTextContent('Email');
+  fireEvent.click(screen.getByRole('button', {name: 'Forgot password?'}));
+
+  const status = screen.getByRole('status');
+  expect(status).toHaveAttribute('aria-live', 'polite');
+  expect(status).toHaveAttribute('aria-atomic', 'true');
+  expect(status).toHaveTextContent('Working…');
+  expect(screen.getByRole('button', {name: 'Forgot password?'})).toBeDisabled();
+
+  await act(async () => { finish('Password reset email sent. Check your inbox.'); });
+  expect(status).toHaveTextContent('Password reset email sent. Check your inbox.');
+  expect(screen.getByRole('button', {name: 'Forgot password?'})).toBeEnabled();
 });
 
 test('“Forgot password?” and “Create account” run their own actions without submitting', async () => {
@@ -82,6 +107,9 @@ test('signed in: the name, the email and the settled sync sentence, with every a
 
   fireEvent.click(screen.getByRole('button', {name: 'Add a password'}));
   expect(document.querySelector('form.authform').hidden).toBe(false);
+  expect(screen.getByLabelText('Email')).toHaveValue('are@example.com');
+  expect(screen.getByLabelText('New password (8 or more characters)')).toHaveFocus();
+  expect(screen.getByRole('status')).toHaveAttribute('aria-live', 'polite');
   expect(screen.getByRole('button', {name: 'Save password'})).toBeInTheDocument();
 });
 

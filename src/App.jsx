@@ -9,6 +9,7 @@ import EventGrid from './ui/EventGrid.jsx';
 import Footer from './ui/Footer.jsx';
 import Sheet from './ui/Sheet.jsx';
 import {usePlanner} from './store/planner.js';
+import {useSheet} from './store/sheet.js';
 import {useFiltered} from './ui/useFiltered.js';
 
 // Preview channels only: firebase-hosting-pull-request.yml builds with VITE_PREVIEW="PR #12", and this
@@ -32,15 +33,17 @@ function PreviewTag(){
 
 export default function App(){
   const view = usePlanner(s => s.view);
+  const sheetOpen = useSheet(s => s.stack.length > 0);
   const {list, clashes} = useFiltered();
 
   return (
     <>
+      <a className="skip-link" href="#main">Skip to programme</a>
       <Masthead />
       <Toolbar clashes={clashes} shown={list.length} />
-      <Banner />
+      {!sheetOpen && <Banner />}
       <NowNext />
-      <main id="main">
+      <main id="main" tabIndex={-1} aria-label="Festival programme">
         {view === 'grid' ? <EventGrid list={list} clashes={clashes} /> : <EventList list={list} clashes={clashes} />}
       </main>
       <Footer />

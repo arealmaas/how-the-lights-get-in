@@ -2,8 +2,8 @@ import {ticketBadge, ticketLine, whoPlain, initials, slug, cleanDesc, ytId} from
 
 test('ticketBadge returns plain data for each ticketing state', () => {
   expect(ticketBadge({ticketing: 'sold_out'})).toEqual({cls: 'badge sold', text: 'Sold out'});
-  expect(ticketBadge({ticketing: 'fast_pass', fastPassPrice: 12})).toEqual({cls: 'badge', text: 'Fast Pass £12'});
-  expect(ticketBadge({ticketing: 'fast_pass'})).toEqual({cls: 'badge', text: 'Fast Pass'});
+  expect(ticketBadge({ticketing: 'fast_pass', fastPassPrice: 12})).toEqual({cls: 'badge', text: 'Included · optional Fast Pass'});
+  expect(ticketBadge({ticketing: 'fast_pass'})).toEqual({cls: 'badge', text: 'Included · optional Fast Pass'});
   expect(ticketBadge({ticketing: 'separate_ticket', prices: {standard: 20}})).toEqual({cls: 'badge sep', text: 'Separate ticket · from £20'});
   expect(ticketBadge({ticketing: 'included'})).toEqual({cls: 'badge', text: 'Included'});
 });

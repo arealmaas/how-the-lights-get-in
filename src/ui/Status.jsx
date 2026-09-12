@@ -1,5 +1,4 @@
-// src/ui/Status.jsx — ported from the old renderStatus(): the "Showing N of M events" line and the
-// clear-filters link, visible only while a filter is narrowing the day's list.
+// Keep the day's result count visible; offer a reset while filters narrow the programme.
 import {EVENTS, DAYS} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {hasFilters} from '../core/filters.js';
@@ -13,6 +12,7 @@ export default function Status({shown, onClear}){
   const picksOnly = usePlanner(s => s.picksOnly);
   const crewOnly = usePlanner(s => s.crewOnly);
   const q = usePlanner(s => s.q);
+  const picks = usePlanner(s => s.picks);
   const inCrew = useInCrew();
   // the same reading of crewOnly that useFiltered applies, so a persisted flag left over from a crew that
   // has gone cannot offer "Clear filters" over a list nothing is filtering
@@ -21,13 +21,9 @@ export default function Status({shown, onClear}){
   const total = EVENTS.filter(e => e.date === day).length;
 
   return (
-    <div className="status" id="status" hidden={!active}>
-      {active && (
-        <>
-          <span>Showing <b>{shown}</b> of {total} {DAYS[day]} events</span>
-          <button type="button" className="linkbtn" onClick={onClear}>Clear filters</button>
-        </>
-      )}
+    <div className="status" id="status">
+      <span role="status" aria-live="polite" aria-atomic="true">{active ? <>Showing <b>{shown}</b> of {total} {DAYS[day]} events</> : <><b>{shown}</b> {DAYS[day]} events</>}</span>
+      {active ? <button type="button" className="linkbtn" onClick={onClear}>Clear filters</button> : <span className="status-hint">{picks.size ? 'Your picks are marked with a star.' : 'Star events to plan your weekend.'}</span>}
     </div>
   );
 }

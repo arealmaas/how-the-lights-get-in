@@ -65,15 +65,24 @@ export default function AccountCard(){
         <div className="actions">{STANDALONE && IOS ? [mail, google] : [google, mail]}</div>
         {STANDALONE && IOS && <span className="hc-d">In the installed app, email and password is the reliable way in.</span>}
         <form className="authform" noValidate hidden={!open} onSubmit={ev => { ev.preventDefault(); run('signin'); }}>
-          <input ref={emailRef} type="email" name="email" placeholder="Email" autoComplete="email" required value={email} onChange={ev => setEmail(ev.target.value)} />
-          <input type="password" name="password" placeholder="Password (8 or more characters)" autoComplete="current-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
-          <input type="text" name="name" placeholder="Your name (for a new account)" maxLength={40} autoComplete="name" value={name} onChange={ev => setName(ev.target.value)} />
+          <label>
+            Email
+            <input ref={emailRef} type="email" name="email" placeholder="Email" autoComplete="email" required value={email} onChange={ev => setEmail(ev.target.value)} />
+          </label>
+          <label>
+            Password (8 or more characters)
+            <input type="password" name="password" placeholder="Password (8 or more characters)" autoComplete="current-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
+          </label>
+          <label>
+            Your name (for a new account)
+            <input type="text" name="name" placeholder="Your name (for a new account)" maxLength={40} autoComplete="name" value={name} onChange={ev => setName(ev.target.value)} />
+          </label>
           <div className="actions">
             <button type="submit" className="btn primary" disabled={busy}>Sign in</button>
             <button type="button" className="btn" disabled={busy} onClick={() => run('create')}>Create account</button>
             <button type="button" className="btn" disabled={busy} onClick={() => run('reset')}>Forgot password?</button>
           </div>
-          <p className="src">{msg}</p>
+          <p className="src" role="status" aria-live="polite" aria-atomic="true">{busy ? 'Working…' : msg}</p>
         </form>
       </div>
     );
@@ -100,10 +109,16 @@ export default function AccountCard(){
         <button type="button" className="btn" onClick={() => deleteAccount()}>Delete account</button>
       </div>
       <form className="authform" noValidate hidden={!open} onSubmit={ev => { ev.preventDefault(); run('link'); }}>
-        <input type="email" name="email" placeholder="Email" autoComplete="email" value={email} onChange={ev => setEmail(ev.target.value)} />
-        <input ref={pwRef} type="password" name="password" placeholder="New password (8 or more characters)" autoComplete="new-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
+        <label>
+          Email
+          <input type="email" name="email" placeholder="Email" autoComplete="email" value={email} onChange={ev => setEmail(ev.target.value)} />
+        </label>
+        <label>
+          New password (8 or more characters)
+          <input ref={pwRef} type="password" name="password" placeholder="New password (8 or more characters)" autoComplete="new-password" minLength={8} value={password} onChange={ev => setPassword(ev.target.value)} />
+        </label>
         <div className="actions"><button type="submit" className="btn primary" disabled={busy}>Save password</button></div>
-        <p className="src">{msg}</p>
+        <p className="src" role="status" aria-live="polite" aria-atomic="true">{busy ? 'Working…' : msg}</p>
       </form>
       {renaming && (
         <NamePrompt label="Your name, as your crew sees it" initial={accountName} maxLength={40}

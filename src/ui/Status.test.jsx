@@ -18,9 +18,10 @@ beforeEach(() => {
   useCloud.setState({user: null, accountName: '', marker: null, crewId: null, crew: null});
 });
 
-test('no filters, no status line', () => {
+test('an unfiltered day still shows the result count', () => {
   render(<Status shown={40} onClear={() => {}} />);
-  expect(document.getElementById('status')).toHaveAttribute('hidden');
+  expect(document.getElementById('status')).toHaveTextContent('40 Saturday events');
+  expect(screen.queryByRole('button', {name: 'Clear filters'})).not.toBeInTheDocument();
 });
 
 // crewOnly is persisted and cloud/crew.js only clears it when it sees a crew go. useFiltered ignores a
@@ -28,7 +29,8 @@ test('no filters, no status line', () => {
 test('a left-over crewOnly outside a crew does not count as a filter', () => {
   usePlanner.setState({crewOnly: true});
   const {unmount} = render(<Status shown={40} onClear={() => {}} />);
-  expect(document.getElementById('status')).toHaveAttribute('hidden');
+  expect(document.getElementById('status')).toHaveTextContent('40 Saturday events');
+  expect(screen.queryByRole('button', {name: 'Clear filters'})).not.toBeInTheDocument();
   unmount();
 
   useCloud.setState({user: USER, crewId: 'c1', crew: CREW});

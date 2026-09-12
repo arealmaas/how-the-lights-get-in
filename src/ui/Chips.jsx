@@ -18,7 +18,7 @@ function jumpToNow(){
   }, 0);
 }
 
-export default function Chips({clashes}){
+export default function Chips({clashes, section = 'all'}){
   const day = usePlanner(s => s.day);
   const groups = usePlanner(s => s.groups);
   const picksOnly = usePlanner(s => s.picksOnly);
@@ -34,7 +34,8 @@ export default function Chips({clashes}){
   const dayCrew = inCrew ? EVENTS.filter(e => e.date === day && plan.has(e.eventNo)).length : 0;
 
   return (
-    <div className="chips" id="chips">
+    <div className={`chips chips-${section}`}>
+      {section !== 'types' && <>
       <button
         type="button"
         className="chip pickchip"
@@ -55,8 +56,9 @@ export default function Chips({clashes}){
           <CrewIcon />Crew <span>({dayCrew})</span>
         </button>
       )}
-      <span className="chips-sep" aria-hidden="true"></span>
-      {GROUPS.map(([key, label]) => (
+      {section === 'all' && <span className="chips-sep" aria-hidden="true"></span>}
+      </>}
+      {section !== 'plans' && GROUPS.map(([key, label]) => (
         <button
           key={key}
           type="button"
@@ -67,7 +69,7 @@ export default function Chips({clashes}){
           <i></i>{label}
         </button>
       ))}
-      {isFestivalDay(NOW.date) && (
+      {section !== 'types' && isFestivalDay(NOW.date) && (
         <button type="button" className="chip now" onClick={jumpToNow}>Now</button>
       )}
     </div>

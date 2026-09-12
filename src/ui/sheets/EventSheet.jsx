@@ -25,17 +25,18 @@ function ClashRef({no}){
   return <button type="button" onClick={() => useSheet.getState().open('event', no)}>{o.title}</button>;
 }
 
-function selectTab(setTab, tab){
+function selectTab(setTab, tab, onTabChange){
   setTab(tab);
+  onTabChange?.(tab);
   const body = document.getElementById('sheet-body');
   if (body) body.scrollTop = 0;
 }
 
-export default function EventSheet({no, mode}){
+export default function EventSheet({no, mode, initialTab, onTabChange}){
   const e = byNo.get(no);
   const picks = usePlanner(s => s.picks);
   const {clashes, soft} = useFiltered();
-  const [tab, setTab] = useState(mode === 'notes' || mode === 'edit-note' ? 'notes' : 'overview');
+  const [tab, setTab] = useState(initialTab || (mode === 'notes' || mode === 'edit-note' ? 'notes' : 'overview'));
   const hasNote = usePlanner(s => !!s.notes[no]?.trim());
   if (!e) return null;
 
@@ -121,9 +122,9 @@ export default function EventSheet({no, mode}){
         </p>
       )}
       <div className="tabs event-tabs" aria-label="Event sections">
-        <button type="button" aria-pressed={tab === 'overview'} aria-controls={`overview-${no}`} onClick={() => selectTab(setTab, 'overview')}>Overview</button>
-        {b && <button type="button" aria-pressed={tab === 'briefing'} aria-controls={`briefing-${no}`} onClick={() => selectTab(setTab, 'briefing')}>Briefing</button>}
-        <button type="button" aria-pressed={tab === 'notes'} aria-controls={`notes-${no}`} onClick={() => selectTab(setTab, 'notes')}>Notes{hasNote && <span className="notes-dot" aria-hidden="true" />}</button>
+        <button type="button" aria-pressed={tab === 'overview'} aria-controls={`overview-${no}`} onClick={() => selectTab(setTab, 'overview', onTabChange)}>Overview</button>
+        {b && <button type="button" aria-pressed={tab === 'briefing'} aria-controls={`briefing-${no}`} onClick={() => selectTab(setTab, 'briefing', onTabChange)}>Briefing</button>}
+        <button type="button" aria-pressed={tab === 'notes'} aria-controls={`notes-${no}`} onClick={() => selectTab(setTab, 'notes', onTabChange)}>Notes{hasNote && <span className="notes-dot" aria-hidden="true" />}</button>
       </div>
       <div id={`overview-${no}`} hidden={tab !== 'overview'}>{overview}</div>
       {b && <div id={`briefing-${no}`} hidden={tab !== 'briefing'}><Briefing b={b} /></div>}

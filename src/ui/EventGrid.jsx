@@ -2,12 +2,13 @@
 // A tile in the crew's plan gets the `crew` class (a ring inside the tile, in the crew colour) and the crew
 // glyph beside the star. A tile is one button, so it cannot hold the plan toggle the way a card does; the
 // toggle is on the card and in the event sheet the tile opens.
-import {EVENTS, VENUES, GROUP} from '../data/index.js';
+import {VENUES, GROUP} from '../data/index.js';
 import {usePlanner} from '../store/planner.js';
 import {useSheet} from '../store/sheet.js';
 import {NOW, useCrewPlan} from './useFiltered.js';
 import CrewBadges from './CrewBadges.jsx';
 import CrewIcon from './CrewIcon.jsx';
+import EmptyEvents from './EmptyEvents.jsx';
 
 export default function EventGrid({list, clashes}){
   const day = usePlanner(s => s.day);
@@ -15,24 +16,26 @@ export default function EventGrid({list, clashes}){
   const plan = useCrewPlan();
 
   if (!list.length) {
-    return <div className="empty"><b>Nothing matches</b>Try another day, clear a filter, or search for a speaker.</div>;
+    return <EmptyEvents />;
   }
 
-  const venues = VENUES.filter(v => EVENTS.some(e => e.date === day && e.venue === v));
+  const venues = VENUES.filter(v => list.some(e => e.venue === v));
   const times = [...new Set(list.map(e => e.time))].sort();
 
   return (
-    <div className="gridwrap">
-      <table className="grid">
+    <>
+      <p className="gridnote" id="grid-help">{venues.length > 1 && 'Scroll sideways to compare venues. '}Select an event for details. Start times only; durations aren’t published.</p>
+      <div className="gridwrap" tabIndex={0} role="region" aria-label="Programme by time and venue" aria-describedby="grid-help">
+      <table className="grid" aria-label="Events by start time and venue">
         <thead>
-          <tr><th>Time</th>{venues.map(v => <th key={v}>{v}</th>)}</tr>
+          <tr><th scope="col">Time</th>{venues.map(v => <th scope="col" key={v}>{v}</th>)}</tr>
         </thead>
         <tbody>
           {times.map(t => {
             const past = day === NOW.date && t < NOW.time;
             return (
               <tr key={t}>
-                <td className={'t' + (past ? ' past' : '')}>{t}</td>
+                <th scope="row" className={'t' + (past ? ' past' : '')}>{t}</th>
                 {venues.map(v => {
                   const evs = list.filter(e => e.time === t && e.venue === v);
                   return (
@@ -41,6 +44,7 @@ export default function EventGrid({list, clashes}){
                         <button
                           key={e.eventNo}
                           type="button"
+                          aria-haspopup="dialog"
                           className={`tile g-${GROUP[e.type]}${picks.has(e.eventNo) ? ' picked' : ''}${plan.has(e.eventNo) ? ' crew' : ''}`}
                           onClick={() => useSheet.getState().open('event', e.eventNo)}
                         >
@@ -62,7 +66,7 @@ export default function EventGrid({list, clashes}){
           })}
         </tbody>
       </table>
-      <p className="gridnote">Start times only — the festival does not publish end times. Tap a block for details.</p>
-    </div>
+      </div>
+    </>
   );
 }

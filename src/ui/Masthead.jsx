@@ -24,7 +24,7 @@ export default function Masthead(){
           <h1>HowTheLightGetsIn <span>London 2026</span></h1>
           <p className="sub">
             <span className="where">Kenwood House, Hampstead Heath · 19–20 September</span>
-            <span className="unofficial">Unofficial fan-made planner, not affiliated with the festival · <a href="#about">about</a></span>
+            <span className="unofficial">Unofficial planner · <a href="#about">About</a></span>
           </p>
         </div>
         <nav className="mast-actions" aria-label="My festival">

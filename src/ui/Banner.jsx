@@ -19,7 +19,7 @@ export default function Banner(){
   return (
     <div className="banner" ref={ref}>
       <div className="banner-inner">
-        <span>{text}</span>
+        <span role="status" aria-live="polite" aria-atomic="true">{text}</span>
         {input && <input readOnly value={input} aria-label="Link" />}
         {actions.map((a, i) => (
           <button key={i} type="button" className={'btn' + (a.primary ? ' primary' : '')} onClick={a.onClick}>{a.label}</button>

@@ -6,7 +6,7 @@ export function ticketBadge(e){
     const p = e.prices || {}; const from = Math.min(...Object.values(p).filter(Number.isFinite));
     return {cls: 'badge sep', text: `Separate ticket${Number.isFinite(from) ? ' · from £' + from : ''}`};
   }
-  if (e.ticketing === 'fast_pass') return {cls: 'badge', text: `Fast Pass${e.fastPassPrice ? ' £' + e.fastPassPrice : ''}`};
+  if (e.ticketing === 'fast_pass') return {cls: 'badge', text: 'Included · optional Fast Pass'};
   return {cls: 'badge', text: 'Included'};
 }
 export function ticketLine(e){

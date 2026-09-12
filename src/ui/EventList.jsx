@@ -3,6 +3,7 @@
 import {usePlanner} from '../store/planner.js';
 import {NOW} from './useFiltered.js';
 import EventCard from './EventCard.jsx';
+import EmptyEvents from './EmptyEvents.jsx';
 
 export default function EventList({list, clashes}){
   const day = usePlanner(s => s.day);
@@ -11,7 +12,7 @@ export default function EventList({list, clashes}){
   const verdicts = usePlanner(s => s.verdicts);
 
   if (!list.length) {
-    return <div className="empty"><b>Nothing matches</b>Try another day, clear a filter, or search for a speaker.</div>;
+    return <EmptyEvents />;
   }
 
   const slots = new Map();
