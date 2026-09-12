@@ -127,6 +127,7 @@
 })();
 //#endregion
 //#region src/core/notes.js
+var NOTE_LIMIT = 2e4;
 var b64u = {
 	encode(str) {
 		const bytes = new TextEncoder().encode(String(str));
@@ -140,7 +141,7 @@ var b64u = {
 	}
 };
 var isEventKey = (k) => /^\d+$/.test(k);
-var cleanNotes = (obj) => Object.fromEntries(Object.entries(obj || {}).filter(([no, t]) => isEventKey(no) && typeof t === "string" && t.trim()).map(([no, t]) => [+no, t.slice(0, 2e4)]));
+var cleanNotes = (obj) => Object.fromEntries(Object.entries(obj || {}).filter(([no, t]) => isEventKey(no) && typeof t === "string" && t.trim()).map(([no, t]) => [+no, t.slice(0, NOTE_LIMIT)]));
 function mergeNoteText(mine, theirs) {
 	const m = (mine || "").trim(), t = (theirs || "").trim();
 	if (!m) return theirs || "";
