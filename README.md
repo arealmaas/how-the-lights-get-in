@@ -11,6 +11,7 @@ This is an **unofficial, fan-made** planner. It is not affiliated with, endorsed
 ## Features
 
 - **Mobile event details**: expand any event or speaker sheet with *Full screen*, return with *Compact view*, and close it without losing your place in the programme. Larger touch controls and full-width mobile cards make it easier to browse; event picks are at the top of the details.
+- **Festival map**: *Show on map* beside an event’s venue opens the official 2025 area map, with zoom controls and Back to the event. It shows the grounds and nearby transport, not individual tents; the 2026 layout may differ. The original IAI map is credited and linked, and the local WebP is cached for offline use.
 - **List view** grouped by start time, and a **grid view** (venues across, times down) for spotting clashes.
 - Filters by day, strand (debates, talks, music & comedy, cinema, Inner Circle, children's), venue and topic, plus free-text search across titles, speakers and descriptions.
 - **Picks and My festival**: star events; *My festival* in the header gathers your weekend — picks per day with clash markers, the reading list, calendar export, a link that moves picks and verdicts to another device (`#picks=…`), and the notes export. A link with `#event=<number>` opens one event directly.

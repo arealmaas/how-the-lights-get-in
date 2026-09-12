@@ -10,6 +10,7 @@ import ActSheet from './sheets/ActSheet.jsx';
 import HubSheet from './sheets/HubSheet.jsx';
 import StatsSheet from './sheets/StatsSheet.jsx';
 import ReadingSheet from './sheets/ReadingSheet.jsx';
+import MapSheet from './sheets/MapSheet.jsx';
 import Banner from './Banner.jsx';
 
 export default function Sheet(){
@@ -107,6 +108,7 @@ export default function Sheet(){
     if (top.kind === 'event') body = <EventSheet key={position.id} no={top.key} mode={top.mode} initialTab={position.tab} onTabChange={tab => { position.tab = tab; }} />;
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
+    else if (top.kind === 'map') body = <MapSheet key={position.id} venue={top.key} />;
     // the hub's `mode` is where it opens: 'crew' scrolls to the crew cards (the masthead's crew button)
     else if (top.kind === 'hub') body = <HubSheet key={top.key} mode={top.mode} />;
     else if (top.kind === 'stats') body = <StatsSheet key={top.key} />;

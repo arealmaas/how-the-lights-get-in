@@ -95,7 +95,10 @@ export default function EventSheet({no, mode, initialTab, onTabChange}){
         <span>Event #{e.eventNo}</span>
       </div>
       <h2 id="sheet-title" tabIndex={-1}>{e.title}</h2>
-      <p className="when">{DAYS[e.date]} {e.time} <span>· {e.venue}</span></p>
+      <div className="event-location">
+        <p className="when">{DAYS[e.date]} {e.time} <span>· {e.venue}</span></p>
+        <button type="button" className="btn show-map" onClick={() => useSheet.getState().open('map', e.venue)}>Show on map</button>
+      </div>
       <div className="actions event-plan-actions">
         <button
           type="button"
