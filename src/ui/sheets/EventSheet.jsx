@@ -2,7 +2,7 @@
 // notes (from useFiltered's clash maps), tabs when a briefing exists, the overview (people, description,
 // media, meta, actions: pick toggle / crew-plan toggle while in a crew / .ics export / Google Calendar),
 // and a dedicated Notes tab with personal notes, shared crew notes and debate verdicts.
-import {useState, Fragment} from 'react';
+import {useLayoutEffect, useRef, useState, Fragment} from 'react';
 import {byNo, BRIEFINGS, GROUP, DAYS} from '../../data/index.js';
 import {ticketLine, cleanDesc} from '../../core/labels.js';
 import {icsFile, icsFilename, gcalLink} from '../../core/calendar.js';
@@ -25,19 +25,49 @@ function ClashRef({no}){
   return <button type="button" onClick={() => useSheet.getState().open('event', no)}>{o.title}</button>;
 }
 
-function selectTab(setTab, tab, onTabChange){
-  setTab(tab);
-  onTabChange?.(tab);
-  const body = document.getElementById('sheet-body');
-  if (body) body.scrollTop = 0;
-}
-
-export default function EventSheet({no, mode, initialTab, onTabChange}){
+export default function EventSheet({no, mode, initialTab, onTabChange, sectionPositions}){
   const e = byNo.get(no);
   const picks = usePlanner(s => s.picks);
   const {clashes, soft} = useFiltered();
   const [tab, setTab] = useState(initialTab || (mode === 'notes' || mode === 'edit-note' ? 'notes' : 'overview'));
   const hasNote = usePlanner(s => !!s.notes[no]?.trim());
+  const tabsRef = useRef(null);
+  const panelRef = useRef(null);
+  const readingPositions = useRef(sectionPositions || {});
+  const pendingScroll = useRef(null);
+
+  // Share the measured strip height with the note toolbar and keyboard scroll padding.
+  // It can change with viewport width, fonts or enlarged text.
+  useLayoutEffect(() => {
+    const tabs = tabsRef.current;
+    const body = tabs?.closest('.sheet-body');
+    if (!body) return;
+    const measure = () => body.style.setProperty('--event-tabs-height', `${tabs.offsetHeight}px`);
+    measure();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(tabs);
+    return () => { observer?.disconnect(); body.style.removeProperty('--event-tabs-height'); };
+  }, []);
+
+  function sectionStart(body){
+    return body.scrollTop + panelRef.current.getBoundingClientRect().top - body.getBoundingClientRect().top - tabsRef.current.offsetHeight - 14;
+  }
+  function selectTab(next){
+    if (next === tab) return;
+    const body = tabsRef.current?.closest('.sheet-body');
+    if (body && panelRef.current) readingPositions.current[tab] = Math.max(0, body.scrollTop - sectionStart(body));
+    pendingScroll.current = readingPositions.current[next] || 0;
+    setTab(next);
+    onTabChange?.(next);
+  }
+  // Align the newly visible content after its height changes. Keep the event heading
+  // above the reading area, and return to the passage when revisiting a section.
+  useLayoutEffect(() => {
+    if (pendingScroll.current === null) return;
+    const body = tabsRef.current?.closest('.sheet-body');
+    if (body && panelRef.current) body.scrollTop = Math.max(0, sectionStart(body) + pendingScroll.current);
+    pendingScroll.current = null;
+  }, [tab]);
   if (!e) return null;
 
   const picked = picks.has(no);
@@ -54,6 +84,7 @@ export default function EventSheet({no, mode, initialTab, onTabChange}){
 
   const overview = (
     <>
+      <Hero photo={e.photo} />
       <People e={e} />
       <CrewRow e={e} />
       <div className="desc">
@@ -89,7 +120,6 @@ export default function EventSheet({no, mode, initialTab, onTabChange}){
 
   return (
     <div className={`event-sheet g-${GROUP[e.type]}`}>
-      <Hero photo={e.photo} />
       <div className="kicker">
         <span className="type">{e.type}</span>
         <span>Event #{e.eventNo}</span>
@@ -124,14 +154,14 @@ export default function EventSheet({no, mode, initialTab, onTabChange}){
           ))} — sessions assumed to last an hour.
         </p>
       )}
-      <div className="tabs event-tabs" aria-label="Event sections">
-        <button type="button" aria-pressed={tab === 'overview'} aria-controls={`overview-${no}`} onClick={() => selectTab(setTab, 'overview', onTabChange)}>Overview</button>
-        {b && <button type="button" aria-pressed={tab === 'briefing'} aria-controls={`briefing-${no}`} onClick={() => selectTab(setTab, 'briefing', onTabChange)}>Briefing</button>}
-        <button type="button" aria-pressed={tab === 'notes'} aria-controls={`notes-${no}`} onClick={() => selectTab(setTab, 'notes', onTabChange)}>Notes{hasNote && <span className="notes-dot" aria-hidden="true" />}</button>
+      <div ref={tabsRef} className="tabs event-tabs" role="group" aria-label="Event sections">
+        <button type="button" aria-pressed={tab === 'overview'} aria-controls={`overview-${no}`} onClick={() => selectTab('overview')}>Overview</button>
+        {b && <button type="button" aria-pressed={tab === 'briefing'} aria-controls={`briefing-${no}`} onClick={() => selectTab('briefing')}>Briefing</button>}
+        <button type="button" aria-pressed={tab === 'notes'} aria-controls={`notes-${no}`} onClick={() => selectTab('notes')}>Notes{hasNote && <span className="notes-dot" aria-hidden="true" />}</button>
       </div>
-      <div id={`overview-${no}`} hidden={tab !== 'overview'}>{overview}</div>
-      {b && <div id={`briefing-${no}`} hidden={tab !== 'briefing'}><Briefing b={b} /></div>}
-      <div id={`notes-${no}`} hidden={tab !== 'notes'}>
+      <div ref={tab === 'overview' ? panelRef : null} id={`overview-${no}`} hidden={tab !== 'overview'}>{overview}</div>
+      {b && <div ref={tab === 'briefing' ? panelRef : null} id={`briefing-${no}`} hidden={tab !== 'briefing'}><Briefing b={b} /></div>}
+      <div ref={tab === 'notes' ? panelRef : null} id={`notes-${no}`} hidden={tab !== 'notes'}>
         <h3 className="sub notes-heading">My notes</h3>
         <Notes no={no} initialEditing={mode === 'edit-note'} />
         <CrewNotes no={no} />

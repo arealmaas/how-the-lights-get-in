@@ -41,6 +41,22 @@ test('opening event 6 shows its title, a Who won? verdict block and the notes te
   expect(usePlanner.getState().picks.has(6)).toBe(true);
 });
 
+test('changing sections keeps the note draft and the same event visit', async () => {
+  useSheet.getState().open('event', 6);
+  render(<Sheet />);
+  const sections = screen.getByRole('group', {name: 'Event sections'});
+  expect(sections).toBeVisible();
+  await userEvent.click(screen.getByRole('button', {name: 'Notes', exact: true}));
+  const editor = screen.getByRole('textbox', {name: 'My note'});
+  await userEvent.type(editor, 'A thought to compare with the briefing.');
+  await userEvent.click(screen.getByRole('button', {name: 'Briefing', exact: true}));
+  expect(editor).not.toBeVisible();
+  await userEvent.click(screen.getByRole('button', {name: 'Notes', exact: true}));
+  expect(editor).toBeVisible();
+  expect(editor).toHaveValue('A thought to compare with the briefing.');
+  expect(useSheet.getState().stack).toHaveLength(1);
+});
+
 // CREW-SPEC section 7: in a crew the actions row has the crew-plan toggle beside "Add to my picks".
 // It reads the crew document and calls cloud/crew.js; the pressed state follows the next snapshot.
 test('in a crew the actions row offers the crew-plan toggle beside the pick button; without one it does not', async () => {

@@ -29,11 +29,11 @@ The secondary-text token on white improved from **3.40:1 to 5.18:1**; on the dar
 ## Recommended next work
 
 1. **Completed: browser Back follows detail navigation.** Back, Forward and the in-app Back button share the sheet stack; visited event sections and scroll positions survive navigation within a session. Close/Escape rewinds to the programme. Reload restores public navigation descriptors without adding a duplicate visit. Import and invitation payloads are stripped before history entries are written. This pass includes browser regressions for the combined flows.
-2. **Improve long-form section navigation.** Overview, Briefing and Notes still live below the event hero, and switching a section returns to the top. Test keeping section navigation visible while reading, particularly on phones.
+2. **Completed: improve long-form section navigation.** Overview, Briefing and Notes remain visible while reading. Switching sections restores the passage you left, including after a nested speaker visit; selecting the current section keeps the position unchanged. The image is part of Overview, bringing event details and section controls higher on phones. The sticky note toolbar and explicit Edit note entry account for the section strip above them.
 3. **Give the growing notebook a direct route.** Moving notes below the itinerary protects the main task. For frequent note-taking, a direct My notes entry would reduce scrolling without truncating writing. Validate the importance of notes versus reading-list access with actual festival users before changing the header again.
 4. **Measure first-visit performance on a weak mobile connection.** The production build still reports large chunks: the main JS bundle is about 289 kB compressed and the lazy Firebase bundle about 207 kB. Offline coverage is valuable, but initial load time deserves measurement before deciding what to split or defer.
 
-Items 2–4 remain recommendations. A short usability check with a few festival-goers should ask them to find a Sunday talk, identify whether it costs extra, save two competing events, return from a speaker profile, and revise a saved note. Observe completion and hesitation rather than asking only whether the page looks better.
+Items 3–4 remain recommendations. A short usability check with a few festival-goers should ask them to find a Sunday talk, identify whether it costs extra, save two competing events, return from a speaker profile, and revise a saved note. Observe completion and hesitation rather than asking only whether the page looks better.
 
 ## Verification and limits
 
@@ -49,3 +49,9 @@ Key implementation files: [toolbar](../src/ui/Toolbar.jsx), [empty states](../sr
 ### Navigation follow-up
 
 The browser-history improvement is implemented. The combined checkout passes **300 unit/component tests**, **62 browser tests** across Chromium and WebKit, and the production build. Coverage includes nested event/speaker visits, saved sections and scroll positions, Close/Escape, reloads, direct links, and import/invitation cleanup. See the [history bridge](../src/history.js) and [browser regressions](../tests/e2e/history.spec.js).
+
+This follow-up was committed as `2ba56a7`, pushed to `main`, and successfully deployed before starting the section-navigation pass.
+
+### Section-navigation follow-up
+
+The section-navigation improvement is implemented. All **301 unit/component tests**, **72 browser tests** across Chromium and WebKit, and the production build pass. New coverage checks reachable controls during long reading, independent section positions, speaker Back, keyboard navigation, direct notebook editing, and events without a briefing. Narrow dark-mode and desktop light-mode screenshots were visually inspected. Existing landscape, offline-note, focus and history checks also pass. See the [section regressions](../tests/e2e/sections.spec.js).

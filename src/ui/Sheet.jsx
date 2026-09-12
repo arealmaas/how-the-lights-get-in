@@ -28,7 +28,7 @@ export default function Sheet(){
   // Entries are stable while they remain on the stack. Keep their reading context without
   // leaving hidden dialogs mounted, which would duplicate titles and form IDs.
   if (top && !positions.current.has(top)) {
-    positions.current.set(top, {id: ++nextEntryId.current, scrollTop: 0});
+    positions.current.set(top, {id: ++nextEntryId.current, scrollTop: 0, sections: {}});
   }
   const position = top ? positions.current.get(top) : null;
   const firstVisit = position && !position.visited;
@@ -85,7 +85,8 @@ export default function Sheet(){
     if (editor) {
       editor.focus({preventScroll: true});
       const card = editor.closest('.note-card') || editor;
-      body.scrollTop += card.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
+      const sectionsHeight = body.querySelector('.event-tabs')?.offsetHeight || 0;
+      body.scrollTop += card.getBoundingClientRect().top - body.getBoundingClientRect().top - sectionsHeight - 12;
       position.scrollTop = body.scrollTop;
       return;
     }
@@ -117,7 +118,7 @@ export default function Sheet(){
 
   let body = null;
   if (top) {
-    if (top.kind === 'event') body = <EventSheet key={position.id} no={top.key} mode={top.mode} initialTab={position.tab} onTabChange={tab => { position.tab = tab; }} />;
+    if (top.kind === 'event') body = <EventSheet key={position.id} no={top.key} mode={top.mode} initialTab={position.tab} onTabChange={tab => { position.tab = tab; }} sectionPositions={position.sections} />;
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'map') body = <MapSheet key={position.id} venue={top.key} />;

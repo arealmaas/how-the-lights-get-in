@@ -100,6 +100,9 @@ test('Tab moves between banner and dialog controls without entering the backgrou
 });
 
 test('Edit note focuses and reveals the editor on entry, then Back restores its cached position', async () => {
+  vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(function(){
+    return this.classList.contains('event-tabs') ? 44 : 0;
+  });
   vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(){
     return new DOMRect(0, this.classList.contains('note-card') ? 600 : 100, 100, 100);
   });
@@ -108,7 +111,7 @@ test('Edit note focuses and reveals the editor on entry, then Back restores its 
   act(() => useSheet.getState().open('event', 6, 'edit-note'));
   const body = document.getElementById('sheet-body');
   expect(screen.getByRole('textbox', {name: 'My note'})).toHaveFocus();
-  expect(body.scrollTop).toBe(488);
+  expect(body.scrollTop).toBe(444); // leave the section strip and a gap above the note toolbar
   fireEvent.scroll(body, {target: {scrollTop: 640}});
   act(() => useSheet.getState().open('event', 7));
   await userEvent.click(screen.getByRole('button', {name: '← Back', exact: true}));

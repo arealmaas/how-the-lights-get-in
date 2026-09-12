@@ -225,6 +225,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%;font-size:12
 .sheet-bar .close{flex:none;width:44px;height:44px;border-radius:6px;font-size:20px;line-height:1;color:var(--ink-2)}
 .sheet-bar .close:hover{background:var(--surface-2)}
 .sheet-body{overflow:auto;overscroll-behavior:contain;min-height:0;padding:14px max(18px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));flex:1 1 auto;-webkit-overflow-scrolling:touch;overflow-wrap:anywhere}
+.sheet-body:has(.event-tabs){scroll-padding-top:calc(var(--event-tabs-height, 45px) + 14px)}
 .sheet-body .kicker{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-2)}
 .sheet-body .kicker .type{color:var(--c);display:inline-flex;align-items:center;gap:6px}
 .sheet-body .kicker .type::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
@@ -388,8 +389,10 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .brief .note{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:10px;margin-top:14px}
 
 /* ---------- notes & verdicts ---------- */
-.event-tabs{display:flex}
-.event-tabs button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px}
+.event-tabs{display:flex;position:sticky;top:0;z-index:3;background:var(--surface);margin-top:12px;box-shadow:0 -14px 0 var(--surface)}
+.event-tabs button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px}
+.event-sheet .note-toolbar{top:var(--event-tabs-height, 45px);z-index:2}
+.event-sheet .notes{scroll-margin-top:70px}
 .notes-dot{width:6px;height:6px;border-radius:50%;background:var(--pick);flex:none}
 .notes-heading{margin-top:16px}
 .note-card{border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);margin:0 0 20px;min-width:0}
