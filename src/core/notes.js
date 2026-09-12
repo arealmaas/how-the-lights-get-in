@@ -2,6 +2,8 @@
 // exports (no IIFE, no
 // module.exports). Shared by the app and the move page. No DOM, no Firebase: plain data in, plain data out.
 
+export const NOTE_LIMIT = 20000;
+
 // base64url without padding, UTF-8 safe, available in browsers and Node 18+
 export const b64u = {
   encode(str){
@@ -19,7 +21,7 @@ export const b64u = {
 const isEventKey = k => /^\d+$/.test(k);
 const cleanNotes = obj => Object.fromEntries(Object.entries(obj || {})
   .filter(([no, t]) => isEventKey(no) && typeof t === 'string' && t.trim())
-  .map(([no, t]) => [+no, t.slice(0, 20000)]));
+  .map(([no, t]) => [+no, t.slice(0, NOTE_LIMIT)]));
 
 // A note that differs on both sides keeps both texts, mine first, separated by a rule.
 export function mergeNoteText(mine, theirs){

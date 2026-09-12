@@ -249,11 +249,62 @@ test('a batch the rules refuse still writes the account half, and the crew hears
   useCloud.getState().patch({crewId: 'c1'});
   H.batch.commit.mockRejectedValueOnce({code: 'permission-denied'});
 
-  sync.change({'picks.3': true}, {'picks.3': true});
+  const saved = sync.change({'picks.3': true}, {'picks.3': true});
   await vi.waitFor(() => expect(H.F.updateDoc).toHaveBeenCalledTimes(1));
 
   expect(H.F.updateDoc).toHaveBeenCalledWith('users/u1', {'picks.3': true, updatedAt: 'TS'});
   expect(crew.onDenied).toHaveBeenCalledTimes(1);
+  expect(await saved).toBe(true);
+});
+
+test('note saves report success only after the account write is acknowledged', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {sync} = await setup();
+  let acknowledge;
+  H.batch.commit.mockImplementationOnce(() => new Promise(resolve => { acknowledge = resolve; }));
+  const finished = vi.fn();
+  const save = sync.change({'notes.6': 'A thought'}, null).then(finished);
+  await Promise.resolve();
+  expect(finished).not.toHaveBeenCalled();
+  acknowledge();
+  await save;
+  expect(finished).toHaveBeenCalledWith(true);
+});
+
+test('a failed account fallback does not report a successful note save', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {useCloud, sync} = await setup();
+  useCloud.setState({crewId: 'c1'});
+  H.batch.commit.mockRejectedValueOnce({code: 'permission-denied'});
+  H.F.updateDoc.mockRejectedValueOnce({code: 'unavailable'});
+  expect(await sync.change({'notes.6': 'A thought'}, {'notes.6': 'A thought'})).toBe(false);
+});
+
+test('a pending or failed note survives a rollback snapshot after the editor has closed', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {sync, usePlanner, useCloud} = await setup();
+  let refuse;
+  H.batch.commit.mockImplementationOnce(() => new Promise((resolve, reject) => { refuse = reject; }));
+  const save = usePlanner.getState().setNote(6, 'The latest note');
+  sync.applyUserData({notes: {6: 'The old note'}});
+  expect(usePlanner.getState().notes[6]).toBe('The latest note');
+  refuse({code: 'permission-denied'});
+  expect(await save.cloud).toBe(false);
+  sync.applyUserData({notes: {6: 'The old note'}});
+  expect(usePlanner.getState().notes[6]).toBe('The latest note');
+  expect(JSON.parse(localStorage.getItem('htlgi-l26-notes'))[6]).toBe('The latest note');
+  // The protection must never leak a previous account's pending text into another account.
+  useCloud.setState({user: {...USER, uid: 'u2'}});
+  sync.applyUserData({notes: {6: 'Another account'}});
+  expect(usePlanner.getState().notes[6]).toBe('Another account');
+});
+
+test('a successful note save allows subsequent edits from another device to arrive', async () => {
+  localStorage.setItem(LS_ACCOUNT, JSON.stringify({uid: 'u1'}));
+  const {sync, usePlanner} = await setup();
+  await usePlanner.getState().setNote(6, 'My edit').cloud;
+  sync.applyUserData({notes: {6: 'A newer edit on my phone'}});
+  expect(usePlanner.getState().notes[6]).toBe('A newer edit on my phone');
 });
 
 test('a batch that fails for any other reason is not retried on its own', async () => {

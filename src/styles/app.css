@@ -355,8 +355,42 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .brief .note{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:10px;margin-top:14px}
 
 /* ---------- notes & verdicts ---------- */
-.notes{width:100%;min-height:96px;border:1px solid var(--line-strong);border-radius:6px;padding:8px 10px;font:inherit;font-size:14px;background:var(--surface);color:var(--ink);resize:vertical;line-height:1.45}
-.notes:focus{outline:2px solid var(--focus);outline-offset:1px}
+.event-tabs{display:flex}
+.event-tabs button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px}
+.notes-dot{width:6px;height:6px;border-radius:50%;background:var(--pick);flex:none}
+.notes-heading{margin-top:16px}
+.note-card{border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);margin:0 0 20px;min-width:0}
+.note-toolbar{position:sticky;top:-14px;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);border-radius:12px 12px 0 0;background:var(--surface)}
+.note-label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-2)}
+.note-toolbar .btn{min-height:44px;flex:none}
+.notes{display:block;width:100%;min-height:260px;border:0;border-radius:0;padding:16px;font:inherit;font-size:16px;background:var(--surface);color:var(--ink);resize:none;overflow:hidden;line-height:1.75;overflow-wrap:anywhere;white-space:pre-wrap}
+.notes::placeholder{color:var(--ink-3);opacity:1}
+.notes:focus{outline:2px solid var(--focus);outline-offset:-2px}
+.note-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:16px;line-height:1.75;color:var(--ink)}
+.note-card>.note-text{padding:18px 16px 22px;min-height:140px}
+.note-empty{color:var(--ink-2)}
+.note-editor-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;padding:8px 16px 12px;font-size:12px;color:var(--ink-2)}
+.note-footer{border-top:1px solid var(--line);padding:12px 16px;background:var(--surface-2);border-radius:0 0 12px 12px}
+.note-status{font-size:13px;font-weight:500;margin:0;color:var(--ink-2)}
+.note-status[data-state="error"],.note-status[data-state="sync-error"]{color:var(--debates)}
+.note-retry{min-height:44px;margin-top:8px}
+.note-hint{font-size:13px;color:var(--ink-2);line-height:1.5;margin:5px 0 0}
+.note-footer .share{min-height:44px;font-size:14px;margin-top:4px;cursor:pointer}
+.note-footer .share input{width:20px;height:20px;flex:none;accent-color:var(--crew)}
+.notebook{max-width:760px;margin:24px auto;border-top:1px solid var(--line);padding-top:20px}
+.notebook-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.notebook-header h3{font-family:var(--display);font-size:20px;line-height:1.2;margin:0}
+.notebook-header h3 span{font:500 13px var(--sans);background:var(--surface-3);border-radius:999px;padding:3px 8px;margin-left:5px;vertical-align:middle}
+.notebook-header p{font-size:14px;color:var(--ink-2);margin:6px 0 0}
+.notes-search{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);font-size:16px;margin:0 0 14px}
+.notebook-list{display:grid;gap:14px}
+.notebook-entry{min-width:0;border:1px solid var(--line-strong);border-radius:12px;padding:16px;background:var(--surface)}
+.notebook-entry-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.notebook-entry-top .btn{min-height:44px;flex:none}
+.notebook-when{font-size:12px;color:var(--ink-2);margin:0 0 6px}
+.notebook-entry h4{font-family:var(--display);font-size:18px;line-height:1.35;margin:0 0 14px}
+.notebook-entry h4 button{text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+.notes-empty{font-size:15px;line-height:1.6;color:var(--ink-2);padding:16px;border:1px dashed var(--line-strong);border-radius:10px;background:var(--surface-2)}
 .verdict{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
 .verdict .lab{flex-basis:100%;font-size:12px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
 .verdict button{border:1px solid var(--line-strong);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500;background:var(--surface)}
@@ -384,8 +418,8 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
 .going .plan.on{color:var(--crew)}
 .going .plan+span{flex-basis:100%}
 .tally{font-size:13px;color:var(--ink-2);margin:0 0 10px}
-.crewnote{border-left:3px solid var(--line-strong);padding:2px 10px;margin:6px 0;font-size:14px}
-.crewnote b{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:2px}
+.crewnote{border:1px solid var(--line);border-left:3px solid var(--crew);border-radius:8px;padding:16px;margin:10px 0;background:var(--surface-2)}
+.crewnote b{display:block;font-size:14px;color:var(--ink-2);margin-bottom:8px}
 .share{display:flex;gap:8px;align-items:center;font-size:13px;margin:6px 0 0}
 .splitrow{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:start}
 .splitrow .t{grid-row:1/99}

@@ -192,7 +192,9 @@ export function change(userFields, memberFields){
   b.update(ref, {...withSentinels(userFields), updatedAt: F.serverTimestamp()});
   if (coupled) b.update(F.doc(fb.db, 'crews', crewId, 'members', user.uid), {...withSentinels(memberFields), updatedAt: F.serverTimestamp()});
   bump('writes');
-  b.commit().catch(e => {
+  // Resolve only after the server acknowledges the write. Offline commits remain pending
+  // in Firestore's persistent queue, so a local save is never mistaken for an account save.
+  return b.commit().then(() => true, async e => {
     // A batch is all or nothing, so a member write the rules refuse takes the account write down with it:
     // a pick made offline after a removal, or a queued change replayed against a crew this account has
     // left, would be lost from the account too. The account half is always allowed — write it on its own,
@@ -200,8 +202,12 @@ export function change(userFields, memberFields){
     // from happening again).
     const code = (e && e.code) || '';
     if (coupled && (code === 'permission-denied' || code === 'not-found')) {
-      F.updateDoc(ref, {...withSentinels(userFields), updatedAt: F.serverTimestamp()}).catch(() => {});   // the batch's error is reported below; a second banner would say nothing new
+      const retry = F.updateDoc(ref, {...withSentinels(userFields), updatedAt: F.serverTimestamp()});
+      syncError(e);
+      try { await retry; return true; }
+      catch (error) { syncError(error); return false; }
     }
     syncError(e);
+    return false;
   });
 }

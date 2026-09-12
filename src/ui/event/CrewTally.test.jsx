@@ -62,5 +62,5 @@ test('the event sheet puts it directly beneath my own verdict pills', () => {
   const tally = document.querySelector('p.tally');
   expect(tally).toHaveTextContent('Crew verdicts — Kari: Draw');
   expect(tally.previousElementSibling).toHaveClass('verdict');
-  expect(tally.nextElementSibling.tagName).toBe('TEXTAREA');
+  expect(tally.closest('[id="notes-6"]')).not.toBeNull();
 });

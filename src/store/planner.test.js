@@ -28,6 +28,14 @@ test('replaceFromAccount keeps the note being typed and reports whether anything
   expect(usePlanner.getState().notes).toEqual({6: 'typing', 41: 'other'});
   expect(usePlanner.getState().replaceFromAccount({picks: {3: true}, verdicts: {}, notes: {6: 'typing', 41: 'other'}, shared: {}}, null)).toBe(false);
 });
+test('a note reports a failed local save while preserving the text for recovery', () => {
+  const storage = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('storage full'); });
+  try {
+    expect(usePlanner.getState().setNote(6, 'Keep this thought').local).toBe(false);
+    expect(usePlanner.getState().notes[6]).toBe('Keep this thought');
+    expect(change).toHaveBeenLastCalledWith({'notes.6': 'Keep this thought'}, null);
+  } finally { storage.mockRestore(); }
+});
 test('importFromLink unions and syncs once', () => {
   usePlanner.getState().importFromLink({picks: [3, 6], verdicts: {6: 'Draw'}, notes: {6: 'n'}}, (a, b) => b);
   expect(change).toHaveBeenCalledTimes(1);

@@ -79,7 +79,7 @@ export default function Sheet(){
 
   let body = null;
   if (top) {
-    if (top.kind === 'event') body = <EventSheet key={top.key} no={top.key} />;
+    if (top.kind === 'event') body = <EventSheet key={`${top.key}-${top.mode || ''}`} no={top.key} mode={top.mode} />;
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
     // the hub's `mode` is where it opens: 'crew' scrolls to the crew cards (the masthead's crew button)

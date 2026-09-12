@@ -36,9 +36,9 @@ test('a shared note appears with its author, as text — markup in it is not mar
   expect(notes).toHaveLength(1);                               // never my own, never a blank one
   expect(notes[0].querySelector('b').textContent).toBe('Kari');
 
-  const ps = [...notes[0].querySelectorAll('p')];
-  expect(ps.map(p => p.textContent)).toEqual(['A <b>bold</b> claim', 'Second thought']);
-  expect(ps.some(p => p.querySelector('b'))).toBe(false);      // the <b> is text, not an element
+  const text = notes[0].querySelector('.note-text');
+  expect(text.textContent).toBe('A <b>bold</b> claim\n\nSecond thought');
+  expect(text.querySelector('b')).toBeNull();
 });
 
 test('nothing when nobody shared one, and nothing outside a crew', () => {
@@ -54,11 +54,11 @@ test('nothing when nobody shared one, and nothing outside a crew', () => {
 
 // CREW-SPEC section 7 puts the shared notes with the notes box, not up beside the "Going" row.
 test('the event sheet puts it directly after my own notes box', () => {
-  useSheet.getState().open('event', 6);
+  useSheet.getState().open('event', 6, 'notes');
   render(<Sheet />);
 
   const heading = screen.getByRole('heading', {name: 'Crew notes'});
-  expect(heading.previousElementSibling.tagName).toBe('P');            // the "Saved in this browser" line
+  expect(heading.previousElementSibling).toHaveClass('note-card');
   expect(document.querySelector('textarea.notes')).not.toBeNull();
   expect(heading.compareDocumentPosition(document.querySelector('textarea.notes')))
     .toBe(Node.DOCUMENT_POSITION_PRECEDING);

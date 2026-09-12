@@ -35,6 +35,7 @@ test.describe('mobile event details', () => {
     await expectNoOverflow(page);
     await page.screenshot({path: testInfo.outputPath('event-full-screen.png')});
     const note = dialog.locator('textarea.notes');
+    await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
     await note.fill('Keep this thought while expanding the event.');
     await dialog.getByRole('button', {name: 'Compact view', exact: true}).tap();
     await expect(note).toHaveValue('Keep this thought while expanding the event.');
@@ -53,7 +54,8 @@ test.describe('mobile event details', () => {
     await dialog.getByRole('button', {name: '← Back', exact: true}).tap();
     await expect(dialog.locator('#sheet-title')).toHaveText(event.title);
     await expectFullScreen(page);
-    await expect(dialog.locator('textarea.notes')).toHaveValue('Keep this thought while expanding the event.');
+    await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
+    await expect(dialog.locator('.note-card .note-text')).toHaveText('Keep this thought while expanding the event.');
     await expect(dialog.getByRole('button', {name: 'Close', exact: true})).toBeInViewport();
   });
 
@@ -126,10 +128,107 @@ test('keyboard focus stays in the event and Escape returns to its opener', async
   await page.keyboard.press('Enter');
   await expectFullScreen(page);
   await page.keyboard.press('Shift+Tab');
-  await expect(dialog.locator('textarea.notes')).toBeFocused();
+  await expect(dialog.getByRole('link', {name: 'Google Calendar ↗'})).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(dialog.getByRole('button', {name: 'Compact view', exact: true})).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(card).toBeFocused();
+});
+
+test.describe('mobile notes', () => {
+  test.use({viewport: {width: 390, height: 844}, isMobile: true, hasTouch: true, reducedMotion: 'reduce'});
+  const longNote = 'A question to come back to\n\nWhat changes when we think of uncertainty as something to explore?\n\n' +
+    Array.from({length: 14}, (_, i) => `Thought ${i + 1}: Keep the question open. There is more to understand, and a good conversation makes room for another perspective.`).join('\n\n') +
+    '\n\nThe very last line — keep this too.';
+
+  test('the full note can be saved, edited, reopened, found in My festival and exported without picks', async ({page}, testInfo) => {
+    await page.goto('/#event=6');
+    const dialog = page.getByRole('dialog');
+    await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
+    const editor = dialog.getByRole('textbox', {name: 'My note'});
+    await editor.fill(longNote);
+    await expect.poll(() => editor.evaluate(el => el.scrollHeight - el.clientHeight)).toBeLessThanOrEqual(2);
+    expect(await editor.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
+    const save = dialog.getByRole('button', {name: 'Save note', exact: true});
+    expect((await save.boundingBox()).height).toBeGreaterThanOrEqual(44);
+    await save.tap();
+    const text = dialog.locator('.note-card .note-text');
+    expect(await text.textContent()).toBe(longNote);
+    expect(await text.evaluate(el => el.scrollHeight - el.clientHeight)).toBeLessThanOrEqual(2);
+    await expectNoOverflow(page);
+    await dialog.locator('.note-card').evaluate(el => {
+      const body = document.getElementById('sheet-body');
+      body.scrollTop += el.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
+    });
+    await page.screenshot({path: testInfo.outputPath('mobile-note-reading.png')});
+    await dialog.getByRole('button', {name: 'Edit note', exact: true}).tap();
+    await expect(editor).toHaveValue(longNote);
+    const edited = longNote + '\n\nAdded after the talk.';
+    await editor.fill(edited);
+    // Escape closes without depending on blur or waiting for autosave.
+    await page.keyboard.press('Escape');
+    await page.reload();
+    await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
+    expect(await text.textContent()).toBe(edited);
+    await dialog.getByRole('button', {name: 'Close', exact: true}).tap();
+    await page.getByRole('button', {name: /My festival/}).tap();
+    const entry = dialog.locator('.notebook-entry');
+    await expect(entry).toHaveCount(1);
+    expect(await entry.locator('.note-text').textContent()).toBe(edited);
+    await expect(dialog.getByText('Nothing picked yet')).toBeVisible();
+    await dialog.getByRole('searchbox', {name: 'Search my notes'}).fill('Added after the talk');
+    await expect(entry).toHaveCount(1);
+    await dialog.getByRole('button', {name: `Edit note for ${event.title}`}).tap();
+    await expect(dialog.getByRole('button', {name: 'Notes', exact: true})).toHaveAttribute('aria-pressed', 'true');
+    await expect(editor).toHaveValue(edited);
+    await editor.fill('A final revision from My festival.');
+    await dialog.getByRole('button', {name: 'Save note', exact: true}).tap();
+    await dialog.getByRole('button', {name: '← Back', exact: true}).tap();
+    await expect(entry.locator('.note-text')).toHaveText('A final revision from My festival.');
+    const downloading = page.waitForEvent('download');
+    await dialog.getByRole('button', {name: 'Export notes (.md)'}).tap();
+    expect((await downloading).suggestedFilename()).toBe('htlgi-london-2026-notes.md');
+  });
+
+  test('long notes fit narrow and landscape phones in dark mode and remain editable offline', async ({page, context, browserName}, testInfo) => {
+    await page.setViewportSize({width: 320, height: 568});
+    await page.emulateMedia({colorScheme: 'dark'});
+    await page.goto('/#event=6');
+    await page.evaluate(() => navigator.serviceWorker.ready);
+    // Let the active worker cache the preview server's CORS response variants too.
+    await page.reload();
+    const dialog = page.getByRole('dialog');
+    await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
+    await dialog.getByRole('textbox', {name: 'My note'}).fill(longNote + '\n' + 'unbrokentext'.repeat(90));
+    await dialog.getByRole('button', {name: 'Save note', exact: true}).tap();
+    await expectNoOverflow(page);
+    await dialog.locator('.note-card').evaluate(el => {
+      const body = document.getElementById('sheet-body');
+      body.scrollTop += el.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
+    });
+    await page.screenshot({path: testInfo.outputPath('narrow-note-dark.png')});
+    await context.setOffline(true);
+    // Playwright WebKit refuses offline navigations before the worker can answer. Both
+    // engines exercise offline edits; Chromium also reloads from the offline cache.
+    if (browserName === 'chromium') {
+      await page.reload();
+      await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
+    }
+    await expect(dialog.locator('.note-card .note-text')).toContainText('The very last line');
+    await dialog.getByRole('button', {name: 'Edit note', exact: true}).tap();
+    const editor = dialog.getByRole('textbox', {name: 'My note'});
+    await editor.fill(longNote + '\n\nWritten offline.');
+    await page.setViewportSize({width: 844, height: 390});
+    await expect.poll(() => editor.evaluate(el => el.scrollHeight - el.clientHeight)).toBeLessThanOrEqual(2);
+    await expectNoOverflow(page);
+    await page.setViewportSize({width: 320, height: 568});
+    await expect.poll(() => editor.evaluate(el => el.scrollHeight - el.clientHeight)).toBeLessThanOrEqual(2);
+    await dialog.getByRole('button', {name: 'Save note', exact: true}).tap();
+    await expect(dialog.getByRole('status')).toHaveText('Saved on this device');
+    await context.setOffline(false);
+    await page.reload();
+    await dialog.getByRole('button', {name: 'Notes', exact: true}).tap();
+    await expect(dialog.locator('.note-card .note-text')).toContainText('Written offline.');
+  });
 });

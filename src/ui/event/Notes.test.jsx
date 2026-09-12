@@ -1,11 +1,12 @@
 import {test, expect, beforeEach, afterEach, vi} from 'vitest';
 import {act} from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import {render, fireEvent, screen} from '@testing-library/react';
 import Notes from './Notes.jsx';
-import {usePlanner} from '../../store/planner.js';
+import {usePlanner, LS} from '../../store/planner.js';
 import {useCloud} from '../../store/cloud.js';
 
 const USER = {uid: 'u1', displayName: 'Are', email: 'are@example.com'};
+const realSetNote = usePlanner.getState().setNote;
 const CREW = {
   id: 'c1', name: 'The Heath Three', createdBy: 'u1',
   members: [{uid: 'u1', name: 'Are', joinedAt: 1, picks: {}, verdicts: {}, notes: {}}],
@@ -14,12 +15,13 @@ const CREW = {
 
 beforeEach(() => {
   localStorage.clear();
-  usePlanner.setState({notes: {}, shared: {}});
-  useCloud.setState({user: null, accountName: '', crewId: null, crew: null});
+  usePlanner.setState({notes: {}, shared: {}, setNote: realSetNote});
+  useCloud.setState({user: null, marker: null, accountName: '', crewId: null, crew: null, syncPaused: false, syncStopped: false});
   vi.useFakeTimers();
 });
 afterEach(() => {
   vi.useRealTimers();
+  vi.restoreAllMocks();
 });
 
 test('typing debounces into the store after 250ms; a snapshot arriving while focused does not clobber the draft; blur flushes it', () => {
@@ -98,4 +100,98 @@ test('ticking a note nobody has edited does not rewrite it', () => {
 
   expect(setNote).not.toHaveBeenCalled();
   expect(usePlanner.getState().shared[6]).toBeUndefined();
+});
+
+test('Save persists immediately, shows the entire note with line breaks, and Edit reopens it', () => {
+  const text = 'A <b>literal</b> quote\n\n' + 'A longer thought.\n'.repeat(40) + 'The very last line.';
+  render(<Notes no={6} />);
+  fireEvent.change(screen.getByRole('textbox', {name: 'My note'}), {target: {value: text}});
+  fireEvent.click(screen.getByRole('button', {name: 'Save note'}));
+  expect(JSON.parse(localStorage.getItem(LS.notes))[6]).toBe(text);
+  expect(screen.queryByRole('textbox')).toBeNull();
+  expect(document.querySelector('.note-text').textContent).toBe(text);
+  expect(document.querySelector('.note-text b')).toBeNull();
+  expect(screen.getByRole('button', {name: 'Edit note'})).toHaveFocus();
+  fireEvent.click(screen.getByRole('button', {name: 'Edit note'}));
+  const editor = screen.getByRole('textbox', {name: 'My note'});
+  expect(editor).toHaveValue(text);
+  expect(editor).toHaveFocus();
+  fireEvent.change(editor, {target: {value: text + '\nAn edit.'}});
+  fireEvent.keyDown(editor, {key: 'Enter', ctrlKey: true});
+  expect(document.querySelector('.note-text').textContent).toBe(text + '\nAn edit.');
+});
+
+test('backgrounding the page saves the last keystrokes without waiting for the debounce', () => {
+  render(<Notes no={6} />);
+  fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Before switching apps'}});
+  fireEvent(window, new Event('pagehide'));
+  expect(JSON.parse(localStorage.getItem(LS.notes))[6]).toBe('Before switching apps');
+});
+
+test('a read view follows account changes, but a draft stays intact with the keyboard dismissed', () => {
+  usePlanner.setState({notes: {6: 'Saved earlier'}});
+  render(<Notes no={6} />);
+  act(() => usePlanner.setState({notes: {6: 'Updated on another phone'}}));
+  expect(document.querySelector('.note-text').textContent).toBe('Updated on another phone');
+  fireEvent.click(screen.getByRole('button', {name: 'Edit note'}));
+  fireEvent.change(screen.getByRole('textbox'), {target: {value: 'My current draft'}});
+  fireEvent.blur(screen.getByRole('textbox'));
+  act(() => usePlanner.setState({notes: {6: 'Late snapshot'}}));
+  expect(screen.getByRole('textbox')).toHaveValue('My current draft');
+  fireEvent.click(screen.getByRole('button', {name: 'Save note'}));
+  expect(usePlanner.getState().notes[6]).toBe('My current draft');
+});
+
+test('saving reports a browser storage failure and keeps the editor open', () => {
+  vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('quota'); });
+  render(<Notes no={6} />);
+  fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Keep this safe'}});
+  fireEvent.click(screen.getByRole('button', {name: 'Save note'}));
+  expect(screen.getByRole('status')).toHaveTextContent('Couldn’t save');
+  expect(screen.getByRole('textbox')).toHaveValue('Keep this safe');
+});
+
+test('account save feedback waits for acknowledgement and ignores an earlier draft’s result', async () => {
+  const completions = [];
+  useCloud.setState({user: USER, marker: {uid: USER.uid}});
+  usePlanner.setState({setNote: (no, text) => ({...realSetNote(no, text), cloud: new Promise(resolve => completions.push(resolve))})});
+  render(<Notes no={6} />);
+  fireEvent.change(screen.getByRole('textbox'), {target: {value: 'First draft'}});
+  act(() => vi.advanceTimersByTime(250));
+  expect(screen.getByRole('status')).toHaveTextContent('syncing');
+  fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Latest draft'}});
+  act(() => vi.advanceTimersByTime(250));
+  await act(async () => completions[0](true));
+  expect(screen.getByRole('status')).toHaveTextContent('syncing');
+  await act(async () => completions[1](true));
+  expect(screen.getByRole('status')).toHaveTextContent('Saved to your account');
+});
+
+test('failed account saves keep the local copy and can be retried', async () => {
+  const completions = [];
+  useCloud.setState({user: USER, marker: {uid: USER.uid}});
+  usePlanner.setState({setNote: (no, text) => ({...realSetNote(no, text), cloud: new Promise(resolve => completions.push(resolve))})});
+  render(<Notes no={6} />);
+  fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Saved locally'}});
+  fireEvent.click(screen.getByRole('button', {name: 'Save note'}));
+  await act(async () => completions[0](false));
+  expect(screen.getByRole('status')).toHaveTextContent('account sync failed');
+  expect(JSON.parse(localStorage.getItem(LS.notes))[6]).toBe('Saved locally');
+  fireEvent.click(screen.getByRole('button', {name: 'Edit note'}));
+  fireEvent.click(screen.getByRole('button', {name: 'Save note'}));
+  await act(async () => completions[1](true));
+  expect(screen.getByRole('status')).toHaveTextContent('Saved to your account');
+});
+
+test('the limit is visible, and an oversized legacy note is never silently truncated on save', () => {
+  const text = 'x'.repeat(20050);
+  usePlanner.setState({notes: {6: text}});
+  render(<Notes no={6} />);
+  expect(document.querySelector('.note-text').textContent).toBe(text);
+  fireEvent.click(screen.getByRole('button', {name: 'Edit note'}));
+  expect(screen.getByRole('textbox')).toHaveAttribute('maxlength', '20000');
+  fireEvent.click(screen.getByRole('button', {name: 'Save note'}));
+  expect(screen.getByRole('status')).toHaveTextContent('over 20,000 characters');
+  expect(usePlanner.getState().notes[6]).toBe(text);
+  expect(screen.getByRole('textbox')).toHaveValue(text);
 });

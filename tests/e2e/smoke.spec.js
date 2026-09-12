@@ -33,12 +33,16 @@ test('opening the first card shows the dialog with its title; a note survives cl
   await expect(dialog.locator('#sheet-title')).toHaveText(firstTitle);
 
   const note = dialog.locator('textarea.notes');
+  await dialog.getByRole('button', {name: 'Notes', exact: true}).click();
   await note.fill('a thought worth keeping');
   await page.locator('#close').click();
   await expect(dialog).toBeHidden();
 
   await page.locator('article.ev').first().click();
-  await expect(dialog.locator('textarea.notes')).toHaveValue('a thought worth keeping');
+  await dialog.getByRole('button', {name: 'Notes', exact: true}).click();
+  await expect(dialog.locator('.note-card .note-text')).toHaveText('a thought worth keeping');
+  await dialog.getByRole('button', {name: 'Edit note', exact: true}).click();
+  await expect(dialog.getByRole('textbox', {name: 'My note'})).toHaveValue('a thought worth keeping');
 });
 
 test('visiting #event= opens the dialog on that event', async ({page}) => {
@@ -64,8 +68,9 @@ test('an import link banners picks/verdicts/notes; accepting adds them and they 
   await page.goto('/#event=6');
   const dialog = page.locator('#sheet');
   await expect(dialog).toBeVisible();
+  await dialog.getByRole('button', {name: 'Notes', exact: true}).click();
   await expect(dialog.getByRole('button', {name: 'Draw', exact: true})).toHaveAttribute('aria-pressed', 'true');
-  await expect(dialog.locator('textarea.notes')).toHaveValue('a note carried by the link');
+  await expect(dialog.locator('.note-card .note-text')).toHaveText('a note carried by the link');
 });
 
 // The e2e build has no data/firebase.json, so CLOUD is false: the hub must not advertise an account it

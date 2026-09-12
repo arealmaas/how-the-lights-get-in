@@ -1,7 +1,7 @@
 // src/ui/sheets/EventSheet.jsx — ports showEvent(): hero, kicker, title, when, the clash and soft-overlap
 // notes (from useFiltered's clash maps), tabs when a briefing exists, the overview (people, description,
 // media, meta, actions: pick toggle / crew-plan toggle while in a crew / .ics export / Google Calendar),
-// the verdict pills for debates, and the notes textarea.
+// and a dedicated Notes tab with personal notes, shared crew notes and debate verdicts.
 import {useState, Fragment} from 'react';
 import {byNo, BRIEFINGS, GROUP, DAYS} from '../../data/index.js';
 import {ticketLine, cleanDesc} from '../../core/labels.js';
@@ -31,11 +31,12 @@ function selectTab(setTab, tab){
   if (body) body.scrollTop = 0;
 }
 
-export default function EventSheet({no}){
+export default function EventSheet({no, mode}){
   const e = byNo.get(no);
   const picks = usePlanner(s => s.picks);
   const {clashes, soft} = useFiltered();
-  const [tab, setTab] = useState('overview');
+  const [tab, setTab] = useState(mode === 'notes' || mode === 'edit-note' ? 'notes' : 'overview');
+  const hasNote = usePlanner(s => !!s.notes[no]?.trim());
   if (!e) return null;
 
   const picked = picks.has(no);
@@ -82,11 +83,6 @@ export default function EventSheet({no}){
         <a className="btn" href={gcalLink(e)} target="_blank" rel="noopener">Google Calendar ↗</a>
         <p className="note">Calendar entries include the talk summary, venue, speakers and ticket notes. Sessions are assumed to last an hour — the festival publishes start times only.</p>
       </div>
-      <h3 className="sub">My notes</h3>
-      {e.type === 'Debates' && <Verdict e={e} />}
-      <CrewTally e={e} />
-      <Notes no={no} />
-      <CrewNotes no={no} />
     </>
   );
 
@@ -124,16 +120,19 @@ export default function EventSheet({no}){
           ))} — sessions assumed to last an hour.
         </p>
       )}
-      {b ? (
-        <>
-          <div className="tabs">
-            <button type="button" aria-pressed={tab === 'overview'} onClick={() => selectTab(setTab, 'overview')}>Overview</button>
-            <button type="button" aria-pressed={tab === 'briefing'} onClick={() => selectTab(setTab, 'briefing')}>Briefing</button>
-          </div>
-          <div hidden={tab !== 'overview'}>{overview}</div>
-          <div hidden={tab !== 'briefing'}><Briefing b={b} /></div>
-        </>
-      ) : overview}
+      <div className="tabs event-tabs" aria-label="Event sections">
+        <button type="button" aria-pressed={tab === 'overview'} aria-controls={`overview-${no}`} onClick={() => selectTab(setTab, 'overview')}>Overview</button>
+        {b && <button type="button" aria-pressed={tab === 'briefing'} aria-controls={`briefing-${no}`} onClick={() => selectTab(setTab, 'briefing')}>Briefing</button>}
+        <button type="button" aria-pressed={tab === 'notes'} aria-controls={`notes-${no}`} onClick={() => selectTab(setTab, 'notes')}>Notes{hasNote && <span className="notes-dot" aria-hidden="true" />}</button>
+      </div>
+      <div id={`overview-${no}`} hidden={tab !== 'overview'}>{overview}</div>
+      {b && <div id={`briefing-${no}`} hidden={tab !== 'briefing'}><Briefing b={b} /></div>}
+      <div id={`notes-${no}`} hidden={tab !== 'notes'}>
+        <h3 className="sub notes-heading">My notes</h3>
+        <Notes no={no} initialEditing={mode === 'edit-note'} />
+        <CrewNotes no={no} />
+        {e.type === 'Debates' && <><h3 className="sub">Debate verdict</h3><Verdict e={e} /><CrewTally e={e} /></>}
+      </div>
     </div>
   );
 }

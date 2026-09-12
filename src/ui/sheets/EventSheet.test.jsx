@@ -31,8 +31,10 @@ test('opening event 6 shows its title, a Who won? verdict block and the notes te
   render(<Sheet />);
 
   expect(screen.getByRole('heading', {name: EVENT_6.title})).toBeInTheDocument();
-  expect(screen.getByText('Who won?')).toBeInTheDocument();
-  expect(document.querySelector('textarea.notes')).toBeInTheDocument();
+  expect(screen.queryByRole('textbox', {name: 'My note'})).toBeNull();
+  await userEvent.click(screen.getByRole('button', {name: 'Notes', exact: true}));
+  expect(screen.getByText('Who won?')).toBeVisible();
+  expect(screen.getByRole('textbox', {name: 'My note'})).toBeVisible();
 
   expect(usePlanner.getState().picks.has(6)).toBe(false);
   await userEvent.click(screen.getByRole('button', {name: /add to my picks/i}));

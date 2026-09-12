@@ -1,12 +1,17 @@
 import {create} from 'zustand';
 import {byNo} from '../data/index.js';
 import {change as syncChange} from '../cloud/sync.js';
+import {NOTE_LIMIT} from '../core/notes.js';
+import {useCloud} from './cloud.js';
 
 export const LS = {state: 'htlgi-l26-state', picks: 'htlgi-l26-picks', notes: 'htlgi-l26-notes', verdicts: 'htlgi-l26-verdicts', shared: 'htlgi-l26-shared'};
 export const DEL = '__DELETE__';
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
-const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
 const clean = (obj, ok) => Object.fromEntries(Object.entries(obj || {}).filter(([k, v]) => byNo.has(+k) && ok(v)));
+// Keep the local copy through a pending write or a server rollback after a refusal.
+// Each write is tied to its account, so switching accounts cannot retain somebody else's note.
+const noteWrites = new Map();
 
 export function hydrate(){
   const f = Object.assign({day: '2026-09-19', view: 'list', groups: [], venue: '', topic: '', picksOnly: false, crewOnly: false}, load(LS.state, {}));
@@ -38,10 +43,17 @@ export const usePlanner = create((set, get) => ({
     syncChange({['verdicts.' + no]: who || DEL}, {['verdicts.' + no]: who || DEL});
   },
   setNote(no, text){
-    text = String(text || '').slice(0, 20000);
+    text = String(text || '').slice(0, NOTE_LIMIT);
     const notes = {...get().notes}; if (text.trim()) notes[no] = text; else delete notes[no];
-    set({notes}); save(LS.notes, notes);
-    syncChange({['notes.' + no]: notes[no] || DEL}, get().shared[no] ? {['notes.' + no]: notes[no] || DEL} : null);
+    const local = save(LS.notes, notes);
+    set({notes});
+    const cloud = syncChange({['notes.' + no]: notes[no] || DEL}, get().shared[no] ? {['notes.' + no]: notes[no] || DEL} : null);
+    if (cloud) {
+      const write = {text: notes[no] || '', uid: useCloud.getState().user?.uid};
+      noteWrites.set(no, write);
+      cloud.then(saved => { if (saved && noteWrites.get(no) === write) noteWrites.delete(no); });
+    }
+    return {local, cloud};
   },
   setShared(no, on){
     const shared = {...get().shared}; if (on) shared[no] = true; else delete shared[no];
@@ -64,6 +76,10 @@ export const usePlanner = create((set, get) => ({
   replaceFromAccount({picks, verdicts, notes, shared}, keepNote){
     const s = get();
     const nextNotes = clean(notes, v => typeof v === 'string' && v.trim());
+    for (const [no, write] of noteWrites) {
+      if (write.uid !== useCloud.getState().user?.uid) continue;
+      if (write.text) nextNotes[no] = write.text; else delete nextNotes[no];
+    }
     if (keepNote != null) { if (s.notes[keepNote]) nextNotes[keepNote] = s.notes[keepNote]; else delete nextNotes[keepNote]; }
     const next = {picks: new Set(Object.keys(picks || {}).map(Number).filter(n => byNo.has(n))), verdicts: clean(verdicts, v => typeof v === 'string'), notes: nextNotes, shared: clean(shared, v => v === true)};
     const same = JSON.stringify([[...s.picks].sort(), s.verdicts, s.notes, s.shared]) === JSON.stringify([[...next.picks].sort(), next.verdicts, next.notes, next.shared]);
@@ -72,5 +88,5 @@ export const usePlanner = create((set, get) => ({
     return true;
   },
   local(){ const s = get(); return {picks: Object.fromEntries([...s.picks].map(n => [n, true])), verdicts: {...s.verdicts}, notes: {...s.notes}, shared: {...s.shared}}; },
-  clearLocal(){ set({picks: new Set(), verdicts: {}, notes: {}, shared: {}}); Object.values(LS).forEach(k => localStorage.removeItem(k)); },
+  clearLocal(){ noteWrites.clear(); set({picks: new Set(), verdicts: {}, notes: {}, shared: {}}); Object.values(LS).forEach(k => localStorage.removeItem(k)); },
 }));
