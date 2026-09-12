@@ -10,6 +10,7 @@ This is an **unofficial, fan-made** planner. It is not affiliated with, endorsed
 
 ## Features
 
+- **Mobile event details**: expand any event or speaker sheet with *Full screen*, return with *Compact view*, and close it without losing your place in the programme. Larger touch controls and full-width mobile cards make it easier to browse; event picks are at the top of the details.
 - **List view** grouped by start time, and a **grid view** (venues across, times down) for spotting clashes.
 - Filters by day, strand (debates, talks, music & comedy, cinema, Inner Circle, children's), venue and topic, plus free-text search across titles, speakers and descriptions.
 - **Picks and My festival**: star events; *My festival* in the header gathers your weekend — picks per day with clash markers, the reading list, calendar export, a link that moves picks and verdicts to another device (`#picks=…`), and the notes export. A link with `#event=<number>` opens one event directly.
@@ -62,7 +63,7 @@ The festival's programme page lazy-loads 40 events at a time from `FullEventList
 
 ## Development
 
-`npm install`, then `npm run dev` for a live-reloading dev server, `npm run build` for `dist/`, `npm test` for the unit and component tests, `npm run test:e2e` for the browser smoke (`npx playwright install chromium` once), `npm run test:rules` for the Firestore rules. `npm run data` (`python3 scripts/build.py`) regenerates `programme.json` from `data/extract.json`, and `npm run build:move` produces `dist-move/`, the single-file "moved" page for the old GitHub Pages address.
+`npm install`, then `npm run dev` for a live-reloading dev server, `npm run build` for `dist/`, `npm test` for the unit and component tests, `npm run test:e2e` for the browser smoke (`npx playwright install chromium webkit` once), `npm run test:rules` for the Firestore rules. `npm run data` (`python3 scripts/build.py`) regenerates `programme.json` from `data/extract.json`, and `npm run build:move` produces `dist-move/`, the single-file "moved" page for the old GitHub Pages address.
 
 The code is a Vite 8 + React 19 app; `docs/superpowers/specs/2026-09-07-react-restructure-design.md` is the map. In short:
 

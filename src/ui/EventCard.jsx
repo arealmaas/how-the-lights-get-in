@@ -22,17 +22,20 @@ export default function EventCard({e, picked, clash, hasNote}){
       tabIndex={0}
       role="button"
       aria-label={e.title}
-      onClick={() => useSheet.getState().open('event', e.eventNo)}
+      aria-haspopup="dialog"
+      onClick={ev => { ev.currentTarget.focus({preventScroll: true}); useSheet.getState().open('event', e.eventNo); }}
       onKeyDown={ev => {
         if (ev.target !== ev.currentTarget) return;   // let the nested pick and crew buttons handle their own Enter/Space
         if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); useSheet.getState().open('event', e.eventNo); }
       }}
     >
       <div className="ev-head">
-        <span className="ev-type">{e.type}</span>
-        <span className="ev-venue">{e.venue}</span>
-        {BRIEFINGS[e.eventNo] && <span className="brief-badge">Briefing</span>}
-        <CrewBadges no={e.eventNo} />
+        <div className="ev-details">
+          <span className="ev-type">{e.type}</span>
+          <span className="ev-venue">{e.venue}</span>
+          {BRIEFINGS[e.eventNo] && <span className="brief-badge">Briefing</span>}
+          <CrewBadges no={e.eventNo} />
+        </div>
         <CrewPick no={e.eventNo} />
         <button
           type="button"

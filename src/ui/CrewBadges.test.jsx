@@ -32,7 +32,7 @@ test('a card shows one dot per other member who picked it, coloured by join orde
 
   // and the badges sit before the crew-plan toggle, which sits beside the pick star
   const head = document.querySelector('.ev-head');
-  expect(head.querySelector('.cbadges').nextElementSibling).toHaveClass('crewpick');
+  expect(head.querySelector('.cbadges').compareDocumentPosition(head.querySelector('.crewpick')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   expect(head.querySelector('.crewpick').nextElementSibling).toHaveClass('pick');
 });
 

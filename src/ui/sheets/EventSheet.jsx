@@ -74,15 +74,6 @@ export default function EventSheet({no}){
       <div className="actions">
         <button
           type="button"
-          className={`btn${picked ? ' pickbtn' : ''}`}
-          aria-pressed={picked}
-          onClick={() => usePlanner.getState().togglePick(no)}
-        >
-          {picked ? '★ In my picks' : '☆ Add to my picks'}
-        </button>
-        <CrewPlanButton no={no} />
-        <button
-          type="button"
           className="btn"
           onClick={() => download(icsFilename(e), icsFile([e], 'HTLGI London 2026'), 'text/calendar;charset=utf-8')}
         >
@@ -100,7 +91,7 @@ export default function EventSheet({no}){
   );
 
   return (
-    <div className={`g-${GROUP[e.type]}`}>
+    <div className={`event-sheet g-${GROUP[e.type]}`}>
       <Hero photo={e.photo} />
       <div className="kicker">
         <span className="type">{e.type}</span>
@@ -108,6 +99,17 @@ export default function EventSheet({no}){
       </div>
       <h2 id="sheet-title" tabIndex={-1}>{e.title}</h2>
       <p className="when">{DAYS[e.date]} {e.time} <span>· {e.venue}</span></p>
+      <div className="actions event-plan-actions">
+        <button
+          type="button"
+          className={`btn${picked ? ' pickbtn' : ''}`}
+          aria-pressed={picked}
+          onClick={() => usePlanner.getState().togglePick(no)}
+        >
+          {picked ? '★ In my picks' : '☆ Add to my picks'}
+        </button>
+        <CrewPlanButton no={no} />
+      </div>
       {clash && clash.length > 0 && (
         <div className="clashnote">
           ⚠ Clashes with your pick{clash.length > 1 ? 's' : ''}: {clash.map((x, i) => (

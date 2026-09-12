@@ -121,6 +121,8 @@ a{color:inherit}
 /* above the scrim (40) and the sheet (41): a banner is a question, and one raised while a sheet is open —
    an invite link opened in a tab that is already running, say — has to be answerable without closing it */
 .banner{max-width:1180px;margin:12px auto 0;padding:0 16px;position:relative;z-index:42}
+/* A locked programme cannot scroll a newly raised banner into view. */
+body:has(.sheet:not([hidden])) .banner{position:fixed;top:env(safe-area-inset-top);left:0;right:0;max-height:70vh;max-height:70dvh;overflow:auto}
 .banner-inner{background:var(--pick-bg);color:var(--ink);border:1px solid var(--pick);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px}
 .banner-inner .btn{margin-left:auto}
 .banner-inner .btn + .btn{margin-left:0}
@@ -147,7 +149,8 @@ main{max-width:1180px;margin:0 auto;padding:8px 16px 80px}
 .ev.crew{outline:2px solid var(--crew);outline-offset:-1px}
 .ev.crew:hover{border-color:var(--line)}
 .ev.crew:focus-visible{outline-offset:2px}
-.ev-head{display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.ev-head{display:flex;align-items:flex-start;gap:8px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.ev-details{display:flex;flex:1 1 auto;min-width:0;align-items:center;flex-wrap:wrap;gap:5px 8px;padding-top:5px}
 .ev-type{color:var(--c);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:none}
 .ev-type::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
 .ev-venue{font-family:var(--mono);color:var(--ink-2);letter-spacing:.04em;text-transform:none;font-weight:500;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
@@ -193,16 +196,22 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%;font-size:12
 
 /* ---------- sheet ---------- */
 .scrim{position:fixed;inset:0;background:rgba(10,12,14,.45);z-index:40}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--surface);color:var(--ink);border-radius:14px 14px 0 0;max-height:88vh;display:flex;flex-direction:column;box-shadow:var(--shadow);border:1px solid var(--line)}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--surface);color:var(--ink);border-radius:14px 14px 0 0;max-height:88vh;max-height:88dvh;display:flex;flex-direction:column;box-shadow:var(--shadow);border:1px solid var(--line)}
 @media (min-width:860px){
   .sheet{left:auto;right:16px;bottom:16px;top:16px;width:520px;max-height:none;border-radius:12px}
 }
-.sheet-bar{position:relative;display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.sheet.expanded{inset:0;width:100%;height:100vh;height:100dvh;max-height:none;border:0;border-radius:0}
+.sheet.expanded .grip{display:none}
+.sheet.expanded .sheet-body>div{max-width:760px;margin-inline:auto}
+.sheet.expanded .sheet-bar{padding-top:max(8px,env(safe-area-inset-top))}
+.sheet-bar{position:relative;display:flex;align-items:center;gap:8px;padding:8px max(12px,env(safe-area-inset-right)) 8px max(12px,env(safe-area-inset-left));border-bottom:1px solid var(--line);flex:0 0 auto}
 .sheet-bar .grip{width:40px;height:4px;border-radius:2px;background:var(--line-strong);position:absolute;top:4px;left:50%;transform:translateX(-50%)}
-.sheet-bar .btn{font-size:12.5px;padding:5px 10px}
-.sheet-bar .close{margin-left:auto;width:32px;height:32px;border-radius:6px;font-size:20px;line-height:1;color:var(--ink-2)}
+.sheet-bar .btn{min-height:44px;font-size:14px;padding:8px 12px}
+.sheet-bar .sheet-expand{margin-left:auto}
+.sheet-expand svg{width:18px;height:18px;fill:none}
+.sheet-bar .close{flex:none;width:44px;height:44px;border-radius:6px;font-size:20px;line-height:1;color:var(--ink-2)}
 .sheet-bar .close:hover{background:var(--surface-2)}
-.sheet-body{overflow:auto;padding:14px 18px 28px;flex:1 1 auto;-webkit-overflow-scrolling:touch}
+.sheet-body{overflow:auto;overscroll-behavior:contain;min-height:0;padding:14px max(18px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));flex:1 1 auto;-webkit-overflow-scrolling:touch;overflow-wrap:anywhere}
 .sheet-body .kicker{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-2)}
 .sheet-body .kicker .type{color:var(--c);display:inline-flex;align-items:center;gap:6px}
 .sheet-body .kicker .type::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
@@ -230,6 +239,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%;font-size:12
 .meta a{color:var(--talks);text-decoration:none}
 .meta a:hover{text-decoration:underline}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.event-plan-actions{margin:0 0 16px}
 .actions .note{flex-basis:100%;font-size:12px;color:var(--ink-3);margin:2px 0 0}
 .bio{max-width:62ch;font-size:15px;line-height:1.55}
 .bio p{margin:0 0 12px}
@@ -258,12 +268,29 @@ footer .disclaimer{border-top:1px solid var(--line);padding-top:12px;color:var(-
   .top-inner{padding:8px 12px 6px;gap:6px}
   .search{flex-basis:100%;max-width:none;margin-left:0}
   main{padding:6px 12px 80px}
-  .slot{grid-template-columns:52px 1fr;gap:0 8px;padding:10px 0 12px}
-  .slot-time{font-size:14px;padding-top:9px}
+  .slot{grid-template-columns:minmax(0,1fr);gap:6px;padding:12px 0}
+  .slot-time{font-size:15px;padding-top:0}
   .slot-events{grid-template-columns:1fr}
-  .ev-title{font-size:16px}
+  .ev-title{font-size:17px}
+  .ev-who{font-size:14px}
+  .ev-head{gap:6px}
+  .ev-venue{white-space:normal;overflow-wrap:anywhere}
+  .pick,.crewpick{width:44px;height:44px}
+  .pick{font-size:22px}
   .seg.days button{min-width:0;padding:6px 10px}
-  .gridwrap{max-height:calc(100vh - 250px)}
+  .gridwrap{max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
+  .seg button,.mbtn,.chip,.selects select,.search button{min-height:44px}
+  .search input,.selects select{font-size:16px}
+  .search button{min-width:44px}
+  .selects select{background-position:calc(100% - 15px) 19px,calc(100% - 10px) 19px}
+}
+@media (max-width:859px){
+  .sheet-body .desc,.sheet-body .bio,.sheet-body .brief,.sheet-body .notes,.sheet-body input{font-size:16px}
+  .sheet-body .btn,.sheet-body .person,.sheet-body .tabs button,.sheet-body .verdict button{min-height:44px}
+  .sheet-body .btn{justify-content:center}
+  .sheet-body .actions>.btn{flex:1 1 auto}
+  .sheet-body .hero{max-height:160px;aspect-ratio:2/1}
+  .sheet-body .person{max-width:100%}
 }
 @media (prefers-reduced-motion: no-preference){
   .sheet{animation:up .22s cubic-bezier(.2,.8,.2,1)}
