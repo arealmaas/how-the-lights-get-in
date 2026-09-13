@@ -15,9 +15,13 @@ const noteWrites = new Map();
 
 export function hydrate(){
   const f = Object.assign({day: '2026-09-19', view: 'list', groups: [], venue: '', topic: '', picksOnly: false, crewOnly: false}, load(LS.state, {}));
+  const account = load('htlgi-l26-account', null);
   if (!['2026-09-19', '2026-09-20'].includes(f.day)) f.day = '2026-09-19';
   return {
     ...f, q: '',
+    // Track whose snapshot is loaded separately from the asynchronously changing
+    // signed-in identity. This stays in memory and is never part of account data.
+    accountOwner: typeof account?.uid === 'string' && account.uid.trim() ? account.uid : null,
     picks: new Set((load(LS.picks, []) || []).filter(n => byNo.has(n))),
     verdicts: clean(load(LS.verdicts, {}), v => typeof v === 'string' && v),
     notes: clean(load(LS.notes, {}), v => typeof v === 'string' && v.trim()),
@@ -85,18 +89,19 @@ export const usePlanner = create((set, get) => ({
   // the snapshot side of sync: replace the four maps without syncing back; `keepNote` is the note being typed
   replaceFromAccount({picks, verdicts, notes, shared}, keepNote){
     const s = get();
+    const cloud = useCloud.getState();
     const nextNotes = clean(notes, v => typeof v === 'string' && v.trim());
     for (const [no, write] of noteWrites) {
       if (write.uid !== useCloud.getState().user?.uid) continue;
       if (write.text) nextNotes[no] = write.text; else delete nextNotes[no];
     }
     if (keepNote != null) { if (s.notes[keepNote]) nextNotes[keepNote] = s.notes[keepNote]; else delete nextNotes[keepNote]; }
-    const next = {picks: new Set(Object.keys(picks || {}).map(Number).filter(n => byNo.has(n))), verdicts: clean(verdicts, v => typeof v === 'string'), notes: nextNotes, shared: clean(shared, v => v === true)};
-    const same = JSON.stringify([[...s.picks].sort(), s.verdicts, s.notes, s.shared]) === JSON.stringify([[...next.picks].sort(), next.verdicts, next.notes, next.shared]);
+    const next = {accountOwner: cloud.user?.uid || cloud.marker?.uid || null, picks: new Set(Object.keys(picks || {}).map(Number).filter(n => byNo.has(n))), verdicts: clean(verdicts, v => typeof v === 'string'), notes: nextNotes, shared: clean(shared, v => v === true)};
+    const same = s.accountOwner === next.accountOwner && JSON.stringify([[...s.picks].sort(), s.verdicts, s.notes, s.shared]) === JSON.stringify([[...next.picks].sort(), next.verdicts, next.notes, next.shared]);
     if (same) return false;
     set(next); save(LS.picks, [...next.picks]); save(LS.verdicts, next.verdicts); save(LS.notes, next.notes); save(LS.shared, next.shared);
     return true;
   },
   local(){ const s = get(); return {picks: Object.fromEntries([...s.picks].map(n => [n, true])), verdicts: {...s.verdicts}, notes: {...s.notes}, shared: {...s.shared}}; },
-  clearLocal(){ noteWrites.clear(); set({picks: new Set(), verdicts: {}, notes: {}, shared: {}}); Object.values(LS).forEach(k => localStorage.removeItem(k)); },
+  clearLocal(){ noteWrites.clear(); set({accountOwner: null, picks: new Set(), verdicts: {}, notes: {}, shared: {}}); Object.values(LS).forEach(k => localStorage.removeItem(k)); },
 }));

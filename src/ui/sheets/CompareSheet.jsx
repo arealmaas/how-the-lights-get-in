@@ -12,6 +12,8 @@ import CrewRow from '../event/CrewRow.jsx';
 import '../../styles/comparison.css';
 
 const slotLabel = group => `${DAYS[group.date]} ${group.events[0].time} · ${group.events.length} options`;
+const comparisonIdentity = (owner, loadedOwner) => JSON.stringify([owner, loadedOwner]);
+const currentIdentity = () => comparisonIdentity(selectMyUid(useCloud.getState()), usePlanner.getState().accountOwner);
 const jumpTo = no => {
   const el = document.getElementById(`compare-event-${no}`);
   const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -110,14 +112,24 @@ function EventOption({event: e, index, events, picks, onChoose}){
 
 export default function CompareSheet(props){
   const owner = useCloud(selectMyUid);
-  return <Comparison key={owner || 'local'} {...props} owner={owner} />;
+  const loadedOwner = usePlanner(s => s.accountOwner);
+  const identity = comparisonIdentity(owner, loadedOwner);
+  // Authentication can switch before the first account snapshot arrives. Never
+  // offer a decision based on the previous account's still-visible local copy.
+  if (owner && loadedOwner !== owner) return <div className="comparison">
+    <div className="kicker"><span>My picks</span></div>
+    <h2 id="sheet-title" tabIndex={-1}>Compare your picks</h2>
+    <p className="compare-intro" role="status">Loading your account’s picks… You can return to the programme while they sync.</p>
+    <button type="button" className="btn" onClick={() => useSheet.getState().close()}>Back to the programme</button>
+  </div>;
+  return <Comparison key={identity} {...props} identity={identity} />;
 }
 
-function Comparison({no, session, onSelectGroup, owner}){
+function Comparison({no, session, onSelectGroup, identity}){
   const picks = usePlanner(s => s.picks);
   // Keep the options after a decision, and across a trip to a profile, so a user can
   // reconsider. This is memory for this sheet visit only; it never enters a URL.
-  const memory = useRef(session?.comparison?.owner === owner ? session.comparison : {owner, candidates: [], active: no, undo: null, message: ''});
+  const memory = useRef(session?.comparison?.identity === identity ? session.comparison : {identity, candidates: [], active: no, undo: null, message: ''});
   const [active, setActive] = useState(memory.current.active);
   const [undo, setUndo] = useState(memory.current.undo);
   const [message, setMessage] = useState(memory.current.message);
@@ -130,18 +142,18 @@ function Comparison({no, session, onSelectGroup, owner}){
   }, [groups, group, undo, message, session]);
 
   function choose(e){
-    if (selectMyUid(useCloud.getState()) !== owner) return;
+    if (currentIdentity() !== identity) return;
     const current = usePlanner.getState().picks;
     const {changes, removed} = resolveChoice(EVENTS, current, e.eventNo);
     const changed = Object.entries(changes).filter(([key, value]) => current.has(+key) !== value);
     if (!changed.length) return;
-    setUndo({owner, before: Object.fromEntries(changed.map(([key]) => [key, current.has(+key)])), after: Object.fromEntries(changed)});
+    setUndo({identity, before: Object.fromEntries(changed.map(([key]) => [key, current.has(+key)])), after: Object.fromEntries(changed)});
     usePlanner.getState().setPicks(changes);
     setMessage(`Keeping “${e.title}”. ${removed.length ? `Removed ${removed.length} overlapping pick${removed.length === 1 ? '' : 's'}.` : 'Added to your picks.'}`);
   }
-  const canUndo = undo && undo.owner === owner && Object.entries(undo.after).every(([key, value]) => picks.has(+key) === value);
+  const canUndo = undo && undo.identity === identity && Object.entries(undo.after).every(([key, value]) => picks.has(+key) === value);
   function undoChoice(){
-    if (!canUndo || selectMyUid(useCloud.getState()) !== owner) return;
+    if (!canUndo || currentIdentity() !== identity) return;
     usePlanner.getState().setPicks(undo.before);
     setUndo(null);
     setMessage('Choice undone. Your previous picks are restored.');

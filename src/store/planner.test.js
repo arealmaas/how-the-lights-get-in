@@ -1,9 +1,66 @@
 import {vi, beforeEach, test, expect} from 'vitest';
 vi.mock('../cloud/sync.js', () => ({change: vi.fn()}));
 import {change} from '../cloud/sync.js';
-import {usePlanner, DEL, LS} from './planner.js';
+import {usePlanner, hydrate, DEL, LS} from './planner.js';
+import {useCloud} from './cloud.js';
 
-beforeEach(() => { localStorage.clear(); usePlanner.setState({picks: new Set(), verdicts: {}, notes: {}, shared: {}}); change.mockClear(); });
+beforeEach(() => {
+  localStorage.clear();
+  usePlanner.setState({accountOwner: null, picks: new Set(), verdicts: {}, notes: {}, shared: {}});
+  useCloud.setState({user: null, marker: null});
+  change.mockClear();
+});
+
+test('hydrate identifies cached account data only from a valid account marker', () => {
+  expect(hydrate().accountOwner).toBeNull();
+  localStorage.setItem('htlgi-l26-account', JSON.stringify({uid: 'cached-account'}));
+  expect(hydrate().accountOwner).toBe('cached-account');
+  for (const invalid of [null, {}, {uid: ''}, {uid: '  '}, {uid: 123}, ['cached-account'], 'cached-account']) {
+    localStorage.setItem('htlgi-l26-account', JSON.stringify(invalid));
+    expect(hydrate().accountOwner).toBeNull();
+  }
+  localStorage.setItem('htlgi-l26-account', '{broken');
+  expect(hydrate().accountOwner).toBeNull();
+});
+
+test('an identical account snapshot still reports a changed owner after an asynchronous identity transition', () => {
+  const snapshot = {picks: {3: true, 6: true}, verdicts: {}, notes: {3: 'Same content'}, shared: {}};
+  useCloud.setState({user: {uid: 'first-account'}, marker: {uid: 'first-account'}});
+  usePlanner.getState().replaceFromAccount(snapshot);
+  useCloud.setState({user: {uid: 'second-account'}});
+  expect(usePlanner.getState().accountOwner).toBe('first-account');
+
+  const listener = vi.fn(), unsubscribe = usePlanner.subscribe(listener);
+  try {
+    expect(usePlanner.getState().replaceFromAccount(snapshot)).toBe(true);
+    expect(usePlanner.getState().accountOwner).toBe('second-account');
+    expect(usePlanner.getState().picks).toEqual(new Set([3, 6]));
+    expect(listener).toHaveBeenCalledTimes(1);
+    expect(usePlanner.getState().replaceFromAccount(snapshot)).toBe(false);
+    expect(listener).toHaveBeenCalledTimes(1);
+    expect(usePlanner.getState().local()).toEqual(snapshot);
+    expect(change).not.toHaveBeenCalled();
+  } finally { unsubscribe(); }
+});
+
+test('replacement publishes changed account content and its marker owner atomically, then clearing removes the owner', () => {
+  usePlanner.setState({accountOwner: 'first-account', picks: new Set([3, 6]), notes: {3: 'Old note'}});
+  useCloud.setState({user: null, marker: {uid: 'second-account'}});
+  const observed = [], unsubscribe = usePlanner.subscribe(s => observed.push({owner: s.accountOwner, picks: [...s.picks], notes: s.notes}));
+  try {
+    expect(usePlanner.getState().replaceFromAccount({picks: {41: true}, verdicts: {}, notes: {41: 'New note'}, shared: {}})).toBe(true);
+    expect(observed).toEqual([{owner: 'second-account', picks: [41], notes: {41: 'New note'}}]);
+    expect(JSON.parse(localStorage.getItem(LS.picks))).toEqual([41]);
+    expect(JSON.parse(localStorage.getItem(LS.notes))).toEqual({41: 'New note'});
+    expect(Object.keys(localStorage).sort()).toEqual([LS.picks, LS.verdicts, LS.notes, LS.shared].sort());
+    usePlanner.getState().clearLocal();
+    expect(usePlanner.getState().accountOwner).toBeNull();
+    expect(usePlanner.getState().picks.size).toBe(0);
+    expect(usePlanner.getState().notes).toEqual({});
+    expect(localStorage.length).toBe(0);
+    expect(change).not.toHaveBeenCalled();
+  } finally { unsubscribe(); }
+});
 
 test('togglePick persists and syncs a field-level change', () => {
   usePlanner.getState().togglePick(3);

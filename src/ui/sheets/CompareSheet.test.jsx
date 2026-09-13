@@ -14,7 +14,7 @@ const option = no => within(screen.getByRole('article', {name: byNo.get(no).titl
 
 beforeEach(() => {
   localStorage.clear();
-  usePlanner.setState({picks: new Set(), verdicts: {}, notes: {}, shared: {}});
+  usePlanner.setState({picks: new Set(), verdicts: {}, notes: {}, shared: {}, accountOwner: null});
   useSheet.setState({stack: []});
   useCloud.setState({user: null, accountName: '', marker: null, crewId: null, crew: null});
 });
@@ -63,7 +63,7 @@ test('Undo becomes unavailable when a pick affected by the choice is changed els
 
 test('returning to a comparison after switching accounts discards the previous account’s options and Undo', async () => {
   useCloud.setState({user: {uid: 'first-account'}, marker: {uid: 'first-account'}});
-  usePlanner.setState({picks: new Set([3, 4])});
+  usePlanner.setState({picks: new Set([3, 4]), accountOwner: 'first-account'});
   useSheet.getState().open('compare', 3);
   render(<Sheet />);
   await userEvent.click(option(3).getByRole('button', {name: 'Choose this event'}));
@@ -75,7 +75,7 @@ test('returning to a comparison after switching accounts discards the previous a
   await userEvent.click(option(3).getByRole('button', {name: 'Full event details'}));
   act(() => {
     useCloud.setState({user: {uid: 'second-account'}, marker: {uid: 'second-account'}});
-    usePlanner.setState({picks: new Set()});
+    usePlanner.getState().replaceFromAccount({picks: {}, notes: {}, verdicts: {}, shared: {}});
   });
   await userEvent.click(screen.getByRole('button', {name: '← Back'}));
   expect(screen.getByRole('heading', {name: 'Your picks fit together'})).toBeVisible();
@@ -87,7 +87,7 @@ test('returning to a comparison after switching accounts discards the previous a
 
 test('hydrating the same cached account identity preserves comparison options and Undo', async () => {
   useCloud.setState({user: null, marker: {uid: 'same-account'}});
-  usePlanner.setState({picks: new Set([3, 4])});
+  usePlanner.setState({picks: new Set([3, 4]), accountOwner: 'same-account'});
   useSheet.getState().open('compare', 3);
   render(<Sheet />);
   await userEvent.click(option(3).getByRole('button', {name: 'Choose this event'}));
@@ -95,6 +95,42 @@ test('hydrating the same cached account identity preserves comparison options an
   expect(option(4).getByText('Not picked')).toBeVisible();
   await userEvent.click(screen.getByRole('button', {name: 'Undo choice'}));
   expect(usePlanner.getState().picks).toEqual(new Set([3, 4]));
+});
+
+test('a staggered account transition waits for new picks and discards old options and Undo', async () => {
+  useCloud.setState({user: {uid: 'first-account'}, marker: {uid: 'first-account'}});
+  usePlanner.setState({picks: new Set([3, 4, 13, 14]), accountOwner: 'first-account'});
+  useSheet.getState().open('compare', 3);
+  render(<Sheet />);
+  await userEvent.click(option(3).getByRole('button', {name: 'Choose this event'}));
+
+  // Authentication arrives before the async first account snapshot. The previous
+  // owner's local picks must never become options for the new account.
+  act(() => useCloud.setState({user: {uid: 'second-account'}, marker: {uid: 'second-account'}}));
+  expect(screen.getByRole('status')).toHaveTextContent('Loading your account’s picks…');
+  expect(screen.queryByRole('article')).toBeNull();
+  expect(screen.queryByRole('button', {name: 'Undo choice'})).toBeNull();
+  act(() => usePlanner.getState().replaceFromAccount({picks: {}, notes: {}, verdicts: {}, shared: {}}));
+  expect(usePlanner.getState().accountOwner).toBe('second-account');
+  expect(screen.getByRole('heading', {name: 'Your picks fit together'})).toBeVisible();
+  expect(screen.queryByRole('article')).toBeNull();
+  expect(screen.queryByRole('button', {name: 'Undo choice'})).toBeNull();
+  expect(screen.getByRole('status')).toBeEmptyDOMElement();
+  expect(usePlanner.getState().picks).toEqual(new Set());
+});
+
+test('ordinary snapshots from the loaded account retain comparison options and Undo', async () => {
+  useCloud.setState({user: {uid: 'same-account'}, marker: {uid: 'same-account'}});
+  usePlanner.setState({picks: new Set([3, 4]), accountOwner: 'same-account'});
+  useSheet.getState().open('compare', 3);
+  render(<Sheet />);
+  await userEvent.click(option(3).getByRole('button', {name: 'Choose this event'}));
+  act(() => usePlanner.getState().replaceFromAccount({picks: {3: true}, notes: {3: 'A synced thought'}, verdicts: {}, shared: {}}));
+  expect(option(4).getByText('Not picked')).toBeVisible();
+  expect(option(3).getByText('Your note')).toBeVisible();
+  await userEvent.click(screen.getByRole('button', {name: 'Undo choice'}));
+  expect(usePlanner.getState().picks).toEqual(new Set([3, 4]));
+  expect(usePlanner.getState().notes).toEqual({3: 'A synced thought'});
 });
 
 test('both ends of an overlap chain can be kept, then reconsidered without losing the original options', async () => {
