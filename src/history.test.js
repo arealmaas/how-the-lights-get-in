@@ -93,3 +93,44 @@ test('invalid saved descriptors establish a fresh safe base instead of using a b
   useSheet.getState().close();
   expect(go).toHaveBeenCalledExactlyOnceWith(-1);
 });
+
+test.each([undefined, 6])('reload restores a comparison with opening event %s without persisting private choices', key => {
+  usePlanner.setState({picks: new Set([3, 6]), notes: {6: 'My private comparison note'}});
+  stop = startSheetHistory(boot);
+  useSheet.getState().open('hub');
+  useSheet.getState().open('compare', key);
+  const length = history.length;
+  const record = history.state[HISTORY_KEY];
+  expect(record.stack.at(-1)).toEqual({id: expect.any(String), kind: 'compare', key});
+  expect(JSON.stringify(record)).not.toMatch(/picks|notes|My private comparison note/);
+  stop();
+  useSheet.setState({stack: []});
+  stop = startSheetHistory(boot);
+  expect(history.length).toBe(length);
+  expect(useSheet.getState().stack).toEqual([{kind: 'hub', key: undefined}, {kind: 'compare', key}]);
+});
+
+test.each([99999, [3, 6], {picks: [3, 6]}, '6'])('rejects an invalid saved comparison key %s', key => {
+  stop = startSheetHistory(boot);
+  useSheet.getState().open('compare', 6);
+  const record = history.state[HISTORY_KEY];
+  stop();
+  history.replaceState({[HISTORY_KEY]: {...record, stack: [{...record.stack[0], key}]}}, '', '/');
+  useSheet.setState({stack: []});
+  stop = startSheetHistory(boot);
+  expect(useSheet.getState().stack).toEqual([]);
+  expect(history.state[HISTORY_KEY].index).toBe(0);
+});
+
+test('Back from event detail reuses the comparison visit and its public opening event', async () => {
+  stop = startSheetHistory(boot);
+  useSheet.getState().open('hub');
+  useSheet.getState().open('compare', 6);
+  const comparison = useSheet.getState().stack.at(-1);
+  useSheet.getState().open('event', 6);
+  expect(location.hash).toBe('#event=6');
+  history.back();
+  await vi.waitFor(() => expect(useSheet.getState().stack.at(-1)).toBe(comparison));
+  expect(location.hash).toBe('');
+  expect(history.state[HISTORY_KEY].stack.at(-1)).toEqual({id: expect.any(String), kind: 'compare', key: 6});
+});

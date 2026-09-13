@@ -1,0 +1,18 @@
+.compare-prompt{display:flex;align-items:center;gap:16px;padding:20px;margin:0 0 24px;border:1px solid var(--line-strong);border-left:4px solid var(--pick);border-radius:10px;background:var(--surface)}
+.compare-prompt-mark{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:10px;background:var(--pick-bg);color:var(--ink)}
+.compare-prompt-mark svg{width:26px;height:26px}
+.compare-prompt-copy{flex:1;min-width:0}
+.compare-prompt-copy p{margin:0;color:var(--ink-2);font-size:13px;line-height:1.5}
+.compare-prompt-copy .compare-prompt-eyebrow{font:11px var(--mono);letter-spacing:.03em;color:var(--ink-3)}
+.compare-prompt-copy .compare-prompt-title{margin:6px 0 3px;font:700 22px/1.15 var(--display);letter-spacing:-.02em;color:var(--ink)}
+.compare-prompt .compare-prompt-button{flex:none;background:var(--accent);color:var(--accent-ink);border-color:var(--accent);min-height:44px;gap:10px}
+.compare-prompt-button:hover{opacity:.9}
+.compare-event-action{margin:0 0 16px;background:var(--pick-bg);gap:10px;min-height:44px}
+.sheet-body .compare-prompt{margin-top:20px;flex-wrap:wrap}
+.sheet-body .compare-prompt-button{margin-left:60px}
+@media(max-width:600px){
+  .compare-prompt{align-items:flex-start;flex-wrap:wrap;gap:12px;padding:16px}
+  .compare-prompt-mark{width:36px;height:36px}
+  .compare-prompt-copy .compare-prompt-title{font-size:20px}
+  .compare-prompt .compare-prompt-button{justify-content:center;width:100%;margin-left:0}
+}

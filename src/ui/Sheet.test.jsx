@@ -1,7 +1,8 @@
 import {afterEach, beforeEach, expect, test, vi} from 'vitest';
-import {act, fireEvent, render, screen} from '@testing-library/react';
+import {act, fireEvent, render, screen, within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Sheet from './Sheet.jsx';
+import ComparePrompt from './ComparePrompt.jsx';
 import {useSheet} from '../store/sheet.js';
 import {usePlanner} from '../store/planner.js';
 import {useCloud} from '../store/cloud.js';
@@ -118,4 +119,55 @@ test('Edit note focuses and reveals the editor on entry, then Back restores its 
   expect(screen.getByRole('heading', {name: byNo.get(6).title})).toHaveFocus();
   expect(body.scrollTop).toBe(640);
   expect(screen.getByRole('textbox', {name: 'My note'})).toHaveValue('A thought to revise');
+});
+
+test('comparison slot changes replace the opening event while preserving retained options and Undo', async () => {
+  usePlanner.setState({picks: new Set([3, 4, 13, 14])});
+  useSheet.getState().open('compare', 3);
+  render(<Sheet />);
+  const firstOption = screen.getByRole('article', {name: byNo.get(3).title});
+  await userEvent.click(within(firstOption).getByRole('button', {name: 'Choose this event'}));
+  expect(usePlanner.getState().picks.has(4)).toBe(false);
+  const slots = screen.getByRole('group', {name: 'Overlapping time slots'});
+  await userEvent.click(within(slots).getByRole('button', {name: 'Saturday 12:00 · 2 options'}));
+  expect(useSheet.getState().stack).toEqual([{kind: 'compare', key: 13}]);
+  expect(screen.getByRole('button', {name: 'Undo choice'})).toBeVisible();
+  await userEvent.click(within(slots).getByRole('button', {name: 'Saturday 10:00 · 2 options'}));
+  expect(useSheet.getState().stack).toEqual([{kind: 'compare', key: 3}]);
+  expect(screen.getByRole('article', {name: byNo.get(4).title})).toBeVisible();
+  await userEvent.click(screen.getByRole('button', {name: 'Undo choice'}));
+  expect(usePlanner.getState().picks).toEqual(new Set([3, 4, 13, 14]));
+});
+
+test('the dialog focus trap reaches native comparison disclosures with Tab', async () => {
+  vi.spyOn(HTMLElement.prototype, 'getClientRects').mockImplementation(function(){
+    if (this.closest('[hidden]')) return [];
+    const details = this.closest('details');
+    if (details && !details.open && this.tagName !== 'SUMMARY') return [];
+    return [new DOMRect(0, 0, 100, 40)];
+  });
+  usePlanner.setState({picks: new Set([3, 4])});
+  useSheet.getState().open('compare', 3);
+  render(<Sheet />);
+  const firstSummary = document.querySelector('.compare-details summary');
+  // The timeline's last event link directly precedes the first option's disclosure.
+  const timeline = screen.getByRole('region', {name: 'Overlap timeline'});
+  within(timeline).getAllByRole('button').at(-1).focus();
+  await userEvent.tab();
+  expect(firstSummary).toHaveFocus();
+  await userEvent.tab({shift: true});
+  expect(within(timeline).getAllByRole('button').at(-1)).toHaveFocus();
+});
+
+test.each([false, true])('Close restores useful focus after the comparison opener disappears (undo: %s)', async undo => {
+  usePlanner.setState({picks: new Set([3, 4])});
+  render(<><main id="main" tabIndex={-1}><ComparePrompt day="2026-09-19" /></main><Sheet /></>);
+  const original = screen.getByRole('button', {name: 'Compare overlapping picks'});
+  await userEvent.click(original);
+  const firstOption = screen.getByRole('article', {name: byNo.get(3).title});
+  await userEvent.click(within(firstOption).getByRole('button', {name: 'Choose this event'}));
+  expect(original.isConnected).toBe(false);
+  if (undo) await userEvent.click(screen.getByRole('button', {name: 'Undo choice'}));
+  await userEvent.click(screen.getByRole('button', {name: 'Close', exact: true}));
+  expect(undo ? screen.getByRole('button', {name: 'Compare overlapping picks'}) : document.getElementById('main')).toHaveFocus();
 });

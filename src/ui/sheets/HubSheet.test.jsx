@@ -1,5 +1,6 @@
 import {test, expect, beforeEach} from 'vitest';
 import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Sheet from '../Sheet.jsx';
 import {useSheet} from '../../store/sheet.js';
 import {usePlanner} from '../../store/planner.js';
@@ -46,4 +47,13 @@ test('with no picks, the hub shows the empty-state nudge instead of the cards', 
   expect(screen.getByText('Nothing picked yet')).toBeInTheDocument();
   expect(screen.getByRole('button', {name: /browse the programme/i})).toBeInTheDocument();
   expect(document.getElementById('picklink')).toBeNull();
+});
+
+test('Your weekend compares overlapping picks across both days', async () => {
+  usePlanner.setState({picks: new Set([3, 6, 82, 83])});
+  useSheet.getState().open('hub');
+  render(<Sheet />);
+  expect(screen.getByText('Your weekend · 2 overlapping groups')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', {name: 'Compare overlapping picks'}));
+  expect(useSheet.getState().stack.at(-1)).toEqual({kind: 'compare', key: 3});
 });

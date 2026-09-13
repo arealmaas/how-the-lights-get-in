@@ -1,0 +1,90 @@
+/* The comparison uses the existing festival palette, with aligned criteria on
+   desktop and full-width options on phones. No sideways scrolling is required. */
+@media (min-width:860px){.sheet.compare-sheet:not(.expanded){width:min(1180px,calc(100vw - 32px))}}
+.sheet.compare-sheet.expanded .sheet-body>.comparison{max-width:1180px}
+.comparison{min-width:0}
+.comparison .btn{min-height:44px;justify-content:center}
+.comparison h3,.comparison h4,.comparison p{margin-top:0}
+.compare-intro{color:var(--ink-2);font-size:16px;line-height:1.6;max-width:720px;margin:12px 0 20px}
+.compare-slots{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.compare-slots button{min-height:44px;border:1px solid var(--line-strong);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;text-align:left;background:var(--surface)}
+.compare-slots button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.compare-group-heading{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin:20px 0 12px}
+.compare-group-heading h3{font:700 20px var(--display);margin:0}
+.compare-group-heading h3 span{font-weight:500;color:var(--ink-2)}
+.compare-group-heading>span{font:500 12px var(--mono);color:var(--ink-2)}
+.compare-timeline{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:20px}
+.compare-timeline-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px}
+.compare-timeline-heading h3{font-size:14px;margin-bottom:6px}
+.compare-timeline-heading>span,.compare-time-scale{font:500 11px var(--mono);color:var(--ink-2)}
+.compare-time-scale{display:flex;justify-content:space-between;margin-left:calc(36% + 12px);margin-bottom:4px}
+.compare-time-row{display:grid;grid-template-columns:36% 1fr;align-items:center;gap:12px;min-width:0}
+.compare-time-row>button{min-height:44px;display:flex;align-items:center;gap:8px;text-align:left;font-size:12px;line-height:1.35;padding:4px 0;min-width:0}
+.compare-time-row>button:hover{text-decoration:underline;text-underline-offset:3px}
+.compare-letter{display:inline-flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border-radius:6px;background:color-mix(in oklab,var(--c,var(--ink-2)) 12%,var(--surface));color:var(--c,var(--ink-2));font:600 12px var(--mono)}
+.compare-time-track{height:32px;position:relative;border-inline:1px solid var(--line-strong);background:repeating-linear-gradient(90deg,transparent,transparent calc(25% - 1px),var(--line) calc(25% - 1px),var(--line) 25%);min-width:0}
+.compare-time-track>span{position:absolute;top:4px;bottom:4px;display:flex;align-items:center;justify-content:space-between;padding:0 7px;border:1px dashed var(--c);border-radius:4px;color:var(--ink-2);font:500 11px var(--mono);overflow:hidden;white-space:nowrap;background:var(--surface)}
+.compare-time-track>span.is-picked{background:color-mix(in oklab,var(--c) 15%,var(--surface));border-style:solid;color:var(--ink)}
+.compare-timeline>p{font-size:12px;color:var(--ink-2);line-height:1.6;margin:12px 0 0;max-width:850px}
+.compare-board{display:grid;grid-template-columns:repeat(var(--option-count),minmax(0,1fr));gap:0 14px;align-items:start}
+.compare-option{min-width:0;border:1px solid var(--line-strong);border-top:4px solid var(--c);border-radius:10px;display:grid;grid-template-rows:subgrid;grid-row:span 6;background:var(--surface);margin-bottom:18px}
+.compare-option.is-chosen{border-color:var(--pick);border-top-color:var(--c);box-shadow:0 0 0 1px var(--pick)}
+.compare-option-head{padding:18px 18px 16px;min-width:0}
+.compare-option-kicker{display:flex;align-items:center;gap:8px;margin-bottom:12px;color:var(--c);font-size:12px;font-weight:600}
+.compare-pick-state{margin-left:auto;font-size:11px;color:var(--ink-2);white-space:nowrap}
+.compare-option-head h3{font:700 24px/1.16 var(--display);letter-spacing:-.02em;margin:0 0 12px;text-wrap:balance;scroll-margin-top:20px}
+.compare-when{font:600 12px/1.7 var(--mono);margin-bottom:10px}
+.compare-when span{font:400 13px var(--sans);color:var(--ink-2)}
+.compare-option-head .badge{display:inline-block;white-space:normal}
+.compare-cell{padding:16px 18px;border-top:1px solid var(--line);min-width:0}
+.compare-cell h4,.compare-details h4{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-2);margin:0 0 10px;font-weight:600}
+.compare-cell p{font-size:14px;line-height:1.65;margin:0 0 12px}
+.compare-cell p:last-child{margin-bottom:0}
+.compare-idea{background:color-mix(in oklab,var(--c) 4%,var(--surface))}
+.compare-idea p{white-space:pre-line}
+.compare-cell .compare-question{font:600 18px/1.4 var(--display);margin-bottom:18px}
+.compare-source,.compare-muted{color:var(--ink-2);font-size:12px}
+.compare-details{margin-top:14px}
+.compare-details summary{cursor:pointer;font-size:13px;font-weight:600;min-height:44px;align-content:center;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:4px}
+.compare-details[open] summary{margin-bottom:10px}
+.compare-details ul{padding-left:18px;font-size:13px;line-height:1.6}
+.compare-details a{font-size:13px;text-underline-offset:3px}
+.compare-topics{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.compare-topics li{font-size:12px;padding:5px 8px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;color:var(--ink-2)}
+.compare-topics li.distinct{border-color:color-mix(in oklab,var(--c) 45%,var(--line));color:var(--ink);background:color-mix(in oklab,var(--c) 7%,var(--surface))}
+.compare-topics li span{display:block;font-size:10px;color:var(--c);margin-top:2px}
+.compare-people{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.compare-people li{display:flex;align-items:flex-start;gap:10px;min-width:0}
+.compare-people .avatar{width:36px;height:36px;flex:none}
+.compare-people button,.compare-people strong{display:block;text-align:left;font-size:14px;font-weight:600;min-height:24px}
+.compare-people button{min-height:44px;margin-top:-6px;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
+.compare-people small{font-size:11px;color:var(--ink-2);font-weight:400}
+.compare-people p{font-size:12px;line-height:1.5;color:var(--ink-2);margin:0}
+.compare-overlaps{padding-left:16px;font-size:12px;line-height:1.6;color:var(--ink-2);margin:12px 0 0}
+.compare-overlaps li+li{margin-top:6px}
+.compare-note{white-space:pre-wrap}
+.compare-choice{display:flex;flex-direction:column;align-items:stretch;border-radius:0 0 9px 9px;background:var(--surface-2);margin:0;max-width:none;gap:0}
+.compare-choice>p{font-size:12px;color:var(--ink-2);line-height:1.6;margin:10px 0 16px}
+.compare-choice .btn:disabled{opacity:1;cursor:default}
+.compare-full-details{margin-top:auto}
+.compare-feedback:empty{display:none}
+.compare-feedback:not(:empty){position:sticky;top:-14px;z-index:3;display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;border:1px solid var(--pick);background:var(--pick-bg);border-radius:10px;padding:14px;margin:16px 0;box-shadow:0 4px 14px color-mix(in oklab,var(--ink) 8%,transparent)}
+.compare-feedback p{font-weight:600;font-size:14px;margin:0;flex:1 1 300px}
+.compare-feedback>span{flex:1 1 100%;font-size:12px;color:var(--ink-2)}
+.compare-attribution{font-size:12px;line-height:1.6;color:var(--ink-2);margin:6px 0 0;max-width:850px}
+.compare-empty{text-align:center;padding:36px 16px;border:1px dashed var(--line-strong);border-radius:12px;background:var(--surface-2)}
+.compare-empty>span{font-size:36px;color:var(--pick)}
+.compare-empty h3{font:700 24px var(--display);margin:12px 0}
+.compare-empty p{max-width:420px;margin:0 auto 20px;color:var(--ink-2);line-height:1.6}
+@media (max-width:700px){
+  .compare-board{grid-template-columns:1fr;gap:0}
+  .compare-option{display:block;grid-row:auto;margin-bottom:20px}
+  .compare-option-head h3{font-size:25px}
+  .compare-time-row{grid-template-columns:46% 1fr;gap:10px}
+  .compare-time-scale{margin-left:calc(46% + 10px)}
+  .compare-time-row>button{font-size:11px}
+  .compare-time-row .compare-letter{width:20px;height:20px;font-size:11px}
+  .compare-timeline{padding:12px}
+  .compare-group-heading h3{font-size:18px}
+  .compare-cell,.compare-option-head{padding:16px}
+}

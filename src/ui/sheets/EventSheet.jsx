@@ -19,6 +19,7 @@ import CrewRow from '../event/CrewRow.jsx';
 import CrewTally from '../event/CrewTally.jsx';
 import CrewNotes from '../event/CrewNotes.jsx';
 import {CrewPlanButton} from '../CrewPick.jsx';
+import '../../styles/comparison-entrypoints.css';
 
 function ClashRef({no}){
   const o = byNo.get(no);
@@ -153,6 +154,11 @@ export default function EventSheet({no, mode, initialTab, onTabChange, sectionPo
             <Fragment key={x.no}>{i > 0 ? ', ' : ''}{x.min} min with <ClashRef no={x.no} /> ({byNo.get(x.no).time}, {byNo.get(x.no).venue})</Fragment>
           ))} — sessions assumed to last an hour.
         </p>
+      )}
+      {(clash?.length > 0 || overlap?.length > 0) && (
+        <button type="button" className="btn compare-event-action" onClick={() => useSheet.getState().open('compare', no)}>
+          Compare these picks <span aria-hidden="true">↗</span>
+        </button>
       )}
       <div ref={tabsRef} className="tabs event-tabs" role="group" aria-label="Event sections">
         <button type="button" aria-pressed={tab === 'overview'} aria-controls={`overview-${no}`} onClick={() => selectTab('overview')}>Overview</button>

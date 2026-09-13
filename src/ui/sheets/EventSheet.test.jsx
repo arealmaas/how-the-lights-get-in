@@ -57,6 +57,22 @@ test('changing sections keeps the note draft and the same event visit', async ()
   expect(useSheet.getState().stack).toHaveLength(1);
 });
 
+test.each([[6, 7], [3, 6]])('overlapping picks %s offer a comparison from event details', async (first, second) => {
+  usePlanner.setState({picks: new Set([first, second])});
+  useSheet.getState().open('event', second);
+  render(<Sheet />);
+  await userEvent.click(screen.getByRole('button', {name: 'Compare these picks'}));
+  expect(useSheet.getState().stack.at(-1)).toEqual({kind: 'compare', key: second});
+  expect(document.getElementById('sheet')).toHaveClass('compare-sheet');
+});
+
+test('event details do not offer a comparison when the event is not picked', () => {
+  usePlanner.setState({picks: new Set([3, 7])});
+  useSheet.getState().open('event', 6);
+  render(<Sheet />);
+  expect(screen.queryByRole('button', {name: 'Compare these picks'})).toBeNull();
+});
+
 // CREW-SPEC section 7: in a crew the actions row has the crew-plan toggle beside "Add to my picks".
 // It reads the crew document and calls cloud/crew.js; the pressed state follows the next snapshot.
 test('in a crew the actions row offers the crew-plan toggle beside the pick button; without one it does not', async () => {

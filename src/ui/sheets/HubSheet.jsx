@@ -14,6 +14,7 @@ import AccountCard from '../hub/AccountCard.jsx';
 import CrewCard from '../hub/CrewCard.jsx';
 import CrewSection from '../hub/CrewSection.jsx';
 import NotesSection from '../hub/NotesSection.jsx';
+import ComparePrompt from '../ComparePrompt.jsx';
 
 export default function HubSheet({mode}){
   const picks = usePlanner(s => s.picks);
@@ -47,6 +48,7 @@ export default function HubSheet({mode}){
         ) : 'Nothing picked yet'}
       </p>
       <HubCards mine={mine} />
+      <ComparePrompt />
       {byDay.filter(([, evs]) => evs.length).map(([d, evs]) => (
         <Fragment key={d}>
           <h3 className="sub">{DAYS[d]} · {evs.length} pick{evs.length === 1 ? '' : 's'}</h3>

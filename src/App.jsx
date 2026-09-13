@@ -6,6 +6,7 @@ import Banner from './ui/Banner.jsx';
 import NowNext from './ui/NowNext.jsx';
 import EventList from './ui/EventList.jsx';
 import EventGrid from './ui/EventGrid.jsx';
+import ComparePrompt from './ui/ComparePrompt.jsx';
 import Footer from './ui/Footer.jsx';
 import Sheet from './ui/Sheet.jsx';
 import {usePlanner} from './store/planner.js';
@@ -33,6 +34,8 @@ function PreviewTag(){
 
 export default function App(){
   const view = usePlanner(s => s.view);
+  const day = usePlanner(s => s.day);
+  const picksOnly = usePlanner(s => s.picksOnly);
   const sheetOpen = useSheet(s => s.stack.length > 0);
   const {list, clashes} = useFiltered();
 
@@ -44,6 +47,7 @@ export default function App(){
       {!sheetOpen && <Banner />}
       <NowNext />
       <main id="main" tabIndex={-1} aria-label="Festival programme">
+        {picksOnly && <ComparePrompt day={day} />}
         {view === 'grid' ? <EventGrid list={list} clashes={clashes} /> : <EventList list={list} clashes={clashes} />}
       </main>
       <Footer />

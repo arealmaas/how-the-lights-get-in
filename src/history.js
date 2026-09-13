@@ -16,6 +16,9 @@ function validEntry(e){
   if (e.kind === 'speaker') return spkBySlug.has(e.key);
   if (e.kind === 'act') return actBySlug.has(e.key);
   if (e.kind === 'map') return VENUES.includes(e.key);
+  // A comparison stores only its opening event. The current picks and the comparison's
+  // transient choices are read from memory, never copied into browser history.
+  if (e.kind === 'compare') return e.key === undefined || byNo.has(e.key);
   return ['hub', 'stats', 'reading'].includes(e.kind) && e.key === undefined;
 }
 

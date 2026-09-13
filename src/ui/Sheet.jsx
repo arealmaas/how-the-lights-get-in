@@ -11,6 +11,7 @@ import HubSheet from './sheets/HubSheet.jsx';
 import StatsSheet from './sheets/StatsSheet.jsx';
 import ReadingSheet from './sheets/ReadingSheet.jsx';
 import MapSheet from './sheets/MapSheet.jsx';
+import CompareSheet from './sheets/CompareSheet.jsx';
 import Banner from './Banner.jsx';
 
 export default function Sheet(){
@@ -19,6 +20,7 @@ export default function Sheet(){
   const close = useSheet(s => s.close);
   const bodyRef = useRef(null);
   const sheetRef = useRef(null);
+  const openerRef = useRef(null);
   const positions = useRef(new WeakMap());
   const nextEntryId = useRef(0);
   const [expanded, setExpanded] = useState(false);
@@ -36,7 +38,18 @@ export default function Sheet(){
   // Scroll events can arrive after a history traversal has replaced the body. Save the
   // outgoing position synchronously while its content is still rendered, including
   // consecutive store changes that React may combine into one render.
-  useLayoutEffect(() => useSheet.subscribe(state => {
+  useLayoutEffect(() => useSheet.subscribe((state, previousState) => {
+    const incoming = state.stack.at(-1);
+    const previous = previousState.stack.at(-1);
+    // Switching comparison slots replaces the public opening event for reloads,
+    // while keeping the same visit's options and Undo in memory. This also runs
+    // when history finishes a queued replacement after an earlier traversal.
+    if (incoming?.kind === 'compare' && previous?.kind === 'compare' &&
+        state.stack.length === previousState.stack.length &&
+        state.stack.slice(0, -1).every((entry, i) => entry === previousState.stack[i]) &&
+        positions.current.has(previous)) {
+      positions.current.set(incoming, positions.current.get(previous));
+    }
     const outgoing = visibleEntry.current;
     if (outgoing && outgoing !== state.stack.at(-1) && bodyRef.current) {
       positions.current.get(outgoing).scrollTop = bodyRef.current.scrollTop;
@@ -48,9 +61,20 @@ export default function Sheet(){
   useLayoutEffect(() => {
     if (!open) {
       setExpanded(false);
+      const previousOpener = openerRef.current;
+      if (previousOpener) {
+        // Restore focus after React finishes updating the page. Resolving overlaps
+        // can remove the prompt; Undo may recreate it as a different element.
+        const replacement = previousOpener.focusKey && [...document.querySelectorAll('[data-focus-key]')]
+          .find(element => element.dataset.focusKey === previousOpener.focusKey);
+        const target = previousOpener.element?.isConnected ? previousOpener.element : replacement || document.getElementById('main');
+        target?.focus({preventScroll: true});
+        openerRef.current = null;
+      }
       return;
     }
     const opener = document.activeElement;
+    openerRef.current = {element: opener, focusKey: opener?.dataset?.focusKey};
     const {scrollX, scrollY} = window;
     const style = document.body.style;
     const previous = Object.fromEntries(['position', 'top', 'left', 'width', 'overflow', 'paddingRight']
@@ -66,7 +90,6 @@ export default function Sheet(){
       if (window.scrollX !== scrollX || window.scrollY !== scrollY) {
         window.scrollTo({left: scrollX, top: scrollY, behavior: 'instant'});
       }
-      if (opener?.isConnected) opener.focus({preventScroll: true});
     };
   }, [open]);
 
@@ -102,7 +125,7 @@ export default function Sheet(){
       // Account/invite banners are deliberately above the sheet and must stay reachable.
       const surfaces = [document.querySelector('.banner'), sheetRef.current].filter(Boolean);
       const controls = [...new Set(surfaces.flatMap(surface => [...surface.querySelectorAll(
-        'a[href], button, input, select, textarea, iframe, [tabindex]'
+        'a[href], button, input, select, textarea, iframe, summary, [tabindex]'
       )]))].filter(el => !el.disabled && el.tabIndex >= 0 && el.getClientRects().length > 0);
       // Own every Tab step so navigation cannot enter the obscured programme.
       ev.preventDefault();
@@ -122,6 +145,7 @@ export default function Sheet(){
     else if (top.kind === 'speaker') body = <SpeakerSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'act') body = <ActSheet key={top.key} slug={top.key} />;
     else if (top.kind === 'map') body = <MapSheet key={position.id} venue={top.key} />;
+    else if (top.kind === 'compare') body = <CompareSheet key={position.id} no={top.key} session={position} onSelectGroup={no => useSheet.getState().replaceTop('compare', no)} />;
     // the hub's `mode` is where it opens: 'crew' scrolls to the crew cards (the masthead's crew button)
     else if (top.kind === 'hub') body = <HubSheet key={top.key} mode={top.mode} />;
     else if (top.kind === 'stats') body = <StatsSheet key={top.key} />;
@@ -133,7 +157,7 @@ export default function Sheet(){
   return (
     <>
       <div id="scrim" className="scrim" hidden={!open} onClick={close} />
-      <section id="sheet" ref={sheetRef} className={`sheet${expanded ? ' expanded' : ''}`} role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabIndex={-1} hidden={!open}>
+      <section id="sheet" ref={sheetRef} className={`sheet${top?.kind === 'compare' ? ' compare-sheet' : ''}${expanded ? ' expanded' : ''}`} role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabIndex={-1} hidden={!open}>
         {open && <Banner />}
         <div className="sheet-bar">
           <div className="grip" aria-hidden="true" />

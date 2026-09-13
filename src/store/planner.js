@@ -32,10 +32,20 @@ export const usePlanner = create((set, get) => ({
   clearFilters(){ set({groups: [], venue: '', topic: '', picksOnly: false, crewOnly: false, q: ''}); persistFilters(get()); },
   setQuery(q){ set({q}); },
   togglePick(no){
-    const picks = new Set(get().picks); const on = !picks.has(no);
-    if (on) picks.add(no); else picks.delete(no);
+    get().setPicks({[no]: !get().picks.has(no)});
+  },
+  setPicks(changes){
+    const picks = new Set(get().picks), fields = {};
+    for (const [key, on] of Object.entries(changes || {})) {
+      const no = Number(key);
+      if (!byNo.has(no) || typeof on !== 'boolean' || picks.has(no) === on) continue;
+      if (on) picks.add(no); else picks.delete(no);
+      fields['picks.' + no] = on ? true : DEL;
+    }
+    if (!Object.keys(fields).length) return false;
     set({picks}); save(LS.picks, [...picks]);
-    syncChange({['picks.' + no]: on ? true : DEL}, {['picks.' + no]: on ? true : DEL});
+    syncChange(fields, fields);
+    return true;
   },
   setVerdict(no, who){
     const verdicts = {...get().verdicts}; if (who) verdicts[no] = who; else delete verdicts[no];
