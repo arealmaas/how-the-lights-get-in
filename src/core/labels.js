@@ -1,21 +1,25 @@
 // src/core/labels.js — small label and text-shaping helpers with no DOM: they return plain data or plain
 // strings, never markup (ticketBadge used to render a <span>; here it is data only, for a component to render).
+const priceText = price => Number.isInteger(price) ? String(price) : price.toFixed(2);
 export function ticketBadge(e){
   if (e.ticketing === 'sold_out') return {cls: 'badge sold', text: 'Sold out'};
   if (e.ticketing === 'separate_ticket') {
     const p = e.prices || {}; const from = Math.min(...Object.values(p).filter(Number.isFinite));
-    return {cls: 'badge sep', text: `Separate ticket${Number.isFinite(from) ? ' · from £' + from : ''}`};
+    return {cls: 'badge sep', text: `Separate ticket${Number.isFinite(from) ? ' · from £' + priceText(from) : ''}`};
   }
-  if (e.ticketing === 'fast_pass') return {cls: 'badge', text: 'Included · optional Fast Pass'};
+  if (e.ticketing === 'fast_pass') return {cls: 'badge', text: e.fastPassSoldOut ? 'Included · Fast Passes sold out' : 'Included · optional Fast Pass'};
   return {cls: 'badge', text: 'Included'};
 }
 export function ticketLine(e){
-  if (e.ticketing === 'sold_out') return 'Separately ticketed · sold out';
+  if (e.ticketing === 'sold_out') return 'Sold out';
   if (e.ticketing === 'separate_ticket') {
-    const p = e.prices || {}; const bits = ['earlybird','advance','standard'].filter(k => k in p).map(k => `${k[0].toUpperCase() + k.slice(1)} £${p[k]}`);
-    return 'Not included with the Festival Ticket' + (bits.length ? ' · ' + bits.join(' / ') + ' (+ VAT)' : '');
+    const p = e.prices || {}; const bits = ['earlybird','advance','standard'].filter(k => k in p).map(k => `${k[0].toUpperCase() + k.slice(1)} £${priceText(p[k])}`);
+    return 'Not included with the Festival Ticket' + (bits.length ? ' · ' + bits.join(' / ') : '');
   }
-  if (e.ticketing === 'fast_pass') return `Included with the Festival Ticket · optional Fast Pass${e.fastPassPrice ? ' £' + e.fastPassPrice + ' + VAT' : ''} (skip the queue, reserved seat)`;
+  if (e.ticketing === 'fast_pass') {
+    if (e.fastPassSoldOut) return 'Included with the Festival Ticket · Fast Passes sold out';
+    return `Included with the Festival Ticket · optional Fast Pass${e.fastPassPrice ? ' £' + priceText(e.fastPassPrice) : ''} (skip the queue, reserved seat)`;
+  }
   return 'Included with the Festival Ticket';
 }
 export const whoPlain = e => [e.speakers.join(', '), e.hosts.length ? 'hosted by ' + e.hosts.join(' & ') : ''].filter(Boolean).join(' · ');

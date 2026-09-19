@@ -49,8 +49,9 @@
       "Both are professional politicians now; the candour may be rationed."
     ],
     "speakers": [
+      {"name": "Torsten Bell", "stance": "Labour MP and Pensions Minister; formerly chief executive of the Resolution Foundation and author of Great Britain? Expect data-heavy argument for investment and for fixing living standards at the bottom."},
       {"name": "Jeremy Hunt", "stance": "Conservative former Chancellor; the fiscal-credibility, supply-side case. See also his 12pm talk on optimism."},
-      {"name": "Torsten Bell", "stance": "Labour MP and Pensions Minister; formerly chief executive of the Resolution Foundation and author of Great Britain? Expect data-heavy argument for investment and for fixing living standards at the bottom."}
+      {"name": "Isabel Hilton", "stance": "Hosts. Journalist, broadcaster and founder of Chinadialogue."}
     ],
     "questions": [
       "Name a cut you would make and a tax you would raise. No abstractions.",
@@ -249,7 +250,7 @@
       "A former prosecutor arguing against the state's reach will be asked which prosecutions she regrets."
     ],
     "speakers": [
-      {"name": "Laila Cunningham", "stance": "Westminster City Councillor, former Crown Prosecution Service lawyer, Reform UK's 2028 London mayoral candidate. Expect a campaigning, example-driven case against state overreach. She also debates cultural Christianity at 1:30pm."}
+      {"name": "Laila Cunningham", "stance": "Westminster City Councillor, former Crown Prosecution Service lawyer, Reform UK's 2028 London mayoral candidate. Expect a campaigning, example-driven case against state overreach."}
     ],
     "questions": [
       "Name three state functions you would abolish, and who would bear the cost.",
@@ -363,39 +364,6 @@
     "terms": [
       {"term": "Front stage / back stage", "def": "Goffman's distinction between the performed public self and the region where the performance is prepared."},
       {"term": "Parasocial", "def": "A one-sided relationship with a public figure — the audience's side of fame."}
-    ]
-  },
-  "87": {
-    "kind": "talk",
-    "question": "Can economics be rebuilt around the common good — where how we achieve goals matters as much as what they are?",
-    "why": "Mazzucato made her name arguing the state is an entrepreneur, not a fixer of market failures. This talk goes further: an economy organised around collective goals, participation and reciprocity, with the process itself as part of the value. It is the intellectual programme behind 'mission economics'.",
-    "case": [
-      "Value is created collectively — public research, infrastructure, education — and captured privately; the common good reverses the accounting.",
-      "Markets are outcomes of rules, not natural facts; shaping them towards shared goals (climate, health) is legitimate and effective.",
-      "How matters: goals reached by participation and reciprocity are more durable than goals imposed.",
-      "The evidence is in the mission-oriented programmes — from the moon landing to vaccine development — that public purpose can direct innovation."
-    ],
-    "objections": [
-      "'Common good' has no agreed content; who defines it, and what happens to those who disagree?",
-      "Mission-oriented policy has expensive failures (Concorde, industrial champions) that the success stories omit.",
-      "The state that Mazzucato trusts to set missions is the same one that struggles to build a railway.",
-      "Private investment follows returns; a common-good economy has to explain where the capital comes from."
-    ],
-    "speakers": [
-      {"name": "Mariana Mazzucato", "stance": "UCL economist; The Entrepreneurial State, Mission Economy, The Big Con, The Common Good Economy. Advises the G20, WHO and UN. Expect a confident, policy-ready case with international examples. She debates inheritance at 2:30pm."}
-    ],
-    "questions": [
-      "Give an example of a mission that failed and what you learned from it.",
-      "Who decides the common good in a country split 50/50 on what it is?",
-      "What is the role of profit in your economy — tolerated, harnessed, or replaced?"
-    ],
-    "reading": [
-      {"title": "Mission Economy", "by": "Mariana Mazzucato (2021)", "note": "The programme in full."},
-      {"title": "The Big Con", "by": "Mariana Mazzucato and Rosie Collington (2023)", "note": "Her attack on the consultancy industry — the 'how' argument in practice."}
-    ],
-    "terms": [
-      {"term": "Mission-oriented innovation", "def": "Directing public and private investment at defined societal goals rather than fixing market failures case by case."},
-      {"term": "Public value", "def": "Value created collectively by public institutions — which Mazzucato argues economics systematically undercounts."}
     ]
   },
   "90": {

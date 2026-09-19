@@ -1,5 +1,5 @@
 {
- "extractedAt": "2026-09-06T12:43:59.507Z",
+ "extractedAt": "2026-09-19T08:17:41.321Z",
  "festival": "london",
  "source": "https://howthelightgetsin.org/festivals/london/programme",
  "events": [
@@ -39,17 +39,13 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/2-david-aaronovitch.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Breakfast-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Breakfast-InnerCircle.pdf",
      "text": "Click here to view the Breakfast menu."
     }
    ],
-   "prices": {
-    "advance": 30,
-    "earlybird": 25,
-    "standard": 35
-   },
+   "prices": null,
    "speakers": "David Aaronovitch.",
-   "ticketing": "separate_ticket",
+   "ticketing": "sold_out",
    "time": "9:00am",
    "title": "Philosophy Breakfast with David Aaronovitch",
    "topics": [
@@ -65,7 +61,7 @@
    "date": "Sat 19 September",
    "description": "Science has mapped galaxies and genomes, yet consciousness remains elusive. Join physicist and astronomer, Adam Frank, as he calls out science’s biggest blind spot. The problem is not data, but perspective. Treating mind as a side effect leaves experience unexplained. Frank urges a new approach where consciousness is integral to reality's nature, not something that emerges from physical matter. To move forward, science must confront the mystery of consciousness itself, not just examine the equations that play in its shadows.\n\n\"With wit and brio, Frank separates current nonsense... from the serious.\" – Carlo Rovelli",
    "eventNo": 3,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50002",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/3-consciousness-is-sciences-blind-spot.webp",
    "links": [],
@@ -87,7 +83,7 @@
    "date": "Sat 19 September",
    "description": "Across the Western world, populism has been on the rise and is transforming politics. In this two-part course, Frank Furedi, Emeritus Professor of Sociology and one of the most widely cited social commentators in the UK press, explores what populism really consists of, why it is so frequently dismissed, and what its future is likely going to be. Furedi reframes populism as a democratic disposition: a genuine demand for solidarity, cultural security, and the right to be heard. Now director of the Hungarian think tank MCC Brussels, Furedi argues that the world must take populism seriously and engage with its underlying philosophy on its own terms.\n\nPart 1: The anti-populist narrative: A brief history of populism - from its roots in Ancient Greece to the modern anti-populist narrative.\n\nPart 2: Populism as a democratic disposition: Far from being a threat to democracy, Furedi makes the case that populism may be one of its most authentic expressions.\n\n\"Furedi's analysis is brilliant.\" – Jonathan Haidt",
    "eventNo": 4,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50003",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/4-populism-power-security-and-democracy.webp",
    "links": [],
@@ -109,7 +105,7 @@
    "date": "Sat 19 September",
    "description": "Would you trade your data for a healthier or fairer society? Every time you visit a doctor, enrol a child in school, or interact with a public service, you generate a record. For decades, this data sat in silos – collected to run services, never joined up. Now it can be linked at scale, revealing patterns in public health and inequality that were previously invisible. Join Dr Emma Gordon, director of the £168m Administrative Data Research UK programme, as she makes the case that the data trail of everyday life could transform how we understand and improve public services.\n\nIn partnership with ADR UK",
    "eventNo": 5,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50004",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/5-big-data-matters.webp",
    "links": [],
@@ -131,7 +127,7 @@
    "date": "Sat 19 September",
    "description": "The scientific revolution, from Copernicus to Newton, made science the winner in the race to uncover the ultimate nature of reality. But a hundred years ago, Heisenberg’s Uncertainty Principle and the Copenhagen interpretation of quantum mechanics undermined that vision, placing reality beyond the reach of physics. Despite the theory's remarkable predictive success, from the outset many refused to accept this outcome. Einstein famously declared, \"God does not play dice\" with the universe. Seeking to hold onto reality, some have put forward an uncountable infinity of parallel universes while others propose mysterious hidden variables. Critics argue these notions are driven not by evidence but by the emotional desire to believe in a describable reality, since the Copenhagen interpretation is precisely accurate, to 12 decimal places, in its predictions.\n\nShould we accept the view that science’s ambition to reveal reality was always an illusion? And see alternatives as driven by the desire to retain ultimate truth? Or was Einstein right to insist that science needs to maintain the ability to provide a God's eye view of reality?\n\nFormer Editor of Nature Philip Ball, author of Beyond the Quantum, physicist Antony Valentini, and theoretical physicist and YouTuber Sabine Hossenfelder debate quantum physics and reality.",
    "eventNo": 6,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50005",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/6-Lost-in-the-Quantum-World.webp",
    "links": [],
@@ -153,7 +149,7 @@
    "date": "Sat 19 September",
    "description": "Trump aside, many imagine free trade is clearly the best economic strategy. Nations that opened their borders grew wealthy, those that closed stagnated. But the evidence tells a more complicated story. America became the wealthiest country in the world behind tariff walls that averaged over 40% during its industrial rise. The European Union — cheered on as a liberal success story — is seen as a highly protectionist bloc by emerging countries, with some dairy, meat, and sugar products having tariffs over 100%. Meanwhile, South Korea didn't build Hyundai and Samsung by trusting the market — the government backed handpicked industries, and blocked foreign competitors. China did the same.\n\nShould we stop thinking of free trade as automatically a good thing and recognise that protectionism is sometimes essential for growth? Is free trade only effective when a country is economically dominant, as Britain was in the 19th century, and the US post WWII? Or has free trade been responsible in the last 70 years for the fastest rise in living standards the world has ever seen, which we abandon at great peril?\n\nFormer Chancellor Jeremy Hunt, heterodox economist Steve Keen, member of the FT editorial board Gillian Tett, and FT Chief Economics Commentator Martin Wolf debate free trade, tariffs, and dogma in economics.",
    "eventNo": 7,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50006",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/7-The-Sacred-Cow-of-Economics.webp",
    "links": [],
@@ -175,7 +171,7 @@
    "date": "Sat 19 September",
    "description": "Philosophers, neuroscientists, and mystics alike have spent decades or even centuries attempting to locate the self. None have ever found it. Join Hegelian philosopher Sebastian Rödl as he argues the self has not yet been found for a very peculiar reason. The self is not an object in the world. Rather, Rödl argues, the self provides the very possibility for knowing or experiencing a world at all.\n\n\"Incredibly ambitious.\" – Notre Dame Philosophical Reviews",
    "eventNo": 8,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50007",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/8-The-self-is-not-in-the-world.webp",
    "links": [],
@@ -197,7 +193,7 @@
    "date": "Sat 19 September",
    "description": "Michael Gove has spent his career reforming the institutions he served, from schools to Whitehall to the heart of the Conservative Party. A journalist turned senior Cabinet Minister, a leading figure in the Brexit campaign, and now editor of The Spectator, he has long believed that the status quo must always be questioned — even from within. But what are the philosophical ideas and values that have been the drive behind his influence and controversial career, and what life experiences shaped them? Join Michael Gove as he reflects on the ideas, gambles and experiences behind a life spent at the collision point of thought and power. Interviewed by Mary Ann Sieghart.\n\n\"Michael is the dominant orator of our generation.\" – Nick Boles\n\nIn partnership with The Spectator",
    "eventNo": 9,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50008",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/9-Michael-Gove-2.webp",
    "links": [],
@@ -221,7 +217,7 @@
    "eventNo": 10,
    "fastPassPrice": null,
    "id": "50009",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/10-ned-holland.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -243,7 +239,7 @@
    "eventNo": 11,
    "fastPassPrice": null,
    "id": "50010",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/11-The-Great-Cat-and-Mouse-Chase.webp",
    "links": [],
    "prices": null,
    "speakers": "Peter Worley.",
@@ -263,9 +259,10 @@
    "date": "Sat 19 September",
    "description": "Sage & Jester presents\nLouis Theroux on the cult of the online\nin conversation with Robin Clyfan\n\nGenre-defining documentary filmmaker and presenter Louis Theroux is best known for his immersive and empathetic programmes exploring the intricate and often contentious facets of human experience.\nHe’s spent thirty years trying to understand the kinds of extremists others would easily write off - always responding with curiosity rather than judgement. Few people have studied so closely how people get pulled in, and what it takes to get out.\n\nIn this exclusive, one-off event, we'll be asking him to turn that same eye on all of us, to ask, with trademark Louis curiosity: have we all been collectively groomed into the cult of the online? Which cult-like behaviours are we already exhibiting in how we scroll, argue, believe, and belong? And how do we think our way out of them?\n\nExpect the same scrutiny turned on the cult of productivity - the pressure to optimise everything, and what that quietly costs us in reflection, empathy, and the freedom to simply not know. And on staying sane inside the noise: how to protect your attention from a media landscape built to farm it.\n\nJoin us for a conversation grounded in philosophy, insight and anecdotes drawn from a career spent observing radicalisation up close, made for anyone trying to stay curious in an age built to make us certain.",
    "eventNo": 12,
-   "fastPassPrice": 8,
+   "fastPassPrice": null,
+   "fastPassSoldOut": true,
    "id": "50011",
-   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/48-the-cult-of-the-internet.webp",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzIwMCwxMzJd/48-the-cult-of-the-internet2.webp",
    "links": [],
    "prices": null,
    "speakers": "Louis Theroux. Robin Clyfan hosts",
@@ -285,7 +282,7 @@
    "date": "Sat 19 September",
    "description": "Since the dawn of culture, philosophers, theologians, and social theorists have argued over the correct way to determine moral action. Is it based on reason, outcomes, or the word of God? Common to nearly all was the belief that there was a right answer. Churches, courts, and constitutions were built on the assumption that morality was discovered and not invented. But increasingly critics reject this outlook altogether. Competing accounts diverge so radically that no single theory can plausibly claim to be morally correct. Practices once upheld as moral are now condemned as barbaric. The Greeks thought slavery natural and just, Hitler described the holocaust as a 'moral imperative', and just a hundred years ago the US Supreme Court ruled forced sterilisation of the disabled a state obligation.\n\nShould we abandon the idea that there is a correct way to determine good and evil? Do moral rules, codes and principles always result in perverse outcomes in some scenarios? Or is it essential to be able to call on a single principle to determine right action, and if so, what is it?\n\nCritical race theorist Tommy Curry, controversial author of Gaza's Gravediggers Norman Finkelstein, and Labour life peer Thangam Debbonaire debate morality.",
    "eventNo": 13,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50012",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/13-The-Codes-for-Good-and-Evil.webp",
    "links": [],
@@ -307,7 +304,7 @@
    "date": "Sat 19 September",
    "description": "Across the developed world, voters have been told to expect a permanent doom loop of high debt, low growth, and stagnant living standards. Join former Chancellor Jeremy Hunt, author of Can We Be Rich Again?, as he makes the unfashionable case for optimism. Drawing on his years inside government, Hunt argues that the solutions to our problems are within reach, that our strengths are consistently underrated, and that we are closer to a growth breakthrough than the gloom-mongers suggest.\n\n“A fiercely intelligent and rich insider vision.” – Anthony Seldon",
    "eventNo": 14,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50013",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/14-We-can-be-rich-again.webp",
    "links": [],
@@ -329,7 +326,7 @@
    "date": "Sat 19 September",
    "description": "A handful of companies are racing to build machines that surpass human intelligence, and the economic shockwaves are already being felt. Some economists predict an explosion of growth; others warn of mass job losses and wealth concentrated in ever fewer hands. Two-time Pulitzer Prize finalist Sebastian Mallaby's recent biography of Google DeepMind's Demis Hassabis gave him inside access to the minds and institutions creating the technology. Chief economics commentator at the Financial Times, Martin Wolf, argues this technology is changing our economies faster than we can manage. Join them to explore the latest in the pursuit of superintelligence, and the economic shifts that are inescapable for all of us.\n\n“Martin Wolf is our wisest, most acute, and most experienced commentator.\" – Angus Deaton\n\n\"[Sebastian is] not just a marvelous writer. He's also a marvelous expositor.\" – Larry Kotlikoff",
    "eventNo": 15,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50014",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/15-The-future-of-the-AI-Economy.webp",
    "links": [],
@@ -353,7 +350,7 @@
    "eventNo": 16,
    "fastPassPrice": null,
    "id": "50015",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/16-Delphis-2.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -373,7 +370,7 @@
    "date": "Sat 19 September",
    "description": "Join Joanna Moncrieff as she traces the history of mental distress – from its origins in supernatural explanation, to the emergence of biological and psychological models in the early 20th century, to the age of mass diagnosis and medication we inhabit today. Professor of Critical and Social Psychiatry at University College London and author of the landmark systematic review that upended the serotonin theory of depression, Moncrieff’s groundbreaking research makes the case for why medicine needs to develop a richer and more honest framework for understanding mental suffering.\n\nPart 1: The History of Mental Distress: Mental distress through the ages: how the past continues to shape the way we think about the mind.\n\nPart 2: Thinking Differently – A New Framework for Mental Health: Moncrieff looks beyond the chemical model to ask what a truly honest response to mental suffering might demand of us.\n\n\"Moncrieff explains both the scientific flaws and the deliberate manipulations underlying much of today’s psychiatric ideology and treatment.\" — Gabor Maté",
    "eventNo": 17,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50016",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/17-the-history-of-depression-and-its-mistakes.webp",
    "links": [],
@@ -397,7 +394,7 @@
    "eventNo": 18,
    "fastPassPrice": null,
    "id": "50017",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/18-The-Liquid-Luck-potion.webp",
    "links": [],
    "prices": null,
    "speakers": "Alexandra Konoplyanik.",
@@ -417,7 +414,7 @@
    "date": "Sat 19 September",
    "description": "With the hard problem of consciousness remaining unsolved, neuroscience is increasingly dismissed as unable to provide the answers we want. Join world-leading neuroscientists Mark Solms, author of The Hidden Spring, and Edward Bullmore, author of The Inflamed Mind, as they argue neuroscience does not go against philosophy and psychology. Rather, the philosophical and psychological insights of figures like Freud and Descartes can be supported or challenged through studies of the physical brain.\n\n\"Extraordinary on so many levels.\" – Brian Eno\n\n“One of the world’s most accomplished and compassionate psychiatrists.” – Karl Friston",
    "eventNo": 19,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50018",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/19-Freud-Descartes-and-the-matter-behind-the-mind.webp",
    "links": [],
@@ -444,14 +441,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/20-Adam-Frank.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
      "text": "Click here to view the Lunch menu."
     }
    ],
    "prices": {
-    "advance": 36,
-    "earlybird": 30,
-    "standard": 42
+    "standard": 50.4
    },
    "speakers": "Adam Frank.",
    "ticketing": "separate_ticket",
@@ -470,7 +465,7 @@
    "date": "Sat 19 September",
    "description": "Most believe the US is no longer winning on the global stage. China has the largest military in the world and the largest navy, with the capacity to build warships at more than five times the rate of the US. China's economy has grown ten times as fast in the last thirty years and overtook the US in production capacity more than a decade ago. Even in tech, most analysts put China ahead in robotics and drones. While US alliances, once a key strength, now look precarious. But there's another side to this story. Half of the world's trade is still done in dollars. US military technology is supreme. While China faces a demographic time bomb threatening growth sufficiently for the OECD to forecast India as the world's largest economy in the 2060s, not China.\n\nIs the US still winning the fight for global dominance? Has Trump's radical shift in foreign policy laid out in the 2025 Strategic Review hastened or halted US decline? Or is the very idea of winners and losers on the global stage a dangerous and profound mistake?\n\nJoining us from Maryland, former US National Security Advisor John Bolton, former Foreign Secretary and Defence Secretary Malcolm Rifkind, and former First Minister Nicola Sturgeon debate American power.",
    "eventNo": 21,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50020",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/21-Winning-and-Losing-on-the-Global-Stage.webp",
    "links": [],
@@ -492,7 +487,7 @@
    "date": "Sat 19 September",
    "description": "The world is consumed with the power and potential of AI. Leading tech names like Altman and Musk have claimed it threatens humanity’s future. While trillions of dollars are being invested. The extraordinary success of Large Language Models, initiated by the breakthrough 2017 transformer/attention coding principles, is seen as just the beginning. More data, more computing, it is assumed, will deliver ever more powerful AI. But a growing number of critics argue these models are at root unintelligent word calculators that are reaching their peak as human training data is exhausted. To be intelligent, they would have to interact with the world, while language models merely find patterns in human text, predicting what comes next.\n\nDoes intelligence require an interface with the world akin to a human body, and is the future of AI in robots rather than chatbots? Is the belief that we can scale the attention paradigm profoundly misguided, and does it risk financial collapse as vast investments fail? Or will the language models become ever more effective and take over everything that humans can do?\n\n\"The next Einstein\" Sabrina Pasterski, post-postmodern philosopher Hilary Lawson, Cambridge philosopher Audrey Borowski, and Oxford AI professor Michael Wooldridge debate whether AI will ever truly think.",
    "eventNo": 22,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50021",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/22-The-hype-and-the-limits-of-AI.webp",
    "links": [],
@@ -519,14 +514,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/23-Silkie-Carlo.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
      "text": "Click here to view the Lunch menu."
     }
    ],
    "prices": {
-    "advance": 36,
-    "earlybird": 32,
-    "standard": 42
+    "standard": 50.4
    },
    "speakers": "Silkie Carlo.",
    "ticketing": "separate_ticket",
@@ -543,14 +536,14 @@
   },
   {
    "date": "Sat 19 September",
-   "description": "For generations, religion in the West has been in retreat. Recent claims of a \"quiet revival\" have been challenged, and in the US and UK regular churchgoing has fallen by more than 20% in a decade. In its place, many maintain the winning approach is to retain the values and even the trappings and traditions of Christianity, but jettison the metaphysical baggage. The renowned atheist Richard Dawkins declared himself a cultural Christian in 2024. Others like Douglas Murray and Jordan Peterson hold similar views. Echoing Tolstoy, who 150 years ago argued for abandoning the supernatural and keeping the ethics. But critics argue this settlement is incoherent. Without God, a cathedral is just a building, a ritual a superstition, and religious ethics a story.\n\nShould we abandon cultural Christianity as an untenable compromise? Must we either eradicate Christianity's influence from our culture, or endorse it, including its supernatural beliefs? Or, in the face of social division, is it essential that we endorse its values, recognise it helped create Western beliefs in equality and justice, while rejecting its metaphysical claims as fantastical?\n\nOrwell Prize-winning journalist David Aaronovitch, Reform UK figurehead Laila Cunningham, and theologian Alister McGrath debate cultural Christianity.",
+   "description": "For generations, religion in the West has been in retreat. Recent claims of a \"quiet revival\" have been challenged, and in the US and UK regular churchgoing has fallen by more than 20% in a decade. In its place, many maintain the winning approach is to retain the values and even the trappings and traditions of Christianity, but jettison the metaphysical baggage. The renowned atheist Richard Dawkins declared himself a cultural Christian in 2024. Others like Douglas Murray and Jordan Peterson hold similar views. Echoing Tolstoy, who 150 years ago argued for abandoning the supernatural and keeping the ethics. But critics argue this settlement is incoherent. Without God, a cathedral is just a building, a ritual a superstition, and religious ethics a story.\n\nShould we abandon cultural Christianity as an untenable compromise? Must we either eradicate Christianity's influence from our culture, or endorse it, including its supernatural beliefs? Or, in the face of social division, is it essential that we endorse its values, recognise it helped create Western beliefs in equality and justice, while rejecting its metaphysical claims as fantastical?\n\nOrwell Prize-winning journalist David Aaronovitch, and theologian Alister McGrath debate cultural Christianity.",
    "eventNo": 24,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50023",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/24-the-sacred-and-the-supernatural.webp",
    "links": [],
    "prices": null,
-   "speakers": "David Aaronovitch, Laila Cunningham, Alister McGrath. Jack Symes hosts",
+   "speakers": "David Aaronovitch, Alister McGrath, Gawain Towler. Jack Symes hosts",
    "ticketing": "fast_pass",
    "time": "1:30pm",
    "title": "The Sacred and the Supernatural",
@@ -569,7 +562,7 @@
    "eventNo": 25,
    "fastPassPrice": null,
    "id": "50024",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/25-miranda-joy.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -594,9 +587,9 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/26-pottery.webp",
    "links": [],
    "prices": {
-    "advance": 12,
-    "earlybird": 12,
-    "standard": 12
+    "advance": 14.4,
+    "earlybird": 14.4,
+    "standard": 14.4
    },
    "speakers": "",
    "ticketing": "separate_ticket",
@@ -615,7 +608,7 @@
    "date": "Sat 19 September",
    "description": "What is reality made of? How did the universe begin? Why does time only move forward? Physics a century ago was a place of intense discovery and progress. Today, there are many questions and few answers. Join CERN particle physicist Daniel Whiteson as he tours the biggest unsolved mysteries in physics, and asks how much closer we really are to answering them — or whether some questions may be unanswerable by design.\n\n“It’s hard to imagine a more enjoyable way to explore the unknown.” – Sean Carroll",
    "eventNo": 27,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50026",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/27-The-unanswered-Questions-haunting-physics.webp",
    "links": [],
@@ -639,7 +632,7 @@
    "eventNo": 28,
    "fastPassPrice": null,
    "id": "50027",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/28-voices-of-the-universe.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -657,14 +650,14 @@
   },
   {
    "date": "Sat 19 September",
-   "description": "For centuries, writers and novelists largely avoided putting themselves in their own stories and fictions. Shakespeare doesn't appear as a character in his plays. Nor does he write a play about his own life. The same is true for Austen, Hardy, Tolstoy or Hemingway. But today the fashion has reversed. Personal accounts, direct experience, are not only allowed but almost required by publishers and it would seem the public alike. Those that turn the lens inward to the self are gaining the applause of critics and culture and have become the winners of current writing style. But critics argue that the fashion for the personal is a mistake and reflects a shift toward an empty subjective relativism — there is no overall story, only 'my story'. And in doing so we are losing the universal stories and social patterns that have long anchored humanity.\n\nShould we accept culture's obsession with the self as a true mirror onto lived reality? Or is it a narcissistic distortion that risks ending up with no shared reality at all?\n\nThe first female Odyssey translator, joining us from Pennsylvania, Emily Wilson, MacArthur-winning philosopher Rebecca Goldstein, and literary provocateur Patricia Lockwood debate ego and epics.",
+   "description": "For centuries, writers and novelists largely avoided putting themselves in their own stories and fictions. Shakespeare doesn't appear as a character in his plays. Nor does he write a play about his own life. The same is true for Austen, Hardy, Tolstoy or Hemingway. But today the fashion has reversed. Personal accounts, direct experience, are not only allowed but almost required by publishers and it would seem the public alike. Those that turn the lens inward to the self are gaining the applause of critics and culture and have become the winners of current writing style. But critics argue that the fashion for the personal is a mistake and reflects a shift toward an empty subjective relativism — there is no overall story, only 'my story'. And in doing so we are losing the universal stories and social patterns that have long anchored humanity.\n\nShould we accept culture's obsession with the self as a true mirror onto lived reality? Or is it a narcissistic distortion that risks ending up with no shared reality at all?\n\nThe first female Odyssey translator, joining us from Pennsylvania, Emily Wilson, MacArthur-winning philosopher Rebecca Goldstein, and Britain's leading literary provocateur Will Self debate ego and epics.",
    "eventNo": 29,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50028",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/29-The-Ego-vs.-The-Epic-2.webp",
    "links": [],
    "prices": null,
-   "speakers": "Rebecca Goldstein, Patricia Lockwood, Emily Wilson. Shahidha Bari hosts",
+   "speakers": "Rebecca Goldstein, Emily Wilson, Will Self. Danielle Sands hosts",
    "ticketing": "fast_pass",
    "time": "2:30pm",
    "title": "The Ego vs The Epic",
@@ -681,12 +674,12 @@
    "date": "Sat 19 September",
    "description": "Influenced by Plato's philosopher-kings and the Enlightenment's faith in reason, education has for centuries been regarded as the surest path to individual flourishing and collective progress. But today, the consensus is fracturing. Degree premiums are collapsing, and graduate unemployment is rising. Meanwhile, graduate debt is soaring, in the US surpassing $1.8 trillion. For many courses, the salary bounce is now less than the debt level. Moreover, AI threatens to automate the cognitive skills education is supposed to unlock. Nvidia's Jensen Huang calls for skills-based learning: “if you’re an electrician, a plumber, a carpenter — we’re going to need hundreds of thousands.\" Moreover, critics argue that in a Wikipedia age with knowledge available instantly to all, it is not the facts that matter, but the judgment and wisdom to choose between them.\n\nShould we conclude that the educated are no longer winning, and that the future will favour the skilled and the self-taught? Should we take seriously Illich's argument that compulsory schooling manufactures conformity? Or should we not reject education itself, but an outdated conception of it that prizes facts over judgment?\n\nFormer senior cabinet member and Editor of The Spectator Michael Gove, Oxford economist Daniel Susskind, and Labour life peer Thangam Debbonaire debate the new world of education.",
    "eventNo": 30,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50029",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/30-The-educated-and-the-elite-2.webp",
    "links": [],
    "prices": null,
-   "speakers": "Daniel Susskind, Thangam Debbonaire, Michael Gove. Philip Collins hosts",
+   "speakers": "Daniel Susskind, Thangam Debbonaire, Michael Gove. Mary Ann Sieghart hosts",
    "ticketing": "fast_pass",
    "time": "2:30pm",
    "title": "The Rise and Fall of the Educated Elite",
@@ -705,7 +698,7 @@
    "eventNo": 31,
    "fastPassPrice": null,
    "id": "50030",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/31-ava-hinks.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -727,7 +720,7 @@
    "eventNo": 32,
    "fastPassPrice": null,
    "id": "50031",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/32-The-music-of-silence.webp",
    "links": [],
    "prices": null,
    "speakers": "Miriam Cohen.",
@@ -745,14 +738,14 @@
   },
   {
    "date": "Sat 19 September",
-   "description": "From Bill Gates' funding of research into reflecting solar radiation back into space, to Cornell University scientists' proposals to store carbon by burying forests underground, geoengineering is increasingly winning the case to be taken seriously as a response to the climate crisis. Once dismissed as fringe science, it is now debated in the pages of Nature, with tech optimists arguing human reason and technology give us the capacity and the obligation to actively manage planetary systems. But the risks are substantial. Harvard's solar geoengineering programme acknowledges that it could disrupt monsoon patterns, causing severe droughts affecting billions. And philosophers from Bruno Latour to John Gray have argued that the very idea of humanity mastering nature was always an Enlightenment delusion—one that got us into the crisis in the first place.\n\nShould we abandon the idea that we can ever have dominion over nature? Should we reject geoengineering solutions to the climate crisis as deeply misguided? Or should we see geoengineering as a valuable and potentially vital response to radical climate change?\n\nEditor of The BREAK-DOWN Adrienne Buller, astrophysicist Adam Frank, and award-winning researcher Laurie Laybourn debate geoengineering: promise and peril.\n\nIn partnership with SCRI",
+   "description": "Climate impacts are outrunning the forecasts and once-distant tipping points are edging into view. With climate politics stalling, alarm is hardening into something closer to panic. Against this backdrop, an idea is forcing its way onto the policy agenda: solar geoengineering. Once dismissed as fringe science, it is now debated in the pages of Nature and the corridors of power, with optimists arguing that human reason and ingenuity give us not just the capacity to actively manage planetary systems, but the obligation to do so.\nMultilateral institutions are straining and conflict is resurgent. Against this backdrop there is no consensus over how to govern potential interventions in the planetary thermostat, with two recent UN resolutions on governance failing to be adopted. Yet dimming the sun might not even require it: it’s estimated that, for a few tens of billions of dollars a year - the budget of a mid-sized military - a single state could act alone to shape the Earth system to its whim.\nWho gets to decide whether to dim the sun? Who bears the cost if it goes wrong? How do we make decisions of planetary consequence when our political institutions were not designed for systemic, long-horizon risks of this kind? And how might these technologies - and the risks to which they respond - even be drivers of cooperation?\n\nAstrophysicist Adam Frank, leading policy expert Janos Pasztor and award-winning researcher Laurie Laybourn debate geoengineering: promise and peril.\n\nIn partnership with the Strategic Climate Risk Initiative",
    "eventNo": 33,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50032",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/33-Playing-God-With-the-Planet.webp",
    "links": [],
    "prices": null,
-   "speakers": "Adrienne Buller, Janos Pasztor, Adam Frank, Laurie Laybourn. Isabel Hilton hosts",
+   "speakers": "Janos Pasztor, Laurie Laybourn, Adam Frank, Bernice Lee. Isabel Hilton hosts",
    "ticketing": "fast_pass",
    "time": "2:45pm",
    "title": "Playing God with the Planet",
@@ -769,7 +762,7 @@
    "date": "Sat 19 September",
    "description": "Most materialists treat consciousness as a mystery. Some of them think the only thing to do is to deny its existence. Others admit it’s real, and conclude that it ‘emerges’ from wholly and utterly non-conscious matter when that matter gets complicated enough (e.g. in our brains). Join the philosopher whose work revived interest in panpsychism, Galen Strawson, as he rejects the idea that such emergence is possible, and concludes that physical matter must have been conscious all along.\n\n\"A rare beacon of common sense in an ocean of intellectual eccentricity.\" – Philip Goff",
    "eventNo": 34,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50033",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/34-The-physical-world-is-conscious.webp",
    "links": [],
@@ -791,7 +784,7 @@
    "date": "Sat 19 September",
    "description": "From the categories we use to organise society, to the institutions and practices that govern everyday life, the social world profoundly shapes who we are and what we can become. Sally Haslanger, Ford Professor of Philosophy and Women's and Gender Studies at MIT and author of the landmark book Resisting Reality, is one of the world’s leading philosophers of social structure. Haslanger traces how categories like gender and race are built and sustained by networks of practice and power – and how making those mechanisms visible is the crucial first step toward changing them.\n\nPart 1: Gender, Race and the Architecture of Power: Haslanger examines how categories like gender and race materially organise and influence our practices, interactions and institutions as products of power rather than nature.\n\nPart 2: How to Dismantle a Social Structure: Haslanger turns to the question of agency and transformation - asking how social structures can be challenged and dismantled.\n\n\"Haslanger is one of the very best analytic feminists in the country.\" — Society for Women in Philosophy",
    "eventNo": 35,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50034",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/35-Gender-race-and-the-structures-of-power.webp",
    "links": [],
@@ -815,7 +808,7 @@
    "eventNo": 36,
    "fastPassPrice": null,
    "id": "50035",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/36-Dark-Skies-The-truth-about-light-pollution.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -840,9 +833,7 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/37-barry-smith.webp",
    "links": [],
    "prices": {
-    "advance": 36,
-    "earlybird": 32,
-    "standard": 40
+    "standard": 43.2
    },
    "speakers": "Barry C Smith.",
    "ticketing": "separate_ticket",
@@ -866,14 +857,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/38-Joanna-Moncrieff.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
      "text": "Click here to view the menu."
     }
    ],
    "prices": {
-    "advance": 30,
-    "earlybird": 25,
-    "standard": 35
+    "standard": 42
    },
    "speakers": "Joanna Moncrieff.",
    "ticketing": "separate_ticket",
@@ -894,7 +883,7 @@
    "eventNo": 39,
    "fastPassPrice": null,
    "id": "50038",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/39-Katie-Alice.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -916,7 +905,7 @@
    "eventNo": 40,
    "fastPassPrice": null,
    "id": "50039",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/40-finders-keepers.webp",
    "links": [],
    "prices": null,
    "speakers": "Matilda Atkins.",
@@ -936,7 +925,7 @@
    "date": "Sat 19 September",
    "description": "Darwin’s theory of evolution is our best explanation for life, but it has a well-known weakness: it cannot predict the future. It can only explain how we got here. In contrast, the big theories of physics, Relativity and Quantum Mechanics, make astonishingly accurate predictions, and so have long been regarded as science’s best theories, capturing reality’s deepest truths. Yet some philosophers, biologists, and even physicists argue that evolution may be the lasting winner, uncovering the universe’s ultimate nature. The cosmos, they claim, is not a mechanism governed by fixed laws, but something more like a self-creating, unpredictable organism, whose patterns are best explained by natural selection. Some physicists even argue that the laws of physics are not eternally fixed but rather have evolved through a process spanning multiple universes.\n\nCan evolution dethrone the deterministic theories of Newton and Einstein as our deepest account of reality? Should we see the cosmos as an evolving, unpredictable flux, rather than a predictable, law-governed mechanism? Or is it ultimately governed by timeless laws that science should strive to uncover?\n\nStephen Hawking collaborator Thomas Hertog, CERN particle physicist Daniel Whiteson, and experimental quantum physicist Ivette Fuentes debate whether the universe evolves.",
    "eventNo": 41,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50040",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/41-Darwins-Physics-and-the-Evolving-Universe.webp",
    "links": [],
@@ -958,7 +947,7 @@
    "date": "Sat 19 September",
    "description": "In the battle over how we should govern ourselves, the nation state has long been the clear winner, providing the law, defence and public services. But critics argue that the independence of the nation state is being challenged by the power of Big Tech. Amazon and Microsoft host over 60% of global government cloud data, controlling state infrastructure. Alphabet and Meta autonomously filter political discourse for three billion users, swinging elections without oversight. SpaceX’s Starlink unilaterally alters wartime communications, while Anthropic has vetoed US military use of their software in autonomous warfare. The global power of Big Tech makes it difficult or impossible for nations to tax heavily, fine, or break up these corporations. Increasingly, nations are instead choosing to partner with them.\n\nShould we recognise that nations have already ceded power to Big Tech? And in doing so is the independence of nations itself at risk? Or, can nations wrest back control, banning social media platforms, choosing different vendors, and maintaining their monopoly over law and violence?\n\nFormer leader of Ireland Leo Varadkar, Big Brother Watch director Silkie Carlo, former senior cabinet minister Michael Gove, and Demis Hassabis biographer Sebastian Mallaby debate nations vs tech.",
    "eventNo": 42,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50041",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/42-The-Nation-State-vs-Big-Tech.webp",
    "links": [],
@@ -980,12 +969,12 @@
    "date": "Sat 19 September",
    "description": "The idea that the brain is the seat of the self and holds the key to the mystery of consciousness went unchallenged in mainstream thought for almost a century. But there are signs materialism is losing its grip — and so is the related assumption that reality reveals itself to human perception. In its place, some thinkers are returning to the idea of the soul to explain the self and consciousness. But critics argue this is repeating old mistakes. Join rising star and author of On the Memory of the Soul, Victoria Trumbull, and standard-bearer for post-analytic thinking who called time on linguistic realism, philosopher Hilary Lawson, as they ask whether the soul is a viable answer to an age that is moving beyond materialism.\n\n“Hilary Lawson shows himself to be a latter-day 'metaphysician' on the grand scale.” – Alan Montefiore\n\n“[Victoria’s] intricate study tackles fundamental questions about selfhood, identity and transcendence.” – John Cottingham",
    "eventNo": 43,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50042",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/43-The-self-the-soul-and-the-nature-of-reality.webp",
    "links": [],
    "prices": null,
-   "speakers": "Hilary Lawson, Victoria Trumbull, Maria Balaska.",
+   "speakers": "Hilary Lawson, Victoria Trumbull. Maria Balaska hosts",
    "ticketing": "fast_pass",
    "time": "4:00pm",
    "title": "The Self, The Soul, and the Nature of Reality",
@@ -1002,7 +991,7 @@
    "date": "Sat 19 September",
    "description": "The West has lost its way. Its custodians, including its politicians, pundits, prophets, and priests, have failed. 200 years of global domination have been enjoyed, but only because the rest of the world was asleep. The rest have now woken up. Join the former President of the UN Security Council and author of Has China Won?, Kishore Mahbubani, as he argues for critical changes the West needs to make. If these changes are not made, Europe will become a museum and the US will become a self-absorbed country cut off from the world.\n\n\"Excellent and important.\" – Martin Wolf, FT",
    "eventNo": 44,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50043",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/44-The-changes-the-west-must-take.webp",
    "links": [],
@@ -1026,7 +1015,7 @@
    "eventNo": 45,
    "fastPassPrice": null,
    "id": "50044",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/45-ulysses.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1048,7 +1037,7 @@
    "eventNo": 46,
    "fastPassPrice": null,
    "id": "50045",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/46-elly-hopkins-2.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1068,12 +1057,12 @@
    "date": "Sat 19 September",
    "description": "Every fix for Western economies seems to demand the same trade-off: pain now for prosperity later, or prosperity now for pain later. Join former Conservative Chancellor Jeremy Hunt and the Labour Government’s Pensions Minister Torsten Bell as they debate across the political divide on which trade-offs are actually worth making. Spend or save? Cut or invest? Two men who've made these calls from inside government go head-to-head on the actual path forward.\n\n\"[Hunt is] someone who knows better than anyone how power is most effectively deployed.\" – Andy Haldane\n\n\"[Bell is] stellar: brilliant, incredibly pragmatic.\" – Rory Stewart",
    "eventNo": 47,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50046",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/47-The-price-of-economic-growth.webp",
    "links": [],
    "prices": null,
-   "speakers": "Torsten Bell, Jeremy Hunt.",
+   "speakers": "Torsten Bell, Jeremy Hunt. Isabel Hilton hosts",
    "ticketing": "fast_pass",
    "time": "5:00pm",
    "title": "The Price of Economic Growth",
@@ -1090,12 +1079,12 @@
    "date": "Sat 19 September",
    "description": "From the dawn of theatre in ancient Greece, we have looked for ways to entertain ourselves. Literature, art, films, the whole gamut of creative work devised to escape the mundane character of the everyday. As a result, we came to see the winners of life as those surrounded by excitement and stimulation. But in an internet age it is increasingly apparent that relentless stimulation may not be desirable after all. Boredom has quietly become a luxury commodity, as a 2.7 billion digital detox industry testifies. Neuroscientists have shown that the brain's Default Mode Network — essential for constructing our sense of self — is most active during wakeful rest. Constant stimulation suppresses it. Not surprising then that the wealthy escape with silent rural environments, and yoga detox retreats.\n\nShould we embrace boredom as the route to a strong sense of self and a rich inner life? Should we see Big Tech as undermining our experience and our sense of who we are? Or should we be grateful for lives full of entertainment, once only available to a privileged few?\n\nHip-hop star and mental health advocate Jordan Stephens, fiction and nonfiction NYT 10 Best Books of the Year author Patricia Lockwood, and digital theorist Tony Sampson debate Big Tech and the self.",
    "eventNo": 48,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50047",
-   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/12-Life-the-Self-and-the-Infinite-Scroll.webp",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzIwMCwxMzJd/12-Life-the-Self-and-the-Infinite-Scroll.webp",
    "links": [],
    "prices": null,
-   "speakers": "Patricia Lockwood, Jordan Stephens, Tony D. Sampson. Jay Shapiro hosts",
+   "speakers": "Jordan Stephens, Tony D. Sampson, Babette Babich. Jay Shapiro hosts",
    "ticketing": "fast_pass",
    "time": "5:00pm",
    "title": "Life, the Self, and the Infinite Scroll",
@@ -1114,7 +1103,7 @@
    "eventNo": 49,
    "fastPassPrice": null,
    "id": "50048",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/49-The-message-of-the-Lyrebird.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1134,7 +1123,7 @@
    "date": "Sat 19 September",
    "description": "Four thousand years old, the Epic of Gilgamesh tells the tale of a search for eternal life. It is the oldest surviving literary epic, a thousand years before the Old Testament or Homer. The search for an elixir of youth, a Philosopher's Stone, has echoed through the centuries and across cultures. Chinese emperors died taking such potions, while the English King Charles II and Holy Roman Emperor Rudolf hastened their deaths. But these attempts were widely mocked. Even in the Gilgamesh story, the search for the elixir fails. The winning view has been that the search for immortality is no more than a fantastical goose chase. But many now claim that science can radically extend life. Mouse lifespans have been elongated 40% by removing 'senescent cells'. Some go as far as claiming that death itself could be permanently postponed.\n\nMight ageing be a dIsease we can overcome? Are recent scientific studies evidence that life can be extended indefinitely? Or should we mock such claims as an ancient human desire that is not only impossible, but as Swift argued in Gulliver's Travels, is not even desirable?\n\nProphet of immortality, joining us from California, Bryan Johnson, longevity pioneer Aubrey de Grey, liberalism's greatest critic John Gray, and multi-NYT bestselling Sarah Wilson debate overcoming death.",
    "eventNo": 50,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50049",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/50-In-Search-of-Immortality.webp",
    "links": [],
@@ -1156,7 +1145,7 @@
    "date": "Sat 19 September",
    "description": "In the new multipolar world, we see the economic and military power blocks — the US and China, Europe and Russia - as the global winners dividing up the world between them. Trump's America is laying claim to the Western hemisphere. China is extending its influence along the old Silk Road and into Africa, while Russia is seeking to recapture the Soviet empire. But the story is less clear-cut. Iran and Ukraine have demonstrated the limitations of the great powers. Taiwan controls production of the world's most advanced semiconductors. Egypt, 30% of the world's container traffic. Nigeria will have the third-largest population in the world by 2050. India, the world's largest economy by 2060. Half the world's trade is outside the major power blocks.\n\nIs the idea that superpowers rule the world a fairytale? Should we see in the fragmentation of power a world of danger? Or is a world with many sources of power one of potential and a shared future?\n\nFormer President of the UN Security Council Kishore Mahbubani, former Chancellor Kwasi Kwarteng, and former leader of Ireland Leo Varadkar debate power and the multipolar world.",
    "eventNo": 51,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50050",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/51-Superpower-and-Their-Limits.webp",
    "links": [],
@@ -1180,7 +1169,7 @@
    "eventNo": 52,
    "fastPassPrice": null,
    "id": "50051",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/52-Preen.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1200,7 +1189,7 @@
    "date": "Sat 19 September",
    "description": "Gandhi’s philosophy of nonviolence appears beyond reproach: a selfless, universal politics of peace. Yet, what if this is deeply misleading? Join author of Gandhi and Philosophy, Delhi professor Divya Dwivedi, as she argues that beneath its apparent moral authority, Gandhi's thought not only failed to challenge the caste system, but actively upheld it. Drawing on a tradition of Indian dissent that stretches back to Ambedkar, Gandhi's low-caste political rival now revered in India, Dwivedi exposes how Gandhi's thought was an anti-politics that propped up a vicious hierarchy that condemned millions to permanent servitude and exploitation.\n\n\"A bold philosopher.\" – Meena Dhanda",
    "eventNo": 53,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50052",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/53-The-real-Gandhi-behind-the-western-myth.webp",
    "links": [],
@@ -1222,7 +1211,7 @@
    "date": "Sat 19 September",
    "description": "Gaza's destruction has raised urgent questions about the international institutions meant to prevent atrocities. Join Norman Finkelstein, one of the world’s most controversial scholars of Israel-Palestine and the son of Holocaust survivors, who claims the UN, international courts, and human rights bodies failed in Gaza. BBC journalist Roger Hearing sits down with Finkelstein to unpack the fierce arguments his work has provoked.\n\n“An extraordinarily courageous individual who has paid a huge price for speaking truth to power.\" – John Mearsheimer",
    "eventNo": 54,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50053",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/54-The-institutions-that-failed-gaza.webp",
    "links": [],
@@ -1246,7 +1235,7 @@
    "eventNo": 55,
    "fastPassPrice": null,
    "id": "50054",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/55-trump-and-the-tech-giants.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1268,7 +1257,7 @@
    "eventNo": 56,
    "fastPassPrice": null,
    "id": "50055",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/56-good-weather-for-an-airstrike.3.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1288,7 +1277,7 @@
    "date": "Sat 19 September",
    "description": "Most of us see punishment as a necessity, even as a moral good needed to prevent bad actors in society and rehabilitate wrongdoers. But what if the urge to punish has darker, more sinister roots? Join the philosopher working in prisons and inspiration for the BBC series Waiting for the Out, Andy West, to explore our instinct to punish and to challenge whether we are all as moral and good as we tend to think.\n\n\"Enriching, sobering and at times heartrending.\" – Lenny Henry",
    "eventNo": 57,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50056",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/57-The-dangerous-urge-to-punish.webp",
    "links": [],
@@ -1310,7 +1299,7 @@
    "date": "Sat 19 September",
    "description": "A complete and overall account of ourselves and the world was once the goal of philosophy. But at the outset of the 20th century, Russell initiated analytic philosophy with an attack on overall systems in favour of piecemeal advance. Wittgenstein went further, denying even the possibility of an overall account. While at the close of the century, postmodernism declared the very idea of metaphysics naive. The case against a complete account of the world had seemingly won. But critics argue that from being over we cannot avoid the attempt to frame an overall account of the world. Any account of reality relies on a framework of belief to make sense of whatever is being claimed. We cannot eradicate metaphysics by simply avoiding talking about it.\n\nWill grand philosophical systems make a return, and are they already doing so? Is it possible to navigate the world without an overall framework, and was there one underlying even postmodernism? Or is the idea of a complete account of the world a fantasy, born of hubris and pride?\n\nPost-postmodern philosopher Hilary Lawson, revolutionary Indian philosopher Divya Dwivedi, and idealist philosopher Sebastian Rödl debate grand philosophical systems.",
    "eventNo": 58,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50057",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/58-The-Scaffolding-of-the-World.webp",
    "links": [],
@@ -1332,7 +1321,7 @@
    "date": "Sat 19 September",
    "description": "From drug treatment to therapy apps and wellness trackers, we believe we can intervene to improve our emotional and psychological well-being. Advocates of treatment have won out and largely silenced any opposition. In the UK, one in three women have been prescribed antidepressants. US spending on mental health treatment and wellbeing exceeds $700 billion. More than is spent on higher education. The counter view that emotional distress is not an illness to be cured, but a natural response to life's uncertainties, is dismissed as 'Victorian'. Yet record numbers are now suffering from depression and anxiety. Identified as the 'treatment-prevalence paradox', studies have shown that despite radical increases in treatment, there has been no improvement in mental illness.\n\nDoes the phrase 'mental health' already medicalise experience and undermine the variety of human response to circumstance? Have we created a mental health industrial complex that calls for ever more spending while failing to deliver well-being? Or should we be profoundly grateful to live in an era where treatments are available to alleviate mental distress?\n\nMaverick psychiatrist Joanna Moncrieff, Freudian neuroscientist Mark Solms, neuropsychiatrist Edward Bullmore, and multi-NYT bestselling author Sarah Wilson debate the mental health industry.\n\nIn partnership with Big Think",
    "eventNo": 59,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50058",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/59-the-mental-health-industrial-complex.webp",
    "links": [],
@@ -1354,7 +1343,7 @@
    "date": "Sat 19 September",
    "description": "Economics claims to be a science, predicting markets and steering nations. Join economist and author of Debunking Economics, Steve Keen, as he argues the emperor has no clothes. Keen reveals how blind spots regarding private debt and credit creation caused the 2008 crash and will soon cause another, proving neoclassical models are fatally detached from reality. He attacks the discipline at its foundations, arguing that real economies are non-equilibrium systems driven by systemic instability. They are not self-correcting machines.\n\n“No one is more qualified than Steve Keen to answer the question 'Can we avoid another financial crisis?'” – Yanis Varoufakis",
    "eventNo": 60,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50059",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/60-The-lie-at-the-heart-of-economics.webp",
    "links": [],
@@ -1381,14 +1370,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/61-long-table-banquet.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Festival-Banquet.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Festival-Banquet.pdf",
      "text": "Click here to view the Festival Banquet menu."
     }
    ],
    "prices": {
-    "advance": 68,
-    "earlybird": 58,
-    "standard": 78
+    "standard": 81.6
    },
    "speakers": "",
    "ticketing": "separate_ticket",
@@ -1409,7 +1396,7 @@
    "eventNo": 62,
    "fastPassPrice": null,
    "id": "50061",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/62-the-theft.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1431,7 +1418,7 @@
    "eventNo": 63,
    "fastPassPrice": null,
    "id": "50062",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/63-fatiyah-saleh.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1451,7 +1438,7 @@
    "date": "Sat 19 September",
    "description": "Heidegger believed poetry, not philosophy, offers our best access to truth — that thinking must become more like poetic saying if it is to grasp what philosophy alone cannot reach. Join continental philosopher Babette Babich as she explores Heidegger's turn to Hölderlin and Rilke, but also what Anglophone poets can teach us that Heidegger's own thinking could not, and what it would mean to think — and to live — poetically once again.\n\n\"I like Babich's tough, at times even racy, rhetoric.\" – Clayton Koelb",
    "eventNo": 64,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50063",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/64-Heidegger-Rilke-and-the-Limits-of-Language.webp",
    "links": [],
@@ -1475,7 +1462,7 @@
    "eventNo": 65,
    "fastPassPrice": null,
    "id": "50064",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/65-prima-queen-3.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1497,7 +1484,7 @@
    "eventNo": 66,
    "fastPassPrice": null,
    "id": "50065",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/66-Trade-Secret.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1517,7 +1504,7 @@
    "date": "Sat 19 September",
    "description": "Sexual liberation promised freedom from repression and taboo, and better sex for all. From the Kinsey reports to Cosmopolitan, Madonna to Sex and the City, the message was unanimous — the sexually liberated had won, the repressed were left behind. But critics argue this was misguided. While our openness has increased - what was once banned is often now seen as tame - the number of adults having sex at least once a week has fallen by a third since 1990. Nearly a quarter of young adults didn't have sex at all last year — double the rate from 2010. Bataille anticipated this outcome, arguing that eroticism requires transgression. Lacan insisted desire feeds on lack. Boundaries and prohibitions, they argue, are vital to erotic tension.\n\nShould we conclude that prohibition and constraint are essential to desire? Do we need to reinstate limits and resurrect mystery to recapture intimacy? Or does this romanticise repression and risk returning us to a world where many did not enjoy sex at all?\n\nSuccession star and cultural provocateur Dasha Nekrasova, TikTok feminist firebrand Farha Khalidi, and director of Married to the Eiffel Tower Agnieszka Piotrowska debate prohibition as the engine of desire.",
    "eventNo": 67,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50066",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/67-the-architecture-of-desire-2TWO.webp",
    "links": [],
@@ -1541,7 +1528,7 @@
    "eventNo": 68,
    "fastPassPrice": null,
    "id": "50067",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/68-alex-farrow-and-chelsea-birkby.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1563,7 +1550,7 @@
    "eventNo": 69,
    "fastPassPrice": null,
    "id": "50068",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/69-Lewis-Garnham-2.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1583,13 +1570,13 @@
    "date": "Sat 19 September",
    "description": "Western nation-states, Reform's 2028 London mayoral candidate Laila Cunningham argues, have expanded far beyond their proper bounds — encroaching on citizens' freedoms in the name of safety, sustainability and public order. Join the Westminster City Councillor, former Crown Prosecution Service lawyer, and Reform UK politician as she makes the case against state overreach, from low-emission zones to housing and policing policy, and asks what it would take to roll back its reach and restore individual liberty.\n\n“Laila is an enormously talented, successful woman.\" – Nigel Farage",
    "eventNo": 70,
-   "fastPassPrice": 8,
+   "fastPassPrice": null,
    "id": "50069",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/70-The-Tyranny-of-the-State.webp",
    "links": [],
    "prices": null,
    "speakers": "Laila Cunningham.",
-   "ticketing": "fast_pass",
+   "ticketing": "sold_out",
    "time": "8:30pm",
    "title": "The Tyranny of the State",
    "topics": [
@@ -1607,7 +1594,7 @@
    "eventNo": 71,
    "fastPassPrice": null,
    "id": "50070",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/71-harriet-kemsley.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1629,7 +1616,7 @@
    "eventNo": 72,
    "fastPassPrice": null,
    "id": "50071",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/72-patrick-wolf-5.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1651,7 +1638,7 @@
    "eventNo": 73,
    "fastPassPrice": null,
    "id": "50072",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/73-Bourgeois-and-Maurice.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1673,7 +1660,7 @@
    "eventNo": 74,
    "fastPassPrice": null,
    "id": "50073",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/74-Alfie-Dundas.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1695,7 +1682,7 @@
    "eventNo": 75,
    "fastPassPrice": null,
    "id": "50074",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/75-Wild-Family-Living-with-Jaguars.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1717,7 +1704,7 @@
    "eventNo": 76,
    "fastPassPrice": null,
    "id": "50075",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/76-the-turbans.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -1742,14 +1729,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/80-Rebecca-Goldstein.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Breakfast-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Breakfast-InnerCircle.pdf",
      "text": "Click here to view the Breakfast menu."
     }
    ],
    "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
+    "standard": 45.6
    },
    "speakers": "Rebecca Goldstein.",
    "ticketing": "separate_ticket",
@@ -1777,13 +1762,9 @@
      "text": "Click here to view the Breakfast menu."
     }
    ],
-   "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
-   },
+   "prices": null,
    "speakers": "Sabrina Pasterski.",
-   "ticketing": "separate_ticket",
+   "ticketing": "sold_out",
    "time": "9:15am",
    "title": "Philosophy Breakfast with Sabrina Pasterski",
    "topics": [
@@ -1799,7 +1780,7 @@
    "date": "Sun 20 September",
    "description": "How did the political left stop fighting exploitation and start competing over who was most wounded by it? Join provocative cultural critic, professor and author of Virtue Hoarders and Traumatized, Catherine Liu, as she argues that our obsession with trauma has become capitalism’s greatest secret weapon. Exploring everything from the origins of PTSD to the era of Oprah, Liu criticises what the left has become from inside of it. The pathological belief that our wounds define us and that accommodating each other's suffering matters more than challenging power, she argues, has paralysed any real political action.\n\n“One of the most courageous, brilliant, and radical thinkers in America today.” – Jennifer Silva",
    "eventNo": 82,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50078",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/82-How-the-left-weaponised-trauma.webp",
    "links": [],
@@ -1821,7 +1802,7 @@
    "date": "Sun 20 September",
    "description": "Is physics a universal language, or a description of the cosmos shaped by the particular minds that produced it? Daniel Whiteson is Professor of Physics and Astronomy at UC Irvine, active researcher at CERN's Large Hadron Collider, and co-author of the acclaimed Do Aliens Speak Physics? Join Whiteson as he traces humanity’s journey to understand the universe – from the earliest Greek models of the cosmos to Einstein’s relativity – and how human physics might differ from the physics of other intelligent species. By comparing the two, Whiteson sheds light on the most fundamental question of science: whether our physics describes reality, or only ourselves.\n\nPart 1: The Myth of the Universal Language: How mathematics and physics came to be regarded as the universal language of the cosmos.\n\nPart 2: Rethinking Science, Perception, and Reality: Implications of the universality problem.\n\n“Shows a way to think truly deeply about what physics is and how we come to learn about it.” — Sean Carroll",
    "eventNo": 83,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50079",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/83-Alien-minds-and-the-universality-of-physics.webp",
    "links": [],
@@ -1843,7 +1824,7 @@
    "date": "Sun 20 September",
    "description": "For decades, cosmic inflation has been central to our account of cosmology — and the saviour of the Big Bang theory itself. The theory proposes that in the first microseconds of the universe it expanded 27 orders of magnitude in a tiny fraction of a second. Without it the Big Bang fails to explain the universe’s uniformity, the flatness of space, and the evenness of the cosmic microwave background radiation. But a growing and influential group of critics reject the theory altogether. We have no explanation for the force required to create cosmic inflation, nor for its coming to an end. Nobel prize-winning theoretical physicist Roger Penrose has gone so far as claiming that cosmic inflation 'has been falsified'.\n\nShould we give up on cosmic inflation as a speculative theory constructed to overcome observations but which has no experimental support and fundamental theoretical flaws? If we abandon cosmic inflation, are there alternative accounts of the universe that we might uncover? Or is cosmic inflation essential to our whole account of the universe and one which we cannot afford to give up?\n\nNobel laureate, joining us from Oxford, Roger Penrose, physicist uncovering the origins of the universe Neil Turok, and TIME 100 astrophysicist Priya Natarajan debate cosmic inflation.",
    "eventNo": 84,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50080",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/84-cosmic-inflation-and-cosmic-fantasy-3.webp",
    "links": [],
@@ -1865,7 +1846,7 @@
    "date": "Sun 20 September",
    "description": "Advocating freedom is such a winning political strategy that every leader, from Xi Jinping to Donald Trump, Kim Jong Un to Vladimir Putin, claims to be in its pursuit. Every revolution is fought in its name. But, critics argue that the universal advocacy of freedom is evidence of its vacuity and its danger. The French Revolution's call for liberty ended in terror and mass execution. Stalin described the communist revolution as the first moment humanity was “really free”, while sending millions to the gulags. Mussolini wrote, “fascism stands for liberty, and for the only liberty worth having”. The idea of freedom begins to look less like humanity’s greatest achievement and more like its most dangerous delusion.\n\nShould we conclude that the goal of freedom has always been an illusion? Are we wrong to treat freedom as an end in itself, rather than focus on other tangible interventions to improve our lives? Or, is the pursuit of freedom the most essential tool to fight tyranny and oppression?",
    "eventNo": 85,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50081",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/85-In-the-Name-of-Freedom.webp",
    "links": [],
@@ -1887,7 +1868,7 @@
    "date": "Sun 20 September",
    "description": "Few know the gap between public image and private reality like Jordan Stephens. As one half of the hip-hop duo Rizzle Kicks and a bestselling author, he found fame young and has spoken openly about the pressures of performing a version of himself to the world. But his experience raises a question that now faces us all in the age of the curated online profile: if we are always performing a self, is there a \"true\" self underneath? Joined by Sarah Wilson, multi-New York Times bestselling author and social philosopher, Stephens asks whether a true self exists beneath the performance, or whether we are only ever the roles we play.\n\n\"Brutally honest as well as poetic.\" – Dolly Alderton\n\n\"Insightful and fiercely intelligent.\" – Julia Zemiro",
    "eventNo": 86,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50082",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/86-the-philosophy-and-the-dangers-of-fame.webp",
    "links": [],
@@ -1907,17 +1888,17 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "The economy is working for some. It is very much not working for others. Join world-leading economist Mariana Mazzucato, who has gained honours from Italy, the UK, and even Pope Francis, and has held chair positions at the G20, WHO, and the UN. In this talk, Mazzucato proposes a new economics built around the common good. She argues that how we achieve our collective economic goals – through collective action, participation and reciprocity – matters just as much as what those goals are.\n\n“Has at its heart a concern that all of humanity have access to land, lodging and labor.\" – Pope Francis",
+   "description": "Many scientists take it for granted that all the laws and constants of nature were fixed at the moment of the Big Bang and have remained the same ever since, but this untestable assumption raises intractable problems. In an evolutionary universe, it may make more sense to think of the regularities of nature as evolving habits, based on an inherent memory in nature. Rupert Sheldrake here argues that this memory depends on the process of morphic resonance, a similarity-reinforcement process that underlies the collective memory of all biological species, including humans, and even of non-biological systems like molecules, crystals, stars and galaxies. Evolution itself can be seen as an interplay between habit formation and creativity.",
    "eventNo": 87,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50083",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/87-Capitalism-and-the-common-good.webp",
    "links": [],
    "prices": null,
-   "speakers": "Mariana Mazzucato.",
+   "speakers": "Rupert Sheldrake.",
    "ticketing": "fast_pass",
    "time": "11:00am",
-   "title": "Capitalism and the Common Good",
+   "title": "The Universe Has Habits, Not Laws",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
@@ -1936,14 +1917,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/88-andy-west.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Brunch-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Brunch-InnerCircle.pdf",
      "text": "Click here to view the Brunch menu."
     }
    ],
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 38.4
    },
    "speakers": "Andy West.",
    "ticketing": "separate_ticket",
@@ -1967,14 +1946,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/89-Sally-Haslanger.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Brunch-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Brunch-InnerCircle.pdf",
      "text": "Click here to view the Brunch menu."
     }
    ],
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 38.4
    },
    "speakers": "Sally Haslanger.",
    "ticketing": "separate_ticket",
@@ -1993,7 +1970,7 @@
    "date": "Sun 20 September",
    "description": "Before Jimmy Wales founded Wikipedia, knowledge was gatekept by institutions, publishers and experts. His conviction — that knowledge should be freely available to everyone, and that people, given the right conditions of trust and good faith, will collectively pursue truth — produced the world's largest encyclopaedia and fundamentally changed how billions of people learn and understand the world. Two decades on, that conviction is under pressure. Misinformation is rampant, and AI systems, as Wales argues, produce authoritative-sounding falsehoods with no way for users to check them. Join Wales as he reflects on the philosophy and experiences that shaped one of the most consequential websites of our time and explores what Wikipedia's struggle for survival tells us about the future of truth and knowledge.\n\n\"Fascinating.\" – Stephen Fry",
    "eventNo": 90,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50086",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/90-jimmy-wales.webp",
    "links": [],
@@ -2017,7 +1994,7 @@
    "eventNo": 91,
    "fastPassPrice": null,
    "id": "50087",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/91-Sue-Harding.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2039,7 +2016,7 @@
    "eventNo": 92,
    "fastPassPrice": null,
    "id": "50088",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/92-donkey-in-disguise.webp",
    "links": [],
    "prices": null,
    "speakers": "Steven Campbell-Harris.",
@@ -2059,7 +2036,7 @@
    "date": "Sun 20 September",
    "description": "Physics is undergoing a revolution. The old idea of solid matter is losing ground, replaced by a new notion: information. Supported by Stephen Hawking's work on black holes, which suggests information is conserved even when physical matter is destroyed, many physicists now argue that information is the fundamental fabric of reality. But within this new orthodoxy, there is no agreement on what information actually is. The current winners are those who argue that information is physically encoded in quantum particles. Others contend the universe is a giant computer. Critics, however, argue that information is not physical at all but the means by which we construct our reality.\n\nShould we see reality as information, and if so, how can a description of reality itself be reality? Or should we see information as a human invention, one born of our relationship to observation, data, language, and meaning? At root, is information the way we make sense of the world, or the very stuff of the universe?\n\nQuantum physicist Ivette Fuentes, simulation theorist Melvin Vopson, astronomer Adam Frank, and CERN particle physicist Daniel Whiteson debate information and reality.",
    "eventNo": 93,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50089",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/93-The-Reality-Algorithm.webp",
    "links": [],
@@ -2081,7 +2058,7 @@
    "date": "Sun 20 September",
    "description": "From job-hopping to open relationships, keeping your options open in life is often held up as a winning strategy. Across society, the markers of adulthood are being abandoned: job tenures for those at the start of their career have shrunk to just over a year, marriage rates are plummeting, and one in five adults have abandoned long-term goals altogether. Committing to a partner, career, or fixed set of beliefs is seen as the losing move — a surrender of personal freedom. But philosophers from Kant to Sartre warned that the endless deferral of real choices is nothing but a self-deception. A meaningful life requires commitment, not the illusion of infinite choice. The result of a culture that refuses to grow up isn't liberation; it's loneliness, burnout, and a mental health crisis.\n\nDoes genuine freedom require commitment, not the absence of it? Should we view the refusal to settle not as a lifestyle choice, but as a symptom of a deeper cultural crisis of meaning? Or is the idea of adulthood an illusion, and should we seek to remain forever young and open to all possibilities?\n\nHeterodox sociologist Frank Furedi, radical journalist Laurie Penny, and FT columnist Jemima Kelly debate whether the refusal to grow up is liberation or a crisis of meaning.",
    "eventNo": 94,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50090",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/94-Forever-Young.webp",
    "links": [],
@@ -2103,7 +2080,7 @@
    "date": "Sun 20 September",
    "description": "The West assumes modernity is its own invention, and that the rest of the world is simply catching up. Join one of China's most provocative and celebrated intellectuals, Wang Hui, as he argues otherwise. Tracing ideas that stretch back over a millennium, Wang contends China does not need to borrow modernity from the West. It has its own deep tradition of thinking about knowledge, power, and the good society — one that cannot be squeezed into Western categories.\n\n“Consistently illuminating and bracing.” – Pankaj Mishra",
    "eventNo": 95,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50091",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/95-china-the-west-and-the-myth-of-modernity-wang-hui.webp",
    "links": [],
@@ -2125,7 +2102,7 @@
    "date": "Sun 20 September",
    "description": "General relativity and quantum mechanics have stood for a century, yet they remain irreconcilable. Both Sabrina Pasterski and Neil Turok believe the answer lies not in adding complexity, but in radically rethinking our foundations. Described as the \"next Einstein\", Pasterski leads work on celestial holography: the idea that the physics of the familiar, four-dimensional universe can be captured by a hologram on the night sky. Turok, Higgs Chair of Theoretical Physics at Edinburgh, argues the Big Bang was not a beginning but a mirror, with a twin universe running backwards in time, making the Big Bang into a bridge between two universes, instead of a singularity. Join them as they set out their most radical ideas about the deepest mysteries in physics.\n\n\"Restlessly curious, brimming with difficult questions and bold new ideas.\" – Perimeter Institute\n\n\"I have been very impressed by his insight and originality.\" – Stephen Hawking",
    "eventNo": 96,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50092",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/96-the-next-revolution-in-physics-sabrina-pasterski-and-neil-turok.webp",
    "links": [],
@@ -2169,7 +2146,7 @@
    "date": "Sun 20 September",
    "description": "Economics has long aspired to the precision and predictive power of physics. But can economics ever become a pure field of mathematical abstraction? According to Deirdre McCloskey, Isaiah Berlin Chair in Liberal Thought at the Cato Institute and author of twenty-five books, the answer is 'No'. Join McCloskey as she traces the story of how economics came to model itself on physics – and what has been lost in the process. She makes the case that economic life is irreducibly human, shaped by language, ethics and persuasion, and that a richer understanding of markets and society demands that we take those dimensions seriously.\n\nPart 1: The Myth of the Mathematical Market: Economics as a predictive, value-free science - mechanisms and markets.\n\nPart 2: Thinking Differently – Economics as a humanity: McCloskey makes the case for a different kind of economics - one that takes language, rhetoric, and ethics as forces that shape economic life.\n\n\"Persuasive…richly detailed and erudite.\" — Financial Times",
    "eventNo": 98,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50094",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/98-economics-is-a-human-enterprise.webp",
    "links": [],
@@ -2193,7 +2170,7 @@
    "eventNo": 99,
    "fastPassPrice": null,
    "id": "50095",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/99-the-book-of-life.webp",
    "links": [],
    "prices": null,
    "speakers": "Zoe Drewitt.",
@@ -2213,7 +2190,7 @@
    "date": "Sun 20 September",
    "description": "The historical record is unambiguous: every complex civilisation before ours has collapsed. Sarah Wilson - social philosopher, minimalist and multi-New York Times bestselling author – argues that ours is no exception, and that our studied refusal to reckon with this fact is precisely what makes the current moment so dangerous. Drawing on more than 200 conversations with philosophers, game theorists and spiritual leaders, Wilson offers not a counsel of despair but a rigorous, cross-disciplinary framework for navigating systemic breakdown with clarity, purpose and intellectual honesty.\n\n\"We need more people like Sarah alerting the world.\" – Alastair Campbell",
    "eventNo": 100,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50096",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/100-a-civilisational-collapse-like-any-other-sarah-wilson.webp",
    "links": [],
@@ -2240,14 +2217,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/101-Ivette-Fuentes.lxp.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
      "text": "Click here to view the Lunch menu."
     }
    ],
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 45.6
    },
    "speakers": "Ivette Fuentes.",
    "ticketing": "separate_ticket",
@@ -2271,14 +2246,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/102-long-table-banquet-Copy.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Sunday-Lunch.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Sunday-Lunch.pdf",
      "text": "Click here to view the Sunday Lunch menu."
     }
    ],
    "prices": {
-    "advance": 55,
-    "earlybird": 48,
-    "standard": 68
+    "standard": 57.6
    },
    "speakers": "",
    "ticketing": "separate_ticket",
@@ -2297,7 +2270,7 @@
    "date": "Sun 20 September",
    "description": "The manosphere has a simple story: feminism was a zero-sum game — women won, men lost. Its supporters claim progressive feminism is a power grab dressed up as progress. From diversity policies to #MeToo, they claim men are facing unfair treatment. This outlook is reshaping how a generation of young men see the world. Nearly a third of Gen Z men believe women should always obey their husbands. In response, critics argue the manosphere has misread the feminist project. Equality isn't a zero-sum game. A University of Notre Dame study shows increased gender equality leads to greater subjective well-being in both men and women. Whilst a 62-nation study found higher sexism correlated with lower productivity, more collective violence, and lower healthy lifespans for both genders.\n\nIs it a mistake to dismiss the manosphere as self-evidently beyond the pale? Are there instances where gender equality has gone too far? Or is this a dangerous philosophy that should be buried — for even if equality did turn out to be a zero-sum game, what's wrong with that if it rectifies an existing disadvantage?\n\nHip-hop star and mental health advocate Jordan Stephens, critical race theorist Tommy Curry, TikTok feminist firebrand Farha Khalidi, and left-wing critic of the progressive elite Catherine Liu debate the manosphere.",
    "eventNo": 103,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50099",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/103-Feminism-vs-the-Manosphere.webp",
    "links": [],
@@ -2319,7 +2292,7 @@
    "date": "Sun 20 September",
    "description": "For at least the last century, democracy has been the undisputed winner. Not just as a political system, but as a moral creed. And remarkably, almost everyone claims it. From Western liberals to Chinese Communist Party officials, from the United Nations to the governments of North Korea and Iran, leaders present their systems as democratic, stage elections, and claim to invoke the people’s will. To question democracy is considered naïve or morally suspect. But today, a growing number reject the democratic ideal as a moral good altogether. We don’t consult the will of the people on technical problems in physics. Voting doesn’t guarantee the right outcome — the Nazis, after all, were democratically elected. And philosophers from Plato to Mill and Nietzsche have long considered rule by the majority no better than mob rule.\n\nShould we abandon the idea that democracy is itself a moral good? Was Plato right that democracy is fundamentally flawed and always tends toward mob rule and demagoguery? Or is democracy an essential moral good which we abandon at our peril?\n\nLibertarian thought leader Yaron Brook, Orwell Prize-winning journalist David Aaronovitch, pioneer of feminist social theory Sally Haslanger, and leading Chinese intellectual Wang Hui debate democracy.",
    "eventNo": 104,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50100",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/104-democracy-and-its-discontents.webp",
    "links": [],
@@ -2346,14 +2319,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/105-galen-strawson.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-Lunch-InnerCircle.pdf",
      "text": "Click here to view the Lunch menu."
     }
    ],
    "prices": {
-    "advance": 42,
-    "earlybird": 36,
-    "standard": 50
+    "standard": 60
    },
    "speakers": "Galen Strawson.",
    "ticketing": "separate_ticket",
@@ -2372,7 +2343,7 @@
    "date": "Sun 20 September",
    "description": "For much of the last century, culture waged a war on the merely pretty, instead favouring difficult, provocative art and architecture. But today, beauty is fighting back and winning. From government commissions mandating classical architecture to the algorithmic obsession with facial symmetry, a global return to beauty defined by order and tradition is underway. But at what cost? 90% of young women routinely alter their faces online, constructing a reality so perfect that actual faces feel like flaws. While in physics, some claim the hunger for elegant, \"beautiful\" theories has stalled progress, as researchers chase mathematical symmetry rather than inconvenient empirical facts. The result: an aesthetic built not on reality, but its avoidance.\n\nShould we reject the new obsession with beauty as flight from the real rather than cultural progress? If we filter out every flaw and complication, do we risk a society so committed to aesthetics that it can no longer face the world as it is? Or is beauty embedded in reality and nature, and as a consequence both true and desirable?\n\nPhilosopher of beauty Heather Widdows, Succession star and cultural provocateur Dasha Nekrasova, and continental philosopher Babette Babich debate beauty and reality.",
    "eventNo": 106,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50102",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/106-Too-Beautiful-to-Be-True.webp",
    "links": [],
@@ -2396,7 +2367,7 @@
    "eventNo": 107,
    "fastPassPrice": null,
    "id": "50103",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/107-Tia-Meraki.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2421,9 +2392,9 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/108-pottery.webp",
    "links": [],
    "prices": {
-    "advance": 12,
-    "earlybird": 12,
-    "standard": 12
+    "advance": 14.4,
+    "earlybird": 14.4,
+    "standard": 14.4
    },
    "speakers": "",
    "ticketing": "separate_ticket",
@@ -2442,7 +2413,7 @@
    "date": "Sun 20 September",
    "description": "We need to rethink how power operates in the age of AI. Social theorist Steven Lukes’ now classic text Power: A Radical View sees the operation of power in three dimensions — as prevailing in observable conflicts, as preempting these by controlling agendas and, least observably, as shaping thought, desires, and beliefs. AI seems to be transforming these ways of securing the compliance of others, taking them beyond human agency altogether. Steven Lukes will return alongside philosopher Audrey Borowski to discuss these troubling questions on the occasion of a new issue of his famous analysis.\n\n“Steven Lukes stirred up an intellectual firestorm.” – Michael Walzer\n\nA Forum for European Philosophy event",
    "eventNo": 109,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50105",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/109-power-inthe-age-of-ai-steven-lukes-and-audrey-borowski.webp",
    "links": [],
@@ -2466,7 +2437,7 @@
    "eventNo": 110,
    "fastPassPrice": null,
    "id": "50106",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/110-rauschenberg.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2486,7 +2457,7 @@
    "date": "Sun 20 September",
    "description": "From Peter Thiel’s doctrine of the “sovereign individual” to Drake’s call to “know yourself, know your worth,” self-knowledge is seen as the clear winner of our modern age. Therapists and a multi-billion dollar self-help industry promise to reveal and improve our inner selves, while modern neuroscience claims to decode the self into the firing of neurons. But critics argue the self is elusive and fundamentally unknowable. A self that tries to know itself is like an eye that tries to see itself. Schopenhauer, echoing ancient Indian thought, called the self “that which knows all things and is known by none,” while Wittgenstein argued that the self is not part of the world at all, but is rather its limit.\n\nShould we give up on the idea that the self can be known like any other object? Does this unknowable self mean that the world that science investigates is necessarily incomplete? Or can the self be demystified, dragged into the light and studied like anything else?\n\nPioneering philosopher of panpsychism Galen Strawson, post-postmodern philosopher Hilary Lawson, and rising star philosopher Victoria Trumbull debate knowing the self.\n\nIn partnership with Philosophy Now",
    "eventNo": 111,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50107",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/111-The-Self-and-Its-Shadows.webp",
    "links": [],
@@ -2506,14 +2477,14 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "Many see young people as the losers of modern capitalism. House prices have skyrocketed, wages stagnated, and debt is way up. On average, millennials at 35 have nearly a third less wealth than boomers did at the same age. But the story is not straightforward. We’re in the early stages of the largest wealth transfer in history, with $84 trillion expected to be passed on in the US by 2045. This inheritance won’t be handed out evenly. Some will become wealthy through no effort of their own, while others without rich parents will have a radically different lifestyle. Critics argue the real disparity is not between the generations but between those who will inherit and those who won't.\n\nShould we focus less on the generational divide and instead focus on how to make the inequality of inheritance less severe? Or by addressing the challenges of younger generations can we reduce the impact of inheritance? Then again, if the underlying problem is housing costs, could we get rid of planning and zoning and thereby reduce prices for the young and cut the wealth of older generations?\n\nWorld-leading economist Mariana Mazzucato, former Chancellor Kwasi Kwarteng, and Green Party Deputy Leader Rachel Millward debate inheritance and inequality.",
+   "description": "Many see young people as the losers of modern capitalism. House prices have skyrocketed, wages stagnated, and debt is way up. On average, millennials at 35 have nearly a third less wealth than boomers did at the same age. But the story is not straightforward. We’re in the early stages of the largest wealth transfer in history, with $84 trillion expected to be passed on in the US by 2045. This inheritance won’t be handed out evenly. Some will become wealthy through no effort of their own, while others without rich parents will have a radically different lifestyle. Critics argue the real disparity is not between the generations but between those who will inherit and those who won't.\n\nShould we focus less on the generational divide and instead focus on how to make the inequality of inheritance less severe? Or by addressing the challenges of younger generations can we reduce the impact of inheritance? Then again, if the underlying problem is housing costs, could we get rid of planning and zoning and thereby reduce prices for the young and cut the wealth of older generations?\n\nFormer Chancellor Kwasi Kwarteng, Green Party Deputy Leader Rachel Millward, and founder of the Basic Income Earth Network, Guy Standing, debate inheritance and inequality.",
    "eventNo": 112,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50108",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/112-The-84-Trillion-Lottery.webp",
    "links": [],
    "prices": null,
-   "speakers": "Rachel Millward, Kwasi Kwarteng, Mariana Mazzucato. Philip Collins hosts",
+   "speakers": "Rachel Millward, Kwasi Kwarteng, Guy Standing. Roger Hearing hosts",
    "ticketing": "fast_pass",
    "time": "2:30pm",
    "title": "The $84 Trillion Lottery",
@@ -2532,7 +2503,7 @@
    "eventNo": 113,
    "fastPassPrice": null,
    "id": "50109",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/113-Grace-Elizabeth-Harvey-2.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2554,7 +2525,7 @@
    "eventNo": 114,
    "fastPassPrice": null,
    "id": "50110",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/114-What-is-a-chair.webp",
    "links": [],
    "prices": null,
    "speakers": "Jo Haire.",
@@ -2574,7 +2545,7 @@
    "date": "Sun 20 September",
    "description": "The novel was once at the centre of cultural life — providing the highpoints and showcase of genius, a demanding art that asked readers to sit alone with difficulty. But the readers are disappearing. Fewer than half of American adults now read a single book in a year, and only 38% read any fiction at all. Join Booker-shortlisted author of Umbrella, Will Self, as he argues this is nothing short of a civilisational crisis. The challenging novel has been pushed to the margins by digital media and \"synthetic fluff\", and we risk losing our capacity for depth of thought altogether. In conversation with novelist and essayist Joanna Kavenna, they ask whether the book is in terminal decline, and whether anything can be done about it.\n\n\"Unsettling and furiously intelligent.\" – Guardian\n\n\"Endlessly inventive.\" – The Times",
    "eventNo": 115,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50111",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/115-the-end-of-the-book-will-self.webp",
    "links": [],
@@ -2596,7 +2567,7 @@
    "date": "Sun 20 September",
    "description": "Tipped as the \"next Albert Einstein\", Sabrina Pasterski isn't undertaking her cutting-edge research in theoretical physics alone. Join Pasterski as she reveals how she is attempting to automate theoretical physics research using AI and robotics. Specializing in celestial holography - an attempt to solve the problem of quantum gravity by describing our four-dimensional universe as a lower dimensional hologram living on the night sky - Pasterski explores the possibilities for her research at the frontier of AI physics.\n\n\"Her potential is off the charts.\" – Allen Haggerty, MIT",
    "eventNo": 116,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50112",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/116-the-holographic-universe-and-the-rise-of-ai-physics-sabrina-pasterski.webp",
    "links": [],
@@ -2623,14 +2594,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/117-champagne-cake-and-philosophy.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
      "text": "Click here to view the menu."
     }
    ],
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 45.6
    },
    "speakers": "Mark Solms.",
    "ticketing": "separate_ticket",
@@ -2647,21 +2616,19 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "Bold, smooth, and sophisticated, join philosopher of the senses Barry C. Smith for a unique whisky-tasting experience combining philosophy with flavour. Known for appearances on MasterChef and Radio 4’s The Kitchen Cabinet, Smith blends sensory science with philosophical acumen for an experience to savour.",
+   "description": "We are more divided than ever, socially, culturally and politically. Join behavioural scientist Paul Dolan to confront \"Beliefism\", our growing hostility toward opposing views, and discover how empathy can heal the political divide.",
    "eventNo": 118,
    "fastPassPrice": null,
    "id": "50114",
-   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/118-barry-smith.webp",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzIwMCwxMzJd/paul-dolan5.webp",
    "links": [],
    "prices": {
-    "advance": 36,
-    "earlybird": 32,
-    "standard": 40
+    "standard": 38.4
    },
-   "speakers": "Barry C Smith.",
+   "speakers": "Paul Dolan.",
    "ticketing": "separate_ticket",
    "time": "3:00pm",
-   "title": "Whisky Tasting and Philosophy with Barry C. Smith",
+   "title": "Champagne, Cake and Philosophy with Paul Dolan",
    "topics": [
     "Culture / Society",
     "Ethics / Religion",
@@ -2677,7 +2644,7 @@
    "eventNo": 119,
    "fastPassPrice": null,
    "id": "50115",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/119-quiet-the-sirens.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2699,7 +2666,7 @@
    "eventNo": 120,
    "fastPassPrice": null,
    "id": "50116",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/120-ben-cipolla.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2719,7 +2686,7 @@
    "date": "Sun 20 September",
    "description": "What if the Big Bang isn't a singularity at the beginning of time, but a mirror in which another universe is reflected? Join Higgs Chair of Theoretical Physics, Neil Turok, as he argues our universe has a twin running backwards in time on the other side of the Big Bang, one in which antiparticles outnumber particles. This single idea, he contends, resolves dark matter and dark energy, explains why matter exists at all, and does away with the problem of inflation entirely.\n\n\"An architect of modern cosmology.\" – Brian Greene",
    "eventNo": 121,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50117",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/121-The-big-bang-hides-a-mirror-universe.webp",
    "links": [],
@@ -2739,14 +2706,14 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "From the health service to the army, waste disposal to public transport, we see our public institutions as serving the people and being there for the benefit of all. But Pournelle's Iron Law of Bureaucracy proposes that in any social organisation, those that serve the original mission lose out to those who work for the preservation and expansion of the system itself. From Soviet bureaucracy to federal agencies and 'Yes Minister' thinking — strengthening the organisation and hierarchy — wins out. Foucault broadened the case, arguing that all institutions, including seemingly well-meaning professional groups like doctors and nurses, teachers and charities, are vehicles for power, and their primary function is to maintain and strengthen the organisation itself. Harvard University, for example, has three times as many administrators as teaching staff — more even in fact than undergraduates.\n\nAre all organisations and bodies sources of, and vehicles for, power? Should we be equally sceptical of all institutions, whether charities or professional bodies, banks or corporate giants? Or is this a travesty of human endeavour, which is capable of selfless motivation and vision and should be praised as such?\n\nHeterodox sociologist Frank Furedi, Labour life peer Thangam Debbonaire, and left-wing critic of the progressive elite Catherine Liu debate whether institutions serve only themselves.",
+   "description": "From the health service to the army, waste disposal to public transport, we see our public institutions as serving the people and being there for the benefit of all. But Pournelle's Iron Law of Bureaucracy proposes that in any social organisation, those that serve the original mission lose out to those who work for the preservation and expansion of the system itself. From Soviet bureaucracy to federal agencies and 'Yes Minister' thinking — strengthening the organisation and hierarchy — wins out. Foucault broadened the case, arguing that all institutions, including seemingly well-meaning professional groups like doctors and nurses, teachers and charities, are vehicles for power, and their primary function is to maintain and strengthen the organisation itself. Harvard University, for example, has three times as many administrators as teaching staff — more even in fact than undergraduates.\n\nAre all organisations and bodies sources of, and vehicles for, power? Should we be equally sceptical of all institutions, whether charities or professional bodies, banks or corporate giants? Or is this a travesty of human endeavour, which is capable of selfless motivation and vision and should be praised as such?\n\nHeterodox sociologist Frank Furedi, former director of GCHQ David Omand, and left-wing critic of the progressive elite Catherine Liu debate whether institutions serve only themselves.",
    "eventNo": 122,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50118",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/122-The-Monster-In-The-Machine.webp",
    "links": [],
    "prices": null,
-   "speakers": "Frank Furedi, Thangam Debbonaire, Catherine Liu. Roger Hearing hosts",
+   "speakers": "Frank Furedi, Catherine Liu, David Omand. Roger Hearing hosts",
    "ticketing": "fast_pass",
    "time": "4:00pm",
    "title": "The Monster in the Machine",
@@ -2763,12 +2730,12 @@
    "date": "Sun 20 September",
    "description": "Today it is commonplace to describe our outlook as \"my truth\", \"my lived experience\". As if to recognise the radically subjective character of all outlooks. Yet at the same time, the majority also wish to hold onto some aspects of reality that are seen as unchallengeable. Core political beliefs, about injustice or oppression, are held not to be perspectives but undeniable insights. Critics argue this partial perspectivalism is incoherent and self-serving. They argue different cultures and different individuals do not hold different perspectives on a single reality, but live in different realities. One culture's freedom fighter is another culture's terrorist. The same is true in science. As Thomas Kuhn demonstrated, a new paradigm does not simply apply a new theory, but alters what are identified as the facts.\n\nShould we conclude that we don't share a reality but instead operate in different realities? Can we never make contact with reality as it truly is? Or must it be the case that we can gain insight into how things ultimately are, even if only from a particular point of view?\n\nFounder of Wikipedia Jimmy Wales, post-truth philosopher Steve Fuller, and pioneer of feminist social theory Sally Haslanger debate whether we all live in different realities.",
    "eventNo": 123,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50119",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/123-reality-in-the-age-of-perspective.webp",
    "links": [],
    "prices": null,
-   "speakers": "Steve Fuller, Jimmy Wales, Sally Haslanger. Philip Collins hosts",
+   "speakers": "Steve Fuller, Jimmy Wales, Sally Haslanger. Jay Shapiro hosts",
    "ticketing": "fast_pass",
    "time": "4:00pm",
    "title": "Reality in the Age of Perspective",
@@ -2785,7 +2752,7 @@
    "date": "Sun 20 September",
    "description": "Why do people pour their lives into art no one will see, or turn to violence just to feel significant? Join philosopher and novelist Rebecca Goldstein — a MacArthur \"Genius\" Fellow who has spent her career probing what gives life meaning — in conversation with David Edmonds, as she argues both impulses spring from a deep, biologically rooted longing to matter. This hunger drives our greatest achievements and ugliest conflicts alike, and we must learn to satisfy it without turning against each other.\n\n\"Rebecca Goldstein helps us to see that so much of our lives, and human history, is driven by the need to matter.\" – Jonathan Haidt",
    "eventNo": 124,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50120",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/124-the-dangerous-need-to-matter-rebecca-goldstein.webp",
    "links": [],
@@ -2807,12 +2774,12 @@
    "date": "Sun 20 September",
    "description": "Every generation inherits advice from the last about how to succeed in life. Study hard. Master your field. Build expertise. Daniel Susskind argues that most of this is now dangerously out of date. Economist, Senior Research Associate at Oxford's Institute for Ethics in AI, and a TED Talk on the future of work watched by millions, Susskind argues we have been preparing children for a world that no longer exists. Join him for his vision of what the future of education and career will look like — rebuilt from scratch for the humans who will share the world with intelligent machines.\n\n\"Wise and brilliant.\" – Mustafa Suleyman",
    "eventNo": 125,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50121",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/125-anxiety-is-a-signal-not-a-fault-Katelyn-nehman.webp",
    "links": [],
    "prices": null,
-   "speakers": "Daniel Susskind.",
+   "speakers": "Daniel Susskind. Paul Dolan hosts",
    "ticketing": "fast_pass",
    "time": "4:00pm",
    "title": "Rethinking Education in the Age of AI",
@@ -2831,7 +2798,7 @@
    "eventNo": 126,
    "fastPassPrice": null,
    "id": "50122",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/126-Plastic-Tsunami-Voices-of-the-pacific.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2853,7 +2820,7 @@
    "eventNo": 127,
    "fastPassPrice": null,
    "id": "50123",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/127-maia-tassalini.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2871,17 +2838,17 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "Countries have been the focus of power for over a century. Named by Le Monde as one of 70 people making the world of tomorrow, join novelist and essayist Rana Dasgupta as he argues American hegemony, Western debt, and the rise of tech firms as geopolitical actors have shattered a system many thought eternal. Looking back at the fall of ancient empires to the restoration of Chinese power, he argues we urgently need a new conception of power.\n\n\"Simply astonishing.\" — David Wengrow",
+   "description": "The concept of anxiety has a distinctive place in our modern lives: it has become a core category in psychiatric diagnostic manuals and it is diagnosed in a very high number of cases worldwide. Can philosophy help us understand it better? Join philosopher Maria Balaska to explore why philosophers give anxiety a positive twist and how to move from anxiety to wonder.",
    "eventNo": 128,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50124",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/128-the-illusion-of-green-capitalism-adrienne-buller.webp",
    "links": [],
    "prices": null,
-   "speakers": "Rana Dasgupta.",
+   "speakers": "Maria Balaska.",
    "ticketing": "fast_pass",
    "time": "4:30pm",
-   "title": "The End of Nations",
+   "title": "Anxious about Nothing",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
@@ -2897,7 +2864,7 @@
    "eventNo": 129,
    "fastPassPrice": null,
    "id": "50125",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/129-Marty-Gleeson.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2922,14 +2889,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/130-champagne-cake-and-philosophy.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
      "text": "Click here to view the menu."
     }
    ],
    "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
+    "standard": 33.6
    },
    "speakers": "Jemima Kelly.",
    "ticketing": "separate_ticket",
@@ -2950,7 +2915,7 @@
    "eventNo": 131,
    "fastPassPrice": null,
    "id": "50127",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/131-Good-Death-innovators-AI-beyond-the-grave.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -2975,14 +2940,12 @@
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/132-champagne-cake-and-philosophy.webp",
    "links": [
     {
-     "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
+     "href": "assets/Inner-circle-menus-london-2026/HTLGI-AftTea-InnerCircle.pdf",
      "text": "Click here to view the menu."
     }
    ],
    "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
+    "standard": 33.6
    },
    "speakers": "Catherine Liu.",
    "ticketing": "separate_ticket",
@@ -3001,7 +2964,7 @@
    "date": "Sun 20 September",
    "description": "From Hollywood to Hegel, many have drawn comfort from the idea that history has a moral direction, and that “the good” will win out in the end. This thinking has influenced Marxist movements and shapes current progressive appeals to being on “the right side of history.\" But while the view that there is a moral direction to progress has traditionally won out, there is strong evidence that this is a mistake. Communist systems collapsed into nightmares. Liberal democracies have decayed. Recurring contemporary crises — pandemics, wars, climate change, and technological upheaval — leave us directionless. Increasingly it seems the good does not win out and social change fails not only to guarantee progress but lacks any moral direction at all.\n\nShould we see moral and social progress as a dangerous fantasy from which we need to escape? Is the idea of a direction to history simply a means to justify our prejudices? Or is progress essential if we are to create purpose in a universe that otherwise offers no promise or triumph?\n\nTitan of the radical left Tariq Ali, leading Chinese intellectual Wang Hui, and celebrated economic historian Deirdre McCloskey debate whether history has a moral direction.",
    "eventNo": 133,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50129",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/133-Hollywood-Hegel-and-the-Myth-of-the-Good.webp",
    "links": [],
@@ -3021,14 +2984,14 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "In the battle between the human desire for risk and the desire for safety, being safe has been the clear winner. By every measurable standard, humanity has never been safer. Global conflict deaths have plummeted from 300 to 1 per 100,000 between the 17th century and today. Child mortality has fallen from one in three to less than one in twenty. Tracking threats has undeniably saved lives. Yet, despite the data, many remain convinced we are living in an era of unprecedented peril. For two decades, Gallup found that most Americans believed crime was rising, even as FBI records showed it in freefall. We have built entire industries, government agencies, and daily protocols around predicting and mitigating danger — and the resulting hyper-vigilance some argue has left us paralysed by panic.\n\nIn trying to eliminate every danger, have we manufactured a culture of fear that stops us from living? Should we seek to reverse safety culture and cultivate a desire for risk? Or should the saved lives speak for themselves, and current anxieties a rational response to unpredictable, modern threats?\n\nHeterodox sociologist Frank Furedi, celebrated statistician David Spiegelhalter, and Deputy Leader of the Green Party Rachel Millward debate danger, safety, and risk.",
+   "description": "In the battle between the human desire for risk and the desire for safety, being safe has been the clear winner. By every measurable standard, humanity has never been safer. Global conflict deaths have plummeted from 300 to 1 per 100,000 between the 17th century and today. Child mortality has fallen from one in three to less than one in twenty. Tracking threats has undeniably saved lives. Yet, despite the data, many remain convinced we are living in an era of unprecedented peril. For two decades, Gallup found that most Americans believed crime was rising, even as FBI records showed it in freefall. We have built entire industries, government agencies, and daily protocols around predicting and mitigating danger — and the resulting hyper-vigilance some argue has left us paralysed by panic.\n\nIn trying to eliminate every danger, have we manufactured a culture of fear that stops us from living? Should we seek to reverse safety culture and cultivate a desire for risk? Or should the saved lives speak for themselves, and current anxieties a rational response to unpredictable, modern threats?\n\nHeterodox sociologist Frank Furedi, celebrated statistician David Spiegelhalter, and philosopher Audrey Borowski debate danger, safety, and risk.",
    "eventNo": 134,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50130",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/134-Danger-and-Risk-in-an-Anxious-World.webp",
    "links": [],
    "prices": null,
-   "speakers": "Frank Furedi, Rachel Millward, David Spiegelhalter. Jay Shapiro hosts",
+   "speakers": "Frank Furedi, David Spiegelhalter, Audrey Borowski. Jay Shapiro hosts",
    "ticketing": "fast_pass",
    "time": "5:30pm",
    "title": "Danger and Risk in an Anxious World",
@@ -3043,17 +3006,17 @@
   },
   {
    "date": "Sun 20 September",
-   "description": "Floods, fires and failed harvests were supposed to jolt democracies into climate action. Instead, climate disasters, through fuelling political and economic discontent, are lighting a fire under the very anger that has empowered anti-climate populists. Who, in turn, then further slow the energy transition, driving worse disasters still. A doom loop in which the crisis erodes our capacity to respond to it. Join winner of the Commonwealth Prize and radical author of After Nations, Rana Dasgupta, for a live recording of the Overshoot podcast alongside host Laurie Laybourn, as they explore how to break free of the climate doom loop.\n\n\"The twenty-first century’s counterpart to Hobbes’ Leviathan.\" – Emmanuele Coccia",
+   "description": "We already know we're polarised. What we haven't reckoned with is how much of that polarisation is really hostility toward people, not disagreement over ideas. Having named this phenomenon \"beliefism\", discrimination against those who hold different beliefs to us, behavioural scientist Professor Paul Dolan now turns from diagnosis to remedy. Recognising the other side's views and creating space for debate is only the first step; in this solo talk, Dolan asks what it actually takes to reconnect with people we've written off, and makes the case that bridging our divides starts with recognising our differences, not papering over them.\n“Brilliant, wise, humane, scientific, and kind. Beliefism is exactly what the doctor ordered - and it could change the world.” — Cass R. Sunstein",
    "eventNo": 135,
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "id": "50131",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/135-breaking-free-of-the-doom-loop-rana-dasgupta.webp",
    "links": [],
    "prices": null,
-   "speakers": "Rana Dasgupta, Laurie Laybourn.",
+   "speakers": "Paul Dolan.",
    "ticketing": "fast_pass",
    "time": "5:30pm",
-   "title": "Breaking Free of the Doom Loop",
+   "title": "Beyond Beliefism",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
@@ -3069,7 +3032,7 @@
    "eventNo": 136,
    "fastPassPrice": null,
    "id": "50132",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/136-jen-nolan-and-chantel-nash.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -3091,7 +3054,7 @@
    "eventNo": 137,
    "fastPassPrice": null,
    "id": "50133",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/137-eva-appleton-band-2.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -3113,7 +3076,7 @@
    "eventNo": 138,
    "fastPassPrice": null,
    "id": "50134",
-   "image": null,
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/138-ocean-intelligence.webp",
    "links": [],
    "prices": null,
    "speakers": "",
@@ -3160,25 +3123,6 @@
    "name": "Roger Penrose",
    "slug": "roger-penrose",
    "tagline": "Nobel Laureate in Physics"
-  },
-  {
-   "bio": "“It has become more and more clear to me that to successfully address the big problems we face today, we need not only an entrepreneurial state and mission-oriented policies but also a new economics of collective action around the common good.\"\nProfessor in the Economics of Innovation and Public Value, University College London, Founding Director at the UCL Institute for Innovation and Public Purpose. Author of The Common Good Economy: a new compass.\nHer latest book argues that economics lacks a coherent theory of the common good — and that doing good cannot remain a correction for market failure, but must become an objective we design and work towards together. Built around a practical \"common good compass,\" the book sets out how governments, business and citizens can move from correcting mistakes to shaping outcomes, from tackling inequality to the climate crisis.\n\nMazzucato is also the author of The Entrepreneurial State, The Value of Everything, Mission Economy, and The Big Con. She advises policymakers around the world on innovation-led inclusive and sustainable growth, including as Chair of the World Health Organization's Council on the Economics of Health for All, Co-Chair of the Global Commission on the Economics of Water, and Special Adviser to South Africa's G20 Presidency. In 2021, she received the Grande Ufficiale Ordine al Merito della Repubblica Italiana from the Italian President – Italy's highest civilian honour.\n\n\"I believe [her vision] can help to think about the future.\" – Pope Francis",
-   "events": [
-    {
-     "title": "Capitalism and the Common Good",
-     "when": "SEP 20 - 11:00"
-    },
-    {
-     "title": "The $84 Trillion Lottery",
-     "when": "SEP 20 - 14:30"
-    }
-   ],
-   "featured": true,
-   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Mariana-Mazzucato.webp",
-   "isNew": true,
-   "name": "Mariana Mazzucato",
-   "slug": "mariana-mazzucato",
-   "tagline": "Author of The Common Good Economy; Professor at University College London"
   },
   {
    "bio": "\"Imagine a world in which every single person on the planet is given free access to the sum of all human knowledge. That's what we're doing.\"\n\nJimmy Wales is an American internet entrepreneur and digital visionary best known for founding Wikipedia, the world’s largest collaborative encyclopedia. A pioneer of open knowledge, Wales has been a central figure in shaping the architecture and ethics of the modern internet, advancing the idea that information should be freely accessible to all.\n\nThrough the Wikimedia Foundation, which he founded to support Wikipedia and its sister projects, Wales helped establish a volunteer-driven model of knowledge creation grounded in neutrality, transparency, and public service. His work has influenced debates on digital commons, online governance, and the future of information in democratic societies.\n\n\"From the beginning, astonishingly revolutionary.\" — Rory Stewart",
@@ -3435,10 +3379,6 @@
    "bio": "\"London does not belong to Labour. It does not belong to the Tories. It belongs to the people.\"\n\nLaila Cunningham is a former Crown Prosecution Service prosecutor turned Reform UK figurehead, whose defection from the Conservative Party in June 2025 made her the first Reform sitting councillor in a London borough. A fierce critic of establishment failures on crime, immigration, and free speech, she has rapidly become one of the most prominent new voices on the British right.\n\nIn January 2026 Nigel Farage announced her as Reform UK's candidate for the London Mayoralty in 2028 and head of London campaigning. \n\n“Laila is an enormously talented, successful woman\" — Nigel Farage",
    "events": [
     {
-     "title": "The Sacred and the Supernatural",
-     "when": "SEP 19 - 13:30"
-    },
-    {
      "title": "The Tyranny of the State",
      "when": "SEP 19 - 20:30"
     }
@@ -3575,6 +3515,10 @@
   {
    "bio": "\"I don’t write fiction for people to identify with and I don’t write a picture of the world they can recognise. I write to astonish people.”\n\nWill Self is a satirist, novelist, journalist, cultural critic and one of Britain's most provocative literary voices. Honorary Professor of Contemporary Thought at Brunel University London, Self has written more than two dozen books spanning satirical fiction, memoir, and non-fiction. His novel Umbrella was shortlisted for the Man Booker Prize, and his books have been translated into more than twenty languages. A longtime contributor to The Guardian, the London Review of Books, Harper's Magazine and The New York Times, he has been a columnist for The Observer, The Times, The New Statesman, the Evening Standard, and The New European.\n\nHis most recent novel, The Quantity Theory of Morality, is a savage satire of the English middle class and Anglo-European liberal elite. It follows his novel Elaine, which draws on the diaries of his late mother — part autofiction, part feminist portrait of a woman crushed by post-war domesticity.\n\n\"Self is the most daring and delightful novelist of his generation\" ― Guardian",
    "events": [
+    {
+     "title": "The Ego vs The Epic",
+     "when": "SEP 19 - 14:30"
+    },
     {
      "title": "The End of the Book: A Civilisation in Crisis",
      "when": "SEP 20 - 14:45"
@@ -3788,6 +3732,10 @@
     {
      "title": "Power in the Age of AI",
      "when": "SEP 20 - 14:00"
+    },
+    {
+     "title": "Danger and Risk in an Anxious World",
+     "when": "SEP 20 - 17:30"
     }
    ],
    "featured": true,
@@ -3830,10 +3778,6 @@
     {
      "title": "The $84 Trillion Lottery",
      "when": "SEP 20 - 14:30"
-    },
-    {
-     "title": "Danger and Risk in an Anxious World",
-     "when": "SEP 20 - 17:30"
     }
    ],
    "featured": true,
@@ -3920,25 +3864,6 @@
    "tagline": "Political Theorist Redefining Power"
   },
   {
-   "bio": "“With each book you get a new fresh chance.” \n\nPatricia Lockwood is an American poet, novelist, and essayist widely regarded as one of the most original literary voices of her generation. A contributing editor at the London Review of Books, she is the only writer with both fiction and nonfiction works selected as the 10 Best Books of the Year by The New York Times. \n\nLockwood is the bestselling author of the memoir Priestdaddy — named one of The Guardian’s 100 Best Books of the 21st Century — and the novels No One Is Talking About This, winner of the Dylan Thomas Prize and shortlisted for the Booker, and Will There Ever Be Another You, named one of The New Yorker’s Best Books of 2025. Her forthcoming poetry collection, Agate Head/Stone Soup, is published by Penguin in 2026. \n\n\"A cultural critic at the height of her powers.\" — The Paris Review",
-   "events": [
-    {
-     "title": "The Ego vs The Epic",
-     "when": "SEP 19 - 14:30"
-    },
-    {
-     "title": "Life, the Self, and the Infinite Scroll",
-     "when": "SEP 19 - 17:00"
-    }
-   ],
-   "featured": true,
-   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/patricia-lockwood.webp",
-   "isNew": true,
-   "name": "Patricia Lockwood",
-   "slug": "patricia-lockwood",
-   "tagline": "Leading American Novelist and Critic"
-  },
-  {
    "bio": "\"I would keep as much of Neoclassical economics as modern astronomy kept of Ptolemaic astronomy — which is to say, nothing at all.” \n\nSteve Keen is one of the world's most provocative economists. Celebrated and controversial, Keen was one of the few economists to warn of the 2008 financial crisis, predicting as early as 2005 that the boom in private debt in developed countries was unsustainable. \n\nKeen is the author of several books including Debunking Economics, where he launches a full-range critique of Neoclassical economics. Keen argues that the support for doctrines such as free trade among economists is based on dogma, not rational argument or empirical evidence. Now an independent researcher, Keen holds the titles of Honorary Professor and Distinguished Research Fellow at UCL.\n\n\"No one is more qualified than Steve Keen to answer the question 'Can we avoid another financial crisis?'\" ― Yanis Varoufakis",
    "events": [
     {
@@ -4020,10 +3945,6 @@
     {
      "title": "The Rise and Fall of the Educated Elite",
      "when": "SEP 19 - 14:30"
-    },
-    {
-     "title": "The Monster in the Machine",
-     "when": "SEP 20 - 16:00"
     }
    ],
    "featured": true,
@@ -4181,10 +4102,6 @@
    "bio": "\"If all narratives are relative, then we are lost.\"\n\nDavid Aaronovitch is an award-winning journalist and presenter on BBC Radio 4's Briefing Room, who previously wrote a column in The Times for nearly two decades. A rigorous, evidence-based myth-buster, he has spent his career puncturing conspiracy theories and challenging received wisdom.\n\nAaronovitch is the author of Voodoo Histories: The Role of Conspiracy Theory in Shaping Modern History, exposing how conspiracies gain support and fuel violence. His other books include Paddling to Jerusalem: An Aquatic Tour of Our Small Country and most recently a memoir about his family and early life, Party Animals: My Family and Other Communists. He now writes Notes From the Underground on Substack, where he continues to sift through our modern political myths and crises.\n\n“An effervescent and essential writer.” — The Observer",
    "events": [
     {
-     "title": "Philosophy Breakfast with David Aaronovitch",
-     "when": "SEP 19 - 09:00"
-    },
-    {
      "title": "The Sacred and the Supernatural",
      "when": "SEP 19 - 13:30"
     },
@@ -4204,8 +4121,8 @@
    "bio": "\"If you don't read Aristotle in Greek, you cannot understand his argument.\"\n\nBabette Babich is a world-leading expert on Nietzsche and a fearless defender of continental philosophy. Professor of philosophy at Fordham University and editor of the journal New Nietzsche Studies, Babich has spent decades dismantling common assumptions about science, art, and the nature of knowledge itself.\n\nEducated in both the analytic and continental traditions, Babich has written extensively on figures like Adorno, Gadamer, and Foucault, challenging the boundaries between art, science, and philosophy. Her latest book, titled Ivan Illich's Philosophical Constellations, examines the thought of the Austrian cultural critic and polymath — specifically, his radical critique of modern institutions.\n \n\"[Babich] succeeds in penetrating the cloud of suspicion, incomprehension, and distrust that for contemporary readers surrounds Nietzsche's writing.\" — New Nietzsche Studies",
    "events": [
     {
-     "title": "Philosophy Breakfast with Babette Babich",
-     "when": "SEP 19 - 09:00"
+     "title": "Life, the Self, and the Infinite Scroll",
+     "when": "SEP 19 - 17:00"
     },
     {
      "title": "Heidegger, Rilke, and the Limits of Language",
@@ -4622,10 +4539,6 @@
     {
      "title": "Playing God with the Planet",
      "when": "SEP 19 - 14:45"
-    },
-    {
-     "title": "Breaking Free of the Doom Loop",
-     "when": "SEP 20 - 17:30"
     }
    ],
    "featured": true,
@@ -4637,16 +4550,7 @@
   },
   {
    "bio": "\"The nation-state system [...] is not capable, even in theory, of protecting populations from twenty-first-century conditions\"\n\nRana Dasgupta is a novelist and essayist. A visiting fellow in the humanities at Princeton and lecturer at Brown University, he has built a reputation as one of the sharpest critical voices on globalisation, migration, and the modern city. \n\nIn 2010, The Daily Telegraph named him one of Britain's best novelists under 40; in 2014 Le Monde listed him among 70 people shaping the world tomorrow. Dasgupta was also awarded the prestigious Windham-Campbell Prize for Nonfiction in 2025. His most recent book, After Nations: The Making and Unmaking of a World Order, continues his rigorous reputation with a historical and philosophical reckoning. \n\n\"Simply astonishing […] Dasgupta is consistently insightful, thought-provoking, and on point.\" - David Wengrow",
-   "events": [
-    {
-     "title": "The End of Nations",
-     "when": "SEP 20 - 16:30"
-    },
-    {
-     "title": "Breaking Free of the Doom Loop",
-     "when": "SEP 20 - 17:30"
-    }
-   ],
+   "events": [],
    "featured": true,
    "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Rana-Dasgupta.webp",
    "isNew": true,
@@ -4656,12 +4560,7 @@
   },
   {
    "bio": "\"Clothes tell our stories, some that we would rather not tell, others that we hardly know ourselves\"\n\nShahidha Bari is a critic, academic, and broadcaster whose work spans literature, philosophy, fashion, and the history of ideas. Professor of Fashion Cultures and Histories at the London College of Fashion, University of the Arts London, she has built a reputation as one of Britain's most wide-ranging and intellectually ambitious cultural voices. \n\nHer book Dressed: A Philosophy of Clothes reads fashion not as vanity but as a key to understanding identity, desire, and what it means to be human. Her most recent book, Look Again: Fashion argues that thinking seriously about dress takes us into the heart of society, culture, and politics. Bari is also a host of BBC Radio 4's arts and ideas programme Free Thinking.\n\n\"A deeply original, compelling thinker and a brilliant writer.\" ― Simon Critchley",
-   "events": [
-    {
-     "title": "The Ego vs The Epic",
-     "when": "SEP 19 - 14:30"
-    }
-   ],
+   "events": [],
    "featured": true,
    "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/shahida.webp",
    "isNew": false,
@@ -4685,12 +4584,16 @@
      "when": "SEP 20 - 13:30"
     },
     {
+     "title": "Reality in the Age of Perspective",
+     "when": "SEP 20 - 16:00"
+    },
+    {
      "title": "Danger and Risk in an Anxious World",
      "when": "SEP 20 - 17:30"
     }
    ],
    "featured": true,
-   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/jay-shap.webp",
+   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/jay-shapiro-new2.webp",
    "isNew": false,
    "name": "Jay Shapiro",
    "slug": "jay-shapiro",
@@ -4702,6 +4605,10 @@
     {
      "title": "The Life and Philosophy of Michael Gove",
      "when": "SEP 19 - 11:00"
+    },
+    {
+     "title": "The Rise and Fall of the Educated Elite",
+     "when": "SEP 19 - 14:30"
     },
     {
      "title": "Superpowers and Their Limits",
@@ -4752,6 +4659,10 @@
    "bio": "Danielle Sands is a philosopher, writer, and senior lecturer at Royal Holloway, University of London, whose work spans literature, philosophy, and critical theory. With a rare ability to move between classic texts and contemporary culture, Sands explores how philosophy can shed light on modern moral and political landscapes.\n\nSands is best known for her work on continental philosophy, drawing on thinkers from Derrida to Spinoza to reframe how we understand belief in the age of disillusionment. She is the author of Animal Writing: Storytelling, Selfhood and the Limits of Empathy and, most recently, Writing Religion & Politics After Derrida.\n\n\"Bold, provocative and highly enjoyable.\" — Rosi Braidotti",
    "events": [
     {
+     "title": "The Ego vs The Epic",
+     "when": "SEP 19 - 14:30"
+    },
+    {
      "title": "The Scaffolding of the World",
      "when": "SEP 19 - 19:00"
     }
@@ -4769,10 +4680,6 @@
     {
      "title": "Wine Tasting and Philosophy with Barry C. Smith",
      "when": "SEP 19 - 15:15"
-    },
-    {
-     "title": "Whisky Tasting and Philosophy with Barry C. Smith",
-     "when": "SEP 20 - 15:00"
     }
    ],
    "featured": true,
@@ -4794,7 +4701,12 @@
   },
   {
    "bio": "\"If it is there, if it is a story, we put it out there.\"\n\nRoger Hearing is a veteran journalist and broadcaster. Over a 35-year career with the BBC and Bloomberg, he has covered wars, elections, coups and revolutions across the globe ― including the UN intervention in Somalia and the Rwandan genocide.\n\nFrom 1999 to 2010, he presented The World Today and News Hour for the BBC World Service, along with the World Tonight on BBC Radio 4. He now co-hosts the podcast The Why? Curve with Phil Dobbie.\n\n\"An excellent thoughtful broadcaster and a rock solid journalist.\" ― Ian D. Richardson, former editor at BBC World Service",
-   "events": [],
+   "events": [
+    {
+     "title": "The $84 Trillion Lottery",
+     "when": "SEP 20 - 14:30"
+    }
+   ],
    "featured": true,
    "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/roger-hearing2.webp",
    "isNew": false,
@@ -4808,6 +4720,10 @@
     {
      "title": "Playing God with the Planet",
      "when": "SEP 19 - 14:45"
+    },
+    {
+     "title": "The Price of Economic Growth",
+     "when": "SEP 19 - 17:00"
     },
     {
      "title": "Democracy and Its Discontents",
@@ -4885,6 +4801,10 @@
     {
      "title": "The Self, The Soul, and the Nature of Reality",
      "when": "SEP 19 - 16:00"
+    },
+    {
+     "title": "Anxious about Nothing",
+     "when": "SEP 20 - 16:30"
     }
    ],
    "featured": true,
@@ -4973,6 +4893,99 @@
    "name": "Zoe Drewitt",
    "slug": "zoe-drewitt",
    "tagline": "Philosophy specialist facilitating debate for all ages"
+  },
+  {
+   "bio": "",
+   "events": [
+    {
+     "title": "Playing God with the Planet",
+     "when": "SEP 19 - 14:45"
+    }
+   ],
+   "featured": false,
+   "image": null,
+   "isNew": false,
+   "name": "Bernice Lee",
+   "slug": "bernice-lee",
+   "tagline": ""
+  },
+  {
+   "bio": "\"As a society, we will always face difficulty, we will find ways of getting through it, and we will endure. That is the human condition.\"\n\nDavid Omand is a Visiting Professor of War Studies at King’s College London. He has held many top roles in the civil service including as Director of GCHQ and Permanent Secretary of the UK Home Office.\n\nHe has also served as Permanent Secretary in the Cabinet Office as UK Security and Intelligence Coordinator. In the MOD he was the Deputy Under Secretary of State for Policy, and was Principal Private Secretary to the Secretary of State for Defence during the Falklands conflict. \n\n\"David Omand is exactly the man you need in a crisis\" — Rory Stewart",
+   "events": [],
+   "featured": true,
+   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/David-Omand.webp",
+   "isNew": true,
+   "name": "David Omand",
+   "slug": "david-omand",
+   "tagline": "Former director of GCHQ and Permanent Secretary of the UK Home Office"
+  },
+  {
+   "bio": "\"The ur-democracy within an English pub is something we should be massively proud of.\"\n\nGawain Towler is a British political strategist, journalist, and long-standing figure in the Eurosceptic movement. Best known for his work in party communications and media strategy, he currently serves on the governing board of Reform UK, following a five-year tenure as its director of communications during the Brexit era. He also founded CWC Strategy, a communications and strategy consultancy. As a writer and commentator, his work has appeared in The Telegraph, The Spectator, CapX, The Critic, and Spiked, where he examines politics, culture, and foreign affairs.\n\nTowler twice stood as a candidate for the European Parliament and has been a central figure in shaping the public face of Eurosceptic politics in Britain for more than two decades.\n\n\"The last great amateur in British politics\" — The Spectator",
+   "events": [
+    {
+     "title": "The Sacred and the Supernatural",
+     "when": "SEP 19 - 13:30"
+    }
+   ],
+   "featured": false,
+   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Gawain-Towler-HowTheLightGetsIn-Hay-Festival-2025.webp",
+   "isNew": false,
+   "name": "Gawain Towler",
+   "slug": "gawain-towler",
+   "tagline": ""
+  },
+  {
+   "bio": "\"Collective action remains the best way of renewing the march towards the great trinity of liberty, equality, and solidarity.\"\n\nGuy Standing is a Professorial Research Associate at SOAS University of London and co-founder of the Basic Income Earth Network. He is best known as a long-standing and prominent advocate of Universal Basic Income, but he is also responsible for redefining and revitalizing the term ‘precariat’ which describes a new emerging social class suffering from job insecurity as well as identity insecurity. \n\nStanding's recent work has explored the politics of time and how to reclaim leisure in an age of uncertainty.\n\n\"Standing’s daring emancipatory agenda challenges our prevailing “jobs fetish” as anything but progressive\" — Irish Times",
+   "events": [
+    {
+     "title": "The $84 Trillion Lottery",
+     "when": "SEP 20 - 14:30"
+    }
+   ],
+   "featured": true,
+   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Guy-Standing5.webp",
+   "isNew": true,
+   "name": "Guy Standing",
+   "slug": "guy-standing",
+   "tagline": "Trailblaizing Advocate of Universal Basic Income"
+  },
+  {
+   "bio": "“You are what you do; your happiness is what you attend to, so focus on what makes you and those you care about truly happy.” \n\nPaul Dolan is a British behavioural scientist and the Professor of Behavioural Science at the London School of Economics. His research and writing focus on how pleasure and purpose weave together in everyday life, arguing that happiness lies in what we do and attend to, not the grand narratives we tell ourselves.\n\nDolan is the author of three widely acclaimed books: Happiness by Design, Happy Ever After, and Beliefism. He combines rigorous academic analysis with accessible advice grounded in behavioral science. In interviews and public appearances, he emphasizes breaking free from cultural \"narrative traps\", such as the assumptions that marriage or wealth guarantee happiness, to prioritize lived experience instead. His work has informed UK and US public policy through collaboration with the Office for National Statistics and the UK Behavioural Insights Team.\n\n“This man knows the secret to happiness: the small stuff.” — Wired UK",
+   "events": [
+    {
+     "title": "Champagne, Cake and Philosophy with Paul Dolan",
+     "when": "SEP 20 - 15:00"
+    },
+    {
+     "title": "Rethinking Education in the Age of AI",
+     "when": "SEP 20 - 16:00"
+    },
+    {
+     "title": "Beyond Beliefism",
+     "when": "SEP 20 - 17:30"
+    }
+   ],
+   "featured": true,
+   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/paul-dolan4.webp",
+   "isNew": true,
+   "name": "Paul Dolan",
+   "slug": "paul-dolan",
+   "tagline": "World-Renowned Happiness Researcher"
+  },
+  {
+   "bio": "“The belief system that governs conventional scientific thinking is an act of faith.”  \n\nRupert Sheldrake is a scientist, author, and parapsychology researcher. Best known for his theory of morphic resonance, a radical hypothesis that nature itself has memory. Sheldrake is also known for his viral TED talk which was banned by the organisation. He has taken issue with the New Atheism of many and has also challenged the idea that the laws of nature are fixed and unchanging.\n\nAt Cambridge University, he worked in developmental biology as a Fellow of Clare College. He was Principal Plant Physiologist at the International Crops Research Institute for the Semi-Arid Tropics in Hyderabad, India.\n\n\"Sheldrake is an excellent scientist; the proper, imaginative kind.\" — New Scientist",
+   "events": [
+    {
+     "title": "The Universe Has Habits, Not Laws",
+     "when": "SEP 20 - 11:00"
+    }
+   ],
+   "featured": true,
+   "image": "assets/Uploads/_resampled/FillWzQ4MCw2MDBd/rupert-sheldrake.webp",
+   "isNew": true,
+   "name": "Rupert Sheldrake",
+   "slug": "rupert-sheldrake",
+   "tagline": "Radical biologist and philosopher"
   }
  ],
  "acts": [

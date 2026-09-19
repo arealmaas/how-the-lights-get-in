@@ -5,7 +5,7 @@
 
 data/extract.json is produced by scripts/extract-in-browser.js (see README).
 """
-import json, re, unicodedata
+import hashlib, json, re, unicodedata
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -47,14 +47,20 @@ def absolute(url):
     return url if url.startswith('http') else BASE + url.lstrip('/')
 
 
-def local_photo(kind, name):
-    """Served path of a thumbnail (img/<kind>/<name>.webp) if public/img/ holds one, else None.
+def local_photo(kind, name, image=None):
+    """Served thumbnail path, preferring a source-URL version over the legacy filename.
 
     The files live under public/, which Vite copies to the root of dist/, so the path recorded here is
-    what the page requests. See scripts/fetch-images.js and scripts/unpack-images.py.
+    what the page requests. URL hashes keep refreshed images distinct in immutable browser caches.
+    See scripts/fetch-images.js and scripts/unpack-images.py for the original thumbnail workflow.
     """
     if not name:
         return None
+    if image:
+        digest = hashlib.sha256(absolute(image).encode('utf-8')).hexdigest()[:12]
+        versioned = f'img/{kind}/{name}-{digest}.webp'
+        if (ROOT / 'public' / versioned).exists():
+            return versioned
     rel = f'img/{kind}/{name}.webp'
     return rel if (ROOT / 'public' / rel).exists() else None
 
@@ -116,8 +122,9 @@ def build(extract):
             'topics': e['topics'], 'description': desc, 'descriptionSource': desc_source,
             'links': [{'text': l['text'], 'href': absolute(l['href'])} for l in e['links']],
             'ticketing': e['ticketing'], 'fastPassPrice': e['fastPassPrice'], 'prices': e['prices'],
+            **({'fastPassSoldOut': True} if e.get('fastPassSoldOut') else {}),
             'actSlugs': [a['slug'] for a in matched], 'url': absolute(e['url']), 'image': absolute(e['image']),
-            'photo': local_photo('events', str(e['eventNo'])) or next((local_photo('acts', a['slug'] + '-wide') for a in matched if local_photo('acts', a['slug'] + '-wide')), None),
+            'photo': local_photo('events', str(e['eventNo']), e['image']) or next((local_photo('acts', a['slug'] + '-wide') for a in matched if local_photo('acts', a['slug'] + '-wide')), None),
         })
     out_events.sort(key=lambda x: (x['date'], x['time'], x['eventNo']))
 
@@ -132,7 +139,7 @@ def build(extract):
             'name': p['name'] if p else name, 'slug': p['slug'] if p else None,
             'tagline': p['tagline'] if p else '', 'bio': p['bio'] if p else '',
             'image': absolute(p['image']) if p else None,
-            'photo': local_photo('speakers', p['slug']) if p else None,
+            'photo': local_photo('speakers', p['slug'], p['image']) if p else None,
             'profileUrl': (BASE + 'talent/' + p['slug']) if p else None,
             'featured': bool(p and p.get('featured')),
             'speaks': sorted(set(idx['speaks'])), 'hosts': sorted(set(idx['hosts'])),
@@ -156,7 +163,7 @@ def build(extract):
         'disclaimer': 'Unofficial, fan-made planner. Not affiliated with, endorsed by or connected to HowTheLightGetsIn or the Institute of Art and Ideas. Programme text and speaker biographies are © the Institute of Art and Ideas.',
         'notes': [
             'End times are not published on the website; only start times are given.',
-            'ticketing: fast_pass = included with Festival Ticket, optional paid Fast Pass; included = included with Festival Ticket, no Fast Pass; separate_ticket = Inner Circle/Salon/Banquet events sold separately; sold_out = separately ticketed and sold out.',
+            'ticketing: fast_pass = included with Festival Ticket, optional paid Fast Pass (fastPassSoldOut flags when only Fast Passes are sold out); included = included with Festival Ticket, no Fast Pass; separate_ticket = events sold separately; sold_out = the official programme marks the event sold out. Prices are as displayed by the festival; unavailable price tiers are omitted.',
             'Topics are the site\'s own "Search by Content" categories.',
             'Descriptions with descriptionSource=artist profile come from the artist\'s profile page because the programme entry had none.',
             'photo (and photoWide for acts) are thumbnails under img/ made from the festival site\'s images (image holds the original URL); they remain © the IAI and the photographers.',

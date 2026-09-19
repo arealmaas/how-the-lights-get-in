@@ -5,7 +5,7 @@
  *   1. Open https://howthelightgetsin.org/festivals/london/programme in a browser.
  *   2. Open the developer console (Cmd/Ctrl+Shift+J) and paste this whole file, press Enter.
  *   3. Wait ~30 s. A file called extract.json downloads. Save it as data/extract.json.
- *   4. Run `python3 scripts/build.py` to regenerate programme.json and index.html.
+ *   4. Run `python3 scripts/build.py` to regenerate programme.json.
  *
  * Why in the browser: the programme page lazy-loads HTML fragments of 40 events from
  * /FullEventListPage_Controller/getevents?offset=N&limit=40&festival=london. Running
@@ -40,12 +40,18 @@
     const actions = it.querySelector('.product_actions');
     const actText = actions ? htmlToText(actions) : '';
     const priceRows = actions ? [...actions.querySelectorAll('table.ht-pp tr')].map(r => norm(r.textContent)) : [];
+    const separateTicket = /not included with your Festival Ticket/i.test(actText);
+    // Only explicit Fast Pass wording distinguishes pass availability from event admission.
+    const fastPassSoldOut = !separateTicket && /Fast Pass(?:es)?\s+Sold Out/i.test(actText);
     let ticketing, prices = null;
-    if (/sold out/i.test(actText)) ticketing = 'sold_out';
-    else if (/not included with your Festival Ticket/i.test(actText)) {
-      ticketing = 'separate_ticket';
-      prices = Object.fromEntries(priceRows.map(r => { const m = r.match(/^(\w+):\s*£([\d.]+)/); return m ? [m[1].toLowerCase(), +m[2]] : null; }).filter(Boolean));
-    } else if (/Fast Pass/i.test(actText)) ticketing = 'fast_pass';
+    if (separateTicket) {
+      prices = Object.fromEntries(priceRows.filter(r => !/sold out/i.test(r)).map(r => { const m = r.match(/^(\w+):\s*£([\d.]+)/); return m ? [m[1].toLowerCase(), +m[2]] : null; }).filter(Boolean));
+      // Sold-out earlybird/advance tiers do not make an available standard ticket sold out.
+      ticketing = Object.keys(prices).length || !/sold out/i.test(actText) ? 'separate_ticket' : 'sold_out';
+      if (ticketing === 'sold_out') prices = null;
+    } else if (fastPassSoldOut) ticketing = 'fast_pass';
+    else if (/sold out/i.test(actText)) ticketing = 'sold_out';
+    else if (/Fast Pass/i.test(actText)) ticketing = 'fast_pass';
     else ticketing = 'included';
     const fp = actText.match(/Fast Pass[\s\S]*?Price:\s*£([\d.]+)/);
     return {
@@ -60,7 +66,7 @@
       image: img?.getAttribute('src') || null,
       speakers: norm(it.querySelector('.product_speakers')?.textContent),
       description: content ? htmlToText(content) : '',
-      links, ticketing, fastPassPrice: fp ? +fp[1] : null, prices, topics: []
+      links, ticketing, fastPassPrice: fp ? +fp[1] : null, ...(fastPassSoldOut ? {fastPassSoldOut: true} : {}), prices, topics: []
     };
   }
   async function fetchIds(extra) {

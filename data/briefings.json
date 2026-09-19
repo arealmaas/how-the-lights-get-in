@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "note": "Unofficial briefing notes written with Claude (Anthropic) on 6 September 2026 from the festival programme text and the speakers' published work. Speaker positions are inferred and hedged; they are not the speakers' or the festival's words. Corrections welcome via GitHub.",
+  "note": "Unofficial briefing notes originally written with Claude (Anthropic) on 6 September 2026 from the festival programme text and the speakers' published work. Programme framing and participant updates checked against the official programme and profiles on 19 September 2026; briefings for replaced talks were removed. Original speaker positions are inferred and hedged; they are not the speakers' or the festival's words. Newly listed speakers have factual background only where available, with no debate position attributed. Corrections welcome via GitHub.",
   "covers": "Debates, Talks, IAI Academy"
  },
  "6": {
@@ -578,12 +578,12 @@
     "stance": "Atheist journalist whose Saturday breakfast talk is on how Christian nationalism is being weaponised on the right. Expect him to reject the supernatural claims and to argue that cultural Christianity is being used as a political identity."
    },
    {
-    "name": "Laila Cunningham",
-    "stance": "Reform UK councillor in Westminster and former Conservative, billed as the party's London figurehead. Likely to defend Christianity's cultural and heritage role as part of national identity."
-   },
-   {
     "name": "Alister McGrath",
     "stance": "Oxford theologian and Dawkins critic (The Dawkins Delusion). Expect the argument that Christian ethics depends on Christian belief and that cultural Christianity is unstable — a case that oddly agrees with atheists on the incoherence."
+   },
+   {
+    "name": "Gawain Towler",
+    "stance": "Political strategist and journalist whose official profile describes his work in Reform UK communications and governance. The programme does not establish his position on this debate."
    },
    {
     "name": "Jack Symes",
@@ -664,16 +664,16 @@
     "stance": "Philosopher and novelist (Plato at the Googleplex; Betraying Spinoza) who writes about 'mattering' — the need to matter beyond oneself. Likely to argue that the self only makes sense inside larger stories, without dismissing the personal."
    },
    {
-    "name": "Patricia Lockwood",
-    "stance": "Author of the memoir Priestdaddy and the internet novel No One Is Talking About This; writes from the self and the feed with formal daring. Expect a defence of the personal as a way into the universal, delivered with jokes."
-   },
-   {
     "name": "Emily Wilson",
     "stance": "Translator of the Odyssey and Iliad; has written on how epics are communal, performed and full of individual voices. Likely to argue the ego/epic opposition is a false one and that Homer already contains both."
    },
    {
-    "name": "Shahidha Bari",
-    "stance": "Hosts. Academic, critic and broadcaster (Front Row; Dressed)."
+    "name": "Will Self",
+    "stance": "Novelist, satirist and cultural critic whose official profile includes fiction, memoir and Elaine, a novel drawn from his mother's diaries. The programme does not establish his position on this debate."
+   },
+   {
+    "name": "Danielle Sands",
+    "stance": "Hosts. Philosopher and writer whose official profile describes work across literature, philosophy and critical theory."
    }
   ],
   "questions": [
@@ -758,8 +758,8 @@
     "stance": "As Education Secretary he championed a knowledge-rich curriculum in the E. D. Hirsch tradition and academic rigour. Expect a defence of knowledge against 'skills-only' thinking and a critique of what universities did with their autonomy."
    },
    {
-    "name": "Philip Collins",
-    "stance": "Hosts. Columnist and former chief speechwriter to Tony Blair."
+    "name": "Mary Ann Sieghart",
+    "stance": "Hosts. Journalist and author of The Authority Gap."
    }
   ],
   "questions": [
@@ -800,8 +800,8 @@
   ]
  },
  "33": {
-  "question": "Should we deliberately engineer the planet's climate — or is 'dominion over nature' the delusion that caused the crisis?",
-  "why": "Solar geoengineering is now funded by billionaires and debated in Nature; carbon removal is written into net-zero plans. As warming outruns emissions cuts, the question moves from whether to research it to who decides, on what evidence, and what happens if it stops.",
+  "question": "Who should decide whether to deploy solar geoengineering, who bears its risks, and can our institutions govern interventions of planetary consequence?",
+  "why": "The updated programme focuses on the governance of solar geoengineering as climate impacts worsen and international institutions struggle. It raises the prospect of a state acting alone, the unequal distribution of risks, and whether these pressures could instead encourage cooperation. The arguments below provide background on the competing cases for and against intervention.",
   "sides": [
    {
     "label": "We are already engineering the planet — badly. Doing it on purpose may be the only responsible option",
@@ -832,20 +832,20 @@
   ],
   "speakers": [
    {
-    "name": "Adrienne Buller",
-    "stance": "Author of The Value of a Whale, a critique of green capitalism and market fixes. Expect scepticism of techno-solutions that leave the economic system intact."
-   },
-   {
     "name": "Janos Pasztor",
     "stance": "Former UN assistant secretary-general and head of the Carnegie Climate Governance Initiative, which pushed for rules on geoengineering research without advocating deployment. Expect 'we must govern it before someone does it' rather than either camp."
+   },
+   {
+    "name": "Laurie Laybourn",
+    "stance": "Researcher on climate 'derailment risk' and co-author of Planet on Fire, arguing for systemic economic change. Likely to warn that geoengineering distracts from and entrenches the causes."
    },
    {
     "name": "Adam Frank",
     "stance": "Astrophysicist (Light of the Stars) who frames humanity as a planetary force that must learn to steer its 'technosphere'. Likely to argue that conscious management of the planet is now unavoidable."
    },
    {
-    "name": "Laurie Laybourn",
-    "stance": "Researcher on climate 'derailment risk' and co-author of Planet on Fire, arguing for systemic economic change. Likely to warn that geoengineering distracts from and entrenches the causes."
+    "name": "Bernice Lee",
+    "stance": "The programme lists her on this solar geoengineering panel but does not establish her position on the debate."
    },
    {
     "name": "Isabel Hilton",
@@ -855,7 +855,7 @@
   "questions": [
    "Who should be able to veto a solar geoengineering programme — and who would actually be able to?",
    "If research is fine but deployment isn't, what stops research from becoming deployment?",
-   "Is planting a forest engineering the planet? Where exactly does dominion begin?"
+   "Who bears the costs if an intervention goes wrong, and how could countries agree on responsibility before deployment?"
   ],
   "reading": [
    {
@@ -1098,16 +1098,16 @@
   ],
   "speakers": [
    {
-    "name": "Patricia Lockwood",
-    "stance": "Novelist of the feed (No One Is Talking About This); lives in the internet and is ambivalent about it. Expect neither detox sermon nor techno-cheer, but a precise account of what the scroll does to a mind."
-   },
-   {
     "name": "Jordan Stephens",
     "stance": "Musician (Rizzle Kicks), author of the memoir Avoidance, Drugs, Heartbreak and Dogs, and mental-health advocate. Likely to speak for rest, boredom and stepping away, from experience."
    },
    {
     "name": "Tony D. Sampson",
     "stance": "Digital-culture theorist (Virality; A Sleepwalker's Guide to Social Media) who argues platforms work through affect and contagion below conscious attention. Expect a critique of Big Tech's grip on experience."
+   },
+   {
+    "name": "Babette Babich",
+    "stance": "Philosopher at Fordham University whose official profile describes work on Nietzsche, art, science and Ivan Illich's critique of modern institutions. The programme does not establish her position on this debate."
    },
    {
     "name": "Jay Shapiro",
@@ -2330,12 +2330,12 @@
     "stance": "Former Conservative Chancellor, low-tax and pro-growth. Likely to argue against inheritance-tax rises and for planning liberalisation and growth as the fix."
    },
    {
-    "name": "Mariana Mazzucato",
-    "stance": "Economist (The Entrepreneurial State; Mission Economy; The Common Good Economy) who argues value is created collectively and captured privately. Expect the case that inherited wealth is unearned and that the state must shape markets to share it."
+    "name": "Guy Standing",
+    "stance": "SOAS researcher and co-founder of the Basic Income Earth Network, described in his official profile as an advocate of universal basic income and a theorist of the precariat. The programme does not establish his position on this debate."
    },
    {
-    "name": "Philip Collins",
-    "stance": "Hosts."
+    "name": "Roger Hearing",
+    "stance": "Hosts. Journalist and broadcaster with a career at the BBC and Bloomberg."
    }
   ],
   "questions": [
@@ -2352,7 +2352,7 @@
    {
     "title": "The Common Good Economy",
     "by": "Mariana Mazzucato (2026)",
-    "note": "Her latest — she gives a talk on it on Sunday afternoon."
+    "note": "Background reading on collective value and the common good."
    },
    {
     "title": "'The Housing Theory of Everything'",
@@ -2412,12 +2412,12 @@
     "stance": "Sociologist critical of therapeutic, managerial and risk-averse institutions. Expect the case that institutions have lost their sense of mission to self-protection."
    },
    {
-    "name": "Thangam Debbonaire",
-    "stance": "Labour peer and former MP, with a career in public and charitable bodies. Likely to defend public institutions and the people in them while accepting reform."
-   },
-   {
     "name": "Catherine Liu",
     "stance": "Author of Virtue Hoarders; argues that the professional-managerial class has captured institutions and uses moral language to protect its status. Expect a critique from the left that overlaps uncomfortably with Furedi's."
+   },
+   {
+    "name": "David Omand",
+    "stance": "Former Director of GCHQ and Permanent Secretary of the UK Home Office, now a Visiting Professor of War Studies at King's College London according to his official profile. The programme does not establish his position on this debate."
    },
    {
     "name": "Roger Hearing",
@@ -2506,8 +2506,8 @@
     "stance": "MIT philosopher (Resisting Reality) who combines social construction with realism: categories like race are constructed and real. Likely to reject both naive objectivism and 'anything goes'."
    },
    {
-    "name": "Philip Collins",
-    "stance": "Hosts."
+    "name": "Jay Shapiro",
+    "stance": "Hosts. Filmmaker, writer and podcaster."
    }
   ],
   "questions": [
@@ -2670,12 +2670,12 @@
     "stance": "Author of Culture of Fear (1997) and How Fear Works — the thesis of this debate is largely his. Expect the argument that fear has become a cultural script that infantilises."
    },
    {
-    "name": "Rachel Millward",
-    "stance": "Green Party Deputy Leader. Likely to argue that some fears — climate above all — are rational and that precaution is not paralysis."
-   },
-   {
     "name": "David Spiegelhalter",
     "stance": "Statistician (The Norm Chronicles; The Art of Uncertainty) who has spent a career calibrating public understanding of risk. Expect data on how much safer we are, and a plea for numeracy over panic — without dismissing genuine uncertainty."
+   },
+   {
+    "name": "Audrey Borowski",
+    "stance": "Researcher in the philosophy of artificial intelligence whose official profile describes work on data, algorithmic systems and ideology. The programme does not establish her position on this debate."
    },
    {
     "name": "Jay Shapiro",
@@ -3334,31 +3334,28 @@
  "43": {
   "kind": "talk",
   "question": "As materialism loses its grip, is the soul a viable answer to the self and consciousness — or a return to old mistakes?",
-  "why": "For a century the brain was assumed to hold the key to the self. That assumption is wobbling — panpsychism, idealism and post-analytic philosophy all reject it. Trumbull brings the soul back as a serious concept; Lawson argues the answer lies elsewhere; Balaska works the edges of experience.",
+  "why": "For a century the brain was assumed to hold the key to the self. That assumption is wobbling — panpsychism, idealism and post-analytic philosophy all reject it. Trumbull brings the soul back as a serious concept; Lawson argues the answer lies elsewhere; Maria Balaska hosts.",
   "case": [
    "Trumbull: the concept of the soul — a self that is not reducible to brain states — does explanatory work that materialism cannot, and has a richer philosophical history than its critics remember.",
-   "Lawson: materialism and 'the soul' share a mistake — both treat the self as a thing to be located; the self is a way of closing the world.",
-   "Balaska: the limits of experience (Wittgenstein, Lacan) show why every location of the self, material or spiritual, fails.",
-   "All three agree the materialist consensus was a consensus, not a proof."
+   "Lawson: materialism and 'the soul' share a mistake — both treat the self as a thing to be located; the self is a way of closing the world."
   ],
   "objections": [
    "'Soul' carries theological freight; if it means only 'irreducible self', why revive the word?",
    "Materialism's difficulties with consciousness do not license any alternative — the burden shifts to the soul theorist to explain interaction with the body.",
-   "The 'materialism is losing its grip' claim is philosophically fashionable and scientifically unrepresentative.",
-   "Three positions, one hour: expect a survey rather than a resolution."
+   "The 'materialism is losing its grip' claim is philosophically fashionable and scientifically unrepresentative."
   ],
   "speakers": [
-   {
-    "name": "Victoria Trumbull",
-    "stance": "Philosopher, author of On the Memory of the Soul, billed as challenging the materialist consensus. Expect the case that the soul is a viable philosophical concept."
-   },
    {
     "name": "Hilary Lawson",
     "stance": "Post-postmodern philosopher (Closure); rejects both materialism and the soul as ways of locating the self. Expect the 'closure' framework."
    },
    {
+    "name": "Victoria Trumbull",
+    "stance": "Philosopher, author of On the Memory of the Soul, billed as challenging the materialist consensus. Expect the case that the soul is a viable philosophical concept."
+   },
+   {
     "name": "Maria Balaska",
-    "stance": "Philosopher (Wittgenstein and Lacan at the Limit) working on the edges of experience. Expect the limits-of-language angle."
+    "stance": "Hosts. Philosopher whose official profile describes research on subjectivity, language and the limits of experience."
    }
   ],
   "questions": [
@@ -3457,12 +3454,16 @@
   ],
   "speakers": [
    {
+    "name": "Torsten Bell",
+    "stance": "Labour MP and Pensions Minister; formerly chief executive of the Resolution Foundation and author of Great Britain? Expect data-heavy argument for investment and for fixing living standards at the bottom."
+   },
+   {
     "name": "Jeremy Hunt",
     "stance": "Conservative former Chancellor; the fiscal-credibility, supply-side case. See also his 12pm talk on optimism."
    },
    {
-    "name": "Torsten Bell",
-    "stance": "Labour MP and Pensions Minister; formerly chief executive of the Resolution Foundation and author of Great Britain? Expect data-heavy argument for investment and for fixing living standards at the bottom."
+    "name": "Isabel Hilton",
+    "stance": "Hosts. Journalist, broadcaster and founder of Chinadialogue."
    }
   ],
   "questions": [
@@ -3766,7 +3767,7 @@
   "speakers": [
    {
     "name": "Laila Cunningham",
-    "stance": "Westminster City Councillor, former Crown Prosecution Service lawyer, Reform UK's 2028 London mayoral candidate. Expect a campaigning, example-driven case against state overreach. She also debates cultural Christianity at 1:30pm."
+    "stance": "Westminster City Councillor, former Crown Prosecution Service lawyer, Reform UK's 2028 London mayoral candidate. Expect a campaigning, example-driven case against state overreach."
    }
   ],
   "questions": [
@@ -3948,56 +3949,6 @@
    {
     "term": "Parasocial",
     "def": "A one-sided relationship with a public figure — the audience's side of fame."
-   }
-  ]
- },
- "87": {
-  "kind": "talk",
-  "question": "Can economics be rebuilt around the common good — where how we achieve goals matters as much as what they are?",
-  "why": "Mazzucato made her name arguing the state is an entrepreneur, not a fixer of market failures. This talk goes further: an economy organised around collective goals, participation and reciprocity, with the process itself as part of the value. It is the intellectual programme behind 'mission economics'.",
-  "case": [
-   "Value is created collectively — public research, infrastructure, education — and captured privately; the common good reverses the accounting.",
-   "Markets are outcomes of rules, not natural facts; shaping them towards shared goals (climate, health) is legitimate and effective.",
-   "How matters: goals reached by participation and reciprocity are more durable than goals imposed.",
-   "The evidence is in the mission-oriented programmes — from the moon landing to vaccine development — that public purpose can direct innovation."
-  ],
-  "objections": [
-   "'Common good' has no agreed content; who defines it, and what happens to those who disagree?",
-   "Mission-oriented policy has expensive failures (Concorde, industrial champions) that the success stories omit.",
-   "The state that Mazzucato trusts to set missions is the same one that struggles to build a railway.",
-   "Private investment follows returns; a common-good economy has to explain where the capital comes from."
-  ],
-  "speakers": [
-   {
-    "name": "Mariana Mazzucato",
-    "stance": "UCL economist; The Entrepreneurial State, Mission Economy, The Big Con, The Common Good Economy. Advises the G20, WHO and UN. Expect a confident, policy-ready case with international examples. She debates inheritance at 2:30pm."
-   }
-  ],
-  "questions": [
-   "Give an example of a mission that failed and what you learned from it.",
-   "Who decides the common good in a country split 50/50 on what it is?",
-   "What is the role of profit in your economy — tolerated, harnessed, or replaced?"
-  ],
-  "reading": [
-   {
-    "title": "Mission Economy",
-    "by": "Mariana Mazzucato (2021)",
-    "note": "The programme in full."
-   },
-   {
-    "title": "The Big Con",
-    "by": "Mariana Mazzucato and Rosie Collington (2023)",
-    "note": "Her attack on the consultancy industry — the 'how' argument in practice."
-   }
-  ],
-  "terms": [
-   {
-    "term": "Mission-oriented innovation",
-    "def": "Directing public and private investment at defined societal goals rather than fixing market failures case by case."
-   },
-   {
-    "term": "Public value",
-    "def": "Value created collectively by public institutions — which Mazzucato argues economics systematically undercounts."
    }
   ]
  },
@@ -4541,6 +4492,10 @@
    {
     "name": "Daniel Susskind",
     "stance": "Oxford economist (A World Without Work; Growth: A Reckoning; The Future of the Professions with Richard Susskind). Expect a clear, forward-looking argument. He also debates the educated elite on Saturday."
+   },
+   {
+    "name": "Paul Dolan",
+    "stance": "Hosts. Professor of Behavioural Science at the London School of Economics."
    }
   ],
   "questions": [
@@ -4568,110 +4523,6 @@
    {
     "term": "Credentialism",
     "def": "Using qualifications as proxies for ability — the thing a rebuilt education would drop."
-   }
-  ]
- },
- "128": {
-  "kind": "talk",
-  "question": "Are nations finished as the focus of power — and if American hegemony, Western debt and tech firms have shattered the system, what replaces it?",
-  "why": "Dasgupta's After Nations argues that the nation-state system that seemed eternal is breaking under forces it cannot contain: capital that moves faster than states, tech firms acting as geopolitical actors, and the return of Chinese power. He looks back to the fall of empires for what comes next.",
-  "case": [
-   "The nation state is a recent form (two centuries) that was universalised after 1945 and is now failing at its core jobs: controlling money, information and violence.",
-   "Western debt and American decline remove the guarantor of the system; nothing replaces it.",
-   "Tech firms and platforms are political actors — they run infrastructure, communications and now warfare — without being nations.",
-   "History's precedents — the end of empires — show transitions are long, violent and produce forms nobody predicted."
-  ],
-  "objections": [
-   "Nations are also resurgent: borders, tariffs, nationalism and war show the state's monopoly on force is alive.",
-   "'After nations' has been announced by globalisers for thirty years; the state kept coming back.",
-   "The alternative is left vague; a 'new conception of power' is a promissory note.",
-   "Novelists writing political theory can mistake narrative force for argument."
-  ],
-  "speakers": [
-   {
-    "name": "Rana Dasgupta",
-    "stance": "Novelist and essayist (Solo; Capital: The Eruption of Delhi; After Nations). Expect a sweeping, literary argument from history. He also joins the climate 'doom loop' conversation at 5:30pm."
-   }
-  ],
-  "questions": [
-   "Name the power that has replaced the state in one specific domain — and who holds it accountable?",
-   "Are borders and tariffs the death rattle of nations or their revival?",
-   "What did the end of the Roman or Ottoman order look like to someone living through it?"
-  ],
-  "reading": [
-   {
-    "title": "After Nations",
-    "by": "Rana Dasgupta",
-    "note": "The book the talk is drawn from."
-   },
-   {
-    "title": "The Nation-State and Violence",
-    "by": "Anthony Giddens (1985)",
-    "note": "The classic account of what the nation state is and does."
-   }
-  ],
-  "terms": [
-   {
-    "term": "Hegemony",
-    "def": "The leadership of one power that makes an international order work — the American role since 1945."
-   },
-   {
-    "term": "Westphalian system",
-    "def": "The order of sovereign territorial states conventionally dated from 1648."
-   }
-  ]
- },
- "135": {
-  "kind": "talk",
-  "question": "Can democracies break the climate doom loop — where disasters fuel the discontent that empowers the politicians who slow the response?",
-  "why": "The expectation was that floods and fires would force action. Instead they feed anger, anger feeds populists, populists slow the transition, and the disasters worsen. A live recording of the Overshoot podcast with Laybourn as host and Dasgupta as guest.",
-  "case": [
-   "Climate impacts are political before they are physical: they raise prices, displace people and erode trust, which anti-climate movements harvest.",
-   "The transition itself creates losers who vote; ignoring that is how the loop tightens.",
-   "Breaking the loop means building resilience and fairness into the transition — protection for the exposed, not just targets.",
-   "Dasgupta's frame: this is happening as the nation-state order itself weakens, so the actors who could respond are losing capacity."
-  ],
-  "objections": [
-   "The loop is asserted from a few cases; elsewhere disasters have strengthened climate politics (Australia after the fires, in part).",
-   "Populist backlash is driven by energy prices and immigration more than by climate disasters as such.",
-   "'Resilience and fairness' is what every party says; the difficulty is paying for it.",
-   "A podcast recording rewards conversation over confrontation; look for the moment of disagreement."
-  ],
-  "speakers": [
-   {
-    "name": "Rana Dasgupta",
-    "stance": "Novelist and essayist; After Nations. Expect the long historical view of political breakdown."
-   },
-   {
-    "name": "Laurie Laybourn",
-    "stance": "Hosts. Researcher on climate 'derailment risk' (the doom-loop thesis is his), co-author of Planet on Fire, host of the Overshoot podcast. Expect the systems framing and the policy questions."
-   }
-  ],
-  "questions": [
-   "Where has the loop been broken, even briefly — and what did it take?",
-   "Should climate policy be designed for the voters it will anger?",
-   "If nation states are weakening, who runs the transition?"
-  ],
-  "reading": [
-   {
-    "title": "'1.5°C – dead or alive? The risks to transformational change from reaching and breaching the Paris Agreement goal'",
-    "by": "Laybourn, Throp and Sherman, IPPR (2023)",
-    "note": "The derailment-risk argument in its original form."
-   },
-   {
-    "title": "Planet on Fire",
-    "by": "Mathew Lawrence and Laurie Laybourn (2021)",
-    "note": "The political-economy programme behind the podcast."
-   }
-  ],
-  "terms": [
-   {
-    "term": "Doom loop",
-    "def": "A self-reinforcing cycle in which the effects of a crisis undermine the capacity to respond to it."
-   },
-   {
-    "term": "Derailment risk",
-    "def": "Laybourn's term for the danger that climate impacts derail the politics of the transition."
    }
   ]
  }

@@ -34,7 +34,7 @@
       {"name": "Daniel Susskind", "stance": "Oxford economist (A World Without Work; Growth: A Reckoning) who has argued that AI will hollow out cognitive work and that education must be rethought rather than expanded on autopilot."},
       {"name": "Thangam Debbonaire", "stance": "Labour peer, former MP and professional musician. Likely to defend access to education and lifelong learning while conceding that the funding model is broken."},
       {"name": "Michael Gove", "stance": "As Education Secretary he championed a knowledge-rich curriculum in the E. D. Hirsch tradition and academic rigour. Expect a defence of knowledge against 'skills-only' thinking and a critique of what universities did with their autonomy."},
-      {"name": "Philip Collins", "stance": "Hosts. Columnist and former chief speechwriter to Tony Blair."}
+      {"name": "Mary Ann Sieghart", "stance": "Hosts. Journalist and author of The Authority Gap."}
     ],
     "questions": [
       "If a degree is a signal, what would you replace it with that employers would trust?",
@@ -53,8 +53,8 @@
     ]
   },
   "33": {
-    "question": "Should we deliberately engineer the planet's climate — or is 'dominion over nature' the delusion that caused the crisis?",
-    "why": "Solar geoengineering is now funded by billionaires and debated in Nature; carbon removal is written into net-zero plans. As warming outruns emissions cuts, the question moves from whether to research it to who decides, on what evidence, and what happens if it stops.",
+    "question": "Who should decide whether to deploy solar geoengineering, who bears its risks, and can our institutions govern interventions of planetary consequence?",
+    "why": "The updated programme focuses on the governance of solar geoengineering as climate impacts worsen and international institutions struggle. It raises the prospect of a state acting alone, the unequal distribution of risks, and whether these pressures could instead encourage cooperation. The arguments below provide background on the competing cases for and against intervention.",
     "sides": [
       {
         "label": "We are already engineering the planet — badly. Doing it on purpose may be the only responsible option",
@@ -84,16 +84,16 @@
       }
     ],
     "speakers": [
-      {"name": "Adrienne Buller", "stance": "Author of The Value of a Whale, a critique of green capitalism and market fixes. Expect scepticism of techno-solutions that leave the economic system intact."},
       {"name": "Janos Pasztor", "stance": "Former UN assistant secretary-general and head of the Carnegie Climate Governance Initiative, which pushed for rules on geoengineering research without advocating deployment. Expect 'we must govern it before someone does it' rather than either camp."},
-      {"name": "Adam Frank", "stance": "Astrophysicist (Light of the Stars) who frames humanity as a planetary force that must learn to steer its 'technosphere'. Likely to argue that conscious management of the planet is now unavoidable."},
       {"name": "Laurie Laybourn", "stance": "Researcher on climate 'derailment risk' and co-author of Planet on Fire, arguing for systemic economic change. Likely to warn that geoengineering distracts from and entrenches the causes."},
+      {"name": "Adam Frank", "stance": "Astrophysicist (Light of the Stars) who frames humanity as a planetary force that must learn to steer its 'technosphere'. Likely to argue that conscious management of the planet is now unavoidable."},
+      {"name": "Bernice Lee", "stance": "The programme lists her on this solar geoengineering panel but does not establish her position on the debate."},
       {"name": "Isabel Hilton", "stance": "Hosts. Journalist and founder of China Dialogue."}
     ],
     "questions": [
       "Who should be able to veto a solar geoengineering programme — and who would actually be able to?",
       "If research is fine but deployment isn't, what stops research from becoming deployment?",
-      "Is planting a forest engineering the planet? Where exactly does dominion begin?"
+      "Who bears the costs if an intervention goes wrong, and how could countries agree on responsibility before deployment?"
     ],
     "reading": [
       {"title": "Under a White Sky", "by": "Elizabeth Kolbert (2021)", "note": "The best reported tour of deliberate planetary intervention and its ironies."},
@@ -245,9 +245,9 @@
       }
     ],
     "speakers": [
-      {"name": "Patricia Lockwood", "stance": "Novelist of the feed (No One Is Talking About This); lives in the internet and is ambivalent about it. Expect neither detox sermon nor techno-cheer, but a precise account of what the scroll does to a mind."},
       {"name": "Jordan Stephens", "stance": "Musician (Rizzle Kicks), author of the memoir Avoidance, Drugs, Heartbreak and Dogs, and mental-health advocate. Likely to speak for rest, boredom and stepping away, from experience."},
       {"name": "Tony D. Sampson", "stance": "Digital-culture theorist (Virality; A Sleepwalker's Guide to Social Media) who argues platforms work through affect and contagion below conscious attention. Expect a critique of Big Tech's grip on experience."},
+      {"name": "Babette Babich", "stance": "Philosopher at Fordham University whose official profile describes work on Nietzsche, art, science and Ivan Illich's critique of modern institutions. The programme does not establish her position on this debate."},
       {"name": "Jay Shapiro", "stance": "Hosts. Philosopher and podcaster (Dilemma)."}
     ],
     "questions": [

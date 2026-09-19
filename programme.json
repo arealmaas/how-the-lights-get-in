@@ -7,15 +7,15 @@
   ],
   "location": "Kenwood House, Hampstead Heath, London",
   "source": "https://howthelightgetsin.org/festivals/london/programme",
-  "extractedAt": "2026-09-06T12:43:59.507Z",
-  "builtAt": "2026-09-07T16:49:41Z",
+  "extractedAt": "2026-09-19T08:17:41.321Z",
+  "builtAt": "2026-09-19T08:23:57Z",
   "eventCount": 135,
   "speakerCount": 105,
   "actCount": 26,
   "disclaimer": "Unofficial, fan-made planner. Not affiliated with, endorsed by or connected to HowTheLightGetsIn or the Institute of Art and Ideas. Programme text and speaker biographies are © the Institute of Art and Ideas.",
   "notes": [
    "End times are not published on the website; only start times are given.",
-   "ticketing: fast_pass = included with Festival Ticket, optional paid Fast Pass; included = included with Festival Ticket, no Fast Pass; separate_ticket = Inner Circle/Salon/Banquet events sold separately; sold_out = separately ticketed and sold out.",
+   "ticketing: fast_pass = included with Festival Ticket, optional paid Fast Pass (fastPassSoldOut flags when only Fast Passes are sold out); included = included with Festival Ticket, no Fast Pass; separate_ticket = events sold separately; sold_out = the official programme marks the event sold out. Prices are as displayed by the festival; unavailable price tiers are omitted.",
    "Topics are the site's own \"Search by Content\" categories.",
    "Descriptions with descriptionSource=artist profile come from the artist's profile page because the programme entry had none.",
    "photo (and photoWide for acts) are thumbnails under img/ made from the festival site's images (image holds the original URL); they remain © the IAI and the photographers."
@@ -100,13 +100,9 @@
      "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Breakfast-InnerCircle.pdf"
     }
    ],
-   "ticketing": "separate_ticket",
+   "ticketing": "sold_out",
    "fastPassPrice": null,
-   "prices": {
-    "advance": 30,
-    "earlybird": 25,
-    "standard": 35
-   },
+   "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-breakfast-with-david-aaronovitch-50001",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/2-david-aaronovitch.webp",
@@ -143,7 +139,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/consciousness-is-sciences-blind-spot-50002",
@@ -181,7 +177,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-history-and-philosophy-of-populism-50003",
@@ -219,7 +215,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/big-data-matters-50004",
@@ -276,7 +272,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/lost-in-the-quantum-world-50005",
@@ -339,7 +335,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-central-dogma-of-economics-50006",
@@ -377,7 +373,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-self-is-not-in-the-world-50007",
@@ -421,7 +417,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-life-and-philosophy-of-michael-gove-50008",
@@ -457,8 +453,8 @@
     "sue-harding"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/sue-harding-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/10-ned-holland.webp",
+   "photo": "img/events/10-d08eb6372dba.webp"
   },
   {
    "id": "50010",
@@ -495,8 +491,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/11-The-Great-Cat-and-Mouse-Chase.webp",
+   "photo": "img/events/11-99291fa34129.webp"
   },
   {
    "id": "50011",
@@ -536,12 +532,13 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": null,
    "prices": null,
+   "fastPassSoldOut": true,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-cult-of-the-internet-50011",
-   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/48-the-cult-of-the-internet.webp",
-   "photo": "img/events/12.webp"
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzIwMCwxMzJd/48-the-cult-of-the-internet2.webp",
+   "photo": "img/events/12-c20efe2a0f9e.webp"
   },
   {
    "id": "50012",
@@ -593,7 +590,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-code-for-good-and-evil-50012",
@@ -631,7 +628,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/we-can-be-rich-again-50013",
@@ -675,7 +672,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-future-of-the-ai-economy-50014",
@@ -711,8 +708,8 @@
     "delphis"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/delphis-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/16-Delphis-2.webp",
+   "photo": "img/events/16-8f31ea7390a7.webp"
   },
   {
    "id": "50016",
@@ -745,7 +742,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-misdiagnosed-mind-depression-through-the-ages-50016",
@@ -787,8 +784,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/18-The-Liquid-Luck-potion.webp",
+   "photo": "img/events/18-369ad0064c24.webp"
   },
   {
    "id": "50018",
@@ -827,7 +824,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/freud-descartes-and-the-matter-behind-the-mind-50018",
@@ -872,9 +869,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 36,
-    "earlybird": 30,
-    "standard": 42
+    "standard": 50.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-lunch-with-adam-frank-50019",
@@ -931,7 +926,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/winning-and-losing-on-the-global-stage-50020",
@@ -994,7 +989,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-hype-and-the-limits-of-ai-50021",
@@ -1039,9 +1034,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 36,
-    "earlybird": 32,
-    "standard": 42
+    "standard": 50.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-lunch-with-silkie-carlo-50022",
@@ -1060,8 +1053,8 @@
    "timeLabel": "1:30pm",
    "speakers": [
     "David Aaronovitch",
-    "Laila Cunningham",
-    "Alister McGrath"
+    "Alister McGrath",
+    "Gawain Towler"
    ],
    "hosts": [
     "Jack Symes"
@@ -1073,14 +1066,14 @@
      "slug": "david-aaronovitch"
     },
     {
-     "name": "Laila Cunningham",
-     "role": "speaker",
-     "slug": "laila-cunningham"
-    },
-    {
      "name": "Alister McGrath",
      "role": "speaker",
      "slug": "alister-mcgrath"
+    },
+    {
+     "name": "Gawain Towler",
+     "role": "speaker",
+     "slug": "gawain-towler"
     },
     {
      "name": "Jack Symes",
@@ -1088,17 +1081,17 @@
      "slug": "jack-symes"
     }
    ],
-   "speakersLabel": "David Aaronovitch, Laila Cunningham, Alister McGrath. Jack Symes hosts",
+   "speakersLabel": "David Aaronovitch, Alister McGrath, Gawain Towler. Jack Symes hosts",
    "topics": [
     "Politics / Economics",
     "Ethics / Religion",
     "Metaphysics / Language"
    ],
-   "description": "For generations, religion in the West has been in retreat. Recent claims of a \"quiet revival\" have been challenged, and in the US and UK regular churchgoing has fallen by more than 20% in a decade. In its place, many maintain the winning approach is to retain the values and even the trappings and traditions of Christianity, but jettison the metaphysical baggage. The renowned atheist Richard Dawkins declared himself a cultural Christian in 2024. Others like Douglas Murray and Jordan Peterson hold similar views. Echoing Tolstoy, who 150 years ago argued for abandoning the supernatural and keeping the ethics. But critics argue this settlement is incoherent. Without God, a cathedral is just a building, a ritual a superstition, and religious ethics a story.\n\nShould we abandon cultural Christianity as an untenable compromise? Must we either eradicate Christianity's influence from our culture, or endorse it, including its supernatural beliefs? Or, in the face of social division, is it essential that we endorse its values, recognise it helped create Western beliefs in equality and justice, while rejecting its metaphysical claims as fantastical?\n\nOrwell Prize-winning journalist David Aaronovitch, Reform UK figurehead Laila Cunningham, and theologian Alister McGrath debate cultural Christianity.",
+   "description": "For generations, religion in the West has been in retreat. Recent claims of a \"quiet revival\" have been challenged, and in the US and UK regular churchgoing has fallen by more than 20% in a decade. In its place, many maintain the winning approach is to retain the values and even the trappings and traditions of Christianity, but jettison the metaphysical baggage. The renowned atheist Richard Dawkins declared himself a cultural Christian in 2024. Others like Douglas Murray and Jordan Peterson hold similar views. Echoing Tolstoy, who 150 years ago argued for abandoning the supernatural and keeping the ethics. But critics argue this settlement is incoherent. Without God, a cathedral is just a building, a ritual a superstition, and religious ethics a story.\n\nShould we abandon cultural Christianity as an untenable compromise? Must we either eradicate Christianity's influence from our culture, or endorse it, including its supernatural beliefs? Or, in the face of social division, is it essential that we endorse its values, recognise it helped create Western beliefs in equality and justice, while rejecting its metaphysical claims as fantastical?\n\nOrwell Prize-winning journalist David Aaronovitch, and theologian Alister McGrath debate cultural Christianity.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-sacred-and-the-supernatural-50023",
@@ -1134,8 +1127,8 @@
     "miranda-joy"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/miranda-joy-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/25-miranda-joy.webp",
+   "photo": "img/events/25-e03f99f6b882.webp"
   },
   {
    "id": "50025",
@@ -1162,9 +1155,9 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 12,
-    "earlybird": 12,
-    "standard": 12
+    "advance": 14.4,
+    "earlybird": 14.4,
+    "standard": 14.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/pottery-extravaganza-50025",
@@ -1202,7 +1195,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-unanswered-questions-haunting-physics-50026",
@@ -1236,8 +1229,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/28-voices-of-the-universe.webp",
+   "photo": "img/events/28-47676f33ecbb.webp"
   },
   {
    "id": "50028",
@@ -1251,11 +1244,11 @@
    "timeLabel": "2:30pm",
    "speakers": [
     "Rebecca Goldstein",
-    "Patricia Lockwood",
-    "Emily Wilson"
+    "Emily Wilson",
+    "Will Self"
    ],
    "hosts": [
-    "Shahidha Bari"
+    "Danielle Sands"
    ],
    "people": [
     {
@@ -1264,32 +1257,32 @@
      "slug": "rebecca-goldstein"
     },
     {
-     "name": "Patricia Lockwood",
-     "role": "speaker",
-     "slug": "patricia-lockwood"
-    },
-    {
      "name": "Emily Wilson",
      "role": "speaker",
      "slug": "emily-wilson"
     },
     {
-     "name": "Shahidha Bari",
+     "name": "Will Self",
+     "role": "speaker",
+     "slug": "will-self"
+    },
+    {
+     "name": "Danielle Sands",
      "role": "host",
-     "slug": "shahidha-bari"
+     "slug": "danielle-sands"
     }
    ],
-   "speakersLabel": "Rebecca Goldstein, Patricia Lockwood, Emily Wilson. Shahidha Bari hosts",
+   "speakersLabel": "Rebecca Goldstein, Emily Wilson, Will Self. Danielle Sands hosts",
    "topics": [
     "Culture / Society",
     "Ethics / Religion",
     "Art / Literature / Film"
    ],
-   "description": "For centuries, writers and novelists largely avoided putting themselves in their own stories and fictions. Shakespeare doesn't appear as a character in his plays. Nor does he write a play about his own life. The same is true for Austen, Hardy, Tolstoy or Hemingway. But today the fashion has reversed. Personal accounts, direct experience, are not only allowed but almost required by publishers and it would seem the public alike. Those that turn the lens inward to the self are gaining the applause of critics and culture and have become the winners of current writing style. But critics argue that the fashion for the personal is a mistake and reflects a shift toward an empty subjective relativism — there is no overall story, only 'my story'. And in doing so we are losing the universal stories and social patterns that have long anchored humanity.\n\nShould we accept culture's obsession with the self as a true mirror onto lived reality? Or is it a narcissistic distortion that risks ending up with no shared reality at all?\n\nThe first female Odyssey translator, joining us from Pennsylvania, Emily Wilson, MacArthur-winning philosopher Rebecca Goldstein, and literary provocateur Patricia Lockwood debate ego and epics.",
+   "description": "For centuries, writers and novelists largely avoided putting themselves in their own stories and fictions. Shakespeare doesn't appear as a character in his plays. Nor does he write a play about his own life. The same is true for Austen, Hardy, Tolstoy or Hemingway. But today the fashion has reversed. Personal accounts, direct experience, are not only allowed but almost required by publishers and it would seem the public alike. Those that turn the lens inward to the self are gaining the applause of critics and culture and have become the winners of current writing style. But critics argue that the fashion for the personal is a mistake and reflects a shift toward an empty subjective relativism — there is no overall story, only 'my story'. And in doing so we are losing the universal stories and social patterns that have long anchored humanity.\n\nShould we accept culture's obsession with the self as a true mirror onto lived reality? Or is it a narcissistic distortion that risks ending up with no shared reality at all?\n\nThe first female Odyssey translator, joining us from Pennsylvania, Emily Wilson, MacArthur-winning philosopher Rebecca Goldstein, and Britain's leading literary provocateur Will Self debate ego and epics.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-ego-vs-the-epic-50028",
@@ -1312,7 +1305,7 @@
     "Michael Gove"
    ],
    "hosts": [
-    "Philip Collins"
+    "Mary Ann Sieghart"
    ],
    "people": [
     {
@@ -1331,12 +1324,12 @@
      "slug": "michael-gove"
     },
     {
-     "name": "Philip Collins",
+     "name": "Mary Ann Sieghart",
      "role": "host",
-     "slug": "phil-collins"
+     "slug": "mary-ann-sieghart"
     }
    ],
-   "speakersLabel": "Daniel Susskind, Thangam Debbonaire, Michael Gove. Philip Collins hosts",
+   "speakersLabel": "Daniel Susskind, Thangam Debbonaire, Michael Gove. Mary Ann Sieghart hosts",
    "topics": [
     "Culture / Society",
     "Ethics / Religion",
@@ -1346,7 +1339,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-rise-and-fall-of-the-educated-elite-50029",
@@ -1382,8 +1375,8 @@
     "ava-hincks"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/ava-hincks-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/31-ava-hinks.webp",
+   "photo": "img/events/31-587cb2a0aaf4.webp"
   },
   {
    "id": "50031",
@@ -1420,8 +1413,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/32-The-music-of-silence.webp",
+   "photo": "img/events/32-338cb3979307.webp"
   },
   {
    "id": "50032",
@@ -1434,29 +1427,19 @@
    "time": "14:45",
    "timeLabel": "2:45pm",
    "speakers": [
-    "Adrienne Buller",
     "Janos Pasztor",
+    "Laurie Laybourn",
     "Adam Frank",
-    "Laurie Laybourn"
+    "Bernice Lee"
    ],
    "hosts": [
     "Isabel Hilton"
    ],
    "people": [
     {
-     "name": "Adrienne Buller",
-     "role": "speaker",
-     "slug": null
-    },
-    {
      "name": "Janos Pasztor",
      "role": "speaker",
      "slug": "janos-pasztor"
-    },
-    {
-     "name": "Adam Frank",
-     "role": "speaker",
-     "slug": "adam-frank"
     },
     {
      "name": "Laurie Laybourn",
@@ -1464,22 +1447,32 @@
      "slug": "laurie-laybourn"
     },
     {
+     "name": "Adam Frank",
+     "role": "speaker",
+     "slug": "adam-frank"
+    },
+    {
+     "name": "Bernice Lee",
+     "role": "speaker",
+     "slug": "bernice-lee"
+    },
+    {
      "name": "Isabel Hilton",
      "role": "host",
      "slug": "isabel-hilton"
     }
    ],
-   "speakersLabel": "Adrienne Buller, Janos Pasztor, Adam Frank, Laurie Laybourn. Isabel Hilton hosts",
+   "speakersLabel": "Janos Pasztor, Laurie Laybourn, Adam Frank, Bernice Lee. Isabel Hilton hosts",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
     "Science / Technology"
    ],
-   "description": "From Bill Gates' funding of research into reflecting solar radiation back into space, to Cornell University scientists' proposals to store carbon by burying forests underground, geoengineering is increasingly winning the case to be taken seriously as a response to the climate crisis. Once dismissed as fringe science, it is now debated in the pages of Nature, with tech optimists arguing human reason and technology give us the capacity and the obligation to actively manage planetary systems. But the risks are substantial. Harvard's solar geoengineering programme acknowledges that it could disrupt monsoon patterns, causing severe droughts affecting billions. And philosophers from Bruno Latour to John Gray have argued that the very idea of humanity mastering nature was always an Enlightenment delusion—one that got us into the crisis in the first place.\n\nShould we abandon the idea that we can ever have dominion over nature? Should we reject geoengineering solutions to the climate crisis as deeply misguided? Or should we see geoengineering as a valuable and potentially vital response to radical climate change?\n\nEditor of The BREAK-DOWN Adrienne Buller, astrophysicist Adam Frank, and award-winning researcher Laurie Laybourn debate geoengineering: promise and peril.\n\nIn partnership with SCRI",
+   "description": "Climate impacts are outrunning the forecasts and once-distant tipping points are edging into view. With climate politics stalling, alarm is hardening into something closer to panic. Against this backdrop, an idea is forcing its way onto the policy agenda: solar geoengineering. Once dismissed as fringe science, it is now debated in the pages of Nature and the corridors of power, with optimists arguing that human reason and ingenuity give us not just the capacity to actively manage planetary systems, but the obligation to do so.\nMultilateral institutions are straining and conflict is resurgent. Against this backdrop there is no consensus over how to govern potential interventions in the planetary thermostat, with two recent UN resolutions on governance failing to be adopted. Yet dimming the sun might not even require it: it’s estimated that, for a few tens of billions of dollars a year - the budget of a mid-sized military - a single state could act alone to shape the Earth system to its whim.\nWho gets to decide whether to dim the sun? Who bears the cost if it goes wrong? How do we make decisions of planetary consequence when our political institutions were not designed for systemic, long-horizon risks of this kind? And how might these technologies - and the risks to which they respond - even be drivers of cooperation?\n\nAstrophysicist Adam Frank, leading policy expert Janos Pasztor and award-winning researcher Laurie Laybourn debate geoengineering: promise and peril.\n\nIn partnership with the Strategic Climate Risk Initiative",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/playing-god-with-the-planet-50032",
@@ -1517,7 +1510,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-physical-world-is-conscious-50033",
@@ -1555,7 +1548,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/gender-race-and-the-structures-of-power-50034",
@@ -1589,8 +1582,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/36-Dark-Skies-The-truth-about-light-pollution.webp",
+   "photo": "img/events/36-851d91327add.webp"
   },
   {
    "id": "50036",
@@ -1625,9 +1618,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 36,
-    "earlybird": 32,
-    "standard": 40
+    "standard": 43.2
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/wine-tasting-and-philosophy-with-barry-c-smith-50036",
@@ -1672,9 +1663,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 30,
-    "earlybird": 25,
-    "standard": 35
+    "standard": 42
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/champagne-cake-and-philosophy-with-joanna-moncrieff-50037",
@@ -1710,8 +1699,8 @@
     "katie-alice"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/katie-alice-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/39-Katie-Alice.webp",
+   "photo": "img/events/39-c6435aa45333.webp"
   },
   {
    "id": "50039",
@@ -1748,8 +1737,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/40-finders-keepers.webp",
+   "photo": "img/events/40-21ea0abf753a.webp"
   },
   {
    "id": "50040",
@@ -1801,7 +1790,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/darwins-physics-and-the-evolving-universe-50040",
@@ -1864,7 +1853,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-nation-state-vs-big-tech-50041",
@@ -1883,10 +1872,11 @@
    "timeLabel": "4:00pm",
    "speakers": [
     "Hilary Lawson",
-    "Victoria Trumbull",
+    "Victoria Trumbull"
+   ],
+   "hosts": [
     "Maria Balaska"
    ],
-   "hosts": [],
    "people": [
     {
      "name": "Hilary Lawson",
@@ -1900,11 +1890,11 @@
     },
     {
      "name": "Maria Balaska",
-     "role": "speaker",
+     "role": "host",
      "slug": "maria-balaska"
     }
    ],
-   "speakersLabel": "Hilary Lawson, Victoria Trumbull, Maria Balaska.",
+   "speakersLabel": "Hilary Lawson, Victoria Trumbull. Maria Balaska hosts",
    "topics": [
     "Mind / Psychology",
     "Science / Technology",
@@ -1914,7 +1904,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-self-the-soul-and-the-nature-of-reality-50042",
@@ -1952,7 +1942,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/five-fatal-fallacies-of-the-west-50043",
@@ -1986,8 +1976,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/45-ulysses.webp",
+   "photo": "img/events/45-a715288674c3.webp"
   },
   {
    "id": "50045",
@@ -2018,8 +2008,8 @@
     "elly-hopkins"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/elly-hopkins-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/46-elly-hopkins-2.webp",
+   "photo": "img/events/46-871af09fb1cb.webp"
   },
   {
    "id": "50046",
@@ -2035,7 +2025,9 @@
     "Torsten Bell",
     "Jeremy Hunt"
    ],
-   "hosts": [],
+   "hosts": [
+    "Isabel Hilton"
+   ],
    "people": [
     {
      "name": "Torsten Bell",
@@ -2046,9 +2038,14 @@
      "name": "Jeremy Hunt",
      "role": "speaker",
      "slug": "jeremy-hunt"
+    },
+    {
+     "name": "Isabel Hilton",
+     "role": "host",
+     "slug": "isabel-hilton"
     }
    ],
-   "speakersLabel": "Torsten Bell, Jeremy Hunt.",
+   "speakersLabel": "Torsten Bell, Jeremy Hunt. Isabel Hilton hosts",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
@@ -2058,7 +2055,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-price-of-economic-growth-50046",
@@ -2076,19 +2073,14 @@
    "time": "17:00",
    "timeLabel": "5:00pm",
    "speakers": [
-    "Patricia Lockwood",
     "Jordan Stephens",
-    "Tony D. Sampson"
+    "Tony D. Sampson",
+    "Babette Babich"
    ],
    "hosts": [
     "Jay Shapiro"
    ],
    "people": [
-    {
-     "name": "Patricia Lockwood",
-     "role": "speaker",
-     "slug": "patricia-lockwood"
-    },
     {
      "name": "Jordan Stephens",
      "role": "speaker",
@@ -2100,12 +2092,17 @@
      "slug": "tony-d-sampson"
     },
     {
+     "name": "Babette Babich",
+     "role": "speaker",
+     "slug": "babette-babich"
+    },
+    {
      "name": "Jay Shapiro",
      "role": "host",
      "slug": "jay-shapiro"
     }
    ],
-   "speakersLabel": "Patricia Lockwood, Jordan Stephens, Tony D. Sampson. Jay Shapiro hosts",
+   "speakersLabel": "Jordan Stephens, Tony D. Sampson, Babette Babich. Jay Shapiro hosts",
    "topics": [
     "Culture / Society",
     "Mind / Psychology",
@@ -2115,12 +2112,12 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/life-the-self-and-the-infinite-scroll-50047",
-   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/12-Life-the-Self-and-the-Infinite-Scroll.webp",
-   "photo": "img/events/48.webp"
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzIwMCwxMzJd/12-Life-the-Self-and-the-Infinite-Scroll.webp",
+   "photo": "img/events/48-4b35d04ae0a1.webp"
   },
   {
    "id": "50048",
@@ -2149,8 +2146,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/49-The-message-of-the-Lyrebird.webp",
+   "photo": "img/events/49-3306732109b4.webp"
   },
   {
    "id": "50049",
@@ -2208,7 +2205,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/in-search-of-immortality-50049",
@@ -2265,7 +2262,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/superpowers-and-their-limits-50050",
@@ -2301,8 +2298,8 @@
     "preen"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/preen-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/52-Preen.webp",
+   "photo": "img/events/52-34a18fdcdd84.webp"
   },
   {
    "id": "50052",
@@ -2335,7 +2332,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-real-gandhi-behind-the-western-myth-50052",
@@ -2379,7 +2376,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-institutions-that-failed-gaza-50053",
@@ -2413,8 +2410,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/55-trump-and-the-tech-giants.webp",
+   "photo": "img/events/55-3bbf4a391243.webp"
   },
   {
    "id": "50055",
@@ -2445,8 +2442,8 @@
     "good-weather-for-an-airstrike"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/good-weather-for-an-airstrike-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/56-good-weather-for-an-airstrike.3.webp",
+   "photo": "img/events/56-0ad677456ba6.webp"
   },
   {
    "id": "50056",
@@ -2479,7 +2476,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-dangerous-urge-to-punish-50056",
@@ -2536,7 +2533,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-scaffolding-of-the-world-50057",
@@ -2599,7 +2596,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-mental-health-industrial-complex-50058",
@@ -2637,7 +2634,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-lie-at-the-heart-of-economics-50059",
@@ -2674,9 +2671,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 68,
-    "earlybird": 58,
-    "standard": 78
+    "standard": 81.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/long-table-banquet-saturday-evening-50060",
@@ -2710,8 +2705,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/62-the-theft.webp",
+   "photo": "img/events/62-9069eb8dc927.webp"
   },
   {
    "id": "50062",
@@ -2742,8 +2737,8 @@
     "fathiya-saleh"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/fathiya-saleh-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/63-fatiyah-saleh.webp",
+   "photo": "img/events/63-d067b379028f.webp"
   },
   {
    "id": "50063",
@@ -2776,7 +2771,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/heidegger-rilke-and-the-limits-of-language-50063",
@@ -2812,8 +2807,8 @@
     "prima-queen"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/prima-queen-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/65-prima-queen-3.webp",
+   "photo": "img/events/65-513c0123fc7c.webp"
   },
   {
    "id": "50065",
@@ -2842,8 +2837,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/66-Trade-Secret.webp",
+   "photo": "img/events/66-e8e1875bda54.webp"
   },
   {
    "id": "50066",
@@ -2895,7 +2890,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-architecture-of-desire-50066",
@@ -2931,8 +2926,8 @@
     "alex-farrow-and-chelsea-birkby"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/alex-farrow-and-chelsea-birkby-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/68-alex-farrow-and-chelsea-birkby.webp",
+   "photo": "img/events/68-a6aee5ce17bb.webp"
   },
   {
    "id": "50068",
@@ -2963,8 +2958,8 @@
     "lewis-garnham"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/lewis-garnham-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/69-Lewis-Garnham-2.webp",
+   "photo": "img/events/69-fe12ea5baca8.webp"
   },
   {
    "id": "50069",
@@ -2996,8 +2991,8 @@
    "description": "Western nation-states, Reform's 2028 London mayoral candidate Laila Cunningham argues, have expanded far beyond their proper bounds — encroaching on citizens' freedoms in the name of safety, sustainability and public order. Join the Westminster City Councillor, former Crown Prosecution Service lawyer, and Reform UK politician as she makes the case against state overreach, from low-emission zones to housing and policing policy, and asks what it would take to roll back its reach and restore individual liberty.\n\n“Laila is an enormously talented, successful woman.\" – Nigel Farage",
    "descriptionSource": "programme",
    "links": [],
-   "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "ticketing": "sold_out",
+   "fastPassPrice": null,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-tyranny-of-the-state-50069",
@@ -3033,8 +3028,8 @@
     "harriet-kemsley"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/harriet-kemsley-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/71-harriet-kemsley.webp",
+   "photo": "img/events/71-3b3415d0c379.webp"
   },
   {
    "id": "50071",
@@ -3065,8 +3060,8 @@
     "patrick-wolf"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/patrick-wolf-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/72-patrick-wolf-5.webp",
+   "photo": "img/events/72-db2bde73ba00.webp"
   },
   {
    "id": "50072",
@@ -3097,8 +3092,8 @@
     "bourgeois-and-maurice"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/bourgeois-and-maurice-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/73-Bourgeois-and-Maurice.webp",
+   "photo": "img/events/73-1a20bea65d0f.webp"
   },
   {
    "id": "50073",
@@ -3129,8 +3124,8 @@
     "alfie-dundas"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/alfie-dundas-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/74-Alfie-Dundas.webp",
+   "photo": "img/events/74-ff3fc36469c7.webp"
   },
   {
    "id": "50074",
@@ -3159,8 +3154,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/75-Wild-Family-Living-with-Jaguars.webp",
+   "photo": "img/events/75-4470e7e5c936.webp"
   },
   {
    "id": "50075",
@@ -3191,8 +3186,8 @@
     "the-turbans"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/the-turbans-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/76-the-turbans.webp",
+   "photo": "img/events/76-6091c1da5643.webp"
   },
   {
    "id": "50076",
@@ -3232,9 +3227,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
+    "standard": 45.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-breakfast-with-rebecca-goldstein-50076",
@@ -3276,13 +3269,9 @@
      "href": "https://howthelightgetsin.org/assets/Inner-circle-menus-london-2026/HTLGI-Breakfast-InnerCircle.pdf"
     }
    ],
-   "ticketing": "separate_ticket",
+   "ticketing": "sold_out",
    "fastPassPrice": null,
-   "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
-   },
+   "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-breakfast-with-sabrina-pasterski-50077",
    "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/81-sabrina-pasterski.webp",
@@ -3319,7 +3308,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/how-the-left-weaponized-trauma-50078",
@@ -3357,7 +3346,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/alien-minds-and-the-universality-of-physics-50079",
@@ -3414,7 +3403,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/cosmic-inflation-and-cosmic-fantasy-50080",
@@ -3471,7 +3460,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/in-the-name-of-freedom-50081",
@@ -3515,7 +3504,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-philosophy-and-the-dangers-of-fame-50082",
@@ -3525,7 +3514,7 @@
   {
    "id": "50083",
    "eventNo": 87,
-   "title": "Capitalism and the Common Good",
+   "title": "The Universe Has Habits, Not Laws",
    "type": "Talks",
    "venue": "Ring",
    "day": "Sunday",
@@ -3533,27 +3522,27 @@
    "time": "11:00",
    "timeLabel": "11:00am",
    "speakers": [
-    "Mariana Mazzucato"
+    "Rupert Sheldrake"
    ],
    "hosts": [],
    "people": [
     {
-     "name": "Mariana Mazzucato",
+     "name": "Rupert Sheldrake",
      "role": "speaker",
-     "slug": "mariana-mazzucato"
+     "slug": "rupert-sheldrake"
     }
    ],
-   "speakersLabel": "Mariana Mazzucato.",
+   "speakersLabel": "Rupert Sheldrake.",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
     "Ethics / Religion"
    ],
-   "description": "The economy is working for some. It is very much not working for others. Join world-leading economist Mariana Mazzucato, who has gained honours from Italy, the UK, and even Pope Francis, and has held chair positions at the G20, WHO, and the UN. In this talk, Mazzucato proposes a new economics built around the common good. She argues that how we achieve our collective economic goals – through collective action, participation and reciprocity – matters just as much as what those goals are.\n\n“Has at its heart a concern that all of humanity have access to land, lodging and labor.\" – Pope Francis",
+   "description": "Many scientists take it for granted that all the laws and constants of nature were fixed at the moment of the Big Bang and have remained the same ever since, but this untestable assumption raises intractable problems. In an evolutionary universe, it may make more sense to think of the regularities of nature as evolving habits, based on an inherent memory in nature. Rupert Sheldrake here argues that this memory depends on the process of morphic resonance, a similarity-reinforcement process that underlies the collective memory of all biological species, including humans, and even of non-biological systems like molecules, crystals, stars and galaxies. Evolution itself can be seen as an interplay between habit formation and creativity.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/capitalism-and-the-common-good-50083",
@@ -3598,9 +3587,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 38.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-brunch-with-andy-west-50084",
@@ -3645,9 +3632,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 38.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-brunch-with-sally-haslanger-50085",
@@ -3691,7 +3676,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-life-and-philosophy-of-jimmy-wales-50086",
@@ -3725,8 +3710,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/91-Sue-Harding.webp",
+   "photo": "img/events/91-2ecaaa203ec0.webp"
   },
   {
    "id": "50088",
@@ -3763,8 +3748,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/92-donkey-in-disguise.webp",
+   "photo": "img/events/92-1acd526dc251.webp"
   },
   {
    "id": "50089",
@@ -3822,7 +3807,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-reality-algorithm-50089",
@@ -3879,7 +3864,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/in-search-of-the-grown-up-50090",
@@ -3917,7 +3902,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/china-the-west-and-the-myth-of-modernity-50091",
@@ -3961,7 +3946,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-next-revolution-in-physics-50092",
@@ -4031,7 +4016,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/economics-as-a-human-enterprise-50094",
@@ -4073,8 +4058,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/99-the-book-of-life.webp",
+   "photo": "img/events/99-08bf52245796.webp"
   },
   {
    "id": "50096",
@@ -4107,7 +4092,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/a-civilisational-collapse-like-any-other-50096",
@@ -4152,9 +4137,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 45.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-lunch-with-ivette-fuentes-50097",
@@ -4191,9 +4174,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 55,
-    "earlybird": 48,
-    "standard": 68
+    "standard": 57.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/long-table-banquet-sunday-lunch-50098",
@@ -4256,7 +4237,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/feminism-and-the-manosphere-50099",
@@ -4319,7 +4300,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/democracy-and-its-discontents-50100",
@@ -4364,9 +4345,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 42,
-    "earlybird": 36,
-    "standard": 50
+    "standard": 60
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/philosophy-lunch-with-galen-strawson-50101",
@@ -4423,7 +4402,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/too-beautiful-to-be-true-50102",
@@ -4459,8 +4438,8 @@
     "tia-meraki"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/tia-meraki-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/107-Tia-Meraki.webp",
+   "photo": "img/events/107-8c56cad202a4.webp"
   },
   {
    "id": "50104",
@@ -4487,9 +4466,9 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 12,
-    "earlybird": 12,
-    "standard": 12
+    "advance": 14.4,
+    "earlybird": 14.4,
+    "standard": 14.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/pottery-extravaganza-50104",
@@ -4533,7 +4512,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/power-in-the-age-of-ai-50105",
@@ -4567,8 +4546,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/110-rauschenberg.webp",
+   "photo": "img/events/110-aeb8e76e0a2b.webp"
   },
   {
    "id": "50107",
@@ -4620,7 +4599,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-self-and-its-shadows-50107",
@@ -4640,10 +4619,10 @@
    "speakers": [
     "Rachel Millward",
     "Kwasi Kwarteng",
-    "Mariana Mazzucato"
+    "Guy Standing"
    ],
    "hosts": [
-    "Philip Collins"
+    "Roger Hearing"
    ],
    "people": [
     {
@@ -4657,27 +4636,27 @@
      "slug": "kwasi-kwarteng"
     },
     {
-     "name": "Mariana Mazzucato",
+     "name": "Guy Standing",
      "role": "speaker",
-     "slug": "mariana-mazzucato"
+     "slug": "guy-standing"
     },
     {
-     "name": "Philip Collins",
+     "name": "Roger Hearing",
      "role": "host",
-     "slug": "phil-collins"
+     "slug": "roger-hearing"
     }
    ],
-   "speakersLabel": "Rachel Millward, Kwasi Kwarteng, Mariana Mazzucato. Philip Collins hosts",
+   "speakersLabel": "Rachel Millward, Kwasi Kwarteng, Guy Standing. Roger Hearing hosts",
    "topics": [
     "Culture / Society",
     "Mind / Psychology",
     "Politics / Economics"
    ],
-   "description": "Many see young people as the losers of modern capitalism. House prices have skyrocketed, wages stagnated, and debt is way up. On average, millennials at 35 have nearly a third less wealth than boomers did at the same age. But the story is not straightforward. We’re in the early stages of the largest wealth transfer in history, with $84 trillion expected to be passed on in the US by 2045. This inheritance won’t be handed out evenly. Some will become wealthy through no effort of their own, while others without rich parents will have a radically different lifestyle. Critics argue the real disparity is not between the generations but between those who will inherit and those who won't.\n\nShould we focus less on the generational divide and instead focus on how to make the inequality of inheritance less severe? Or by addressing the challenges of younger generations can we reduce the impact of inheritance? Then again, if the underlying problem is housing costs, could we get rid of planning and zoning and thereby reduce prices for the young and cut the wealth of older generations?\n\nWorld-leading economist Mariana Mazzucato, former Chancellor Kwasi Kwarteng, and Green Party Deputy Leader Rachel Millward debate inheritance and inequality.",
+   "description": "Many see young people as the losers of modern capitalism. House prices have skyrocketed, wages stagnated, and debt is way up. On average, millennials at 35 have nearly a third less wealth than boomers did at the same age. But the story is not straightforward. We’re in the early stages of the largest wealth transfer in history, with $84 trillion expected to be passed on in the US by 2045. This inheritance won’t be handed out evenly. Some will become wealthy through no effort of their own, while others without rich parents will have a radically different lifestyle. Critics argue the real disparity is not between the generations but between those who will inherit and those who won't.\n\nShould we focus less on the generational divide and instead focus on how to make the inequality of inheritance less severe? Or by addressing the challenges of younger generations can we reduce the impact of inheritance? Then again, if the underlying problem is housing costs, could we get rid of planning and zoning and thereby reduce prices for the young and cut the wealth of older generations?\n\nFormer Chancellor Kwasi Kwarteng, Green Party Deputy Leader Rachel Millward, and founder of the Basic Income Earth Network, Guy Standing, debate inheritance and inequality.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-84-trillion-lottery-50108",
@@ -4713,8 +4692,8 @@
     "grace-harvey"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/grace-harvey-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/113-Grace-Elizabeth-Harvey-2.webp",
+   "photo": "img/events/113-37286cf3c404.webp"
   },
   {
    "id": "50110",
@@ -4751,8 +4730,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/114-What-is-a-chair.webp",
+   "photo": "img/events/114-0b7d7d07e54e.webp"
   },
   {
    "id": "50111",
@@ -4791,7 +4770,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-end-of-the-book-a-civilisation-in-crisis-50111",
@@ -4829,7 +4808,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-holographic-universe-and-the-rise-of-ai-physics-50112",
@@ -4874,9 +4853,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 38,
-    "earlybird": 32,
-    "standard": 44
+    "standard": 45.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/champagne-cake-and-philosophy-with-mark-solms-50113",
@@ -4886,7 +4863,7 @@
   {
    "id": "50114",
    "eventNo": 118,
-   "title": "Whisky Tasting and Philosophy with Barry C. Smith",
+   "title": "Champagne, Cake and Philosophy with Paul Dolan",
    "type": "Inner Circle",
    "venue": "Inner Circle Tent",
    "day": "Sunday",
@@ -4894,36 +4871,34 @@
    "time": "15:00",
    "timeLabel": "3:00pm",
    "speakers": [
-    "Barry C Smith"
+    "Paul Dolan"
    ],
    "hosts": [],
    "people": [
     {
-     "name": "Barry C Smith",
+     "name": "Paul Dolan",
      "role": "speaker",
-     "slug": "barry-c-smith"
+     "slug": "paul-dolan"
     }
    ],
-   "speakersLabel": "Barry C Smith.",
+   "speakersLabel": "Paul Dolan.",
    "topics": [
     "Culture / Society",
     "Ethics / Religion",
     "Art / Literature / Film"
    ],
-   "description": "Bold, smooth, and sophisticated, join philosopher of the senses Barry C. Smith for a unique whisky-tasting experience combining philosophy with flavour. Known for appearances on MasterChef and Radio 4’s The Kitchen Cabinet, Smith blends sensory science with philosophical acumen for an experience to savour.",
+   "description": "We are more divided than ever, socially, culturally and politically. Join behavioural scientist Paul Dolan to confront \"Beliefism\", our growing hostility toward opposing views, and discover how empathy can heal the political divide.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 36,
-    "earlybird": 32,
-    "standard": 40
+    "standard": 38.4
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/whisky-tasting-and-philosophy-with-barry-c-smith-50114",
-   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/118-barry-smith.webp",
-   "photo": "img/events/118.webp"
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzIwMCwxMzJd/paul-dolan5.webp",
+   "photo": "img/events/118-5fd6ac9ab5d3.webp"
   },
   {
    "id": "50115",
@@ -4952,8 +4927,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/119-quiet-the-sirens.webp",
+   "photo": "img/events/119-66af0e503d79.webp"
   },
   {
    "id": "50116",
@@ -4984,8 +4959,8 @@
     "ben-cipolla"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/ben-cipolla-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/120-ben-cipolla.webp",
+   "photo": "img/events/120-c8e2b04a91ae.webp"
   },
   {
    "id": "50117",
@@ -5018,7 +4993,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-big-bang-hides-a-mirror-universe-50117",
@@ -5037,8 +5012,8 @@
    "timeLabel": "4:00pm",
    "speakers": [
     "Frank Furedi",
-    "Thangam Debbonaire",
-    "Catherine Liu"
+    "Catherine Liu",
+    "David Omand"
    ],
    "hosts": [
     "Roger Hearing"
@@ -5050,14 +5025,14 @@
      "slug": "frank-furedi"
     },
     {
-     "name": "Thangam Debbonaire",
-     "role": "speaker",
-     "slug": "thangam-debbonaire"
-    },
-    {
      "name": "Catherine Liu",
      "role": "speaker",
      "slug": "catherine-liu"
+    },
+    {
+     "name": "David Omand",
+     "role": "speaker",
+     "slug": "david-omand"
     },
     {
      "name": "Roger Hearing",
@@ -5065,17 +5040,17 @@
      "slug": "roger-hearing"
     }
    ],
-   "speakersLabel": "Frank Furedi, Thangam Debbonaire, Catherine Liu. Roger Hearing hosts",
+   "speakersLabel": "Frank Furedi, Catherine Liu, David Omand. Roger Hearing hosts",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
     "Art / Literature / Film"
    ],
-   "description": "From the health service to the army, waste disposal to public transport, we see our public institutions as serving the people and being there for the benefit of all. But Pournelle's Iron Law of Bureaucracy proposes that in any social organisation, those that serve the original mission lose out to those who work for the preservation and expansion of the system itself. From Soviet bureaucracy to federal agencies and 'Yes Minister' thinking — strengthening the organisation and hierarchy — wins out. Foucault broadened the case, arguing that all institutions, including seemingly well-meaning professional groups like doctors and nurses, teachers and charities, are vehicles for power, and their primary function is to maintain and strengthen the organisation itself. Harvard University, for example, has three times as many administrators as teaching staff — more even in fact than undergraduates.\n\nAre all organisations and bodies sources of, and vehicles for, power? Should we be equally sceptical of all institutions, whether charities or professional bodies, banks or corporate giants? Or is this a travesty of human endeavour, which is capable of selfless motivation and vision and should be praised as such?\n\nHeterodox sociologist Frank Furedi, Labour life peer Thangam Debbonaire, and left-wing critic of the progressive elite Catherine Liu debate whether institutions serve only themselves.",
+   "description": "From the health service to the army, waste disposal to public transport, we see our public institutions as serving the people and being there for the benefit of all. But Pournelle's Iron Law of Bureaucracy proposes that in any social organisation, those that serve the original mission lose out to those who work for the preservation and expansion of the system itself. From Soviet bureaucracy to federal agencies and 'Yes Minister' thinking — strengthening the organisation and hierarchy — wins out. Foucault broadened the case, arguing that all institutions, including seemingly well-meaning professional groups like doctors and nurses, teachers and charities, are vehicles for power, and their primary function is to maintain and strengthen the organisation itself. Harvard University, for example, has three times as many administrators as teaching staff — more even in fact than undergraduates.\n\nAre all organisations and bodies sources of, and vehicles for, power? Should we be equally sceptical of all institutions, whether charities or professional bodies, banks or corporate giants? Or is this a travesty of human endeavour, which is capable of selfless motivation and vision and should be praised as such?\n\nHeterodox sociologist Frank Furedi, former director of GCHQ David Omand, and left-wing critic of the progressive elite Catherine Liu debate whether institutions serve only themselves.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-monster-in-the-machine-50118",
@@ -5098,7 +5073,7 @@
     "Sally Haslanger"
    ],
    "hosts": [
-    "Philip Collins"
+    "Jay Shapiro"
    ],
    "people": [
     {
@@ -5117,12 +5092,12 @@
      "slug": "sally-haslanger"
     },
     {
-     "name": "Philip Collins",
+     "name": "Jay Shapiro",
      "role": "host",
-     "slug": "phil-collins"
+     "slug": "jay-shapiro"
     }
    ],
-   "speakersLabel": "Steve Fuller, Jimmy Wales, Sally Haslanger. Philip Collins hosts",
+   "speakersLabel": "Steve Fuller, Jimmy Wales, Sally Haslanger. Jay Shapiro hosts",
    "topics": [
     "Mind / Psychology",
     "Science / Technology",
@@ -5132,7 +5107,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/reality-in-the-age-of-perspective-50119",
@@ -5176,7 +5151,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-dangerous-need-to-matter-50120",
@@ -5196,15 +5171,22 @@
    "speakers": [
     "Daniel Susskind"
    ],
-   "hosts": [],
+   "hosts": [
+    "Paul Dolan"
+   ],
    "people": [
     {
      "name": "Daniel Susskind",
      "role": "speaker",
      "slug": "daniel-susskind"
+    },
+    {
+     "name": "Paul Dolan",
+     "role": "host",
+     "slug": "paul-dolan"
     }
    ],
-   "speakersLabel": "Daniel Susskind.",
+   "speakersLabel": "Daniel Susskind. Paul Dolan hosts",
    "topics": [
     "Culture / Society",
     "Mind / Psychology",
@@ -5214,7 +5196,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/rethinking-education-in-the-age-of-ai-50121",
@@ -5248,8 +5230,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/126-Plastic-Tsunami-Voices-of-the-pacific.webp",
+   "photo": "img/events/126-26fb4a8bbfae.webp"
   },
   {
    "id": "50123",
@@ -5280,13 +5262,13 @@
     "maia-tassalini"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/maia-tassalini-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/127-maia-tassalini.webp",
+   "photo": "img/events/127-1427b8e2c072.webp"
   },
   {
    "id": "50124",
    "eventNo": 128,
-   "title": "The End of Nations",
+   "title": "Anxious about Nothing",
    "type": "Talks",
    "venue": "Academy",
    "day": "Sunday",
@@ -5294,27 +5276,27 @@
    "time": "16:30",
    "timeLabel": "4:30pm",
    "speakers": [
-    "Rana Dasgupta"
+    "Maria Balaska"
    ],
    "hosts": [],
    "people": [
     {
-     "name": "Rana Dasgupta",
+     "name": "Maria Balaska",
      "role": "speaker",
-     "slug": "rana-dasgupta"
+     "slug": "maria-balaska"
     }
    ],
-   "speakersLabel": "Rana Dasgupta.",
+   "speakersLabel": "Maria Balaska.",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
     "Science / Technology"
    ],
-   "description": "Countries have been the focus of power for over a century. Named by Le Monde as one of 70 people making the world of tomorrow, join novelist and essayist Rana Dasgupta as he argues American hegemony, Western debt, and the rise of tech firms as geopolitical actors have shattered a system many thought eternal. Looking back at the fall of ancient empires to the restoration of Chinese power, he argues we urgently need a new conception of power.\n\n\"Simply astonishing.\" — David Wengrow",
+   "description": "The concept of anxiety has a distinctive place in our modern lives: it has become a core category in psychiatric diagnostic manuals and it is diagnosed in a very high number of cases worldwide. Can philosophy help us understand it better? Join philosopher Maria Balaska to explore why philosophers give anxiety a positive twist and how to move from anxiety to wonder.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/the-end-of-nations-50124",
@@ -5350,8 +5332,8 @@
     "marty-gleeson"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/marty-gleeson-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/129-Marty-Gleeson.webp",
+   "photo": "img/events/129-0c31f077de5a.webp"
   },
   {
    "id": "50126",
@@ -5391,9 +5373,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
+    "standard": 33.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/champagne-cake-and-philosophy-with-jemima-kelly-50126",
@@ -5427,8 +5407,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/131-Good-Death-innovators-AI-beyond-the-grave.webp",
+   "photo": "img/events/131-35f66f29493d.webp"
   },
   {
    "id": "50128",
@@ -5468,9 +5448,7 @@
    "ticketing": "separate_ticket",
    "fastPassPrice": null,
    "prices": {
-    "advance": 32,
-    "earlybird": 28,
-    "standard": 38
+    "standard": 33.6
    },
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/champagne-cake-and-philosophy-with-catherine-liu-50128",
@@ -5527,7 +5505,7 @@
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/hollywood-hegel-and-the-myth-of-the-good-50129",
@@ -5546,8 +5524,8 @@
    "timeLabel": "5:30pm",
    "speakers": [
     "Frank Furedi",
-    "Rachel Millward",
-    "David Spiegelhalter"
+    "David Spiegelhalter",
+    "Audrey Borowski"
    ],
    "hosts": [
     "Jay Shapiro"
@@ -5559,14 +5537,14 @@
      "slug": "frank-furedi"
     },
     {
-     "name": "Rachel Millward",
-     "role": "speaker",
-     "slug": "rachel-millward"
-    },
-    {
      "name": "David Spiegelhalter",
      "role": "speaker",
      "slug": "david-spiegelhalter"
+    },
+    {
+     "name": "Audrey Borowski",
+     "role": "speaker",
+     "slug": "audrey-borowski"
     },
     {
      "name": "Jay Shapiro",
@@ -5574,17 +5552,17 @@
      "slug": "jay-shapiro"
     }
    ],
-   "speakersLabel": "Frank Furedi, Rachel Millward, David Spiegelhalter. Jay Shapiro hosts",
+   "speakersLabel": "Frank Furedi, David Spiegelhalter, Audrey Borowski. Jay Shapiro hosts",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
     "Human Body / Medicine"
    ],
-   "description": "In the battle between the human desire for risk and the desire for safety, being safe has been the clear winner. By every measurable standard, humanity has never been safer. Global conflict deaths have plummeted from 300 to 1 per 100,000 between the 17th century and today. Child mortality has fallen from one in three to less than one in twenty. Tracking threats has undeniably saved lives. Yet, despite the data, many remain convinced we are living in an era of unprecedented peril. For two decades, Gallup found that most Americans believed crime was rising, even as FBI records showed it in freefall. We have built entire industries, government agencies, and daily protocols around predicting and mitigating danger — and the resulting hyper-vigilance some argue has left us paralysed by panic.\n\nIn trying to eliminate every danger, have we manufactured a culture of fear that stops us from living? Should we seek to reverse safety culture and cultivate a desire for risk? Or should the saved lives speak for themselves, and current anxieties a rational response to unpredictable, modern threats?\n\nHeterodox sociologist Frank Furedi, celebrated statistician David Spiegelhalter, and Deputy Leader of the Green Party Rachel Millward debate danger, safety, and risk.",
+   "description": "In the battle between the human desire for risk and the desire for safety, being safe has been the clear winner. By every measurable standard, humanity has never been safer. Global conflict deaths have plummeted from 300 to 1 per 100,000 between the 17th century and today. Child mortality has fallen from one in three to less than one in twenty. Tracking threats has undeniably saved lives. Yet, despite the data, many remain convinced we are living in an era of unprecedented peril. For two decades, Gallup found that most Americans believed crime was rising, even as FBI records showed it in freefall. We have built entire industries, government agencies, and daily protocols around predicting and mitigating danger — and the resulting hyper-vigilance some argue has left us paralysed by panic.\n\nIn trying to eliminate every danger, have we manufactured a culture of fear that stops us from living? Should we seek to reverse safety culture and cultivate a desire for risk? Or should the saved lives speak for themselves, and current anxieties a rational response to unpredictable, modern threats?\n\nHeterodox sociologist Frank Furedi, celebrated statistician David Spiegelhalter, and philosopher Audrey Borowski debate danger, safety, and risk.",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/danger-and-risk-in-an-anxious-world-50130",
@@ -5594,7 +5572,7 @@
   {
    "id": "50131",
    "eventNo": 135,
-   "title": "Breaking Free of the Doom Loop",
+   "title": "Beyond Beliefism",
    "type": "Talks",
    "venue": "Academy",
    "day": "Sunday",
@@ -5602,33 +5580,27 @@
    "time": "17:30",
    "timeLabel": "5:30pm",
    "speakers": [
-    "Rana Dasgupta",
-    "Laurie Laybourn"
+    "Paul Dolan"
    ],
    "hosts": [],
    "people": [
     {
-     "name": "Rana Dasgupta",
+     "name": "Paul Dolan",
      "role": "speaker",
-     "slug": "rana-dasgupta"
-    },
-    {
-     "name": "Laurie Laybourn",
-     "role": "speaker",
-     "slug": "laurie-laybourn"
+     "slug": "paul-dolan"
     }
    ],
-   "speakersLabel": "Rana Dasgupta, Laurie Laybourn.",
+   "speakersLabel": "Paul Dolan.",
    "topics": [
     "Culture / Society",
     "Politics / Economics",
     "Science / Technology"
    ],
-   "description": "Floods, fires and failed harvests were supposed to jolt democracies into climate action. Instead, climate disasters, through fuelling political and economic discontent, are lighting a fire under the very anger that has empowered anti-climate populists. Who, in turn, then further slow the energy transition, driving worse disasters still. A doom loop in which the crisis erodes our capacity to respond to it. Join winner of the Commonwealth Prize and radical author of After Nations, Rana Dasgupta, for a live recording of the Overshoot podcast alongside host Laurie Laybourn, as they explore how to break free of the climate doom loop.\n\n\"The twenty-first century’s counterpart to Hobbes’ Leviathan.\" – Emmanuele Coccia",
+   "description": "We already know we're polarised. What we haven't reckoned with is how much of that polarisation is really hostility toward people, not disagreement over ideas. Having named this phenomenon \"beliefism\", discrimination against those who hold different beliefs to us, behavioural scientist Professor Paul Dolan now turns from diagnosis to remedy. Recognising the other side's views and creating space for debate is only the first step; in this solo talk, Dolan asks what it actually takes to reconnect with people we've written off, and makes the case that bridging our divides starts with recognising our differences, not papering over them.\n“Brilliant, wise, humane, scientific, and kind. Beliefism is exactly what the doctor ordered - and it could change the world.” — Cass R. Sunstein",
    "descriptionSource": "programme",
    "links": [],
    "ticketing": "fast_pass",
-   "fastPassPrice": 8,
+   "fastPassPrice": 9.6,
    "prices": null,
    "actSlugs": [],
    "url": "https://howthelightgetsin.org/festivals/london/events/breaking-free-of-the-doom-loop-50131",
@@ -5665,8 +5637,8 @@
     "chantel-nash"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/jen-nolan-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/136-jen-nolan-and-chantel-nash.webp",
+   "photo": "img/events/136-431236f4c648.webp"
   },
   {
    "id": "50133",
@@ -5697,8 +5669,8 @@
     "eve-appleton-band"
    ],
    "url": null,
-   "image": null,
-   "photo": "img/acts/eve-appleton-band-wide.webp"
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/137-eva-appleton-band-2.webp",
+   "photo": "img/events/137-3df4cc6ef919.webp"
   },
   {
    "id": "50134",
@@ -5727,8 +5699,8 @@
    "prices": null,
    "actSlugs": [],
    "url": null,
-   "image": null,
-   "photo": null
+   "image": "https://howthelightgetsin.org/assets/HTLGI-London-2026-Programme-Images/_resampled/FillWzIwMCwxMzJd/138-ocean-intelligence.webp",
+   "photo": "img/events/138-6107e53ad43d.webp"
   }
  ],
  "speakers": [
@@ -5787,6 +5759,7 @@
    "featured": true,
    "speaks": [
     1,
+    48,
     64,
     106
    ],
@@ -5802,9 +5775,11 @@
    "profileUrl": "https://howthelightgetsin.org/talent/maria-balaska",
    "featured": true,
    "speaks": [
-    43
+    128
    ],
-   "hosts": []
+   "hosts": [
+    43
+   ]
   },
   {
    "name": "Philip Ball",
@@ -5820,20 +5795,6 @@
    ],
    "hosts": [
     41
-   ]
-  },
-  {
-   "name": "Shahidha Bari",
-   "slug": "shahidha-bari",
-   "tagline": "Cultural Critic and Champion of the Humanities",
-   "bio": "\"Clothes tell our stories, some that we would rather not tell, others that we hardly know ourselves\"\n\nShahidha Bari is a critic, academic, and broadcaster whose work spans literature, philosophy, fashion, and the history of ideas. Professor of Fashion Cultures and Histories at the London College of Fashion, University of the Arts London, she has built a reputation as one of Britain's most wide-ranging and intellectually ambitious cultural voices. \n\nHer book Dressed: A Philosophy of Clothes reads fashion not as vanity but as a key to understanding identity, desire, and what it means to be human. Her most recent book, Look Again: Fashion argues that thinking seriously about dress takes us into the heart of society, culture, and politics. Bari is also a host of BBC Radio 4's arts and ideas programme Free Thinking.\n\n\"A deeply original, compelling thinker and a brilliant writer.\" ― Simon Critchley",
-   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/shahida.webp",
-   "photo": "img/speakers/shahidha-bari.webp",
-   "profileUrl": "https://howthelightgetsin.org/talent/shahidha-bari",
-   "featured": true,
-   "speaks": [],
-   "hosts": [
-    29
    ]
   },
   {
@@ -5875,7 +5836,8 @@
    "featured": true,
    "speaks": [
     22,
-    109
+    109,
+    134
    ],
    "hosts": []
   },
@@ -5891,20 +5853,6 @@
    "speaks": [
     85,
     104
-   ],
-   "hosts": []
-  },
-  {
-   "name": "Adrienne Buller",
-   "slug": null,
-   "tagline": "",
-   "bio": "",
-   "image": null,
-   "photo": null,
-   "profileUrl": null,
-   "featured": false,
-   "speaks": [
-    33
    ],
    "hosts": []
   },
@@ -5981,22 +5929,6 @@
    "hosts": []
   },
   {
-   "name": "Phil Collins",
-   "slug": "phil-collins",
-   "tagline": "The Wordsmith Who Shapes Public Debate",
-   "bio": "\"There is a serious prospect that, in our time, we are losing faith in politics. The words of politicians float by, practised and polished, but profligate.\"\nPhilip Collins is the Editor of Prospect magazine, Founder and CEO of The Draft, and visiting fellow at the London School of Economics. He was previosly contributing editor at The New Statesman, a columnist for the Evening Standard, and the former lead writer at The Times.\n\nHaving previously been lead speech writer for Tony Blair, the Director of the Social Market Foundation think tank and an Equity Strategist at two investment banks, Collins' wealth of experience makes him a trusted voice in the political fray.\n\n\"Phil Collins is the best political commentator in Britain.\" ― Michael Burleigh",
-   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/phil-col.webp",
-   "photo": "img/speakers/phil-collins.webp",
-   "profileUrl": "https://howthelightgetsin.org/talent/phil-collins",
-   "featured": true,
-   "speaks": [],
-   "hosts": [
-    30,
-    112,
-    123
-   ]
-  },
-  {
    "name": "Laila Cunningham",
    "slug": "laila-cunningham",
    "tagline": "Reform UK's Face of London",
@@ -6006,7 +5938,6 @@
    "profileUrl": "https://howthelightgetsin.org/talent/laila-cunningham",
    "featured": true,
    "speaks": [
-    24,
     70
    ],
    "hosts": []
@@ -6028,21 +5959,6 @@
    "hosts": []
   },
   {
-   "name": "Rana Dasgupta",
-   "slug": "rana-dasgupta",
-   "tagline": "Global storyteller mapping the tremors of globalisation",
-   "bio": "\"The nation-state system [...] is not capable, even in theory, of protecting populations from twenty-first-century conditions\"\n\nRana Dasgupta is a novelist and essayist. A visiting fellow in the humanities at Princeton and lecturer at Brown University, he has built a reputation as one of the sharpest critical voices on globalisation, migration, and the modern city. \n\nIn 2010, The Daily Telegraph named him one of Britain's best novelists under 40; in 2014 Le Monde listed him among 70 people shaping the world tomorrow. Dasgupta was also awarded the prestigious Windham-Campbell Prize for Nonfiction in 2025. His most recent book, After Nations: The Making and Unmaking of a World Order, continues his rigorous reputation with a historical and philosophical reckoning. \n\n\"Simply astonishing […] Dasgupta is consistently insightful, thought-provoking, and on point.\" - David Wengrow",
-   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Rana-Dasgupta.webp",
-   "photo": "img/speakers/rana-dasgupta.webp",
-   "profileUrl": "https://howthelightgetsin.org/talent/rana-dasgupta",
-   "featured": true,
-   "speaks": [
-    128,
-    135
-   ],
-   "hosts": []
-  },
-  {
    "name": "Thangam Debbonaire",
    "slug": "thangam-debbonaire",
    "tagline": "House of Lords' Leading Voice on Arts and Culture",
@@ -6053,10 +5969,26 @@
    "featured": true,
    "speaks": [
     13,
-    30,
-    122
+    30
    ],
    "hosts": []
+  },
+  {
+   "name": "Paul Dolan",
+   "slug": "paul-dolan",
+   "tagline": "World-Renowned Happiness Researcher",
+   "bio": "“You are what you do; your happiness is what you attend to, so focus on what makes you and those you care about truly happy.” \n\nPaul Dolan is a British behavioural scientist and the Professor of Behavioural Science at the London School of Economics. His research and writing focus on how pleasure and purpose weave together in everyday life, arguing that happiness lies in what we do and attend to, not the grand narratives we tell ourselves.\n\nDolan is the author of three widely acclaimed books: Happiness by Design, Happy Ever After, and Beliefism. He combines rigorous academic analysis with accessible advice grounded in behavioral science. In interviews and public appearances, he emphasizes breaking free from cultural \"narrative traps\", such as the assumptions that marriage or wealth guarantee happiness, to prioritize lived experience instead. His work has informed UK and US public policy through collaboration with the Office for National Statistics and the UK Behavioural Insights Team.\n\n“This man knows the secret to happiness: the small stuff.” — Wired UK",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/paul-dolan4.webp",
+   "photo": "img/speakers/paul-dolan-12571aff5b80.webp",
+   "profileUrl": "https://howthelightgetsin.org/talent/paul-dolan",
+   "featured": true,
+   "speaks": [
+    118,
+    135
+   ],
+   "hosts": [
+    125
+   ]
   },
   {
    "name": "Zoe Drewitt",
@@ -6315,6 +6247,7 @@
    ],
    "hosts": [
     42,
+    112,
     122
    ]
   },
@@ -6344,6 +6277,7 @@
    "speaks": [],
    "hosts": [
     33,
+    47,
     104
    ]
   },
@@ -6541,8 +6475,21 @@
    "profileUrl": "https://howthelightgetsin.org/talent/laurie-laybourn",
    "featured": true,
    "speaks": [
-    33,
-    135
+    33
+   ],
+   "hosts": []
+  },
+  {
+   "name": "Bernice Lee",
+   "slug": "bernice-lee",
+   "tagline": "",
+   "bio": "",
+   "image": null,
+   "photo": null,
+   "profileUrl": "https://howthelightgetsin.org/talent/bernice-lee",
+   "featured": false,
+   "speaks": [
+    33
    ],
    "hosts": []
   },
@@ -6560,21 +6507,6 @@
     103,
     122,
     132
-   ],
-   "hosts": []
-  },
-  {
-   "name": "Patricia Lockwood",
-   "slug": "patricia-lockwood",
-   "tagline": "Leading American Novelist and Critic",
-   "bio": "“With each book you get a new fresh chance.” \n\nPatricia Lockwood is an American poet, novelist, and essayist widely regarded as one of the most original literary voices of her generation. A contributing editor at the London Review of Books, she is the only writer with both fiction and nonfiction works selected as the 10 Best Books of the Year by The New York Times. \n\nLockwood is the bestselling author of the memoir Priestdaddy — named one of The Guardian’s 100 Best Books of the 21st Century — and the novels No One Is Talking About This, winner of the Dylan Thomas Prize and shortlisted for the Booker, and Will There Ever Be Another You, named one of The New Yorker’s Best Books of 2025. Her forthcoming poetry collection, Agate Head/Stone Soup, is published by Penguin in 2026. \n\n\"A cultural critic at the height of her powers.\" — The Paris Review",
-   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/patricia-lockwood.webp",
-   "photo": "img/speakers/patricia-lockwood.webp",
-   "profileUrl": "https://howthelightgetsin.org/talent/patricia-lockwood",
-   "featured": true,
-   "speaks": [
-    29,
-    48
    ],
    "hosts": []
   },
@@ -6623,21 +6555,6 @@
    "hosts": []
   },
   {
-   "name": "Mariana Mazzucato",
-   "slug": "mariana-mazzucato",
-   "tagline": "Author of The Common Good Economy; Professor at University College London",
-   "bio": "“It has become more and more clear to me that to successfully address the big problems we face today, we need not only an entrepreneurial state and mission-oriented policies but also a new economics of collective action around the common good.\"\nProfessor in the Economics of Innovation and Public Value, University College London, Founding Director at the UCL Institute for Innovation and Public Purpose. Author of The Common Good Economy: a new compass.\nHer latest book argues that economics lacks a coherent theory of the common good — and that doing good cannot remain a correction for market failure, but must become an objective we design and work towards together. Built around a practical \"common good compass,\" the book sets out how governments, business and citizens can move from correcting mistakes to shaping outcomes, from tackling inequality to the climate crisis.\n\nMazzucato is also the author of The Entrepreneurial State, The Value of Everything, Mission Economy, and The Big Con. She advises policymakers around the world on innovation-led inclusive and sustainable growth, including as Chair of the World Health Organization's Council on the Economics of Health for All, Co-Chair of the Global Commission on the Economics of Water, and Special Adviser to South Africa's G20 Presidency. In 2021, she received the Grande Ufficiale Ordine al Merito della Repubblica Italiana from the Italian President – Italy's highest civilian honour.\n\n\"I believe [her vision] can help to think about the future.\" – Pope Francis",
-   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Mariana-Mazzucato.webp",
-   "photo": "img/speakers/mariana-mazzucato.webp",
-   "profileUrl": "https://howthelightgetsin.org/talent/mariana-mazzucato",
-   "featured": true,
-   "speaks": [
-    87,
-    112
-   ],
-   "hosts": []
-  },
-  {
    "name": "Deirdre McCloskey",
    "slug": "deirdre-mccloskey",
    "tagline": "Economist Rewriting the Story of Capitalism",
@@ -6676,8 +6593,7 @@
    "profileUrl": "https://howthelightgetsin.org/talent/rachel-millward",
    "featured": true,
    "speaks": [
-    112,
-    134
+    112
    ],
    "hosts": []
   },
@@ -6723,6 +6639,20 @@
    "speaks": [
     67,
     106
+   ],
+   "hosts": []
+  },
+  {
+   "name": "David Omand",
+   "slug": "david-omand",
+   "tagline": "Former director of GCHQ and Permanent Secretary of the UK Home Office",
+   "bio": "\"As a society, we will always face difficulty, we will find ways of getting through it, and we will endure. That is the human condition.\"\n\nDavid Omand is a Visiting Professor of War Studies at King’s College London. He has held many top roles in the civil service including as Director of GCHQ and Permanent Secretary of the UK Home Office.\n\nHe has also served as Permanent Secretary in the Cabinet Office as UK Security and Intelligence Coordinator. In the MOD he was the Deputy Under Secretary of State for Policy, and was Principal Private Secretary to the Secretary of State for Defence during the Falklands conflict. \n\n\"David Omand is exactly the man you need in a crisis\" — Rory Stewart",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/David-Omand.webp",
+   "photo": "img/speakers/david-omand-81218db33d7f.webp",
+   "profileUrl": "https://howthelightgetsin.org/talent/david-omand",
+   "featured": true,
+   "speaks": [
+    122
    ],
    "hosts": []
   },
@@ -6867,6 +6797,7 @@
    "featured": true,
    "speaks": [],
    "hosts": [
+    29,
     58
    ]
   },
@@ -6880,6 +6811,7 @@
    "profileUrl": "https://howthelightgetsin.org/talent/will-self",
    "featured": true,
    "speaks": [
+    29,
     115
    ],
    "hosts": []
@@ -6889,8 +6821,8 @@
    "slug": "jay-shapiro",
    "tagline": "Documentary filmmaker probing the moral dilemmas of our time",
    "bio": "\"We never solve problems by denying our disruptive power. We solve problems by embracing that.\"\n\nJay Shapiro is an award-winning filmmaker, writer, and podcaster. Director of Islam and the Future of Tolerance, a documentary based on the provocative dialogue between Sam Harris and Maajid Nawaz, Shapiro consistently tackles complex themes in films such as Opposite Field, All Rise, and Metamorphosis. \n\nFrom his blog, What Jay Thinks, to his Dilemma podcast, which includes co-hosted episodes with public intellectuals like Coleman Hughes, Shapiro brings a philosophical edge to everything he creates. Shapiro uses film, conversation, and criticism to ask hard questions about identity, values, and collective future, making him a uniquely relevant voice in today's discourse.",
-   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/jay-shap.webp",
-   "photo": "img/speakers/jay-shapiro.webp",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/jay-shapiro-new2.webp",
+   "photo": "img/speakers/jay-shapiro-d50b35eda08e.webp",
    "profileUrl": "https://howthelightgetsin.org/talent/jay-shapiro",
    "featured": true,
    "speaks": [],
@@ -6898,8 +6830,23 @@
     13,
     48,
     106,
+    123,
     134
    ]
+  },
+  {
+   "name": "Rupert Sheldrake",
+   "slug": "rupert-sheldrake",
+   "tagline": "Radical biologist and philosopher",
+   "bio": "“The belief system that governs conventional scientific thinking is an act of faith.”  \n\nRupert Sheldrake is a scientist, author, and parapsychology researcher. Best known for his theory of morphic resonance, a radical hypothesis that nature itself has memory. Sheldrake is also known for his viral TED talk which was banned by the organisation. He has taken issue with the New Atheism of many and has also challenged the idea that the laws of nature are fixed and unchanging.\n\nAt Cambridge University, he worked in developmental biology as a Fellow of Clare College. He was Principal Plant Physiologist at the International Crops Research Institute for the Semi-Arid Tropics in Hyderabad, India.\n\n\"Sheldrake is an excellent scientist; the proper, imaginative kind.\" — New Scientist",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/rupert-sheldrake.webp",
+   "photo": "img/speakers/rupert-sheldrake-fd23bd52006e.webp",
+   "profileUrl": "https://howthelightgetsin.org/talent/rupert-sheldrake",
+   "featured": true,
+   "speaks": [
+    87
+   ],
+   "hosts": []
   },
   {
    "name": "Mary Ann Sieghart",
@@ -6914,6 +6861,7 @@
     9
    ],
    "hosts": [
+    30,
     51,
     85
    ]
@@ -6928,8 +6876,7 @@
    "profileUrl": "https://howthelightgetsin.org/talent/barry-c-smith",
    "featured": true,
    "speaks": [
-    37,
-    118
+    37
    ],
    "hosts": []
   },
@@ -6960,6 +6907,20 @@
    "featured": true,
    "speaks": [
     134
+   ],
+   "hosts": []
+  },
+  {
+   "name": "Guy Standing",
+   "slug": "guy-standing",
+   "tagline": "Trailblaizing Advocate of Universal Basic Income",
+   "bio": "\"Collective action remains the best way of renewing the march towards the great trinity of liberty, equality, and solidarity.\"\n\nGuy Standing is a Professorial Research Associate at SOAS University of London and co-founder of the Basic Income Earth Network. He is best known as a long-standing and prominent advocate of Universal Basic Income, but he is also responsible for redefining and revitalizing the term ‘precariat’ which describes a new emerging social class suffering from job insecurity as well as identity insecurity. \n\nStanding's recent work has explored the politics of time and how to reclaim leisure in an age of uncertainty.\n\n\"Standing’s daring emancipatory agenda challenges our prevailing “jobs fetish” as anything but progressive\" — Irish Times",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Guy-Standing5.webp",
+   "photo": "img/speakers/guy-standing-6b9d54d16de7.webp",
+   "profileUrl": "https://howthelightgetsin.org/talent/guy-standing",
+   "featured": true,
+   "speaks": [
+    112
    ],
    "hosts": []
   },
@@ -7098,6 +7059,20 @@
     59,
     94
    ]
+  },
+  {
+   "name": "Gawain Towler",
+   "slug": "gawain-towler",
+   "tagline": "",
+   "bio": "\"The ur-democracy within an English pub is something we should be massively proud of.\"\n\nGawain Towler is a British political strategist, journalist, and long-standing figure in the Eurosceptic movement. Best known for his work in party communications and media strategy, he currently serves on the governing board of Reform UK, following a five-year tenure as its director of communications during the Brexit era. He also founded CWC Strategy, a communications and strategy consultancy. As a writer and commentator, his work has appeared in The Telegraph, The Spectator, CapX, The Critic, and Spiked, where he examines politics, culture, and foreign affairs.\n\nTowler twice stood as a candidate for the European Parliament and has been a central figure in shaping the public face of Eurosceptic politics in Britain for more than two decades.\n\n\"The last great amateur in British politics\" — The Spectator",
+   "image": "https://howthelightgetsin.org/assets/Uploads/_resampled/FillWzQ4MCw2MDBd/Gawain-Towler-HowTheLightGetsIn-Hay-Festival-2025.webp",
+   "photo": "img/speakers/gawain-towler-028165358902.webp",
+   "profileUrl": "https://howthelightgetsin.org/talent/gawain-towler",
+   "featured": false,
+   "speaks": [
+    24
+   ],
+   "hosts": []
   },
   {
    "name": "Victoria Trumbull",

@@ -402,23 +402,20 @@
   "43": {
     "kind": "talk",
     "question": "As materialism loses its grip, is the soul a viable answer to the self and consciousness — or a return to old mistakes?",
-    "why": "For a century the brain was assumed to hold the key to the self. That assumption is wobbling — panpsychism, idealism and post-analytic philosophy all reject it. Trumbull brings the soul back as a serious concept; Lawson argues the answer lies elsewhere; Balaska works the edges of experience.",
+    "why": "For a century the brain was assumed to hold the key to the self. That assumption is wobbling — panpsychism, idealism and post-analytic philosophy all reject it. Trumbull brings the soul back as a serious concept; Lawson argues the answer lies elsewhere; Maria Balaska hosts.",
     "case": [
       "Trumbull: the concept of the soul — a self that is not reducible to brain states — does explanatory work that materialism cannot, and has a richer philosophical history than its critics remember.",
-      "Lawson: materialism and 'the soul' share a mistake — both treat the self as a thing to be located; the self is a way of closing the world.",
-      "Balaska: the limits of experience (Wittgenstein, Lacan) show why every location of the self, material or spiritual, fails.",
-      "All three agree the materialist consensus was a consensus, not a proof."
+      "Lawson: materialism and 'the soul' share a mistake — both treat the self as a thing to be located; the self is a way of closing the world."
     ],
     "objections": [
       "'Soul' carries theological freight; if it means only 'irreducible self', why revive the word?",
       "Materialism's difficulties with consciousness do not license any alternative — the burden shifts to the soul theorist to explain interaction with the body.",
-      "The 'materialism is losing its grip' claim is philosophically fashionable and scientifically unrepresentative.",
-      "Three positions, one hour: expect a survey rather than a resolution."
+      "The 'materialism is losing its grip' claim is philosophically fashionable and scientifically unrepresentative."
     ],
     "speakers": [
-      {"name": "Victoria Trumbull", "stance": "Philosopher, author of On the Memory of the Soul, billed as challenging the materialist consensus. Expect the case that the soul is a viable philosophical concept."},
       {"name": "Hilary Lawson", "stance": "Post-postmodern philosopher (Closure); rejects both materialism and the soul as ways of locating the self. Expect the 'closure' framework."},
-      {"name": "Maria Balaska", "stance": "Philosopher (Wittgenstein and Lacan at the Limit) working on the edges of experience. Expect the limits-of-language angle."}
+      {"name": "Victoria Trumbull", "stance": "Philosopher, author of On the Memory of the Soul, billed as challenging the materialist consensus. Expect the case that the soul is a viable philosophical concept."},
+      {"name": "Maria Balaska", "stance": "Hosts. Philosopher whose official profile describes research on subjectivity, language and the limits of experience."}
     ],
     "questions": [
       "What does 'soul' explain that 'irreducible subject' does not?",

@@ -73,6 +73,8 @@ for (const {width, height, scheme} of [
   {width: 1280, height: 900, scheme: 'dark'},
 ]) {
   test(`programme fits ${width}px in ${scheme} mode`, async ({page}, testInfo) => {
+    // Keep the initial layout stable: festival-day Now & next adds content above the cards.
+    await page.clock.setFixedTime(new Date('2026-09-06T12:00:00Z'));
     await page.setViewportSize({width, height});
     await page.emulateMedia({colorScheme: scheme});
     await page.goto('/');

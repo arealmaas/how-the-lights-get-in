@@ -372,8 +372,8 @@
     ],
     "speakers": [
       {"name": "David Aaronovitch", "stance": "Atheist journalist whose Saturday breakfast talk is on how Christian nationalism is being weaponised on the right. Expect him to reject the supernatural claims and to argue that cultural Christianity is being used as a political identity."},
-      {"name": "Laila Cunningham", "stance": "Reform UK councillor in Westminster and former Conservative, billed as the party's London figurehead. Likely to defend Christianity's cultural and heritage role as part of national identity."},
       {"name": "Alister McGrath", "stance": "Oxford theologian and Dawkins critic (The Dawkins Delusion). Expect the argument that Christian ethics depends on Christian belief and that cultural Christianity is unstable — a case that oddly agrees with atheists on the incoherence."},
+      {"name": "Gawain Towler", "stance": "Political strategist and journalist whose official profile describes his work in Reform UK communications and governance. The programme does not establish his position on this debate."},
       {"name": "Jack Symes", "stance": "Hosts. Philosopher and presenter of The Panpsycast."}
     ],
     "questions": [
@@ -425,9 +425,9 @@
     ],
     "speakers": [
       {"name": "Rebecca Goldstein", "stance": "Philosopher and novelist (Plato at the Googleplex; Betraying Spinoza) who writes about 'mattering' — the need to matter beyond oneself. Likely to argue that the self only makes sense inside larger stories, without dismissing the personal."},
-      {"name": "Patricia Lockwood", "stance": "Author of the memoir Priestdaddy and the internet novel No One Is Talking About This; writes from the self and the feed with formal daring. Expect a defence of the personal as a way into the universal, delivered with jokes."},
       {"name": "Emily Wilson", "stance": "Translator of the Odyssey and Iliad; has written on how epics are communal, performed and full of individual voices. Likely to argue the ego/epic opposition is a false one and that Homer already contains both."},
-      {"name": "Shahidha Bari", "stance": "Hosts. Academic, critic and broadcaster (Front Row; Dressed)."}
+      {"name": "Will Self", "stance": "Novelist, satirist and cultural critic whose official profile includes fiction, memoir and Elaine, a novel drawn from his mother's diaries. The programme does not establish his position on this debate."},
+      {"name": "Danielle Sands", "stance": "Hosts. Philosopher and writer whose official profile describes work across literature, philosophy and critical theory."}
     ],
     "questions": [
       "What is the last novel with no author-figure in it that changed how you see the world?",

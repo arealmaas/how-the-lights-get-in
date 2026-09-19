@@ -139,8 +139,8 @@
     "speakers": [
       {"name": "Rachel Millward", "stance": "Deputy Leader of the Green Party. Expect the case for wealth and inheritance taxes and for treating housing as a right rather than an asset."},
       {"name": "Kwasi Kwarteng", "stance": "Former Conservative Chancellor, low-tax and pro-growth. Likely to argue against inheritance-tax rises and for planning liberalisation and growth as the fix."},
-      {"name": "Mariana Mazzucato", "stance": "Economist (The Entrepreneurial State; Mission Economy; The Common Good Economy) who argues value is created collectively and captured privately. Expect the case that inherited wealth is unearned and that the state must shape markets to share it."},
-      {"name": "Philip Collins", "stance": "Hosts."}
+      {"name": "Guy Standing", "stance": "SOAS researcher and co-founder of the Basic Income Earth Network, described in his official profile as an advocate of universal basic income and a theorist of the precariat. The programme does not establish his position on this debate."},
+      {"name": "Roger Hearing", "stance": "Hosts. Journalist and broadcaster with a career at the BBC and Bloomberg."}
     ],
     "questions": [
       "What inheritance-tax rate would you set, and at what threshold? Why that number?",
@@ -149,7 +149,7 @@
     ],
     "reading": [
       {"title": "Capital in the Twenty-First Century", "by": "Thomas Piketty (2013)", "note": "The argument that inherited wealth is returning to nineteenth-century dominance."},
-      {"title": "The Common Good Economy", "by": "Mariana Mazzucato (2026)", "note": "Her latest — she gives a talk on it on Sunday afternoon."},
+      {"title": "The Common Good Economy", "by": "Mariana Mazzucato (2026)", "note": "Background reading on collective value and the common good."},
       {"title": "'The Housing Theory of Everything'", "by": "Bowman, Myers and Southwood (2021)", "note": "The supply-side case that housing explains most of the rest."}
     ],
     "terms": [
@@ -191,8 +191,8 @@
     ],
     "speakers": [
       {"name": "Frank Furedi", "stance": "Sociologist critical of therapeutic, managerial and risk-averse institutions. Expect the case that institutions have lost their sense of mission to self-protection."},
-      {"name": "Thangam Debbonaire", "stance": "Labour peer and former MP, with a career in public and charitable bodies. Likely to defend public institutions and the people in them while accepting reform."},
       {"name": "Catherine Liu", "stance": "Author of Virtue Hoarders; argues that the professional-managerial class has captured institutions and uses moral language to protect its status. Expect a critique from the left that overlaps uncomfortably with Furedi's."},
+      {"name": "David Omand", "stance": "Former Director of GCHQ and Permanent Secretary of the UK Home Office, now a Visiting Professor of War Studies at King's College London according to his official profile. The programme does not establish his position on this debate."},
       {"name": "Roger Hearing", "stance": "Hosts."}
     ],
     "questions": [
@@ -246,7 +246,7 @@
       {"name": "Steve Fuller", "stance": "Sociologist of science (Post-Truth: Knowledge as a Power Game) who treats post-truth as a struggle over who gets to define reality rather than a fall from grace. Expect the most provocative defence of perspectivalism."},
       {"name": "Jimmy Wales", "stance": "Founder of Wikipedia, built on verifiability and neutral point of view. Expect a practical defence of shared facts and of the institutions that maintain them."},
       {"name": "Sally Haslanger", "stance": "MIT philosopher (Resisting Reality) who combines social construction with realism: categories like race are constructed and real. Likely to reject both naive objectivism and 'anything goes'."},
-      {"name": "Philip Collins", "stance": "Hosts."}
+      {"name": "Jay Shapiro", "stance": "Hosts. Filmmaker, writer and podcaster."}
     ],
     "questions": [
       "Is 'one person's terrorist is another's freedom fighter' a fact about reality or about the words?",
@@ -350,8 +350,8 @@
     ],
     "speakers": [
       {"name": "Frank Furedi", "stance": "Author of Culture of Fear (1997) and How Fear Works — the thesis of this debate is largely his. Expect the argument that fear has become a cultural script that infantilises."},
-      {"name": "Rachel Millward", "stance": "Green Party Deputy Leader. Likely to argue that some fears — climate above all — are rational and that precaution is not paralysis."},
       {"name": "David Spiegelhalter", "stance": "Statistician (The Norm Chronicles; The Art of Uncertainty) who has spent a career calibrating public understanding of risk. Expect data on how much safer we are, and a plea for numeracy over panic — without dismissing genuine uncertainty."},
+      {"name": "Audrey Borowski", "stance": "Researcher in the philosophy of artificial intelligence whose official profile describes work on data, algorithmic systems and ideology. The programme does not establish her position on this debate."},
       {"name": "Jay Shapiro", "stance": "Hosts."}
     ],
     "questions": [

@@ -78,7 +78,8 @@ test('each option gives the question, stakes, people, topics and practical ticke
       if (profile?.tagline) await expect(card).toContainText(profile.tagline);
     }
     await expect(card).toContainText('Included with the Festival Ticket');
-    await expect(card).toContainText('optional Fast Pass £8 + VAT');
+    await expect(card).toContainText('optional Fast Pass £9.60');
+    await expect(card).not.toContainText('VAT');
     await expect(card.getByRole('button', {name: 'Full event details', exact: true})).toBeVisible();
     await expect(card.getByRole('button', {name: 'Choose this event', exact: true})).toBeVisible();
   }
@@ -175,17 +176,29 @@ test('partial overlaps can be compared from both an event and My festival', asyn
   await expect(sheet(page).locator('#sheet-title')).toHaveText('Your weekend');
 });
 
-test('events without briefings retain their descriptions and make sold-out or extra tickets clear', async ({page}) => {
+test('events without briefings retain their descriptions and make sold-out tickets clear', async ({page}) => {
   await seedPicks(page, [1, 2]);
   await page.goto('/');
   await openComparison(page);
   await expect(option(page, 1)).toContainText('Modern science buries its assumptions.');
   await expect(option(page, 2)).toContainText('God is back in politics, and the New Right put him there.');
   await expect(option(page, 1)).toContainText(/sold out/i);
-  await expect(option(page, 2)).toContainText('Not included with the Festival Ticket');
-  for (const price of ['£25', '£30', '£35', 'VAT']) await expect(option(page, 2)).toContainText(price);
+  await expect(option(page, 2)).toContainText(/sold out/i);
   await expect(option(page, 1).getByRole('button', {name: 'Full event details', exact: true})).toBeVisible();
   await expect(option(page, 2).getByRole('button', {name: 'Full event details', exact: true})).toBeVisible();
+});
+
+test('separate tickets show the available standard price after earlier tiers sell out', async ({page}) => {
+  await seedPicks(page, [20, 23]);
+  await page.goto('/');
+  await openComparison(page);
+  for (const no of [20, 23]) {
+    const card = option(page, no);
+    await expect(card).toBeVisible();
+    await expect(card.locator('.compare-practical > p')).toHaveText('Not included with the Festival Ticket · Standard £50.40');
+    await expect(card.locator('.badge')).toHaveText('Separate ticket · from £50.40');
+    await expect(card.getByRole('button', {name: 'Full event details', exact: true})).toBeVisible();
+  }
 });
 
 test('back-to-back picks do not produce a conflict comparison', async ({page}) => {

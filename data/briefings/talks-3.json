@@ -317,7 +317,8 @@
       "The Gove position (Saturday) — knowledge first — is the direct opposite, and has more evidence on attainment."
     ],
     "speakers": [
-      {"name": "Daniel Susskind", "stance": "Oxford economist (A World Without Work; Growth: A Reckoning; The Future of the Professions with Richard Susskind). Expect a clear, forward-looking argument. He also debates the educated elite on Saturday."}
+      {"name": "Daniel Susskind", "stance": "Oxford economist (A World Without Work; Growth: A Reckoning; The Future of the Professions with Richard Susskind). Expect a clear, forward-looking argument. He also debates the educated elite on Saturday."},
+      {"name": "Paul Dolan", "stance": "Hosts. Professor of Behavioural Science at the London School of Economics."}
     ],
     "questions": [
       "What should a fourteen-year-old be doing on Monday that they are not doing now?",
@@ -331,73 +332,6 @@
     "terms": [
       {"term": "Task-based automation", "def": "AI replacing tasks within jobs rather than whole occupations — the mechanism Susskind analyses."},
       {"term": "Credentialism", "def": "Using qualifications as proxies for ability — the thing a rebuilt education would drop."}
-    ]
-  },
-  "128": {
-    "kind": "talk",
-    "question": "Are nations finished as the focus of power — and if American hegemony, Western debt and tech firms have shattered the system, what replaces it?",
-    "why": "Dasgupta's After Nations argues that the nation-state system that seemed eternal is breaking under forces it cannot contain: capital that moves faster than states, tech firms acting as geopolitical actors, and the return of Chinese power. He looks back to the fall of empires for what comes next.",
-    "case": [
-      "The nation state is a recent form (two centuries) that was universalised after 1945 and is now failing at its core jobs: controlling money, information and violence.",
-      "Western debt and American decline remove the guarantor of the system; nothing replaces it.",
-      "Tech firms and platforms are political actors — they run infrastructure, communications and now warfare — without being nations.",
-      "History's precedents — the end of empires — show transitions are long, violent and produce forms nobody predicted."
-    ],
-    "objections": [
-      "Nations are also resurgent: borders, tariffs, nationalism and war show the state's monopoly on force is alive.",
-      "'After nations' has been announced by globalisers for thirty years; the state kept coming back.",
-      "The alternative is left vague; a 'new conception of power' is a promissory note.",
-      "Novelists writing political theory can mistake narrative force for argument."
-    ],
-    "speakers": [
-      {"name": "Rana Dasgupta", "stance": "Novelist and essayist (Solo; Capital: The Eruption of Delhi; After Nations). Expect a sweeping, literary argument from history. He also joins the climate 'doom loop' conversation at 5:30pm."}
-    ],
-    "questions": [
-      "Name the power that has replaced the state in one specific domain — and who holds it accountable?",
-      "Are borders and tariffs the death rattle of nations or their revival?",
-      "What did the end of the Roman or Ottoman order look like to someone living through it?"
-    ],
-    "reading": [
-      {"title": "After Nations", "by": "Rana Dasgupta", "note": "The book the talk is drawn from."},
-      {"title": "The Nation-State and Violence", "by": "Anthony Giddens (1985)", "note": "The classic account of what the nation state is and does."}
-    ],
-    "terms": [
-      {"term": "Hegemony", "def": "The leadership of one power that makes an international order work — the American role since 1945."},
-      {"term": "Westphalian system", "def": "The order of sovereign territorial states conventionally dated from 1648."}
-    ]
-  },
-  "135": {
-    "kind": "talk",
-    "question": "Can democracies break the climate doom loop — where disasters fuel the discontent that empowers the politicians who slow the response?",
-    "why": "The expectation was that floods and fires would force action. Instead they feed anger, anger feeds populists, populists slow the transition, and the disasters worsen. A live recording of the Overshoot podcast with Laybourn as host and Dasgupta as guest.",
-    "case": [
-      "Climate impacts are political before they are physical: they raise prices, displace people and erode trust, which anti-climate movements harvest.",
-      "The transition itself creates losers who vote; ignoring that is how the loop tightens.",
-      "Breaking the loop means building resilience and fairness into the transition — protection for the exposed, not just targets.",
-      "Dasgupta's frame: this is happening as the nation-state order itself weakens, so the actors who could respond are losing capacity."
-    ],
-    "objections": [
-      "The loop is asserted from a few cases; elsewhere disasters have strengthened climate politics (Australia after the fires, in part).",
-      "Populist backlash is driven by energy prices and immigration more than by climate disasters as such.",
-      "'Resilience and fairness' is what every party says; the difficulty is paying for it.",
-      "A podcast recording rewards conversation over confrontation; look for the moment of disagreement."
-    ],
-    "speakers": [
-      {"name": "Rana Dasgupta", "stance": "Novelist and essayist; After Nations. Expect the long historical view of political breakdown."},
-      {"name": "Laurie Laybourn", "stance": "Hosts. Researcher on climate 'derailment risk' (the doom-loop thesis is his), co-author of Planet on Fire, host of the Overshoot podcast. Expect the systems framing and the policy questions."}
-    ],
-    "questions": [
-      "Where has the loop been broken, even briefly — and what did it take?",
-      "Should climate policy be designed for the voters it will anger?",
-      "If nation states are weakening, who runs the transition?"
-    ],
-    "reading": [
-      {"title": "'1.5°C – dead or alive? The risks to transformational change from reaching and breaching the Paris Agreement goal'", "by": "Laybourn, Throp and Sherman, IPPR (2023)", "note": "The derailment-risk argument in its original form."},
-      {"title": "Planet on Fire", "by": "Mathew Lawrence and Laurie Laybourn (2021)", "note": "The political-economy programme behind the podcast."}
-    ],
-    "terms": [
-      {"term": "Doom loop", "def": "A self-reinforcing cycle in which the effects of a crisis undermine the capacity to respond to it."},
-      {"term": "Derailment risk", "def": "Laybourn's term for the danger that climate impacts derail the politics of the transition."}
     ]
   }
 }

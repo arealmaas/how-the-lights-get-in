@@ -5,16 +5,23 @@ test('ticketBadge returns plain data for each ticketing state', () => {
   expect(ticketBadge({ticketing: 'fast_pass', fastPassPrice: 12})).toEqual({cls: 'badge', text: 'Included · optional Fast Pass'});
   expect(ticketBadge({ticketing: 'fast_pass'})).toEqual({cls: 'badge', text: 'Included · optional Fast Pass'});
   expect(ticketBadge({ticketing: 'separate_ticket', prices: {standard: 20}})).toEqual({cls: 'badge sep', text: 'Separate ticket · from £20'});
+  expect(ticketBadge({ticketing: 'separate_ticket', prices: {standard: 50.4}})).toEqual({cls: 'badge sep', text: 'Separate ticket · from £50.40'});
   expect(ticketBadge({ticketing: 'included'})).toEqual({cls: 'badge', text: 'Included'});
 });
 
 test('ticketLine spells out the ticketing state in full', () => {
   expect(ticketLine({ticketing: 'included'})).toBe('Included with the Festival Ticket');
-  expect(ticketLine({ticketing: 'sold_out'})).toBe('Separately ticketed · sold out');
+  expect(ticketLine({ticketing: 'sold_out'})).toBe('Sold out');
   expect(ticketLine({ticketing: 'separate_ticket', prices: {earlybird: 10, standard: 20}}))
-    .toBe('Not included with the Festival Ticket · Earlybird £10 / Standard £20 (+ VAT)');
-  expect(ticketLine({ticketing: 'fast_pass', fastPassPrice: 8}))
-    .toBe('Included with the Festival Ticket · optional Fast Pass £8 + VAT (skip the queue, reserved seat)');
+    .toBe('Not included with the Festival Ticket · Earlybird £10 / Standard £20');
+  expect(ticketLine({ticketing: 'fast_pass', fastPassPrice: 9.6}))
+    .toBe('Included with the Festival Ticket · optional Fast Pass £9.60 (skip the queue, reserved seat)');
+});
+
+test('sold-out Fast Passes leave festival admission included', () => {
+  const event = {ticketing: 'fast_pass', fastPassSoldOut: true, fastPassPrice: 9.6};
+  expect(ticketBadge(event)).toEqual({cls: 'badge', text: 'Included · Fast Passes sold out'});
+  expect(ticketLine(event)).toBe('Included with the Festival Ticket · Fast Passes sold out');
 });
 
 test('whoPlain joins speakers and hosts without markup', () => {
