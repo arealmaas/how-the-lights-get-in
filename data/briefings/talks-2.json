@@ -366,6 +366,56 @@
       {"term": "Parasocial", "def": "A one-sided relationship with a public figure — the audience's side of fame."}
     ]
   },
+  "87": {
+    "kind": "talk",
+    "question": "Could the regularities of nature be habits acquired over time — and what experiment would distinguish that from ordinary physical laws?",
+    "why": "Sheldrake turns a philosophical question about why nature is orderly into a radical biological proposal: similar systems inherit a collective memory. The crucial distinction is between questioning eternal laws and establishing morphic resonance. The latter remains a speculative hypothesis, not an accepted explanation in biology or physics.",
+    "case": [
+      "Sheldrake argues that an evolving universe may have evolving regularities, rather than rules fixed once and for all at its beginning.",
+      "His proposed mechanism is morphic resonance: past systems influence later, similar systems, making repeated patterns easier to reproduce.",
+      "He extends this proposed memory beyond genes and individual brains to species, crystals and other self-organising systems; this is a claim about nature, not merely a metaphor for learned behaviour.",
+      "On this account, evolution combines new possibilities with the reinforcement of earlier patterns. The explanatory burden is to show an effect beyond known inheritance, learning and physical processes."
+    ],
+    "objections": [
+      "An evolving universe can obey stable laws; change in what happens does not by itself establish change in the rules governing it.",
+      "The stability of physical constants is tested, not simply assumed: atomic-clock comparisons constrain possible variation. A change would still not establish morphic resonance.",
+      "A persuasive test needs a quantitative prediction and independent replication, with ordinary information transfer, experimental learning and selection effects ruled out.",
+      "If a repeated task becomes easier or a substance crystallises more readily, that alone does not identify a collective memory; the competing explanations need to be tested together."
+    ],
+    "speakers": [
+      {
+        "name": "Rupert Sheldrake",
+        "stance": "Biologist and former Cambridge research fellow; author of A New Science of Life and The Presence of the Past. He introduced morphic resonance in 1981 and remains its principal advocate. Expect a challenge to scientific assumptions; keep the philosophical argument distinct from the evidence for his mechanism."
+      }
+    ],
+    "questions": [
+      "Which independently replicated experiment most clearly distinguishes morphic resonance from ordinary learning or inheritance?",
+      "How do you measure similarity between systems and predict the size of the resonance effect before an experiment?",
+      "What result would make you abandon morphic resonance, rather than revise the conditions under which it operates?"
+    ],
+    "reading": [
+      {
+        "title": "The Presence of the Past: Morphic Resonance and the Habits of Nature",
+        "by": "Rupert Sheldrake (1988; revised edition 2012)",
+        "note": "His extended statement of the hypothesis behind the talk."
+      },
+      {
+        "title": "Nuclear Clocks: A Clock to Rule Them All?",
+        "by": "National Institute of Standards and Technology",
+        "note": "An accessible account of how physicists test whether fundamental constants vary — a useful check on the claim that constancy is an untestable assumption."
+      }
+    ],
+    "terms": [
+      {
+        "term": "Morphic resonance",
+        "def": "Sheldrake's proposed influence of past systems on similar present systems through a collective memory; a speculative mechanism, not an established physical effect."
+      },
+      {
+        "term": "Fundamental constant",
+        "def": "A parameter appearing in physical theories, such as the fine-structure constant; experiments can test whether its value changes over time."
+      }
+    ]
+  },
   "90": {
     "kind": "talk",
     "question": "Can Wikipedia's bet — that people given trust and good faith will collectively pursue truth — survive misinformation and AI?",

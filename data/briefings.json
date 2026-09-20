@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "note": "Unofficial briefing notes originally written with Claude (Anthropic) on 6 September 2026 from the festival programme text and the speakers' published work. Programme framing and participant updates checked against the official programme and profiles on 19 September 2026; briefings for replaced talks were removed. Original speaker positions are inferred and hedged; they are not the speakers' or the festival's words. Newly listed speakers have factual background only where available, with no debate position attributed. Corrections welcome via GitHub.",
+  "note": "Unofficial briefing notes originally written with Claude (Anthropic) on 6 September 2026 from the festival programme text and the speakers' published work. Programme framing and participant updates checked against the official programme and profiles on 19 September 2026. New briefings for replacement Sunday talks #87, #128 and #135 added with Codex (OpenAI) on 20 September 2026, using the refreshed programme and published work. Speaker positions are inferred and hedged; they are not the speakers' or the festival's words. Newly listed debate participants have factual background only where available, with no debate position attributed. Corrections welcome via GitHub.",
   "covers": "Debates, Talks, IAI Academy"
  },
  "6": {
@@ -3952,6 +3952,56 @@
    }
   ]
  },
+ "87": {
+  "kind": "talk",
+  "question": "Could the regularities of nature be habits acquired over time — and what experiment would distinguish that from ordinary physical laws?",
+  "why": "Sheldrake turns a philosophical question about why nature is orderly into a radical biological proposal: similar systems inherit a collective memory. The crucial distinction is between questioning eternal laws and establishing morphic resonance. The latter remains a speculative hypothesis, not an accepted explanation in biology or physics.",
+  "case": [
+   "Sheldrake argues that an evolving universe may have evolving regularities, rather than rules fixed once and for all at its beginning.",
+   "His proposed mechanism is morphic resonance: past systems influence later, similar systems, making repeated patterns easier to reproduce.",
+   "He extends this proposed memory beyond genes and individual brains to species, crystals and other self-organising systems; this is a claim about nature, not merely a metaphor for learned behaviour.",
+   "On this account, evolution combines new possibilities with the reinforcement of earlier patterns. The explanatory burden is to show an effect beyond known inheritance, learning and physical processes."
+  ],
+  "objections": [
+   "An evolving universe can obey stable laws; change in what happens does not by itself establish change in the rules governing it.",
+   "The stability of physical constants is tested, not simply assumed: atomic-clock comparisons constrain possible variation. A change would still not establish morphic resonance.",
+   "A persuasive test needs a quantitative prediction and independent replication, with ordinary information transfer, experimental learning and selection effects ruled out.",
+   "If a repeated task becomes easier or a substance crystallises more readily, that alone does not identify a collective memory; the competing explanations need to be tested together."
+  ],
+  "speakers": [
+   {
+    "name": "Rupert Sheldrake",
+    "stance": "Biologist and former Cambridge research fellow; author of A New Science of Life and The Presence of the Past. He introduced morphic resonance in 1981 and remains its principal advocate. Expect a challenge to scientific assumptions; keep the philosophical argument distinct from the evidence for his mechanism."
+   }
+  ],
+  "questions": [
+   "Which independently replicated experiment most clearly distinguishes morphic resonance from ordinary learning or inheritance?",
+   "How do you measure similarity between systems and predict the size of the resonance effect before an experiment?",
+   "What result would make you abandon morphic resonance, rather than revise the conditions under which it operates?"
+  ],
+  "reading": [
+   {
+    "title": "The Presence of the Past: Morphic Resonance and the Habits of Nature",
+    "by": "Rupert Sheldrake (1988; revised edition 2012)",
+    "note": "His extended statement of the hypothesis behind the talk."
+   },
+   {
+    "title": "Nuclear Clocks: A Clock to Rule Them All?",
+    "by": "National Institute of Standards and Technology",
+    "note": "An accessible account of how physicists test whether fundamental constants vary — a useful check on the claim that constancy is an untestable assumption."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Morphic resonance",
+    "def": "Sheldrake's proposed influence of past systems on similar present systems through a collective memory; a speculative mechanism, not an established physical effect."
+   },
+   {
+    "term": "Fundamental constant",
+    "def": "A parameter appearing in physical theories, such as the fine-structure constant; experiments can test whether its value changes over time."
+   }
+  ]
+ },
  "90": {
   "kind": "talk",
   "question": "Can Wikipedia's bet — that people given trust and good faith will collectively pursue truth — survive misinformation and AI?",
@@ -4523,6 +4573,106 @@
    {
     "term": "Credentialism",
     "def": "Using qualifications as proxies for ability — the thing a rebuilt education would drop."
+   }
+  ]
+ },
+ "128": {
+  "kind": "talk",
+  "question": "Can anxiety about nothing in particular reveal something about being human — and what connects that unsettling experience to wonder?",
+  "why": "Balaska's Anxiety and Wonder asks what we can learn when familiar life suddenly feels strange, even though nothing obvious has changed. Her book provides the background to the programme's promised move from anxiety to wonder: a philosophical inquiry into meaning and possibility, rather than a treatment claim about anxiety disorders.",
+  "case": [
+   "Some moods unsettle our whole relationship with the world, rather than responding to one identifiable threat. Balaska asks what these experiences reveal about our existence.",
+   "Kierkegaard connects anxiety with freedom: openness to possibilities can be disturbing as well as liberating. The philosophical question is what it means to have a life that is not already settled.",
+   "Wonder can concern the existence of ordinary things, not just something spectacular or surprising. In Balaska's reading of Heidegger and Wittgenstein, this shifts attention from particular facts to our ability to find anything meaningful.",
+   "Anxiety and wonder may therefore be closely related responses to existence. The proposed insight is about our capacity to make sense of the world; it does not establish that distress will become wonder."
+  ],
+  "objections": [
+   "An experience with no obvious object may still have causes we have not identified. What justifies interpreting it as an encounter with existence itself?",
+   "A powerful mood can alter how the world appears without giving us knowledge about the human condition; the argument needs a bridge between feeling and insight.",
+   "The philosophical use of 'anxiety' must be distinguished from clinical anxiety disorders. Giving an experience philosophical significance does not establish how a disorder should be understood or treated.",
+   "Wittgenstein's worry about the limits of meaningful language remains: does talk of 'nothing' clarify these experiences, or turn a difficulty of expression into a mysterious object?"
+  ],
+  "speakers": [
+   {
+    "name": "Maria Balaska",
+    "stance": "Philosopher and research fellow at Åbo Akademi University and the University of Hertfordshire; author of Anxiety and Wonder and Wittgenstein and Lacan at the Limit. Her work connects ethics, language and experiences that resist expression. Listen for how the philosophical account earns its positive interpretation of anxiety."
+   }
+  ],
+  "questions": [
+   "How do you distinguish anxiety that reveals an existential possibility from distress whose significance lies elsewhere?",
+   "What changes when anxiety becomes wonder — the experience, our interpretation of it, or our relationship to the world?",
+   "If these experiences resist language, how can we tell whether two people are describing the same thing?"
+  ],
+  "reading": [
+   {
+    "title": "Anxiety and Wonder: On Being Human",
+    "by": "Maria Balaska (2024)",
+    "note": "The central book behind this topic, bringing Kierkegaard, Heidegger, Wittgenstein and psychoanalysis into conversation."
+   },
+   {
+    "title": "Wittgenstein and Lacan at the Limit: Meaning and Astonishment",
+    "by": "Maria Balaska (2019)",
+    "note": "Her earlier account of astonishment, the limits of expression and our creative involvement in making meaning."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Objectless anxiety",
+    "def": "In this philosophical discussion, an anxious mood without a particular identifiable object; the term does not mean that it has no causes."
+   },
+   {
+    "term": "Existential wonder",
+    "def": "Astonishment that things exist at all, rather than curiosity about why one particular thing is unusual."
+   }
+  ]
+ },
+ "135": {
+  "kind": "talk",
+  "question": "Can we keep our strongest convictions without turning the people who disagree with us into enemies?",
+  "why": "Dolan calls discrimination against people with different beliefs 'beliefism'. The programme moves from naming that problem to repairing relationships: how can people reconnect while taking their differences seriously? His published work supplies the background; the practical remedies are the thing to listen for.",
+  "case": [
+   "Dolan argues that a political position can become a verdict on someone's entire character: once a person is labelled a Leaver or Remainer, their arguments are filtered through that identity.",
+   "His aim is to reduce hostility while preserving disagreement. Competing perspectives can improve decisions when participants can examine evidence without treating compromise as betrayal.",
+   "Beliefism uses the duck–rabbit illusion to show how the same thing can be interpreted differently. Understanding another perspective does not require adopting it.",
+   "His published remedies emphasise the setting of an encounter: shared tasks, room to admit mistakes and respectful contact across differences. Expect the talk to ask how those conditions can rebuild relationships."
+  ],
+  "objections": [
+   "Some disagreements concern concrete harms or unequal rights. When is distrust a reasonable response to someone's position, rather than prejudice against its holder?",
+   "A calmer conversation is not necessarily a better decision. The test should include conduct and outcomes, not just how warmly participants rate one another.",
+   "Personal encounters may struggle against political and commercial incentives that reward antagonism. How far can a behavioural checklist change those incentives?",
+   "Recognising multiple perspectives does not make them equally well supported. A remedy needs to preserve standards of evidence as well as mutual respect."
+  ],
+  "speakers": [
+   {
+    "name": "Paul Dolan",
+    "stance": "Professor of Behavioural Science at LSE and author of Beliefism (2025). His published argument favours designing settings that make disagreement more productive; expect practical proposals rather than a demand for consensus."
+   }
+  ],
+  "questions": [
+   "What is the first useful step in reconnecting with someone who does not want to talk to you?",
+   "Where do you draw the line between beliefism and justified refusal to cooperate with a harmful position?",
+   "Which intervention has the strongest evidence of changing behaviour beyond the initial encounter?"
+  ],
+  "reading": [
+   {
+    "title": "Beliefism: How to Stop Hating the People We Disagree With",
+    "by": "Paul Dolan (2025)",
+    "note": "The book behind the talk, including his EMBRACE checklist."
+   },
+   {
+    "title": "How disagreement over Brexit turned into beliefism",
+    "by": "Paul Dolan (LSE British Politics and Policy, 2026)",
+    "note": "A short, freely available account of his diagnosis and proposed remedies."
+   }
+  ],
+  "terms": [
+   {
+    "term": "Affective polarisation",
+    "def": "Hostility towards people in an opposing political group, distinct from how far apart their policy preferences are."
+   },
+   {
+    "term": "EMBRACE",
+    "def": "Dolan's checklist: Environment, Mistakes, Bonding, Reason, Affect, Collection and Exposure — prompts for designing encounters and organisations that accommodate disagreement."
    }
   ]
  }

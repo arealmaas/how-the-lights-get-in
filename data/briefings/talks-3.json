@@ -333,5 +333,105 @@
       {"term": "Task-based automation", "def": "AI replacing tasks within jobs rather than whole occupations — the mechanism Susskind analyses."},
       {"term": "Credentialism", "def": "Using qualifications as proxies for ability — the thing a rebuilt education would drop."}
     ]
+  },
+  "128": {
+    "kind": "talk",
+    "question": "Can anxiety about nothing in particular reveal something about being human — and what connects that unsettling experience to wonder?",
+    "why": "Balaska's Anxiety and Wonder asks what we can learn when familiar life suddenly feels strange, even though nothing obvious has changed. Her book provides the background to the programme's promised move from anxiety to wonder: a philosophical inquiry into meaning and possibility, rather than a treatment claim about anxiety disorders.",
+    "case": [
+      "Some moods unsettle our whole relationship with the world, rather than responding to one identifiable threat. Balaska asks what these experiences reveal about our existence.",
+      "Kierkegaard connects anxiety with freedom: openness to possibilities can be disturbing as well as liberating. The philosophical question is what it means to have a life that is not already settled.",
+      "Wonder can concern the existence of ordinary things, not just something spectacular or surprising. In Balaska's reading of Heidegger and Wittgenstein, this shifts attention from particular facts to our ability to find anything meaningful.",
+      "Anxiety and wonder may therefore be closely related responses to existence. The proposed insight is about our capacity to make sense of the world; it does not establish that distress will become wonder."
+    ],
+    "objections": [
+      "An experience with no obvious object may still have causes we have not identified. What justifies interpreting it as an encounter with existence itself?",
+      "A powerful mood can alter how the world appears without giving us knowledge about the human condition; the argument needs a bridge between feeling and insight.",
+      "The philosophical use of 'anxiety' must be distinguished from clinical anxiety disorders. Giving an experience philosophical significance does not establish how a disorder should be understood or treated.",
+      "Wittgenstein's worry about the limits of meaningful language remains: does talk of 'nothing' clarify these experiences, or turn a difficulty of expression into a mysterious object?"
+    ],
+    "speakers": [
+      {
+        "name": "Maria Balaska",
+        "stance": "Philosopher and research fellow at Åbo Akademi University and the University of Hertfordshire; author of Anxiety and Wonder and Wittgenstein and Lacan at the Limit. Her work connects ethics, language and experiences that resist expression. Listen for how the philosophical account earns its positive interpretation of anxiety."
+      }
+    ],
+    "questions": [
+      "How do you distinguish anxiety that reveals an existential possibility from distress whose significance lies elsewhere?",
+      "What changes when anxiety becomes wonder — the experience, our interpretation of it, or our relationship to the world?",
+      "If these experiences resist language, how can we tell whether two people are describing the same thing?"
+    ],
+    "reading": [
+      {
+        "title": "Anxiety and Wonder: On Being Human",
+        "by": "Maria Balaska (2024)",
+        "note": "The central book behind this topic, bringing Kierkegaard, Heidegger, Wittgenstein and psychoanalysis into conversation."
+      },
+      {
+        "title": "Wittgenstein and Lacan at the Limit: Meaning and Astonishment",
+        "by": "Maria Balaska (2019)",
+        "note": "Her earlier account of astonishment, the limits of expression and our creative involvement in making meaning."
+      }
+    ],
+    "terms": [
+      {
+        "term": "Objectless anxiety",
+        "def": "In this philosophical discussion, an anxious mood without a particular identifiable object; the term does not mean that it has no causes."
+      },
+      {
+        "term": "Existential wonder",
+        "def": "Astonishment that things exist at all, rather than curiosity about why one particular thing is unusual."
+      }
+    ]
+  },
+  "135": {
+    "kind": "talk",
+    "question": "Can we keep our strongest convictions without turning the people who disagree with us into enemies?",
+    "why": "Dolan calls discrimination against people with different beliefs 'beliefism'. The programme moves from naming that problem to repairing relationships: how can people reconnect while taking their differences seriously? His published work supplies the background; the practical remedies are the thing to listen for.",
+    "case": [
+      "Dolan argues that a political position can become a verdict on someone's entire character: once a person is labelled a Leaver or Remainer, their arguments are filtered through that identity.",
+      "His aim is to reduce hostility while preserving disagreement. Competing perspectives can improve decisions when participants can examine evidence without treating compromise as betrayal.",
+      "Beliefism uses the duck–rabbit illusion to show how the same thing can be interpreted differently. Understanding another perspective does not require adopting it.",
+      "His published remedies emphasise the setting of an encounter: shared tasks, room to admit mistakes and respectful contact across differences. Expect the talk to ask how those conditions can rebuild relationships."
+    ],
+    "objections": [
+      "Some disagreements concern concrete harms or unequal rights. When is distrust a reasonable response to someone's position, rather than prejudice against its holder?",
+      "A calmer conversation is not necessarily a better decision. The test should include conduct and outcomes, not just how warmly participants rate one another.",
+      "Personal encounters may struggle against political and commercial incentives that reward antagonism. How far can a behavioural checklist change those incentives?",
+      "Recognising multiple perspectives does not make them equally well supported. A remedy needs to preserve standards of evidence as well as mutual respect."
+    ],
+    "speakers": [
+      {
+        "name": "Paul Dolan",
+        "stance": "Professor of Behavioural Science at LSE and author of Beliefism (2025). His published argument favours designing settings that make disagreement more productive; expect practical proposals rather than a demand for consensus."
+      }
+    ],
+    "questions": [
+      "What is the first useful step in reconnecting with someone who does not want to talk to you?",
+      "Where do you draw the line between beliefism and justified refusal to cooperate with a harmful position?",
+      "Which intervention has the strongest evidence of changing behaviour beyond the initial encounter?"
+    ],
+    "reading": [
+      {
+        "title": "Beliefism: How to Stop Hating the People We Disagree With",
+        "by": "Paul Dolan (2025)",
+        "note": "The book behind the talk, including his EMBRACE checklist."
+      },
+      {
+        "title": "How disagreement over Brexit turned into beliefism",
+        "by": "Paul Dolan (LSE British Politics and Policy, 2026)",
+        "note": "A short, freely available account of his diagnosis and proposed remedies."
+      }
+    ],
+    "terms": [
+      {
+        "term": "Affective polarisation",
+        "def": "Hostility towards people in an opposing political group, distinct from how far apart their policy preferences are."
+      },
+      {
+        "term": "EMBRACE",
+        "def": "Dolan's checklist: Environment, Mistakes, Bonding, Reason, Affect, Collection and Exposure — prompts for designing encounters and organisations that accommodate disagreement."
+      }
+    ]
   }
 }
