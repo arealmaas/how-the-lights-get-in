@@ -5,13 +5,17 @@ import {usePlanner} from './store/planner.js';
 import {useSheet} from './store/sheet.js';
 
 beforeEach(() => {
+  sessionStorage.setItem('htlgi:festival-finale:2026:dismissed', '1');
   useSheet.setState({stack: []});
   usePlanner.setState({day: '2026-09-19', view: 'list', picks: new Set(), q: '', groups: [], venue: '', topic: '', picksOnly: false, crewOnly: false});
 });
 
 // VITE_PREVIEW is stubbed below; a test that fails part-way through would otherwise leave it set for
 // every file that runs after this one.
-afterEach(() => { vi.unstubAllEnvs(); });
+afterEach(() => {
+  sessionStorage.removeItem('htlgi:festival-finale:2026:dismissed');
+  vi.unstubAllEnvs();
+});
 
 test('renders the masthead', () => {
   render(<App />);

@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect} from './fixtures.js';
 import programme from '../../programme.json' with {type: 'json'};
 import briefings from '../../data/briefings.json' with {type: 'json'};
 

@@ -42,6 +42,7 @@ async function openHub(page){
 const closeSheet = async page => { await page.keyboard.press('Escape'); await page.locator('#sheet').waitFor({state: 'hidden', timeout: T}); };
 async function signIn(page, who){
   await page.goto(BASE, {waitUntil: 'domcontentloaded'});
+  await page.getByRole('button', {name: 'Explore the programme'}).click();
   await openHub(page);
   await page.getByRole('button', {name: 'Use email and password'}).click();
   await page.getByPlaceholder('Email').fill(who.email);

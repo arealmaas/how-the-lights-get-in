@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect} from './fixtures.js';
 import programme from '../../programme.json' with {type: 'json'};
 import {encodeNotesParam} from '../../src/core/notes.js';
 

@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect} from './fixtures.js';
 
 test('mobile filters expose every option and preserve selection when closed', async ({page}) => {
   await page.setViewportSize({width: 390, height: 844});

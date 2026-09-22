@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect} from './fixtures.js';
 import programme from '../../programme.json' with {type: 'json'};
 
 const event = programme.events.find(e => e.eventNo === 6);

@@ -10,6 +10,7 @@ This is an **unofficial, fan-made** planner. It is not affiliated with, endorsed
 
 ## Features
 
+- **Festival farewell**: a dismissible “The weekend ends. The light stays.” overlay marks the end of London 2026. Close it, press Escape, or choose *Explore the programme* to browse as usual. Dismissal lasts for the current tab session, including reloads; shared event links open their details first. The illustrated poster works offline and respects reduced motion.
 - **Mobile event details**: expand any event or speaker sheet with *Full screen*, return with *Compact view*, and close it without losing your place in the programme. Larger touch controls and full-width mobile cards make it easier to browse; event picks are at the top of the details.
 - **Back and Forward**: browser navigation follows event and speaker details, preserving each visit’s section and reading position during the session. Close or Escape returns to the programme; reloading a detail restores its navigation stack. Opening an event updates its shareable `#event=` address. Import and invitation payloads leave the address immediately, before you accept or decline them.
 - **Event sections**: Overview, Briefing and Notes stay within reach while reading. Switching sections returns to the passage you left, including after a visit to a speaker profile. Event details and section controls come before the Overview image, and the note toolbar stays below the section controls.

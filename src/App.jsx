@@ -9,6 +9,7 @@ import EventGrid from './ui/EventGrid.jsx';
 import ComparePrompt from './ui/ComparePrompt.jsx';
 import Footer from './ui/Footer.jsx';
 import Sheet from './ui/Sheet.jsx';
+import FestivalFinale from './ui/FestivalFinale.jsx';
 import {usePlanner} from './store/planner.js';
 import {useSheet} from './store/sheet.js';
 import {useFiltered} from './ui/useFiltered.js';
@@ -52,6 +53,7 @@ export default function App(){
       </main>
       <Footer />
       <Sheet />
+      <FestivalFinale />
       <PreviewTag />
     </>
   );

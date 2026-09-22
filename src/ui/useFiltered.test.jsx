@@ -2,7 +2,7 @@
 // whether or not this device is in a crew. Creating a crew flips `crew` from null to an object under a
 // mounted tree, so a hook that only runs on one side of that flip is React error #310 ("rendered more
 // hooks than during the previous render") the moment the crew lands.
-import {test, expect, beforeEach} from 'vitest';
+import {test, expect, beforeEach, afterEach} from 'vitest';
 import {render, act} from '@testing-library/react';
 import App from '../App.jsx';
 import Status from './Status.jsx';
@@ -17,10 +17,13 @@ const CREW = {
 };
 
 beforeEach(() => {
+  sessionStorage.setItem('htlgi:festival-finale:2026:dismissed', '1');
   localStorage.clear();
   usePlanner.setState({day: '2026-09-19', groups: [], venue: '', topic: '', picksOnly: false, crewOnly: false, q: ''});
   useCloud.setState({user: null, accountName: '', marker: null, crewId: null, crew: null});
 });
+
+afterEach(() => { sessionStorage.removeItem('htlgi:festival-finale:2026:dismissed'); });
 
 // The reported crash: signed in, no crew, press "Create crew", the snapshot lands and the whole app throws.
 test('creating a crew under a mounted App does not change the hook count', () => {
